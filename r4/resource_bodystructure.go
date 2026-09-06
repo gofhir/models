@@ -479,3 +479,43 @@ func (b *BodyStructureBuilder) SetPatient(v Reference) *BodyStructureBuilder {
 	b.bodyStructure.Patient = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BodyStructureBuilder) SetImplicitRulesExt(v Element) *BodyStructureBuilder {
+	b.bodyStructure.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BodyStructureBuilder) SetLanguageExt(v Element) *BodyStructureBuilder {
+	b.bodyStructure.LanguageExt = &v
+	return b
+}
+
+// SetActiveExt sets the extensions carried by Active, serialized as
+// "_active".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BodyStructureBuilder) SetActiveExt(v Element) *BodyStructureBuilder {
+	b.bodyStructure.ActiveExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BodyStructureBuilder) SetDescriptionExt(v Element) *BodyStructureBuilder {
+	b.bodyStructure.DescriptionExt = &v
+	return b
+}

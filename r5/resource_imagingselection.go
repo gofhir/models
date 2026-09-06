@@ -1128,3 +1128,414 @@ func (b *ImagingSelectionBuilder) AddInstance(v ImagingSelectionInstance) *Imagi
 	b.imagingSelection.Instance = append(b.imagingSelection.Instance, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingSelectionBuilder) SetImplicitRulesExt(v Element) *ImagingSelectionBuilder {
+	b.imagingSelection.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingSelectionBuilder) SetLanguageExt(v Element) *ImagingSelectionBuilder {
+	b.imagingSelection.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingSelectionBuilder) SetStatusExt(v Element) *ImagingSelectionBuilder {
+	b.imagingSelection.StatusExt = &v
+	return b
+}
+
+// SetIssuedExt sets the extensions carried by Issued, serialized as
+// "_issued".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingSelectionBuilder) SetIssuedExt(v Element) *ImagingSelectionBuilder {
+	b.imagingSelection.IssuedExt = &v
+	return b
+}
+
+// SetStudyUidExt sets the extensions carried by StudyUid, serialized as
+// "_studyUid".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingSelectionBuilder) SetStudyUidExt(v Element) *ImagingSelectionBuilder {
+	b.imagingSelection.StudyUidExt = &v
+	return b
+}
+
+// SetSeriesUidExt sets the extensions carried by SeriesUid, serialized as
+// "_seriesUid".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingSelectionBuilder) SetSeriesUidExt(v Element) *ImagingSelectionBuilder {
+	b.imagingSelection.SeriesUidExt = &v
+	return b
+}
+
+// SetSeriesNumberExt sets the extensions carried by SeriesNumber, serialized as
+// "_seriesNumber".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingSelectionBuilder) SetSeriesNumberExt(v Element) *ImagingSelectionBuilder {
+	b.imagingSelection.SeriesNumberExt = &v
+	return b
+}
+
+// SetFrameOfReferenceUidExt sets the extensions carried by FrameOfReferenceUid, serialized as
+// "_frameOfReferenceUid".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingSelectionBuilder) SetFrameOfReferenceUidExt(v Element) *ImagingSelectionBuilder {
+	b.imagingSelection.FrameOfReferenceUidExt = &v
+	return b
+}
+
+// =============================================================================
+// ImagingSelectionInstance - Fluent Builder
+// =============================================================================
+
+// ImagingSelectionInstanceBuilder provides a fluent API for constructing ImagingSelectionInstance values.
+type ImagingSelectionInstanceBuilder struct {
+	imagingSelectionInstance *ImagingSelectionInstance
+}
+
+// NewImagingSelectionInstanceBuilder creates a new ImagingSelectionInstanceBuilder.
+func NewImagingSelectionInstanceBuilder() *ImagingSelectionInstanceBuilder {
+	return &ImagingSelectionInstanceBuilder{
+		imagingSelectionInstance: &ImagingSelectionInstance{},
+	}
+}
+
+// Build returns the constructed ImagingSelectionInstance.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImagingSelectionInstanceBuilder) Build() ImagingSelectionInstance {
+	return *b.imagingSelectionInstance
+}
+
+// SetId sets the Id field.
+func (b *ImagingSelectionInstanceBuilder) SetId(v string) *ImagingSelectionInstanceBuilder {
+	b.imagingSelectionInstance.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImagingSelectionInstanceBuilder) AddExtension(v Extension) *ImagingSelectionInstanceBuilder {
+	b.imagingSelectionInstance.Extension = append(b.imagingSelectionInstance.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImagingSelectionInstanceBuilder) AddModifierExtension(v Extension) *ImagingSelectionInstanceBuilder {
+	b.imagingSelectionInstance.ModifierExtension = append(b.imagingSelectionInstance.ModifierExtension, v)
+	return b
+}
+
+// SetUid sets the Uid field.
+func (b *ImagingSelectionInstanceBuilder) SetUid(v string) *ImagingSelectionInstanceBuilder {
+	b.imagingSelectionInstance.Uid = &v
+	return b
+}
+
+// SetNumber sets the Number field.
+func (b *ImagingSelectionInstanceBuilder) SetNumber(v uint32) *ImagingSelectionInstanceBuilder {
+	b.imagingSelectionInstance.Number = &v
+	return b
+}
+
+// SetSopClass sets the SopClass field.
+func (b *ImagingSelectionInstanceBuilder) SetSopClass(v Coding) *ImagingSelectionInstanceBuilder {
+	b.imagingSelectionInstance.SopClass = &v
+	return b
+}
+
+// AddSubset adds a Subset element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ImagingSelectionInstanceBuilder) AddSubset(v string) *ImagingSelectionInstanceBuilder {
+	b.imagingSelectionInstance.Subset = append(b.imagingSelectionInstance.Subset, &v)
+	return b
+}
+
+// AddImageRegion2D adds a ImageRegion2D element.
+func (b *ImagingSelectionInstanceBuilder) AddImageRegion2D(v ImagingSelectionInstanceImageRegion2D) *ImagingSelectionInstanceBuilder {
+	b.imagingSelectionInstance.ImageRegion2D = append(b.imagingSelectionInstance.ImageRegion2D, v)
+	return b
+}
+
+// AddImageRegion3D adds a ImageRegion3D element.
+func (b *ImagingSelectionInstanceBuilder) AddImageRegion3D(v ImagingSelectionInstanceImageRegion3D) *ImagingSelectionInstanceBuilder {
+	b.imagingSelectionInstance.ImageRegion3D = append(b.imagingSelectionInstance.ImageRegion3D, v)
+	return b
+}
+
+// SetUidExt sets the extensions carried by Uid, serialized as
+// "_uid".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingSelectionInstanceBuilder) SetUidExt(v Element) *ImagingSelectionInstanceBuilder {
+	b.imagingSelectionInstance.UidExt = &v
+	return b
+}
+
+// SetNumberExt sets the extensions carried by Number, serialized as
+// "_number".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingSelectionInstanceBuilder) SetNumberExt(v Element) *ImagingSelectionInstanceBuilder {
+	b.imagingSelectionInstance.NumberExt = &v
+	return b
+}
+
+// AddSubsetExt appends an extension slot for Subset.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ImagingSelectionInstanceBuilder) AddSubsetExt(v *Element) *ImagingSelectionInstanceBuilder {
+	b.imagingSelectionInstance.SubsetExt = append(b.imagingSelectionInstance.SubsetExt, v)
+	return b
+}
+
+// =============================================================================
+// ImagingSelectionInstanceImageRegion2D - Fluent Builder
+// =============================================================================
+
+// ImagingSelectionInstanceImageRegion2DBuilder provides a fluent API for constructing ImagingSelectionInstanceImageRegion2D values.
+type ImagingSelectionInstanceImageRegion2DBuilder struct {
+	imagingSelectionInstanceImageRegion2D *ImagingSelectionInstanceImageRegion2D
+}
+
+// NewImagingSelectionInstanceImageRegion2DBuilder creates a new ImagingSelectionInstanceImageRegion2DBuilder.
+func NewImagingSelectionInstanceImageRegion2DBuilder() *ImagingSelectionInstanceImageRegion2DBuilder {
+	return &ImagingSelectionInstanceImageRegion2DBuilder{
+		imagingSelectionInstanceImageRegion2D: &ImagingSelectionInstanceImageRegion2D{},
+	}
+}
+
+// Build returns the constructed ImagingSelectionInstanceImageRegion2D.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImagingSelectionInstanceImageRegion2DBuilder) Build() ImagingSelectionInstanceImageRegion2D {
+	return *b.imagingSelectionInstanceImageRegion2D
+}
+
+// SetId sets the Id field.
+func (b *ImagingSelectionInstanceImageRegion2DBuilder) SetId(v string) *ImagingSelectionInstanceImageRegion2DBuilder {
+	b.imagingSelectionInstanceImageRegion2D.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImagingSelectionInstanceImageRegion2DBuilder) AddExtension(v Extension) *ImagingSelectionInstanceImageRegion2DBuilder {
+	b.imagingSelectionInstanceImageRegion2D.Extension = append(b.imagingSelectionInstanceImageRegion2D.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImagingSelectionInstanceImageRegion2DBuilder) AddModifierExtension(v Extension) *ImagingSelectionInstanceImageRegion2DBuilder {
+	b.imagingSelectionInstanceImageRegion2D.ModifierExtension = append(b.imagingSelectionInstanceImageRegion2D.ModifierExtension, v)
+	return b
+}
+
+// SetRegionType sets the RegionType field.
+func (b *ImagingSelectionInstanceImageRegion2DBuilder) SetRegionType(v ImagingSelection2DGraphicType) *ImagingSelectionInstanceImageRegion2DBuilder {
+	b.imagingSelectionInstanceImageRegion2D.RegionType = &v
+	return b
+}
+
+// AddCoordinate adds a Coordinate element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ImagingSelectionInstanceImageRegion2DBuilder) AddCoordinate(v Decimal) *ImagingSelectionInstanceImageRegion2DBuilder {
+	b.imagingSelectionInstanceImageRegion2D.Coordinate = append(b.imagingSelectionInstanceImageRegion2D.Coordinate, &v)
+	return b
+}
+
+// SetRegionTypeExt sets the extensions carried by RegionType, serialized as
+// "_regionType".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingSelectionInstanceImageRegion2DBuilder) SetRegionTypeExt(v Element) *ImagingSelectionInstanceImageRegion2DBuilder {
+	b.imagingSelectionInstanceImageRegion2D.RegionTypeExt = &v
+	return b
+}
+
+// AddCoordinateExt appends an extension slot for Coordinate.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ImagingSelectionInstanceImageRegion2DBuilder) AddCoordinateExt(v *Element) *ImagingSelectionInstanceImageRegion2DBuilder {
+	b.imagingSelectionInstanceImageRegion2D.CoordinateExt = append(b.imagingSelectionInstanceImageRegion2D.CoordinateExt, v)
+	return b
+}
+
+// =============================================================================
+// ImagingSelectionInstanceImageRegion3D - Fluent Builder
+// =============================================================================
+
+// ImagingSelectionInstanceImageRegion3DBuilder provides a fluent API for constructing ImagingSelectionInstanceImageRegion3D values.
+type ImagingSelectionInstanceImageRegion3DBuilder struct {
+	imagingSelectionInstanceImageRegion3D *ImagingSelectionInstanceImageRegion3D
+}
+
+// NewImagingSelectionInstanceImageRegion3DBuilder creates a new ImagingSelectionInstanceImageRegion3DBuilder.
+func NewImagingSelectionInstanceImageRegion3DBuilder() *ImagingSelectionInstanceImageRegion3DBuilder {
+	return &ImagingSelectionInstanceImageRegion3DBuilder{
+		imagingSelectionInstanceImageRegion3D: &ImagingSelectionInstanceImageRegion3D{},
+	}
+}
+
+// Build returns the constructed ImagingSelectionInstanceImageRegion3D.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImagingSelectionInstanceImageRegion3DBuilder) Build() ImagingSelectionInstanceImageRegion3D {
+	return *b.imagingSelectionInstanceImageRegion3D
+}
+
+// SetId sets the Id field.
+func (b *ImagingSelectionInstanceImageRegion3DBuilder) SetId(v string) *ImagingSelectionInstanceImageRegion3DBuilder {
+	b.imagingSelectionInstanceImageRegion3D.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImagingSelectionInstanceImageRegion3DBuilder) AddExtension(v Extension) *ImagingSelectionInstanceImageRegion3DBuilder {
+	b.imagingSelectionInstanceImageRegion3D.Extension = append(b.imagingSelectionInstanceImageRegion3D.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImagingSelectionInstanceImageRegion3DBuilder) AddModifierExtension(v Extension) *ImagingSelectionInstanceImageRegion3DBuilder {
+	b.imagingSelectionInstanceImageRegion3D.ModifierExtension = append(b.imagingSelectionInstanceImageRegion3D.ModifierExtension, v)
+	return b
+}
+
+// SetRegionType sets the RegionType field.
+func (b *ImagingSelectionInstanceImageRegion3DBuilder) SetRegionType(v ImagingSelection3DGraphicType) *ImagingSelectionInstanceImageRegion3DBuilder {
+	b.imagingSelectionInstanceImageRegion3D.RegionType = &v
+	return b
+}
+
+// AddCoordinate adds a Coordinate element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ImagingSelectionInstanceImageRegion3DBuilder) AddCoordinate(v Decimal) *ImagingSelectionInstanceImageRegion3DBuilder {
+	b.imagingSelectionInstanceImageRegion3D.Coordinate = append(b.imagingSelectionInstanceImageRegion3D.Coordinate, &v)
+	return b
+}
+
+// SetRegionTypeExt sets the extensions carried by RegionType, serialized as
+// "_regionType".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingSelectionInstanceImageRegion3DBuilder) SetRegionTypeExt(v Element) *ImagingSelectionInstanceImageRegion3DBuilder {
+	b.imagingSelectionInstanceImageRegion3D.RegionTypeExt = &v
+	return b
+}
+
+// AddCoordinateExt appends an extension slot for Coordinate.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ImagingSelectionInstanceImageRegion3DBuilder) AddCoordinateExt(v *Element) *ImagingSelectionInstanceImageRegion3DBuilder {
+	b.imagingSelectionInstanceImageRegion3D.CoordinateExt = append(b.imagingSelectionInstanceImageRegion3D.CoordinateExt, v)
+	return b
+}
+
+// =============================================================================
+// ImagingSelectionPerformer - Fluent Builder
+// =============================================================================
+
+// ImagingSelectionPerformerBuilder provides a fluent API for constructing ImagingSelectionPerformer values.
+type ImagingSelectionPerformerBuilder struct {
+	imagingSelectionPerformer *ImagingSelectionPerformer
+}
+
+// NewImagingSelectionPerformerBuilder creates a new ImagingSelectionPerformerBuilder.
+func NewImagingSelectionPerformerBuilder() *ImagingSelectionPerformerBuilder {
+	return &ImagingSelectionPerformerBuilder{
+		imagingSelectionPerformer: &ImagingSelectionPerformer{},
+	}
+}
+
+// Build returns the constructed ImagingSelectionPerformer.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImagingSelectionPerformerBuilder) Build() ImagingSelectionPerformer {
+	return *b.imagingSelectionPerformer
+}
+
+// SetId sets the Id field.
+func (b *ImagingSelectionPerformerBuilder) SetId(v string) *ImagingSelectionPerformerBuilder {
+	b.imagingSelectionPerformer.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImagingSelectionPerformerBuilder) AddExtension(v Extension) *ImagingSelectionPerformerBuilder {
+	b.imagingSelectionPerformer.Extension = append(b.imagingSelectionPerformer.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImagingSelectionPerformerBuilder) AddModifierExtension(v Extension) *ImagingSelectionPerformerBuilder {
+	b.imagingSelectionPerformer.ModifierExtension = append(b.imagingSelectionPerformer.ModifierExtension, v)
+	return b
+}
+
+// SetFunction sets the Function field.
+func (b *ImagingSelectionPerformerBuilder) SetFunction(v CodeableConcept) *ImagingSelectionPerformerBuilder {
+	b.imagingSelectionPerformer.Function = &v
+	return b
+}
+
+// SetActor sets the Actor field.
+func (b *ImagingSelectionPerformerBuilder) SetActor(v Reference) *ImagingSelectionPerformerBuilder {
+	b.imagingSelectionPerformer.Actor = &v
+	return b
+}

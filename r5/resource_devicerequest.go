@@ -1042,10 +1042,229 @@ func (b *DeviceRequestBuilder) AddRelevantHistory(v Reference) *DeviceRequestBui
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceRequestBuilder) SetImplicitRulesExt(v Element) *DeviceRequestBuilder {
+	b.deviceRequest.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceRequestBuilder) SetLanguageExt(v Element) *DeviceRequestBuilder {
+	b.deviceRequest.LanguageExt = &v
+	return b
+}
+
+// AddInstantiatesCanonicalExt appends an extension slot for InstantiatesCanonical.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *DeviceRequestBuilder) AddInstantiatesCanonicalExt(v *Element) *DeviceRequestBuilder {
+	b.deviceRequest.InstantiatesCanonicalExt = append(b.deviceRequest.InstantiatesCanonicalExt, v)
+	return b
+}
+
+// AddInstantiatesUriExt appends an extension slot for InstantiatesUri.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *DeviceRequestBuilder) AddInstantiatesUriExt(v *Element) *DeviceRequestBuilder {
+	b.deviceRequest.InstantiatesUriExt = append(b.deviceRequest.InstantiatesUriExt, v)
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceRequestBuilder) SetStatusExt(v Element) *DeviceRequestBuilder {
+	b.deviceRequest.StatusExt = &v
+	return b
+}
+
+// SetIntentExt sets the extensions carried by Intent, serialized as
+// "_intent".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceRequestBuilder) SetIntentExt(v Element) *DeviceRequestBuilder {
+	b.deviceRequest.IntentExt = &v
+	return b
+}
+
+// SetPriorityExt sets the extensions carried by Priority, serialized as
+// "_priority".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceRequestBuilder) SetPriorityExt(v Element) *DeviceRequestBuilder {
+	b.deviceRequest.PriorityExt = &v
+	return b
+}
+
+// SetDoNotPerformExt sets the extensions carried by DoNotPerform, serialized as
+// "_doNotPerform".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceRequestBuilder) SetDoNotPerformExt(v Element) *DeviceRequestBuilder {
+	b.deviceRequest.DoNotPerformExt = &v
+	return b
+}
+
+// SetQuantityExt sets the extensions carried by Quantity, serialized as
+// "_quantity".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceRequestBuilder) SetQuantityExt(v Element) *DeviceRequestBuilder {
+	b.deviceRequest.QuantityExt = &v
+	return b
+}
+
+// SetAuthoredOnExt sets the extensions carried by AuthoredOn, serialized as
+// "_authoredOn".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceRequestBuilder) SetAuthoredOnExt(v Element) *DeviceRequestBuilder {
+	b.deviceRequest.AuthoredOnExt = &v
+	return b
+}
+
+// SetAsNeededExt sets the extensions carried by AsNeeded, serialized as
+// "_asNeeded".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceRequestBuilder) SetAsNeededExt(v Element) *DeviceRequestBuilder {
+	b.deviceRequest.AsNeededExt = &v
+	return b
+}
+
 // clearOccurrence unsets every variant of Occurrence[x], including the
 // _field companions of the primitive ones.
 func (b *DeviceRequestBuilder) clearOccurrence() {
 	b.deviceRequest.OccurrenceDateTime = nil
 	b.deviceRequest.OccurrencePeriod = nil
 	b.deviceRequest.OccurrenceTiming = nil
+}
+
+// =============================================================================
+// DeviceRequestParameter - Fluent Builder
+// =============================================================================
+
+// DeviceRequestParameterBuilder provides a fluent API for constructing DeviceRequestParameter values.
+type DeviceRequestParameterBuilder struct {
+	deviceRequestParameter *DeviceRequestParameter
+}
+
+// NewDeviceRequestParameterBuilder creates a new DeviceRequestParameterBuilder.
+func NewDeviceRequestParameterBuilder() *DeviceRequestParameterBuilder {
+	return &DeviceRequestParameterBuilder{
+		deviceRequestParameter: &DeviceRequestParameter{},
+	}
+}
+
+// Build returns the constructed DeviceRequestParameter.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DeviceRequestParameterBuilder) Build() DeviceRequestParameter {
+	return *b.deviceRequestParameter
+}
+
+// SetId sets the Id field.
+func (b *DeviceRequestParameterBuilder) SetId(v string) *DeviceRequestParameterBuilder {
+	b.deviceRequestParameter.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DeviceRequestParameterBuilder) AddExtension(v Extension) *DeviceRequestParameterBuilder {
+	b.deviceRequestParameter.Extension = append(b.deviceRequestParameter.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *DeviceRequestParameterBuilder) AddModifierExtension(v Extension) *DeviceRequestParameterBuilder {
+	b.deviceRequestParameter.ModifierExtension = append(b.deviceRequestParameter.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *DeviceRequestParameterBuilder) SetCode(v CodeableConcept) *DeviceRequestParameterBuilder {
+	b.deviceRequestParameter.Code = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DeviceRequestParameterBuilder) SetValueCodeableConcept(v CodeableConcept) *DeviceRequestParameterBuilder {
+	b.clearValue()
+	b.deviceRequestParameter.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DeviceRequestParameterBuilder) SetValueQuantity(v Quantity) *DeviceRequestParameterBuilder {
+	b.clearValue()
+	b.deviceRequestParameter.ValueQuantity = &v
+	return b
+}
+
+// SetValueRange sets Value[x] to its ValueRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DeviceRequestParameterBuilder) SetValueRange(v Range) *DeviceRequestParameterBuilder {
+	b.clearValue()
+	b.deviceRequestParameter.ValueRange = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DeviceRequestParameterBuilder) SetValueBoolean(v bool) *DeviceRequestParameterBuilder {
+	b.clearValue()
+	b.deviceRequestParameter.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *DeviceRequestParameterBuilder) SetValueBooleanExt(v Element) *DeviceRequestParameterBuilder {
+	b.deviceRequestParameter.ValueBooleanExt = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *DeviceRequestParameterBuilder) clearValue() {
+	b.deviceRequestParameter.ValueCodeableConcept = nil
+	b.deviceRequestParameter.ValueQuantity = nil
+	b.deviceRequestParameter.ValueRange = nil
+	b.deviceRequestParameter.ValueBoolean = nil
+	b.deviceRequestParameter.ValueBooleanExt = nil
 }

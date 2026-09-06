@@ -1050,3 +1050,833 @@ func (b *ParametersBuilder) AddParameter(v ParametersParameter) *ParametersBuild
 	b.parameters.Parameter = append(b.parameters.Parameter, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ParametersBuilder) SetImplicitRulesExt(v Element) *ParametersBuilder {
+	b.parameters.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ParametersBuilder) SetLanguageExt(v Element) *ParametersBuilder {
+	b.parameters.LanguageExt = &v
+	return b
+}
+
+// =============================================================================
+// ParametersParameter - Fluent Builder
+// =============================================================================
+
+// ParametersParameterBuilder provides a fluent API for constructing ParametersParameter values.
+type ParametersParameterBuilder struct {
+	parametersParameter *ParametersParameter
+}
+
+// NewParametersParameterBuilder creates a new ParametersParameterBuilder.
+func NewParametersParameterBuilder() *ParametersParameterBuilder {
+	return &ParametersParameterBuilder{
+		parametersParameter: &ParametersParameter{},
+	}
+}
+
+// Build returns the constructed ParametersParameter.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ParametersParameterBuilder) Build() ParametersParameter {
+	return *b.parametersParameter
+}
+
+// SetId sets the Id field.
+func (b *ParametersParameterBuilder) SetId(v string) *ParametersParameterBuilder {
+	b.parametersParameter.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ParametersParameterBuilder) AddExtension(v Extension) *ParametersParameterBuilder {
+	b.parametersParameter.Extension = append(b.parametersParameter.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ParametersParameterBuilder) AddModifierExtension(v Extension) *ParametersParameterBuilder {
+	b.parametersParameter.ModifierExtension = append(b.parametersParameter.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *ParametersParameterBuilder) SetName(v string) *ParametersParameterBuilder {
+	b.parametersParameter.Name = &v
+	return b
+}
+
+// SetValueBase64Binary sets Value[x] to its ValueBase64Binary variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueBase64Binary(v string) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueBase64Binary = &v
+	return b
+}
+
+// SetValueBase64BinaryExt sets the ValueBase64BinaryExt field.
+func (b *ParametersParameterBuilder) SetValueBase64BinaryExt(v Element) *ParametersParameterBuilder {
+	b.parametersParameter.ValueBase64BinaryExt = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueBoolean(v bool) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *ParametersParameterBuilder) SetValueBooleanExt(v Element) *ParametersParameterBuilder {
+	b.parametersParameter.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueCanonical sets Value[x] to its ValueCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueCanonical(v string) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueCanonical = &v
+	return b
+}
+
+// SetValueCanonicalExt sets the ValueCanonicalExt field.
+func (b *ParametersParameterBuilder) SetValueCanonicalExt(v Element) *ParametersParameterBuilder {
+	b.parametersParameter.ValueCanonicalExt = &v
+	return b
+}
+
+// SetValueCode sets Value[x] to its ValueCode variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueCode(v string) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueCode = &v
+	return b
+}
+
+// SetValueCodeExt sets the ValueCodeExt field.
+func (b *ParametersParameterBuilder) SetValueCodeExt(v Element) *ParametersParameterBuilder {
+	b.parametersParameter.ValueCodeExt = &v
+	return b
+}
+
+// SetValueDate sets Value[x] to its ValueDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueDate(v string) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueDate = &v
+	return b
+}
+
+// SetValueDateExt sets the ValueDateExt field.
+func (b *ParametersParameterBuilder) SetValueDateExt(v Element) *ParametersParameterBuilder {
+	b.parametersParameter.ValueDateExt = &v
+	return b
+}
+
+// SetValueDateTime sets Value[x] to its ValueDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueDateTime(v string) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueDateTime = &v
+	return b
+}
+
+// SetValueDateTimeExt sets the ValueDateTimeExt field.
+func (b *ParametersParameterBuilder) SetValueDateTimeExt(v Element) *ParametersParameterBuilder {
+	b.parametersParameter.ValueDateTimeExt = &v
+	return b
+}
+
+// SetValueDecimal sets Value[x] to its ValueDecimal variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueDecimal(v Decimal) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueDecimal = &v
+	return b
+}
+
+// SetValueDecimalExt sets the ValueDecimalExt field.
+func (b *ParametersParameterBuilder) SetValueDecimalExt(v Element) *ParametersParameterBuilder {
+	b.parametersParameter.ValueDecimalExt = &v
+	return b
+}
+
+// SetValueId sets Value[x] to its ValueId variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueId(v string) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueId = &v
+	return b
+}
+
+// SetValueIdExt sets the ValueIdExt field.
+func (b *ParametersParameterBuilder) SetValueIdExt(v Element) *ParametersParameterBuilder {
+	b.parametersParameter.ValueIdExt = &v
+	return b
+}
+
+// SetValueInstant sets Value[x] to its ValueInstant variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueInstant(v string) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueInstant = &v
+	return b
+}
+
+// SetValueInstantExt sets the ValueInstantExt field.
+func (b *ParametersParameterBuilder) SetValueInstantExt(v Element) *ParametersParameterBuilder {
+	b.parametersParameter.ValueInstantExt = &v
+	return b
+}
+
+// SetValueInteger sets Value[x] to its ValueInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueInteger(v int) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueInteger = &v
+	return b
+}
+
+// SetValueIntegerExt sets the ValueIntegerExt field.
+func (b *ParametersParameterBuilder) SetValueIntegerExt(v Element) *ParametersParameterBuilder {
+	b.parametersParameter.ValueIntegerExt = &v
+	return b
+}
+
+// SetValueMarkdown sets Value[x] to its ValueMarkdown variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueMarkdown(v string) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueMarkdown = &v
+	return b
+}
+
+// SetValueMarkdownExt sets the ValueMarkdownExt field.
+func (b *ParametersParameterBuilder) SetValueMarkdownExt(v Element) *ParametersParameterBuilder {
+	b.parametersParameter.ValueMarkdownExt = &v
+	return b
+}
+
+// SetValueOid sets Value[x] to its ValueOid variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueOid(v string) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueOid = &v
+	return b
+}
+
+// SetValueOidExt sets the ValueOidExt field.
+func (b *ParametersParameterBuilder) SetValueOidExt(v Element) *ParametersParameterBuilder {
+	b.parametersParameter.ValueOidExt = &v
+	return b
+}
+
+// SetValuePositiveInt sets Value[x] to its ValuePositiveInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValuePositiveInt(v uint32) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValuePositiveInt = &v
+	return b
+}
+
+// SetValuePositiveIntExt sets the ValuePositiveIntExt field.
+func (b *ParametersParameterBuilder) SetValuePositiveIntExt(v Element) *ParametersParameterBuilder {
+	b.parametersParameter.ValuePositiveIntExt = &v
+	return b
+}
+
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueString(v string) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueString = &v
+	return b
+}
+
+// SetValueStringExt sets the ValueStringExt field.
+func (b *ParametersParameterBuilder) SetValueStringExt(v Element) *ParametersParameterBuilder {
+	b.parametersParameter.ValueStringExt = &v
+	return b
+}
+
+// SetValueTime sets Value[x] to its ValueTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueTime(v string) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueTime = &v
+	return b
+}
+
+// SetValueTimeExt sets the ValueTimeExt field.
+func (b *ParametersParameterBuilder) SetValueTimeExt(v Element) *ParametersParameterBuilder {
+	b.parametersParameter.ValueTimeExt = &v
+	return b
+}
+
+// SetValueUnsignedInt sets Value[x] to its ValueUnsignedInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueUnsignedInt(v uint32) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueUnsignedInt = &v
+	return b
+}
+
+// SetValueUnsignedIntExt sets the ValueUnsignedIntExt field.
+func (b *ParametersParameterBuilder) SetValueUnsignedIntExt(v Element) *ParametersParameterBuilder {
+	b.parametersParameter.ValueUnsignedIntExt = &v
+	return b
+}
+
+// SetValueUri sets Value[x] to its ValueUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueUri(v string) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueUri = &v
+	return b
+}
+
+// SetValueUriExt sets the ValueUriExt field.
+func (b *ParametersParameterBuilder) SetValueUriExt(v Element) *ParametersParameterBuilder {
+	b.parametersParameter.ValueUriExt = &v
+	return b
+}
+
+// SetValueUrl sets Value[x] to its ValueUrl variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueUrl(v string) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueUrl = &v
+	return b
+}
+
+// SetValueUrlExt sets the ValueUrlExt field.
+func (b *ParametersParameterBuilder) SetValueUrlExt(v Element) *ParametersParameterBuilder {
+	b.parametersParameter.ValueUrlExt = &v
+	return b
+}
+
+// SetValueUuid sets Value[x] to its ValueUuid variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueUuid(v string) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueUuid = &v
+	return b
+}
+
+// SetValueUuidExt sets the ValueUuidExt field.
+func (b *ParametersParameterBuilder) SetValueUuidExt(v Element) *ParametersParameterBuilder {
+	b.parametersParameter.ValueUuidExt = &v
+	return b
+}
+
+// SetValueAddress sets Value[x] to its ValueAddress variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueAddress(v Address) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueAddress = &v
+	return b
+}
+
+// SetValueAge sets Value[x] to its ValueAge variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueAge(v Age) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueAge = &v
+	return b
+}
+
+// SetValueAnnotation sets Value[x] to its ValueAnnotation variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueAnnotation(v Annotation) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueAnnotation = &v
+	return b
+}
+
+// SetValueAttachment sets Value[x] to its ValueAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueAttachment(v Attachment) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueAttachment = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueCodeableConcept(v CodeableConcept) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueCoding sets Value[x] to its ValueCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueCoding(v Coding) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueCoding = &v
+	return b
+}
+
+// SetValueContactPoint sets Value[x] to its ValueContactPoint variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueContactPoint(v ContactPoint) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueContactPoint = &v
+	return b
+}
+
+// SetValueCount sets Value[x] to its ValueCount variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueCount(v Count) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueCount = &v
+	return b
+}
+
+// SetValueDistance sets Value[x] to its ValueDistance variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueDistance(v Distance) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueDistance = &v
+	return b
+}
+
+// SetValueDuration sets Value[x] to its ValueDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueDuration(v Duration) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueDuration = &v
+	return b
+}
+
+// SetValueHumanName sets Value[x] to its ValueHumanName variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueHumanName(v HumanName) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueHumanName = &v
+	return b
+}
+
+// SetValueIdentifier sets Value[x] to its ValueIdentifier variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueIdentifier(v Identifier) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueIdentifier = &v
+	return b
+}
+
+// SetValueMoney sets Value[x] to its ValueMoney variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueMoney(v Money) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueMoney = &v
+	return b
+}
+
+// SetValuePeriod sets Value[x] to its ValuePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValuePeriod(v Period) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValuePeriod = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueQuantity(v Quantity) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueQuantity = &v
+	return b
+}
+
+// SetValueRange sets Value[x] to its ValueRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueRange(v Range) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueRange = &v
+	return b
+}
+
+// SetValueRatio sets Value[x] to its ValueRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueRatio(v Ratio) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueRatio = &v
+	return b
+}
+
+// SetValueReference sets Value[x] to its ValueReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueReference(v Reference) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueReference = &v
+	return b
+}
+
+// SetValueSampledData sets Value[x] to its ValueSampledData variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueSampledData(v SampledData) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueSampledData = &v
+	return b
+}
+
+// SetValueSignature sets Value[x] to its ValueSignature variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueSignature(v Signature) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueSignature = &v
+	return b
+}
+
+// SetValueTiming sets Value[x] to its ValueTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueTiming(v Timing) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueTiming = &v
+	return b
+}
+
+// SetValueContactDetail sets Value[x] to its ValueContactDetail variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueContactDetail(v ContactDetail) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueContactDetail = &v
+	return b
+}
+
+// SetValueContributor sets Value[x] to its ValueContributor variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueContributor(v Contributor) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueContributor = &v
+	return b
+}
+
+// SetValueDataRequirement sets Value[x] to its ValueDataRequirement variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueDataRequirement(v DataRequirement) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueDataRequirement = &v
+	return b
+}
+
+// SetValueExpression sets Value[x] to its ValueExpression variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueExpression(v Expression) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueExpression = &v
+	return b
+}
+
+// SetValueParameterDefinition sets Value[x] to its ValueParameterDefinition variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueParameterDefinition(v ParameterDefinition) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueParameterDefinition = &v
+	return b
+}
+
+// SetValueRelatedArtifact sets Value[x] to its ValueRelatedArtifact variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueRelatedArtifact(v RelatedArtifact) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueRelatedArtifact = &v
+	return b
+}
+
+// SetValueTriggerDefinition sets Value[x] to its ValueTriggerDefinition variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueTriggerDefinition(v TriggerDefinition) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueTriggerDefinition = &v
+	return b
+}
+
+// SetValueUsageContext sets Value[x] to its ValueUsageContext variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueUsageContext(v UsageContext) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueUsageContext = &v
+	return b
+}
+
+// SetValueDosage sets Value[x] to its ValueDosage variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueDosage(v Dosage) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueDosage = &v
+	return b
+}
+
+// SetValueMeta sets Value[x] to its ValueMeta variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ParametersParameterBuilder) SetValueMeta(v Meta) *ParametersParameterBuilder {
+	b.clearValue()
+	b.parametersParameter.ValueMeta = &v
+	return b
+}
+
+// SetResource sets the Resource field.
+func (b *ParametersParameterBuilder) SetResource(v Resource) *ParametersParameterBuilder {
+	b.parametersParameter.Resource = v
+	return b
+}
+
+// AddPart adds a Part element.
+func (b *ParametersParameterBuilder) AddPart(v ParametersParameter) *ParametersParameterBuilder {
+	b.parametersParameter.Part = append(b.parametersParameter.Part, v)
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ParametersParameterBuilder) SetNameExt(v Element) *ParametersParameterBuilder {
+	b.parametersParameter.NameExt = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *ParametersParameterBuilder) clearValue() {
+	b.parametersParameter.ValueBase64Binary = nil
+	b.parametersParameter.ValueBoolean = nil
+	b.parametersParameter.ValueBooleanExt = nil
+	b.parametersParameter.ValueCanonical = nil
+	b.parametersParameter.ValueCanonicalExt = nil
+	b.parametersParameter.ValueCode = nil
+	b.parametersParameter.ValueCodeExt = nil
+	b.parametersParameter.ValueDate = nil
+	b.parametersParameter.ValueDateExt = nil
+	b.parametersParameter.ValueDateTime = nil
+	b.parametersParameter.ValueDateTimeExt = nil
+	b.parametersParameter.ValueDecimal = nil
+	b.parametersParameter.ValueDecimalExt = nil
+	b.parametersParameter.ValueId = nil
+	b.parametersParameter.ValueIdExt = nil
+	b.parametersParameter.ValueInstant = nil
+	b.parametersParameter.ValueInstantExt = nil
+	b.parametersParameter.ValueInteger = nil
+	b.parametersParameter.ValueIntegerExt = nil
+	b.parametersParameter.ValueMarkdown = nil
+	b.parametersParameter.ValueMarkdownExt = nil
+	b.parametersParameter.ValueOid = nil
+	b.parametersParameter.ValueOidExt = nil
+	b.parametersParameter.ValuePositiveInt = nil
+	b.parametersParameter.ValuePositiveIntExt = nil
+	b.parametersParameter.ValueString = nil
+	b.parametersParameter.ValueStringExt = nil
+	b.parametersParameter.ValueTime = nil
+	b.parametersParameter.ValueTimeExt = nil
+	b.parametersParameter.ValueUnsignedInt = nil
+	b.parametersParameter.ValueUnsignedIntExt = nil
+	b.parametersParameter.ValueUri = nil
+	b.parametersParameter.ValueUriExt = nil
+	b.parametersParameter.ValueUrl = nil
+	b.parametersParameter.ValueUrlExt = nil
+	b.parametersParameter.ValueUuid = nil
+	b.parametersParameter.ValueUuidExt = nil
+	b.parametersParameter.ValueAddress = nil
+	b.parametersParameter.ValueAge = nil
+	b.parametersParameter.ValueAnnotation = nil
+	b.parametersParameter.ValueAttachment = nil
+	b.parametersParameter.ValueCodeableConcept = nil
+	b.parametersParameter.ValueCoding = nil
+	b.parametersParameter.ValueContactPoint = nil
+	b.parametersParameter.ValueCount = nil
+	b.parametersParameter.ValueDistance = nil
+	b.parametersParameter.ValueDuration = nil
+	b.parametersParameter.ValueHumanName = nil
+	b.parametersParameter.ValueIdentifier = nil
+	b.parametersParameter.ValueMoney = nil
+	b.parametersParameter.ValuePeriod = nil
+	b.parametersParameter.ValueQuantity = nil
+	b.parametersParameter.ValueRange = nil
+	b.parametersParameter.ValueRatio = nil
+	b.parametersParameter.ValueReference = nil
+	b.parametersParameter.ValueSampledData = nil
+	b.parametersParameter.ValueSignature = nil
+	b.parametersParameter.ValueTiming = nil
+	b.parametersParameter.ValueContactDetail = nil
+	b.parametersParameter.ValueContributor = nil
+	b.parametersParameter.ValueDataRequirement = nil
+	b.parametersParameter.ValueExpression = nil
+	b.parametersParameter.ValueParameterDefinition = nil
+	b.parametersParameter.ValueRelatedArtifact = nil
+	b.parametersParameter.ValueTriggerDefinition = nil
+	b.parametersParameter.ValueUsageContext = nil
+	b.parametersParameter.ValueDosage = nil
+	b.parametersParameter.ValueMeta = nil
+}

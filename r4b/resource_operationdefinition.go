@@ -1390,3 +1390,660 @@ func (b *OperationDefinitionBuilder) AddOverload(v OperationDefinitionOverload) 
 	b.operationDefinition.Overload = append(b.operationDefinition.Overload, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionBuilder) SetImplicitRulesExt(v Element) *OperationDefinitionBuilder {
+	b.operationDefinition.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionBuilder) SetLanguageExt(v Element) *OperationDefinitionBuilder {
+	b.operationDefinition.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionBuilder) SetUrlExt(v Element) *OperationDefinitionBuilder {
+	b.operationDefinition.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionBuilder) SetVersionExt(v Element) *OperationDefinitionBuilder {
+	b.operationDefinition.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionBuilder) SetNameExt(v Element) *OperationDefinitionBuilder {
+	b.operationDefinition.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionBuilder) SetTitleExt(v Element) *OperationDefinitionBuilder {
+	b.operationDefinition.TitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionBuilder) SetStatusExt(v Element) *OperationDefinitionBuilder {
+	b.operationDefinition.StatusExt = &v
+	return b
+}
+
+// SetKindExt sets the extensions carried by Kind, serialized as
+// "_kind".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionBuilder) SetKindExt(v Element) *OperationDefinitionBuilder {
+	b.operationDefinition.KindExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionBuilder) SetExperimentalExt(v Element) *OperationDefinitionBuilder {
+	b.operationDefinition.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionBuilder) SetDateExt(v Element) *OperationDefinitionBuilder {
+	b.operationDefinition.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionBuilder) SetPublisherExt(v Element) *OperationDefinitionBuilder {
+	b.operationDefinition.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionBuilder) SetDescriptionExt(v Element) *OperationDefinitionBuilder {
+	b.operationDefinition.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionBuilder) SetPurposeExt(v Element) *OperationDefinitionBuilder {
+	b.operationDefinition.PurposeExt = &v
+	return b
+}
+
+// SetAffectsStateExt sets the extensions carried by AffectsState, serialized as
+// "_affectsState".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionBuilder) SetAffectsStateExt(v Element) *OperationDefinitionBuilder {
+	b.operationDefinition.AffectsStateExt = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionBuilder) SetCodeExt(v Element) *OperationDefinitionBuilder {
+	b.operationDefinition.CodeExt = &v
+	return b
+}
+
+// SetCommentExt sets the extensions carried by Comment, serialized as
+// "_comment".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionBuilder) SetCommentExt(v Element) *OperationDefinitionBuilder {
+	b.operationDefinition.CommentExt = &v
+	return b
+}
+
+// SetBaseExt sets the extensions carried by Base, serialized as
+// "_base".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionBuilder) SetBaseExt(v Element) *OperationDefinitionBuilder {
+	b.operationDefinition.BaseExt = &v
+	return b
+}
+
+// AddResourceExt appends an extension slot for Resource.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *OperationDefinitionBuilder) AddResourceExt(v *Element) *OperationDefinitionBuilder {
+	b.operationDefinition.ResourceExt = append(b.operationDefinition.ResourceExt, v)
+	return b
+}
+
+// SetSystemExt sets the extensions carried by System, serialized as
+// "_system".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionBuilder) SetSystemExt(v Element) *OperationDefinitionBuilder {
+	b.operationDefinition.SystemExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionBuilder) SetTypeExt(v Element) *OperationDefinitionBuilder {
+	b.operationDefinition.TypeExt = &v
+	return b
+}
+
+// SetInstanceExt sets the extensions carried by Instance, serialized as
+// "_instance".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionBuilder) SetInstanceExt(v Element) *OperationDefinitionBuilder {
+	b.operationDefinition.InstanceExt = &v
+	return b
+}
+
+// SetInputProfileExt sets the extensions carried by InputProfile, serialized as
+// "_inputProfile".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionBuilder) SetInputProfileExt(v Element) *OperationDefinitionBuilder {
+	b.operationDefinition.InputProfileExt = &v
+	return b
+}
+
+// SetOutputProfileExt sets the extensions carried by OutputProfile, serialized as
+// "_outputProfile".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionBuilder) SetOutputProfileExt(v Element) *OperationDefinitionBuilder {
+	b.operationDefinition.OutputProfileExt = &v
+	return b
+}
+
+// =============================================================================
+// OperationDefinitionOverload - Fluent Builder
+// =============================================================================
+
+// OperationDefinitionOverloadBuilder provides a fluent API for constructing OperationDefinitionOverload values.
+type OperationDefinitionOverloadBuilder struct {
+	operationDefinitionOverload *OperationDefinitionOverload
+}
+
+// NewOperationDefinitionOverloadBuilder creates a new OperationDefinitionOverloadBuilder.
+func NewOperationDefinitionOverloadBuilder() *OperationDefinitionOverloadBuilder {
+	return &OperationDefinitionOverloadBuilder{
+		operationDefinitionOverload: &OperationDefinitionOverload{},
+	}
+}
+
+// Build returns the constructed OperationDefinitionOverload.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *OperationDefinitionOverloadBuilder) Build() OperationDefinitionOverload {
+	return *b.operationDefinitionOverload
+}
+
+// SetId sets the Id field.
+func (b *OperationDefinitionOverloadBuilder) SetId(v string) *OperationDefinitionOverloadBuilder {
+	b.operationDefinitionOverload.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *OperationDefinitionOverloadBuilder) AddExtension(v Extension) *OperationDefinitionOverloadBuilder {
+	b.operationDefinitionOverload.Extension = append(b.operationDefinitionOverload.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *OperationDefinitionOverloadBuilder) AddModifierExtension(v Extension) *OperationDefinitionOverloadBuilder {
+	b.operationDefinitionOverload.ModifierExtension = append(b.operationDefinitionOverload.ModifierExtension, v)
+	return b
+}
+
+// AddParameterName adds a ParameterName element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *OperationDefinitionOverloadBuilder) AddParameterName(v string) *OperationDefinitionOverloadBuilder {
+	b.operationDefinitionOverload.ParameterName = append(b.operationDefinitionOverload.ParameterName, &v)
+	return b
+}
+
+// SetComment sets the Comment field.
+func (b *OperationDefinitionOverloadBuilder) SetComment(v string) *OperationDefinitionOverloadBuilder {
+	b.operationDefinitionOverload.Comment = &v
+	return b
+}
+
+// AddParameterNameExt appends an extension slot for ParameterName.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *OperationDefinitionOverloadBuilder) AddParameterNameExt(v *Element) *OperationDefinitionOverloadBuilder {
+	b.operationDefinitionOverload.ParameterNameExt = append(b.operationDefinitionOverload.ParameterNameExt, v)
+	return b
+}
+
+// SetCommentExt sets the extensions carried by Comment, serialized as
+// "_comment".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionOverloadBuilder) SetCommentExt(v Element) *OperationDefinitionOverloadBuilder {
+	b.operationDefinitionOverload.CommentExt = &v
+	return b
+}
+
+// =============================================================================
+// OperationDefinitionParameter - Fluent Builder
+// =============================================================================
+
+// OperationDefinitionParameterBuilder provides a fluent API for constructing OperationDefinitionParameter values.
+type OperationDefinitionParameterBuilder struct {
+	operationDefinitionParameter *OperationDefinitionParameter
+}
+
+// NewOperationDefinitionParameterBuilder creates a new OperationDefinitionParameterBuilder.
+func NewOperationDefinitionParameterBuilder() *OperationDefinitionParameterBuilder {
+	return &OperationDefinitionParameterBuilder{
+		operationDefinitionParameter: &OperationDefinitionParameter{},
+	}
+}
+
+// Build returns the constructed OperationDefinitionParameter.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *OperationDefinitionParameterBuilder) Build() OperationDefinitionParameter {
+	return *b.operationDefinitionParameter
+}
+
+// SetId sets the Id field.
+func (b *OperationDefinitionParameterBuilder) SetId(v string) *OperationDefinitionParameterBuilder {
+	b.operationDefinitionParameter.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *OperationDefinitionParameterBuilder) AddExtension(v Extension) *OperationDefinitionParameterBuilder {
+	b.operationDefinitionParameter.Extension = append(b.operationDefinitionParameter.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *OperationDefinitionParameterBuilder) AddModifierExtension(v Extension) *OperationDefinitionParameterBuilder {
+	b.operationDefinitionParameter.ModifierExtension = append(b.operationDefinitionParameter.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *OperationDefinitionParameterBuilder) SetName(v string) *OperationDefinitionParameterBuilder {
+	b.operationDefinitionParameter.Name = &v
+	return b
+}
+
+// SetUse sets the Use field.
+func (b *OperationDefinitionParameterBuilder) SetUse(v OperationParameterUse) *OperationDefinitionParameterBuilder {
+	b.operationDefinitionParameter.Use = &v
+	return b
+}
+
+// SetMin sets the Min field.
+func (b *OperationDefinitionParameterBuilder) SetMin(v int) *OperationDefinitionParameterBuilder {
+	b.operationDefinitionParameter.Min = &v
+	return b
+}
+
+// SetMax sets the Max field.
+func (b *OperationDefinitionParameterBuilder) SetMax(v string) *OperationDefinitionParameterBuilder {
+	b.operationDefinitionParameter.Max = &v
+	return b
+}
+
+// SetDocumentation sets the Documentation field.
+func (b *OperationDefinitionParameterBuilder) SetDocumentation(v string) *OperationDefinitionParameterBuilder {
+	b.operationDefinitionParameter.Documentation = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *OperationDefinitionParameterBuilder) SetType(v string) *OperationDefinitionParameterBuilder {
+	b.operationDefinitionParameter.Type = &v
+	return b
+}
+
+// AddTargetProfile adds a TargetProfile element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *OperationDefinitionParameterBuilder) AddTargetProfile(v string) *OperationDefinitionParameterBuilder {
+	b.operationDefinitionParameter.TargetProfile = append(b.operationDefinitionParameter.TargetProfile, &v)
+	return b
+}
+
+// SetSearchType sets the SearchType field.
+func (b *OperationDefinitionParameterBuilder) SetSearchType(v SearchParamType) *OperationDefinitionParameterBuilder {
+	b.operationDefinitionParameter.SearchType = &v
+	return b
+}
+
+// SetBinding sets the Binding field.
+func (b *OperationDefinitionParameterBuilder) SetBinding(v OperationDefinitionParameterBinding) *OperationDefinitionParameterBuilder {
+	b.operationDefinitionParameter.Binding = &v
+	return b
+}
+
+// AddReferencedFrom adds a ReferencedFrom element.
+func (b *OperationDefinitionParameterBuilder) AddReferencedFrom(v OperationDefinitionParameterReferencedFrom) *OperationDefinitionParameterBuilder {
+	b.operationDefinitionParameter.ReferencedFrom = append(b.operationDefinitionParameter.ReferencedFrom, v)
+	return b
+}
+
+// AddPart adds a Part element.
+func (b *OperationDefinitionParameterBuilder) AddPart(v OperationDefinitionParameter) *OperationDefinitionParameterBuilder {
+	b.operationDefinitionParameter.Part = append(b.operationDefinitionParameter.Part, v)
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionParameterBuilder) SetNameExt(v Element) *OperationDefinitionParameterBuilder {
+	b.operationDefinitionParameter.NameExt = &v
+	return b
+}
+
+// SetUseExt sets the extensions carried by Use, serialized as
+// "_use".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionParameterBuilder) SetUseExt(v Element) *OperationDefinitionParameterBuilder {
+	b.operationDefinitionParameter.UseExt = &v
+	return b
+}
+
+// SetMinExt sets the extensions carried by Min, serialized as
+// "_min".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionParameterBuilder) SetMinExt(v Element) *OperationDefinitionParameterBuilder {
+	b.operationDefinitionParameter.MinExt = &v
+	return b
+}
+
+// SetMaxExt sets the extensions carried by Max, serialized as
+// "_max".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionParameterBuilder) SetMaxExt(v Element) *OperationDefinitionParameterBuilder {
+	b.operationDefinitionParameter.MaxExt = &v
+	return b
+}
+
+// SetDocumentationExt sets the extensions carried by Documentation, serialized as
+// "_documentation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionParameterBuilder) SetDocumentationExt(v Element) *OperationDefinitionParameterBuilder {
+	b.operationDefinitionParameter.DocumentationExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionParameterBuilder) SetTypeExt(v Element) *OperationDefinitionParameterBuilder {
+	b.operationDefinitionParameter.TypeExt = &v
+	return b
+}
+
+// AddTargetProfileExt appends an extension slot for TargetProfile.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *OperationDefinitionParameterBuilder) AddTargetProfileExt(v *Element) *OperationDefinitionParameterBuilder {
+	b.operationDefinitionParameter.TargetProfileExt = append(b.operationDefinitionParameter.TargetProfileExt, v)
+	return b
+}
+
+// SetSearchTypeExt sets the extensions carried by SearchType, serialized as
+// "_searchType".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionParameterBuilder) SetSearchTypeExt(v Element) *OperationDefinitionParameterBuilder {
+	b.operationDefinitionParameter.SearchTypeExt = &v
+	return b
+}
+
+// =============================================================================
+// OperationDefinitionParameterBinding - Fluent Builder
+// =============================================================================
+
+// OperationDefinitionParameterBindingBuilder provides a fluent API for constructing OperationDefinitionParameterBinding values.
+type OperationDefinitionParameterBindingBuilder struct {
+	operationDefinitionParameterBinding *OperationDefinitionParameterBinding
+}
+
+// NewOperationDefinitionParameterBindingBuilder creates a new OperationDefinitionParameterBindingBuilder.
+func NewOperationDefinitionParameterBindingBuilder() *OperationDefinitionParameterBindingBuilder {
+	return &OperationDefinitionParameterBindingBuilder{
+		operationDefinitionParameterBinding: &OperationDefinitionParameterBinding{},
+	}
+}
+
+// Build returns the constructed OperationDefinitionParameterBinding.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *OperationDefinitionParameterBindingBuilder) Build() OperationDefinitionParameterBinding {
+	return *b.operationDefinitionParameterBinding
+}
+
+// SetId sets the Id field.
+func (b *OperationDefinitionParameterBindingBuilder) SetId(v string) *OperationDefinitionParameterBindingBuilder {
+	b.operationDefinitionParameterBinding.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *OperationDefinitionParameterBindingBuilder) AddExtension(v Extension) *OperationDefinitionParameterBindingBuilder {
+	b.operationDefinitionParameterBinding.Extension = append(b.operationDefinitionParameterBinding.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *OperationDefinitionParameterBindingBuilder) AddModifierExtension(v Extension) *OperationDefinitionParameterBindingBuilder {
+	b.operationDefinitionParameterBinding.ModifierExtension = append(b.operationDefinitionParameterBinding.ModifierExtension, v)
+	return b
+}
+
+// SetStrength sets the Strength field.
+func (b *OperationDefinitionParameterBindingBuilder) SetStrength(v BindingStrength) *OperationDefinitionParameterBindingBuilder {
+	b.operationDefinitionParameterBinding.Strength = &v
+	return b
+}
+
+// SetValueSet sets the ValueSet field.
+func (b *OperationDefinitionParameterBindingBuilder) SetValueSet(v string) *OperationDefinitionParameterBindingBuilder {
+	b.operationDefinitionParameterBinding.ValueSet = &v
+	return b
+}
+
+// SetStrengthExt sets the extensions carried by Strength, serialized as
+// "_strength".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionParameterBindingBuilder) SetStrengthExt(v Element) *OperationDefinitionParameterBindingBuilder {
+	b.operationDefinitionParameterBinding.StrengthExt = &v
+	return b
+}
+
+// SetValueSetExt sets the extensions carried by ValueSet, serialized as
+// "_valueSet".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionParameterBindingBuilder) SetValueSetExt(v Element) *OperationDefinitionParameterBindingBuilder {
+	b.operationDefinitionParameterBinding.ValueSetExt = &v
+	return b
+}
+
+// =============================================================================
+// OperationDefinitionParameterReferencedFrom - Fluent Builder
+// =============================================================================
+
+// OperationDefinitionParameterReferencedFromBuilder provides a fluent API for constructing OperationDefinitionParameterReferencedFrom values.
+type OperationDefinitionParameterReferencedFromBuilder struct {
+	operationDefinitionParameterReferencedFrom *OperationDefinitionParameterReferencedFrom
+}
+
+// NewOperationDefinitionParameterReferencedFromBuilder creates a new OperationDefinitionParameterReferencedFromBuilder.
+func NewOperationDefinitionParameterReferencedFromBuilder() *OperationDefinitionParameterReferencedFromBuilder {
+	return &OperationDefinitionParameterReferencedFromBuilder{
+		operationDefinitionParameterReferencedFrom: &OperationDefinitionParameterReferencedFrom{},
+	}
+}
+
+// Build returns the constructed OperationDefinitionParameterReferencedFrom.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *OperationDefinitionParameterReferencedFromBuilder) Build() OperationDefinitionParameterReferencedFrom {
+	return *b.operationDefinitionParameterReferencedFrom
+}
+
+// SetId sets the Id field.
+func (b *OperationDefinitionParameterReferencedFromBuilder) SetId(v string) *OperationDefinitionParameterReferencedFromBuilder {
+	b.operationDefinitionParameterReferencedFrom.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *OperationDefinitionParameterReferencedFromBuilder) AddExtension(v Extension) *OperationDefinitionParameterReferencedFromBuilder {
+	b.operationDefinitionParameterReferencedFrom.Extension = append(b.operationDefinitionParameterReferencedFrom.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *OperationDefinitionParameterReferencedFromBuilder) AddModifierExtension(v Extension) *OperationDefinitionParameterReferencedFromBuilder {
+	b.operationDefinitionParameterReferencedFrom.ModifierExtension = append(b.operationDefinitionParameterReferencedFrom.ModifierExtension, v)
+	return b
+}
+
+// SetSource sets the Source field.
+func (b *OperationDefinitionParameterReferencedFromBuilder) SetSource(v string) *OperationDefinitionParameterReferencedFromBuilder {
+	b.operationDefinitionParameterReferencedFrom.Source = &v
+	return b
+}
+
+// SetSourceId sets the SourceId field.
+func (b *OperationDefinitionParameterReferencedFromBuilder) SetSourceId(v string) *OperationDefinitionParameterReferencedFromBuilder {
+	b.operationDefinitionParameterReferencedFrom.SourceId = &v
+	return b
+}
+
+// SetSourceExt sets the extensions carried by Source, serialized as
+// "_source".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionParameterReferencedFromBuilder) SetSourceExt(v Element) *OperationDefinitionParameterReferencedFromBuilder {
+	b.operationDefinitionParameterReferencedFrom.SourceExt = &v
+	return b
+}
+
+// SetSourceIdExt sets the extensions carried by SourceId, serialized as
+// "_sourceId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OperationDefinitionParameterReferencedFromBuilder) SetSourceIdExt(v Element) *OperationDefinitionParameterReferencedFromBuilder {
+	b.operationDefinitionParameterReferencedFrom.SourceIdExt = &v
+	return b
+}

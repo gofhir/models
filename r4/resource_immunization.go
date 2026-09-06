@@ -1434,10 +1434,496 @@ func (b *ImmunizationBuilder) AddProtocolApplied(v ImmunizationProtocolApplied) 
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationBuilder) SetImplicitRulesExt(v Element) *ImmunizationBuilder {
+	b.immunization.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationBuilder) SetLanguageExt(v Element) *ImmunizationBuilder {
+	b.immunization.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationBuilder) SetStatusExt(v Element) *ImmunizationBuilder {
+	b.immunization.StatusExt = &v
+	return b
+}
+
+// SetRecordedExt sets the extensions carried by Recorded, serialized as
+// "_recorded".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationBuilder) SetRecordedExt(v Element) *ImmunizationBuilder {
+	b.immunization.RecordedExt = &v
+	return b
+}
+
+// SetPrimarySourceExt sets the extensions carried by PrimarySource, serialized as
+// "_primarySource".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationBuilder) SetPrimarySourceExt(v Element) *ImmunizationBuilder {
+	b.immunization.PrimarySourceExt = &v
+	return b
+}
+
+// SetLotNumberExt sets the extensions carried by LotNumber, serialized as
+// "_lotNumber".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationBuilder) SetLotNumberExt(v Element) *ImmunizationBuilder {
+	b.immunization.LotNumberExt = &v
+	return b
+}
+
+// SetExpirationDateExt sets the extensions carried by ExpirationDate, serialized as
+// "_expirationDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationBuilder) SetExpirationDateExt(v Element) *ImmunizationBuilder {
+	b.immunization.ExpirationDateExt = &v
+	return b
+}
+
+// SetIsSubpotentExt sets the extensions carried by IsSubpotent, serialized as
+// "_isSubpotent".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationBuilder) SetIsSubpotentExt(v Element) *ImmunizationBuilder {
+	b.immunization.IsSubpotentExt = &v
+	return b
+}
+
 // clearOccurrence unsets every variant of Occurrence[x], including the
 // _field companions of the primitive ones.
 func (b *ImmunizationBuilder) clearOccurrence() {
 	b.immunization.OccurrenceDateTime = nil
 	b.immunization.OccurrenceString = nil
 	b.immunization.OccurrenceStringExt = nil
+}
+
+// =============================================================================
+// ImmunizationEducation - Fluent Builder
+// =============================================================================
+
+// ImmunizationEducationBuilder provides a fluent API for constructing ImmunizationEducation values.
+type ImmunizationEducationBuilder struct {
+	immunizationEducation *ImmunizationEducation
+}
+
+// NewImmunizationEducationBuilder creates a new ImmunizationEducationBuilder.
+func NewImmunizationEducationBuilder() *ImmunizationEducationBuilder {
+	return &ImmunizationEducationBuilder{
+		immunizationEducation: &ImmunizationEducation{},
+	}
+}
+
+// Build returns the constructed ImmunizationEducation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImmunizationEducationBuilder) Build() ImmunizationEducation {
+	return *b.immunizationEducation
+}
+
+// SetId sets the Id field.
+func (b *ImmunizationEducationBuilder) SetId(v string) *ImmunizationEducationBuilder {
+	b.immunizationEducation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImmunizationEducationBuilder) AddExtension(v Extension) *ImmunizationEducationBuilder {
+	b.immunizationEducation.Extension = append(b.immunizationEducation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImmunizationEducationBuilder) AddModifierExtension(v Extension) *ImmunizationEducationBuilder {
+	b.immunizationEducation.ModifierExtension = append(b.immunizationEducation.ModifierExtension, v)
+	return b
+}
+
+// SetDocumentType sets the DocumentType field.
+func (b *ImmunizationEducationBuilder) SetDocumentType(v string) *ImmunizationEducationBuilder {
+	b.immunizationEducation.DocumentType = &v
+	return b
+}
+
+// SetReference sets the Reference field.
+func (b *ImmunizationEducationBuilder) SetReference(v string) *ImmunizationEducationBuilder {
+	b.immunizationEducation.Reference = &v
+	return b
+}
+
+// SetPublicationDate sets the PublicationDate field.
+func (b *ImmunizationEducationBuilder) SetPublicationDate(v string) *ImmunizationEducationBuilder {
+	b.immunizationEducation.PublicationDate = &v
+	return b
+}
+
+// SetPresentationDate sets the PresentationDate field.
+func (b *ImmunizationEducationBuilder) SetPresentationDate(v string) *ImmunizationEducationBuilder {
+	b.immunizationEducation.PresentationDate = &v
+	return b
+}
+
+// SetDocumentTypeExt sets the extensions carried by DocumentType, serialized as
+// "_documentType".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationEducationBuilder) SetDocumentTypeExt(v Element) *ImmunizationEducationBuilder {
+	b.immunizationEducation.DocumentTypeExt = &v
+	return b
+}
+
+// SetReferenceExt sets the extensions carried by Reference, serialized as
+// "_reference".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationEducationBuilder) SetReferenceExt(v Element) *ImmunizationEducationBuilder {
+	b.immunizationEducation.ReferenceExt = &v
+	return b
+}
+
+// SetPublicationDateExt sets the extensions carried by PublicationDate, serialized as
+// "_publicationDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationEducationBuilder) SetPublicationDateExt(v Element) *ImmunizationEducationBuilder {
+	b.immunizationEducation.PublicationDateExt = &v
+	return b
+}
+
+// SetPresentationDateExt sets the extensions carried by PresentationDate, serialized as
+// "_presentationDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationEducationBuilder) SetPresentationDateExt(v Element) *ImmunizationEducationBuilder {
+	b.immunizationEducation.PresentationDateExt = &v
+	return b
+}
+
+// =============================================================================
+// ImmunizationPerformer - Fluent Builder
+// =============================================================================
+
+// ImmunizationPerformerBuilder provides a fluent API for constructing ImmunizationPerformer values.
+type ImmunizationPerformerBuilder struct {
+	immunizationPerformer *ImmunizationPerformer
+}
+
+// NewImmunizationPerformerBuilder creates a new ImmunizationPerformerBuilder.
+func NewImmunizationPerformerBuilder() *ImmunizationPerformerBuilder {
+	return &ImmunizationPerformerBuilder{
+		immunizationPerformer: &ImmunizationPerformer{},
+	}
+}
+
+// Build returns the constructed ImmunizationPerformer.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImmunizationPerformerBuilder) Build() ImmunizationPerformer {
+	return *b.immunizationPerformer
+}
+
+// SetId sets the Id field.
+func (b *ImmunizationPerformerBuilder) SetId(v string) *ImmunizationPerformerBuilder {
+	b.immunizationPerformer.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImmunizationPerformerBuilder) AddExtension(v Extension) *ImmunizationPerformerBuilder {
+	b.immunizationPerformer.Extension = append(b.immunizationPerformer.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImmunizationPerformerBuilder) AddModifierExtension(v Extension) *ImmunizationPerformerBuilder {
+	b.immunizationPerformer.ModifierExtension = append(b.immunizationPerformer.ModifierExtension, v)
+	return b
+}
+
+// SetFunction sets the Function field.
+func (b *ImmunizationPerformerBuilder) SetFunction(v CodeableConcept) *ImmunizationPerformerBuilder {
+	b.immunizationPerformer.Function = &v
+	return b
+}
+
+// SetActor sets the Actor field.
+func (b *ImmunizationPerformerBuilder) SetActor(v Reference) *ImmunizationPerformerBuilder {
+	b.immunizationPerformer.Actor = &v
+	return b
+}
+
+// =============================================================================
+// ImmunizationProtocolApplied - Fluent Builder
+// =============================================================================
+
+// ImmunizationProtocolAppliedBuilder provides a fluent API for constructing ImmunizationProtocolApplied values.
+type ImmunizationProtocolAppliedBuilder struct {
+	immunizationProtocolApplied *ImmunizationProtocolApplied
+}
+
+// NewImmunizationProtocolAppliedBuilder creates a new ImmunizationProtocolAppliedBuilder.
+func NewImmunizationProtocolAppliedBuilder() *ImmunizationProtocolAppliedBuilder {
+	return &ImmunizationProtocolAppliedBuilder{
+		immunizationProtocolApplied: &ImmunizationProtocolApplied{},
+	}
+}
+
+// Build returns the constructed ImmunizationProtocolApplied.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImmunizationProtocolAppliedBuilder) Build() ImmunizationProtocolApplied {
+	return *b.immunizationProtocolApplied
+}
+
+// SetId sets the Id field.
+func (b *ImmunizationProtocolAppliedBuilder) SetId(v string) *ImmunizationProtocolAppliedBuilder {
+	b.immunizationProtocolApplied.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImmunizationProtocolAppliedBuilder) AddExtension(v Extension) *ImmunizationProtocolAppliedBuilder {
+	b.immunizationProtocolApplied.Extension = append(b.immunizationProtocolApplied.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImmunizationProtocolAppliedBuilder) AddModifierExtension(v Extension) *ImmunizationProtocolAppliedBuilder {
+	b.immunizationProtocolApplied.ModifierExtension = append(b.immunizationProtocolApplied.ModifierExtension, v)
+	return b
+}
+
+// SetSeries sets the Series field.
+func (b *ImmunizationProtocolAppliedBuilder) SetSeries(v string) *ImmunizationProtocolAppliedBuilder {
+	b.immunizationProtocolApplied.Series = &v
+	return b
+}
+
+// SetAuthority sets the Authority field.
+func (b *ImmunizationProtocolAppliedBuilder) SetAuthority(v Reference) *ImmunizationProtocolAppliedBuilder {
+	b.immunizationProtocolApplied.Authority = &v
+	return b
+}
+
+// AddTargetDisease adds a TargetDisease element.
+func (b *ImmunizationProtocolAppliedBuilder) AddTargetDisease(v CodeableConcept) *ImmunizationProtocolAppliedBuilder {
+	b.immunizationProtocolApplied.TargetDisease = append(b.immunizationProtocolApplied.TargetDisease, v)
+	return b
+}
+
+// SetDoseNumberPositiveInt sets DoseNumber[x] to its DoseNumberPositiveInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ImmunizationProtocolAppliedBuilder) SetDoseNumberPositiveInt(v uint32) *ImmunizationProtocolAppliedBuilder {
+	b.clearDoseNumber()
+	b.immunizationProtocolApplied.DoseNumberPositiveInt = &v
+	return b
+}
+
+// SetDoseNumberPositiveIntExt sets the DoseNumberPositiveIntExt field.
+func (b *ImmunizationProtocolAppliedBuilder) SetDoseNumberPositiveIntExt(v Element) *ImmunizationProtocolAppliedBuilder {
+	b.immunizationProtocolApplied.DoseNumberPositiveIntExt = &v
+	return b
+}
+
+// SetDoseNumberString sets DoseNumber[x] to its DoseNumberString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ImmunizationProtocolAppliedBuilder) SetDoseNumberString(v string) *ImmunizationProtocolAppliedBuilder {
+	b.clearDoseNumber()
+	b.immunizationProtocolApplied.DoseNumberString = &v
+	return b
+}
+
+// SetDoseNumberStringExt sets the DoseNumberStringExt field.
+func (b *ImmunizationProtocolAppliedBuilder) SetDoseNumberStringExt(v Element) *ImmunizationProtocolAppliedBuilder {
+	b.immunizationProtocolApplied.DoseNumberStringExt = &v
+	return b
+}
+
+// SetSeriesDosesPositiveInt sets SeriesDoses[x] to its SeriesDosesPositiveInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ImmunizationProtocolAppliedBuilder) SetSeriesDosesPositiveInt(v uint32) *ImmunizationProtocolAppliedBuilder {
+	b.clearSeriesDoses()
+	b.immunizationProtocolApplied.SeriesDosesPositiveInt = &v
+	return b
+}
+
+// SetSeriesDosesPositiveIntExt sets the SeriesDosesPositiveIntExt field.
+func (b *ImmunizationProtocolAppliedBuilder) SetSeriesDosesPositiveIntExt(v Element) *ImmunizationProtocolAppliedBuilder {
+	b.immunizationProtocolApplied.SeriesDosesPositiveIntExt = &v
+	return b
+}
+
+// SetSeriesDosesString sets SeriesDoses[x] to its SeriesDosesString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ImmunizationProtocolAppliedBuilder) SetSeriesDosesString(v string) *ImmunizationProtocolAppliedBuilder {
+	b.clearSeriesDoses()
+	b.immunizationProtocolApplied.SeriesDosesString = &v
+	return b
+}
+
+// SetSeriesDosesStringExt sets the SeriesDosesStringExt field.
+func (b *ImmunizationProtocolAppliedBuilder) SetSeriesDosesStringExt(v Element) *ImmunizationProtocolAppliedBuilder {
+	b.immunizationProtocolApplied.SeriesDosesStringExt = &v
+	return b
+}
+
+// SetSeriesExt sets the extensions carried by Series, serialized as
+// "_series".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationProtocolAppliedBuilder) SetSeriesExt(v Element) *ImmunizationProtocolAppliedBuilder {
+	b.immunizationProtocolApplied.SeriesExt = &v
+	return b
+}
+
+// clearDoseNumber unsets every variant of DoseNumber[x], including the
+// _field companions of the primitive ones.
+func (b *ImmunizationProtocolAppliedBuilder) clearDoseNumber() {
+	b.immunizationProtocolApplied.DoseNumberPositiveInt = nil
+	b.immunizationProtocolApplied.DoseNumberString = nil
+	b.immunizationProtocolApplied.DoseNumberStringExt = nil
+}
+
+// clearSeriesDoses unsets every variant of SeriesDoses[x], including the
+// _field companions of the primitive ones.
+func (b *ImmunizationProtocolAppliedBuilder) clearSeriesDoses() {
+	b.immunizationProtocolApplied.SeriesDosesPositiveInt = nil
+	b.immunizationProtocolApplied.SeriesDosesString = nil
+	b.immunizationProtocolApplied.SeriesDosesStringExt = nil
+}
+
+// =============================================================================
+// ImmunizationReaction - Fluent Builder
+// =============================================================================
+
+// ImmunizationReactionBuilder provides a fluent API for constructing ImmunizationReaction values.
+type ImmunizationReactionBuilder struct {
+	immunizationReaction *ImmunizationReaction
+}
+
+// NewImmunizationReactionBuilder creates a new ImmunizationReactionBuilder.
+func NewImmunizationReactionBuilder() *ImmunizationReactionBuilder {
+	return &ImmunizationReactionBuilder{
+		immunizationReaction: &ImmunizationReaction{},
+	}
+}
+
+// Build returns the constructed ImmunizationReaction.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImmunizationReactionBuilder) Build() ImmunizationReaction {
+	return *b.immunizationReaction
+}
+
+// SetId sets the Id field.
+func (b *ImmunizationReactionBuilder) SetId(v string) *ImmunizationReactionBuilder {
+	b.immunizationReaction.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImmunizationReactionBuilder) AddExtension(v Extension) *ImmunizationReactionBuilder {
+	b.immunizationReaction.Extension = append(b.immunizationReaction.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImmunizationReactionBuilder) AddModifierExtension(v Extension) *ImmunizationReactionBuilder {
+	b.immunizationReaction.ModifierExtension = append(b.immunizationReaction.ModifierExtension, v)
+	return b
+}
+
+// SetDate sets the Date field.
+func (b *ImmunizationReactionBuilder) SetDate(v string) *ImmunizationReactionBuilder {
+	b.immunizationReaction.Date = &v
+	return b
+}
+
+// SetDetail sets the Detail field.
+func (b *ImmunizationReactionBuilder) SetDetail(v Reference) *ImmunizationReactionBuilder {
+	b.immunizationReaction.Detail = &v
+	return b
+}
+
+// SetReported sets the Reported field.
+func (b *ImmunizationReactionBuilder) SetReported(v bool) *ImmunizationReactionBuilder {
+	b.immunizationReaction.Reported = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationReactionBuilder) SetDateExt(v Element) *ImmunizationReactionBuilder {
+	b.immunizationReaction.DateExt = &v
+	return b
+}
+
+// SetReportedExt sets the extensions carried by Reported, serialized as
+// "_reported".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationReactionBuilder) SetReportedExt(v Element) *ImmunizationReactionBuilder {
+	b.immunizationReaction.ReportedExt = &v
+	return b
 }

@@ -1172,3 +1172,472 @@ func (b *SubstancePolymerBuilder) AddRepeat(v SubstancePolymerRepeat) *Substance
 	b.substancePolymer.Repeat = append(b.substancePolymer.Repeat, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstancePolymerBuilder) SetImplicitRulesExt(v Element) *SubstancePolymerBuilder {
+	b.substancePolymer.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstancePolymerBuilder) SetLanguageExt(v Element) *SubstancePolymerBuilder {
+	b.substancePolymer.LanguageExt = &v
+	return b
+}
+
+// AddModificationExt appends an extension slot for Modification.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *SubstancePolymerBuilder) AddModificationExt(v *Element) *SubstancePolymerBuilder {
+	b.substancePolymer.ModificationExt = append(b.substancePolymer.ModificationExt, v)
+	return b
+}
+
+// =============================================================================
+// SubstancePolymerMonomerSet - Fluent Builder
+// =============================================================================
+
+// SubstancePolymerMonomerSetBuilder provides a fluent API for constructing SubstancePolymerMonomerSet values.
+type SubstancePolymerMonomerSetBuilder struct {
+	substancePolymerMonomerSet *SubstancePolymerMonomerSet
+}
+
+// NewSubstancePolymerMonomerSetBuilder creates a new SubstancePolymerMonomerSetBuilder.
+func NewSubstancePolymerMonomerSetBuilder() *SubstancePolymerMonomerSetBuilder {
+	return &SubstancePolymerMonomerSetBuilder{
+		substancePolymerMonomerSet: &SubstancePolymerMonomerSet{},
+	}
+}
+
+// Build returns the constructed SubstancePolymerMonomerSet.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstancePolymerMonomerSetBuilder) Build() SubstancePolymerMonomerSet {
+	return *b.substancePolymerMonomerSet
+}
+
+// SetId sets the Id field.
+func (b *SubstancePolymerMonomerSetBuilder) SetId(v string) *SubstancePolymerMonomerSetBuilder {
+	b.substancePolymerMonomerSet.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstancePolymerMonomerSetBuilder) AddExtension(v Extension) *SubstancePolymerMonomerSetBuilder {
+	b.substancePolymerMonomerSet.Extension = append(b.substancePolymerMonomerSet.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstancePolymerMonomerSetBuilder) AddModifierExtension(v Extension) *SubstancePolymerMonomerSetBuilder {
+	b.substancePolymerMonomerSet.ModifierExtension = append(b.substancePolymerMonomerSet.ModifierExtension, v)
+	return b
+}
+
+// SetRatioType sets the RatioType field.
+func (b *SubstancePolymerMonomerSetBuilder) SetRatioType(v CodeableConcept) *SubstancePolymerMonomerSetBuilder {
+	b.substancePolymerMonomerSet.RatioType = &v
+	return b
+}
+
+// AddStartingMaterial adds a StartingMaterial element.
+func (b *SubstancePolymerMonomerSetBuilder) AddStartingMaterial(v SubstancePolymerMonomerSetStartingMaterial) *SubstancePolymerMonomerSetBuilder {
+	b.substancePolymerMonomerSet.StartingMaterial = append(b.substancePolymerMonomerSet.StartingMaterial, v)
+	return b
+}
+
+// =============================================================================
+// SubstancePolymerMonomerSetStartingMaterial - Fluent Builder
+// =============================================================================
+
+// SubstancePolymerMonomerSetStartingMaterialBuilder provides a fluent API for constructing SubstancePolymerMonomerSetStartingMaterial values.
+type SubstancePolymerMonomerSetStartingMaterialBuilder struct {
+	substancePolymerMonomerSetStartingMaterial *SubstancePolymerMonomerSetStartingMaterial
+}
+
+// NewSubstancePolymerMonomerSetStartingMaterialBuilder creates a new SubstancePolymerMonomerSetStartingMaterialBuilder.
+func NewSubstancePolymerMonomerSetStartingMaterialBuilder() *SubstancePolymerMonomerSetStartingMaterialBuilder {
+	return &SubstancePolymerMonomerSetStartingMaterialBuilder{
+		substancePolymerMonomerSetStartingMaterial: &SubstancePolymerMonomerSetStartingMaterial{},
+	}
+}
+
+// Build returns the constructed SubstancePolymerMonomerSetStartingMaterial.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstancePolymerMonomerSetStartingMaterialBuilder) Build() SubstancePolymerMonomerSetStartingMaterial {
+	return *b.substancePolymerMonomerSetStartingMaterial
+}
+
+// SetId sets the Id field.
+func (b *SubstancePolymerMonomerSetStartingMaterialBuilder) SetId(v string) *SubstancePolymerMonomerSetStartingMaterialBuilder {
+	b.substancePolymerMonomerSetStartingMaterial.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstancePolymerMonomerSetStartingMaterialBuilder) AddExtension(v Extension) *SubstancePolymerMonomerSetStartingMaterialBuilder {
+	b.substancePolymerMonomerSetStartingMaterial.Extension = append(b.substancePolymerMonomerSetStartingMaterial.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstancePolymerMonomerSetStartingMaterialBuilder) AddModifierExtension(v Extension) *SubstancePolymerMonomerSetStartingMaterialBuilder {
+	b.substancePolymerMonomerSetStartingMaterial.ModifierExtension = append(b.substancePolymerMonomerSetStartingMaterial.ModifierExtension, v)
+	return b
+}
+
+// SetMaterial sets the Material field.
+func (b *SubstancePolymerMonomerSetStartingMaterialBuilder) SetMaterial(v CodeableConcept) *SubstancePolymerMonomerSetStartingMaterialBuilder {
+	b.substancePolymerMonomerSetStartingMaterial.Material = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *SubstancePolymerMonomerSetStartingMaterialBuilder) SetType(v CodeableConcept) *SubstancePolymerMonomerSetStartingMaterialBuilder {
+	b.substancePolymerMonomerSetStartingMaterial.Type = &v
+	return b
+}
+
+// SetIsDefining sets the IsDefining field.
+func (b *SubstancePolymerMonomerSetStartingMaterialBuilder) SetIsDefining(v bool) *SubstancePolymerMonomerSetStartingMaterialBuilder {
+	b.substancePolymerMonomerSetStartingMaterial.IsDefining = &v
+	return b
+}
+
+// SetAmount sets the Amount field.
+func (b *SubstancePolymerMonomerSetStartingMaterialBuilder) SetAmount(v SubstanceAmount) *SubstancePolymerMonomerSetStartingMaterialBuilder {
+	b.substancePolymerMonomerSetStartingMaterial.Amount = &v
+	return b
+}
+
+// SetIsDefiningExt sets the extensions carried by IsDefining, serialized as
+// "_isDefining".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstancePolymerMonomerSetStartingMaterialBuilder) SetIsDefiningExt(v Element) *SubstancePolymerMonomerSetStartingMaterialBuilder {
+	b.substancePolymerMonomerSetStartingMaterial.IsDefiningExt = &v
+	return b
+}
+
+// =============================================================================
+// SubstancePolymerRepeat - Fluent Builder
+// =============================================================================
+
+// SubstancePolymerRepeatBuilder provides a fluent API for constructing SubstancePolymerRepeat values.
+type SubstancePolymerRepeatBuilder struct {
+	substancePolymerRepeat *SubstancePolymerRepeat
+}
+
+// NewSubstancePolymerRepeatBuilder creates a new SubstancePolymerRepeatBuilder.
+func NewSubstancePolymerRepeatBuilder() *SubstancePolymerRepeatBuilder {
+	return &SubstancePolymerRepeatBuilder{
+		substancePolymerRepeat: &SubstancePolymerRepeat{},
+	}
+}
+
+// Build returns the constructed SubstancePolymerRepeat.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstancePolymerRepeatBuilder) Build() SubstancePolymerRepeat {
+	return *b.substancePolymerRepeat
+}
+
+// SetId sets the Id field.
+func (b *SubstancePolymerRepeatBuilder) SetId(v string) *SubstancePolymerRepeatBuilder {
+	b.substancePolymerRepeat.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstancePolymerRepeatBuilder) AddExtension(v Extension) *SubstancePolymerRepeatBuilder {
+	b.substancePolymerRepeat.Extension = append(b.substancePolymerRepeat.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstancePolymerRepeatBuilder) AddModifierExtension(v Extension) *SubstancePolymerRepeatBuilder {
+	b.substancePolymerRepeat.ModifierExtension = append(b.substancePolymerRepeat.ModifierExtension, v)
+	return b
+}
+
+// SetNumberOfUnits sets the NumberOfUnits field.
+func (b *SubstancePolymerRepeatBuilder) SetNumberOfUnits(v int) *SubstancePolymerRepeatBuilder {
+	b.substancePolymerRepeat.NumberOfUnits = &v
+	return b
+}
+
+// SetAverageMolecularFormula sets the AverageMolecularFormula field.
+func (b *SubstancePolymerRepeatBuilder) SetAverageMolecularFormula(v string) *SubstancePolymerRepeatBuilder {
+	b.substancePolymerRepeat.AverageMolecularFormula = &v
+	return b
+}
+
+// SetRepeatUnitAmountType sets the RepeatUnitAmountType field.
+func (b *SubstancePolymerRepeatBuilder) SetRepeatUnitAmountType(v CodeableConcept) *SubstancePolymerRepeatBuilder {
+	b.substancePolymerRepeat.RepeatUnitAmountType = &v
+	return b
+}
+
+// AddRepeatUnit adds a RepeatUnit element.
+func (b *SubstancePolymerRepeatBuilder) AddRepeatUnit(v SubstancePolymerRepeatRepeatUnit) *SubstancePolymerRepeatBuilder {
+	b.substancePolymerRepeat.RepeatUnit = append(b.substancePolymerRepeat.RepeatUnit, v)
+	return b
+}
+
+// SetNumberOfUnitsExt sets the extensions carried by NumberOfUnits, serialized as
+// "_numberOfUnits".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstancePolymerRepeatBuilder) SetNumberOfUnitsExt(v Element) *SubstancePolymerRepeatBuilder {
+	b.substancePolymerRepeat.NumberOfUnitsExt = &v
+	return b
+}
+
+// SetAverageMolecularFormulaExt sets the extensions carried by AverageMolecularFormula, serialized as
+// "_averageMolecularFormula".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstancePolymerRepeatBuilder) SetAverageMolecularFormulaExt(v Element) *SubstancePolymerRepeatBuilder {
+	b.substancePolymerRepeat.AverageMolecularFormulaExt = &v
+	return b
+}
+
+// =============================================================================
+// SubstancePolymerRepeatRepeatUnit - Fluent Builder
+// =============================================================================
+
+// SubstancePolymerRepeatRepeatUnitBuilder provides a fluent API for constructing SubstancePolymerRepeatRepeatUnit values.
+type SubstancePolymerRepeatRepeatUnitBuilder struct {
+	substancePolymerRepeatRepeatUnit *SubstancePolymerRepeatRepeatUnit
+}
+
+// NewSubstancePolymerRepeatRepeatUnitBuilder creates a new SubstancePolymerRepeatRepeatUnitBuilder.
+func NewSubstancePolymerRepeatRepeatUnitBuilder() *SubstancePolymerRepeatRepeatUnitBuilder {
+	return &SubstancePolymerRepeatRepeatUnitBuilder{
+		substancePolymerRepeatRepeatUnit: &SubstancePolymerRepeatRepeatUnit{},
+	}
+}
+
+// Build returns the constructed SubstancePolymerRepeatRepeatUnit.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstancePolymerRepeatRepeatUnitBuilder) Build() SubstancePolymerRepeatRepeatUnit {
+	return *b.substancePolymerRepeatRepeatUnit
+}
+
+// SetId sets the Id field.
+func (b *SubstancePolymerRepeatRepeatUnitBuilder) SetId(v string) *SubstancePolymerRepeatRepeatUnitBuilder {
+	b.substancePolymerRepeatRepeatUnit.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstancePolymerRepeatRepeatUnitBuilder) AddExtension(v Extension) *SubstancePolymerRepeatRepeatUnitBuilder {
+	b.substancePolymerRepeatRepeatUnit.Extension = append(b.substancePolymerRepeatRepeatUnit.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstancePolymerRepeatRepeatUnitBuilder) AddModifierExtension(v Extension) *SubstancePolymerRepeatRepeatUnitBuilder {
+	b.substancePolymerRepeatRepeatUnit.ModifierExtension = append(b.substancePolymerRepeatRepeatUnit.ModifierExtension, v)
+	return b
+}
+
+// SetOrientationOfPolymerisation sets the OrientationOfPolymerisation field.
+func (b *SubstancePolymerRepeatRepeatUnitBuilder) SetOrientationOfPolymerisation(v CodeableConcept) *SubstancePolymerRepeatRepeatUnitBuilder {
+	b.substancePolymerRepeatRepeatUnit.OrientationOfPolymerisation = &v
+	return b
+}
+
+// SetRepeatUnit sets the RepeatUnit field.
+func (b *SubstancePolymerRepeatRepeatUnitBuilder) SetRepeatUnit(v string) *SubstancePolymerRepeatRepeatUnitBuilder {
+	b.substancePolymerRepeatRepeatUnit.RepeatUnit = &v
+	return b
+}
+
+// SetAmount sets the Amount field.
+func (b *SubstancePolymerRepeatRepeatUnitBuilder) SetAmount(v SubstanceAmount) *SubstancePolymerRepeatRepeatUnitBuilder {
+	b.substancePolymerRepeatRepeatUnit.Amount = &v
+	return b
+}
+
+// AddDegreeOfPolymerisation adds a DegreeOfPolymerisation element.
+func (b *SubstancePolymerRepeatRepeatUnitBuilder) AddDegreeOfPolymerisation(v SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation) *SubstancePolymerRepeatRepeatUnitBuilder {
+	b.substancePolymerRepeatRepeatUnit.DegreeOfPolymerisation = append(b.substancePolymerRepeatRepeatUnit.DegreeOfPolymerisation, v)
+	return b
+}
+
+// AddStructuralRepresentation adds a StructuralRepresentation element.
+func (b *SubstancePolymerRepeatRepeatUnitBuilder) AddStructuralRepresentation(v SubstancePolymerRepeatRepeatUnitStructuralRepresentation) *SubstancePolymerRepeatRepeatUnitBuilder {
+	b.substancePolymerRepeatRepeatUnit.StructuralRepresentation = append(b.substancePolymerRepeatRepeatUnit.StructuralRepresentation, v)
+	return b
+}
+
+// SetRepeatUnitExt sets the extensions carried by RepeatUnit, serialized as
+// "_repeatUnit".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstancePolymerRepeatRepeatUnitBuilder) SetRepeatUnitExt(v Element) *SubstancePolymerRepeatRepeatUnitBuilder {
+	b.substancePolymerRepeatRepeatUnit.RepeatUnitExt = &v
+	return b
+}
+
+// =============================================================================
+// SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation - Fluent Builder
+// =============================================================================
+
+// SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisationBuilder provides a fluent API for constructing SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation values.
+type SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisationBuilder struct {
+	substancePolymerRepeatRepeatUnitDegreeOfPolymerisation *SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation
+}
+
+// NewSubstancePolymerRepeatRepeatUnitDegreeOfPolymerisationBuilder creates a new SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisationBuilder.
+func NewSubstancePolymerRepeatRepeatUnitDegreeOfPolymerisationBuilder() *SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisationBuilder {
+	return &SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisationBuilder{
+		substancePolymerRepeatRepeatUnitDegreeOfPolymerisation: &SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation{},
+	}
+}
+
+// Build returns the constructed SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisationBuilder) Build() SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation {
+	return *b.substancePolymerRepeatRepeatUnitDegreeOfPolymerisation
+}
+
+// SetId sets the Id field.
+func (b *SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisationBuilder) SetId(v string) *SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisationBuilder {
+	b.substancePolymerRepeatRepeatUnitDegreeOfPolymerisation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisationBuilder) AddExtension(v Extension) *SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisationBuilder {
+	b.substancePolymerRepeatRepeatUnitDegreeOfPolymerisation.Extension = append(b.substancePolymerRepeatRepeatUnitDegreeOfPolymerisation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisationBuilder) AddModifierExtension(v Extension) *SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisationBuilder {
+	b.substancePolymerRepeatRepeatUnitDegreeOfPolymerisation.ModifierExtension = append(b.substancePolymerRepeatRepeatUnitDegreeOfPolymerisation.ModifierExtension, v)
+	return b
+}
+
+// SetDegree sets the Degree field.
+func (b *SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisationBuilder) SetDegree(v CodeableConcept) *SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisationBuilder {
+	b.substancePolymerRepeatRepeatUnitDegreeOfPolymerisation.Degree = &v
+	return b
+}
+
+// SetAmount sets the Amount field.
+func (b *SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisationBuilder) SetAmount(v SubstanceAmount) *SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisationBuilder {
+	b.substancePolymerRepeatRepeatUnitDegreeOfPolymerisation.Amount = &v
+	return b
+}
+
+// =============================================================================
+// SubstancePolymerRepeatRepeatUnitStructuralRepresentation - Fluent Builder
+// =============================================================================
+
+// SubstancePolymerRepeatRepeatUnitStructuralRepresentationBuilder provides a fluent API for constructing SubstancePolymerRepeatRepeatUnitStructuralRepresentation values.
+type SubstancePolymerRepeatRepeatUnitStructuralRepresentationBuilder struct {
+	substancePolymerRepeatRepeatUnitStructuralRepresentation *SubstancePolymerRepeatRepeatUnitStructuralRepresentation
+}
+
+// NewSubstancePolymerRepeatRepeatUnitStructuralRepresentationBuilder creates a new SubstancePolymerRepeatRepeatUnitStructuralRepresentationBuilder.
+func NewSubstancePolymerRepeatRepeatUnitStructuralRepresentationBuilder() *SubstancePolymerRepeatRepeatUnitStructuralRepresentationBuilder {
+	return &SubstancePolymerRepeatRepeatUnitStructuralRepresentationBuilder{
+		substancePolymerRepeatRepeatUnitStructuralRepresentation: &SubstancePolymerRepeatRepeatUnitStructuralRepresentation{},
+	}
+}
+
+// Build returns the constructed SubstancePolymerRepeatRepeatUnitStructuralRepresentation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstancePolymerRepeatRepeatUnitStructuralRepresentationBuilder) Build() SubstancePolymerRepeatRepeatUnitStructuralRepresentation {
+	return *b.substancePolymerRepeatRepeatUnitStructuralRepresentation
+}
+
+// SetId sets the Id field.
+func (b *SubstancePolymerRepeatRepeatUnitStructuralRepresentationBuilder) SetId(v string) *SubstancePolymerRepeatRepeatUnitStructuralRepresentationBuilder {
+	b.substancePolymerRepeatRepeatUnitStructuralRepresentation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstancePolymerRepeatRepeatUnitStructuralRepresentationBuilder) AddExtension(v Extension) *SubstancePolymerRepeatRepeatUnitStructuralRepresentationBuilder {
+	b.substancePolymerRepeatRepeatUnitStructuralRepresentation.Extension = append(b.substancePolymerRepeatRepeatUnitStructuralRepresentation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstancePolymerRepeatRepeatUnitStructuralRepresentationBuilder) AddModifierExtension(v Extension) *SubstancePolymerRepeatRepeatUnitStructuralRepresentationBuilder {
+	b.substancePolymerRepeatRepeatUnitStructuralRepresentation.ModifierExtension = append(b.substancePolymerRepeatRepeatUnitStructuralRepresentation.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *SubstancePolymerRepeatRepeatUnitStructuralRepresentationBuilder) SetType(v CodeableConcept) *SubstancePolymerRepeatRepeatUnitStructuralRepresentationBuilder {
+	b.substancePolymerRepeatRepeatUnitStructuralRepresentation.Type = &v
+	return b
+}
+
+// SetRepresentation sets the Representation field.
+func (b *SubstancePolymerRepeatRepeatUnitStructuralRepresentationBuilder) SetRepresentation(v string) *SubstancePolymerRepeatRepeatUnitStructuralRepresentationBuilder {
+	b.substancePolymerRepeatRepeatUnitStructuralRepresentation.Representation = &v
+	return b
+}
+
+// SetAttachment sets the Attachment field.
+func (b *SubstancePolymerRepeatRepeatUnitStructuralRepresentationBuilder) SetAttachment(v Attachment) *SubstancePolymerRepeatRepeatUnitStructuralRepresentationBuilder {
+	b.substancePolymerRepeatRepeatUnitStructuralRepresentation.Attachment = &v
+	return b
+}
+
+// SetRepresentationExt sets the extensions carried by Representation, serialized as
+// "_representation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstancePolymerRepeatRepeatUnitStructuralRepresentationBuilder) SetRepresentationExt(v Element) *SubstancePolymerRepeatRepeatUnitStructuralRepresentationBuilder {
+	b.substancePolymerRepeatRepeatUnitStructuralRepresentation.RepresentationExt = &v
+	return b
+}

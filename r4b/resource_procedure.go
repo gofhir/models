@@ -1205,6 +1205,54 @@ func (b *ProcedureBuilder) AddUsedCode(v CodeableConcept) *ProcedureBuilder {
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ProcedureBuilder) SetImplicitRulesExt(v Element) *ProcedureBuilder {
+	b.procedure.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ProcedureBuilder) SetLanguageExt(v Element) *ProcedureBuilder {
+	b.procedure.LanguageExt = &v
+	return b
+}
+
+// AddInstantiatesCanonicalExt appends an extension slot for InstantiatesCanonical.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ProcedureBuilder) AddInstantiatesCanonicalExt(v *Element) *ProcedureBuilder {
+	b.procedure.InstantiatesCanonicalExt = append(b.procedure.InstantiatesCanonicalExt, v)
+	return b
+}
+
+// AddInstantiatesUriExt appends an extension slot for InstantiatesUri.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ProcedureBuilder) AddInstantiatesUriExt(v *Element) *ProcedureBuilder {
+	b.procedure.InstantiatesUriExt = append(b.procedure.InstantiatesUriExt, v)
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ProcedureBuilder) SetStatusExt(v Element) *ProcedureBuilder {
+	b.procedure.StatusExt = &v
+	return b
+}
+
 // clearPerformed unsets every variant of Performed[x], including the
 // _field companions of the primitive ones.
 func (b *ProcedureBuilder) clearPerformed() {
@@ -1214,4 +1262,124 @@ func (b *ProcedureBuilder) clearPerformed() {
 	b.procedure.PerformedStringExt = nil
 	b.procedure.PerformedAge = nil
 	b.procedure.PerformedRange = nil
+}
+
+// =============================================================================
+// ProcedureFocalDevice - Fluent Builder
+// =============================================================================
+
+// ProcedureFocalDeviceBuilder provides a fluent API for constructing ProcedureFocalDevice values.
+type ProcedureFocalDeviceBuilder struct {
+	procedureFocalDevice *ProcedureFocalDevice
+}
+
+// NewProcedureFocalDeviceBuilder creates a new ProcedureFocalDeviceBuilder.
+func NewProcedureFocalDeviceBuilder() *ProcedureFocalDeviceBuilder {
+	return &ProcedureFocalDeviceBuilder{
+		procedureFocalDevice: &ProcedureFocalDevice{},
+	}
+}
+
+// Build returns the constructed ProcedureFocalDevice.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ProcedureFocalDeviceBuilder) Build() ProcedureFocalDevice {
+	return *b.procedureFocalDevice
+}
+
+// SetId sets the Id field.
+func (b *ProcedureFocalDeviceBuilder) SetId(v string) *ProcedureFocalDeviceBuilder {
+	b.procedureFocalDevice.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ProcedureFocalDeviceBuilder) AddExtension(v Extension) *ProcedureFocalDeviceBuilder {
+	b.procedureFocalDevice.Extension = append(b.procedureFocalDevice.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ProcedureFocalDeviceBuilder) AddModifierExtension(v Extension) *ProcedureFocalDeviceBuilder {
+	b.procedureFocalDevice.ModifierExtension = append(b.procedureFocalDevice.ModifierExtension, v)
+	return b
+}
+
+// SetAction sets the Action field.
+func (b *ProcedureFocalDeviceBuilder) SetAction(v CodeableConcept) *ProcedureFocalDeviceBuilder {
+	b.procedureFocalDevice.Action = &v
+	return b
+}
+
+// SetManipulated sets the Manipulated field.
+func (b *ProcedureFocalDeviceBuilder) SetManipulated(v Reference) *ProcedureFocalDeviceBuilder {
+	b.procedureFocalDevice.Manipulated = &v
+	return b
+}
+
+// =============================================================================
+// ProcedurePerformer - Fluent Builder
+// =============================================================================
+
+// ProcedurePerformerBuilder provides a fluent API for constructing ProcedurePerformer values.
+type ProcedurePerformerBuilder struct {
+	procedurePerformer *ProcedurePerformer
+}
+
+// NewProcedurePerformerBuilder creates a new ProcedurePerformerBuilder.
+func NewProcedurePerformerBuilder() *ProcedurePerformerBuilder {
+	return &ProcedurePerformerBuilder{
+		procedurePerformer: &ProcedurePerformer{},
+	}
+}
+
+// Build returns the constructed ProcedurePerformer.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ProcedurePerformerBuilder) Build() ProcedurePerformer {
+	return *b.procedurePerformer
+}
+
+// SetId sets the Id field.
+func (b *ProcedurePerformerBuilder) SetId(v string) *ProcedurePerformerBuilder {
+	b.procedurePerformer.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ProcedurePerformerBuilder) AddExtension(v Extension) *ProcedurePerformerBuilder {
+	b.procedurePerformer.Extension = append(b.procedurePerformer.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ProcedurePerformerBuilder) AddModifierExtension(v Extension) *ProcedurePerformerBuilder {
+	b.procedurePerformer.ModifierExtension = append(b.procedurePerformer.ModifierExtension, v)
+	return b
+}
+
+// SetFunction sets the Function field.
+func (b *ProcedurePerformerBuilder) SetFunction(v CodeableConcept) *ProcedurePerformerBuilder {
+	b.procedurePerformer.Function = &v
+	return b
+}
+
+// SetActor sets the Actor field.
+func (b *ProcedurePerformerBuilder) SetActor(v Reference) *ProcedurePerformerBuilder {
+	b.procedurePerformer.Actor = &v
+	return b
+}
+
+// SetOnBehalfOf sets the OnBehalfOf field.
+func (b *ProcedurePerformerBuilder) SetOnBehalfOf(v Reference) *ProcedurePerformerBuilder {
+	b.procedurePerformer.OnBehalfOf = &v
+	return b
 }

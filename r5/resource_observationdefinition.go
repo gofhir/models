@@ -1470,9 +1470,485 @@ func (b *ObservationDefinitionBuilder) AddComponent(v ObservationDefinitionCompo
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionBuilder) SetImplicitRulesExt(v Element) *ObservationDefinitionBuilder {
+	b.observationDefinition.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionBuilder) SetLanguageExt(v Element) *ObservationDefinitionBuilder {
+	b.observationDefinition.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionBuilder) SetUrlExt(v Element) *ObservationDefinitionBuilder {
+	b.observationDefinition.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionBuilder) SetVersionExt(v Element) *ObservationDefinitionBuilder {
+	b.observationDefinition.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionBuilder) SetNameExt(v Element) *ObservationDefinitionBuilder {
+	b.observationDefinition.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionBuilder) SetTitleExt(v Element) *ObservationDefinitionBuilder {
+	b.observationDefinition.TitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionBuilder) SetStatusExt(v Element) *ObservationDefinitionBuilder {
+	b.observationDefinition.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionBuilder) SetExperimentalExt(v Element) *ObservationDefinitionBuilder {
+	b.observationDefinition.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionBuilder) SetDateExt(v Element) *ObservationDefinitionBuilder {
+	b.observationDefinition.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionBuilder) SetPublisherExt(v Element) *ObservationDefinitionBuilder {
+	b.observationDefinition.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionBuilder) SetDescriptionExt(v Element) *ObservationDefinitionBuilder {
+	b.observationDefinition.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionBuilder) SetPurposeExt(v Element) *ObservationDefinitionBuilder {
+	b.observationDefinition.PurposeExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionBuilder) SetCopyrightExt(v Element) *ObservationDefinitionBuilder {
+	b.observationDefinition.CopyrightExt = &v
+	return b
+}
+
+// SetCopyrightLabelExt sets the extensions carried by CopyrightLabel, serialized as
+// "_copyrightLabel".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionBuilder) SetCopyrightLabelExt(v Element) *ObservationDefinitionBuilder {
+	b.observationDefinition.CopyrightLabelExt = &v
+	return b
+}
+
+// SetApprovalDateExt sets the extensions carried by ApprovalDate, serialized as
+// "_approvalDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionBuilder) SetApprovalDateExt(v Element) *ObservationDefinitionBuilder {
+	b.observationDefinition.ApprovalDateExt = &v
+	return b
+}
+
+// SetLastReviewDateExt sets the extensions carried by LastReviewDate, serialized as
+// "_lastReviewDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionBuilder) SetLastReviewDateExt(v Element) *ObservationDefinitionBuilder {
+	b.observationDefinition.LastReviewDateExt = &v
+	return b
+}
+
+// AddDerivedFromCanonicalExt appends an extension slot for DerivedFromCanonical.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ObservationDefinitionBuilder) AddDerivedFromCanonicalExt(v *Element) *ObservationDefinitionBuilder {
+	b.observationDefinition.DerivedFromCanonicalExt = append(b.observationDefinition.DerivedFromCanonicalExt, v)
+	return b
+}
+
+// AddDerivedFromUriExt appends an extension slot for DerivedFromUri.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ObservationDefinitionBuilder) AddDerivedFromUriExt(v *Element) *ObservationDefinitionBuilder {
+	b.observationDefinition.DerivedFromUriExt = append(b.observationDefinition.DerivedFromUriExt, v)
+	return b
+}
+
+// AddPermittedDataTypeExt appends an extension slot for PermittedDataType.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ObservationDefinitionBuilder) AddPermittedDataTypeExt(v *Element) *ObservationDefinitionBuilder {
+	b.observationDefinition.PermittedDataTypeExt = append(b.observationDefinition.PermittedDataTypeExt, v)
+	return b
+}
+
+// SetMultipleResultsAllowedExt sets the extensions carried by MultipleResultsAllowed, serialized as
+// "_multipleResultsAllowed".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionBuilder) SetMultipleResultsAllowedExt(v Element) *ObservationDefinitionBuilder {
+	b.observationDefinition.MultipleResultsAllowedExt = &v
+	return b
+}
+
+// SetPreferredReportNameExt sets the extensions carried by PreferredReportName, serialized as
+// "_preferredReportName".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionBuilder) SetPreferredReportNameExt(v Element) *ObservationDefinitionBuilder {
+	b.observationDefinition.PreferredReportNameExt = &v
+	return b
+}
+
 // clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
 // _field companions of the primitive ones.
 func (b *ObservationDefinitionBuilder) clearVersionAlgorithm() {
 	b.observationDefinition.VersionAlgorithmString = nil
 	b.observationDefinition.VersionAlgorithmCoding = nil
+}
+
+// =============================================================================
+// ObservationDefinitionComponent - Fluent Builder
+// =============================================================================
+
+// ObservationDefinitionComponentBuilder provides a fluent API for constructing ObservationDefinitionComponent values.
+type ObservationDefinitionComponentBuilder struct {
+	observationDefinitionComponent *ObservationDefinitionComponent
+}
+
+// NewObservationDefinitionComponentBuilder creates a new ObservationDefinitionComponentBuilder.
+func NewObservationDefinitionComponentBuilder() *ObservationDefinitionComponentBuilder {
+	return &ObservationDefinitionComponentBuilder{
+		observationDefinitionComponent: &ObservationDefinitionComponent{},
+	}
+}
+
+// Build returns the constructed ObservationDefinitionComponent.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ObservationDefinitionComponentBuilder) Build() ObservationDefinitionComponent {
+	return *b.observationDefinitionComponent
+}
+
+// SetId sets the Id field.
+func (b *ObservationDefinitionComponentBuilder) SetId(v string) *ObservationDefinitionComponentBuilder {
+	b.observationDefinitionComponent.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ObservationDefinitionComponentBuilder) AddExtension(v Extension) *ObservationDefinitionComponentBuilder {
+	b.observationDefinitionComponent.Extension = append(b.observationDefinitionComponent.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ObservationDefinitionComponentBuilder) AddModifierExtension(v Extension) *ObservationDefinitionComponentBuilder {
+	b.observationDefinitionComponent.ModifierExtension = append(b.observationDefinitionComponent.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *ObservationDefinitionComponentBuilder) SetCode(v CodeableConcept) *ObservationDefinitionComponentBuilder {
+	b.observationDefinitionComponent.Code = &v
+	return b
+}
+
+// AddPermittedDataType adds a PermittedDataType element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ObservationDefinitionComponentBuilder) AddPermittedDataType(v ObservationDataType) *ObservationDefinitionComponentBuilder {
+	b.observationDefinitionComponent.PermittedDataType = append(b.observationDefinitionComponent.PermittedDataType, &v)
+	return b
+}
+
+// AddPermittedUnit adds a PermittedUnit element.
+func (b *ObservationDefinitionComponentBuilder) AddPermittedUnit(v Coding) *ObservationDefinitionComponentBuilder {
+	b.observationDefinitionComponent.PermittedUnit = append(b.observationDefinitionComponent.PermittedUnit, v)
+	return b
+}
+
+// AddQualifiedValue adds a QualifiedValue element.
+func (b *ObservationDefinitionComponentBuilder) AddQualifiedValue(v ObservationDefinitionQualifiedValue) *ObservationDefinitionComponentBuilder {
+	b.observationDefinitionComponent.QualifiedValue = append(b.observationDefinitionComponent.QualifiedValue, v)
+	return b
+}
+
+// AddPermittedDataTypeExt appends an extension slot for PermittedDataType.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ObservationDefinitionComponentBuilder) AddPermittedDataTypeExt(v *Element) *ObservationDefinitionComponentBuilder {
+	b.observationDefinitionComponent.PermittedDataTypeExt = append(b.observationDefinitionComponent.PermittedDataTypeExt, v)
+	return b
+}
+
+// =============================================================================
+// ObservationDefinitionQualifiedValue - Fluent Builder
+// =============================================================================
+
+// ObservationDefinitionQualifiedValueBuilder provides a fluent API for constructing ObservationDefinitionQualifiedValue values.
+type ObservationDefinitionQualifiedValueBuilder struct {
+	observationDefinitionQualifiedValue *ObservationDefinitionQualifiedValue
+}
+
+// NewObservationDefinitionQualifiedValueBuilder creates a new ObservationDefinitionQualifiedValueBuilder.
+func NewObservationDefinitionQualifiedValueBuilder() *ObservationDefinitionQualifiedValueBuilder {
+	return &ObservationDefinitionQualifiedValueBuilder{
+		observationDefinitionQualifiedValue: &ObservationDefinitionQualifiedValue{},
+	}
+}
+
+// Build returns the constructed ObservationDefinitionQualifiedValue.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ObservationDefinitionQualifiedValueBuilder) Build() ObservationDefinitionQualifiedValue {
+	return *b.observationDefinitionQualifiedValue
+}
+
+// SetId sets the Id field.
+func (b *ObservationDefinitionQualifiedValueBuilder) SetId(v string) *ObservationDefinitionQualifiedValueBuilder {
+	b.observationDefinitionQualifiedValue.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ObservationDefinitionQualifiedValueBuilder) AddExtension(v Extension) *ObservationDefinitionQualifiedValueBuilder {
+	b.observationDefinitionQualifiedValue.Extension = append(b.observationDefinitionQualifiedValue.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ObservationDefinitionQualifiedValueBuilder) AddModifierExtension(v Extension) *ObservationDefinitionQualifiedValueBuilder {
+	b.observationDefinitionQualifiedValue.ModifierExtension = append(b.observationDefinitionQualifiedValue.ModifierExtension, v)
+	return b
+}
+
+// SetContext sets the Context field.
+func (b *ObservationDefinitionQualifiedValueBuilder) SetContext(v CodeableConcept) *ObservationDefinitionQualifiedValueBuilder {
+	b.observationDefinitionQualifiedValue.Context = &v
+	return b
+}
+
+// AddAppliesTo adds a AppliesTo element.
+func (b *ObservationDefinitionQualifiedValueBuilder) AddAppliesTo(v CodeableConcept) *ObservationDefinitionQualifiedValueBuilder {
+	b.observationDefinitionQualifiedValue.AppliesTo = append(b.observationDefinitionQualifiedValue.AppliesTo, v)
+	return b
+}
+
+// SetGender sets the Gender field.
+func (b *ObservationDefinitionQualifiedValueBuilder) SetGender(v AdministrativeGender) *ObservationDefinitionQualifiedValueBuilder {
+	b.observationDefinitionQualifiedValue.Gender = &v
+	return b
+}
+
+// SetAge sets the Age field.
+func (b *ObservationDefinitionQualifiedValueBuilder) SetAge(v Range) *ObservationDefinitionQualifiedValueBuilder {
+	b.observationDefinitionQualifiedValue.Age = &v
+	return b
+}
+
+// SetGestationalAge sets the GestationalAge field.
+func (b *ObservationDefinitionQualifiedValueBuilder) SetGestationalAge(v Range) *ObservationDefinitionQualifiedValueBuilder {
+	b.observationDefinitionQualifiedValue.GestationalAge = &v
+	return b
+}
+
+// SetCondition sets the Condition field.
+func (b *ObservationDefinitionQualifiedValueBuilder) SetCondition(v string) *ObservationDefinitionQualifiedValueBuilder {
+	b.observationDefinitionQualifiedValue.Condition = &v
+	return b
+}
+
+// SetRangeCategory sets the RangeCategory field.
+func (b *ObservationDefinitionQualifiedValueBuilder) SetRangeCategory(v ObservationRangeCategory) *ObservationDefinitionQualifiedValueBuilder {
+	b.observationDefinitionQualifiedValue.RangeCategory = &v
+	return b
+}
+
+// SetRange sets the Range field.
+func (b *ObservationDefinitionQualifiedValueBuilder) SetRange(v Range) *ObservationDefinitionQualifiedValueBuilder {
+	b.observationDefinitionQualifiedValue.Range = &v
+	return b
+}
+
+// SetValidCodedValueSet sets the ValidCodedValueSet field.
+func (b *ObservationDefinitionQualifiedValueBuilder) SetValidCodedValueSet(v string) *ObservationDefinitionQualifiedValueBuilder {
+	b.observationDefinitionQualifiedValue.ValidCodedValueSet = &v
+	return b
+}
+
+// SetNormalCodedValueSet sets the NormalCodedValueSet field.
+func (b *ObservationDefinitionQualifiedValueBuilder) SetNormalCodedValueSet(v string) *ObservationDefinitionQualifiedValueBuilder {
+	b.observationDefinitionQualifiedValue.NormalCodedValueSet = &v
+	return b
+}
+
+// SetAbnormalCodedValueSet sets the AbnormalCodedValueSet field.
+func (b *ObservationDefinitionQualifiedValueBuilder) SetAbnormalCodedValueSet(v string) *ObservationDefinitionQualifiedValueBuilder {
+	b.observationDefinitionQualifiedValue.AbnormalCodedValueSet = &v
+	return b
+}
+
+// SetCriticalCodedValueSet sets the CriticalCodedValueSet field.
+func (b *ObservationDefinitionQualifiedValueBuilder) SetCriticalCodedValueSet(v string) *ObservationDefinitionQualifiedValueBuilder {
+	b.observationDefinitionQualifiedValue.CriticalCodedValueSet = &v
+	return b
+}
+
+// SetGenderExt sets the extensions carried by Gender, serialized as
+// "_gender".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionQualifiedValueBuilder) SetGenderExt(v Element) *ObservationDefinitionQualifiedValueBuilder {
+	b.observationDefinitionQualifiedValue.GenderExt = &v
+	return b
+}
+
+// SetConditionExt sets the extensions carried by Condition, serialized as
+// "_condition".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionQualifiedValueBuilder) SetConditionExt(v Element) *ObservationDefinitionQualifiedValueBuilder {
+	b.observationDefinitionQualifiedValue.ConditionExt = &v
+	return b
+}
+
+// SetRangeCategoryExt sets the extensions carried by RangeCategory, serialized as
+// "_rangeCategory".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionQualifiedValueBuilder) SetRangeCategoryExt(v Element) *ObservationDefinitionQualifiedValueBuilder {
+	b.observationDefinitionQualifiedValue.RangeCategoryExt = &v
+	return b
+}
+
+// SetValidCodedValueSetExt sets the extensions carried by ValidCodedValueSet, serialized as
+// "_validCodedValueSet".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionQualifiedValueBuilder) SetValidCodedValueSetExt(v Element) *ObservationDefinitionQualifiedValueBuilder {
+	b.observationDefinitionQualifiedValue.ValidCodedValueSetExt = &v
+	return b
+}
+
+// SetNormalCodedValueSetExt sets the extensions carried by NormalCodedValueSet, serialized as
+// "_normalCodedValueSet".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionQualifiedValueBuilder) SetNormalCodedValueSetExt(v Element) *ObservationDefinitionQualifiedValueBuilder {
+	b.observationDefinitionQualifiedValue.NormalCodedValueSetExt = &v
+	return b
+}
+
+// SetAbnormalCodedValueSetExt sets the extensions carried by AbnormalCodedValueSet, serialized as
+// "_abnormalCodedValueSet".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionQualifiedValueBuilder) SetAbnormalCodedValueSetExt(v Element) *ObservationDefinitionQualifiedValueBuilder {
+	b.observationDefinitionQualifiedValue.AbnormalCodedValueSetExt = &v
+	return b
+}
+
+// SetCriticalCodedValueSetExt sets the extensions carried by CriticalCodedValueSet, serialized as
+// "_criticalCodedValueSet".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationDefinitionQualifiedValueBuilder) SetCriticalCodedValueSetExt(v Element) *ObservationDefinitionQualifiedValueBuilder {
+	b.observationDefinitionQualifiedValue.CriticalCodedValueSetExt = &v
+	return b
 }

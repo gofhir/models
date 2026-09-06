@@ -2165,9 +2165,1314 @@ func (b *StructureMapBuilder) AddGroup(v StructureMapGroup) *StructureMapBuilder
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetImplicitRulesExt(v Element) *StructureMapBuilder {
+	b.structureMap.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetLanguageExt(v Element) *StructureMapBuilder {
+	b.structureMap.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetUrlExt(v Element) *StructureMapBuilder {
+	b.structureMap.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetVersionExt(v Element) *StructureMapBuilder {
+	b.structureMap.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetNameExt(v Element) *StructureMapBuilder {
+	b.structureMap.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetTitleExt(v Element) *StructureMapBuilder {
+	b.structureMap.TitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetStatusExt(v Element) *StructureMapBuilder {
+	b.structureMap.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetExperimentalExt(v Element) *StructureMapBuilder {
+	b.structureMap.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetDateExt(v Element) *StructureMapBuilder {
+	b.structureMap.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetPublisherExt(v Element) *StructureMapBuilder {
+	b.structureMap.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetDescriptionExt(v Element) *StructureMapBuilder {
+	b.structureMap.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetPurposeExt(v Element) *StructureMapBuilder {
+	b.structureMap.PurposeExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetCopyrightExt(v Element) *StructureMapBuilder {
+	b.structureMap.CopyrightExt = &v
+	return b
+}
+
+// SetCopyrightLabelExt sets the extensions carried by CopyrightLabel, serialized as
+// "_copyrightLabel".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetCopyrightLabelExt(v Element) *StructureMapBuilder {
+	b.structureMap.CopyrightLabelExt = &v
+	return b
+}
+
+// AddImportExt appends an extension slot for Import.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *StructureMapBuilder) AddImportExt(v *Element) *StructureMapBuilder {
+	b.structureMap.ImportExt = append(b.structureMap.ImportExt, v)
+	return b
+}
+
 // clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
 // _field companions of the primitive ones.
 func (b *StructureMapBuilder) clearVersionAlgorithm() {
 	b.structureMap.VersionAlgorithmString = nil
 	b.structureMap.VersionAlgorithmCoding = nil
+}
+
+// =============================================================================
+// StructureMapConst - Fluent Builder
+// =============================================================================
+
+// StructureMapConstBuilder provides a fluent API for constructing StructureMapConst values.
+type StructureMapConstBuilder struct {
+	structureMapConst *StructureMapConst
+}
+
+// NewStructureMapConstBuilder creates a new StructureMapConstBuilder.
+func NewStructureMapConstBuilder() *StructureMapConstBuilder {
+	return &StructureMapConstBuilder{
+		structureMapConst: &StructureMapConst{},
+	}
+}
+
+// Build returns the constructed StructureMapConst.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *StructureMapConstBuilder) Build() StructureMapConst {
+	return *b.structureMapConst
+}
+
+// SetId sets the Id field.
+func (b *StructureMapConstBuilder) SetId(v string) *StructureMapConstBuilder {
+	b.structureMapConst.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *StructureMapConstBuilder) AddExtension(v Extension) *StructureMapConstBuilder {
+	b.structureMapConst.Extension = append(b.structureMapConst.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *StructureMapConstBuilder) AddModifierExtension(v Extension) *StructureMapConstBuilder {
+	b.structureMapConst.ModifierExtension = append(b.structureMapConst.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *StructureMapConstBuilder) SetName(v string) *StructureMapConstBuilder {
+	b.structureMapConst.Name = &v
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *StructureMapConstBuilder) SetValue(v string) *StructureMapConstBuilder {
+	b.structureMapConst.Value = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapConstBuilder) SetNameExt(v Element) *StructureMapConstBuilder {
+	b.structureMapConst.NameExt = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapConstBuilder) SetValueExt(v Element) *StructureMapConstBuilder {
+	b.structureMapConst.ValueExt = &v
+	return b
+}
+
+// =============================================================================
+// StructureMapGroup - Fluent Builder
+// =============================================================================
+
+// StructureMapGroupBuilder provides a fluent API for constructing StructureMapGroup values.
+type StructureMapGroupBuilder struct {
+	structureMapGroup *StructureMapGroup
+}
+
+// NewStructureMapGroupBuilder creates a new StructureMapGroupBuilder.
+func NewStructureMapGroupBuilder() *StructureMapGroupBuilder {
+	return &StructureMapGroupBuilder{
+		structureMapGroup: &StructureMapGroup{},
+	}
+}
+
+// Build returns the constructed StructureMapGroup.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *StructureMapGroupBuilder) Build() StructureMapGroup {
+	return *b.structureMapGroup
+}
+
+// SetId sets the Id field.
+func (b *StructureMapGroupBuilder) SetId(v string) *StructureMapGroupBuilder {
+	b.structureMapGroup.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *StructureMapGroupBuilder) AddExtension(v Extension) *StructureMapGroupBuilder {
+	b.structureMapGroup.Extension = append(b.structureMapGroup.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *StructureMapGroupBuilder) AddModifierExtension(v Extension) *StructureMapGroupBuilder {
+	b.structureMapGroup.ModifierExtension = append(b.structureMapGroup.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *StructureMapGroupBuilder) SetName(v string) *StructureMapGroupBuilder {
+	b.structureMapGroup.Name = &v
+	return b
+}
+
+// SetExtends sets the Extends field.
+func (b *StructureMapGroupBuilder) SetExtends(v string) *StructureMapGroupBuilder {
+	b.structureMapGroup.Extends = &v
+	return b
+}
+
+// SetTypeMode sets the TypeMode field.
+func (b *StructureMapGroupBuilder) SetTypeMode(v StructureMapGroupTypeMode) *StructureMapGroupBuilder {
+	b.structureMapGroup.TypeMode = &v
+	return b
+}
+
+// SetDocumentation sets the Documentation field.
+func (b *StructureMapGroupBuilder) SetDocumentation(v string) *StructureMapGroupBuilder {
+	b.structureMapGroup.Documentation = &v
+	return b
+}
+
+// AddInput adds a Input element.
+func (b *StructureMapGroupBuilder) AddInput(v StructureMapGroupInput) *StructureMapGroupBuilder {
+	b.structureMapGroup.Input = append(b.structureMapGroup.Input, v)
+	return b
+}
+
+// AddRule adds a Rule element.
+func (b *StructureMapGroupBuilder) AddRule(v StructureMapGroupRule) *StructureMapGroupBuilder {
+	b.structureMapGroup.Rule = append(b.structureMapGroup.Rule, v)
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupBuilder) SetNameExt(v Element) *StructureMapGroupBuilder {
+	b.structureMapGroup.NameExt = &v
+	return b
+}
+
+// SetExtendsExt sets the extensions carried by Extends, serialized as
+// "_extends".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupBuilder) SetExtendsExt(v Element) *StructureMapGroupBuilder {
+	b.structureMapGroup.ExtendsExt = &v
+	return b
+}
+
+// SetTypeModeExt sets the extensions carried by TypeMode, serialized as
+// "_typeMode".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupBuilder) SetTypeModeExt(v Element) *StructureMapGroupBuilder {
+	b.structureMapGroup.TypeModeExt = &v
+	return b
+}
+
+// SetDocumentationExt sets the extensions carried by Documentation, serialized as
+// "_documentation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupBuilder) SetDocumentationExt(v Element) *StructureMapGroupBuilder {
+	b.structureMapGroup.DocumentationExt = &v
+	return b
+}
+
+// =============================================================================
+// StructureMapGroupInput - Fluent Builder
+// =============================================================================
+
+// StructureMapGroupInputBuilder provides a fluent API for constructing StructureMapGroupInput values.
+type StructureMapGroupInputBuilder struct {
+	structureMapGroupInput *StructureMapGroupInput
+}
+
+// NewStructureMapGroupInputBuilder creates a new StructureMapGroupInputBuilder.
+func NewStructureMapGroupInputBuilder() *StructureMapGroupInputBuilder {
+	return &StructureMapGroupInputBuilder{
+		structureMapGroupInput: &StructureMapGroupInput{},
+	}
+}
+
+// Build returns the constructed StructureMapGroupInput.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *StructureMapGroupInputBuilder) Build() StructureMapGroupInput {
+	return *b.structureMapGroupInput
+}
+
+// SetId sets the Id field.
+func (b *StructureMapGroupInputBuilder) SetId(v string) *StructureMapGroupInputBuilder {
+	b.structureMapGroupInput.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *StructureMapGroupInputBuilder) AddExtension(v Extension) *StructureMapGroupInputBuilder {
+	b.structureMapGroupInput.Extension = append(b.structureMapGroupInput.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *StructureMapGroupInputBuilder) AddModifierExtension(v Extension) *StructureMapGroupInputBuilder {
+	b.structureMapGroupInput.ModifierExtension = append(b.structureMapGroupInput.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *StructureMapGroupInputBuilder) SetName(v string) *StructureMapGroupInputBuilder {
+	b.structureMapGroupInput.Name = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *StructureMapGroupInputBuilder) SetType(v string) *StructureMapGroupInputBuilder {
+	b.structureMapGroupInput.Type = &v
+	return b
+}
+
+// SetMode sets the Mode field.
+func (b *StructureMapGroupInputBuilder) SetMode(v StructureMapInputMode) *StructureMapGroupInputBuilder {
+	b.structureMapGroupInput.Mode = &v
+	return b
+}
+
+// SetDocumentation sets the Documentation field.
+func (b *StructureMapGroupInputBuilder) SetDocumentation(v string) *StructureMapGroupInputBuilder {
+	b.structureMapGroupInput.Documentation = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupInputBuilder) SetNameExt(v Element) *StructureMapGroupInputBuilder {
+	b.structureMapGroupInput.NameExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupInputBuilder) SetTypeExt(v Element) *StructureMapGroupInputBuilder {
+	b.structureMapGroupInput.TypeExt = &v
+	return b
+}
+
+// SetModeExt sets the extensions carried by Mode, serialized as
+// "_mode".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupInputBuilder) SetModeExt(v Element) *StructureMapGroupInputBuilder {
+	b.structureMapGroupInput.ModeExt = &v
+	return b
+}
+
+// SetDocumentationExt sets the extensions carried by Documentation, serialized as
+// "_documentation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupInputBuilder) SetDocumentationExt(v Element) *StructureMapGroupInputBuilder {
+	b.structureMapGroupInput.DocumentationExt = &v
+	return b
+}
+
+// =============================================================================
+// StructureMapGroupRule - Fluent Builder
+// =============================================================================
+
+// StructureMapGroupRuleBuilder provides a fluent API for constructing StructureMapGroupRule values.
+type StructureMapGroupRuleBuilder struct {
+	structureMapGroupRule *StructureMapGroupRule
+}
+
+// NewStructureMapGroupRuleBuilder creates a new StructureMapGroupRuleBuilder.
+func NewStructureMapGroupRuleBuilder() *StructureMapGroupRuleBuilder {
+	return &StructureMapGroupRuleBuilder{
+		structureMapGroupRule: &StructureMapGroupRule{},
+	}
+}
+
+// Build returns the constructed StructureMapGroupRule.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *StructureMapGroupRuleBuilder) Build() StructureMapGroupRule {
+	return *b.structureMapGroupRule
+}
+
+// SetId sets the Id field.
+func (b *StructureMapGroupRuleBuilder) SetId(v string) *StructureMapGroupRuleBuilder {
+	b.structureMapGroupRule.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *StructureMapGroupRuleBuilder) AddExtension(v Extension) *StructureMapGroupRuleBuilder {
+	b.structureMapGroupRule.Extension = append(b.structureMapGroupRule.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *StructureMapGroupRuleBuilder) AddModifierExtension(v Extension) *StructureMapGroupRuleBuilder {
+	b.structureMapGroupRule.ModifierExtension = append(b.structureMapGroupRule.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *StructureMapGroupRuleBuilder) SetName(v string) *StructureMapGroupRuleBuilder {
+	b.structureMapGroupRule.Name = &v
+	return b
+}
+
+// AddSource adds a Source element.
+func (b *StructureMapGroupRuleBuilder) AddSource(v StructureMapGroupRuleSource) *StructureMapGroupRuleBuilder {
+	b.structureMapGroupRule.Source = append(b.structureMapGroupRule.Source, v)
+	return b
+}
+
+// AddTarget adds a Target element.
+func (b *StructureMapGroupRuleBuilder) AddTarget(v StructureMapGroupRuleTarget) *StructureMapGroupRuleBuilder {
+	b.structureMapGroupRule.Target = append(b.structureMapGroupRule.Target, v)
+	return b
+}
+
+// AddRule adds a Rule element.
+func (b *StructureMapGroupRuleBuilder) AddRule(v StructureMapGroupRule) *StructureMapGroupRuleBuilder {
+	b.structureMapGroupRule.Rule = append(b.structureMapGroupRule.Rule, v)
+	return b
+}
+
+// AddDependent adds a Dependent element.
+func (b *StructureMapGroupRuleBuilder) AddDependent(v StructureMapGroupRuleDependent) *StructureMapGroupRuleBuilder {
+	b.structureMapGroupRule.Dependent = append(b.structureMapGroupRule.Dependent, v)
+	return b
+}
+
+// SetDocumentation sets the Documentation field.
+func (b *StructureMapGroupRuleBuilder) SetDocumentation(v string) *StructureMapGroupRuleBuilder {
+	b.structureMapGroupRule.Documentation = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleBuilder) SetNameExt(v Element) *StructureMapGroupRuleBuilder {
+	b.structureMapGroupRule.NameExt = &v
+	return b
+}
+
+// SetDocumentationExt sets the extensions carried by Documentation, serialized as
+// "_documentation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleBuilder) SetDocumentationExt(v Element) *StructureMapGroupRuleBuilder {
+	b.structureMapGroupRule.DocumentationExt = &v
+	return b
+}
+
+// =============================================================================
+// StructureMapGroupRuleDependent - Fluent Builder
+// =============================================================================
+
+// StructureMapGroupRuleDependentBuilder provides a fluent API for constructing StructureMapGroupRuleDependent values.
+type StructureMapGroupRuleDependentBuilder struct {
+	structureMapGroupRuleDependent *StructureMapGroupRuleDependent
+}
+
+// NewStructureMapGroupRuleDependentBuilder creates a new StructureMapGroupRuleDependentBuilder.
+func NewStructureMapGroupRuleDependentBuilder() *StructureMapGroupRuleDependentBuilder {
+	return &StructureMapGroupRuleDependentBuilder{
+		structureMapGroupRuleDependent: &StructureMapGroupRuleDependent{},
+	}
+}
+
+// Build returns the constructed StructureMapGroupRuleDependent.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *StructureMapGroupRuleDependentBuilder) Build() StructureMapGroupRuleDependent {
+	return *b.structureMapGroupRuleDependent
+}
+
+// SetId sets the Id field.
+func (b *StructureMapGroupRuleDependentBuilder) SetId(v string) *StructureMapGroupRuleDependentBuilder {
+	b.structureMapGroupRuleDependent.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *StructureMapGroupRuleDependentBuilder) AddExtension(v Extension) *StructureMapGroupRuleDependentBuilder {
+	b.structureMapGroupRuleDependent.Extension = append(b.structureMapGroupRuleDependent.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *StructureMapGroupRuleDependentBuilder) AddModifierExtension(v Extension) *StructureMapGroupRuleDependentBuilder {
+	b.structureMapGroupRuleDependent.ModifierExtension = append(b.structureMapGroupRuleDependent.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *StructureMapGroupRuleDependentBuilder) SetName(v string) *StructureMapGroupRuleDependentBuilder {
+	b.structureMapGroupRuleDependent.Name = &v
+	return b
+}
+
+// AddParameter adds a Parameter element.
+func (b *StructureMapGroupRuleDependentBuilder) AddParameter(v StructureMapGroupRuleTargetParameter) *StructureMapGroupRuleDependentBuilder {
+	b.structureMapGroupRuleDependent.Parameter = append(b.structureMapGroupRuleDependent.Parameter, v)
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleDependentBuilder) SetNameExt(v Element) *StructureMapGroupRuleDependentBuilder {
+	b.structureMapGroupRuleDependent.NameExt = &v
+	return b
+}
+
+// =============================================================================
+// StructureMapGroupRuleSource - Fluent Builder
+// =============================================================================
+
+// StructureMapGroupRuleSourceBuilder provides a fluent API for constructing StructureMapGroupRuleSource values.
+type StructureMapGroupRuleSourceBuilder struct {
+	structureMapGroupRuleSource *StructureMapGroupRuleSource
+}
+
+// NewStructureMapGroupRuleSourceBuilder creates a new StructureMapGroupRuleSourceBuilder.
+func NewStructureMapGroupRuleSourceBuilder() *StructureMapGroupRuleSourceBuilder {
+	return &StructureMapGroupRuleSourceBuilder{
+		structureMapGroupRuleSource: &StructureMapGroupRuleSource{},
+	}
+}
+
+// Build returns the constructed StructureMapGroupRuleSource.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *StructureMapGroupRuleSourceBuilder) Build() StructureMapGroupRuleSource {
+	return *b.structureMapGroupRuleSource
+}
+
+// SetId sets the Id field.
+func (b *StructureMapGroupRuleSourceBuilder) SetId(v string) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *StructureMapGroupRuleSourceBuilder) AddExtension(v Extension) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.Extension = append(b.structureMapGroupRuleSource.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *StructureMapGroupRuleSourceBuilder) AddModifierExtension(v Extension) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.ModifierExtension = append(b.structureMapGroupRuleSource.ModifierExtension, v)
+	return b
+}
+
+// SetContext sets the Context field.
+func (b *StructureMapGroupRuleSourceBuilder) SetContext(v string) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.Context = &v
+	return b
+}
+
+// SetMin sets the Min field.
+func (b *StructureMapGroupRuleSourceBuilder) SetMin(v int) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.Min = &v
+	return b
+}
+
+// SetMax sets the Max field.
+func (b *StructureMapGroupRuleSourceBuilder) SetMax(v string) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.Max = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *StructureMapGroupRuleSourceBuilder) SetType(v string) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.Type = &v
+	return b
+}
+
+// SetDefaultValue sets the DefaultValue field.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValue(v string) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.DefaultValue = &v
+	return b
+}
+
+// SetElement sets the Element field.
+func (b *StructureMapGroupRuleSourceBuilder) SetElement(v string) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.Element = &v
+	return b
+}
+
+// SetListMode sets the ListMode field.
+func (b *StructureMapGroupRuleSourceBuilder) SetListMode(v StructureMapSourceListMode) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.ListMode = &v
+	return b
+}
+
+// SetVariable sets the Variable field.
+func (b *StructureMapGroupRuleSourceBuilder) SetVariable(v string) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.Variable = &v
+	return b
+}
+
+// SetCondition sets the Condition field.
+func (b *StructureMapGroupRuleSourceBuilder) SetCondition(v string) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.Condition = &v
+	return b
+}
+
+// SetCheck sets the Check field.
+func (b *StructureMapGroupRuleSourceBuilder) SetCheck(v string) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.Check = &v
+	return b
+}
+
+// SetLogMessage sets the LogMessage field.
+func (b *StructureMapGroupRuleSourceBuilder) SetLogMessage(v string) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.LogMessage = &v
+	return b
+}
+
+// SetContextExt sets the extensions carried by Context, serialized as
+// "_context".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleSourceBuilder) SetContextExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.ContextExt = &v
+	return b
+}
+
+// SetMinExt sets the extensions carried by Min, serialized as
+// "_min".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleSourceBuilder) SetMinExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.MinExt = &v
+	return b
+}
+
+// SetMaxExt sets the extensions carried by Max, serialized as
+// "_max".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleSourceBuilder) SetMaxExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.MaxExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleSourceBuilder) SetTypeExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.TypeExt = &v
+	return b
+}
+
+// SetDefaultValueExt sets the extensions carried by DefaultValue, serialized as
+// "_defaultValue".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.DefaultValueExt = &v
+	return b
+}
+
+// SetElementExt sets the extensions carried by Element, serialized as
+// "_element".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleSourceBuilder) SetElementExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.ElementExt = &v
+	return b
+}
+
+// SetListModeExt sets the extensions carried by ListMode, serialized as
+// "_listMode".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleSourceBuilder) SetListModeExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.ListModeExt = &v
+	return b
+}
+
+// SetVariableExt sets the extensions carried by Variable, serialized as
+// "_variable".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleSourceBuilder) SetVariableExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.VariableExt = &v
+	return b
+}
+
+// SetConditionExt sets the extensions carried by Condition, serialized as
+// "_condition".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleSourceBuilder) SetConditionExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.ConditionExt = &v
+	return b
+}
+
+// SetCheckExt sets the extensions carried by Check, serialized as
+// "_check".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleSourceBuilder) SetCheckExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.CheckExt = &v
+	return b
+}
+
+// SetLogMessageExt sets the extensions carried by LogMessage, serialized as
+// "_logMessage".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleSourceBuilder) SetLogMessageExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.LogMessageExt = &v
+	return b
+}
+
+// =============================================================================
+// StructureMapGroupRuleTarget - Fluent Builder
+// =============================================================================
+
+// StructureMapGroupRuleTargetBuilder provides a fluent API for constructing StructureMapGroupRuleTarget values.
+type StructureMapGroupRuleTargetBuilder struct {
+	structureMapGroupRuleTarget *StructureMapGroupRuleTarget
+}
+
+// NewStructureMapGroupRuleTargetBuilder creates a new StructureMapGroupRuleTargetBuilder.
+func NewStructureMapGroupRuleTargetBuilder() *StructureMapGroupRuleTargetBuilder {
+	return &StructureMapGroupRuleTargetBuilder{
+		structureMapGroupRuleTarget: &StructureMapGroupRuleTarget{},
+	}
+}
+
+// Build returns the constructed StructureMapGroupRuleTarget.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *StructureMapGroupRuleTargetBuilder) Build() StructureMapGroupRuleTarget {
+	return *b.structureMapGroupRuleTarget
+}
+
+// SetId sets the Id field.
+func (b *StructureMapGroupRuleTargetBuilder) SetId(v string) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *StructureMapGroupRuleTargetBuilder) AddExtension(v Extension) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.Extension = append(b.structureMapGroupRuleTarget.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *StructureMapGroupRuleTargetBuilder) AddModifierExtension(v Extension) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.ModifierExtension = append(b.structureMapGroupRuleTarget.ModifierExtension, v)
+	return b
+}
+
+// SetContext sets the Context field.
+func (b *StructureMapGroupRuleTargetBuilder) SetContext(v string) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.Context = &v
+	return b
+}
+
+// SetElement sets the Element field.
+func (b *StructureMapGroupRuleTargetBuilder) SetElement(v string) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.Element = &v
+	return b
+}
+
+// SetVariable sets the Variable field.
+func (b *StructureMapGroupRuleTargetBuilder) SetVariable(v string) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.Variable = &v
+	return b
+}
+
+// AddListMode adds a ListMode element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *StructureMapGroupRuleTargetBuilder) AddListMode(v StructureMapTargetListMode) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.ListMode = append(b.structureMapGroupRuleTarget.ListMode, &v)
+	return b
+}
+
+// SetListRuleId sets the ListRuleId field.
+func (b *StructureMapGroupRuleTargetBuilder) SetListRuleId(v string) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.ListRuleId = &v
+	return b
+}
+
+// SetTransform sets the Transform field.
+func (b *StructureMapGroupRuleTargetBuilder) SetTransform(v StructureMapTransform) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.Transform = &v
+	return b
+}
+
+// AddParameter adds a Parameter element.
+func (b *StructureMapGroupRuleTargetBuilder) AddParameter(v StructureMapGroupRuleTargetParameter) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.Parameter = append(b.structureMapGroupRuleTarget.Parameter, v)
+	return b
+}
+
+// SetContextExt sets the extensions carried by Context, serialized as
+// "_context".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleTargetBuilder) SetContextExt(v Element) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.ContextExt = &v
+	return b
+}
+
+// SetElementExt sets the extensions carried by Element, serialized as
+// "_element".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleTargetBuilder) SetElementExt(v Element) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.ElementExt = &v
+	return b
+}
+
+// SetVariableExt sets the extensions carried by Variable, serialized as
+// "_variable".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleTargetBuilder) SetVariableExt(v Element) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.VariableExt = &v
+	return b
+}
+
+// AddListModeExt appends an extension slot for ListMode.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *StructureMapGroupRuleTargetBuilder) AddListModeExt(v *Element) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.ListModeExt = append(b.structureMapGroupRuleTarget.ListModeExt, v)
+	return b
+}
+
+// SetListRuleIdExt sets the extensions carried by ListRuleId, serialized as
+// "_listRuleId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleTargetBuilder) SetListRuleIdExt(v Element) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.ListRuleIdExt = &v
+	return b
+}
+
+// SetTransformExt sets the extensions carried by Transform, serialized as
+// "_transform".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleTargetBuilder) SetTransformExt(v Element) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.TransformExt = &v
+	return b
+}
+
+// =============================================================================
+// StructureMapGroupRuleTargetParameter - Fluent Builder
+// =============================================================================
+
+// StructureMapGroupRuleTargetParameterBuilder provides a fluent API for constructing StructureMapGroupRuleTargetParameter values.
+type StructureMapGroupRuleTargetParameterBuilder struct {
+	structureMapGroupRuleTargetParameter *StructureMapGroupRuleTargetParameter
+}
+
+// NewStructureMapGroupRuleTargetParameterBuilder creates a new StructureMapGroupRuleTargetParameterBuilder.
+func NewStructureMapGroupRuleTargetParameterBuilder() *StructureMapGroupRuleTargetParameterBuilder {
+	return &StructureMapGroupRuleTargetParameterBuilder{
+		structureMapGroupRuleTargetParameter: &StructureMapGroupRuleTargetParameter{},
+	}
+}
+
+// Build returns the constructed StructureMapGroupRuleTargetParameter.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *StructureMapGroupRuleTargetParameterBuilder) Build() StructureMapGroupRuleTargetParameter {
+	return *b.structureMapGroupRuleTargetParameter
+}
+
+// SetId sets the Id field.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetId(v string) *StructureMapGroupRuleTargetParameterBuilder {
+	b.structureMapGroupRuleTargetParameter.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *StructureMapGroupRuleTargetParameterBuilder) AddExtension(v Extension) *StructureMapGroupRuleTargetParameterBuilder {
+	b.structureMapGroupRuleTargetParameter.Extension = append(b.structureMapGroupRuleTargetParameter.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *StructureMapGroupRuleTargetParameterBuilder) AddModifierExtension(v Extension) *StructureMapGroupRuleTargetParameterBuilder {
+	b.structureMapGroupRuleTargetParameter.ModifierExtension = append(b.structureMapGroupRuleTargetParameter.ModifierExtension, v)
+	return b
+}
+
+// SetValueId sets Value[x] to its ValueId variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueId(v string) *StructureMapGroupRuleTargetParameterBuilder {
+	b.clearValue()
+	b.structureMapGroupRuleTargetParameter.ValueId = &v
+	return b
+}
+
+// SetValueIdExt sets the ValueIdExt field.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueIdExt(v Element) *StructureMapGroupRuleTargetParameterBuilder {
+	b.structureMapGroupRuleTargetParameter.ValueIdExt = &v
+	return b
+}
+
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueString(v string) *StructureMapGroupRuleTargetParameterBuilder {
+	b.clearValue()
+	b.structureMapGroupRuleTargetParameter.ValueString = &v
+	return b
+}
+
+// SetValueStringExt sets the ValueStringExt field.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueStringExt(v Element) *StructureMapGroupRuleTargetParameterBuilder {
+	b.structureMapGroupRuleTargetParameter.ValueStringExt = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueBoolean(v bool) *StructureMapGroupRuleTargetParameterBuilder {
+	b.clearValue()
+	b.structureMapGroupRuleTargetParameter.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueBooleanExt(v Element) *StructureMapGroupRuleTargetParameterBuilder {
+	b.structureMapGroupRuleTargetParameter.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueInteger sets Value[x] to its ValueInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueInteger(v int) *StructureMapGroupRuleTargetParameterBuilder {
+	b.clearValue()
+	b.structureMapGroupRuleTargetParameter.ValueInteger = &v
+	return b
+}
+
+// SetValueIntegerExt sets the ValueIntegerExt field.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueIntegerExt(v Element) *StructureMapGroupRuleTargetParameterBuilder {
+	b.structureMapGroupRuleTargetParameter.ValueIntegerExt = &v
+	return b
+}
+
+// SetValueDecimal sets Value[x] to its ValueDecimal variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueDecimal(v Decimal) *StructureMapGroupRuleTargetParameterBuilder {
+	b.clearValue()
+	b.structureMapGroupRuleTargetParameter.ValueDecimal = &v
+	return b
+}
+
+// SetValueDecimalExt sets the ValueDecimalExt field.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueDecimalExt(v Element) *StructureMapGroupRuleTargetParameterBuilder {
+	b.structureMapGroupRuleTargetParameter.ValueDecimalExt = &v
+	return b
+}
+
+// SetValueDate sets Value[x] to its ValueDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueDate(v string) *StructureMapGroupRuleTargetParameterBuilder {
+	b.clearValue()
+	b.structureMapGroupRuleTargetParameter.ValueDate = &v
+	return b
+}
+
+// SetValueDateExt sets the ValueDateExt field.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueDateExt(v Element) *StructureMapGroupRuleTargetParameterBuilder {
+	b.structureMapGroupRuleTargetParameter.ValueDateExt = &v
+	return b
+}
+
+// SetValueTime sets Value[x] to its ValueTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueTime(v string) *StructureMapGroupRuleTargetParameterBuilder {
+	b.clearValue()
+	b.structureMapGroupRuleTargetParameter.ValueTime = &v
+	return b
+}
+
+// SetValueTimeExt sets the ValueTimeExt field.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueTimeExt(v Element) *StructureMapGroupRuleTargetParameterBuilder {
+	b.structureMapGroupRuleTargetParameter.ValueTimeExt = &v
+	return b
+}
+
+// SetValueDateTime sets Value[x] to its ValueDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueDateTime(v string) *StructureMapGroupRuleTargetParameterBuilder {
+	b.clearValue()
+	b.structureMapGroupRuleTargetParameter.ValueDateTime = &v
+	return b
+}
+
+// SetValueDateTimeExt sets the ValueDateTimeExt field.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueDateTimeExt(v Element) *StructureMapGroupRuleTargetParameterBuilder {
+	b.structureMapGroupRuleTargetParameter.ValueDateTimeExt = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *StructureMapGroupRuleTargetParameterBuilder) clearValue() {
+	b.structureMapGroupRuleTargetParameter.ValueId = nil
+	b.structureMapGroupRuleTargetParameter.ValueString = nil
+	b.structureMapGroupRuleTargetParameter.ValueStringExt = nil
+	b.structureMapGroupRuleTargetParameter.ValueBoolean = nil
+	b.structureMapGroupRuleTargetParameter.ValueBooleanExt = nil
+	b.structureMapGroupRuleTargetParameter.ValueInteger = nil
+	b.structureMapGroupRuleTargetParameter.ValueIntegerExt = nil
+	b.structureMapGroupRuleTargetParameter.ValueDecimal = nil
+	b.structureMapGroupRuleTargetParameter.ValueDecimalExt = nil
+	b.structureMapGroupRuleTargetParameter.ValueDate = nil
+	b.structureMapGroupRuleTargetParameter.ValueDateExt = nil
+	b.structureMapGroupRuleTargetParameter.ValueTime = nil
+	b.structureMapGroupRuleTargetParameter.ValueTimeExt = nil
+	b.structureMapGroupRuleTargetParameter.ValueDateTime = nil
+	b.structureMapGroupRuleTargetParameter.ValueDateTimeExt = nil
+}
+
+// =============================================================================
+// StructureMapStructure - Fluent Builder
+// =============================================================================
+
+// StructureMapStructureBuilder provides a fluent API for constructing StructureMapStructure values.
+type StructureMapStructureBuilder struct {
+	structureMapStructure *StructureMapStructure
+}
+
+// NewStructureMapStructureBuilder creates a new StructureMapStructureBuilder.
+func NewStructureMapStructureBuilder() *StructureMapStructureBuilder {
+	return &StructureMapStructureBuilder{
+		structureMapStructure: &StructureMapStructure{},
+	}
+}
+
+// Build returns the constructed StructureMapStructure.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *StructureMapStructureBuilder) Build() StructureMapStructure {
+	return *b.structureMapStructure
+}
+
+// SetId sets the Id field.
+func (b *StructureMapStructureBuilder) SetId(v string) *StructureMapStructureBuilder {
+	b.structureMapStructure.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *StructureMapStructureBuilder) AddExtension(v Extension) *StructureMapStructureBuilder {
+	b.structureMapStructure.Extension = append(b.structureMapStructure.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *StructureMapStructureBuilder) AddModifierExtension(v Extension) *StructureMapStructureBuilder {
+	b.structureMapStructure.ModifierExtension = append(b.structureMapStructure.ModifierExtension, v)
+	return b
+}
+
+// SetUrl sets the Url field.
+func (b *StructureMapStructureBuilder) SetUrl(v string) *StructureMapStructureBuilder {
+	b.structureMapStructure.Url = &v
+	return b
+}
+
+// SetMode sets the Mode field.
+func (b *StructureMapStructureBuilder) SetMode(v StructureMapModelMode) *StructureMapStructureBuilder {
+	b.structureMapStructure.Mode = &v
+	return b
+}
+
+// SetAlias sets the Alias field.
+func (b *StructureMapStructureBuilder) SetAlias(v string) *StructureMapStructureBuilder {
+	b.structureMapStructure.Alias = &v
+	return b
+}
+
+// SetDocumentation sets the Documentation field.
+func (b *StructureMapStructureBuilder) SetDocumentation(v string) *StructureMapStructureBuilder {
+	b.structureMapStructure.Documentation = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapStructureBuilder) SetUrlExt(v Element) *StructureMapStructureBuilder {
+	b.structureMapStructure.UrlExt = &v
+	return b
+}
+
+// SetModeExt sets the extensions carried by Mode, serialized as
+// "_mode".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapStructureBuilder) SetModeExt(v Element) *StructureMapStructureBuilder {
+	b.structureMapStructure.ModeExt = &v
+	return b
+}
+
+// SetAliasExt sets the extensions carried by Alias, serialized as
+// "_alias".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapStructureBuilder) SetAliasExt(v Element) *StructureMapStructureBuilder {
+	b.structureMapStructure.AliasExt = &v
+	return b
+}
+
+// SetDocumentationExt sets the extensions carried by Documentation, serialized as
+// "_documentation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapStructureBuilder) SetDocumentationExt(v Element) *StructureMapStructureBuilder {
+	b.structureMapStructure.DocumentationExt = &v
+	return b
 }

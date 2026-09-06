@@ -1183,3 +1183,396 @@ func (b *ImagingStudyBuilder) AddSeries(v ImagingStudySeries) *ImagingStudyBuild
 	b.imagingStudy.Series = append(b.imagingStudy.Series, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingStudyBuilder) SetImplicitRulesExt(v Element) *ImagingStudyBuilder {
+	b.imagingStudy.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingStudyBuilder) SetLanguageExt(v Element) *ImagingStudyBuilder {
+	b.imagingStudy.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingStudyBuilder) SetStatusExt(v Element) *ImagingStudyBuilder {
+	b.imagingStudy.StatusExt = &v
+	return b
+}
+
+// SetStartedExt sets the extensions carried by Started, serialized as
+// "_started".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingStudyBuilder) SetStartedExt(v Element) *ImagingStudyBuilder {
+	b.imagingStudy.StartedExt = &v
+	return b
+}
+
+// SetNumberOfSeriesExt sets the extensions carried by NumberOfSeries, serialized as
+// "_numberOfSeries".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingStudyBuilder) SetNumberOfSeriesExt(v Element) *ImagingStudyBuilder {
+	b.imagingStudy.NumberOfSeriesExt = &v
+	return b
+}
+
+// SetNumberOfInstancesExt sets the extensions carried by NumberOfInstances, serialized as
+// "_numberOfInstances".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingStudyBuilder) SetNumberOfInstancesExt(v Element) *ImagingStudyBuilder {
+	b.imagingStudy.NumberOfInstancesExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingStudyBuilder) SetDescriptionExt(v Element) *ImagingStudyBuilder {
+	b.imagingStudy.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// ImagingStudySeries - Fluent Builder
+// =============================================================================
+
+// ImagingStudySeriesBuilder provides a fluent API for constructing ImagingStudySeries values.
+type ImagingStudySeriesBuilder struct {
+	imagingStudySeries *ImagingStudySeries
+}
+
+// NewImagingStudySeriesBuilder creates a new ImagingStudySeriesBuilder.
+func NewImagingStudySeriesBuilder() *ImagingStudySeriesBuilder {
+	return &ImagingStudySeriesBuilder{
+		imagingStudySeries: &ImagingStudySeries{},
+	}
+}
+
+// Build returns the constructed ImagingStudySeries.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImagingStudySeriesBuilder) Build() ImagingStudySeries {
+	return *b.imagingStudySeries
+}
+
+// SetId sets the Id field.
+func (b *ImagingStudySeriesBuilder) SetId(v string) *ImagingStudySeriesBuilder {
+	b.imagingStudySeries.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImagingStudySeriesBuilder) AddExtension(v Extension) *ImagingStudySeriesBuilder {
+	b.imagingStudySeries.Extension = append(b.imagingStudySeries.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImagingStudySeriesBuilder) AddModifierExtension(v Extension) *ImagingStudySeriesBuilder {
+	b.imagingStudySeries.ModifierExtension = append(b.imagingStudySeries.ModifierExtension, v)
+	return b
+}
+
+// SetUid sets the Uid field.
+func (b *ImagingStudySeriesBuilder) SetUid(v string) *ImagingStudySeriesBuilder {
+	b.imagingStudySeries.Uid = &v
+	return b
+}
+
+// SetNumber sets the Number field.
+func (b *ImagingStudySeriesBuilder) SetNumber(v uint32) *ImagingStudySeriesBuilder {
+	b.imagingStudySeries.Number = &v
+	return b
+}
+
+// SetModality sets the Modality field.
+func (b *ImagingStudySeriesBuilder) SetModality(v Coding) *ImagingStudySeriesBuilder {
+	b.imagingStudySeries.Modality = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *ImagingStudySeriesBuilder) SetDescription(v string) *ImagingStudySeriesBuilder {
+	b.imagingStudySeries.Description = &v
+	return b
+}
+
+// SetNumberOfInstances sets the NumberOfInstances field.
+func (b *ImagingStudySeriesBuilder) SetNumberOfInstances(v uint32) *ImagingStudySeriesBuilder {
+	b.imagingStudySeries.NumberOfInstances = &v
+	return b
+}
+
+// AddEndpoint adds a Endpoint element.
+func (b *ImagingStudySeriesBuilder) AddEndpoint(v Reference) *ImagingStudySeriesBuilder {
+	b.imagingStudySeries.Endpoint = append(b.imagingStudySeries.Endpoint, v)
+	return b
+}
+
+// SetBodySite sets the BodySite field.
+func (b *ImagingStudySeriesBuilder) SetBodySite(v Coding) *ImagingStudySeriesBuilder {
+	b.imagingStudySeries.BodySite = &v
+	return b
+}
+
+// SetLaterality sets the Laterality field.
+func (b *ImagingStudySeriesBuilder) SetLaterality(v Coding) *ImagingStudySeriesBuilder {
+	b.imagingStudySeries.Laterality = &v
+	return b
+}
+
+// AddSpecimen adds a Specimen element.
+func (b *ImagingStudySeriesBuilder) AddSpecimen(v Reference) *ImagingStudySeriesBuilder {
+	b.imagingStudySeries.Specimen = append(b.imagingStudySeries.Specimen, v)
+	return b
+}
+
+// SetStarted sets the Started field.
+func (b *ImagingStudySeriesBuilder) SetStarted(v string) *ImagingStudySeriesBuilder {
+	b.imagingStudySeries.Started = &v
+	return b
+}
+
+// AddPerformer adds a Performer element.
+func (b *ImagingStudySeriesBuilder) AddPerformer(v ImagingStudySeriesPerformer) *ImagingStudySeriesBuilder {
+	b.imagingStudySeries.Performer = append(b.imagingStudySeries.Performer, v)
+	return b
+}
+
+// AddInstance adds a Instance element.
+func (b *ImagingStudySeriesBuilder) AddInstance(v ImagingStudySeriesInstance) *ImagingStudySeriesBuilder {
+	b.imagingStudySeries.Instance = append(b.imagingStudySeries.Instance, v)
+	return b
+}
+
+// SetUidExt sets the extensions carried by Uid, serialized as
+// "_uid".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingStudySeriesBuilder) SetUidExt(v Element) *ImagingStudySeriesBuilder {
+	b.imagingStudySeries.UidExt = &v
+	return b
+}
+
+// SetNumberExt sets the extensions carried by Number, serialized as
+// "_number".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingStudySeriesBuilder) SetNumberExt(v Element) *ImagingStudySeriesBuilder {
+	b.imagingStudySeries.NumberExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingStudySeriesBuilder) SetDescriptionExt(v Element) *ImagingStudySeriesBuilder {
+	b.imagingStudySeries.DescriptionExt = &v
+	return b
+}
+
+// SetNumberOfInstancesExt sets the extensions carried by NumberOfInstances, serialized as
+// "_numberOfInstances".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingStudySeriesBuilder) SetNumberOfInstancesExt(v Element) *ImagingStudySeriesBuilder {
+	b.imagingStudySeries.NumberOfInstancesExt = &v
+	return b
+}
+
+// SetStartedExt sets the extensions carried by Started, serialized as
+// "_started".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingStudySeriesBuilder) SetStartedExt(v Element) *ImagingStudySeriesBuilder {
+	b.imagingStudySeries.StartedExt = &v
+	return b
+}
+
+// =============================================================================
+// ImagingStudySeriesInstance - Fluent Builder
+// =============================================================================
+
+// ImagingStudySeriesInstanceBuilder provides a fluent API for constructing ImagingStudySeriesInstance values.
+type ImagingStudySeriesInstanceBuilder struct {
+	imagingStudySeriesInstance *ImagingStudySeriesInstance
+}
+
+// NewImagingStudySeriesInstanceBuilder creates a new ImagingStudySeriesInstanceBuilder.
+func NewImagingStudySeriesInstanceBuilder() *ImagingStudySeriesInstanceBuilder {
+	return &ImagingStudySeriesInstanceBuilder{
+		imagingStudySeriesInstance: &ImagingStudySeriesInstance{},
+	}
+}
+
+// Build returns the constructed ImagingStudySeriesInstance.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImagingStudySeriesInstanceBuilder) Build() ImagingStudySeriesInstance {
+	return *b.imagingStudySeriesInstance
+}
+
+// SetId sets the Id field.
+func (b *ImagingStudySeriesInstanceBuilder) SetId(v string) *ImagingStudySeriesInstanceBuilder {
+	b.imagingStudySeriesInstance.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImagingStudySeriesInstanceBuilder) AddExtension(v Extension) *ImagingStudySeriesInstanceBuilder {
+	b.imagingStudySeriesInstance.Extension = append(b.imagingStudySeriesInstance.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImagingStudySeriesInstanceBuilder) AddModifierExtension(v Extension) *ImagingStudySeriesInstanceBuilder {
+	b.imagingStudySeriesInstance.ModifierExtension = append(b.imagingStudySeriesInstance.ModifierExtension, v)
+	return b
+}
+
+// SetUid sets the Uid field.
+func (b *ImagingStudySeriesInstanceBuilder) SetUid(v string) *ImagingStudySeriesInstanceBuilder {
+	b.imagingStudySeriesInstance.Uid = &v
+	return b
+}
+
+// SetSopClass sets the SopClass field.
+func (b *ImagingStudySeriesInstanceBuilder) SetSopClass(v Coding) *ImagingStudySeriesInstanceBuilder {
+	b.imagingStudySeriesInstance.SopClass = &v
+	return b
+}
+
+// SetNumber sets the Number field.
+func (b *ImagingStudySeriesInstanceBuilder) SetNumber(v uint32) *ImagingStudySeriesInstanceBuilder {
+	b.imagingStudySeriesInstance.Number = &v
+	return b
+}
+
+// SetTitle sets the Title field.
+func (b *ImagingStudySeriesInstanceBuilder) SetTitle(v string) *ImagingStudySeriesInstanceBuilder {
+	b.imagingStudySeriesInstance.Title = &v
+	return b
+}
+
+// SetUidExt sets the extensions carried by Uid, serialized as
+// "_uid".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingStudySeriesInstanceBuilder) SetUidExt(v Element) *ImagingStudySeriesInstanceBuilder {
+	b.imagingStudySeriesInstance.UidExt = &v
+	return b
+}
+
+// SetNumberExt sets the extensions carried by Number, serialized as
+// "_number".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingStudySeriesInstanceBuilder) SetNumberExt(v Element) *ImagingStudySeriesInstanceBuilder {
+	b.imagingStudySeriesInstance.NumberExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImagingStudySeriesInstanceBuilder) SetTitleExt(v Element) *ImagingStudySeriesInstanceBuilder {
+	b.imagingStudySeriesInstance.TitleExt = &v
+	return b
+}
+
+// =============================================================================
+// ImagingStudySeriesPerformer - Fluent Builder
+// =============================================================================
+
+// ImagingStudySeriesPerformerBuilder provides a fluent API for constructing ImagingStudySeriesPerformer values.
+type ImagingStudySeriesPerformerBuilder struct {
+	imagingStudySeriesPerformer *ImagingStudySeriesPerformer
+}
+
+// NewImagingStudySeriesPerformerBuilder creates a new ImagingStudySeriesPerformerBuilder.
+func NewImagingStudySeriesPerformerBuilder() *ImagingStudySeriesPerformerBuilder {
+	return &ImagingStudySeriesPerformerBuilder{
+		imagingStudySeriesPerformer: &ImagingStudySeriesPerformer{},
+	}
+}
+
+// Build returns the constructed ImagingStudySeriesPerformer.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImagingStudySeriesPerformerBuilder) Build() ImagingStudySeriesPerformer {
+	return *b.imagingStudySeriesPerformer
+}
+
+// SetId sets the Id field.
+func (b *ImagingStudySeriesPerformerBuilder) SetId(v string) *ImagingStudySeriesPerformerBuilder {
+	b.imagingStudySeriesPerformer.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImagingStudySeriesPerformerBuilder) AddExtension(v Extension) *ImagingStudySeriesPerformerBuilder {
+	b.imagingStudySeriesPerformer.Extension = append(b.imagingStudySeriesPerformer.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImagingStudySeriesPerformerBuilder) AddModifierExtension(v Extension) *ImagingStudySeriesPerformerBuilder {
+	b.imagingStudySeriesPerformer.ModifierExtension = append(b.imagingStudySeriesPerformer.ModifierExtension, v)
+	return b
+}
+
+// SetFunction sets the Function field.
+func (b *ImagingStudySeriesPerformerBuilder) SetFunction(v CodeableConcept) *ImagingStudySeriesPerformerBuilder {
+	b.imagingStudySeriesPerformer.Function = &v
+	return b
+}
+
+// SetActor sets the Actor field.
+func (b *ImagingStudySeriesPerformerBuilder) SetActor(v Reference) *ImagingStudySeriesPerformerBuilder {
+	b.imagingStudySeriesPerformer.Actor = &v
+	return b
+}

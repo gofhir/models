@@ -612,3 +612,103 @@ func (b *MedicinalProductIndicationBuilder) AddPopulation(v Population) *Medicin
 	b.medicinalProductIndication.Population = append(b.medicinalProductIndication.Population, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductIndicationBuilder) SetImplicitRulesExt(v Element) *MedicinalProductIndicationBuilder {
+	b.medicinalProductIndication.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductIndicationBuilder) SetLanguageExt(v Element) *MedicinalProductIndicationBuilder {
+	b.medicinalProductIndication.LanguageExt = &v
+	return b
+}
+
+// =============================================================================
+// MedicinalProductIndicationOtherTherapy - Fluent Builder
+// =============================================================================
+
+// MedicinalProductIndicationOtherTherapyBuilder provides a fluent API for constructing MedicinalProductIndicationOtherTherapy values.
+type MedicinalProductIndicationOtherTherapyBuilder struct {
+	medicinalProductIndicationOtherTherapy *MedicinalProductIndicationOtherTherapy
+}
+
+// NewMedicinalProductIndicationOtherTherapyBuilder creates a new MedicinalProductIndicationOtherTherapyBuilder.
+func NewMedicinalProductIndicationOtherTherapyBuilder() *MedicinalProductIndicationOtherTherapyBuilder {
+	return &MedicinalProductIndicationOtherTherapyBuilder{
+		medicinalProductIndicationOtherTherapy: &MedicinalProductIndicationOtherTherapy{},
+	}
+}
+
+// Build returns the constructed MedicinalProductIndicationOtherTherapy.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicinalProductIndicationOtherTherapyBuilder) Build() MedicinalProductIndicationOtherTherapy {
+	return *b.medicinalProductIndicationOtherTherapy
+}
+
+// SetId sets the Id field.
+func (b *MedicinalProductIndicationOtherTherapyBuilder) SetId(v string) *MedicinalProductIndicationOtherTherapyBuilder {
+	b.medicinalProductIndicationOtherTherapy.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicinalProductIndicationOtherTherapyBuilder) AddExtension(v Extension) *MedicinalProductIndicationOtherTherapyBuilder {
+	b.medicinalProductIndicationOtherTherapy.Extension = append(b.medicinalProductIndicationOtherTherapy.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicinalProductIndicationOtherTherapyBuilder) AddModifierExtension(v Extension) *MedicinalProductIndicationOtherTherapyBuilder {
+	b.medicinalProductIndicationOtherTherapy.ModifierExtension = append(b.medicinalProductIndicationOtherTherapy.ModifierExtension, v)
+	return b
+}
+
+// SetTherapyRelationshipType sets the TherapyRelationshipType field.
+func (b *MedicinalProductIndicationOtherTherapyBuilder) SetTherapyRelationshipType(v CodeableConcept) *MedicinalProductIndicationOtherTherapyBuilder {
+	b.medicinalProductIndicationOtherTherapy.TherapyRelationshipType = &v
+	return b
+}
+
+// SetMedicationCodeableConcept sets Medication[x] to its MedicationCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicinalProductIndicationOtherTherapyBuilder) SetMedicationCodeableConcept(v CodeableConcept) *MedicinalProductIndicationOtherTherapyBuilder {
+	b.clearMedication()
+	b.medicinalProductIndicationOtherTherapy.MedicationCodeableConcept = &v
+	return b
+}
+
+// SetMedicationReference sets Medication[x] to its MedicationReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicinalProductIndicationOtherTherapyBuilder) SetMedicationReference(v Reference) *MedicinalProductIndicationOtherTherapyBuilder {
+	b.clearMedication()
+	b.medicinalProductIndicationOtherTherapy.MedicationReference = &v
+	return b
+}
+
+// clearMedication unsets every variant of Medication[x], including the
+// _field companions of the primitive ones.
+func (b *MedicinalProductIndicationOtherTherapyBuilder) clearMedication() {
+	b.medicinalProductIndicationOtherTherapy.MedicationCodeableConcept = nil
+	b.medicinalProductIndicationOtherTherapy.MedicationReference = nil
+}

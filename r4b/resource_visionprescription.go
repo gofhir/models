@@ -854,3 +854,359 @@ func (b *VisionPrescriptionBuilder) AddLensSpecification(v VisionPrescriptionLen
 	b.visionPrescription.LensSpecification = append(b.visionPrescription.LensSpecification, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VisionPrescriptionBuilder) SetImplicitRulesExt(v Element) *VisionPrescriptionBuilder {
+	b.visionPrescription.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VisionPrescriptionBuilder) SetLanguageExt(v Element) *VisionPrescriptionBuilder {
+	b.visionPrescription.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VisionPrescriptionBuilder) SetStatusExt(v Element) *VisionPrescriptionBuilder {
+	b.visionPrescription.StatusExt = &v
+	return b
+}
+
+// SetCreatedExt sets the extensions carried by Created, serialized as
+// "_created".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VisionPrescriptionBuilder) SetCreatedExt(v Element) *VisionPrescriptionBuilder {
+	b.visionPrescription.CreatedExt = &v
+	return b
+}
+
+// SetDateWrittenExt sets the extensions carried by DateWritten, serialized as
+// "_dateWritten".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VisionPrescriptionBuilder) SetDateWrittenExt(v Element) *VisionPrescriptionBuilder {
+	b.visionPrescription.DateWrittenExt = &v
+	return b
+}
+
+// =============================================================================
+// VisionPrescriptionLensSpecification - Fluent Builder
+// =============================================================================
+
+// VisionPrescriptionLensSpecificationBuilder provides a fluent API for constructing VisionPrescriptionLensSpecification values.
+type VisionPrescriptionLensSpecificationBuilder struct {
+	visionPrescriptionLensSpecification *VisionPrescriptionLensSpecification
+}
+
+// NewVisionPrescriptionLensSpecificationBuilder creates a new VisionPrescriptionLensSpecificationBuilder.
+func NewVisionPrescriptionLensSpecificationBuilder() *VisionPrescriptionLensSpecificationBuilder {
+	return &VisionPrescriptionLensSpecificationBuilder{
+		visionPrescriptionLensSpecification: &VisionPrescriptionLensSpecification{},
+	}
+}
+
+// Build returns the constructed VisionPrescriptionLensSpecification.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *VisionPrescriptionLensSpecificationBuilder) Build() VisionPrescriptionLensSpecification {
+	return *b.visionPrescriptionLensSpecification
+}
+
+// SetId sets the Id field.
+func (b *VisionPrescriptionLensSpecificationBuilder) SetId(v string) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *VisionPrescriptionLensSpecificationBuilder) AddExtension(v Extension) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.Extension = append(b.visionPrescriptionLensSpecification.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *VisionPrescriptionLensSpecificationBuilder) AddModifierExtension(v Extension) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.ModifierExtension = append(b.visionPrescriptionLensSpecification.ModifierExtension, v)
+	return b
+}
+
+// SetProduct sets the Product field.
+func (b *VisionPrescriptionLensSpecificationBuilder) SetProduct(v CodeableConcept) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.Product = &v
+	return b
+}
+
+// SetEye sets the Eye field.
+func (b *VisionPrescriptionLensSpecificationBuilder) SetEye(v VisionEyes) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.Eye = &v
+	return b
+}
+
+// SetSphere sets the Sphere field.
+func (b *VisionPrescriptionLensSpecificationBuilder) SetSphere(v Decimal) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.Sphere = &v
+	return b
+}
+
+// SetCylinder sets the Cylinder field.
+func (b *VisionPrescriptionLensSpecificationBuilder) SetCylinder(v Decimal) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.Cylinder = &v
+	return b
+}
+
+// SetAxis sets the Axis field.
+func (b *VisionPrescriptionLensSpecificationBuilder) SetAxis(v int) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.Axis = &v
+	return b
+}
+
+// AddPrism adds a Prism element.
+func (b *VisionPrescriptionLensSpecificationBuilder) AddPrism(v VisionPrescriptionLensSpecificationPrism) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.Prism = append(b.visionPrescriptionLensSpecification.Prism, v)
+	return b
+}
+
+// SetAdd sets the Add field.
+func (b *VisionPrescriptionLensSpecificationBuilder) SetAdd(v Decimal) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.Add = &v
+	return b
+}
+
+// SetPower sets the Power field.
+func (b *VisionPrescriptionLensSpecificationBuilder) SetPower(v Decimal) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.Power = &v
+	return b
+}
+
+// SetBackCurve sets the BackCurve field.
+func (b *VisionPrescriptionLensSpecificationBuilder) SetBackCurve(v Decimal) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.BackCurve = &v
+	return b
+}
+
+// SetDiameter sets the Diameter field.
+func (b *VisionPrescriptionLensSpecificationBuilder) SetDiameter(v Decimal) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.Diameter = &v
+	return b
+}
+
+// SetDuration sets the Duration field.
+func (b *VisionPrescriptionLensSpecificationBuilder) SetDuration(v Quantity) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.Duration = &v
+	return b
+}
+
+// SetColor sets the Color field.
+func (b *VisionPrescriptionLensSpecificationBuilder) SetColor(v string) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.Color = &v
+	return b
+}
+
+// SetBrand sets the Brand field.
+func (b *VisionPrescriptionLensSpecificationBuilder) SetBrand(v string) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.Brand = &v
+	return b
+}
+
+// AddNote adds a Note element.
+func (b *VisionPrescriptionLensSpecificationBuilder) AddNote(v Annotation) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.Note = append(b.visionPrescriptionLensSpecification.Note, v)
+	return b
+}
+
+// SetEyeExt sets the extensions carried by Eye, serialized as
+// "_eye".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VisionPrescriptionLensSpecificationBuilder) SetEyeExt(v Element) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.EyeExt = &v
+	return b
+}
+
+// SetSphereExt sets the extensions carried by Sphere, serialized as
+// "_sphere".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VisionPrescriptionLensSpecificationBuilder) SetSphereExt(v Element) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.SphereExt = &v
+	return b
+}
+
+// SetCylinderExt sets the extensions carried by Cylinder, serialized as
+// "_cylinder".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VisionPrescriptionLensSpecificationBuilder) SetCylinderExt(v Element) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.CylinderExt = &v
+	return b
+}
+
+// SetAxisExt sets the extensions carried by Axis, serialized as
+// "_axis".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VisionPrescriptionLensSpecificationBuilder) SetAxisExt(v Element) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.AxisExt = &v
+	return b
+}
+
+// SetAddExt sets the extensions carried by Add, serialized as
+// "_add".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VisionPrescriptionLensSpecificationBuilder) SetAddExt(v Element) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.AddExt = &v
+	return b
+}
+
+// SetPowerExt sets the extensions carried by Power, serialized as
+// "_power".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VisionPrescriptionLensSpecificationBuilder) SetPowerExt(v Element) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.PowerExt = &v
+	return b
+}
+
+// SetBackCurveExt sets the extensions carried by BackCurve, serialized as
+// "_backCurve".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VisionPrescriptionLensSpecificationBuilder) SetBackCurveExt(v Element) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.BackCurveExt = &v
+	return b
+}
+
+// SetDiameterExt sets the extensions carried by Diameter, serialized as
+// "_diameter".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VisionPrescriptionLensSpecificationBuilder) SetDiameterExt(v Element) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.DiameterExt = &v
+	return b
+}
+
+// SetColorExt sets the extensions carried by Color, serialized as
+// "_color".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VisionPrescriptionLensSpecificationBuilder) SetColorExt(v Element) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.ColorExt = &v
+	return b
+}
+
+// SetBrandExt sets the extensions carried by Brand, serialized as
+// "_brand".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VisionPrescriptionLensSpecificationBuilder) SetBrandExt(v Element) *VisionPrescriptionLensSpecificationBuilder {
+	b.visionPrescriptionLensSpecification.BrandExt = &v
+	return b
+}
+
+// =============================================================================
+// VisionPrescriptionLensSpecificationPrism - Fluent Builder
+// =============================================================================
+
+// VisionPrescriptionLensSpecificationPrismBuilder provides a fluent API for constructing VisionPrescriptionLensSpecificationPrism values.
+type VisionPrescriptionLensSpecificationPrismBuilder struct {
+	visionPrescriptionLensSpecificationPrism *VisionPrescriptionLensSpecificationPrism
+}
+
+// NewVisionPrescriptionLensSpecificationPrismBuilder creates a new VisionPrescriptionLensSpecificationPrismBuilder.
+func NewVisionPrescriptionLensSpecificationPrismBuilder() *VisionPrescriptionLensSpecificationPrismBuilder {
+	return &VisionPrescriptionLensSpecificationPrismBuilder{
+		visionPrescriptionLensSpecificationPrism: &VisionPrescriptionLensSpecificationPrism{},
+	}
+}
+
+// Build returns the constructed VisionPrescriptionLensSpecificationPrism.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *VisionPrescriptionLensSpecificationPrismBuilder) Build() VisionPrescriptionLensSpecificationPrism {
+	return *b.visionPrescriptionLensSpecificationPrism
+}
+
+// SetId sets the Id field.
+func (b *VisionPrescriptionLensSpecificationPrismBuilder) SetId(v string) *VisionPrescriptionLensSpecificationPrismBuilder {
+	b.visionPrescriptionLensSpecificationPrism.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *VisionPrescriptionLensSpecificationPrismBuilder) AddExtension(v Extension) *VisionPrescriptionLensSpecificationPrismBuilder {
+	b.visionPrescriptionLensSpecificationPrism.Extension = append(b.visionPrescriptionLensSpecificationPrism.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *VisionPrescriptionLensSpecificationPrismBuilder) AddModifierExtension(v Extension) *VisionPrescriptionLensSpecificationPrismBuilder {
+	b.visionPrescriptionLensSpecificationPrism.ModifierExtension = append(b.visionPrescriptionLensSpecificationPrism.ModifierExtension, v)
+	return b
+}
+
+// SetAmount sets the Amount field.
+func (b *VisionPrescriptionLensSpecificationPrismBuilder) SetAmount(v Decimal) *VisionPrescriptionLensSpecificationPrismBuilder {
+	b.visionPrescriptionLensSpecificationPrism.Amount = &v
+	return b
+}
+
+// SetBase sets the Base field.
+func (b *VisionPrescriptionLensSpecificationPrismBuilder) SetBase(v VisionBase) *VisionPrescriptionLensSpecificationPrismBuilder {
+	b.visionPrescriptionLensSpecificationPrism.Base = &v
+	return b
+}
+
+// SetAmountExt sets the extensions carried by Amount, serialized as
+// "_amount".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VisionPrescriptionLensSpecificationPrismBuilder) SetAmountExt(v Element) *VisionPrescriptionLensSpecificationPrismBuilder {
+	b.visionPrescriptionLensSpecificationPrism.AmountExt = &v
+	return b
+}
+
+// SetBaseExt sets the extensions carried by Base, serialized as
+// "_base".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VisionPrescriptionLensSpecificationPrismBuilder) SetBaseExt(v Element) *VisionPrescriptionLensSpecificationPrismBuilder {
+	b.visionPrescriptionLensSpecificationPrism.BaseExt = &v
+	return b
+}

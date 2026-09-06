@@ -871,3 +871,140 @@ func (b *HealthcareServiceBuilder) AddEndpoint(v Reference) *HealthcareServiceBu
 	b.healthcareService.Endpoint = append(b.healthcareService.Endpoint, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HealthcareServiceBuilder) SetImplicitRulesExt(v Element) *HealthcareServiceBuilder {
+	b.healthcareService.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HealthcareServiceBuilder) SetLanguageExt(v Element) *HealthcareServiceBuilder {
+	b.healthcareService.LanguageExt = &v
+	return b
+}
+
+// SetActiveExt sets the extensions carried by Active, serialized as
+// "_active".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HealthcareServiceBuilder) SetActiveExt(v Element) *HealthcareServiceBuilder {
+	b.healthcareService.ActiveExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HealthcareServiceBuilder) SetNameExt(v Element) *HealthcareServiceBuilder {
+	b.healthcareService.NameExt = &v
+	return b
+}
+
+// SetCommentExt sets the extensions carried by Comment, serialized as
+// "_comment".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HealthcareServiceBuilder) SetCommentExt(v Element) *HealthcareServiceBuilder {
+	b.healthcareService.CommentExt = &v
+	return b
+}
+
+// SetExtraDetailsExt sets the extensions carried by ExtraDetails, serialized as
+// "_extraDetails".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HealthcareServiceBuilder) SetExtraDetailsExt(v Element) *HealthcareServiceBuilder {
+	b.healthcareService.ExtraDetailsExt = &v
+	return b
+}
+
+// SetAppointmentRequiredExt sets the extensions carried by AppointmentRequired, serialized as
+// "_appointmentRequired".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HealthcareServiceBuilder) SetAppointmentRequiredExt(v Element) *HealthcareServiceBuilder {
+	b.healthcareService.AppointmentRequiredExt = &v
+	return b
+}
+
+// =============================================================================
+// HealthcareServiceEligibility - Fluent Builder
+// =============================================================================
+
+// HealthcareServiceEligibilityBuilder provides a fluent API for constructing HealthcareServiceEligibility values.
+type HealthcareServiceEligibilityBuilder struct {
+	healthcareServiceEligibility *HealthcareServiceEligibility
+}
+
+// NewHealthcareServiceEligibilityBuilder creates a new HealthcareServiceEligibilityBuilder.
+func NewHealthcareServiceEligibilityBuilder() *HealthcareServiceEligibilityBuilder {
+	return &HealthcareServiceEligibilityBuilder{
+		healthcareServiceEligibility: &HealthcareServiceEligibility{},
+	}
+}
+
+// Build returns the constructed HealthcareServiceEligibility.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *HealthcareServiceEligibilityBuilder) Build() HealthcareServiceEligibility {
+	return *b.healthcareServiceEligibility
+}
+
+// SetId sets the Id field.
+func (b *HealthcareServiceEligibilityBuilder) SetId(v string) *HealthcareServiceEligibilityBuilder {
+	b.healthcareServiceEligibility.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *HealthcareServiceEligibilityBuilder) AddExtension(v Extension) *HealthcareServiceEligibilityBuilder {
+	b.healthcareServiceEligibility.Extension = append(b.healthcareServiceEligibility.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *HealthcareServiceEligibilityBuilder) AddModifierExtension(v Extension) *HealthcareServiceEligibilityBuilder {
+	b.healthcareServiceEligibility.ModifierExtension = append(b.healthcareServiceEligibility.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *HealthcareServiceEligibilityBuilder) SetCode(v CodeableConcept) *HealthcareServiceEligibilityBuilder {
+	b.healthcareServiceEligibility.Code = &v
+	return b
+}
+
+// SetComment sets the Comment field.
+func (b *HealthcareServiceEligibilityBuilder) SetComment(v string) *HealthcareServiceEligibilityBuilder {
+	b.healthcareServiceEligibility.Comment = &v
+	return b
+}
+
+// SetCommentExt sets the extensions carried by Comment, serialized as
+// "_comment".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HealthcareServiceEligibilityBuilder) SetCommentExt(v Element) *HealthcareServiceEligibilityBuilder {
+	b.healthcareServiceEligibility.CommentExt = &v
+	return b
+}

@@ -942,3 +942,199 @@ func (b *AdverseEventBuilder) AddStudy(v Reference) *AdverseEventBuilder {
 	b.adverseEvent.Study = append(b.adverseEvent.Study, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AdverseEventBuilder) SetImplicitRulesExt(v Element) *AdverseEventBuilder {
+	b.adverseEvent.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AdverseEventBuilder) SetLanguageExt(v Element) *AdverseEventBuilder {
+	b.adverseEvent.LanguageExt = &v
+	return b
+}
+
+// SetActualityExt sets the extensions carried by Actuality, serialized as
+// "_actuality".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AdverseEventBuilder) SetActualityExt(v Element) *AdverseEventBuilder {
+	b.adverseEvent.ActualityExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AdverseEventBuilder) SetDateExt(v Element) *AdverseEventBuilder {
+	b.adverseEvent.DateExt = &v
+	return b
+}
+
+// SetDetectedExt sets the extensions carried by Detected, serialized as
+// "_detected".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AdverseEventBuilder) SetDetectedExt(v Element) *AdverseEventBuilder {
+	b.adverseEvent.DetectedExt = &v
+	return b
+}
+
+// SetRecordedDateExt sets the extensions carried by RecordedDate, serialized as
+// "_recordedDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AdverseEventBuilder) SetRecordedDateExt(v Element) *AdverseEventBuilder {
+	b.adverseEvent.RecordedDateExt = &v
+	return b
+}
+
+// =============================================================================
+// AdverseEventSuspectEntity - Fluent Builder
+// =============================================================================
+
+// AdverseEventSuspectEntityBuilder provides a fluent API for constructing AdverseEventSuspectEntity values.
+type AdverseEventSuspectEntityBuilder struct {
+	adverseEventSuspectEntity *AdverseEventSuspectEntity
+}
+
+// NewAdverseEventSuspectEntityBuilder creates a new AdverseEventSuspectEntityBuilder.
+func NewAdverseEventSuspectEntityBuilder() *AdverseEventSuspectEntityBuilder {
+	return &AdverseEventSuspectEntityBuilder{
+		adverseEventSuspectEntity: &AdverseEventSuspectEntity{},
+	}
+}
+
+// Build returns the constructed AdverseEventSuspectEntity.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AdverseEventSuspectEntityBuilder) Build() AdverseEventSuspectEntity {
+	return *b.adverseEventSuspectEntity
+}
+
+// SetId sets the Id field.
+func (b *AdverseEventSuspectEntityBuilder) SetId(v string) *AdverseEventSuspectEntityBuilder {
+	b.adverseEventSuspectEntity.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AdverseEventSuspectEntityBuilder) AddExtension(v Extension) *AdverseEventSuspectEntityBuilder {
+	b.adverseEventSuspectEntity.Extension = append(b.adverseEventSuspectEntity.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AdverseEventSuspectEntityBuilder) AddModifierExtension(v Extension) *AdverseEventSuspectEntityBuilder {
+	b.adverseEventSuspectEntity.ModifierExtension = append(b.adverseEventSuspectEntity.ModifierExtension, v)
+	return b
+}
+
+// SetInstance sets the Instance field.
+func (b *AdverseEventSuspectEntityBuilder) SetInstance(v Reference) *AdverseEventSuspectEntityBuilder {
+	b.adverseEventSuspectEntity.Instance = &v
+	return b
+}
+
+// AddCausality adds a Causality element.
+func (b *AdverseEventSuspectEntityBuilder) AddCausality(v AdverseEventSuspectEntityCausality) *AdverseEventSuspectEntityBuilder {
+	b.adverseEventSuspectEntity.Causality = append(b.adverseEventSuspectEntity.Causality, v)
+	return b
+}
+
+// =============================================================================
+// AdverseEventSuspectEntityCausality - Fluent Builder
+// =============================================================================
+
+// AdverseEventSuspectEntityCausalityBuilder provides a fluent API for constructing AdverseEventSuspectEntityCausality values.
+type AdverseEventSuspectEntityCausalityBuilder struct {
+	adverseEventSuspectEntityCausality *AdverseEventSuspectEntityCausality
+}
+
+// NewAdverseEventSuspectEntityCausalityBuilder creates a new AdverseEventSuspectEntityCausalityBuilder.
+func NewAdverseEventSuspectEntityCausalityBuilder() *AdverseEventSuspectEntityCausalityBuilder {
+	return &AdverseEventSuspectEntityCausalityBuilder{
+		adverseEventSuspectEntityCausality: &AdverseEventSuspectEntityCausality{},
+	}
+}
+
+// Build returns the constructed AdverseEventSuspectEntityCausality.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AdverseEventSuspectEntityCausalityBuilder) Build() AdverseEventSuspectEntityCausality {
+	return *b.adverseEventSuspectEntityCausality
+}
+
+// SetId sets the Id field.
+func (b *AdverseEventSuspectEntityCausalityBuilder) SetId(v string) *AdverseEventSuspectEntityCausalityBuilder {
+	b.adverseEventSuspectEntityCausality.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AdverseEventSuspectEntityCausalityBuilder) AddExtension(v Extension) *AdverseEventSuspectEntityCausalityBuilder {
+	b.adverseEventSuspectEntityCausality.Extension = append(b.adverseEventSuspectEntityCausality.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AdverseEventSuspectEntityCausalityBuilder) AddModifierExtension(v Extension) *AdverseEventSuspectEntityCausalityBuilder {
+	b.adverseEventSuspectEntityCausality.ModifierExtension = append(b.adverseEventSuspectEntityCausality.ModifierExtension, v)
+	return b
+}
+
+// SetAssessment sets the Assessment field.
+func (b *AdverseEventSuspectEntityCausalityBuilder) SetAssessment(v CodeableConcept) *AdverseEventSuspectEntityCausalityBuilder {
+	b.adverseEventSuspectEntityCausality.Assessment = &v
+	return b
+}
+
+// SetProductRelatedness sets the ProductRelatedness field.
+func (b *AdverseEventSuspectEntityCausalityBuilder) SetProductRelatedness(v string) *AdverseEventSuspectEntityCausalityBuilder {
+	b.adverseEventSuspectEntityCausality.ProductRelatedness = &v
+	return b
+}
+
+// SetAuthor sets the Author field.
+func (b *AdverseEventSuspectEntityCausalityBuilder) SetAuthor(v Reference) *AdverseEventSuspectEntityCausalityBuilder {
+	b.adverseEventSuspectEntityCausality.Author = &v
+	return b
+}
+
+// SetMethod sets the Method field.
+func (b *AdverseEventSuspectEntityCausalityBuilder) SetMethod(v CodeableConcept) *AdverseEventSuspectEntityCausalityBuilder {
+	b.adverseEventSuspectEntityCausality.Method = &v
+	return b
+}
+
+// SetProductRelatednessExt sets the extensions carried by ProductRelatedness, serialized as
+// "_productRelatedness".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AdverseEventSuspectEntityCausalityBuilder) SetProductRelatednessExt(v Element) *AdverseEventSuspectEntityCausalityBuilder {
+	b.adverseEventSuspectEntityCausality.ProductRelatednessExt = &v
+	return b
+}

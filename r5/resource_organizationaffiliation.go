@@ -554,3 +554,33 @@ func (b *OrganizationAffiliationBuilder) AddEndpoint(v Reference) *OrganizationA
 	b.organizationAffiliation.Endpoint = append(b.organizationAffiliation.Endpoint, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OrganizationAffiliationBuilder) SetImplicitRulesExt(v Element) *OrganizationAffiliationBuilder {
+	b.organizationAffiliation.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OrganizationAffiliationBuilder) SetLanguageExt(v Element) *OrganizationAffiliationBuilder {
+	b.organizationAffiliation.LanguageExt = &v
+	return b
+}
+
+// SetActiveExt sets the extensions carried by Active, serialized as
+// "_active".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OrganizationAffiliationBuilder) SetActiveExt(v Element) *OrganizationAffiliationBuilder {
+	b.organizationAffiliation.ActiveExt = &v
+	return b
+}

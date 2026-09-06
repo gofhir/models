@@ -702,6 +702,9 @@ func (r *{{.Name}}) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 {{end}}
 
 {{template "builder" .Builder}}
+{{range .BackboneBuilders}}
+{{template "builder" .}}
+{{end}}
 
 {{- /* The functional options that used to be generated here are gone. Every
        With<Resource><Field> had a builder method with an identical signature

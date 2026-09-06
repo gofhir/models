@@ -805,10 +805,191 @@ func (b *ProvenanceBuilder) AddSignature(v Signature) *ProvenanceBuilder {
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ProvenanceBuilder) SetImplicitRulesExt(v Element) *ProvenanceBuilder {
+	b.provenance.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ProvenanceBuilder) SetLanguageExt(v Element) *ProvenanceBuilder {
+	b.provenance.LanguageExt = &v
+	return b
+}
+
+// SetRecordedExt sets the extensions carried by Recorded, serialized as
+// "_recorded".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ProvenanceBuilder) SetRecordedExt(v Element) *ProvenanceBuilder {
+	b.provenance.RecordedExt = &v
+	return b
+}
+
+// AddPolicyExt appends an extension slot for Policy.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ProvenanceBuilder) AddPolicyExt(v *Element) *ProvenanceBuilder {
+	b.provenance.PolicyExt = append(b.provenance.PolicyExt, v)
+	return b
+}
+
 // clearOccurred unsets every variant of Occurred[x], including the
 // _field companions of the primitive ones.
 func (b *ProvenanceBuilder) clearOccurred() {
 	b.provenance.OccurredPeriod = nil
 	b.provenance.OccurredDateTime = nil
 	b.provenance.OccurredDateTimeExt = nil
+}
+
+// =============================================================================
+// ProvenanceAgent - Fluent Builder
+// =============================================================================
+
+// ProvenanceAgentBuilder provides a fluent API for constructing ProvenanceAgent values.
+type ProvenanceAgentBuilder struct {
+	provenanceAgent *ProvenanceAgent
+}
+
+// NewProvenanceAgentBuilder creates a new ProvenanceAgentBuilder.
+func NewProvenanceAgentBuilder() *ProvenanceAgentBuilder {
+	return &ProvenanceAgentBuilder{
+		provenanceAgent: &ProvenanceAgent{},
+	}
+}
+
+// Build returns the constructed ProvenanceAgent.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ProvenanceAgentBuilder) Build() ProvenanceAgent {
+	return *b.provenanceAgent
+}
+
+// SetId sets the Id field.
+func (b *ProvenanceAgentBuilder) SetId(v string) *ProvenanceAgentBuilder {
+	b.provenanceAgent.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ProvenanceAgentBuilder) AddExtension(v Extension) *ProvenanceAgentBuilder {
+	b.provenanceAgent.Extension = append(b.provenanceAgent.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ProvenanceAgentBuilder) AddModifierExtension(v Extension) *ProvenanceAgentBuilder {
+	b.provenanceAgent.ModifierExtension = append(b.provenanceAgent.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ProvenanceAgentBuilder) SetType(v CodeableConcept) *ProvenanceAgentBuilder {
+	b.provenanceAgent.Type = &v
+	return b
+}
+
+// AddRole adds a Role element.
+func (b *ProvenanceAgentBuilder) AddRole(v CodeableConcept) *ProvenanceAgentBuilder {
+	b.provenanceAgent.Role = append(b.provenanceAgent.Role, v)
+	return b
+}
+
+// SetWho sets the Who field.
+func (b *ProvenanceAgentBuilder) SetWho(v Reference) *ProvenanceAgentBuilder {
+	b.provenanceAgent.Who = &v
+	return b
+}
+
+// SetOnBehalfOf sets the OnBehalfOf field.
+func (b *ProvenanceAgentBuilder) SetOnBehalfOf(v Reference) *ProvenanceAgentBuilder {
+	b.provenanceAgent.OnBehalfOf = &v
+	return b
+}
+
+// =============================================================================
+// ProvenanceEntity - Fluent Builder
+// =============================================================================
+
+// ProvenanceEntityBuilder provides a fluent API for constructing ProvenanceEntity values.
+type ProvenanceEntityBuilder struct {
+	provenanceEntity *ProvenanceEntity
+}
+
+// NewProvenanceEntityBuilder creates a new ProvenanceEntityBuilder.
+func NewProvenanceEntityBuilder() *ProvenanceEntityBuilder {
+	return &ProvenanceEntityBuilder{
+		provenanceEntity: &ProvenanceEntity{},
+	}
+}
+
+// Build returns the constructed ProvenanceEntity.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ProvenanceEntityBuilder) Build() ProvenanceEntity {
+	return *b.provenanceEntity
+}
+
+// SetId sets the Id field.
+func (b *ProvenanceEntityBuilder) SetId(v string) *ProvenanceEntityBuilder {
+	b.provenanceEntity.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ProvenanceEntityBuilder) AddExtension(v Extension) *ProvenanceEntityBuilder {
+	b.provenanceEntity.Extension = append(b.provenanceEntity.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ProvenanceEntityBuilder) AddModifierExtension(v Extension) *ProvenanceEntityBuilder {
+	b.provenanceEntity.ModifierExtension = append(b.provenanceEntity.ModifierExtension, v)
+	return b
+}
+
+// SetRole sets the Role field.
+func (b *ProvenanceEntityBuilder) SetRole(v ProvenanceEntityRole) *ProvenanceEntityBuilder {
+	b.provenanceEntity.Role = &v
+	return b
+}
+
+// SetWhat sets the What field.
+func (b *ProvenanceEntityBuilder) SetWhat(v Reference) *ProvenanceEntityBuilder {
+	b.provenanceEntity.What = &v
+	return b
+}
+
+// AddAgent adds a Agent element.
+func (b *ProvenanceEntityBuilder) AddAgent(v ProvenanceAgent) *ProvenanceEntityBuilder {
+	b.provenanceEntity.Agent = append(b.provenanceEntity.Agent, v)
+	return b
+}
+
+// SetRoleExt sets the extensions carried by Role, serialized as
+// "_role".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ProvenanceEntityBuilder) SetRoleExt(v Element) *ProvenanceEntityBuilder {
+	b.provenanceEntity.RoleExt = &v
+	return b
 }

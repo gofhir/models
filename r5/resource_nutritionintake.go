@@ -1167,6 +1167,64 @@ func (b *NutritionIntakeBuilder) AddNote(v Annotation) *NutritionIntakeBuilder {
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionIntakeBuilder) SetImplicitRulesExt(v Element) *NutritionIntakeBuilder {
+	b.nutritionIntake.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionIntakeBuilder) SetLanguageExt(v Element) *NutritionIntakeBuilder {
+	b.nutritionIntake.LanguageExt = &v
+	return b
+}
+
+// AddInstantiatesCanonicalExt appends an extension slot for InstantiatesCanonical.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *NutritionIntakeBuilder) AddInstantiatesCanonicalExt(v *Element) *NutritionIntakeBuilder {
+	b.nutritionIntake.InstantiatesCanonicalExt = append(b.nutritionIntake.InstantiatesCanonicalExt, v)
+	return b
+}
+
+// AddInstantiatesUriExt appends an extension slot for InstantiatesUri.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *NutritionIntakeBuilder) AddInstantiatesUriExt(v *Element) *NutritionIntakeBuilder {
+	b.nutritionIntake.InstantiatesUriExt = append(b.nutritionIntake.InstantiatesUriExt, v)
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionIntakeBuilder) SetStatusExt(v Element) *NutritionIntakeBuilder {
+	b.nutritionIntake.StatusExt = &v
+	return b
+}
+
+// SetRecordedExt sets the extensions carried by Recorded, serialized as
+// "_recorded".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionIntakeBuilder) SetRecordedExt(v Element) *NutritionIntakeBuilder {
+	b.nutritionIntake.RecordedExt = &v
+	return b
+}
+
 // clearOccurrence unsets every variant of Occurrence[x], including the
 // _field companions of the primitive ones.
 func (b *NutritionIntakeBuilder) clearOccurrence() {
@@ -1179,4 +1237,215 @@ func (b *NutritionIntakeBuilder) clearOccurrence() {
 func (b *NutritionIntakeBuilder) clearReported() {
 	b.nutritionIntake.ReportedBoolean = nil
 	b.nutritionIntake.ReportedReference = nil
+}
+
+// =============================================================================
+// NutritionIntakeConsumedItem - Fluent Builder
+// =============================================================================
+
+// NutritionIntakeConsumedItemBuilder provides a fluent API for constructing NutritionIntakeConsumedItem values.
+type NutritionIntakeConsumedItemBuilder struct {
+	nutritionIntakeConsumedItem *NutritionIntakeConsumedItem
+}
+
+// NewNutritionIntakeConsumedItemBuilder creates a new NutritionIntakeConsumedItemBuilder.
+func NewNutritionIntakeConsumedItemBuilder() *NutritionIntakeConsumedItemBuilder {
+	return &NutritionIntakeConsumedItemBuilder{
+		nutritionIntakeConsumedItem: &NutritionIntakeConsumedItem{},
+	}
+}
+
+// Build returns the constructed NutritionIntakeConsumedItem.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *NutritionIntakeConsumedItemBuilder) Build() NutritionIntakeConsumedItem {
+	return *b.nutritionIntakeConsumedItem
+}
+
+// SetId sets the Id field.
+func (b *NutritionIntakeConsumedItemBuilder) SetId(v string) *NutritionIntakeConsumedItemBuilder {
+	b.nutritionIntakeConsumedItem.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *NutritionIntakeConsumedItemBuilder) AddExtension(v Extension) *NutritionIntakeConsumedItemBuilder {
+	b.nutritionIntakeConsumedItem.Extension = append(b.nutritionIntakeConsumedItem.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *NutritionIntakeConsumedItemBuilder) AddModifierExtension(v Extension) *NutritionIntakeConsumedItemBuilder {
+	b.nutritionIntakeConsumedItem.ModifierExtension = append(b.nutritionIntakeConsumedItem.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *NutritionIntakeConsumedItemBuilder) SetType(v CodeableConcept) *NutritionIntakeConsumedItemBuilder {
+	b.nutritionIntakeConsumedItem.Type = &v
+	return b
+}
+
+// SetNutritionProduct sets the NutritionProduct field.
+func (b *NutritionIntakeConsumedItemBuilder) SetNutritionProduct(v CodeableReference) *NutritionIntakeConsumedItemBuilder {
+	b.nutritionIntakeConsumedItem.NutritionProduct = &v
+	return b
+}
+
+// SetSchedule sets the Schedule field.
+func (b *NutritionIntakeConsumedItemBuilder) SetSchedule(v Timing) *NutritionIntakeConsumedItemBuilder {
+	b.nutritionIntakeConsumedItem.Schedule = &v
+	return b
+}
+
+// SetAmount sets the Amount field.
+func (b *NutritionIntakeConsumedItemBuilder) SetAmount(v Quantity) *NutritionIntakeConsumedItemBuilder {
+	b.nutritionIntakeConsumedItem.Amount = &v
+	return b
+}
+
+// SetRate sets the Rate field.
+func (b *NutritionIntakeConsumedItemBuilder) SetRate(v Quantity) *NutritionIntakeConsumedItemBuilder {
+	b.nutritionIntakeConsumedItem.Rate = &v
+	return b
+}
+
+// SetNotConsumed sets the NotConsumed field.
+func (b *NutritionIntakeConsumedItemBuilder) SetNotConsumed(v bool) *NutritionIntakeConsumedItemBuilder {
+	b.nutritionIntakeConsumedItem.NotConsumed = &v
+	return b
+}
+
+// SetNotConsumedReason sets the NotConsumedReason field.
+func (b *NutritionIntakeConsumedItemBuilder) SetNotConsumedReason(v CodeableConcept) *NutritionIntakeConsumedItemBuilder {
+	b.nutritionIntakeConsumedItem.NotConsumedReason = &v
+	return b
+}
+
+// SetNotConsumedExt sets the extensions carried by NotConsumed, serialized as
+// "_notConsumed".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionIntakeConsumedItemBuilder) SetNotConsumedExt(v Element) *NutritionIntakeConsumedItemBuilder {
+	b.nutritionIntakeConsumedItem.NotConsumedExt = &v
+	return b
+}
+
+// =============================================================================
+// NutritionIntakeIngredientLabel - Fluent Builder
+// =============================================================================
+
+// NutritionIntakeIngredientLabelBuilder provides a fluent API for constructing NutritionIntakeIngredientLabel values.
+type NutritionIntakeIngredientLabelBuilder struct {
+	nutritionIntakeIngredientLabel *NutritionIntakeIngredientLabel
+}
+
+// NewNutritionIntakeIngredientLabelBuilder creates a new NutritionIntakeIngredientLabelBuilder.
+func NewNutritionIntakeIngredientLabelBuilder() *NutritionIntakeIngredientLabelBuilder {
+	return &NutritionIntakeIngredientLabelBuilder{
+		nutritionIntakeIngredientLabel: &NutritionIntakeIngredientLabel{},
+	}
+}
+
+// Build returns the constructed NutritionIntakeIngredientLabel.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *NutritionIntakeIngredientLabelBuilder) Build() NutritionIntakeIngredientLabel {
+	return *b.nutritionIntakeIngredientLabel
+}
+
+// SetId sets the Id field.
+func (b *NutritionIntakeIngredientLabelBuilder) SetId(v string) *NutritionIntakeIngredientLabelBuilder {
+	b.nutritionIntakeIngredientLabel.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *NutritionIntakeIngredientLabelBuilder) AddExtension(v Extension) *NutritionIntakeIngredientLabelBuilder {
+	b.nutritionIntakeIngredientLabel.Extension = append(b.nutritionIntakeIngredientLabel.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *NutritionIntakeIngredientLabelBuilder) AddModifierExtension(v Extension) *NutritionIntakeIngredientLabelBuilder {
+	b.nutritionIntakeIngredientLabel.ModifierExtension = append(b.nutritionIntakeIngredientLabel.ModifierExtension, v)
+	return b
+}
+
+// SetNutrient sets the Nutrient field.
+func (b *NutritionIntakeIngredientLabelBuilder) SetNutrient(v CodeableReference) *NutritionIntakeIngredientLabelBuilder {
+	b.nutritionIntakeIngredientLabel.Nutrient = &v
+	return b
+}
+
+// SetAmount sets the Amount field.
+func (b *NutritionIntakeIngredientLabelBuilder) SetAmount(v Quantity) *NutritionIntakeIngredientLabelBuilder {
+	b.nutritionIntakeIngredientLabel.Amount = &v
+	return b
+}
+
+// =============================================================================
+// NutritionIntakePerformer - Fluent Builder
+// =============================================================================
+
+// NutritionIntakePerformerBuilder provides a fluent API for constructing NutritionIntakePerformer values.
+type NutritionIntakePerformerBuilder struct {
+	nutritionIntakePerformer *NutritionIntakePerformer
+}
+
+// NewNutritionIntakePerformerBuilder creates a new NutritionIntakePerformerBuilder.
+func NewNutritionIntakePerformerBuilder() *NutritionIntakePerformerBuilder {
+	return &NutritionIntakePerformerBuilder{
+		nutritionIntakePerformer: &NutritionIntakePerformer{},
+	}
+}
+
+// Build returns the constructed NutritionIntakePerformer.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *NutritionIntakePerformerBuilder) Build() NutritionIntakePerformer {
+	return *b.nutritionIntakePerformer
+}
+
+// SetId sets the Id field.
+func (b *NutritionIntakePerformerBuilder) SetId(v string) *NutritionIntakePerformerBuilder {
+	b.nutritionIntakePerformer.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *NutritionIntakePerformerBuilder) AddExtension(v Extension) *NutritionIntakePerformerBuilder {
+	b.nutritionIntakePerformer.Extension = append(b.nutritionIntakePerformer.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *NutritionIntakePerformerBuilder) AddModifierExtension(v Extension) *NutritionIntakePerformerBuilder {
+	b.nutritionIntakePerformer.ModifierExtension = append(b.nutritionIntakePerformer.ModifierExtension, v)
+	return b
+}
+
+// SetFunction sets the Function field.
+func (b *NutritionIntakePerformerBuilder) SetFunction(v CodeableConcept) *NutritionIntakePerformerBuilder {
+	b.nutritionIntakePerformer.Function = &v
+	return b
+}
+
+// SetActor sets the Actor field.
+func (b *NutritionIntakePerformerBuilder) SetActor(v Reference) *NutritionIntakePerformerBuilder {
+	b.nutritionIntakePerformer.Actor = &v
+	return b
 }

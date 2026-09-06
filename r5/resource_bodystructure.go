@@ -853,3 +853,244 @@ func (b *BodyStructureBuilder) SetPatient(v Reference) *BodyStructureBuilder {
 	b.bodyStructure.Patient = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BodyStructureBuilder) SetImplicitRulesExt(v Element) *BodyStructureBuilder {
+	b.bodyStructure.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BodyStructureBuilder) SetLanguageExt(v Element) *BodyStructureBuilder {
+	b.bodyStructure.LanguageExt = &v
+	return b
+}
+
+// SetActiveExt sets the extensions carried by Active, serialized as
+// "_active".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BodyStructureBuilder) SetActiveExt(v Element) *BodyStructureBuilder {
+	b.bodyStructure.ActiveExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BodyStructureBuilder) SetDescriptionExt(v Element) *BodyStructureBuilder {
+	b.bodyStructure.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// BodyStructureIncludedStructure - Fluent Builder
+// =============================================================================
+
+// BodyStructureIncludedStructureBuilder provides a fluent API for constructing BodyStructureIncludedStructure values.
+type BodyStructureIncludedStructureBuilder struct {
+	bodyStructureIncludedStructure *BodyStructureIncludedStructure
+}
+
+// NewBodyStructureIncludedStructureBuilder creates a new BodyStructureIncludedStructureBuilder.
+func NewBodyStructureIncludedStructureBuilder() *BodyStructureIncludedStructureBuilder {
+	return &BodyStructureIncludedStructureBuilder{
+		bodyStructureIncludedStructure: &BodyStructureIncludedStructure{},
+	}
+}
+
+// Build returns the constructed BodyStructureIncludedStructure.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *BodyStructureIncludedStructureBuilder) Build() BodyStructureIncludedStructure {
+	return *b.bodyStructureIncludedStructure
+}
+
+// SetId sets the Id field.
+func (b *BodyStructureIncludedStructureBuilder) SetId(v string) *BodyStructureIncludedStructureBuilder {
+	b.bodyStructureIncludedStructure.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *BodyStructureIncludedStructureBuilder) AddExtension(v Extension) *BodyStructureIncludedStructureBuilder {
+	b.bodyStructureIncludedStructure.Extension = append(b.bodyStructureIncludedStructure.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *BodyStructureIncludedStructureBuilder) AddModifierExtension(v Extension) *BodyStructureIncludedStructureBuilder {
+	b.bodyStructureIncludedStructure.ModifierExtension = append(b.bodyStructureIncludedStructure.ModifierExtension, v)
+	return b
+}
+
+// SetStructure sets the Structure field.
+func (b *BodyStructureIncludedStructureBuilder) SetStructure(v CodeableConcept) *BodyStructureIncludedStructureBuilder {
+	b.bodyStructureIncludedStructure.Structure = &v
+	return b
+}
+
+// SetLaterality sets the Laterality field.
+func (b *BodyStructureIncludedStructureBuilder) SetLaterality(v CodeableConcept) *BodyStructureIncludedStructureBuilder {
+	b.bodyStructureIncludedStructure.Laterality = &v
+	return b
+}
+
+// AddBodyLandmarkOrientation adds a BodyLandmarkOrientation element.
+func (b *BodyStructureIncludedStructureBuilder) AddBodyLandmarkOrientation(v BodyStructureIncludedStructureBodyLandmarkOrientation) *BodyStructureIncludedStructureBuilder {
+	b.bodyStructureIncludedStructure.BodyLandmarkOrientation = append(b.bodyStructureIncludedStructure.BodyLandmarkOrientation, v)
+	return b
+}
+
+// AddSpatialReference adds a SpatialReference element.
+func (b *BodyStructureIncludedStructureBuilder) AddSpatialReference(v Reference) *BodyStructureIncludedStructureBuilder {
+	b.bodyStructureIncludedStructure.SpatialReference = append(b.bodyStructureIncludedStructure.SpatialReference, v)
+	return b
+}
+
+// AddQualifier adds a Qualifier element.
+func (b *BodyStructureIncludedStructureBuilder) AddQualifier(v CodeableConcept) *BodyStructureIncludedStructureBuilder {
+	b.bodyStructureIncludedStructure.Qualifier = append(b.bodyStructureIncludedStructure.Qualifier, v)
+	return b
+}
+
+// =============================================================================
+// BodyStructureIncludedStructureBodyLandmarkOrientation - Fluent Builder
+// =============================================================================
+
+// BodyStructureIncludedStructureBodyLandmarkOrientationBuilder provides a fluent API for constructing BodyStructureIncludedStructureBodyLandmarkOrientation values.
+type BodyStructureIncludedStructureBodyLandmarkOrientationBuilder struct {
+	bodyStructureIncludedStructureBodyLandmarkOrientation *BodyStructureIncludedStructureBodyLandmarkOrientation
+}
+
+// NewBodyStructureIncludedStructureBodyLandmarkOrientationBuilder creates a new BodyStructureIncludedStructureBodyLandmarkOrientationBuilder.
+func NewBodyStructureIncludedStructureBodyLandmarkOrientationBuilder() *BodyStructureIncludedStructureBodyLandmarkOrientationBuilder {
+	return &BodyStructureIncludedStructureBodyLandmarkOrientationBuilder{
+		bodyStructureIncludedStructureBodyLandmarkOrientation: &BodyStructureIncludedStructureBodyLandmarkOrientation{},
+	}
+}
+
+// Build returns the constructed BodyStructureIncludedStructureBodyLandmarkOrientation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *BodyStructureIncludedStructureBodyLandmarkOrientationBuilder) Build() BodyStructureIncludedStructureBodyLandmarkOrientation {
+	return *b.bodyStructureIncludedStructureBodyLandmarkOrientation
+}
+
+// SetId sets the Id field.
+func (b *BodyStructureIncludedStructureBodyLandmarkOrientationBuilder) SetId(v string) *BodyStructureIncludedStructureBodyLandmarkOrientationBuilder {
+	b.bodyStructureIncludedStructureBodyLandmarkOrientation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *BodyStructureIncludedStructureBodyLandmarkOrientationBuilder) AddExtension(v Extension) *BodyStructureIncludedStructureBodyLandmarkOrientationBuilder {
+	b.bodyStructureIncludedStructureBodyLandmarkOrientation.Extension = append(b.bodyStructureIncludedStructureBodyLandmarkOrientation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *BodyStructureIncludedStructureBodyLandmarkOrientationBuilder) AddModifierExtension(v Extension) *BodyStructureIncludedStructureBodyLandmarkOrientationBuilder {
+	b.bodyStructureIncludedStructureBodyLandmarkOrientation.ModifierExtension = append(b.bodyStructureIncludedStructureBodyLandmarkOrientation.ModifierExtension, v)
+	return b
+}
+
+// AddLandmarkDescription adds a LandmarkDescription element.
+func (b *BodyStructureIncludedStructureBodyLandmarkOrientationBuilder) AddLandmarkDescription(v CodeableConcept) *BodyStructureIncludedStructureBodyLandmarkOrientationBuilder {
+	b.bodyStructureIncludedStructureBodyLandmarkOrientation.LandmarkDescription = append(b.bodyStructureIncludedStructureBodyLandmarkOrientation.LandmarkDescription, v)
+	return b
+}
+
+// AddClockFacePosition adds a ClockFacePosition element.
+func (b *BodyStructureIncludedStructureBodyLandmarkOrientationBuilder) AddClockFacePosition(v CodeableConcept) *BodyStructureIncludedStructureBodyLandmarkOrientationBuilder {
+	b.bodyStructureIncludedStructureBodyLandmarkOrientation.ClockFacePosition = append(b.bodyStructureIncludedStructureBodyLandmarkOrientation.ClockFacePosition, v)
+	return b
+}
+
+// AddDistanceFromLandmark adds a DistanceFromLandmark element.
+func (b *BodyStructureIncludedStructureBodyLandmarkOrientationBuilder) AddDistanceFromLandmark(v BodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmark) *BodyStructureIncludedStructureBodyLandmarkOrientationBuilder {
+	b.bodyStructureIncludedStructureBodyLandmarkOrientation.DistanceFromLandmark = append(b.bodyStructureIncludedStructureBodyLandmarkOrientation.DistanceFromLandmark, v)
+	return b
+}
+
+// AddSurfaceOrientation adds a SurfaceOrientation element.
+func (b *BodyStructureIncludedStructureBodyLandmarkOrientationBuilder) AddSurfaceOrientation(v CodeableConcept) *BodyStructureIncludedStructureBodyLandmarkOrientationBuilder {
+	b.bodyStructureIncludedStructureBodyLandmarkOrientation.SurfaceOrientation = append(b.bodyStructureIncludedStructureBodyLandmarkOrientation.SurfaceOrientation, v)
+	return b
+}
+
+// =============================================================================
+// BodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmark - Fluent Builder
+// =============================================================================
+
+// BodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmarkBuilder provides a fluent API for constructing BodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmark values.
+type BodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmarkBuilder struct {
+	bodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmark *BodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmark
+}
+
+// NewBodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmarkBuilder creates a new BodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmarkBuilder.
+func NewBodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmarkBuilder() *BodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmarkBuilder {
+	return &BodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmarkBuilder{
+		bodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmark: &BodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmark{},
+	}
+}
+
+// Build returns the constructed BodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmark.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *BodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmarkBuilder) Build() BodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmark {
+	return *b.bodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmark
+}
+
+// SetId sets the Id field.
+func (b *BodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmarkBuilder) SetId(v string) *BodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmarkBuilder {
+	b.bodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmark.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *BodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmarkBuilder) AddExtension(v Extension) *BodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmarkBuilder {
+	b.bodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmark.Extension = append(b.bodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmark.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *BodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmarkBuilder) AddModifierExtension(v Extension) *BodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmarkBuilder {
+	b.bodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmark.ModifierExtension = append(b.bodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmark.ModifierExtension, v)
+	return b
+}
+
+// AddDevice adds a Device element.
+func (b *BodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmarkBuilder) AddDevice(v CodeableReference) *BodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmarkBuilder {
+	b.bodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmark.Device = append(b.bodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmark.Device, v)
+	return b
+}
+
+// AddValue adds a Value element.
+func (b *BodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmarkBuilder) AddValue(v Quantity) *BodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmarkBuilder {
+	b.bodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmark.Value = append(b.bodyStructureIncludedStructureBodyLandmarkOrientationDistanceFromLandmark.Value, v)
+	return b
+}

@@ -811,9 +811,126 @@ func (b *DiagnosticReportBuilder) AddPresentedForm(v Attachment) *DiagnosticRepo
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DiagnosticReportBuilder) SetImplicitRulesExt(v Element) *DiagnosticReportBuilder {
+	b.diagnosticReport.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DiagnosticReportBuilder) SetLanguageExt(v Element) *DiagnosticReportBuilder {
+	b.diagnosticReport.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DiagnosticReportBuilder) SetStatusExt(v Element) *DiagnosticReportBuilder {
+	b.diagnosticReport.StatusExt = &v
+	return b
+}
+
+// SetIssuedExt sets the extensions carried by Issued, serialized as
+// "_issued".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DiagnosticReportBuilder) SetIssuedExt(v Element) *DiagnosticReportBuilder {
+	b.diagnosticReport.IssuedExt = &v
+	return b
+}
+
+// SetConclusionExt sets the extensions carried by Conclusion, serialized as
+// "_conclusion".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DiagnosticReportBuilder) SetConclusionExt(v Element) *DiagnosticReportBuilder {
+	b.diagnosticReport.ConclusionExt = &v
+	return b
+}
+
 // clearEffective unsets every variant of Effective[x], including the
 // _field companions of the primitive ones.
 func (b *DiagnosticReportBuilder) clearEffective() {
 	b.diagnosticReport.EffectiveDateTime = nil
 	b.diagnosticReport.EffectivePeriod = nil
+}
+
+// =============================================================================
+// DiagnosticReportMedia - Fluent Builder
+// =============================================================================
+
+// DiagnosticReportMediaBuilder provides a fluent API for constructing DiagnosticReportMedia values.
+type DiagnosticReportMediaBuilder struct {
+	diagnosticReportMedia *DiagnosticReportMedia
+}
+
+// NewDiagnosticReportMediaBuilder creates a new DiagnosticReportMediaBuilder.
+func NewDiagnosticReportMediaBuilder() *DiagnosticReportMediaBuilder {
+	return &DiagnosticReportMediaBuilder{
+		diagnosticReportMedia: &DiagnosticReportMedia{},
+	}
+}
+
+// Build returns the constructed DiagnosticReportMedia.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DiagnosticReportMediaBuilder) Build() DiagnosticReportMedia {
+	return *b.diagnosticReportMedia
+}
+
+// SetId sets the Id field.
+func (b *DiagnosticReportMediaBuilder) SetId(v string) *DiagnosticReportMediaBuilder {
+	b.diagnosticReportMedia.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DiagnosticReportMediaBuilder) AddExtension(v Extension) *DiagnosticReportMediaBuilder {
+	b.diagnosticReportMedia.Extension = append(b.diagnosticReportMedia.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *DiagnosticReportMediaBuilder) AddModifierExtension(v Extension) *DiagnosticReportMediaBuilder {
+	b.diagnosticReportMedia.ModifierExtension = append(b.diagnosticReportMedia.ModifierExtension, v)
+	return b
+}
+
+// SetComment sets the Comment field.
+func (b *DiagnosticReportMediaBuilder) SetComment(v string) *DiagnosticReportMediaBuilder {
+	b.diagnosticReportMedia.Comment = &v
+	return b
+}
+
+// SetLink sets the Link field.
+func (b *DiagnosticReportMediaBuilder) SetLink(v Reference) *DiagnosticReportMediaBuilder {
+	b.diagnosticReportMedia.Link = &v
+	return b
+}
+
+// SetCommentExt sets the extensions carried by Comment, serialized as
+// "_comment".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DiagnosticReportMediaBuilder) SetCommentExt(v Element) *DiagnosticReportMediaBuilder {
+	b.diagnosticReportMedia.CommentExt = &v
+	return b
 }

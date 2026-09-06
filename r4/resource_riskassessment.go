@@ -871,9 +871,202 @@ func (b *RiskAssessmentBuilder) AddNote(v Annotation) *RiskAssessmentBuilder {
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskAssessmentBuilder) SetImplicitRulesExt(v Element) *RiskAssessmentBuilder {
+	b.riskAssessment.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskAssessmentBuilder) SetLanguageExt(v Element) *RiskAssessmentBuilder {
+	b.riskAssessment.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskAssessmentBuilder) SetStatusExt(v Element) *RiskAssessmentBuilder {
+	b.riskAssessment.StatusExt = &v
+	return b
+}
+
+// SetMitigationExt sets the extensions carried by Mitigation, serialized as
+// "_mitigation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskAssessmentBuilder) SetMitigationExt(v Element) *RiskAssessmentBuilder {
+	b.riskAssessment.MitigationExt = &v
+	return b
+}
+
 // clearOccurrence unsets every variant of Occurrence[x], including the
 // _field companions of the primitive ones.
 func (b *RiskAssessmentBuilder) clearOccurrence() {
 	b.riskAssessment.OccurrenceDateTime = nil
 	b.riskAssessment.OccurrencePeriod = nil
+}
+
+// =============================================================================
+// RiskAssessmentPrediction - Fluent Builder
+// =============================================================================
+
+// RiskAssessmentPredictionBuilder provides a fluent API for constructing RiskAssessmentPrediction values.
+type RiskAssessmentPredictionBuilder struct {
+	riskAssessmentPrediction *RiskAssessmentPrediction
+}
+
+// NewRiskAssessmentPredictionBuilder creates a new RiskAssessmentPredictionBuilder.
+func NewRiskAssessmentPredictionBuilder() *RiskAssessmentPredictionBuilder {
+	return &RiskAssessmentPredictionBuilder{
+		riskAssessmentPrediction: &RiskAssessmentPrediction{},
+	}
+}
+
+// Build returns the constructed RiskAssessmentPrediction.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *RiskAssessmentPredictionBuilder) Build() RiskAssessmentPrediction {
+	return *b.riskAssessmentPrediction
+}
+
+// SetId sets the Id field.
+func (b *RiskAssessmentPredictionBuilder) SetId(v string) *RiskAssessmentPredictionBuilder {
+	b.riskAssessmentPrediction.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *RiskAssessmentPredictionBuilder) AddExtension(v Extension) *RiskAssessmentPredictionBuilder {
+	b.riskAssessmentPrediction.Extension = append(b.riskAssessmentPrediction.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *RiskAssessmentPredictionBuilder) AddModifierExtension(v Extension) *RiskAssessmentPredictionBuilder {
+	b.riskAssessmentPrediction.ModifierExtension = append(b.riskAssessmentPrediction.ModifierExtension, v)
+	return b
+}
+
+// SetOutcome sets the Outcome field.
+func (b *RiskAssessmentPredictionBuilder) SetOutcome(v CodeableConcept) *RiskAssessmentPredictionBuilder {
+	b.riskAssessmentPrediction.Outcome = &v
+	return b
+}
+
+// SetProbabilityDecimal sets Probability[x] to its ProbabilityDecimal variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RiskAssessmentPredictionBuilder) SetProbabilityDecimal(v Decimal) *RiskAssessmentPredictionBuilder {
+	b.clearProbability()
+	b.riskAssessmentPrediction.ProbabilityDecimal = &v
+	return b
+}
+
+// SetProbabilityDecimalExt sets the ProbabilityDecimalExt field.
+func (b *RiskAssessmentPredictionBuilder) SetProbabilityDecimalExt(v Element) *RiskAssessmentPredictionBuilder {
+	b.riskAssessmentPrediction.ProbabilityDecimalExt = &v
+	return b
+}
+
+// SetProbabilityRange sets Probability[x] to its ProbabilityRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RiskAssessmentPredictionBuilder) SetProbabilityRange(v Range) *RiskAssessmentPredictionBuilder {
+	b.clearProbability()
+	b.riskAssessmentPrediction.ProbabilityRange = &v
+	return b
+}
+
+// SetQualitativeRisk sets the QualitativeRisk field.
+func (b *RiskAssessmentPredictionBuilder) SetQualitativeRisk(v CodeableConcept) *RiskAssessmentPredictionBuilder {
+	b.riskAssessmentPrediction.QualitativeRisk = &v
+	return b
+}
+
+// SetRelativeRisk sets the RelativeRisk field.
+func (b *RiskAssessmentPredictionBuilder) SetRelativeRisk(v Decimal) *RiskAssessmentPredictionBuilder {
+	b.riskAssessmentPrediction.RelativeRisk = &v
+	return b
+}
+
+// SetWhenPeriod sets When[x] to its WhenPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RiskAssessmentPredictionBuilder) SetWhenPeriod(v Period) *RiskAssessmentPredictionBuilder {
+	b.clearWhen()
+	b.riskAssessmentPrediction.WhenPeriod = &v
+	return b
+}
+
+// SetWhenRange sets When[x] to its WhenRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RiskAssessmentPredictionBuilder) SetWhenRange(v Range) *RiskAssessmentPredictionBuilder {
+	b.clearWhen()
+	b.riskAssessmentPrediction.WhenRange = &v
+	return b
+}
+
+// SetRationale sets the Rationale field.
+func (b *RiskAssessmentPredictionBuilder) SetRationale(v string) *RiskAssessmentPredictionBuilder {
+	b.riskAssessmentPrediction.Rationale = &v
+	return b
+}
+
+// SetRelativeRiskExt sets the extensions carried by RelativeRisk, serialized as
+// "_relativeRisk".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskAssessmentPredictionBuilder) SetRelativeRiskExt(v Element) *RiskAssessmentPredictionBuilder {
+	b.riskAssessmentPrediction.RelativeRiskExt = &v
+	return b
+}
+
+// SetRationaleExt sets the extensions carried by Rationale, serialized as
+// "_rationale".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskAssessmentPredictionBuilder) SetRationaleExt(v Element) *RiskAssessmentPredictionBuilder {
+	b.riskAssessmentPrediction.RationaleExt = &v
+	return b
+}
+
+// clearProbability unsets every variant of Probability[x], including the
+// _field companions of the primitive ones.
+func (b *RiskAssessmentPredictionBuilder) clearProbability() {
+	b.riskAssessmentPrediction.ProbabilityDecimal = nil
+	b.riskAssessmentPrediction.ProbabilityRange = nil
+}
+
+// clearWhen unsets every variant of When[x], including the
+// _field companions of the primitive ones.
+func (b *RiskAssessmentPredictionBuilder) clearWhen() {
+	b.riskAssessmentPrediction.WhenPeriod = nil
+	b.riskAssessmentPrediction.WhenRange = nil
 }

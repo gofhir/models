@@ -1236,3 +1236,461 @@ func (b *MeasureReportBuilder) AddEvaluatedResource(v Reference) *MeasureReportB
 	b.measureReport.EvaluatedResource = append(b.measureReport.EvaluatedResource, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureReportBuilder) SetImplicitRulesExt(v Element) *MeasureReportBuilder {
+	b.measureReport.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureReportBuilder) SetLanguageExt(v Element) *MeasureReportBuilder {
+	b.measureReport.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureReportBuilder) SetStatusExt(v Element) *MeasureReportBuilder {
+	b.measureReport.StatusExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureReportBuilder) SetTypeExt(v Element) *MeasureReportBuilder {
+	b.measureReport.TypeExt = &v
+	return b
+}
+
+// SetMeasureExt sets the extensions carried by Measure, serialized as
+// "_measure".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureReportBuilder) SetMeasureExt(v Element) *MeasureReportBuilder {
+	b.measureReport.MeasureExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureReportBuilder) SetDateExt(v Element) *MeasureReportBuilder {
+	b.measureReport.DateExt = &v
+	return b
+}
+
+// =============================================================================
+// MeasureReportGroup - Fluent Builder
+// =============================================================================
+
+// MeasureReportGroupBuilder provides a fluent API for constructing MeasureReportGroup values.
+type MeasureReportGroupBuilder struct {
+	measureReportGroup *MeasureReportGroup
+}
+
+// NewMeasureReportGroupBuilder creates a new MeasureReportGroupBuilder.
+func NewMeasureReportGroupBuilder() *MeasureReportGroupBuilder {
+	return &MeasureReportGroupBuilder{
+		measureReportGroup: &MeasureReportGroup{},
+	}
+}
+
+// Build returns the constructed MeasureReportGroup.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MeasureReportGroupBuilder) Build() MeasureReportGroup {
+	return *b.measureReportGroup
+}
+
+// SetId sets the Id field.
+func (b *MeasureReportGroupBuilder) SetId(v string) *MeasureReportGroupBuilder {
+	b.measureReportGroup.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MeasureReportGroupBuilder) AddExtension(v Extension) *MeasureReportGroupBuilder {
+	b.measureReportGroup.Extension = append(b.measureReportGroup.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MeasureReportGroupBuilder) AddModifierExtension(v Extension) *MeasureReportGroupBuilder {
+	b.measureReportGroup.ModifierExtension = append(b.measureReportGroup.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MeasureReportGroupBuilder) SetCode(v CodeableConcept) *MeasureReportGroupBuilder {
+	b.measureReportGroup.Code = &v
+	return b
+}
+
+// AddPopulation adds a Population element.
+func (b *MeasureReportGroupBuilder) AddPopulation(v MeasureReportGroupPopulation) *MeasureReportGroupBuilder {
+	b.measureReportGroup.Population = append(b.measureReportGroup.Population, v)
+	return b
+}
+
+// SetMeasureScore sets the MeasureScore field.
+func (b *MeasureReportGroupBuilder) SetMeasureScore(v Quantity) *MeasureReportGroupBuilder {
+	b.measureReportGroup.MeasureScore = &v
+	return b
+}
+
+// AddStratifier adds a Stratifier element.
+func (b *MeasureReportGroupBuilder) AddStratifier(v MeasureReportGroupStratifier) *MeasureReportGroupBuilder {
+	b.measureReportGroup.Stratifier = append(b.measureReportGroup.Stratifier, v)
+	return b
+}
+
+// =============================================================================
+// MeasureReportGroupPopulation - Fluent Builder
+// =============================================================================
+
+// MeasureReportGroupPopulationBuilder provides a fluent API for constructing MeasureReportGroupPopulation values.
+type MeasureReportGroupPopulationBuilder struct {
+	measureReportGroupPopulation *MeasureReportGroupPopulation
+}
+
+// NewMeasureReportGroupPopulationBuilder creates a new MeasureReportGroupPopulationBuilder.
+func NewMeasureReportGroupPopulationBuilder() *MeasureReportGroupPopulationBuilder {
+	return &MeasureReportGroupPopulationBuilder{
+		measureReportGroupPopulation: &MeasureReportGroupPopulation{},
+	}
+}
+
+// Build returns the constructed MeasureReportGroupPopulation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MeasureReportGroupPopulationBuilder) Build() MeasureReportGroupPopulation {
+	return *b.measureReportGroupPopulation
+}
+
+// SetId sets the Id field.
+func (b *MeasureReportGroupPopulationBuilder) SetId(v string) *MeasureReportGroupPopulationBuilder {
+	b.measureReportGroupPopulation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MeasureReportGroupPopulationBuilder) AddExtension(v Extension) *MeasureReportGroupPopulationBuilder {
+	b.measureReportGroupPopulation.Extension = append(b.measureReportGroupPopulation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MeasureReportGroupPopulationBuilder) AddModifierExtension(v Extension) *MeasureReportGroupPopulationBuilder {
+	b.measureReportGroupPopulation.ModifierExtension = append(b.measureReportGroupPopulation.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MeasureReportGroupPopulationBuilder) SetCode(v CodeableConcept) *MeasureReportGroupPopulationBuilder {
+	b.measureReportGroupPopulation.Code = &v
+	return b
+}
+
+// SetCount sets the Count field.
+func (b *MeasureReportGroupPopulationBuilder) SetCount(v int) *MeasureReportGroupPopulationBuilder {
+	b.measureReportGroupPopulation.Count = &v
+	return b
+}
+
+// SetSubjectResults sets the SubjectResults field.
+func (b *MeasureReportGroupPopulationBuilder) SetSubjectResults(v Reference) *MeasureReportGroupPopulationBuilder {
+	b.measureReportGroupPopulation.SubjectResults = &v
+	return b
+}
+
+// SetCountExt sets the extensions carried by Count, serialized as
+// "_count".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureReportGroupPopulationBuilder) SetCountExt(v Element) *MeasureReportGroupPopulationBuilder {
+	b.measureReportGroupPopulation.CountExt = &v
+	return b
+}
+
+// =============================================================================
+// MeasureReportGroupStratifier - Fluent Builder
+// =============================================================================
+
+// MeasureReportGroupStratifierBuilder provides a fluent API for constructing MeasureReportGroupStratifier values.
+type MeasureReportGroupStratifierBuilder struct {
+	measureReportGroupStratifier *MeasureReportGroupStratifier
+}
+
+// NewMeasureReportGroupStratifierBuilder creates a new MeasureReportGroupStratifierBuilder.
+func NewMeasureReportGroupStratifierBuilder() *MeasureReportGroupStratifierBuilder {
+	return &MeasureReportGroupStratifierBuilder{
+		measureReportGroupStratifier: &MeasureReportGroupStratifier{},
+	}
+}
+
+// Build returns the constructed MeasureReportGroupStratifier.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MeasureReportGroupStratifierBuilder) Build() MeasureReportGroupStratifier {
+	return *b.measureReportGroupStratifier
+}
+
+// SetId sets the Id field.
+func (b *MeasureReportGroupStratifierBuilder) SetId(v string) *MeasureReportGroupStratifierBuilder {
+	b.measureReportGroupStratifier.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MeasureReportGroupStratifierBuilder) AddExtension(v Extension) *MeasureReportGroupStratifierBuilder {
+	b.measureReportGroupStratifier.Extension = append(b.measureReportGroupStratifier.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MeasureReportGroupStratifierBuilder) AddModifierExtension(v Extension) *MeasureReportGroupStratifierBuilder {
+	b.measureReportGroupStratifier.ModifierExtension = append(b.measureReportGroupStratifier.ModifierExtension, v)
+	return b
+}
+
+// AddCode adds a Code element.
+func (b *MeasureReportGroupStratifierBuilder) AddCode(v CodeableConcept) *MeasureReportGroupStratifierBuilder {
+	b.measureReportGroupStratifier.Code = append(b.measureReportGroupStratifier.Code, v)
+	return b
+}
+
+// AddStratum adds a Stratum element.
+func (b *MeasureReportGroupStratifierBuilder) AddStratum(v MeasureReportGroupStratifierStratum) *MeasureReportGroupStratifierBuilder {
+	b.measureReportGroupStratifier.Stratum = append(b.measureReportGroupStratifier.Stratum, v)
+	return b
+}
+
+// =============================================================================
+// MeasureReportGroupStratifierStratum - Fluent Builder
+// =============================================================================
+
+// MeasureReportGroupStratifierStratumBuilder provides a fluent API for constructing MeasureReportGroupStratifierStratum values.
+type MeasureReportGroupStratifierStratumBuilder struct {
+	measureReportGroupStratifierStratum *MeasureReportGroupStratifierStratum
+}
+
+// NewMeasureReportGroupStratifierStratumBuilder creates a new MeasureReportGroupStratifierStratumBuilder.
+func NewMeasureReportGroupStratifierStratumBuilder() *MeasureReportGroupStratifierStratumBuilder {
+	return &MeasureReportGroupStratifierStratumBuilder{
+		measureReportGroupStratifierStratum: &MeasureReportGroupStratifierStratum{},
+	}
+}
+
+// Build returns the constructed MeasureReportGroupStratifierStratum.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MeasureReportGroupStratifierStratumBuilder) Build() MeasureReportGroupStratifierStratum {
+	return *b.measureReportGroupStratifierStratum
+}
+
+// SetId sets the Id field.
+func (b *MeasureReportGroupStratifierStratumBuilder) SetId(v string) *MeasureReportGroupStratifierStratumBuilder {
+	b.measureReportGroupStratifierStratum.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MeasureReportGroupStratifierStratumBuilder) AddExtension(v Extension) *MeasureReportGroupStratifierStratumBuilder {
+	b.measureReportGroupStratifierStratum.Extension = append(b.measureReportGroupStratifierStratum.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MeasureReportGroupStratifierStratumBuilder) AddModifierExtension(v Extension) *MeasureReportGroupStratifierStratumBuilder {
+	b.measureReportGroupStratifierStratum.ModifierExtension = append(b.measureReportGroupStratifierStratum.ModifierExtension, v)
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *MeasureReportGroupStratifierStratumBuilder) SetValue(v CodeableConcept) *MeasureReportGroupStratifierStratumBuilder {
+	b.measureReportGroupStratifierStratum.Value = &v
+	return b
+}
+
+// AddComponent adds a Component element.
+func (b *MeasureReportGroupStratifierStratumBuilder) AddComponent(v MeasureReportGroupStratifierStratumComponent) *MeasureReportGroupStratifierStratumBuilder {
+	b.measureReportGroupStratifierStratum.Component = append(b.measureReportGroupStratifierStratum.Component, v)
+	return b
+}
+
+// AddPopulation adds a Population element.
+func (b *MeasureReportGroupStratifierStratumBuilder) AddPopulation(v MeasureReportGroupStratifierStratumPopulation) *MeasureReportGroupStratifierStratumBuilder {
+	b.measureReportGroupStratifierStratum.Population = append(b.measureReportGroupStratifierStratum.Population, v)
+	return b
+}
+
+// SetMeasureScore sets the MeasureScore field.
+func (b *MeasureReportGroupStratifierStratumBuilder) SetMeasureScore(v Quantity) *MeasureReportGroupStratifierStratumBuilder {
+	b.measureReportGroupStratifierStratum.MeasureScore = &v
+	return b
+}
+
+// =============================================================================
+// MeasureReportGroupStratifierStratumComponent - Fluent Builder
+// =============================================================================
+
+// MeasureReportGroupStratifierStratumComponentBuilder provides a fluent API for constructing MeasureReportGroupStratifierStratumComponent values.
+type MeasureReportGroupStratifierStratumComponentBuilder struct {
+	measureReportGroupStratifierStratumComponent *MeasureReportGroupStratifierStratumComponent
+}
+
+// NewMeasureReportGroupStratifierStratumComponentBuilder creates a new MeasureReportGroupStratifierStratumComponentBuilder.
+func NewMeasureReportGroupStratifierStratumComponentBuilder() *MeasureReportGroupStratifierStratumComponentBuilder {
+	return &MeasureReportGroupStratifierStratumComponentBuilder{
+		measureReportGroupStratifierStratumComponent: &MeasureReportGroupStratifierStratumComponent{},
+	}
+}
+
+// Build returns the constructed MeasureReportGroupStratifierStratumComponent.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MeasureReportGroupStratifierStratumComponentBuilder) Build() MeasureReportGroupStratifierStratumComponent {
+	return *b.measureReportGroupStratifierStratumComponent
+}
+
+// SetId sets the Id field.
+func (b *MeasureReportGroupStratifierStratumComponentBuilder) SetId(v string) *MeasureReportGroupStratifierStratumComponentBuilder {
+	b.measureReportGroupStratifierStratumComponent.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MeasureReportGroupStratifierStratumComponentBuilder) AddExtension(v Extension) *MeasureReportGroupStratifierStratumComponentBuilder {
+	b.measureReportGroupStratifierStratumComponent.Extension = append(b.measureReportGroupStratifierStratumComponent.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MeasureReportGroupStratifierStratumComponentBuilder) AddModifierExtension(v Extension) *MeasureReportGroupStratifierStratumComponentBuilder {
+	b.measureReportGroupStratifierStratumComponent.ModifierExtension = append(b.measureReportGroupStratifierStratumComponent.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MeasureReportGroupStratifierStratumComponentBuilder) SetCode(v CodeableConcept) *MeasureReportGroupStratifierStratumComponentBuilder {
+	b.measureReportGroupStratifierStratumComponent.Code = &v
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *MeasureReportGroupStratifierStratumComponentBuilder) SetValue(v CodeableConcept) *MeasureReportGroupStratifierStratumComponentBuilder {
+	b.measureReportGroupStratifierStratumComponent.Value = &v
+	return b
+}
+
+// =============================================================================
+// MeasureReportGroupStratifierStratumPopulation - Fluent Builder
+// =============================================================================
+
+// MeasureReportGroupStratifierStratumPopulationBuilder provides a fluent API for constructing MeasureReportGroupStratifierStratumPopulation values.
+type MeasureReportGroupStratifierStratumPopulationBuilder struct {
+	measureReportGroupStratifierStratumPopulation *MeasureReportGroupStratifierStratumPopulation
+}
+
+// NewMeasureReportGroupStratifierStratumPopulationBuilder creates a new MeasureReportGroupStratifierStratumPopulationBuilder.
+func NewMeasureReportGroupStratifierStratumPopulationBuilder() *MeasureReportGroupStratifierStratumPopulationBuilder {
+	return &MeasureReportGroupStratifierStratumPopulationBuilder{
+		measureReportGroupStratifierStratumPopulation: &MeasureReportGroupStratifierStratumPopulation{},
+	}
+}
+
+// Build returns the constructed MeasureReportGroupStratifierStratumPopulation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MeasureReportGroupStratifierStratumPopulationBuilder) Build() MeasureReportGroupStratifierStratumPopulation {
+	return *b.measureReportGroupStratifierStratumPopulation
+}
+
+// SetId sets the Id field.
+func (b *MeasureReportGroupStratifierStratumPopulationBuilder) SetId(v string) *MeasureReportGroupStratifierStratumPopulationBuilder {
+	b.measureReportGroupStratifierStratumPopulation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MeasureReportGroupStratifierStratumPopulationBuilder) AddExtension(v Extension) *MeasureReportGroupStratifierStratumPopulationBuilder {
+	b.measureReportGroupStratifierStratumPopulation.Extension = append(b.measureReportGroupStratifierStratumPopulation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MeasureReportGroupStratifierStratumPopulationBuilder) AddModifierExtension(v Extension) *MeasureReportGroupStratifierStratumPopulationBuilder {
+	b.measureReportGroupStratifierStratumPopulation.ModifierExtension = append(b.measureReportGroupStratifierStratumPopulation.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MeasureReportGroupStratifierStratumPopulationBuilder) SetCode(v CodeableConcept) *MeasureReportGroupStratifierStratumPopulationBuilder {
+	b.measureReportGroupStratifierStratumPopulation.Code = &v
+	return b
+}
+
+// SetCount sets the Count field.
+func (b *MeasureReportGroupStratifierStratumPopulationBuilder) SetCount(v int) *MeasureReportGroupStratifierStratumPopulationBuilder {
+	b.measureReportGroupStratifierStratumPopulation.Count = &v
+	return b
+}
+
+// SetSubjectResults sets the SubjectResults field.
+func (b *MeasureReportGroupStratifierStratumPopulationBuilder) SetSubjectResults(v Reference) *MeasureReportGroupStratifierStratumPopulationBuilder {
+	b.measureReportGroupStratifierStratumPopulation.SubjectResults = &v
+	return b
+}
+
+// SetCountExt sets the extensions carried by Count, serialized as
+// "_count".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureReportGroupStratifierStratumPopulationBuilder) SetCountExt(v Element) *MeasureReportGroupStratifierStratumPopulationBuilder {
+	b.measureReportGroupStratifierStratumPopulation.CountExt = &v
+	return b
+}

@@ -668,3 +668,142 @@ func (b *EndpointBuilder) AddHeader(v string) *EndpointBuilder {
 	b.endpoint.Header = append(b.endpoint.Header, &v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EndpointBuilder) SetImplicitRulesExt(v Element) *EndpointBuilder {
+	b.endpoint.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EndpointBuilder) SetLanguageExt(v Element) *EndpointBuilder {
+	b.endpoint.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EndpointBuilder) SetStatusExt(v Element) *EndpointBuilder {
+	b.endpoint.StatusExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EndpointBuilder) SetNameExt(v Element) *EndpointBuilder {
+	b.endpoint.NameExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EndpointBuilder) SetDescriptionExt(v Element) *EndpointBuilder {
+	b.endpoint.DescriptionExt = &v
+	return b
+}
+
+// SetAddressExt sets the extensions carried by Address, serialized as
+// "_address".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EndpointBuilder) SetAddressExt(v Element) *EndpointBuilder {
+	b.endpoint.AddressExt = &v
+	return b
+}
+
+// AddHeaderExt appends an extension slot for Header.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *EndpointBuilder) AddHeaderExt(v *Element) *EndpointBuilder {
+	b.endpoint.HeaderExt = append(b.endpoint.HeaderExt, v)
+	return b
+}
+
+// =============================================================================
+// EndpointPayload - Fluent Builder
+// =============================================================================
+
+// EndpointPayloadBuilder provides a fluent API for constructing EndpointPayload values.
+type EndpointPayloadBuilder struct {
+	endpointPayload *EndpointPayload
+}
+
+// NewEndpointPayloadBuilder creates a new EndpointPayloadBuilder.
+func NewEndpointPayloadBuilder() *EndpointPayloadBuilder {
+	return &EndpointPayloadBuilder{
+		endpointPayload: &EndpointPayload{},
+	}
+}
+
+// Build returns the constructed EndpointPayload.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *EndpointPayloadBuilder) Build() EndpointPayload {
+	return *b.endpointPayload
+}
+
+// SetId sets the Id field.
+func (b *EndpointPayloadBuilder) SetId(v string) *EndpointPayloadBuilder {
+	b.endpointPayload.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *EndpointPayloadBuilder) AddExtension(v Extension) *EndpointPayloadBuilder {
+	b.endpointPayload.Extension = append(b.endpointPayload.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *EndpointPayloadBuilder) AddModifierExtension(v Extension) *EndpointPayloadBuilder {
+	b.endpointPayload.ModifierExtension = append(b.endpointPayload.ModifierExtension, v)
+	return b
+}
+
+// AddType adds a Type element.
+func (b *EndpointPayloadBuilder) AddType(v CodeableConcept) *EndpointPayloadBuilder {
+	b.endpointPayload.Type = append(b.endpointPayload.Type, v)
+	return b
+}
+
+// AddMimeType adds a MimeType element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *EndpointPayloadBuilder) AddMimeType(v string) *EndpointPayloadBuilder {
+	b.endpointPayload.MimeType = append(b.endpointPayload.MimeType, &v)
+	return b
+}
+
+// AddMimeTypeExt appends an extension slot for MimeType.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *EndpointPayloadBuilder) AddMimeTypeExt(v *Element) *EndpointPayloadBuilder {
+	b.endpointPayload.MimeTypeExt = append(b.endpointPayload.MimeTypeExt, v)
+	return b
+}

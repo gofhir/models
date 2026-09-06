@@ -2594,3 +2594,1914 @@ func (b *StructureMapBuilder) AddGroup(v StructureMapGroup) *StructureMapBuilder
 	b.structureMap.Group = append(b.structureMap.Group, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetImplicitRulesExt(v Element) *StructureMapBuilder {
+	b.structureMap.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetLanguageExt(v Element) *StructureMapBuilder {
+	b.structureMap.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetUrlExt(v Element) *StructureMapBuilder {
+	b.structureMap.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetVersionExt(v Element) *StructureMapBuilder {
+	b.structureMap.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetNameExt(v Element) *StructureMapBuilder {
+	b.structureMap.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetTitleExt(v Element) *StructureMapBuilder {
+	b.structureMap.TitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetStatusExt(v Element) *StructureMapBuilder {
+	b.structureMap.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetExperimentalExt(v Element) *StructureMapBuilder {
+	b.structureMap.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetDateExt(v Element) *StructureMapBuilder {
+	b.structureMap.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetPublisherExt(v Element) *StructureMapBuilder {
+	b.structureMap.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetDescriptionExt(v Element) *StructureMapBuilder {
+	b.structureMap.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetPurposeExt(v Element) *StructureMapBuilder {
+	b.structureMap.PurposeExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapBuilder) SetCopyrightExt(v Element) *StructureMapBuilder {
+	b.structureMap.CopyrightExt = &v
+	return b
+}
+
+// AddImportExt appends an extension slot for Import.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *StructureMapBuilder) AddImportExt(v *Element) *StructureMapBuilder {
+	b.structureMap.ImportExt = append(b.structureMap.ImportExt, v)
+	return b
+}
+
+// =============================================================================
+// StructureMapGroup - Fluent Builder
+// =============================================================================
+
+// StructureMapGroupBuilder provides a fluent API for constructing StructureMapGroup values.
+type StructureMapGroupBuilder struct {
+	structureMapGroup *StructureMapGroup
+}
+
+// NewStructureMapGroupBuilder creates a new StructureMapGroupBuilder.
+func NewStructureMapGroupBuilder() *StructureMapGroupBuilder {
+	return &StructureMapGroupBuilder{
+		structureMapGroup: &StructureMapGroup{},
+	}
+}
+
+// Build returns the constructed StructureMapGroup.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *StructureMapGroupBuilder) Build() StructureMapGroup {
+	return *b.structureMapGroup
+}
+
+// SetId sets the Id field.
+func (b *StructureMapGroupBuilder) SetId(v string) *StructureMapGroupBuilder {
+	b.structureMapGroup.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *StructureMapGroupBuilder) AddExtension(v Extension) *StructureMapGroupBuilder {
+	b.structureMapGroup.Extension = append(b.structureMapGroup.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *StructureMapGroupBuilder) AddModifierExtension(v Extension) *StructureMapGroupBuilder {
+	b.structureMapGroup.ModifierExtension = append(b.structureMapGroup.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *StructureMapGroupBuilder) SetName(v string) *StructureMapGroupBuilder {
+	b.structureMapGroup.Name = &v
+	return b
+}
+
+// SetExtends sets the Extends field.
+func (b *StructureMapGroupBuilder) SetExtends(v string) *StructureMapGroupBuilder {
+	b.structureMapGroup.Extends = &v
+	return b
+}
+
+// SetTypeMode sets the TypeMode field.
+func (b *StructureMapGroupBuilder) SetTypeMode(v StructureMapGroupTypeMode) *StructureMapGroupBuilder {
+	b.structureMapGroup.TypeMode = &v
+	return b
+}
+
+// SetDocumentation sets the Documentation field.
+func (b *StructureMapGroupBuilder) SetDocumentation(v string) *StructureMapGroupBuilder {
+	b.structureMapGroup.Documentation = &v
+	return b
+}
+
+// AddInput adds a Input element.
+func (b *StructureMapGroupBuilder) AddInput(v StructureMapGroupInput) *StructureMapGroupBuilder {
+	b.structureMapGroup.Input = append(b.structureMapGroup.Input, v)
+	return b
+}
+
+// AddRule adds a Rule element.
+func (b *StructureMapGroupBuilder) AddRule(v StructureMapGroupRule) *StructureMapGroupBuilder {
+	b.structureMapGroup.Rule = append(b.structureMapGroup.Rule, v)
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupBuilder) SetNameExt(v Element) *StructureMapGroupBuilder {
+	b.structureMapGroup.NameExt = &v
+	return b
+}
+
+// SetExtendsExt sets the extensions carried by Extends, serialized as
+// "_extends".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupBuilder) SetExtendsExt(v Element) *StructureMapGroupBuilder {
+	b.structureMapGroup.ExtendsExt = &v
+	return b
+}
+
+// SetTypeModeExt sets the extensions carried by TypeMode, serialized as
+// "_typeMode".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupBuilder) SetTypeModeExt(v Element) *StructureMapGroupBuilder {
+	b.structureMapGroup.TypeModeExt = &v
+	return b
+}
+
+// SetDocumentationExt sets the extensions carried by Documentation, serialized as
+// "_documentation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupBuilder) SetDocumentationExt(v Element) *StructureMapGroupBuilder {
+	b.structureMapGroup.DocumentationExt = &v
+	return b
+}
+
+// =============================================================================
+// StructureMapGroupInput - Fluent Builder
+// =============================================================================
+
+// StructureMapGroupInputBuilder provides a fluent API for constructing StructureMapGroupInput values.
+type StructureMapGroupInputBuilder struct {
+	structureMapGroupInput *StructureMapGroupInput
+}
+
+// NewStructureMapGroupInputBuilder creates a new StructureMapGroupInputBuilder.
+func NewStructureMapGroupInputBuilder() *StructureMapGroupInputBuilder {
+	return &StructureMapGroupInputBuilder{
+		structureMapGroupInput: &StructureMapGroupInput{},
+	}
+}
+
+// Build returns the constructed StructureMapGroupInput.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *StructureMapGroupInputBuilder) Build() StructureMapGroupInput {
+	return *b.structureMapGroupInput
+}
+
+// SetId sets the Id field.
+func (b *StructureMapGroupInputBuilder) SetId(v string) *StructureMapGroupInputBuilder {
+	b.structureMapGroupInput.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *StructureMapGroupInputBuilder) AddExtension(v Extension) *StructureMapGroupInputBuilder {
+	b.structureMapGroupInput.Extension = append(b.structureMapGroupInput.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *StructureMapGroupInputBuilder) AddModifierExtension(v Extension) *StructureMapGroupInputBuilder {
+	b.structureMapGroupInput.ModifierExtension = append(b.structureMapGroupInput.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *StructureMapGroupInputBuilder) SetName(v string) *StructureMapGroupInputBuilder {
+	b.structureMapGroupInput.Name = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *StructureMapGroupInputBuilder) SetType(v string) *StructureMapGroupInputBuilder {
+	b.structureMapGroupInput.Type = &v
+	return b
+}
+
+// SetMode sets the Mode field.
+func (b *StructureMapGroupInputBuilder) SetMode(v StructureMapInputMode) *StructureMapGroupInputBuilder {
+	b.structureMapGroupInput.Mode = &v
+	return b
+}
+
+// SetDocumentation sets the Documentation field.
+func (b *StructureMapGroupInputBuilder) SetDocumentation(v string) *StructureMapGroupInputBuilder {
+	b.structureMapGroupInput.Documentation = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupInputBuilder) SetNameExt(v Element) *StructureMapGroupInputBuilder {
+	b.structureMapGroupInput.NameExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupInputBuilder) SetTypeExt(v Element) *StructureMapGroupInputBuilder {
+	b.structureMapGroupInput.TypeExt = &v
+	return b
+}
+
+// SetModeExt sets the extensions carried by Mode, serialized as
+// "_mode".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupInputBuilder) SetModeExt(v Element) *StructureMapGroupInputBuilder {
+	b.structureMapGroupInput.ModeExt = &v
+	return b
+}
+
+// SetDocumentationExt sets the extensions carried by Documentation, serialized as
+// "_documentation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupInputBuilder) SetDocumentationExt(v Element) *StructureMapGroupInputBuilder {
+	b.structureMapGroupInput.DocumentationExt = &v
+	return b
+}
+
+// =============================================================================
+// StructureMapGroupRule - Fluent Builder
+// =============================================================================
+
+// StructureMapGroupRuleBuilder provides a fluent API for constructing StructureMapGroupRule values.
+type StructureMapGroupRuleBuilder struct {
+	structureMapGroupRule *StructureMapGroupRule
+}
+
+// NewStructureMapGroupRuleBuilder creates a new StructureMapGroupRuleBuilder.
+func NewStructureMapGroupRuleBuilder() *StructureMapGroupRuleBuilder {
+	return &StructureMapGroupRuleBuilder{
+		structureMapGroupRule: &StructureMapGroupRule{},
+	}
+}
+
+// Build returns the constructed StructureMapGroupRule.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *StructureMapGroupRuleBuilder) Build() StructureMapGroupRule {
+	return *b.structureMapGroupRule
+}
+
+// SetId sets the Id field.
+func (b *StructureMapGroupRuleBuilder) SetId(v string) *StructureMapGroupRuleBuilder {
+	b.structureMapGroupRule.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *StructureMapGroupRuleBuilder) AddExtension(v Extension) *StructureMapGroupRuleBuilder {
+	b.structureMapGroupRule.Extension = append(b.structureMapGroupRule.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *StructureMapGroupRuleBuilder) AddModifierExtension(v Extension) *StructureMapGroupRuleBuilder {
+	b.structureMapGroupRule.ModifierExtension = append(b.structureMapGroupRule.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *StructureMapGroupRuleBuilder) SetName(v string) *StructureMapGroupRuleBuilder {
+	b.structureMapGroupRule.Name = &v
+	return b
+}
+
+// AddSource adds a Source element.
+func (b *StructureMapGroupRuleBuilder) AddSource(v StructureMapGroupRuleSource) *StructureMapGroupRuleBuilder {
+	b.structureMapGroupRule.Source = append(b.structureMapGroupRule.Source, v)
+	return b
+}
+
+// AddTarget adds a Target element.
+func (b *StructureMapGroupRuleBuilder) AddTarget(v StructureMapGroupRuleTarget) *StructureMapGroupRuleBuilder {
+	b.structureMapGroupRule.Target = append(b.structureMapGroupRule.Target, v)
+	return b
+}
+
+// AddRule adds a Rule element.
+func (b *StructureMapGroupRuleBuilder) AddRule(v StructureMapGroupRule) *StructureMapGroupRuleBuilder {
+	b.structureMapGroupRule.Rule = append(b.structureMapGroupRule.Rule, v)
+	return b
+}
+
+// AddDependent adds a Dependent element.
+func (b *StructureMapGroupRuleBuilder) AddDependent(v StructureMapGroupRuleDependent) *StructureMapGroupRuleBuilder {
+	b.structureMapGroupRule.Dependent = append(b.structureMapGroupRule.Dependent, v)
+	return b
+}
+
+// SetDocumentation sets the Documentation field.
+func (b *StructureMapGroupRuleBuilder) SetDocumentation(v string) *StructureMapGroupRuleBuilder {
+	b.structureMapGroupRule.Documentation = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleBuilder) SetNameExt(v Element) *StructureMapGroupRuleBuilder {
+	b.structureMapGroupRule.NameExt = &v
+	return b
+}
+
+// SetDocumentationExt sets the extensions carried by Documentation, serialized as
+// "_documentation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleBuilder) SetDocumentationExt(v Element) *StructureMapGroupRuleBuilder {
+	b.structureMapGroupRule.DocumentationExt = &v
+	return b
+}
+
+// =============================================================================
+// StructureMapGroupRuleDependent - Fluent Builder
+// =============================================================================
+
+// StructureMapGroupRuleDependentBuilder provides a fluent API for constructing StructureMapGroupRuleDependent values.
+type StructureMapGroupRuleDependentBuilder struct {
+	structureMapGroupRuleDependent *StructureMapGroupRuleDependent
+}
+
+// NewStructureMapGroupRuleDependentBuilder creates a new StructureMapGroupRuleDependentBuilder.
+func NewStructureMapGroupRuleDependentBuilder() *StructureMapGroupRuleDependentBuilder {
+	return &StructureMapGroupRuleDependentBuilder{
+		structureMapGroupRuleDependent: &StructureMapGroupRuleDependent{},
+	}
+}
+
+// Build returns the constructed StructureMapGroupRuleDependent.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *StructureMapGroupRuleDependentBuilder) Build() StructureMapGroupRuleDependent {
+	return *b.structureMapGroupRuleDependent
+}
+
+// SetId sets the Id field.
+func (b *StructureMapGroupRuleDependentBuilder) SetId(v string) *StructureMapGroupRuleDependentBuilder {
+	b.structureMapGroupRuleDependent.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *StructureMapGroupRuleDependentBuilder) AddExtension(v Extension) *StructureMapGroupRuleDependentBuilder {
+	b.structureMapGroupRuleDependent.Extension = append(b.structureMapGroupRuleDependent.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *StructureMapGroupRuleDependentBuilder) AddModifierExtension(v Extension) *StructureMapGroupRuleDependentBuilder {
+	b.structureMapGroupRuleDependent.ModifierExtension = append(b.structureMapGroupRuleDependent.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *StructureMapGroupRuleDependentBuilder) SetName(v string) *StructureMapGroupRuleDependentBuilder {
+	b.structureMapGroupRuleDependent.Name = &v
+	return b
+}
+
+// AddVariable adds a Variable element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *StructureMapGroupRuleDependentBuilder) AddVariable(v string) *StructureMapGroupRuleDependentBuilder {
+	b.structureMapGroupRuleDependent.Variable = append(b.structureMapGroupRuleDependent.Variable, &v)
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleDependentBuilder) SetNameExt(v Element) *StructureMapGroupRuleDependentBuilder {
+	b.structureMapGroupRuleDependent.NameExt = &v
+	return b
+}
+
+// AddVariableExt appends an extension slot for Variable.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *StructureMapGroupRuleDependentBuilder) AddVariableExt(v *Element) *StructureMapGroupRuleDependentBuilder {
+	b.structureMapGroupRuleDependent.VariableExt = append(b.structureMapGroupRuleDependent.VariableExt, v)
+	return b
+}
+
+// =============================================================================
+// StructureMapGroupRuleSource - Fluent Builder
+// =============================================================================
+
+// StructureMapGroupRuleSourceBuilder provides a fluent API for constructing StructureMapGroupRuleSource values.
+type StructureMapGroupRuleSourceBuilder struct {
+	structureMapGroupRuleSource *StructureMapGroupRuleSource
+}
+
+// NewStructureMapGroupRuleSourceBuilder creates a new StructureMapGroupRuleSourceBuilder.
+func NewStructureMapGroupRuleSourceBuilder() *StructureMapGroupRuleSourceBuilder {
+	return &StructureMapGroupRuleSourceBuilder{
+		structureMapGroupRuleSource: &StructureMapGroupRuleSource{},
+	}
+}
+
+// Build returns the constructed StructureMapGroupRuleSource.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *StructureMapGroupRuleSourceBuilder) Build() StructureMapGroupRuleSource {
+	return *b.structureMapGroupRuleSource
+}
+
+// SetId sets the Id field.
+func (b *StructureMapGroupRuleSourceBuilder) SetId(v string) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *StructureMapGroupRuleSourceBuilder) AddExtension(v Extension) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.Extension = append(b.structureMapGroupRuleSource.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *StructureMapGroupRuleSourceBuilder) AddModifierExtension(v Extension) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.ModifierExtension = append(b.structureMapGroupRuleSource.ModifierExtension, v)
+	return b
+}
+
+// SetContext sets the Context field.
+func (b *StructureMapGroupRuleSourceBuilder) SetContext(v string) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.Context = &v
+	return b
+}
+
+// SetMin sets the Min field.
+func (b *StructureMapGroupRuleSourceBuilder) SetMin(v int) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.Min = &v
+	return b
+}
+
+// SetMax sets the Max field.
+func (b *StructureMapGroupRuleSourceBuilder) SetMax(v string) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.Max = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *StructureMapGroupRuleSourceBuilder) SetType(v string) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.Type = &v
+	return b
+}
+
+// SetDefaultValueBase64Binary sets DefaultValue[x] to its DefaultValueBase64Binary variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueBase64Binary(v string) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueBase64Binary = &v
+	return b
+}
+
+// SetDefaultValueBase64BinaryExt sets the DefaultValueBase64BinaryExt field.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueBase64BinaryExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.DefaultValueBase64BinaryExt = &v
+	return b
+}
+
+// SetDefaultValueBoolean sets DefaultValue[x] to its DefaultValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueBoolean(v bool) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueBoolean = &v
+	return b
+}
+
+// SetDefaultValueBooleanExt sets the DefaultValueBooleanExt field.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueBooleanExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.DefaultValueBooleanExt = &v
+	return b
+}
+
+// SetDefaultValueCanonical sets DefaultValue[x] to its DefaultValueCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueCanonical(v string) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueCanonical = &v
+	return b
+}
+
+// SetDefaultValueCanonicalExt sets the DefaultValueCanonicalExt field.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueCanonicalExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.DefaultValueCanonicalExt = &v
+	return b
+}
+
+// SetDefaultValueCode sets DefaultValue[x] to its DefaultValueCode variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueCode(v string) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueCode = &v
+	return b
+}
+
+// SetDefaultValueCodeExt sets the DefaultValueCodeExt field.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueCodeExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.DefaultValueCodeExt = &v
+	return b
+}
+
+// SetDefaultValueDate sets DefaultValue[x] to its DefaultValueDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueDate(v string) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueDate = &v
+	return b
+}
+
+// SetDefaultValueDateExt sets the DefaultValueDateExt field.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueDateExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.DefaultValueDateExt = &v
+	return b
+}
+
+// SetDefaultValueDateTime sets DefaultValue[x] to its DefaultValueDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueDateTime(v string) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueDateTime = &v
+	return b
+}
+
+// SetDefaultValueDateTimeExt sets the DefaultValueDateTimeExt field.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueDateTimeExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.DefaultValueDateTimeExt = &v
+	return b
+}
+
+// SetDefaultValueDecimal sets DefaultValue[x] to its DefaultValueDecimal variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueDecimal(v Decimal) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueDecimal = &v
+	return b
+}
+
+// SetDefaultValueDecimalExt sets the DefaultValueDecimalExt field.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueDecimalExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.DefaultValueDecimalExt = &v
+	return b
+}
+
+// SetDefaultValueId sets DefaultValue[x] to its DefaultValueId variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueId(v string) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueId = &v
+	return b
+}
+
+// SetDefaultValueIdExt sets the DefaultValueIdExt field.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueIdExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.DefaultValueIdExt = &v
+	return b
+}
+
+// SetDefaultValueInstant sets DefaultValue[x] to its DefaultValueInstant variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueInstant(v string) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueInstant = &v
+	return b
+}
+
+// SetDefaultValueInstantExt sets the DefaultValueInstantExt field.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueInstantExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.DefaultValueInstantExt = &v
+	return b
+}
+
+// SetDefaultValueInteger sets DefaultValue[x] to its DefaultValueInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueInteger(v int) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueInteger = &v
+	return b
+}
+
+// SetDefaultValueIntegerExt sets the DefaultValueIntegerExt field.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueIntegerExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.DefaultValueIntegerExt = &v
+	return b
+}
+
+// SetDefaultValueMarkdown sets DefaultValue[x] to its DefaultValueMarkdown variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueMarkdown(v string) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueMarkdown = &v
+	return b
+}
+
+// SetDefaultValueMarkdownExt sets the DefaultValueMarkdownExt field.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueMarkdownExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.DefaultValueMarkdownExt = &v
+	return b
+}
+
+// SetDefaultValueOid sets DefaultValue[x] to its DefaultValueOid variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueOid(v string) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueOid = &v
+	return b
+}
+
+// SetDefaultValueOidExt sets the DefaultValueOidExt field.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueOidExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.DefaultValueOidExt = &v
+	return b
+}
+
+// SetDefaultValuePositiveInt sets DefaultValue[x] to its DefaultValuePositiveInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValuePositiveInt(v uint32) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValuePositiveInt = &v
+	return b
+}
+
+// SetDefaultValuePositiveIntExt sets the DefaultValuePositiveIntExt field.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValuePositiveIntExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.DefaultValuePositiveIntExt = &v
+	return b
+}
+
+// SetDefaultValueString sets DefaultValue[x] to its DefaultValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueString(v string) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueString = &v
+	return b
+}
+
+// SetDefaultValueStringExt sets the DefaultValueStringExt field.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueStringExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.DefaultValueStringExt = &v
+	return b
+}
+
+// SetDefaultValueTime sets DefaultValue[x] to its DefaultValueTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueTime(v string) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueTime = &v
+	return b
+}
+
+// SetDefaultValueTimeExt sets the DefaultValueTimeExt field.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueTimeExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.DefaultValueTimeExt = &v
+	return b
+}
+
+// SetDefaultValueUnsignedInt sets DefaultValue[x] to its DefaultValueUnsignedInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueUnsignedInt(v uint32) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueUnsignedInt = &v
+	return b
+}
+
+// SetDefaultValueUnsignedIntExt sets the DefaultValueUnsignedIntExt field.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueUnsignedIntExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.DefaultValueUnsignedIntExt = &v
+	return b
+}
+
+// SetDefaultValueUri sets DefaultValue[x] to its DefaultValueUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueUri(v string) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueUri = &v
+	return b
+}
+
+// SetDefaultValueUriExt sets the DefaultValueUriExt field.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueUriExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.DefaultValueUriExt = &v
+	return b
+}
+
+// SetDefaultValueUrl sets DefaultValue[x] to its DefaultValueUrl variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueUrl(v string) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueUrl = &v
+	return b
+}
+
+// SetDefaultValueUrlExt sets the DefaultValueUrlExt field.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueUrlExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.DefaultValueUrlExt = &v
+	return b
+}
+
+// SetDefaultValueUuid sets DefaultValue[x] to its DefaultValueUuid variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueUuid(v string) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueUuid = &v
+	return b
+}
+
+// SetDefaultValueUuidExt sets the DefaultValueUuidExt field.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueUuidExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.DefaultValueUuidExt = &v
+	return b
+}
+
+// SetDefaultValueAddress sets DefaultValue[x] to its DefaultValueAddress variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueAddress(v Address) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueAddress = &v
+	return b
+}
+
+// SetDefaultValueAge sets DefaultValue[x] to its DefaultValueAge variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueAge(v Age) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueAge = &v
+	return b
+}
+
+// SetDefaultValueAnnotation sets DefaultValue[x] to its DefaultValueAnnotation variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueAnnotation(v Annotation) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueAnnotation = &v
+	return b
+}
+
+// SetDefaultValueAttachment sets DefaultValue[x] to its DefaultValueAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueAttachment(v Attachment) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueAttachment = &v
+	return b
+}
+
+// SetDefaultValueCodeableConcept sets DefaultValue[x] to its DefaultValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueCodeableConcept(v CodeableConcept) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueCodeableConcept = &v
+	return b
+}
+
+// SetDefaultValueCoding sets DefaultValue[x] to its DefaultValueCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueCoding(v Coding) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueCoding = &v
+	return b
+}
+
+// SetDefaultValueContactPoint sets DefaultValue[x] to its DefaultValueContactPoint variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueContactPoint(v ContactPoint) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueContactPoint = &v
+	return b
+}
+
+// SetDefaultValueCount sets DefaultValue[x] to its DefaultValueCount variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueCount(v Count) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueCount = &v
+	return b
+}
+
+// SetDefaultValueDistance sets DefaultValue[x] to its DefaultValueDistance variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueDistance(v Distance) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueDistance = &v
+	return b
+}
+
+// SetDefaultValueDuration sets DefaultValue[x] to its DefaultValueDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueDuration(v Duration) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueDuration = &v
+	return b
+}
+
+// SetDefaultValueHumanName sets DefaultValue[x] to its DefaultValueHumanName variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueHumanName(v HumanName) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueHumanName = &v
+	return b
+}
+
+// SetDefaultValueIdentifier sets DefaultValue[x] to its DefaultValueIdentifier variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueIdentifier(v Identifier) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueIdentifier = &v
+	return b
+}
+
+// SetDefaultValueMoney sets DefaultValue[x] to its DefaultValueMoney variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueMoney(v Money) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueMoney = &v
+	return b
+}
+
+// SetDefaultValuePeriod sets DefaultValue[x] to its DefaultValuePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValuePeriod(v Period) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValuePeriod = &v
+	return b
+}
+
+// SetDefaultValueQuantity sets DefaultValue[x] to its DefaultValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueQuantity(v Quantity) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueQuantity = &v
+	return b
+}
+
+// SetDefaultValueRange sets DefaultValue[x] to its DefaultValueRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueRange(v Range) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueRange = &v
+	return b
+}
+
+// SetDefaultValueRatio sets DefaultValue[x] to its DefaultValueRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueRatio(v Ratio) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueRatio = &v
+	return b
+}
+
+// SetDefaultValueReference sets DefaultValue[x] to its DefaultValueReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueReference(v Reference) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueReference = &v
+	return b
+}
+
+// SetDefaultValueSampledData sets DefaultValue[x] to its DefaultValueSampledData variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueSampledData(v SampledData) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueSampledData = &v
+	return b
+}
+
+// SetDefaultValueSignature sets DefaultValue[x] to its DefaultValueSignature variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueSignature(v Signature) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueSignature = &v
+	return b
+}
+
+// SetDefaultValueTiming sets DefaultValue[x] to its DefaultValueTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueTiming(v Timing) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueTiming = &v
+	return b
+}
+
+// SetDefaultValueContactDetail sets DefaultValue[x] to its DefaultValueContactDetail variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueContactDetail(v ContactDetail) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueContactDetail = &v
+	return b
+}
+
+// SetDefaultValueContributor sets DefaultValue[x] to its DefaultValueContributor variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueContributor(v Contributor) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueContributor = &v
+	return b
+}
+
+// SetDefaultValueDataRequirement sets DefaultValue[x] to its DefaultValueDataRequirement variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueDataRequirement(v DataRequirement) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueDataRequirement = &v
+	return b
+}
+
+// SetDefaultValueExpression sets DefaultValue[x] to its DefaultValueExpression variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueExpression(v Expression) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueExpression = &v
+	return b
+}
+
+// SetDefaultValueParameterDefinition sets DefaultValue[x] to its DefaultValueParameterDefinition variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueParameterDefinition(v ParameterDefinition) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueParameterDefinition = &v
+	return b
+}
+
+// SetDefaultValueRelatedArtifact sets DefaultValue[x] to its DefaultValueRelatedArtifact variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueRelatedArtifact(v RelatedArtifact) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueRelatedArtifact = &v
+	return b
+}
+
+// SetDefaultValueTriggerDefinition sets DefaultValue[x] to its DefaultValueTriggerDefinition variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueTriggerDefinition(v TriggerDefinition) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueTriggerDefinition = &v
+	return b
+}
+
+// SetDefaultValueUsageContext sets DefaultValue[x] to its DefaultValueUsageContext variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueUsageContext(v UsageContext) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueUsageContext = &v
+	return b
+}
+
+// SetDefaultValueDosage sets DefaultValue[x] to its DefaultValueDosage variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueDosage(v Dosage) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueDosage = &v
+	return b
+}
+
+// SetDefaultValueMeta sets DefaultValue[x] to its DefaultValueMeta variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleSourceBuilder) SetDefaultValueMeta(v Meta) *StructureMapGroupRuleSourceBuilder {
+	b.clearDefaultValue()
+	b.structureMapGroupRuleSource.DefaultValueMeta = &v
+	return b
+}
+
+// SetElement sets the Element field.
+func (b *StructureMapGroupRuleSourceBuilder) SetElement(v string) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.Element = &v
+	return b
+}
+
+// SetListMode sets the ListMode field.
+func (b *StructureMapGroupRuleSourceBuilder) SetListMode(v StructureMapSourceListMode) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.ListMode = &v
+	return b
+}
+
+// SetVariable sets the Variable field.
+func (b *StructureMapGroupRuleSourceBuilder) SetVariable(v string) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.Variable = &v
+	return b
+}
+
+// SetCondition sets the Condition field.
+func (b *StructureMapGroupRuleSourceBuilder) SetCondition(v string) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.Condition = &v
+	return b
+}
+
+// SetCheck sets the Check field.
+func (b *StructureMapGroupRuleSourceBuilder) SetCheck(v string) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.Check = &v
+	return b
+}
+
+// SetLogMessage sets the LogMessage field.
+func (b *StructureMapGroupRuleSourceBuilder) SetLogMessage(v string) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.LogMessage = &v
+	return b
+}
+
+// SetContextExt sets the extensions carried by Context, serialized as
+// "_context".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleSourceBuilder) SetContextExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.ContextExt = &v
+	return b
+}
+
+// SetMinExt sets the extensions carried by Min, serialized as
+// "_min".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleSourceBuilder) SetMinExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.MinExt = &v
+	return b
+}
+
+// SetMaxExt sets the extensions carried by Max, serialized as
+// "_max".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleSourceBuilder) SetMaxExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.MaxExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleSourceBuilder) SetTypeExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.TypeExt = &v
+	return b
+}
+
+// SetElementExt sets the extensions carried by Element, serialized as
+// "_element".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleSourceBuilder) SetElementExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.ElementExt = &v
+	return b
+}
+
+// SetListModeExt sets the extensions carried by ListMode, serialized as
+// "_listMode".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleSourceBuilder) SetListModeExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.ListModeExt = &v
+	return b
+}
+
+// SetVariableExt sets the extensions carried by Variable, serialized as
+// "_variable".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleSourceBuilder) SetVariableExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.VariableExt = &v
+	return b
+}
+
+// SetConditionExt sets the extensions carried by Condition, serialized as
+// "_condition".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleSourceBuilder) SetConditionExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.ConditionExt = &v
+	return b
+}
+
+// SetCheckExt sets the extensions carried by Check, serialized as
+// "_check".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleSourceBuilder) SetCheckExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.CheckExt = &v
+	return b
+}
+
+// SetLogMessageExt sets the extensions carried by LogMessage, serialized as
+// "_logMessage".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleSourceBuilder) SetLogMessageExt(v Element) *StructureMapGroupRuleSourceBuilder {
+	b.structureMapGroupRuleSource.LogMessageExt = &v
+	return b
+}
+
+// clearDefaultValue unsets every variant of DefaultValue[x], including the
+// _field companions of the primitive ones.
+func (b *StructureMapGroupRuleSourceBuilder) clearDefaultValue() {
+	b.structureMapGroupRuleSource.DefaultValueBase64Binary = nil
+	b.structureMapGroupRuleSource.DefaultValueBoolean = nil
+	b.structureMapGroupRuleSource.DefaultValueBooleanExt = nil
+	b.structureMapGroupRuleSource.DefaultValueCanonical = nil
+	b.structureMapGroupRuleSource.DefaultValueCanonicalExt = nil
+	b.structureMapGroupRuleSource.DefaultValueCode = nil
+	b.structureMapGroupRuleSource.DefaultValueCodeExt = nil
+	b.structureMapGroupRuleSource.DefaultValueDate = nil
+	b.structureMapGroupRuleSource.DefaultValueDateExt = nil
+	b.structureMapGroupRuleSource.DefaultValueDateTime = nil
+	b.structureMapGroupRuleSource.DefaultValueDateTimeExt = nil
+	b.structureMapGroupRuleSource.DefaultValueDecimal = nil
+	b.structureMapGroupRuleSource.DefaultValueDecimalExt = nil
+	b.structureMapGroupRuleSource.DefaultValueId = nil
+	b.structureMapGroupRuleSource.DefaultValueIdExt = nil
+	b.structureMapGroupRuleSource.DefaultValueInstant = nil
+	b.structureMapGroupRuleSource.DefaultValueInstantExt = nil
+	b.structureMapGroupRuleSource.DefaultValueInteger = nil
+	b.structureMapGroupRuleSource.DefaultValueIntegerExt = nil
+	b.structureMapGroupRuleSource.DefaultValueMarkdown = nil
+	b.structureMapGroupRuleSource.DefaultValueMarkdownExt = nil
+	b.structureMapGroupRuleSource.DefaultValueOid = nil
+	b.structureMapGroupRuleSource.DefaultValueOidExt = nil
+	b.structureMapGroupRuleSource.DefaultValuePositiveInt = nil
+	b.structureMapGroupRuleSource.DefaultValuePositiveIntExt = nil
+	b.structureMapGroupRuleSource.DefaultValueString = nil
+	b.structureMapGroupRuleSource.DefaultValueStringExt = nil
+	b.structureMapGroupRuleSource.DefaultValueTime = nil
+	b.structureMapGroupRuleSource.DefaultValueTimeExt = nil
+	b.structureMapGroupRuleSource.DefaultValueUnsignedInt = nil
+	b.structureMapGroupRuleSource.DefaultValueUnsignedIntExt = nil
+	b.structureMapGroupRuleSource.DefaultValueUri = nil
+	b.structureMapGroupRuleSource.DefaultValueUriExt = nil
+	b.structureMapGroupRuleSource.DefaultValueUrl = nil
+	b.structureMapGroupRuleSource.DefaultValueUrlExt = nil
+	b.structureMapGroupRuleSource.DefaultValueUuid = nil
+	b.structureMapGroupRuleSource.DefaultValueUuidExt = nil
+	b.structureMapGroupRuleSource.DefaultValueAddress = nil
+	b.structureMapGroupRuleSource.DefaultValueAge = nil
+	b.structureMapGroupRuleSource.DefaultValueAnnotation = nil
+	b.structureMapGroupRuleSource.DefaultValueAttachment = nil
+	b.structureMapGroupRuleSource.DefaultValueCodeableConcept = nil
+	b.structureMapGroupRuleSource.DefaultValueCoding = nil
+	b.structureMapGroupRuleSource.DefaultValueContactPoint = nil
+	b.structureMapGroupRuleSource.DefaultValueCount = nil
+	b.structureMapGroupRuleSource.DefaultValueDistance = nil
+	b.structureMapGroupRuleSource.DefaultValueDuration = nil
+	b.structureMapGroupRuleSource.DefaultValueHumanName = nil
+	b.structureMapGroupRuleSource.DefaultValueIdentifier = nil
+	b.structureMapGroupRuleSource.DefaultValueMoney = nil
+	b.structureMapGroupRuleSource.DefaultValuePeriod = nil
+	b.structureMapGroupRuleSource.DefaultValueQuantity = nil
+	b.structureMapGroupRuleSource.DefaultValueRange = nil
+	b.structureMapGroupRuleSource.DefaultValueRatio = nil
+	b.structureMapGroupRuleSource.DefaultValueReference = nil
+	b.structureMapGroupRuleSource.DefaultValueSampledData = nil
+	b.structureMapGroupRuleSource.DefaultValueSignature = nil
+	b.structureMapGroupRuleSource.DefaultValueTiming = nil
+	b.structureMapGroupRuleSource.DefaultValueContactDetail = nil
+	b.structureMapGroupRuleSource.DefaultValueContributor = nil
+	b.structureMapGroupRuleSource.DefaultValueDataRequirement = nil
+	b.structureMapGroupRuleSource.DefaultValueExpression = nil
+	b.structureMapGroupRuleSource.DefaultValueParameterDefinition = nil
+	b.structureMapGroupRuleSource.DefaultValueRelatedArtifact = nil
+	b.structureMapGroupRuleSource.DefaultValueTriggerDefinition = nil
+	b.structureMapGroupRuleSource.DefaultValueUsageContext = nil
+	b.structureMapGroupRuleSource.DefaultValueDosage = nil
+	b.structureMapGroupRuleSource.DefaultValueMeta = nil
+}
+
+// =============================================================================
+// StructureMapGroupRuleTarget - Fluent Builder
+// =============================================================================
+
+// StructureMapGroupRuleTargetBuilder provides a fluent API for constructing StructureMapGroupRuleTarget values.
+type StructureMapGroupRuleTargetBuilder struct {
+	structureMapGroupRuleTarget *StructureMapGroupRuleTarget
+}
+
+// NewStructureMapGroupRuleTargetBuilder creates a new StructureMapGroupRuleTargetBuilder.
+func NewStructureMapGroupRuleTargetBuilder() *StructureMapGroupRuleTargetBuilder {
+	return &StructureMapGroupRuleTargetBuilder{
+		structureMapGroupRuleTarget: &StructureMapGroupRuleTarget{},
+	}
+}
+
+// Build returns the constructed StructureMapGroupRuleTarget.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *StructureMapGroupRuleTargetBuilder) Build() StructureMapGroupRuleTarget {
+	return *b.structureMapGroupRuleTarget
+}
+
+// SetId sets the Id field.
+func (b *StructureMapGroupRuleTargetBuilder) SetId(v string) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *StructureMapGroupRuleTargetBuilder) AddExtension(v Extension) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.Extension = append(b.structureMapGroupRuleTarget.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *StructureMapGroupRuleTargetBuilder) AddModifierExtension(v Extension) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.ModifierExtension = append(b.structureMapGroupRuleTarget.ModifierExtension, v)
+	return b
+}
+
+// SetContext sets the Context field.
+func (b *StructureMapGroupRuleTargetBuilder) SetContext(v string) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.Context = &v
+	return b
+}
+
+// SetContextType sets the ContextType field.
+func (b *StructureMapGroupRuleTargetBuilder) SetContextType(v StructureMapContextType) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.ContextType = &v
+	return b
+}
+
+// SetElement sets the Element field.
+func (b *StructureMapGroupRuleTargetBuilder) SetElement(v string) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.Element = &v
+	return b
+}
+
+// SetVariable sets the Variable field.
+func (b *StructureMapGroupRuleTargetBuilder) SetVariable(v string) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.Variable = &v
+	return b
+}
+
+// AddListMode adds a ListMode element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *StructureMapGroupRuleTargetBuilder) AddListMode(v StructureMapTargetListMode) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.ListMode = append(b.structureMapGroupRuleTarget.ListMode, &v)
+	return b
+}
+
+// SetListRuleId sets the ListRuleId field.
+func (b *StructureMapGroupRuleTargetBuilder) SetListRuleId(v string) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.ListRuleId = &v
+	return b
+}
+
+// SetTransform sets the Transform field.
+func (b *StructureMapGroupRuleTargetBuilder) SetTransform(v StructureMapTransform) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.Transform = &v
+	return b
+}
+
+// AddParameter adds a Parameter element.
+func (b *StructureMapGroupRuleTargetBuilder) AddParameter(v StructureMapGroupRuleTargetParameter) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.Parameter = append(b.structureMapGroupRuleTarget.Parameter, v)
+	return b
+}
+
+// SetContextExt sets the extensions carried by Context, serialized as
+// "_context".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleTargetBuilder) SetContextExt(v Element) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.ContextExt = &v
+	return b
+}
+
+// SetContextTypeExt sets the extensions carried by ContextType, serialized as
+// "_contextType".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleTargetBuilder) SetContextTypeExt(v Element) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.ContextTypeExt = &v
+	return b
+}
+
+// SetElementExt sets the extensions carried by Element, serialized as
+// "_element".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleTargetBuilder) SetElementExt(v Element) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.ElementExt = &v
+	return b
+}
+
+// SetVariableExt sets the extensions carried by Variable, serialized as
+// "_variable".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleTargetBuilder) SetVariableExt(v Element) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.VariableExt = &v
+	return b
+}
+
+// AddListModeExt appends an extension slot for ListMode.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *StructureMapGroupRuleTargetBuilder) AddListModeExt(v *Element) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.ListModeExt = append(b.structureMapGroupRuleTarget.ListModeExt, v)
+	return b
+}
+
+// SetListRuleIdExt sets the extensions carried by ListRuleId, serialized as
+// "_listRuleId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleTargetBuilder) SetListRuleIdExt(v Element) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.ListRuleIdExt = &v
+	return b
+}
+
+// SetTransformExt sets the extensions carried by Transform, serialized as
+// "_transform".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapGroupRuleTargetBuilder) SetTransformExt(v Element) *StructureMapGroupRuleTargetBuilder {
+	b.structureMapGroupRuleTarget.TransformExt = &v
+	return b
+}
+
+// =============================================================================
+// StructureMapGroupRuleTargetParameter - Fluent Builder
+// =============================================================================
+
+// StructureMapGroupRuleTargetParameterBuilder provides a fluent API for constructing StructureMapGroupRuleTargetParameter values.
+type StructureMapGroupRuleTargetParameterBuilder struct {
+	structureMapGroupRuleTargetParameter *StructureMapGroupRuleTargetParameter
+}
+
+// NewStructureMapGroupRuleTargetParameterBuilder creates a new StructureMapGroupRuleTargetParameterBuilder.
+func NewStructureMapGroupRuleTargetParameterBuilder() *StructureMapGroupRuleTargetParameterBuilder {
+	return &StructureMapGroupRuleTargetParameterBuilder{
+		structureMapGroupRuleTargetParameter: &StructureMapGroupRuleTargetParameter{},
+	}
+}
+
+// Build returns the constructed StructureMapGroupRuleTargetParameter.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *StructureMapGroupRuleTargetParameterBuilder) Build() StructureMapGroupRuleTargetParameter {
+	return *b.structureMapGroupRuleTargetParameter
+}
+
+// SetId sets the Id field.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetId(v string) *StructureMapGroupRuleTargetParameterBuilder {
+	b.structureMapGroupRuleTargetParameter.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *StructureMapGroupRuleTargetParameterBuilder) AddExtension(v Extension) *StructureMapGroupRuleTargetParameterBuilder {
+	b.structureMapGroupRuleTargetParameter.Extension = append(b.structureMapGroupRuleTargetParameter.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *StructureMapGroupRuleTargetParameterBuilder) AddModifierExtension(v Extension) *StructureMapGroupRuleTargetParameterBuilder {
+	b.structureMapGroupRuleTargetParameter.ModifierExtension = append(b.structureMapGroupRuleTargetParameter.ModifierExtension, v)
+	return b
+}
+
+// SetValueId sets Value[x] to its ValueId variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueId(v string) *StructureMapGroupRuleTargetParameterBuilder {
+	b.clearValue()
+	b.structureMapGroupRuleTargetParameter.ValueId = &v
+	return b
+}
+
+// SetValueIdExt sets the ValueIdExt field.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueIdExt(v Element) *StructureMapGroupRuleTargetParameterBuilder {
+	b.structureMapGroupRuleTargetParameter.ValueIdExt = &v
+	return b
+}
+
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueString(v string) *StructureMapGroupRuleTargetParameterBuilder {
+	b.clearValue()
+	b.structureMapGroupRuleTargetParameter.ValueString = &v
+	return b
+}
+
+// SetValueStringExt sets the ValueStringExt field.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueStringExt(v Element) *StructureMapGroupRuleTargetParameterBuilder {
+	b.structureMapGroupRuleTargetParameter.ValueStringExt = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueBoolean(v bool) *StructureMapGroupRuleTargetParameterBuilder {
+	b.clearValue()
+	b.structureMapGroupRuleTargetParameter.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueBooleanExt(v Element) *StructureMapGroupRuleTargetParameterBuilder {
+	b.structureMapGroupRuleTargetParameter.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueInteger sets Value[x] to its ValueInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueInteger(v int) *StructureMapGroupRuleTargetParameterBuilder {
+	b.clearValue()
+	b.structureMapGroupRuleTargetParameter.ValueInteger = &v
+	return b
+}
+
+// SetValueIntegerExt sets the ValueIntegerExt field.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueIntegerExt(v Element) *StructureMapGroupRuleTargetParameterBuilder {
+	b.structureMapGroupRuleTargetParameter.ValueIntegerExt = &v
+	return b
+}
+
+// SetValueDecimal sets Value[x] to its ValueDecimal variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueDecimal(v Decimal) *StructureMapGroupRuleTargetParameterBuilder {
+	b.clearValue()
+	b.structureMapGroupRuleTargetParameter.ValueDecimal = &v
+	return b
+}
+
+// SetValueDecimalExt sets the ValueDecimalExt field.
+func (b *StructureMapGroupRuleTargetParameterBuilder) SetValueDecimalExt(v Element) *StructureMapGroupRuleTargetParameterBuilder {
+	b.structureMapGroupRuleTargetParameter.ValueDecimalExt = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *StructureMapGroupRuleTargetParameterBuilder) clearValue() {
+	b.structureMapGroupRuleTargetParameter.ValueId = nil
+	b.structureMapGroupRuleTargetParameter.ValueString = nil
+	b.structureMapGroupRuleTargetParameter.ValueStringExt = nil
+	b.structureMapGroupRuleTargetParameter.ValueBoolean = nil
+	b.structureMapGroupRuleTargetParameter.ValueBooleanExt = nil
+	b.structureMapGroupRuleTargetParameter.ValueInteger = nil
+	b.structureMapGroupRuleTargetParameter.ValueIntegerExt = nil
+	b.structureMapGroupRuleTargetParameter.ValueDecimal = nil
+	b.structureMapGroupRuleTargetParameter.ValueDecimalExt = nil
+}
+
+// =============================================================================
+// StructureMapStructure - Fluent Builder
+// =============================================================================
+
+// StructureMapStructureBuilder provides a fluent API for constructing StructureMapStructure values.
+type StructureMapStructureBuilder struct {
+	structureMapStructure *StructureMapStructure
+}
+
+// NewStructureMapStructureBuilder creates a new StructureMapStructureBuilder.
+func NewStructureMapStructureBuilder() *StructureMapStructureBuilder {
+	return &StructureMapStructureBuilder{
+		structureMapStructure: &StructureMapStructure{},
+	}
+}
+
+// Build returns the constructed StructureMapStructure.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *StructureMapStructureBuilder) Build() StructureMapStructure {
+	return *b.structureMapStructure
+}
+
+// SetId sets the Id field.
+func (b *StructureMapStructureBuilder) SetId(v string) *StructureMapStructureBuilder {
+	b.structureMapStructure.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *StructureMapStructureBuilder) AddExtension(v Extension) *StructureMapStructureBuilder {
+	b.structureMapStructure.Extension = append(b.structureMapStructure.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *StructureMapStructureBuilder) AddModifierExtension(v Extension) *StructureMapStructureBuilder {
+	b.structureMapStructure.ModifierExtension = append(b.structureMapStructure.ModifierExtension, v)
+	return b
+}
+
+// SetUrl sets the Url field.
+func (b *StructureMapStructureBuilder) SetUrl(v string) *StructureMapStructureBuilder {
+	b.structureMapStructure.Url = &v
+	return b
+}
+
+// SetMode sets the Mode field.
+func (b *StructureMapStructureBuilder) SetMode(v StructureMapModelMode) *StructureMapStructureBuilder {
+	b.structureMapStructure.Mode = &v
+	return b
+}
+
+// SetAlias sets the Alias field.
+func (b *StructureMapStructureBuilder) SetAlias(v string) *StructureMapStructureBuilder {
+	b.structureMapStructure.Alias = &v
+	return b
+}
+
+// SetDocumentation sets the Documentation field.
+func (b *StructureMapStructureBuilder) SetDocumentation(v string) *StructureMapStructureBuilder {
+	b.structureMapStructure.Documentation = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapStructureBuilder) SetUrlExt(v Element) *StructureMapStructureBuilder {
+	b.structureMapStructure.UrlExt = &v
+	return b
+}
+
+// SetModeExt sets the extensions carried by Mode, serialized as
+// "_mode".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapStructureBuilder) SetModeExt(v Element) *StructureMapStructureBuilder {
+	b.structureMapStructure.ModeExt = &v
+	return b
+}
+
+// SetAliasExt sets the extensions carried by Alias, serialized as
+// "_alias".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapStructureBuilder) SetAliasExt(v Element) *StructureMapStructureBuilder {
+	b.structureMapStructure.AliasExt = &v
+	return b
+}
+
+// SetDocumentationExt sets the extensions carried by Documentation, serialized as
+// "_documentation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *StructureMapStructureBuilder) SetDocumentationExt(v Element) *StructureMapStructureBuilder {
+	b.structureMapStructure.DocumentationExt = &v
+	return b
+}

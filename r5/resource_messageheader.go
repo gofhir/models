@@ -973,10 +973,355 @@ func (b *MessageHeaderBuilder) SetDefinition(v string) *MessageHeaderBuilder {
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageHeaderBuilder) SetImplicitRulesExt(v Element) *MessageHeaderBuilder {
+	b.messageHeader.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageHeaderBuilder) SetLanguageExt(v Element) *MessageHeaderBuilder {
+	b.messageHeader.LanguageExt = &v
+	return b
+}
+
+// SetDefinitionExt sets the extensions carried by Definition, serialized as
+// "_definition".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageHeaderBuilder) SetDefinitionExt(v Element) *MessageHeaderBuilder {
+	b.messageHeader.DefinitionExt = &v
+	return b
+}
+
 // clearEvent unsets every variant of Event[x], including the
 // _field companions of the primitive ones.
 func (b *MessageHeaderBuilder) clearEvent() {
 	b.messageHeader.EventCoding = nil
 	b.messageHeader.EventCanonical = nil
 	b.messageHeader.EventCanonicalExt = nil
+}
+
+// =============================================================================
+// MessageHeaderDestination - Fluent Builder
+// =============================================================================
+
+// MessageHeaderDestinationBuilder provides a fluent API for constructing MessageHeaderDestination values.
+type MessageHeaderDestinationBuilder struct {
+	messageHeaderDestination *MessageHeaderDestination
+}
+
+// NewMessageHeaderDestinationBuilder creates a new MessageHeaderDestinationBuilder.
+func NewMessageHeaderDestinationBuilder() *MessageHeaderDestinationBuilder {
+	return &MessageHeaderDestinationBuilder{
+		messageHeaderDestination: &MessageHeaderDestination{},
+	}
+}
+
+// Build returns the constructed MessageHeaderDestination.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MessageHeaderDestinationBuilder) Build() MessageHeaderDestination {
+	return *b.messageHeaderDestination
+}
+
+// SetId sets the Id field.
+func (b *MessageHeaderDestinationBuilder) SetId(v string) *MessageHeaderDestinationBuilder {
+	b.messageHeaderDestination.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MessageHeaderDestinationBuilder) AddExtension(v Extension) *MessageHeaderDestinationBuilder {
+	b.messageHeaderDestination.Extension = append(b.messageHeaderDestination.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MessageHeaderDestinationBuilder) AddModifierExtension(v Extension) *MessageHeaderDestinationBuilder {
+	b.messageHeaderDestination.ModifierExtension = append(b.messageHeaderDestination.ModifierExtension, v)
+	return b
+}
+
+// SetEndpointUrl sets Endpoint[x] to its EndpointUrl variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MessageHeaderDestinationBuilder) SetEndpointUrl(v string) *MessageHeaderDestinationBuilder {
+	b.clearEndpoint()
+	b.messageHeaderDestination.EndpointUrl = &v
+	return b
+}
+
+// SetEndpointUrlExt sets the EndpointUrlExt field.
+func (b *MessageHeaderDestinationBuilder) SetEndpointUrlExt(v Element) *MessageHeaderDestinationBuilder {
+	b.messageHeaderDestination.EndpointUrlExt = &v
+	return b
+}
+
+// SetEndpointReference sets Endpoint[x] to its EndpointReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MessageHeaderDestinationBuilder) SetEndpointReference(v Reference) *MessageHeaderDestinationBuilder {
+	b.clearEndpoint()
+	b.messageHeaderDestination.EndpointReference = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *MessageHeaderDestinationBuilder) SetName(v string) *MessageHeaderDestinationBuilder {
+	b.messageHeaderDestination.Name = &v
+	return b
+}
+
+// SetTarget sets the Target field.
+func (b *MessageHeaderDestinationBuilder) SetTarget(v Reference) *MessageHeaderDestinationBuilder {
+	b.messageHeaderDestination.Target = &v
+	return b
+}
+
+// SetReceiver sets the Receiver field.
+func (b *MessageHeaderDestinationBuilder) SetReceiver(v Reference) *MessageHeaderDestinationBuilder {
+	b.messageHeaderDestination.Receiver = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageHeaderDestinationBuilder) SetNameExt(v Element) *MessageHeaderDestinationBuilder {
+	b.messageHeaderDestination.NameExt = &v
+	return b
+}
+
+// clearEndpoint unsets every variant of Endpoint[x], including the
+// _field companions of the primitive ones.
+func (b *MessageHeaderDestinationBuilder) clearEndpoint() {
+	b.messageHeaderDestination.EndpointUrl = nil
+	b.messageHeaderDestination.EndpointReference = nil
+}
+
+// =============================================================================
+// MessageHeaderResponse - Fluent Builder
+// =============================================================================
+
+// MessageHeaderResponseBuilder provides a fluent API for constructing MessageHeaderResponse values.
+type MessageHeaderResponseBuilder struct {
+	messageHeaderResponse *MessageHeaderResponse
+}
+
+// NewMessageHeaderResponseBuilder creates a new MessageHeaderResponseBuilder.
+func NewMessageHeaderResponseBuilder() *MessageHeaderResponseBuilder {
+	return &MessageHeaderResponseBuilder{
+		messageHeaderResponse: &MessageHeaderResponse{},
+	}
+}
+
+// Build returns the constructed MessageHeaderResponse.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MessageHeaderResponseBuilder) Build() MessageHeaderResponse {
+	return *b.messageHeaderResponse
+}
+
+// SetId sets the Id field.
+func (b *MessageHeaderResponseBuilder) SetId(v string) *MessageHeaderResponseBuilder {
+	b.messageHeaderResponse.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MessageHeaderResponseBuilder) AddExtension(v Extension) *MessageHeaderResponseBuilder {
+	b.messageHeaderResponse.Extension = append(b.messageHeaderResponse.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MessageHeaderResponseBuilder) AddModifierExtension(v Extension) *MessageHeaderResponseBuilder {
+	b.messageHeaderResponse.ModifierExtension = append(b.messageHeaderResponse.ModifierExtension, v)
+	return b
+}
+
+// SetIdentifier sets the Identifier field.
+func (b *MessageHeaderResponseBuilder) SetIdentifier(v Identifier) *MessageHeaderResponseBuilder {
+	b.messageHeaderResponse.Identifier = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MessageHeaderResponseBuilder) SetCode(v ResponseType) *MessageHeaderResponseBuilder {
+	b.messageHeaderResponse.Code = &v
+	return b
+}
+
+// SetDetails sets the Details field.
+func (b *MessageHeaderResponseBuilder) SetDetails(v Reference) *MessageHeaderResponseBuilder {
+	b.messageHeaderResponse.Details = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageHeaderResponseBuilder) SetCodeExt(v Element) *MessageHeaderResponseBuilder {
+	b.messageHeaderResponse.CodeExt = &v
+	return b
+}
+
+// =============================================================================
+// MessageHeaderSource - Fluent Builder
+// =============================================================================
+
+// MessageHeaderSourceBuilder provides a fluent API for constructing MessageHeaderSource values.
+type MessageHeaderSourceBuilder struct {
+	messageHeaderSource *MessageHeaderSource
+}
+
+// NewMessageHeaderSourceBuilder creates a new MessageHeaderSourceBuilder.
+func NewMessageHeaderSourceBuilder() *MessageHeaderSourceBuilder {
+	return &MessageHeaderSourceBuilder{
+		messageHeaderSource: &MessageHeaderSource{},
+	}
+}
+
+// Build returns the constructed MessageHeaderSource.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MessageHeaderSourceBuilder) Build() MessageHeaderSource {
+	return *b.messageHeaderSource
+}
+
+// SetId sets the Id field.
+func (b *MessageHeaderSourceBuilder) SetId(v string) *MessageHeaderSourceBuilder {
+	b.messageHeaderSource.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MessageHeaderSourceBuilder) AddExtension(v Extension) *MessageHeaderSourceBuilder {
+	b.messageHeaderSource.Extension = append(b.messageHeaderSource.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MessageHeaderSourceBuilder) AddModifierExtension(v Extension) *MessageHeaderSourceBuilder {
+	b.messageHeaderSource.ModifierExtension = append(b.messageHeaderSource.ModifierExtension, v)
+	return b
+}
+
+// SetEndpointUrl sets Endpoint[x] to its EndpointUrl variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MessageHeaderSourceBuilder) SetEndpointUrl(v string) *MessageHeaderSourceBuilder {
+	b.clearEndpoint()
+	b.messageHeaderSource.EndpointUrl = &v
+	return b
+}
+
+// SetEndpointUrlExt sets the EndpointUrlExt field.
+func (b *MessageHeaderSourceBuilder) SetEndpointUrlExt(v Element) *MessageHeaderSourceBuilder {
+	b.messageHeaderSource.EndpointUrlExt = &v
+	return b
+}
+
+// SetEndpointReference sets Endpoint[x] to its EndpointReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MessageHeaderSourceBuilder) SetEndpointReference(v Reference) *MessageHeaderSourceBuilder {
+	b.clearEndpoint()
+	b.messageHeaderSource.EndpointReference = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *MessageHeaderSourceBuilder) SetName(v string) *MessageHeaderSourceBuilder {
+	b.messageHeaderSource.Name = &v
+	return b
+}
+
+// SetSoftware sets the Software field.
+func (b *MessageHeaderSourceBuilder) SetSoftware(v string) *MessageHeaderSourceBuilder {
+	b.messageHeaderSource.Software = &v
+	return b
+}
+
+// SetVersion sets the Version field.
+func (b *MessageHeaderSourceBuilder) SetVersion(v string) *MessageHeaderSourceBuilder {
+	b.messageHeaderSource.Version = &v
+	return b
+}
+
+// SetContact sets the Contact field.
+func (b *MessageHeaderSourceBuilder) SetContact(v ContactPoint) *MessageHeaderSourceBuilder {
+	b.messageHeaderSource.Contact = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageHeaderSourceBuilder) SetNameExt(v Element) *MessageHeaderSourceBuilder {
+	b.messageHeaderSource.NameExt = &v
+	return b
+}
+
+// SetSoftwareExt sets the extensions carried by Software, serialized as
+// "_software".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageHeaderSourceBuilder) SetSoftwareExt(v Element) *MessageHeaderSourceBuilder {
+	b.messageHeaderSource.SoftwareExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MessageHeaderSourceBuilder) SetVersionExt(v Element) *MessageHeaderSourceBuilder {
+	b.messageHeaderSource.VersionExt = &v
+	return b
+}
+
+// clearEndpoint unsets every variant of Endpoint[x], including the
+// _field companions of the primitive ones.
+func (b *MessageHeaderSourceBuilder) clearEndpoint() {
+	b.messageHeaderSource.EndpointUrl = nil
+	b.messageHeaderSource.EndpointReference = nil
 }

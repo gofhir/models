@@ -2084,3 +2084,897 @@ func (b *NutritionOrderBuilder) AddNote(v Annotation) *NutritionOrderBuilder {
 	b.nutritionOrder.Note = append(b.nutritionOrder.Note, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionOrderBuilder) SetImplicitRulesExt(v Element) *NutritionOrderBuilder {
+	b.nutritionOrder.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionOrderBuilder) SetLanguageExt(v Element) *NutritionOrderBuilder {
+	b.nutritionOrder.LanguageExt = &v
+	return b
+}
+
+// AddInstantiatesCanonicalExt appends an extension slot for InstantiatesCanonical.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *NutritionOrderBuilder) AddInstantiatesCanonicalExt(v *Element) *NutritionOrderBuilder {
+	b.nutritionOrder.InstantiatesCanonicalExt = append(b.nutritionOrder.InstantiatesCanonicalExt, v)
+	return b
+}
+
+// AddInstantiatesUriExt appends an extension slot for InstantiatesUri.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *NutritionOrderBuilder) AddInstantiatesUriExt(v *Element) *NutritionOrderBuilder {
+	b.nutritionOrder.InstantiatesUriExt = append(b.nutritionOrder.InstantiatesUriExt, v)
+	return b
+}
+
+// AddInstantiatesExt appends an extension slot for Instantiates.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *NutritionOrderBuilder) AddInstantiatesExt(v *Element) *NutritionOrderBuilder {
+	b.nutritionOrder.InstantiatesExt = append(b.nutritionOrder.InstantiatesExt, v)
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionOrderBuilder) SetStatusExt(v Element) *NutritionOrderBuilder {
+	b.nutritionOrder.StatusExt = &v
+	return b
+}
+
+// SetIntentExt sets the extensions carried by Intent, serialized as
+// "_intent".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionOrderBuilder) SetIntentExt(v Element) *NutritionOrderBuilder {
+	b.nutritionOrder.IntentExt = &v
+	return b
+}
+
+// SetPriorityExt sets the extensions carried by Priority, serialized as
+// "_priority".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionOrderBuilder) SetPriorityExt(v Element) *NutritionOrderBuilder {
+	b.nutritionOrder.PriorityExt = &v
+	return b
+}
+
+// SetDateTimeExt sets the extensions carried by DateTime, serialized as
+// "_dateTime".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionOrderBuilder) SetDateTimeExt(v Element) *NutritionOrderBuilder {
+	b.nutritionOrder.DateTimeExt = &v
+	return b
+}
+
+// SetOutsideFoodAllowedExt sets the extensions carried by OutsideFoodAllowed, serialized as
+// "_outsideFoodAllowed".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionOrderBuilder) SetOutsideFoodAllowedExt(v Element) *NutritionOrderBuilder {
+	b.nutritionOrder.OutsideFoodAllowedExt = &v
+	return b
+}
+
+// =============================================================================
+// NutritionOrderEnteralFormula - Fluent Builder
+// =============================================================================
+
+// NutritionOrderEnteralFormulaBuilder provides a fluent API for constructing NutritionOrderEnteralFormula values.
+type NutritionOrderEnteralFormulaBuilder struct {
+	nutritionOrderEnteralFormula *NutritionOrderEnteralFormula
+}
+
+// NewNutritionOrderEnteralFormulaBuilder creates a new NutritionOrderEnteralFormulaBuilder.
+func NewNutritionOrderEnteralFormulaBuilder() *NutritionOrderEnteralFormulaBuilder {
+	return &NutritionOrderEnteralFormulaBuilder{
+		nutritionOrderEnteralFormula: &NutritionOrderEnteralFormula{},
+	}
+}
+
+// Build returns the constructed NutritionOrderEnteralFormula.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *NutritionOrderEnteralFormulaBuilder) Build() NutritionOrderEnteralFormula {
+	return *b.nutritionOrderEnteralFormula
+}
+
+// SetId sets the Id field.
+func (b *NutritionOrderEnteralFormulaBuilder) SetId(v string) *NutritionOrderEnteralFormulaBuilder {
+	b.nutritionOrderEnteralFormula.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *NutritionOrderEnteralFormulaBuilder) AddExtension(v Extension) *NutritionOrderEnteralFormulaBuilder {
+	b.nutritionOrderEnteralFormula.Extension = append(b.nutritionOrderEnteralFormula.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *NutritionOrderEnteralFormulaBuilder) AddModifierExtension(v Extension) *NutritionOrderEnteralFormulaBuilder {
+	b.nutritionOrderEnteralFormula.ModifierExtension = append(b.nutritionOrderEnteralFormula.ModifierExtension, v)
+	return b
+}
+
+// SetBaseFormulaType sets the BaseFormulaType field.
+func (b *NutritionOrderEnteralFormulaBuilder) SetBaseFormulaType(v CodeableReference) *NutritionOrderEnteralFormulaBuilder {
+	b.nutritionOrderEnteralFormula.BaseFormulaType = &v
+	return b
+}
+
+// SetBaseFormulaProductName sets the BaseFormulaProductName field.
+func (b *NutritionOrderEnteralFormulaBuilder) SetBaseFormulaProductName(v string) *NutritionOrderEnteralFormulaBuilder {
+	b.nutritionOrderEnteralFormula.BaseFormulaProductName = &v
+	return b
+}
+
+// AddDeliveryDevice adds a DeliveryDevice element.
+func (b *NutritionOrderEnteralFormulaBuilder) AddDeliveryDevice(v CodeableReference) *NutritionOrderEnteralFormulaBuilder {
+	b.nutritionOrderEnteralFormula.DeliveryDevice = append(b.nutritionOrderEnteralFormula.DeliveryDevice, v)
+	return b
+}
+
+// AddAdditive adds a Additive element.
+func (b *NutritionOrderEnteralFormulaBuilder) AddAdditive(v NutritionOrderEnteralFormulaAdditive) *NutritionOrderEnteralFormulaBuilder {
+	b.nutritionOrderEnteralFormula.Additive = append(b.nutritionOrderEnteralFormula.Additive, v)
+	return b
+}
+
+// SetCaloricDensity sets the CaloricDensity field.
+func (b *NutritionOrderEnteralFormulaBuilder) SetCaloricDensity(v Quantity) *NutritionOrderEnteralFormulaBuilder {
+	b.nutritionOrderEnteralFormula.CaloricDensity = &v
+	return b
+}
+
+// SetRouteOfAdministration sets the RouteOfAdministration field.
+func (b *NutritionOrderEnteralFormulaBuilder) SetRouteOfAdministration(v CodeableConcept) *NutritionOrderEnteralFormulaBuilder {
+	b.nutritionOrderEnteralFormula.RouteOfAdministration = &v
+	return b
+}
+
+// AddAdministration adds a Administration element.
+func (b *NutritionOrderEnteralFormulaBuilder) AddAdministration(v NutritionOrderEnteralFormulaAdministration) *NutritionOrderEnteralFormulaBuilder {
+	b.nutritionOrderEnteralFormula.Administration = append(b.nutritionOrderEnteralFormula.Administration, v)
+	return b
+}
+
+// SetMaxVolumeToDeliver sets the MaxVolumeToDeliver field.
+func (b *NutritionOrderEnteralFormulaBuilder) SetMaxVolumeToDeliver(v Quantity) *NutritionOrderEnteralFormulaBuilder {
+	b.nutritionOrderEnteralFormula.MaxVolumeToDeliver = &v
+	return b
+}
+
+// SetAdministrationInstruction sets the AdministrationInstruction field.
+func (b *NutritionOrderEnteralFormulaBuilder) SetAdministrationInstruction(v string) *NutritionOrderEnteralFormulaBuilder {
+	b.nutritionOrderEnteralFormula.AdministrationInstruction = &v
+	return b
+}
+
+// SetBaseFormulaProductNameExt sets the extensions carried by BaseFormulaProductName, serialized as
+// "_baseFormulaProductName".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionOrderEnteralFormulaBuilder) SetBaseFormulaProductNameExt(v Element) *NutritionOrderEnteralFormulaBuilder {
+	b.nutritionOrderEnteralFormula.BaseFormulaProductNameExt = &v
+	return b
+}
+
+// SetAdministrationInstructionExt sets the extensions carried by AdministrationInstruction, serialized as
+// "_administrationInstruction".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionOrderEnteralFormulaBuilder) SetAdministrationInstructionExt(v Element) *NutritionOrderEnteralFormulaBuilder {
+	b.nutritionOrderEnteralFormula.AdministrationInstructionExt = &v
+	return b
+}
+
+// =============================================================================
+// NutritionOrderEnteralFormulaAdditive - Fluent Builder
+// =============================================================================
+
+// NutritionOrderEnteralFormulaAdditiveBuilder provides a fluent API for constructing NutritionOrderEnteralFormulaAdditive values.
+type NutritionOrderEnteralFormulaAdditiveBuilder struct {
+	nutritionOrderEnteralFormulaAdditive *NutritionOrderEnteralFormulaAdditive
+}
+
+// NewNutritionOrderEnteralFormulaAdditiveBuilder creates a new NutritionOrderEnteralFormulaAdditiveBuilder.
+func NewNutritionOrderEnteralFormulaAdditiveBuilder() *NutritionOrderEnteralFormulaAdditiveBuilder {
+	return &NutritionOrderEnteralFormulaAdditiveBuilder{
+		nutritionOrderEnteralFormulaAdditive: &NutritionOrderEnteralFormulaAdditive{},
+	}
+}
+
+// Build returns the constructed NutritionOrderEnteralFormulaAdditive.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *NutritionOrderEnteralFormulaAdditiveBuilder) Build() NutritionOrderEnteralFormulaAdditive {
+	return *b.nutritionOrderEnteralFormulaAdditive
+}
+
+// SetId sets the Id field.
+func (b *NutritionOrderEnteralFormulaAdditiveBuilder) SetId(v string) *NutritionOrderEnteralFormulaAdditiveBuilder {
+	b.nutritionOrderEnteralFormulaAdditive.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *NutritionOrderEnteralFormulaAdditiveBuilder) AddExtension(v Extension) *NutritionOrderEnteralFormulaAdditiveBuilder {
+	b.nutritionOrderEnteralFormulaAdditive.Extension = append(b.nutritionOrderEnteralFormulaAdditive.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *NutritionOrderEnteralFormulaAdditiveBuilder) AddModifierExtension(v Extension) *NutritionOrderEnteralFormulaAdditiveBuilder {
+	b.nutritionOrderEnteralFormulaAdditive.ModifierExtension = append(b.nutritionOrderEnteralFormulaAdditive.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *NutritionOrderEnteralFormulaAdditiveBuilder) SetType(v CodeableReference) *NutritionOrderEnteralFormulaAdditiveBuilder {
+	b.nutritionOrderEnteralFormulaAdditive.Type = &v
+	return b
+}
+
+// SetProductName sets the ProductName field.
+func (b *NutritionOrderEnteralFormulaAdditiveBuilder) SetProductName(v string) *NutritionOrderEnteralFormulaAdditiveBuilder {
+	b.nutritionOrderEnteralFormulaAdditive.ProductName = &v
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *NutritionOrderEnteralFormulaAdditiveBuilder) SetQuantity(v Quantity) *NutritionOrderEnteralFormulaAdditiveBuilder {
+	b.nutritionOrderEnteralFormulaAdditive.Quantity = &v
+	return b
+}
+
+// SetProductNameExt sets the extensions carried by ProductName, serialized as
+// "_productName".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionOrderEnteralFormulaAdditiveBuilder) SetProductNameExt(v Element) *NutritionOrderEnteralFormulaAdditiveBuilder {
+	b.nutritionOrderEnteralFormulaAdditive.ProductNameExt = &v
+	return b
+}
+
+// =============================================================================
+// NutritionOrderEnteralFormulaAdministration - Fluent Builder
+// =============================================================================
+
+// NutritionOrderEnteralFormulaAdministrationBuilder provides a fluent API for constructing NutritionOrderEnteralFormulaAdministration values.
+type NutritionOrderEnteralFormulaAdministrationBuilder struct {
+	nutritionOrderEnteralFormulaAdministration *NutritionOrderEnteralFormulaAdministration
+}
+
+// NewNutritionOrderEnteralFormulaAdministrationBuilder creates a new NutritionOrderEnteralFormulaAdministrationBuilder.
+func NewNutritionOrderEnteralFormulaAdministrationBuilder() *NutritionOrderEnteralFormulaAdministrationBuilder {
+	return &NutritionOrderEnteralFormulaAdministrationBuilder{
+		nutritionOrderEnteralFormulaAdministration: &NutritionOrderEnteralFormulaAdministration{},
+	}
+}
+
+// Build returns the constructed NutritionOrderEnteralFormulaAdministration.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *NutritionOrderEnteralFormulaAdministrationBuilder) Build() NutritionOrderEnteralFormulaAdministration {
+	return *b.nutritionOrderEnteralFormulaAdministration
+}
+
+// SetId sets the Id field.
+func (b *NutritionOrderEnteralFormulaAdministrationBuilder) SetId(v string) *NutritionOrderEnteralFormulaAdministrationBuilder {
+	b.nutritionOrderEnteralFormulaAdministration.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *NutritionOrderEnteralFormulaAdministrationBuilder) AddExtension(v Extension) *NutritionOrderEnteralFormulaAdministrationBuilder {
+	b.nutritionOrderEnteralFormulaAdministration.Extension = append(b.nutritionOrderEnteralFormulaAdministration.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *NutritionOrderEnteralFormulaAdministrationBuilder) AddModifierExtension(v Extension) *NutritionOrderEnteralFormulaAdministrationBuilder {
+	b.nutritionOrderEnteralFormulaAdministration.ModifierExtension = append(b.nutritionOrderEnteralFormulaAdministration.ModifierExtension, v)
+	return b
+}
+
+// SetSchedule sets the Schedule field.
+func (b *NutritionOrderEnteralFormulaAdministrationBuilder) SetSchedule(v NutritionOrderEnteralFormulaAdministrationSchedule) *NutritionOrderEnteralFormulaAdministrationBuilder {
+	b.nutritionOrderEnteralFormulaAdministration.Schedule = &v
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *NutritionOrderEnteralFormulaAdministrationBuilder) SetQuantity(v Quantity) *NutritionOrderEnteralFormulaAdministrationBuilder {
+	b.nutritionOrderEnteralFormulaAdministration.Quantity = &v
+	return b
+}
+
+// SetRateQuantity sets Rate[x] to its RateQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *NutritionOrderEnteralFormulaAdministrationBuilder) SetRateQuantity(v Quantity) *NutritionOrderEnteralFormulaAdministrationBuilder {
+	b.clearRate()
+	b.nutritionOrderEnteralFormulaAdministration.RateQuantity = &v
+	return b
+}
+
+// SetRateRatio sets Rate[x] to its RateRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *NutritionOrderEnteralFormulaAdministrationBuilder) SetRateRatio(v Ratio) *NutritionOrderEnteralFormulaAdministrationBuilder {
+	b.clearRate()
+	b.nutritionOrderEnteralFormulaAdministration.RateRatio = &v
+	return b
+}
+
+// clearRate unsets every variant of Rate[x], including the
+// _field companions of the primitive ones.
+func (b *NutritionOrderEnteralFormulaAdministrationBuilder) clearRate() {
+	b.nutritionOrderEnteralFormulaAdministration.RateQuantity = nil
+	b.nutritionOrderEnteralFormulaAdministration.RateRatio = nil
+}
+
+// =============================================================================
+// NutritionOrderEnteralFormulaAdministrationSchedule - Fluent Builder
+// =============================================================================
+
+// NutritionOrderEnteralFormulaAdministrationScheduleBuilder provides a fluent API for constructing NutritionOrderEnteralFormulaAdministrationSchedule values.
+type NutritionOrderEnteralFormulaAdministrationScheduleBuilder struct {
+	nutritionOrderEnteralFormulaAdministrationSchedule *NutritionOrderEnteralFormulaAdministrationSchedule
+}
+
+// NewNutritionOrderEnteralFormulaAdministrationScheduleBuilder creates a new NutritionOrderEnteralFormulaAdministrationScheduleBuilder.
+func NewNutritionOrderEnteralFormulaAdministrationScheduleBuilder() *NutritionOrderEnteralFormulaAdministrationScheduleBuilder {
+	return &NutritionOrderEnteralFormulaAdministrationScheduleBuilder{
+		nutritionOrderEnteralFormulaAdministrationSchedule: &NutritionOrderEnteralFormulaAdministrationSchedule{},
+	}
+}
+
+// Build returns the constructed NutritionOrderEnteralFormulaAdministrationSchedule.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *NutritionOrderEnteralFormulaAdministrationScheduleBuilder) Build() NutritionOrderEnteralFormulaAdministrationSchedule {
+	return *b.nutritionOrderEnteralFormulaAdministrationSchedule
+}
+
+// SetId sets the Id field.
+func (b *NutritionOrderEnteralFormulaAdministrationScheduleBuilder) SetId(v string) *NutritionOrderEnteralFormulaAdministrationScheduleBuilder {
+	b.nutritionOrderEnteralFormulaAdministrationSchedule.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *NutritionOrderEnteralFormulaAdministrationScheduleBuilder) AddExtension(v Extension) *NutritionOrderEnteralFormulaAdministrationScheduleBuilder {
+	b.nutritionOrderEnteralFormulaAdministrationSchedule.Extension = append(b.nutritionOrderEnteralFormulaAdministrationSchedule.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *NutritionOrderEnteralFormulaAdministrationScheduleBuilder) AddModifierExtension(v Extension) *NutritionOrderEnteralFormulaAdministrationScheduleBuilder {
+	b.nutritionOrderEnteralFormulaAdministrationSchedule.ModifierExtension = append(b.nutritionOrderEnteralFormulaAdministrationSchedule.ModifierExtension, v)
+	return b
+}
+
+// AddTiming adds a Timing element.
+func (b *NutritionOrderEnteralFormulaAdministrationScheduleBuilder) AddTiming(v Timing) *NutritionOrderEnteralFormulaAdministrationScheduleBuilder {
+	b.nutritionOrderEnteralFormulaAdministrationSchedule.Timing = append(b.nutritionOrderEnteralFormulaAdministrationSchedule.Timing, v)
+	return b
+}
+
+// SetAsNeeded sets the AsNeeded field.
+func (b *NutritionOrderEnteralFormulaAdministrationScheduleBuilder) SetAsNeeded(v bool) *NutritionOrderEnteralFormulaAdministrationScheduleBuilder {
+	b.nutritionOrderEnteralFormulaAdministrationSchedule.AsNeeded = &v
+	return b
+}
+
+// SetAsNeededFor sets the AsNeededFor field.
+func (b *NutritionOrderEnteralFormulaAdministrationScheduleBuilder) SetAsNeededFor(v CodeableConcept) *NutritionOrderEnteralFormulaAdministrationScheduleBuilder {
+	b.nutritionOrderEnteralFormulaAdministrationSchedule.AsNeededFor = &v
+	return b
+}
+
+// SetAsNeededExt sets the extensions carried by AsNeeded, serialized as
+// "_asNeeded".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionOrderEnteralFormulaAdministrationScheduleBuilder) SetAsNeededExt(v Element) *NutritionOrderEnteralFormulaAdministrationScheduleBuilder {
+	b.nutritionOrderEnteralFormulaAdministrationSchedule.AsNeededExt = &v
+	return b
+}
+
+// =============================================================================
+// NutritionOrderOralDiet - Fluent Builder
+// =============================================================================
+
+// NutritionOrderOralDietBuilder provides a fluent API for constructing NutritionOrderOralDiet values.
+type NutritionOrderOralDietBuilder struct {
+	nutritionOrderOralDiet *NutritionOrderOralDiet
+}
+
+// NewNutritionOrderOralDietBuilder creates a new NutritionOrderOralDietBuilder.
+func NewNutritionOrderOralDietBuilder() *NutritionOrderOralDietBuilder {
+	return &NutritionOrderOralDietBuilder{
+		nutritionOrderOralDiet: &NutritionOrderOralDiet{},
+	}
+}
+
+// Build returns the constructed NutritionOrderOralDiet.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *NutritionOrderOralDietBuilder) Build() NutritionOrderOralDiet {
+	return *b.nutritionOrderOralDiet
+}
+
+// SetId sets the Id field.
+func (b *NutritionOrderOralDietBuilder) SetId(v string) *NutritionOrderOralDietBuilder {
+	b.nutritionOrderOralDiet.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *NutritionOrderOralDietBuilder) AddExtension(v Extension) *NutritionOrderOralDietBuilder {
+	b.nutritionOrderOralDiet.Extension = append(b.nutritionOrderOralDiet.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *NutritionOrderOralDietBuilder) AddModifierExtension(v Extension) *NutritionOrderOralDietBuilder {
+	b.nutritionOrderOralDiet.ModifierExtension = append(b.nutritionOrderOralDiet.ModifierExtension, v)
+	return b
+}
+
+// AddType adds a Type element.
+func (b *NutritionOrderOralDietBuilder) AddType(v CodeableConcept) *NutritionOrderOralDietBuilder {
+	b.nutritionOrderOralDiet.Type = append(b.nutritionOrderOralDiet.Type, v)
+	return b
+}
+
+// SetSchedule sets the Schedule field.
+func (b *NutritionOrderOralDietBuilder) SetSchedule(v NutritionOrderOralDietSchedule) *NutritionOrderOralDietBuilder {
+	b.nutritionOrderOralDiet.Schedule = &v
+	return b
+}
+
+// AddNutrient adds a Nutrient element.
+func (b *NutritionOrderOralDietBuilder) AddNutrient(v NutritionOrderOralDietNutrient) *NutritionOrderOralDietBuilder {
+	b.nutritionOrderOralDiet.Nutrient = append(b.nutritionOrderOralDiet.Nutrient, v)
+	return b
+}
+
+// AddTexture adds a Texture element.
+func (b *NutritionOrderOralDietBuilder) AddTexture(v NutritionOrderOralDietTexture) *NutritionOrderOralDietBuilder {
+	b.nutritionOrderOralDiet.Texture = append(b.nutritionOrderOralDiet.Texture, v)
+	return b
+}
+
+// AddFluidConsistencyType adds a FluidConsistencyType element.
+func (b *NutritionOrderOralDietBuilder) AddFluidConsistencyType(v CodeableConcept) *NutritionOrderOralDietBuilder {
+	b.nutritionOrderOralDiet.FluidConsistencyType = append(b.nutritionOrderOralDiet.FluidConsistencyType, v)
+	return b
+}
+
+// SetInstruction sets the Instruction field.
+func (b *NutritionOrderOralDietBuilder) SetInstruction(v string) *NutritionOrderOralDietBuilder {
+	b.nutritionOrderOralDiet.Instruction = &v
+	return b
+}
+
+// SetInstructionExt sets the extensions carried by Instruction, serialized as
+// "_instruction".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionOrderOralDietBuilder) SetInstructionExt(v Element) *NutritionOrderOralDietBuilder {
+	b.nutritionOrderOralDiet.InstructionExt = &v
+	return b
+}
+
+// =============================================================================
+// NutritionOrderOralDietNutrient - Fluent Builder
+// =============================================================================
+
+// NutritionOrderOralDietNutrientBuilder provides a fluent API for constructing NutritionOrderOralDietNutrient values.
+type NutritionOrderOralDietNutrientBuilder struct {
+	nutritionOrderOralDietNutrient *NutritionOrderOralDietNutrient
+}
+
+// NewNutritionOrderOralDietNutrientBuilder creates a new NutritionOrderOralDietNutrientBuilder.
+func NewNutritionOrderOralDietNutrientBuilder() *NutritionOrderOralDietNutrientBuilder {
+	return &NutritionOrderOralDietNutrientBuilder{
+		nutritionOrderOralDietNutrient: &NutritionOrderOralDietNutrient{},
+	}
+}
+
+// Build returns the constructed NutritionOrderOralDietNutrient.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *NutritionOrderOralDietNutrientBuilder) Build() NutritionOrderOralDietNutrient {
+	return *b.nutritionOrderOralDietNutrient
+}
+
+// SetId sets the Id field.
+func (b *NutritionOrderOralDietNutrientBuilder) SetId(v string) *NutritionOrderOralDietNutrientBuilder {
+	b.nutritionOrderOralDietNutrient.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *NutritionOrderOralDietNutrientBuilder) AddExtension(v Extension) *NutritionOrderOralDietNutrientBuilder {
+	b.nutritionOrderOralDietNutrient.Extension = append(b.nutritionOrderOralDietNutrient.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *NutritionOrderOralDietNutrientBuilder) AddModifierExtension(v Extension) *NutritionOrderOralDietNutrientBuilder {
+	b.nutritionOrderOralDietNutrient.ModifierExtension = append(b.nutritionOrderOralDietNutrient.ModifierExtension, v)
+	return b
+}
+
+// SetModifier sets the Modifier field.
+func (b *NutritionOrderOralDietNutrientBuilder) SetModifier(v CodeableConcept) *NutritionOrderOralDietNutrientBuilder {
+	b.nutritionOrderOralDietNutrient.Modifier = &v
+	return b
+}
+
+// SetAmount sets the Amount field.
+func (b *NutritionOrderOralDietNutrientBuilder) SetAmount(v Quantity) *NutritionOrderOralDietNutrientBuilder {
+	b.nutritionOrderOralDietNutrient.Amount = &v
+	return b
+}
+
+// =============================================================================
+// NutritionOrderOralDietSchedule - Fluent Builder
+// =============================================================================
+
+// NutritionOrderOralDietScheduleBuilder provides a fluent API for constructing NutritionOrderOralDietSchedule values.
+type NutritionOrderOralDietScheduleBuilder struct {
+	nutritionOrderOralDietSchedule *NutritionOrderOralDietSchedule
+}
+
+// NewNutritionOrderOralDietScheduleBuilder creates a new NutritionOrderOralDietScheduleBuilder.
+func NewNutritionOrderOralDietScheduleBuilder() *NutritionOrderOralDietScheduleBuilder {
+	return &NutritionOrderOralDietScheduleBuilder{
+		nutritionOrderOralDietSchedule: &NutritionOrderOralDietSchedule{},
+	}
+}
+
+// Build returns the constructed NutritionOrderOralDietSchedule.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *NutritionOrderOralDietScheduleBuilder) Build() NutritionOrderOralDietSchedule {
+	return *b.nutritionOrderOralDietSchedule
+}
+
+// SetId sets the Id field.
+func (b *NutritionOrderOralDietScheduleBuilder) SetId(v string) *NutritionOrderOralDietScheduleBuilder {
+	b.nutritionOrderOralDietSchedule.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *NutritionOrderOralDietScheduleBuilder) AddExtension(v Extension) *NutritionOrderOralDietScheduleBuilder {
+	b.nutritionOrderOralDietSchedule.Extension = append(b.nutritionOrderOralDietSchedule.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *NutritionOrderOralDietScheduleBuilder) AddModifierExtension(v Extension) *NutritionOrderOralDietScheduleBuilder {
+	b.nutritionOrderOralDietSchedule.ModifierExtension = append(b.nutritionOrderOralDietSchedule.ModifierExtension, v)
+	return b
+}
+
+// AddTiming adds a Timing element.
+func (b *NutritionOrderOralDietScheduleBuilder) AddTiming(v Timing) *NutritionOrderOralDietScheduleBuilder {
+	b.nutritionOrderOralDietSchedule.Timing = append(b.nutritionOrderOralDietSchedule.Timing, v)
+	return b
+}
+
+// SetAsNeeded sets the AsNeeded field.
+func (b *NutritionOrderOralDietScheduleBuilder) SetAsNeeded(v bool) *NutritionOrderOralDietScheduleBuilder {
+	b.nutritionOrderOralDietSchedule.AsNeeded = &v
+	return b
+}
+
+// SetAsNeededFor sets the AsNeededFor field.
+func (b *NutritionOrderOralDietScheduleBuilder) SetAsNeededFor(v CodeableConcept) *NutritionOrderOralDietScheduleBuilder {
+	b.nutritionOrderOralDietSchedule.AsNeededFor = &v
+	return b
+}
+
+// SetAsNeededExt sets the extensions carried by AsNeeded, serialized as
+// "_asNeeded".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionOrderOralDietScheduleBuilder) SetAsNeededExt(v Element) *NutritionOrderOralDietScheduleBuilder {
+	b.nutritionOrderOralDietSchedule.AsNeededExt = &v
+	return b
+}
+
+// =============================================================================
+// NutritionOrderOralDietTexture - Fluent Builder
+// =============================================================================
+
+// NutritionOrderOralDietTextureBuilder provides a fluent API for constructing NutritionOrderOralDietTexture values.
+type NutritionOrderOralDietTextureBuilder struct {
+	nutritionOrderOralDietTexture *NutritionOrderOralDietTexture
+}
+
+// NewNutritionOrderOralDietTextureBuilder creates a new NutritionOrderOralDietTextureBuilder.
+func NewNutritionOrderOralDietTextureBuilder() *NutritionOrderOralDietTextureBuilder {
+	return &NutritionOrderOralDietTextureBuilder{
+		nutritionOrderOralDietTexture: &NutritionOrderOralDietTexture{},
+	}
+}
+
+// Build returns the constructed NutritionOrderOralDietTexture.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *NutritionOrderOralDietTextureBuilder) Build() NutritionOrderOralDietTexture {
+	return *b.nutritionOrderOralDietTexture
+}
+
+// SetId sets the Id field.
+func (b *NutritionOrderOralDietTextureBuilder) SetId(v string) *NutritionOrderOralDietTextureBuilder {
+	b.nutritionOrderOralDietTexture.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *NutritionOrderOralDietTextureBuilder) AddExtension(v Extension) *NutritionOrderOralDietTextureBuilder {
+	b.nutritionOrderOralDietTexture.Extension = append(b.nutritionOrderOralDietTexture.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *NutritionOrderOralDietTextureBuilder) AddModifierExtension(v Extension) *NutritionOrderOralDietTextureBuilder {
+	b.nutritionOrderOralDietTexture.ModifierExtension = append(b.nutritionOrderOralDietTexture.ModifierExtension, v)
+	return b
+}
+
+// SetModifier sets the Modifier field.
+func (b *NutritionOrderOralDietTextureBuilder) SetModifier(v CodeableConcept) *NutritionOrderOralDietTextureBuilder {
+	b.nutritionOrderOralDietTexture.Modifier = &v
+	return b
+}
+
+// SetFoodType sets the FoodType field.
+func (b *NutritionOrderOralDietTextureBuilder) SetFoodType(v CodeableConcept) *NutritionOrderOralDietTextureBuilder {
+	b.nutritionOrderOralDietTexture.FoodType = &v
+	return b
+}
+
+// =============================================================================
+// NutritionOrderSupplement - Fluent Builder
+// =============================================================================
+
+// NutritionOrderSupplementBuilder provides a fluent API for constructing NutritionOrderSupplement values.
+type NutritionOrderSupplementBuilder struct {
+	nutritionOrderSupplement *NutritionOrderSupplement
+}
+
+// NewNutritionOrderSupplementBuilder creates a new NutritionOrderSupplementBuilder.
+func NewNutritionOrderSupplementBuilder() *NutritionOrderSupplementBuilder {
+	return &NutritionOrderSupplementBuilder{
+		nutritionOrderSupplement: &NutritionOrderSupplement{},
+	}
+}
+
+// Build returns the constructed NutritionOrderSupplement.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *NutritionOrderSupplementBuilder) Build() NutritionOrderSupplement {
+	return *b.nutritionOrderSupplement
+}
+
+// SetId sets the Id field.
+func (b *NutritionOrderSupplementBuilder) SetId(v string) *NutritionOrderSupplementBuilder {
+	b.nutritionOrderSupplement.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *NutritionOrderSupplementBuilder) AddExtension(v Extension) *NutritionOrderSupplementBuilder {
+	b.nutritionOrderSupplement.Extension = append(b.nutritionOrderSupplement.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *NutritionOrderSupplementBuilder) AddModifierExtension(v Extension) *NutritionOrderSupplementBuilder {
+	b.nutritionOrderSupplement.ModifierExtension = append(b.nutritionOrderSupplement.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *NutritionOrderSupplementBuilder) SetType(v CodeableReference) *NutritionOrderSupplementBuilder {
+	b.nutritionOrderSupplement.Type = &v
+	return b
+}
+
+// SetProductName sets the ProductName field.
+func (b *NutritionOrderSupplementBuilder) SetProductName(v string) *NutritionOrderSupplementBuilder {
+	b.nutritionOrderSupplement.ProductName = &v
+	return b
+}
+
+// SetSchedule sets the Schedule field.
+func (b *NutritionOrderSupplementBuilder) SetSchedule(v NutritionOrderSupplementSchedule) *NutritionOrderSupplementBuilder {
+	b.nutritionOrderSupplement.Schedule = &v
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *NutritionOrderSupplementBuilder) SetQuantity(v Quantity) *NutritionOrderSupplementBuilder {
+	b.nutritionOrderSupplement.Quantity = &v
+	return b
+}
+
+// SetInstruction sets the Instruction field.
+func (b *NutritionOrderSupplementBuilder) SetInstruction(v string) *NutritionOrderSupplementBuilder {
+	b.nutritionOrderSupplement.Instruction = &v
+	return b
+}
+
+// SetProductNameExt sets the extensions carried by ProductName, serialized as
+// "_productName".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionOrderSupplementBuilder) SetProductNameExt(v Element) *NutritionOrderSupplementBuilder {
+	b.nutritionOrderSupplement.ProductNameExt = &v
+	return b
+}
+
+// SetInstructionExt sets the extensions carried by Instruction, serialized as
+// "_instruction".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionOrderSupplementBuilder) SetInstructionExt(v Element) *NutritionOrderSupplementBuilder {
+	b.nutritionOrderSupplement.InstructionExt = &v
+	return b
+}
+
+// =============================================================================
+// NutritionOrderSupplementSchedule - Fluent Builder
+// =============================================================================
+
+// NutritionOrderSupplementScheduleBuilder provides a fluent API for constructing NutritionOrderSupplementSchedule values.
+type NutritionOrderSupplementScheduleBuilder struct {
+	nutritionOrderSupplementSchedule *NutritionOrderSupplementSchedule
+}
+
+// NewNutritionOrderSupplementScheduleBuilder creates a new NutritionOrderSupplementScheduleBuilder.
+func NewNutritionOrderSupplementScheduleBuilder() *NutritionOrderSupplementScheduleBuilder {
+	return &NutritionOrderSupplementScheduleBuilder{
+		nutritionOrderSupplementSchedule: &NutritionOrderSupplementSchedule{},
+	}
+}
+
+// Build returns the constructed NutritionOrderSupplementSchedule.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *NutritionOrderSupplementScheduleBuilder) Build() NutritionOrderSupplementSchedule {
+	return *b.nutritionOrderSupplementSchedule
+}
+
+// SetId sets the Id field.
+func (b *NutritionOrderSupplementScheduleBuilder) SetId(v string) *NutritionOrderSupplementScheduleBuilder {
+	b.nutritionOrderSupplementSchedule.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *NutritionOrderSupplementScheduleBuilder) AddExtension(v Extension) *NutritionOrderSupplementScheduleBuilder {
+	b.nutritionOrderSupplementSchedule.Extension = append(b.nutritionOrderSupplementSchedule.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *NutritionOrderSupplementScheduleBuilder) AddModifierExtension(v Extension) *NutritionOrderSupplementScheduleBuilder {
+	b.nutritionOrderSupplementSchedule.ModifierExtension = append(b.nutritionOrderSupplementSchedule.ModifierExtension, v)
+	return b
+}
+
+// AddTiming adds a Timing element.
+func (b *NutritionOrderSupplementScheduleBuilder) AddTiming(v Timing) *NutritionOrderSupplementScheduleBuilder {
+	b.nutritionOrderSupplementSchedule.Timing = append(b.nutritionOrderSupplementSchedule.Timing, v)
+	return b
+}
+
+// SetAsNeeded sets the AsNeeded field.
+func (b *NutritionOrderSupplementScheduleBuilder) SetAsNeeded(v bool) *NutritionOrderSupplementScheduleBuilder {
+	b.nutritionOrderSupplementSchedule.AsNeeded = &v
+	return b
+}
+
+// SetAsNeededFor sets the AsNeededFor field.
+func (b *NutritionOrderSupplementScheduleBuilder) SetAsNeededFor(v CodeableConcept) *NutritionOrderSupplementScheduleBuilder {
+	b.nutritionOrderSupplementSchedule.AsNeededFor = &v
+	return b
+}
+
+// SetAsNeededExt sets the extensions carried by AsNeeded, serialized as
+// "_asNeeded".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NutritionOrderSupplementScheduleBuilder) SetAsNeededExt(v Element) *NutritionOrderSupplementScheduleBuilder {
+	b.nutritionOrderSupplementSchedule.AsNeededExt = &v
+	return b
+}

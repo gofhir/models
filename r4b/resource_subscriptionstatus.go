@@ -593,3 +593,152 @@ func (b *SubscriptionStatusBuilder) AddError(v CodeableConcept) *SubscriptionSta
 	b.subscriptionStatus.Error = append(b.subscriptionStatus.Error, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionStatusBuilder) SetImplicitRulesExt(v Element) *SubscriptionStatusBuilder {
+	b.subscriptionStatus.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionStatusBuilder) SetLanguageExt(v Element) *SubscriptionStatusBuilder {
+	b.subscriptionStatus.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionStatusBuilder) SetStatusExt(v Element) *SubscriptionStatusBuilder {
+	b.subscriptionStatus.StatusExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionStatusBuilder) SetTypeExt(v Element) *SubscriptionStatusBuilder {
+	b.subscriptionStatus.TypeExt = &v
+	return b
+}
+
+// SetEventsSinceSubscriptionStartExt sets the extensions carried by EventsSinceSubscriptionStart, serialized as
+// "_eventsSinceSubscriptionStart".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionStatusBuilder) SetEventsSinceSubscriptionStartExt(v Element) *SubscriptionStatusBuilder {
+	b.subscriptionStatus.EventsSinceSubscriptionStartExt = &v
+	return b
+}
+
+// SetTopicExt sets the extensions carried by Topic, serialized as
+// "_topic".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionStatusBuilder) SetTopicExt(v Element) *SubscriptionStatusBuilder {
+	b.subscriptionStatus.TopicExt = &v
+	return b
+}
+
+// =============================================================================
+// SubscriptionStatusNotificationEvent - Fluent Builder
+// =============================================================================
+
+// SubscriptionStatusNotificationEventBuilder provides a fluent API for constructing SubscriptionStatusNotificationEvent values.
+type SubscriptionStatusNotificationEventBuilder struct {
+	subscriptionStatusNotificationEvent *SubscriptionStatusNotificationEvent
+}
+
+// NewSubscriptionStatusNotificationEventBuilder creates a new SubscriptionStatusNotificationEventBuilder.
+func NewSubscriptionStatusNotificationEventBuilder() *SubscriptionStatusNotificationEventBuilder {
+	return &SubscriptionStatusNotificationEventBuilder{
+		subscriptionStatusNotificationEvent: &SubscriptionStatusNotificationEvent{},
+	}
+}
+
+// Build returns the constructed SubscriptionStatusNotificationEvent.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubscriptionStatusNotificationEventBuilder) Build() SubscriptionStatusNotificationEvent {
+	return *b.subscriptionStatusNotificationEvent
+}
+
+// SetId sets the Id field.
+func (b *SubscriptionStatusNotificationEventBuilder) SetId(v string) *SubscriptionStatusNotificationEventBuilder {
+	b.subscriptionStatusNotificationEvent.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubscriptionStatusNotificationEventBuilder) AddExtension(v Extension) *SubscriptionStatusNotificationEventBuilder {
+	b.subscriptionStatusNotificationEvent.Extension = append(b.subscriptionStatusNotificationEvent.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubscriptionStatusNotificationEventBuilder) AddModifierExtension(v Extension) *SubscriptionStatusNotificationEventBuilder {
+	b.subscriptionStatusNotificationEvent.ModifierExtension = append(b.subscriptionStatusNotificationEvent.ModifierExtension, v)
+	return b
+}
+
+// SetEventNumber sets the EventNumber field.
+func (b *SubscriptionStatusNotificationEventBuilder) SetEventNumber(v string) *SubscriptionStatusNotificationEventBuilder {
+	b.subscriptionStatusNotificationEvent.EventNumber = &v
+	return b
+}
+
+// SetTimestamp sets the Timestamp field.
+func (b *SubscriptionStatusNotificationEventBuilder) SetTimestamp(v string) *SubscriptionStatusNotificationEventBuilder {
+	b.subscriptionStatusNotificationEvent.Timestamp = &v
+	return b
+}
+
+// SetFocus sets the Focus field.
+func (b *SubscriptionStatusNotificationEventBuilder) SetFocus(v Reference) *SubscriptionStatusNotificationEventBuilder {
+	b.subscriptionStatusNotificationEvent.Focus = &v
+	return b
+}
+
+// AddAdditionalContext adds a AdditionalContext element.
+func (b *SubscriptionStatusNotificationEventBuilder) AddAdditionalContext(v Reference) *SubscriptionStatusNotificationEventBuilder {
+	b.subscriptionStatusNotificationEvent.AdditionalContext = append(b.subscriptionStatusNotificationEvent.AdditionalContext, v)
+	return b
+}
+
+// SetEventNumberExt sets the extensions carried by EventNumber, serialized as
+// "_eventNumber".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionStatusNotificationEventBuilder) SetEventNumberExt(v Element) *SubscriptionStatusNotificationEventBuilder {
+	b.subscriptionStatusNotificationEvent.EventNumberExt = &v
+	return b
+}
+
+// SetTimestampExt sets the extensions carried by Timestamp, serialized as
+// "_timestamp".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionStatusNotificationEventBuilder) SetTimestampExt(v Element) *SubscriptionStatusNotificationEventBuilder {
+	b.subscriptionStatusNotificationEvent.TimestampExt = &v
+	return b
+}

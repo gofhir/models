@@ -208,3 +208,67 @@ func TestResourceBuilderReturnsTheSameInstance(t *testing.T) {
 		t.Error("the two are no longer the same object")
 	}
 }
+
+// TestTheChainNeverBreaks is the point of completing the builder surface.
+//
+// A caller building a resource used to drop into a struct literal the moment they
+// reached a backbone or a datatype, and again for any extension on a primitive.
+// Those are not corner cases: a backbone is where most of a resource's data lives,
+// and a _field companion is the only way FHIR expresses an extension on a
+// primitive value.
+//
+// This builds one document through every layer without a single literal.
+func TestTheChainNeverBreaks(t *testing.T) {
+	p := r4.NewPatientBuilder().
+		SetId("p1").
+		// datatype
+		AddName(r4.NewHumanNameBuilder().
+			SetFamily("Smith").
+			AddGiven("John").
+			Build()).
+		// backbone, with a datatype inside it
+		AddContact(r4.NewPatientContactBuilder().
+			SetName(r4.NewHumanNameBuilder().SetFamily("Doe").Build()).
+			AddTelecom(r4.NewContactPointBuilder().
+				SetSystem(r4.ContactPointSystemPhone).
+				SetValue("555").
+				Build()).
+			Build()).
+		// extension on a primitive, through its companion
+		SetBirthDateExt(r4.NewElementBuilder().
+			AddExtension(r4.NewExtensionBuilder().
+				SetUrl("http://hl7.org/fhir/StructureDefinition/data-absent-reason").
+				SetValueCode("asked-declined").
+				Build()).
+			Build()).
+		Build()
+
+	out, err := json.Marshal(p)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	for _, want := range []string{
+		`"family":"Smith"`, `"given":["John"]`,
+		`"contact":[{`, `"family":"Doe"`, `"value":"555"`,
+		`"_birthDate":{`, `"asked-declined"`,
+	} {
+		if !strings.Contains(string(out), want) {
+			t.Errorf("%s missing from:\n%s", want, out)
+		}
+	}
+
+	// And it reads back as what was built.
+	var back r4.Patient
+	if err := json.Unmarshal(out, &back); err != nil {
+		t.Fatalf("reparse: %v", err)
+	}
+	if len(back.Contact) != 1 || back.Contact[0].Name == nil {
+		t.Error("the backbone did not survive the round trip")
+	}
+	if back.BirthDateExt == nil || len(back.BirthDateExt.Extension) != 1 {
+		t.Error("the primitive's extension did not survive the round trip")
+	}
+	if back.BirthDate != nil {
+		t.Error("birthDate has no value; only its extension was set")
+	}
+}

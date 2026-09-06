@@ -1199,3 +1199,438 @@ func (b *PackagedProductDefinitionBuilder) AddCharacteristic(v PackagedProductDe
 	b.packagedProductDefinition.Characteristic = append(b.packagedProductDefinition.Characteristic, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PackagedProductDefinitionBuilder) SetImplicitRulesExt(v Element) *PackagedProductDefinitionBuilder {
+	b.packagedProductDefinition.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PackagedProductDefinitionBuilder) SetLanguageExt(v Element) *PackagedProductDefinitionBuilder {
+	b.packagedProductDefinition.LanguageExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PackagedProductDefinitionBuilder) SetNameExt(v Element) *PackagedProductDefinitionBuilder {
+	b.packagedProductDefinition.NameExt = &v
+	return b
+}
+
+// SetStatusDateExt sets the extensions carried by StatusDate, serialized as
+// "_statusDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PackagedProductDefinitionBuilder) SetStatusDateExt(v Element) *PackagedProductDefinitionBuilder {
+	b.packagedProductDefinition.StatusDateExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PackagedProductDefinitionBuilder) SetDescriptionExt(v Element) *PackagedProductDefinitionBuilder {
+	b.packagedProductDefinition.DescriptionExt = &v
+	return b
+}
+
+// SetCopackagedIndicatorExt sets the extensions carried by CopackagedIndicator, serialized as
+// "_copackagedIndicator".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PackagedProductDefinitionBuilder) SetCopackagedIndicatorExt(v Element) *PackagedProductDefinitionBuilder {
+	b.packagedProductDefinition.CopackagedIndicatorExt = &v
+	return b
+}
+
+// =============================================================================
+// PackagedProductDefinitionLegalStatusOfSupply - Fluent Builder
+// =============================================================================
+
+// PackagedProductDefinitionLegalStatusOfSupplyBuilder provides a fluent API for constructing PackagedProductDefinitionLegalStatusOfSupply values.
+type PackagedProductDefinitionLegalStatusOfSupplyBuilder struct {
+	packagedProductDefinitionLegalStatusOfSupply *PackagedProductDefinitionLegalStatusOfSupply
+}
+
+// NewPackagedProductDefinitionLegalStatusOfSupplyBuilder creates a new PackagedProductDefinitionLegalStatusOfSupplyBuilder.
+func NewPackagedProductDefinitionLegalStatusOfSupplyBuilder() *PackagedProductDefinitionLegalStatusOfSupplyBuilder {
+	return &PackagedProductDefinitionLegalStatusOfSupplyBuilder{
+		packagedProductDefinitionLegalStatusOfSupply: &PackagedProductDefinitionLegalStatusOfSupply{},
+	}
+}
+
+// Build returns the constructed PackagedProductDefinitionLegalStatusOfSupply.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PackagedProductDefinitionLegalStatusOfSupplyBuilder) Build() PackagedProductDefinitionLegalStatusOfSupply {
+	return *b.packagedProductDefinitionLegalStatusOfSupply
+}
+
+// SetId sets the Id field.
+func (b *PackagedProductDefinitionLegalStatusOfSupplyBuilder) SetId(v string) *PackagedProductDefinitionLegalStatusOfSupplyBuilder {
+	b.packagedProductDefinitionLegalStatusOfSupply.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PackagedProductDefinitionLegalStatusOfSupplyBuilder) AddExtension(v Extension) *PackagedProductDefinitionLegalStatusOfSupplyBuilder {
+	b.packagedProductDefinitionLegalStatusOfSupply.Extension = append(b.packagedProductDefinitionLegalStatusOfSupply.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PackagedProductDefinitionLegalStatusOfSupplyBuilder) AddModifierExtension(v Extension) *PackagedProductDefinitionLegalStatusOfSupplyBuilder {
+	b.packagedProductDefinitionLegalStatusOfSupply.ModifierExtension = append(b.packagedProductDefinitionLegalStatusOfSupply.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *PackagedProductDefinitionLegalStatusOfSupplyBuilder) SetCode(v CodeableConcept) *PackagedProductDefinitionLegalStatusOfSupplyBuilder {
+	b.packagedProductDefinitionLegalStatusOfSupply.Code = &v
+	return b
+}
+
+// SetJurisdiction sets the Jurisdiction field.
+func (b *PackagedProductDefinitionLegalStatusOfSupplyBuilder) SetJurisdiction(v CodeableConcept) *PackagedProductDefinitionLegalStatusOfSupplyBuilder {
+	b.packagedProductDefinitionLegalStatusOfSupply.Jurisdiction = &v
+	return b
+}
+
+// =============================================================================
+// PackagedProductDefinitionPackaging - Fluent Builder
+// =============================================================================
+
+// PackagedProductDefinitionPackagingBuilder provides a fluent API for constructing PackagedProductDefinitionPackaging values.
+type PackagedProductDefinitionPackagingBuilder struct {
+	packagedProductDefinitionPackaging *PackagedProductDefinitionPackaging
+}
+
+// NewPackagedProductDefinitionPackagingBuilder creates a new PackagedProductDefinitionPackagingBuilder.
+func NewPackagedProductDefinitionPackagingBuilder() *PackagedProductDefinitionPackagingBuilder {
+	return &PackagedProductDefinitionPackagingBuilder{
+		packagedProductDefinitionPackaging: &PackagedProductDefinitionPackaging{},
+	}
+}
+
+// Build returns the constructed PackagedProductDefinitionPackaging.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PackagedProductDefinitionPackagingBuilder) Build() PackagedProductDefinitionPackaging {
+	return *b.packagedProductDefinitionPackaging
+}
+
+// SetId sets the Id field.
+func (b *PackagedProductDefinitionPackagingBuilder) SetId(v string) *PackagedProductDefinitionPackagingBuilder {
+	b.packagedProductDefinitionPackaging.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PackagedProductDefinitionPackagingBuilder) AddExtension(v Extension) *PackagedProductDefinitionPackagingBuilder {
+	b.packagedProductDefinitionPackaging.Extension = append(b.packagedProductDefinitionPackaging.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PackagedProductDefinitionPackagingBuilder) AddModifierExtension(v Extension) *PackagedProductDefinitionPackagingBuilder {
+	b.packagedProductDefinitionPackaging.ModifierExtension = append(b.packagedProductDefinitionPackaging.ModifierExtension, v)
+	return b
+}
+
+// AddIdentifier adds a Identifier element.
+func (b *PackagedProductDefinitionPackagingBuilder) AddIdentifier(v Identifier) *PackagedProductDefinitionPackagingBuilder {
+	b.packagedProductDefinitionPackaging.Identifier = append(b.packagedProductDefinitionPackaging.Identifier, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *PackagedProductDefinitionPackagingBuilder) SetType(v CodeableConcept) *PackagedProductDefinitionPackagingBuilder {
+	b.packagedProductDefinitionPackaging.Type = &v
+	return b
+}
+
+// SetComponentPart sets the ComponentPart field.
+func (b *PackagedProductDefinitionPackagingBuilder) SetComponentPart(v bool) *PackagedProductDefinitionPackagingBuilder {
+	b.packagedProductDefinitionPackaging.ComponentPart = &v
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *PackagedProductDefinitionPackagingBuilder) SetQuantity(v int) *PackagedProductDefinitionPackagingBuilder {
+	b.packagedProductDefinitionPackaging.Quantity = &v
+	return b
+}
+
+// AddMaterial adds a Material element.
+func (b *PackagedProductDefinitionPackagingBuilder) AddMaterial(v CodeableConcept) *PackagedProductDefinitionPackagingBuilder {
+	b.packagedProductDefinitionPackaging.Material = append(b.packagedProductDefinitionPackaging.Material, v)
+	return b
+}
+
+// AddAlternateMaterial adds a AlternateMaterial element.
+func (b *PackagedProductDefinitionPackagingBuilder) AddAlternateMaterial(v CodeableConcept) *PackagedProductDefinitionPackagingBuilder {
+	b.packagedProductDefinitionPackaging.AlternateMaterial = append(b.packagedProductDefinitionPackaging.AlternateMaterial, v)
+	return b
+}
+
+// AddShelfLifeStorage adds a ShelfLifeStorage element.
+func (b *PackagedProductDefinitionPackagingBuilder) AddShelfLifeStorage(v ProductShelfLife) *PackagedProductDefinitionPackagingBuilder {
+	b.packagedProductDefinitionPackaging.ShelfLifeStorage = append(b.packagedProductDefinitionPackaging.ShelfLifeStorage, v)
+	return b
+}
+
+// AddManufacturer adds a Manufacturer element.
+func (b *PackagedProductDefinitionPackagingBuilder) AddManufacturer(v Reference) *PackagedProductDefinitionPackagingBuilder {
+	b.packagedProductDefinitionPackaging.Manufacturer = append(b.packagedProductDefinitionPackaging.Manufacturer, v)
+	return b
+}
+
+// AddProperty adds a Property element.
+func (b *PackagedProductDefinitionPackagingBuilder) AddProperty(v PackagedProductDefinitionPackagingProperty) *PackagedProductDefinitionPackagingBuilder {
+	b.packagedProductDefinitionPackaging.Property = append(b.packagedProductDefinitionPackaging.Property, v)
+	return b
+}
+
+// AddContainedItem adds a ContainedItem element.
+func (b *PackagedProductDefinitionPackagingBuilder) AddContainedItem(v PackagedProductDefinitionPackagingContainedItem) *PackagedProductDefinitionPackagingBuilder {
+	b.packagedProductDefinitionPackaging.ContainedItem = append(b.packagedProductDefinitionPackaging.ContainedItem, v)
+	return b
+}
+
+// AddPackaging adds a Packaging element.
+func (b *PackagedProductDefinitionPackagingBuilder) AddPackaging(v PackagedProductDefinitionPackaging) *PackagedProductDefinitionPackagingBuilder {
+	b.packagedProductDefinitionPackaging.Packaging = append(b.packagedProductDefinitionPackaging.Packaging, v)
+	return b
+}
+
+// SetComponentPartExt sets the extensions carried by ComponentPart, serialized as
+// "_componentPart".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PackagedProductDefinitionPackagingBuilder) SetComponentPartExt(v Element) *PackagedProductDefinitionPackagingBuilder {
+	b.packagedProductDefinitionPackaging.ComponentPartExt = &v
+	return b
+}
+
+// SetQuantityExt sets the extensions carried by Quantity, serialized as
+// "_quantity".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PackagedProductDefinitionPackagingBuilder) SetQuantityExt(v Element) *PackagedProductDefinitionPackagingBuilder {
+	b.packagedProductDefinitionPackaging.QuantityExt = &v
+	return b
+}
+
+// =============================================================================
+// PackagedProductDefinitionPackagingContainedItem - Fluent Builder
+// =============================================================================
+
+// PackagedProductDefinitionPackagingContainedItemBuilder provides a fluent API for constructing PackagedProductDefinitionPackagingContainedItem values.
+type PackagedProductDefinitionPackagingContainedItemBuilder struct {
+	packagedProductDefinitionPackagingContainedItem *PackagedProductDefinitionPackagingContainedItem
+}
+
+// NewPackagedProductDefinitionPackagingContainedItemBuilder creates a new PackagedProductDefinitionPackagingContainedItemBuilder.
+func NewPackagedProductDefinitionPackagingContainedItemBuilder() *PackagedProductDefinitionPackagingContainedItemBuilder {
+	return &PackagedProductDefinitionPackagingContainedItemBuilder{
+		packagedProductDefinitionPackagingContainedItem: &PackagedProductDefinitionPackagingContainedItem{},
+	}
+}
+
+// Build returns the constructed PackagedProductDefinitionPackagingContainedItem.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PackagedProductDefinitionPackagingContainedItemBuilder) Build() PackagedProductDefinitionPackagingContainedItem {
+	return *b.packagedProductDefinitionPackagingContainedItem
+}
+
+// SetId sets the Id field.
+func (b *PackagedProductDefinitionPackagingContainedItemBuilder) SetId(v string) *PackagedProductDefinitionPackagingContainedItemBuilder {
+	b.packagedProductDefinitionPackagingContainedItem.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PackagedProductDefinitionPackagingContainedItemBuilder) AddExtension(v Extension) *PackagedProductDefinitionPackagingContainedItemBuilder {
+	b.packagedProductDefinitionPackagingContainedItem.Extension = append(b.packagedProductDefinitionPackagingContainedItem.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PackagedProductDefinitionPackagingContainedItemBuilder) AddModifierExtension(v Extension) *PackagedProductDefinitionPackagingContainedItemBuilder {
+	b.packagedProductDefinitionPackagingContainedItem.ModifierExtension = append(b.packagedProductDefinitionPackagingContainedItem.ModifierExtension, v)
+	return b
+}
+
+// SetItem sets the Item field.
+func (b *PackagedProductDefinitionPackagingContainedItemBuilder) SetItem(v CodeableReference) *PackagedProductDefinitionPackagingContainedItemBuilder {
+	b.packagedProductDefinitionPackagingContainedItem.Item = &v
+	return b
+}
+
+// SetAmount sets the Amount field.
+func (b *PackagedProductDefinitionPackagingContainedItemBuilder) SetAmount(v Quantity) *PackagedProductDefinitionPackagingContainedItemBuilder {
+	b.packagedProductDefinitionPackagingContainedItem.Amount = &v
+	return b
+}
+
+// =============================================================================
+// PackagedProductDefinitionPackagingProperty - Fluent Builder
+// =============================================================================
+
+// PackagedProductDefinitionPackagingPropertyBuilder provides a fluent API for constructing PackagedProductDefinitionPackagingProperty values.
+type PackagedProductDefinitionPackagingPropertyBuilder struct {
+	packagedProductDefinitionPackagingProperty *PackagedProductDefinitionPackagingProperty
+}
+
+// NewPackagedProductDefinitionPackagingPropertyBuilder creates a new PackagedProductDefinitionPackagingPropertyBuilder.
+func NewPackagedProductDefinitionPackagingPropertyBuilder() *PackagedProductDefinitionPackagingPropertyBuilder {
+	return &PackagedProductDefinitionPackagingPropertyBuilder{
+		packagedProductDefinitionPackagingProperty: &PackagedProductDefinitionPackagingProperty{},
+	}
+}
+
+// Build returns the constructed PackagedProductDefinitionPackagingProperty.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PackagedProductDefinitionPackagingPropertyBuilder) Build() PackagedProductDefinitionPackagingProperty {
+	return *b.packagedProductDefinitionPackagingProperty
+}
+
+// SetId sets the Id field.
+func (b *PackagedProductDefinitionPackagingPropertyBuilder) SetId(v string) *PackagedProductDefinitionPackagingPropertyBuilder {
+	b.packagedProductDefinitionPackagingProperty.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PackagedProductDefinitionPackagingPropertyBuilder) AddExtension(v Extension) *PackagedProductDefinitionPackagingPropertyBuilder {
+	b.packagedProductDefinitionPackagingProperty.Extension = append(b.packagedProductDefinitionPackagingProperty.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PackagedProductDefinitionPackagingPropertyBuilder) AddModifierExtension(v Extension) *PackagedProductDefinitionPackagingPropertyBuilder {
+	b.packagedProductDefinitionPackagingProperty.ModifierExtension = append(b.packagedProductDefinitionPackagingProperty.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *PackagedProductDefinitionPackagingPropertyBuilder) SetType(v CodeableConcept) *PackagedProductDefinitionPackagingPropertyBuilder {
+	b.packagedProductDefinitionPackagingProperty.Type = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PackagedProductDefinitionPackagingPropertyBuilder) SetValueCodeableConcept(v CodeableConcept) *PackagedProductDefinitionPackagingPropertyBuilder {
+	b.clearValue()
+	b.packagedProductDefinitionPackagingProperty.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PackagedProductDefinitionPackagingPropertyBuilder) SetValueQuantity(v Quantity) *PackagedProductDefinitionPackagingPropertyBuilder {
+	b.clearValue()
+	b.packagedProductDefinitionPackagingProperty.ValueQuantity = &v
+	return b
+}
+
+// SetValueDate sets Value[x] to its ValueDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PackagedProductDefinitionPackagingPropertyBuilder) SetValueDate(v string) *PackagedProductDefinitionPackagingPropertyBuilder {
+	b.clearValue()
+	b.packagedProductDefinitionPackagingProperty.ValueDate = &v
+	return b
+}
+
+// SetValueDateExt sets the ValueDateExt field.
+func (b *PackagedProductDefinitionPackagingPropertyBuilder) SetValueDateExt(v Element) *PackagedProductDefinitionPackagingPropertyBuilder {
+	b.packagedProductDefinitionPackagingProperty.ValueDateExt = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PackagedProductDefinitionPackagingPropertyBuilder) SetValueBoolean(v bool) *PackagedProductDefinitionPackagingPropertyBuilder {
+	b.clearValue()
+	b.packagedProductDefinitionPackagingProperty.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *PackagedProductDefinitionPackagingPropertyBuilder) SetValueBooleanExt(v Element) *PackagedProductDefinitionPackagingPropertyBuilder {
+	b.packagedProductDefinitionPackagingProperty.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueAttachment sets Value[x] to its ValueAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *PackagedProductDefinitionPackagingPropertyBuilder) SetValueAttachment(v Attachment) *PackagedProductDefinitionPackagingPropertyBuilder {
+	b.clearValue()
+	b.packagedProductDefinitionPackagingProperty.ValueAttachment = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *PackagedProductDefinitionPackagingPropertyBuilder) clearValue() {
+	b.packagedProductDefinitionPackagingProperty.ValueCodeableConcept = nil
+	b.packagedProductDefinitionPackagingProperty.ValueQuantity = nil
+	b.packagedProductDefinitionPackagingProperty.ValueDate = nil
+	b.packagedProductDefinitionPackagingProperty.ValueDateExt = nil
+	b.packagedProductDefinitionPackagingProperty.ValueBoolean = nil
+	b.packagedProductDefinitionPackagingProperty.ValueBooleanExt = nil
+	b.packagedProductDefinitionPackagingProperty.ValueAttachment = nil
+}

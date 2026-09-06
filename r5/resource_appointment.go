@@ -1712,3 +1712,695 @@ func (b *AppointmentBuilder) AddRecurrenceTemplate(v AppointmentRecurrenceTempla
 	b.appointment.RecurrenceTemplate = append(b.appointment.RecurrenceTemplate, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentBuilder) SetImplicitRulesExt(v Element) *AppointmentBuilder {
+	b.appointment.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentBuilder) SetLanguageExt(v Element) *AppointmentBuilder {
+	b.appointment.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentBuilder) SetStatusExt(v Element) *AppointmentBuilder {
+	b.appointment.StatusExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentBuilder) SetDescriptionExt(v Element) *AppointmentBuilder {
+	b.appointment.DescriptionExt = &v
+	return b
+}
+
+// SetStartExt sets the extensions carried by Start, serialized as
+// "_start".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentBuilder) SetStartExt(v Element) *AppointmentBuilder {
+	b.appointment.StartExt = &v
+	return b
+}
+
+// SetEndExt sets the extensions carried by End, serialized as
+// "_end".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentBuilder) SetEndExt(v Element) *AppointmentBuilder {
+	b.appointment.EndExt = &v
+	return b
+}
+
+// SetMinutesDurationExt sets the extensions carried by MinutesDuration, serialized as
+// "_minutesDuration".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentBuilder) SetMinutesDurationExt(v Element) *AppointmentBuilder {
+	b.appointment.MinutesDurationExt = &v
+	return b
+}
+
+// SetCreatedExt sets the extensions carried by Created, serialized as
+// "_created".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentBuilder) SetCreatedExt(v Element) *AppointmentBuilder {
+	b.appointment.CreatedExt = &v
+	return b
+}
+
+// SetCancellationDateExt sets the extensions carried by CancellationDate, serialized as
+// "_cancellationDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentBuilder) SetCancellationDateExt(v Element) *AppointmentBuilder {
+	b.appointment.CancellationDateExt = &v
+	return b
+}
+
+// SetRecurrenceIdExt sets the extensions carried by RecurrenceId, serialized as
+// "_recurrenceId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentBuilder) SetRecurrenceIdExt(v Element) *AppointmentBuilder {
+	b.appointment.RecurrenceIdExt = &v
+	return b
+}
+
+// SetOccurrenceChangedExt sets the extensions carried by OccurrenceChanged, serialized as
+// "_occurrenceChanged".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentBuilder) SetOccurrenceChangedExt(v Element) *AppointmentBuilder {
+	b.appointment.OccurrenceChangedExt = &v
+	return b
+}
+
+// =============================================================================
+// AppointmentParticipant - Fluent Builder
+// =============================================================================
+
+// AppointmentParticipantBuilder provides a fluent API for constructing AppointmentParticipant values.
+type AppointmentParticipantBuilder struct {
+	appointmentParticipant *AppointmentParticipant
+}
+
+// NewAppointmentParticipantBuilder creates a new AppointmentParticipantBuilder.
+func NewAppointmentParticipantBuilder() *AppointmentParticipantBuilder {
+	return &AppointmentParticipantBuilder{
+		appointmentParticipant: &AppointmentParticipant{},
+	}
+}
+
+// Build returns the constructed AppointmentParticipant.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AppointmentParticipantBuilder) Build() AppointmentParticipant {
+	return *b.appointmentParticipant
+}
+
+// SetId sets the Id field.
+func (b *AppointmentParticipantBuilder) SetId(v string) *AppointmentParticipantBuilder {
+	b.appointmentParticipant.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AppointmentParticipantBuilder) AddExtension(v Extension) *AppointmentParticipantBuilder {
+	b.appointmentParticipant.Extension = append(b.appointmentParticipant.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AppointmentParticipantBuilder) AddModifierExtension(v Extension) *AppointmentParticipantBuilder {
+	b.appointmentParticipant.ModifierExtension = append(b.appointmentParticipant.ModifierExtension, v)
+	return b
+}
+
+// AddType adds a Type element.
+func (b *AppointmentParticipantBuilder) AddType(v CodeableConcept) *AppointmentParticipantBuilder {
+	b.appointmentParticipant.Type = append(b.appointmentParticipant.Type, v)
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *AppointmentParticipantBuilder) SetPeriod(v Period) *AppointmentParticipantBuilder {
+	b.appointmentParticipant.Period = &v
+	return b
+}
+
+// SetActor sets the Actor field.
+func (b *AppointmentParticipantBuilder) SetActor(v Reference) *AppointmentParticipantBuilder {
+	b.appointmentParticipant.Actor = &v
+	return b
+}
+
+// SetRequired sets the Required field.
+func (b *AppointmentParticipantBuilder) SetRequired(v bool) *AppointmentParticipantBuilder {
+	b.appointmentParticipant.Required = &v
+	return b
+}
+
+// SetStatus sets the Status field.
+func (b *AppointmentParticipantBuilder) SetStatus(v ParticipationStatus) *AppointmentParticipantBuilder {
+	b.appointmentParticipant.Status = &v
+	return b
+}
+
+// SetRequiredExt sets the extensions carried by Required, serialized as
+// "_required".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentParticipantBuilder) SetRequiredExt(v Element) *AppointmentParticipantBuilder {
+	b.appointmentParticipant.RequiredExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentParticipantBuilder) SetStatusExt(v Element) *AppointmentParticipantBuilder {
+	b.appointmentParticipant.StatusExt = &v
+	return b
+}
+
+// =============================================================================
+// AppointmentRecurrenceTemplate - Fluent Builder
+// =============================================================================
+
+// AppointmentRecurrenceTemplateBuilder provides a fluent API for constructing AppointmentRecurrenceTemplate values.
+type AppointmentRecurrenceTemplateBuilder struct {
+	appointmentRecurrenceTemplate *AppointmentRecurrenceTemplate
+}
+
+// NewAppointmentRecurrenceTemplateBuilder creates a new AppointmentRecurrenceTemplateBuilder.
+func NewAppointmentRecurrenceTemplateBuilder() *AppointmentRecurrenceTemplateBuilder {
+	return &AppointmentRecurrenceTemplateBuilder{
+		appointmentRecurrenceTemplate: &AppointmentRecurrenceTemplate{},
+	}
+}
+
+// Build returns the constructed AppointmentRecurrenceTemplate.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AppointmentRecurrenceTemplateBuilder) Build() AppointmentRecurrenceTemplate {
+	return *b.appointmentRecurrenceTemplate
+}
+
+// SetId sets the Id field.
+func (b *AppointmentRecurrenceTemplateBuilder) SetId(v string) *AppointmentRecurrenceTemplateBuilder {
+	b.appointmentRecurrenceTemplate.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AppointmentRecurrenceTemplateBuilder) AddExtension(v Extension) *AppointmentRecurrenceTemplateBuilder {
+	b.appointmentRecurrenceTemplate.Extension = append(b.appointmentRecurrenceTemplate.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AppointmentRecurrenceTemplateBuilder) AddModifierExtension(v Extension) *AppointmentRecurrenceTemplateBuilder {
+	b.appointmentRecurrenceTemplate.ModifierExtension = append(b.appointmentRecurrenceTemplate.ModifierExtension, v)
+	return b
+}
+
+// SetTimezone sets the Timezone field.
+func (b *AppointmentRecurrenceTemplateBuilder) SetTimezone(v CodeableConcept) *AppointmentRecurrenceTemplateBuilder {
+	b.appointmentRecurrenceTemplate.Timezone = &v
+	return b
+}
+
+// SetRecurrenceType sets the RecurrenceType field.
+func (b *AppointmentRecurrenceTemplateBuilder) SetRecurrenceType(v CodeableConcept) *AppointmentRecurrenceTemplateBuilder {
+	b.appointmentRecurrenceTemplate.RecurrenceType = &v
+	return b
+}
+
+// SetLastOccurrenceDate sets the LastOccurrenceDate field.
+func (b *AppointmentRecurrenceTemplateBuilder) SetLastOccurrenceDate(v string) *AppointmentRecurrenceTemplateBuilder {
+	b.appointmentRecurrenceTemplate.LastOccurrenceDate = &v
+	return b
+}
+
+// SetOccurrenceCount sets the OccurrenceCount field.
+func (b *AppointmentRecurrenceTemplateBuilder) SetOccurrenceCount(v uint32) *AppointmentRecurrenceTemplateBuilder {
+	b.appointmentRecurrenceTemplate.OccurrenceCount = &v
+	return b
+}
+
+// AddOccurrenceDate adds a OccurrenceDate element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *AppointmentRecurrenceTemplateBuilder) AddOccurrenceDate(v string) *AppointmentRecurrenceTemplateBuilder {
+	b.appointmentRecurrenceTemplate.OccurrenceDate = append(b.appointmentRecurrenceTemplate.OccurrenceDate, &v)
+	return b
+}
+
+// SetWeeklyTemplate sets the WeeklyTemplate field.
+func (b *AppointmentRecurrenceTemplateBuilder) SetWeeklyTemplate(v AppointmentRecurrenceTemplateWeeklyTemplate) *AppointmentRecurrenceTemplateBuilder {
+	b.appointmentRecurrenceTemplate.WeeklyTemplate = &v
+	return b
+}
+
+// SetMonthlyTemplate sets the MonthlyTemplate field.
+func (b *AppointmentRecurrenceTemplateBuilder) SetMonthlyTemplate(v AppointmentRecurrenceTemplateMonthlyTemplate) *AppointmentRecurrenceTemplateBuilder {
+	b.appointmentRecurrenceTemplate.MonthlyTemplate = &v
+	return b
+}
+
+// SetYearlyTemplate sets the YearlyTemplate field.
+func (b *AppointmentRecurrenceTemplateBuilder) SetYearlyTemplate(v AppointmentRecurrenceTemplateYearlyTemplate) *AppointmentRecurrenceTemplateBuilder {
+	b.appointmentRecurrenceTemplate.YearlyTemplate = &v
+	return b
+}
+
+// AddExcludingDate adds a ExcludingDate element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *AppointmentRecurrenceTemplateBuilder) AddExcludingDate(v string) *AppointmentRecurrenceTemplateBuilder {
+	b.appointmentRecurrenceTemplate.ExcludingDate = append(b.appointmentRecurrenceTemplate.ExcludingDate, &v)
+	return b
+}
+
+// AddExcludingRecurrenceId adds a ExcludingRecurrenceId element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *AppointmentRecurrenceTemplateBuilder) AddExcludingRecurrenceId(v uint32) *AppointmentRecurrenceTemplateBuilder {
+	b.appointmentRecurrenceTemplate.ExcludingRecurrenceId = append(b.appointmentRecurrenceTemplate.ExcludingRecurrenceId, &v)
+	return b
+}
+
+// SetLastOccurrenceDateExt sets the extensions carried by LastOccurrenceDate, serialized as
+// "_lastOccurrenceDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentRecurrenceTemplateBuilder) SetLastOccurrenceDateExt(v Element) *AppointmentRecurrenceTemplateBuilder {
+	b.appointmentRecurrenceTemplate.LastOccurrenceDateExt = &v
+	return b
+}
+
+// SetOccurrenceCountExt sets the extensions carried by OccurrenceCount, serialized as
+// "_occurrenceCount".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentRecurrenceTemplateBuilder) SetOccurrenceCountExt(v Element) *AppointmentRecurrenceTemplateBuilder {
+	b.appointmentRecurrenceTemplate.OccurrenceCountExt = &v
+	return b
+}
+
+// AddOccurrenceDateExt appends an extension slot for OccurrenceDate.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *AppointmentRecurrenceTemplateBuilder) AddOccurrenceDateExt(v *Element) *AppointmentRecurrenceTemplateBuilder {
+	b.appointmentRecurrenceTemplate.OccurrenceDateExt = append(b.appointmentRecurrenceTemplate.OccurrenceDateExt, v)
+	return b
+}
+
+// AddExcludingDateExt appends an extension slot for ExcludingDate.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *AppointmentRecurrenceTemplateBuilder) AddExcludingDateExt(v *Element) *AppointmentRecurrenceTemplateBuilder {
+	b.appointmentRecurrenceTemplate.ExcludingDateExt = append(b.appointmentRecurrenceTemplate.ExcludingDateExt, v)
+	return b
+}
+
+// AddExcludingRecurrenceIdExt appends an extension slot for ExcludingRecurrenceId.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *AppointmentRecurrenceTemplateBuilder) AddExcludingRecurrenceIdExt(v *Element) *AppointmentRecurrenceTemplateBuilder {
+	b.appointmentRecurrenceTemplate.ExcludingRecurrenceIdExt = append(b.appointmentRecurrenceTemplate.ExcludingRecurrenceIdExt, v)
+	return b
+}
+
+// =============================================================================
+// AppointmentRecurrenceTemplateMonthlyTemplate - Fluent Builder
+// =============================================================================
+
+// AppointmentRecurrenceTemplateMonthlyTemplateBuilder provides a fluent API for constructing AppointmentRecurrenceTemplateMonthlyTemplate values.
+type AppointmentRecurrenceTemplateMonthlyTemplateBuilder struct {
+	appointmentRecurrenceTemplateMonthlyTemplate *AppointmentRecurrenceTemplateMonthlyTemplate
+}
+
+// NewAppointmentRecurrenceTemplateMonthlyTemplateBuilder creates a new AppointmentRecurrenceTemplateMonthlyTemplateBuilder.
+func NewAppointmentRecurrenceTemplateMonthlyTemplateBuilder() *AppointmentRecurrenceTemplateMonthlyTemplateBuilder {
+	return &AppointmentRecurrenceTemplateMonthlyTemplateBuilder{
+		appointmentRecurrenceTemplateMonthlyTemplate: &AppointmentRecurrenceTemplateMonthlyTemplate{},
+	}
+}
+
+// Build returns the constructed AppointmentRecurrenceTemplateMonthlyTemplate.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AppointmentRecurrenceTemplateMonthlyTemplateBuilder) Build() AppointmentRecurrenceTemplateMonthlyTemplate {
+	return *b.appointmentRecurrenceTemplateMonthlyTemplate
+}
+
+// SetId sets the Id field.
+func (b *AppointmentRecurrenceTemplateMonthlyTemplateBuilder) SetId(v string) *AppointmentRecurrenceTemplateMonthlyTemplateBuilder {
+	b.appointmentRecurrenceTemplateMonthlyTemplate.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AppointmentRecurrenceTemplateMonthlyTemplateBuilder) AddExtension(v Extension) *AppointmentRecurrenceTemplateMonthlyTemplateBuilder {
+	b.appointmentRecurrenceTemplateMonthlyTemplate.Extension = append(b.appointmentRecurrenceTemplateMonthlyTemplate.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AppointmentRecurrenceTemplateMonthlyTemplateBuilder) AddModifierExtension(v Extension) *AppointmentRecurrenceTemplateMonthlyTemplateBuilder {
+	b.appointmentRecurrenceTemplateMonthlyTemplate.ModifierExtension = append(b.appointmentRecurrenceTemplateMonthlyTemplate.ModifierExtension, v)
+	return b
+}
+
+// SetDayOfMonth sets the DayOfMonth field.
+func (b *AppointmentRecurrenceTemplateMonthlyTemplateBuilder) SetDayOfMonth(v uint32) *AppointmentRecurrenceTemplateMonthlyTemplateBuilder {
+	b.appointmentRecurrenceTemplateMonthlyTemplate.DayOfMonth = &v
+	return b
+}
+
+// SetNthWeekOfMonth sets the NthWeekOfMonth field.
+func (b *AppointmentRecurrenceTemplateMonthlyTemplateBuilder) SetNthWeekOfMonth(v Coding) *AppointmentRecurrenceTemplateMonthlyTemplateBuilder {
+	b.appointmentRecurrenceTemplateMonthlyTemplate.NthWeekOfMonth = &v
+	return b
+}
+
+// SetDayOfWeek sets the DayOfWeek field.
+func (b *AppointmentRecurrenceTemplateMonthlyTemplateBuilder) SetDayOfWeek(v Coding) *AppointmentRecurrenceTemplateMonthlyTemplateBuilder {
+	b.appointmentRecurrenceTemplateMonthlyTemplate.DayOfWeek = &v
+	return b
+}
+
+// SetMonthInterval sets the MonthInterval field.
+func (b *AppointmentRecurrenceTemplateMonthlyTemplateBuilder) SetMonthInterval(v uint32) *AppointmentRecurrenceTemplateMonthlyTemplateBuilder {
+	b.appointmentRecurrenceTemplateMonthlyTemplate.MonthInterval = &v
+	return b
+}
+
+// SetDayOfMonthExt sets the extensions carried by DayOfMonth, serialized as
+// "_dayOfMonth".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentRecurrenceTemplateMonthlyTemplateBuilder) SetDayOfMonthExt(v Element) *AppointmentRecurrenceTemplateMonthlyTemplateBuilder {
+	b.appointmentRecurrenceTemplateMonthlyTemplate.DayOfMonthExt = &v
+	return b
+}
+
+// SetMonthIntervalExt sets the extensions carried by MonthInterval, serialized as
+// "_monthInterval".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentRecurrenceTemplateMonthlyTemplateBuilder) SetMonthIntervalExt(v Element) *AppointmentRecurrenceTemplateMonthlyTemplateBuilder {
+	b.appointmentRecurrenceTemplateMonthlyTemplate.MonthIntervalExt = &v
+	return b
+}
+
+// =============================================================================
+// AppointmentRecurrenceTemplateWeeklyTemplate - Fluent Builder
+// =============================================================================
+
+// AppointmentRecurrenceTemplateWeeklyTemplateBuilder provides a fluent API for constructing AppointmentRecurrenceTemplateWeeklyTemplate values.
+type AppointmentRecurrenceTemplateWeeklyTemplateBuilder struct {
+	appointmentRecurrenceTemplateWeeklyTemplate *AppointmentRecurrenceTemplateWeeklyTemplate
+}
+
+// NewAppointmentRecurrenceTemplateWeeklyTemplateBuilder creates a new AppointmentRecurrenceTemplateWeeklyTemplateBuilder.
+func NewAppointmentRecurrenceTemplateWeeklyTemplateBuilder() *AppointmentRecurrenceTemplateWeeklyTemplateBuilder {
+	return &AppointmentRecurrenceTemplateWeeklyTemplateBuilder{
+		appointmentRecurrenceTemplateWeeklyTemplate: &AppointmentRecurrenceTemplateWeeklyTemplate{},
+	}
+}
+
+// Build returns the constructed AppointmentRecurrenceTemplateWeeklyTemplate.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AppointmentRecurrenceTemplateWeeklyTemplateBuilder) Build() AppointmentRecurrenceTemplateWeeklyTemplate {
+	return *b.appointmentRecurrenceTemplateWeeklyTemplate
+}
+
+// SetId sets the Id field.
+func (b *AppointmentRecurrenceTemplateWeeklyTemplateBuilder) SetId(v string) *AppointmentRecurrenceTemplateWeeklyTemplateBuilder {
+	b.appointmentRecurrenceTemplateWeeklyTemplate.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AppointmentRecurrenceTemplateWeeklyTemplateBuilder) AddExtension(v Extension) *AppointmentRecurrenceTemplateWeeklyTemplateBuilder {
+	b.appointmentRecurrenceTemplateWeeklyTemplate.Extension = append(b.appointmentRecurrenceTemplateWeeklyTemplate.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AppointmentRecurrenceTemplateWeeklyTemplateBuilder) AddModifierExtension(v Extension) *AppointmentRecurrenceTemplateWeeklyTemplateBuilder {
+	b.appointmentRecurrenceTemplateWeeklyTemplate.ModifierExtension = append(b.appointmentRecurrenceTemplateWeeklyTemplate.ModifierExtension, v)
+	return b
+}
+
+// SetMonday sets the Monday field.
+func (b *AppointmentRecurrenceTemplateWeeklyTemplateBuilder) SetMonday(v bool) *AppointmentRecurrenceTemplateWeeklyTemplateBuilder {
+	b.appointmentRecurrenceTemplateWeeklyTemplate.Monday = &v
+	return b
+}
+
+// SetTuesday sets the Tuesday field.
+func (b *AppointmentRecurrenceTemplateWeeklyTemplateBuilder) SetTuesday(v bool) *AppointmentRecurrenceTemplateWeeklyTemplateBuilder {
+	b.appointmentRecurrenceTemplateWeeklyTemplate.Tuesday = &v
+	return b
+}
+
+// SetWednesday sets the Wednesday field.
+func (b *AppointmentRecurrenceTemplateWeeklyTemplateBuilder) SetWednesday(v bool) *AppointmentRecurrenceTemplateWeeklyTemplateBuilder {
+	b.appointmentRecurrenceTemplateWeeklyTemplate.Wednesday = &v
+	return b
+}
+
+// SetThursday sets the Thursday field.
+func (b *AppointmentRecurrenceTemplateWeeklyTemplateBuilder) SetThursday(v bool) *AppointmentRecurrenceTemplateWeeklyTemplateBuilder {
+	b.appointmentRecurrenceTemplateWeeklyTemplate.Thursday = &v
+	return b
+}
+
+// SetFriday sets the Friday field.
+func (b *AppointmentRecurrenceTemplateWeeklyTemplateBuilder) SetFriday(v bool) *AppointmentRecurrenceTemplateWeeklyTemplateBuilder {
+	b.appointmentRecurrenceTemplateWeeklyTemplate.Friday = &v
+	return b
+}
+
+// SetSaturday sets the Saturday field.
+func (b *AppointmentRecurrenceTemplateWeeklyTemplateBuilder) SetSaturday(v bool) *AppointmentRecurrenceTemplateWeeklyTemplateBuilder {
+	b.appointmentRecurrenceTemplateWeeklyTemplate.Saturday = &v
+	return b
+}
+
+// SetSunday sets the Sunday field.
+func (b *AppointmentRecurrenceTemplateWeeklyTemplateBuilder) SetSunday(v bool) *AppointmentRecurrenceTemplateWeeklyTemplateBuilder {
+	b.appointmentRecurrenceTemplateWeeklyTemplate.Sunday = &v
+	return b
+}
+
+// SetWeekInterval sets the WeekInterval field.
+func (b *AppointmentRecurrenceTemplateWeeklyTemplateBuilder) SetWeekInterval(v uint32) *AppointmentRecurrenceTemplateWeeklyTemplateBuilder {
+	b.appointmentRecurrenceTemplateWeeklyTemplate.WeekInterval = &v
+	return b
+}
+
+// SetMondayExt sets the extensions carried by Monday, serialized as
+// "_monday".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentRecurrenceTemplateWeeklyTemplateBuilder) SetMondayExt(v Element) *AppointmentRecurrenceTemplateWeeklyTemplateBuilder {
+	b.appointmentRecurrenceTemplateWeeklyTemplate.MondayExt = &v
+	return b
+}
+
+// SetTuesdayExt sets the extensions carried by Tuesday, serialized as
+// "_tuesday".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentRecurrenceTemplateWeeklyTemplateBuilder) SetTuesdayExt(v Element) *AppointmentRecurrenceTemplateWeeklyTemplateBuilder {
+	b.appointmentRecurrenceTemplateWeeklyTemplate.TuesdayExt = &v
+	return b
+}
+
+// SetWednesdayExt sets the extensions carried by Wednesday, serialized as
+// "_wednesday".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentRecurrenceTemplateWeeklyTemplateBuilder) SetWednesdayExt(v Element) *AppointmentRecurrenceTemplateWeeklyTemplateBuilder {
+	b.appointmentRecurrenceTemplateWeeklyTemplate.WednesdayExt = &v
+	return b
+}
+
+// SetThursdayExt sets the extensions carried by Thursday, serialized as
+// "_thursday".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentRecurrenceTemplateWeeklyTemplateBuilder) SetThursdayExt(v Element) *AppointmentRecurrenceTemplateWeeklyTemplateBuilder {
+	b.appointmentRecurrenceTemplateWeeklyTemplate.ThursdayExt = &v
+	return b
+}
+
+// SetFridayExt sets the extensions carried by Friday, serialized as
+// "_friday".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentRecurrenceTemplateWeeklyTemplateBuilder) SetFridayExt(v Element) *AppointmentRecurrenceTemplateWeeklyTemplateBuilder {
+	b.appointmentRecurrenceTemplateWeeklyTemplate.FridayExt = &v
+	return b
+}
+
+// SetSaturdayExt sets the extensions carried by Saturday, serialized as
+// "_saturday".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentRecurrenceTemplateWeeklyTemplateBuilder) SetSaturdayExt(v Element) *AppointmentRecurrenceTemplateWeeklyTemplateBuilder {
+	b.appointmentRecurrenceTemplateWeeklyTemplate.SaturdayExt = &v
+	return b
+}
+
+// SetSundayExt sets the extensions carried by Sunday, serialized as
+// "_sunday".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentRecurrenceTemplateWeeklyTemplateBuilder) SetSundayExt(v Element) *AppointmentRecurrenceTemplateWeeklyTemplateBuilder {
+	b.appointmentRecurrenceTemplateWeeklyTemplate.SundayExt = &v
+	return b
+}
+
+// SetWeekIntervalExt sets the extensions carried by WeekInterval, serialized as
+// "_weekInterval".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentRecurrenceTemplateWeeklyTemplateBuilder) SetWeekIntervalExt(v Element) *AppointmentRecurrenceTemplateWeeklyTemplateBuilder {
+	b.appointmentRecurrenceTemplateWeeklyTemplate.WeekIntervalExt = &v
+	return b
+}
+
+// =============================================================================
+// AppointmentRecurrenceTemplateYearlyTemplate - Fluent Builder
+// =============================================================================
+
+// AppointmentRecurrenceTemplateYearlyTemplateBuilder provides a fluent API for constructing AppointmentRecurrenceTemplateYearlyTemplate values.
+type AppointmentRecurrenceTemplateYearlyTemplateBuilder struct {
+	appointmentRecurrenceTemplateYearlyTemplate *AppointmentRecurrenceTemplateYearlyTemplate
+}
+
+// NewAppointmentRecurrenceTemplateYearlyTemplateBuilder creates a new AppointmentRecurrenceTemplateYearlyTemplateBuilder.
+func NewAppointmentRecurrenceTemplateYearlyTemplateBuilder() *AppointmentRecurrenceTemplateYearlyTemplateBuilder {
+	return &AppointmentRecurrenceTemplateYearlyTemplateBuilder{
+		appointmentRecurrenceTemplateYearlyTemplate: &AppointmentRecurrenceTemplateYearlyTemplate{},
+	}
+}
+
+// Build returns the constructed AppointmentRecurrenceTemplateYearlyTemplate.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AppointmentRecurrenceTemplateYearlyTemplateBuilder) Build() AppointmentRecurrenceTemplateYearlyTemplate {
+	return *b.appointmentRecurrenceTemplateYearlyTemplate
+}
+
+// SetId sets the Id field.
+func (b *AppointmentRecurrenceTemplateYearlyTemplateBuilder) SetId(v string) *AppointmentRecurrenceTemplateYearlyTemplateBuilder {
+	b.appointmentRecurrenceTemplateYearlyTemplate.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AppointmentRecurrenceTemplateYearlyTemplateBuilder) AddExtension(v Extension) *AppointmentRecurrenceTemplateYearlyTemplateBuilder {
+	b.appointmentRecurrenceTemplateYearlyTemplate.Extension = append(b.appointmentRecurrenceTemplateYearlyTemplate.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AppointmentRecurrenceTemplateYearlyTemplateBuilder) AddModifierExtension(v Extension) *AppointmentRecurrenceTemplateYearlyTemplateBuilder {
+	b.appointmentRecurrenceTemplateYearlyTemplate.ModifierExtension = append(b.appointmentRecurrenceTemplateYearlyTemplate.ModifierExtension, v)
+	return b
+}
+
+// SetYearInterval sets the YearInterval field.
+func (b *AppointmentRecurrenceTemplateYearlyTemplateBuilder) SetYearInterval(v uint32) *AppointmentRecurrenceTemplateYearlyTemplateBuilder {
+	b.appointmentRecurrenceTemplateYearlyTemplate.YearInterval = &v
+	return b
+}
+
+// SetYearIntervalExt sets the extensions carried by YearInterval, serialized as
+// "_yearInterval".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AppointmentRecurrenceTemplateYearlyTemplateBuilder) SetYearIntervalExt(v Element) *AppointmentRecurrenceTemplateYearlyTemplateBuilder {
+	b.appointmentRecurrenceTemplateYearlyTemplate.YearIntervalExt = &v
+	return b
+}

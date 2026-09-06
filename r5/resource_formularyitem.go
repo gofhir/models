@@ -383,3 +383,33 @@ func (b *FormularyItemBuilder) SetStatus(v FormularyItemStatus) *FormularyItemBu
 	b.formularyItem.Status = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *FormularyItemBuilder) SetImplicitRulesExt(v Element) *FormularyItemBuilder {
+	b.formularyItem.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *FormularyItemBuilder) SetLanguageExt(v Element) *FormularyItemBuilder {
+	b.formularyItem.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *FormularyItemBuilder) SetStatusExt(v Element) *FormularyItemBuilder {
+	b.formularyItem.StatusExt = &v
+	return b
+}

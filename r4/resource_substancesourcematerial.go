@@ -1353,3 +1353,529 @@ func (b *SubstanceSourceMaterialBuilder) AddPartDescription(v SubstanceSourceMat
 	b.substanceSourceMaterial.PartDescription = append(b.substanceSourceMaterial.PartDescription, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSourceMaterialBuilder) SetImplicitRulesExt(v Element) *SubstanceSourceMaterialBuilder {
+	b.substanceSourceMaterial.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSourceMaterialBuilder) SetLanguageExt(v Element) *SubstanceSourceMaterialBuilder {
+	b.substanceSourceMaterial.LanguageExt = &v
+	return b
+}
+
+// SetOrganismNameExt sets the extensions carried by OrganismName, serialized as
+// "_organismName".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSourceMaterialBuilder) SetOrganismNameExt(v Element) *SubstanceSourceMaterialBuilder {
+	b.substanceSourceMaterial.OrganismNameExt = &v
+	return b
+}
+
+// AddParentSubstanceNameExt appends an extension slot for ParentSubstanceName.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *SubstanceSourceMaterialBuilder) AddParentSubstanceNameExt(v *Element) *SubstanceSourceMaterialBuilder {
+	b.substanceSourceMaterial.ParentSubstanceNameExt = append(b.substanceSourceMaterial.ParentSubstanceNameExt, v)
+	return b
+}
+
+// AddGeographicalLocationExt appends an extension slot for GeographicalLocation.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *SubstanceSourceMaterialBuilder) AddGeographicalLocationExt(v *Element) *SubstanceSourceMaterialBuilder {
+	b.substanceSourceMaterial.GeographicalLocationExt = append(b.substanceSourceMaterial.GeographicalLocationExt, v)
+	return b
+}
+
+// =============================================================================
+// SubstanceSourceMaterialFractionDescription - Fluent Builder
+// =============================================================================
+
+// SubstanceSourceMaterialFractionDescriptionBuilder provides a fluent API for constructing SubstanceSourceMaterialFractionDescription values.
+type SubstanceSourceMaterialFractionDescriptionBuilder struct {
+	substanceSourceMaterialFractionDescription *SubstanceSourceMaterialFractionDescription
+}
+
+// NewSubstanceSourceMaterialFractionDescriptionBuilder creates a new SubstanceSourceMaterialFractionDescriptionBuilder.
+func NewSubstanceSourceMaterialFractionDescriptionBuilder() *SubstanceSourceMaterialFractionDescriptionBuilder {
+	return &SubstanceSourceMaterialFractionDescriptionBuilder{
+		substanceSourceMaterialFractionDescription: &SubstanceSourceMaterialFractionDescription{},
+	}
+}
+
+// Build returns the constructed SubstanceSourceMaterialFractionDescription.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceSourceMaterialFractionDescriptionBuilder) Build() SubstanceSourceMaterialFractionDescription {
+	return *b.substanceSourceMaterialFractionDescription
+}
+
+// SetId sets the Id field.
+func (b *SubstanceSourceMaterialFractionDescriptionBuilder) SetId(v string) *SubstanceSourceMaterialFractionDescriptionBuilder {
+	b.substanceSourceMaterialFractionDescription.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceSourceMaterialFractionDescriptionBuilder) AddExtension(v Extension) *SubstanceSourceMaterialFractionDescriptionBuilder {
+	b.substanceSourceMaterialFractionDescription.Extension = append(b.substanceSourceMaterialFractionDescription.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceSourceMaterialFractionDescriptionBuilder) AddModifierExtension(v Extension) *SubstanceSourceMaterialFractionDescriptionBuilder {
+	b.substanceSourceMaterialFractionDescription.ModifierExtension = append(b.substanceSourceMaterialFractionDescription.ModifierExtension, v)
+	return b
+}
+
+// SetFraction sets the Fraction field.
+func (b *SubstanceSourceMaterialFractionDescriptionBuilder) SetFraction(v string) *SubstanceSourceMaterialFractionDescriptionBuilder {
+	b.substanceSourceMaterialFractionDescription.Fraction = &v
+	return b
+}
+
+// SetMaterialType sets the MaterialType field.
+func (b *SubstanceSourceMaterialFractionDescriptionBuilder) SetMaterialType(v CodeableConcept) *SubstanceSourceMaterialFractionDescriptionBuilder {
+	b.substanceSourceMaterialFractionDescription.MaterialType = &v
+	return b
+}
+
+// SetFractionExt sets the extensions carried by Fraction, serialized as
+// "_fraction".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSourceMaterialFractionDescriptionBuilder) SetFractionExt(v Element) *SubstanceSourceMaterialFractionDescriptionBuilder {
+	b.substanceSourceMaterialFractionDescription.FractionExt = &v
+	return b
+}
+
+// =============================================================================
+// SubstanceSourceMaterialOrganism - Fluent Builder
+// =============================================================================
+
+// SubstanceSourceMaterialOrganismBuilder provides a fluent API for constructing SubstanceSourceMaterialOrganism values.
+type SubstanceSourceMaterialOrganismBuilder struct {
+	substanceSourceMaterialOrganism *SubstanceSourceMaterialOrganism
+}
+
+// NewSubstanceSourceMaterialOrganismBuilder creates a new SubstanceSourceMaterialOrganismBuilder.
+func NewSubstanceSourceMaterialOrganismBuilder() *SubstanceSourceMaterialOrganismBuilder {
+	return &SubstanceSourceMaterialOrganismBuilder{
+		substanceSourceMaterialOrganism: &SubstanceSourceMaterialOrganism{},
+	}
+}
+
+// Build returns the constructed SubstanceSourceMaterialOrganism.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceSourceMaterialOrganismBuilder) Build() SubstanceSourceMaterialOrganism {
+	return *b.substanceSourceMaterialOrganism
+}
+
+// SetId sets the Id field.
+func (b *SubstanceSourceMaterialOrganismBuilder) SetId(v string) *SubstanceSourceMaterialOrganismBuilder {
+	b.substanceSourceMaterialOrganism.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceSourceMaterialOrganismBuilder) AddExtension(v Extension) *SubstanceSourceMaterialOrganismBuilder {
+	b.substanceSourceMaterialOrganism.Extension = append(b.substanceSourceMaterialOrganism.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceSourceMaterialOrganismBuilder) AddModifierExtension(v Extension) *SubstanceSourceMaterialOrganismBuilder {
+	b.substanceSourceMaterialOrganism.ModifierExtension = append(b.substanceSourceMaterialOrganism.ModifierExtension, v)
+	return b
+}
+
+// SetFamily sets the Family field.
+func (b *SubstanceSourceMaterialOrganismBuilder) SetFamily(v CodeableConcept) *SubstanceSourceMaterialOrganismBuilder {
+	b.substanceSourceMaterialOrganism.Family = &v
+	return b
+}
+
+// SetGenus sets the Genus field.
+func (b *SubstanceSourceMaterialOrganismBuilder) SetGenus(v CodeableConcept) *SubstanceSourceMaterialOrganismBuilder {
+	b.substanceSourceMaterialOrganism.Genus = &v
+	return b
+}
+
+// SetSpecies sets the Species field.
+func (b *SubstanceSourceMaterialOrganismBuilder) SetSpecies(v CodeableConcept) *SubstanceSourceMaterialOrganismBuilder {
+	b.substanceSourceMaterialOrganism.Species = &v
+	return b
+}
+
+// SetIntraspecificType sets the IntraspecificType field.
+func (b *SubstanceSourceMaterialOrganismBuilder) SetIntraspecificType(v CodeableConcept) *SubstanceSourceMaterialOrganismBuilder {
+	b.substanceSourceMaterialOrganism.IntraspecificType = &v
+	return b
+}
+
+// SetIntraspecificDescription sets the IntraspecificDescription field.
+func (b *SubstanceSourceMaterialOrganismBuilder) SetIntraspecificDescription(v string) *SubstanceSourceMaterialOrganismBuilder {
+	b.substanceSourceMaterialOrganism.IntraspecificDescription = &v
+	return b
+}
+
+// AddAuthor adds a Author element.
+func (b *SubstanceSourceMaterialOrganismBuilder) AddAuthor(v SubstanceSourceMaterialOrganismAuthor) *SubstanceSourceMaterialOrganismBuilder {
+	b.substanceSourceMaterialOrganism.Author = append(b.substanceSourceMaterialOrganism.Author, v)
+	return b
+}
+
+// SetHybrid sets the Hybrid field.
+func (b *SubstanceSourceMaterialOrganismBuilder) SetHybrid(v SubstanceSourceMaterialOrganismHybrid) *SubstanceSourceMaterialOrganismBuilder {
+	b.substanceSourceMaterialOrganism.Hybrid = &v
+	return b
+}
+
+// SetOrganismGeneral sets the OrganismGeneral field.
+func (b *SubstanceSourceMaterialOrganismBuilder) SetOrganismGeneral(v SubstanceSourceMaterialOrganismOrganismGeneral) *SubstanceSourceMaterialOrganismBuilder {
+	b.substanceSourceMaterialOrganism.OrganismGeneral = &v
+	return b
+}
+
+// SetIntraspecificDescriptionExt sets the extensions carried by IntraspecificDescription, serialized as
+// "_intraspecificDescription".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSourceMaterialOrganismBuilder) SetIntraspecificDescriptionExt(v Element) *SubstanceSourceMaterialOrganismBuilder {
+	b.substanceSourceMaterialOrganism.IntraspecificDescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// SubstanceSourceMaterialOrganismAuthor - Fluent Builder
+// =============================================================================
+
+// SubstanceSourceMaterialOrganismAuthorBuilder provides a fluent API for constructing SubstanceSourceMaterialOrganismAuthor values.
+type SubstanceSourceMaterialOrganismAuthorBuilder struct {
+	substanceSourceMaterialOrganismAuthor *SubstanceSourceMaterialOrganismAuthor
+}
+
+// NewSubstanceSourceMaterialOrganismAuthorBuilder creates a new SubstanceSourceMaterialOrganismAuthorBuilder.
+func NewSubstanceSourceMaterialOrganismAuthorBuilder() *SubstanceSourceMaterialOrganismAuthorBuilder {
+	return &SubstanceSourceMaterialOrganismAuthorBuilder{
+		substanceSourceMaterialOrganismAuthor: &SubstanceSourceMaterialOrganismAuthor{},
+	}
+}
+
+// Build returns the constructed SubstanceSourceMaterialOrganismAuthor.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceSourceMaterialOrganismAuthorBuilder) Build() SubstanceSourceMaterialOrganismAuthor {
+	return *b.substanceSourceMaterialOrganismAuthor
+}
+
+// SetId sets the Id field.
+func (b *SubstanceSourceMaterialOrganismAuthorBuilder) SetId(v string) *SubstanceSourceMaterialOrganismAuthorBuilder {
+	b.substanceSourceMaterialOrganismAuthor.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceSourceMaterialOrganismAuthorBuilder) AddExtension(v Extension) *SubstanceSourceMaterialOrganismAuthorBuilder {
+	b.substanceSourceMaterialOrganismAuthor.Extension = append(b.substanceSourceMaterialOrganismAuthor.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceSourceMaterialOrganismAuthorBuilder) AddModifierExtension(v Extension) *SubstanceSourceMaterialOrganismAuthorBuilder {
+	b.substanceSourceMaterialOrganismAuthor.ModifierExtension = append(b.substanceSourceMaterialOrganismAuthor.ModifierExtension, v)
+	return b
+}
+
+// SetAuthorType sets the AuthorType field.
+func (b *SubstanceSourceMaterialOrganismAuthorBuilder) SetAuthorType(v CodeableConcept) *SubstanceSourceMaterialOrganismAuthorBuilder {
+	b.substanceSourceMaterialOrganismAuthor.AuthorType = &v
+	return b
+}
+
+// SetAuthorDescription sets the AuthorDescription field.
+func (b *SubstanceSourceMaterialOrganismAuthorBuilder) SetAuthorDescription(v string) *SubstanceSourceMaterialOrganismAuthorBuilder {
+	b.substanceSourceMaterialOrganismAuthor.AuthorDescription = &v
+	return b
+}
+
+// SetAuthorDescriptionExt sets the extensions carried by AuthorDescription, serialized as
+// "_authorDescription".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSourceMaterialOrganismAuthorBuilder) SetAuthorDescriptionExt(v Element) *SubstanceSourceMaterialOrganismAuthorBuilder {
+	b.substanceSourceMaterialOrganismAuthor.AuthorDescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// SubstanceSourceMaterialOrganismHybrid - Fluent Builder
+// =============================================================================
+
+// SubstanceSourceMaterialOrganismHybridBuilder provides a fluent API for constructing SubstanceSourceMaterialOrganismHybrid values.
+type SubstanceSourceMaterialOrganismHybridBuilder struct {
+	substanceSourceMaterialOrganismHybrid *SubstanceSourceMaterialOrganismHybrid
+}
+
+// NewSubstanceSourceMaterialOrganismHybridBuilder creates a new SubstanceSourceMaterialOrganismHybridBuilder.
+func NewSubstanceSourceMaterialOrganismHybridBuilder() *SubstanceSourceMaterialOrganismHybridBuilder {
+	return &SubstanceSourceMaterialOrganismHybridBuilder{
+		substanceSourceMaterialOrganismHybrid: &SubstanceSourceMaterialOrganismHybrid{},
+	}
+}
+
+// Build returns the constructed SubstanceSourceMaterialOrganismHybrid.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceSourceMaterialOrganismHybridBuilder) Build() SubstanceSourceMaterialOrganismHybrid {
+	return *b.substanceSourceMaterialOrganismHybrid
+}
+
+// SetId sets the Id field.
+func (b *SubstanceSourceMaterialOrganismHybridBuilder) SetId(v string) *SubstanceSourceMaterialOrganismHybridBuilder {
+	b.substanceSourceMaterialOrganismHybrid.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceSourceMaterialOrganismHybridBuilder) AddExtension(v Extension) *SubstanceSourceMaterialOrganismHybridBuilder {
+	b.substanceSourceMaterialOrganismHybrid.Extension = append(b.substanceSourceMaterialOrganismHybrid.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceSourceMaterialOrganismHybridBuilder) AddModifierExtension(v Extension) *SubstanceSourceMaterialOrganismHybridBuilder {
+	b.substanceSourceMaterialOrganismHybrid.ModifierExtension = append(b.substanceSourceMaterialOrganismHybrid.ModifierExtension, v)
+	return b
+}
+
+// SetMaternalOrganismId sets the MaternalOrganismId field.
+func (b *SubstanceSourceMaterialOrganismHybridBuilder) SetMaternalOrganismId(v string) *SubstanceSourceMaterialOrganismHybridBuilder {
+	b.substanceSourceMaterialOrganismHybrid.MaternalOrganismId = &v
+	return b
+}
+
+// SetMaternalOrganismName sets the MaternalOrganismName field.
+func (b *SubstanceSourceMaterialOrganismHybridBuilder) SetMaternalOrganismName(v string) *SubstanceSourceMaterialOrganismHybridBuilder {
+	b.substanceSourceMaterialOrganismHybrid.MaternalOrganismName = &v
+	return b
+}
+
+// SetPaternalOrganismId sets the PaternalOrganismId field.
+func (b *SubstanceSourceMaterialOrganismHybridBuilder) SetPaternalOrganismId(v string) *SubstanceSourceMaterialOrganismHybridBuilder {
+	b.substanceSourceMaterialOrganismHybrid.PaternalOrganismId = &v
+	return b
+}
+
+// SetPaternalOrganismName sets the PaternalOrganismName field.
+func (b *SubstanceSourceMaterialOrganismHybridBuilder) SetPaternalOrganismName(v string) *SubstanceSourceMaterialOrganismHybridBuilder {
+	b.substanceSourceMaterialOrganismHybrid.PaternalOrganismName = &v
+	return b
+}
+
+// SetHybridType sets the HybridType field.
+func (b *SubstanceSourceMaterialOrganismHybridBuilder) SetHybridType(v CodeableConcept) *SubstanceSourceMaterialOrganismHybridBuilder {
+	b.substanceSourceMaterialOrganismHybrid.HybridType = &v
+	return b
+}
+
+// SetMaternalOrganismIdExt sets the extensions carried by MaternalOrganismId, serialized as
+// "_maternalOrganismId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSourceMaterialOrganismHybridBuilder) SetMaternalOrganismIdExt(v Element) *SubstanceSourceMaterialOrganismHybridBuilder {
+	b.substanceSourceMaterialOrganismHybrid.MaternalOrganismIdExt = &v
+	return b
+}
+
+// SetMaternalOrganismNameExt sets the extensions carried by MaternalOrganismName, serialized as
+// "_maternalOrganismName".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSourceMaterialOrganismHybridBuilder) SetMaternalOrganismNameExt(v Element) *SubstanceSourceMaterialOrganismHybridBuilder {
+	b.substanceSourceMaterialOrganismHybrid.MaternalOrganismNameExt = &v
+	return b
+}
+
+// SetPaternalOrganismIdExt sets the extensions carried by PaternalOrganismId, serialized as
+// "_paternalOrganismId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSourceMaterialOrganismHybridBuilder) SetPaternalOrganismIdExt(v Element) *SubstanceSourceMaterialOrganismHybridBuilder {
+	b.substanceSourceMaterialOrganismHybrid.PaternalOrganismIdExt = &v
+	return b
+}
+
+// SetPaternalOrganismNameExt sets the extensions carried by PaternalOrganismName, serialized as
+// "_paternalOrganismName".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSourceMaterialOrganismHybridBuilder) SetPaternalOrganismNameExt(v Element) *SubstanceSourceMaterialOrganismHybridBuilder {
+	b.substanceSourceMaterialOrganismHybrid.PaternalOrganismNameExt = &v
+	return b
+}
+
+// =============================================================================
+// SubstanceSourceMaterialOrganismOrganismGeneral - Fluent Builder
+// =============================================================================
+
+// SubstanceSourceMaterialOrganismOrganismGeneralBuilder provides a fluent API for constructing SubstanceSourceMaterialOrganismOrganismGeneral values.
+type SubstanceSourceMaterialOrganismOrganismGeneralBuilder struct {
+	substanceSourceMaterialOrganismOrganismGeneral *SubstanceSourceMaterialOrganismOrganismGeneral
+}
+
+// NewSubstanceSourceMaterialOrganismOrganismGeneralBuilder creates a new SubstanceSourceMaterialOrganismOrganismGeneralBuilder.
+func NewSubstanceSourceMaterialOrganismOrganismGeneralBuilder() *SubstanceSourceMaterialOrganismOrganismGeneralBuilder {
+	return &SubstanceSourceMaterialOrganismOrganismGeneralBuilder{
+		substanceSourceMaterialOrganismOrganismGeneral: &SubstanceSourceMaterialOrganismOrganismGeneral{},
+	}
+}
+
+// Build returns the constructed SubstanceSourceMaterialOrganismOrganismGeneral.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceSourceMaterialOrganismOrganismGeneralBuilder) Build() SubstanceSourceMaterialOrganismOrganismGeneral {
+	return *b.substanceSourceMaterialOrganismOrganismGeneral
+}
+
+// SetId sets the Id field.
+func (b *SubstanceSourceMaterialOrganismOrganismGeneralBuilder) SetId(v string) *SubstanceSourceMaterialOrganismOrganismGeneralBuilder {
+	b.substanceSourceMaterialOrganismOrganismGeneral.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceSourceMaterialOrganismOrganismGeneralBuilder) AddExtension(v Extension) *SubstanceSourceMaterialOrganismOrganismGeneralBuilder {
+	b.substanceSourceMaterialOrganismOrganismGeneral.Extension = append(b.substanceSourceMaterialOrganismOrganismGeneral.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceSourceMaterialOrganismOrganismGeneralBuilder) AddModifierExtension(v Extension) *SubstanceSourceMaterialOrganismOrganismGeneralBuilder {
+	b.substanceSourceMaterialOrganismOrganismGeneral.ModifierExtension = append(b.substanceSourceMaterialOrganismOrganismGeneral.ModifierExtension, v)
+	return b
+}
+
+// SetKingdom sets the Kingdom field.
+func (b *SubstanceSourceMaterialOrganismOrganismGeneralBuilder) SetKingdom(v CodeableConcept) *SubstanceSourceMaterialOrganismOrganismGeneralBuilder {
+	b.substanceSourceMaterialOrganismOrganismGeneral.Kingdom = &v
+	return b
+}
+
+// SetPhylum sets the Phylum field.
+func (b *SubstanceSourceMaterialOrganismOrganismGeneralBuilder) SetPhylum(v CodeableConcept) *SubstanceSourceMaterialOrganismOrganismGeneralBuilder {
+	b.substanceSourceMaterialOrganismOrganismGeneral.Phylum = &v
+	return b
+}
+
+// SetClass sets the Class field.
+func (b *SubstanceSourceMaterialOrganismOrganismGeneralBuilder) SetClass(v CodeableConcept) *SubstanceSourceMaterialOrganismOrganismGeneralBuilder {
+	b.substanceSourceMaterialOrganismOrganismGeneral.Class = &v
+	return b
+}
+
+// SetOrder sets the Order field.
+func (b *SubstanceSourceMaterialOrganismOrganismGeneralBuilder) SetOrder(v CodeableConcept) *SubstanceSourceMaterialOrganismOrganismGeneralBuilder {
+	b.substanceSourceMaterialOrganismOrganismGeneral.Order = &v
+	return b
+}
+
+// =============================================================================
+// SubstanceSourceMaterialPartDescription - Fluent Builder
+// =============================================================================
+
+// SubstanceSourceMaterialPartDescriptionBuilder provides a fluent API for constructing SubstanceSourceMaterialPartDescription values.
+type SubstanceSourceMaterialPartDescriptionBuilder struct {
+	substanceSourceMaterialPartDescription *SubstanceSourceMaterialPartDescription
+}
+
+// NewSubstanceSourceMaterialPartDescriptionBuilder creates a new SubstanceSourceMaterialPartDescriptionBuilder.
+func NewSubstanceSourceMaterialPartDescriptionBuilder() *SubstanceSourceMaterialPartDescriptionBuilder {
+	return &SubstanceSourceMaterialPartDescriptionBuilder{
+		substanceSourceMaterialPartDescription: &SubstanceSourceMaterialPartDescription{},
+	}
+}
+
+// Build returns the constructed SubstanceSourceMaterialPartDescription.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceSourceMaterialPartDescriptionBuilder) Build() SubstanceSourceMaterialPartDescription {
+	return *b.substanceSourceMaterialPartDescription
+}
+
+// SetId sets the Id field.
+func (b *SubstanceSourceMaterialPartDescriptionBuilder) SetId(v string) *SubstanceSourceMaterialPartDescriptionBuilder {
+	b.substanceSourceMaterialPartDescription.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceSourceMaterialPartDescriptionBuilder) AddExtension(v Extension) *SubstanceSourceMaterialPartDescriptionBuilder {
+	b.substanceSourceMaterialPartDescription.Extension = append(b.substanceSourceMaterialPartDescription.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceSourceMaterialPartDescriptionBuilder) AddModifierExtension(v Extension) *SubstanceSourceMaterialPartDescriptionBuilder {
+	b.substanceSourceMaterialPartDescription.ModifierExtension = append(b.substanceSourceMaterialPartDescription.ModifierExtension, v)
+	return b
+}
+
+// SetPart sets the Part field.
+func (b *SubstanceSourceMaterialPartDescriptionBuilder) SetPart(v CodeableConcept) *SubstanceSourceMaterialPartDescriptionBuilder {
+	b.substanceSourceMaterialPartDescription.Part = &v
+	return b
+}
+
+// SetPartLocation sets the PartLocation field.
+func (b *SubstanceSourceMaterialPartDescriptionBuilder) SetPartLocation(v CodeableConcept) *SubstanceSourceMaterialPartDescriptionBuilder {
+	b.substanceSourceMaterialPartDescription.PartLocation = &v
+	return b
+}

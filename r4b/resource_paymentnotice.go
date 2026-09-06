@@ -556,3 +556,53 @@ func (b *PaymentNoticeBuilder) SetPaymentStatus(v CodeableConcept) *PaymentNotic
 	b.paymentNotice.PaymentStatus = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PaymentNoticeBuilder) SetImplicitRulesExt(v Element) *PaymentNoticeBuilder {
+	b.paymentNotice.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PaymentNoticeBuilder) SetLanguageExt(v Element) *PaymentNoticeBuilder {
+	b.paymentNotice.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PaymentNoticeBuilder) SetStatusExt(v Element) *PaymentNoticeBuilder {
+	b.paymentNotice.StatusExt = &v
+	return b
+}
+
+// SetCreatedExt sets the extensions carried by Created, serialized as
+// "_created".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PaymentNoticeBuilder) SetCreatedExt(v Element) *PaymentNoticeBuilder {
+	b.paymentNotice.CreatedExt = &v
+	return b
+}
+
+// SetPaymentDateExt sets the extensions carried by PaymentDate, serialized as
+// "_paymentDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PaymentNoticeBuilder) SetPaymentDateExt(v Element) *PaymentNoticeBuilder {
+	b.paymentNotice.PaymentDateExt = &v
+	return b
+}

@@ -722,3 +722,229 @@ func (b *CompartmentDefinitionBuilder) AddResource(v CompartmentDefinitionResour
 	b.compartmentDefinition.Resource = append(b.compartmentDefinition.Resource, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompartmentDefinitionBuilder) SetImplicitRulesExt(v Element) *CompartmentDefinitionBuilder {
+	b.compartmentDefinition.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompartmentDefinitionBuilder) SetLanguageExt(v Element) *CompartmentDefinitionBuilder {
+	b.compartmentDefinition.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompartmentDefinitionBuilder) SetUrlExt(v Element) *CompartmentDefinitionBuilder {
+	b.compartmentDefinition.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompartmentDefinitionBuilder) SetVersionExt(v Element) *CompartmentDefinitionBuilder {
+	b.compartmentDefinition.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompartmentDefinitionBuilder) SetNameExt(v Element) *CompartmentDefinitionBuilder {
+	b.compartmentDefinition.NameExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompartmentDefinitionBuilder) SetStatusExt(v Element) *CompartmentDefinitionBuilder {
+	b.compartmentDefinition.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompartmentDefinitionBuilder) SetExperimentalExt(v Element) *CompartmentDefinitionBuilder {
+	b.compartmentDefinition.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompartmentDefinitionBuilder) SetDateExt(v Element) *CompartmentDefinitionBuilder {
+	b.compartmentDefinition.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompartmentDefinitionBuilder) SetPublisherExt(v Element) *CompartmentDefinitionBuilder {
+	b.compartmentDefinition.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompartmentDefinitionBuilder) SetDescriptionExt(v Element) *CompartmentDefinitionBuilder {
+	b.compartmentDefinition.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompartmentDefinitionBuilder) SetPurposeExt(v Element) *CompartmentDefinitionBuilder {
+	b.compartmentDefinition.PurposeExt = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompartmentDefinitionBuilder) SetCodeExt(v Element) *CompartmentDefinitionBuilder {
+	b.compartmentDefinition.CodeExt = &v
+	return b
+}
+
+// SetSearchExt sets the extensions carried by Search, serialized as
+// "_search".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompartmentDefinitionBuilder) SetSearchExt(v Element) *CompartmentDefinitionBuilder {
+	b.compartmentDefinition.SearchExt = &v
+	return b
+}
+
+// =============================================================================
+// CompartmentDefinitionResource - Fluent Builder
+// =============================================================================
+
+// CompartmentDefinitionResourceBuilder provides a fluent API for constructing CompartmentDefinitionResource values.
+type CompartmentDefinitionResourceBuilder struct {
+	compartmentDefinitionResource *CompartmentDefinitionResource
+}
+
+// NewCompartmentDefinitionResourceBuilder creates a new CompartmentDefinitionResourceBuilder.
+func NewCompartmentDefinitionResourceBuilder() *CompartmentDefinitionResourceBuilder {
+	return &CompartmentDefinitionResourceBuilder{
+		compartmentDefinitionResource: &CompartmentDefinitionResource{},
+	}
+}
+
+// Build returns the constructed CompartmentDefinitionResource.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CompartmentDefinitionResourceBuilder) Build() CompartmentDefinitionResource {
+	return *b.compartmentDefinitionResource
+}
+
+// SetId sets the Id field.
+func (b *CompartmentDefinitionResourceBuilder) SetId(v string) *CompartmentDefinitionResourceBuilder {
+	b.compartmentDefinitionResource.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CompartmentDefinitionResourceBuilder) AddExtension(v Extension) *CompartmentDefinitionResourceBuilder {
+	b.compartmentDefinitionResource.Extension = append(b.compartmentDefinitionResource.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CompartmentDefinitionResourceBuilder) AddModifierExtension(v Extension) *CompartmentDefinitionResourceBuilder {
+	b.compartmentDefinitionResource.ModifierExtension = append(b.compartmentDefinitionResource.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *CompartmentDefinitionResourceBuilder) SetCode(v string) *CompartmentDefinitionResourceBuilder {
+	b.compartmentDefinitionResource.Code = &v
+	return b
+}
+
+// AddParam adds a Param element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *CompartmentDefinitionResourceBuilder) AddParam(v string) *CompartmentDefinitionResourceBuilder {
+	b.compartmentDefinitionResource.Param = append(b.compartmentDefinitionResource.Param, &v)
+	return b
+}
+
+// SetDocumentation sets the Documentation field.
+func (b *CompartmentDefinitionResourceBuilder) SetDocumentation(v string) *CompartmentDefinitionResourceBuilder {
+	b.compartmentDefinitionResource.Documentation = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompartmentDefinitionResourceBuilder) SetCodeExt(v Element) *CompartmentDefinitionResourceBuilder {
+	b.compartmentDefinitionResource.CodeExt = &v
+	return b
+}
+
+// AddParamExt appends an extension slot for Param.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *CompartmentDefinitionResourceBuilder) AddParamExt(v *Element) *CompartmentDefinitionResourceBuilder {
+	b.compartmentDefinitionResource.ParamExt = append(b.compartmentDefinitionResource.ParamExt, v)
+	return b
+}
+
+// SetDocumentationExt sets the extensions carried by Documentation, serialized as
+// "_documentation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CompartmentDefinitionResourceBuilder) SetDocumentationExt(v Element) *CompartmentDefinitionResourceBuilder {
+	b.compartmentDefinitionResource.DocumentationExt = &v
+	return b
+}

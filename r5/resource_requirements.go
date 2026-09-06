@@ -1010,9 +1010,380 @@ func (b *RequirementsBuilder) AddStatement(v RequirementsStatement) *Requirement
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequirementsBuilder) SetImplicitRulesExt(v Element) *RequirementsBuilder {
+	b.requirements.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequirementsBuilder) SetLanguageExt(v Element) *RequirementsBuilder {
+	b.requirements.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequirementsBuilder) SetUrlExt(v Element) *RequirementsBuilder {
+	b.requirements.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequirementsBuilder) SetVersionExt(v Element) *RequirementsBuilder {
+	b.requirements.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequirementsBuilder) SetNameExt(v Element) *RequirementsBuilder {
+	b.requirements.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequirementsBuilder) SetTitleExt(v Element) *RequirementsBuilder {
+	b.requirements.TitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequirementsBuilder) SetStatusExt(v Element) *RequirementsBuilder {
+	b.requirements.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequirementsBuilder) SetExperimentalExt(v Element) *RequirementsBuilder {
+	b.requirements.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequirementsBuilder) SetDateExt(v Element) *RequirementsBuilder {
+	b.requirements.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequirementsBuilder) SetPublisherExt(v Element) *RequirementsBuilder {
+	b.requirements.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequirementsBuilder) SetDescriptionExt(v Element) *RequirementsBuilder {
+	b.requirements.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequirementsBuilder) SetPurposeExt(v Element) *RequirementsBuilder {
+	b.requirements.PurposeExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequirementsBuilder) SetCopyrightExt(v Element) *RequirementsBuilder {
+	b.requirements.CopyrightExt = &v
+	return b
+}
+
+// SetCopyrightLabelExt sets the extensions carried by CopyrightLabel, serialized as
+// "_copyrightLabel".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequirementsBuilder) SetCopyrightLabelExt(v Element) *RequirementsBuilder {
+	b.requirements.CopyrightLabelExt = &v
+	return b
+}
+
+// AddDerivedFromExt appends an extension slot for DerivedFrom.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *RequirementsBuilder) AddDerivedFromExt(v *Element) *RequirementsBuilder {
+	b.requirements.DerivedFromExt = append(b.requirements.DerivedFromExt, v)
+	return b
+}
+
+// AddReferenceExt appends an extension slot for Reference.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *RequirementsBuilder) AddReferenceExt(v *Element) *RequirementsBuilder {
+	b.requirements.ReferenceExt = append(b.requirements.ReferenceExt, v)
+	return b
+}
+
+// AddActorExt appends an extension slot for Actor.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *RequirementsBuilder) AddActorExt(v *Element) *RequirementsBuilder {
+	b.requirements.ActorExt = append(b.requirements.ActorExt, v)
+	return b
+}
+
 // clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
 // _field companions of the primitive ones.
 func (b *RequirementsBuilder) clearVersionAlgorithm() {
 	b.requirements.VersionAlgorithmString = nil
 	b.requirements.VersionAlgorithmCoding = nil
+}
+
+// =============================================================================
+// RequirementsStatement - Fluent Builder
+// =============================================================================
+
+// RequirementsStatementBuilder provides a fluent API for constructing RequirementsStatement values.
+type RequirementsStatementBuilder struct {
+	requirementsStatement *RequirementsStatement
+}
+
+// NewRequirementsStatementBuilder creates a new RequirementsStatementBuilder.
+func NewRequirementsStatementBuilder() *RequirementsStatementBuilder {
+	return &RequirementsStatementBuilder{
+		requirementsStatement: &RequirementsStatement{},
+	}
+}
+
+// Build returns the constructed RequirementsStatement.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *RequirementsStatementBuilder) Build() RequirementsStatement {
+	return *b.requirementsStatement
+}
+
+// SetId sets the Id field.
+func (b *RequirementsStatementBuilder) SetId(v string) *RequirementsStatementBuilder {
+	b.requirementsStatement.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *RequirementsStatementBuilder) AddExtension(v Extension) *RequirementsStatementBuilder {
+	b.requirementsStatement.Extension = append(b.requirementsStatement.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *RequirementsStatementBuilder) AddModifierExtension(v Extension) *RequirementsStatementBuilder {
+	b.requirementsStatement.ModifierExtension = append(b.requirementsStatement.ModifierExtension, v)
+	return b
+}
+
+// SetKey sets the Key field.
+func (b *RequirementsStatementBuilder) SetKey(v string) *RequirementsStatementBuilder {
+	b.requirementsStatement.Key = &v
+	return b
+}
+
+// SetLabel sets the Label field.
+func (b *RequirementsStatementBuilder) SetLabel(v string) *RequirementsStatementBuilder {
+	b.requirementsStatement.Label = &v
+	return b
+}
+
+// AddConformance adds a Conformance element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *RequirementsStatementBuilder) AddConformance(v ConformanceExpectation) *RequirementsStatementBuilder {
+	b.requirementsStatement.Conformance = append(b.requirementsStatement.Conformance, &v)
+	return b
+}
+
+// SetConditionality sets the Conditionality field.
+func (b *RequirementsStatementBuilder) SetConditionality(v bool) *RequirementsStatementBuilder {
+	b.requirementsStatement.Conditionality = &v
+	return b
+}
+
+// SetRequirement sets the Requirement field.
+func (b *RequirementsStatementBuilder) SetRequirement(v string) *RequirementsStatementBuilder {
+	b.requirementsStatement.Requirement = &v
+	return b
+}
+
+// SetDerivedFrom sets the DerivedFrom field.
+func (b *RequirementsStatementBuilder) SetDerivedFrom(v string) *RequirementsStatementBuilder {
+	b.requirementsStatement.DerivedFrom = &v
+	return b
+}
+
+// SetParent sets the Parent field.
+func (b *RequirementsStatementBuilder) SetParent(v string) *RequirementsStatementBuilder {
+	b.requirementsStatement.Parent = &v
+	return b
+}
+
+// AddSatisfiedBy adds a SatisfiedBy element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *RequirementsStatementBuilder) AddSatisfiedBy(v string) *RequirementsStatementBuilder {
+	b.requirementsStatement.SatisfiedBy = append(b.requirementsStatement.SatisfiedBy, &v)
+	return b
+}
+
+// AddReference adds a Reference element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *RequirementsStatementBuilder) AddReference(v string) *RequirementsStatementBuilder {
+	b.requirementsStatement.Reference = append(b.requirementsStatement.Reference, &v)
+	return b
+}
+
+// AddSource adds a Source element.
+func (b *RequirementsStatementBuilder) AddSource(v Reference) *RequirementsStatementBuilder {
+	b.requirementsStatement.Source = append(b.requirementsStatement.Source, v)
+	return b
+}
+
+// SetKeyExt sets the extensions carried by Key, serialized as
+// "_key".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequirementsStatementBuilder) SetKeyExt(v Element) *RequirementsStatementBuilder {
+	b.requirementsStatement.KeyExt = &v
+	return b
+}
+
+// SetLabelExt sets the extensions carried by Label, serialized as
+// "_label".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequirementsStatementBuilder) SetLabelExt(v Element) *RequirementsStatementBuilder {
+	b.requirementsStatement.LabelExt = &v
+	return b
+}
+
+// AddConformanceExt appends an extension slot for Conformance.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *RequirementsStatementBuilder) AddConformanceExt(v *Element) *RequirementsStatementBuilder {
+	b.requirementsStatement.ConformanceExt = append(b.requirementsStatement.ConformanceExt, v)
+	return b
+}
+
+// SetConditionalityExt sets the extensions carried by Conditionality, serialized as
+// "_conditionality".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequirementsStatementBuilder) SetConditionalityExt(v Element) *RequirementsStatementBuilder {
+	b.requirementsStatement.ConditionalityExt = &v
+	return b
+}
+
+// SetRequirementExt sets the extensions carried by Requirement, serialized as
+// "_requirement".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequirementsStatementBuilder) SetRequirementExt(v Element) *RequirementsStatementBuilder {
+	b.requirementsStatement.RequirementExt = &v
+	return b
+}
+
+// SetDerivedFromExt sets the extensions carried by DerivedFrom, serialized as
+// "_derivedFrom".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequirementsStatementBuilder) SetDerivedFromExt(v Element) *RequirementsStatementBuilder {
+	b.requirementsStatement.DerivedFromExt = &v
+	return b
+}
+
+// SetParentExt sets the extensions carried by Parent, serialized as
+// "_parent".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequirementsStatementBuilder) SetParentExt(v Element) *RequirementsStatementBuilder {
+	b.requirementsStatement.ParentExt = &v
+	return b
+}
+
+// AddSatisfiedByExt appends an extension slot for SatisfiedBy.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *RequirementsStatementBuilder) AddSatisfiedByExt(v *Element) *RequirementsStatementBuilder {
+	b.requirementsStatement.SatisfiedByExt = append(b.requirementsStatement.SatisfiedByExt, v)
+	return b
+}
+
+// AddReferenceExt appends an extension slot for Reference.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *RequirementsStatementBuilder) AddReferenceExt(v *Element) *RequirementsStatementBuilder {
+	b.requirementsStatement.ReferenceExt = append(b.requirementsStatement.ReferenceExt, v)
+	return b
 }

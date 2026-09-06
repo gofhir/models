@@ -997,3 +997,305 @@ func (b *InvoiceBuilder) AddNote(v Annotation) *InvoiceBuilder {
 	b.invoice.Note = append(b.invoice.Note, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InvoiceBuilder) SetImplicitRulesExt(v Element) *InvoiceBuilder {
+	b.invoice.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InvoiceBuilder) SetLanguageExt(v Element) *InvoiceBuilder {
+	b.invoice.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InvoiceBuilder) SetStatusExt(v Element) *InvoiceBuilder {
+	b.invoice.StatusExt = &v
+	return b
+}
+
+// SetCancelledReasonExt sets the extensions carried by CancelledReason, serialized as
+// "_cancelledReason".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InvoiceBuilder) SetCancelledReasonExt(v Element) *InvoiceBuilder {
+	b.invoice.CancelledReasonExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InvoiceBuilder) SetDateExt(v Element) *InvoiceBuilder {
+	b.invoice.DateExt = &v
+	return b
+}
+
+// SetPaymentTermsExt sets the extensions carried by PaymentTerms, serialized as
+// "_paymentTerms".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InvoiceBuilder) SetPaymentTermsExt(v Element) *InvoiceBuilder {
+	b.invoice.PaymentTermsExt = &v
+	return b
+}
+
+// =============================================================================
+// InvoiceLineItem - Fluent Builder
+// =============================================================================
+
+// InvoiceLineItemBuilder provides a fluent API for constructing InvoiceLineItem values.
+type InvoiceLineItemBuilder struct {
+	invoiceLineItem *InvoiceLineItem
+}
+
+// NewInvoiceLineItemBuilder creates a new InvoiceLineItemBuilder.
+func NewInvoiceLineItemBuilder() *InvoiceLineItemBuilder {
+	return &InvoiceLineItemBuilder{
+		invoiceLineItem: &InvoiceLineItem{},
+	}
+}
+
+// Build returns the constructed InvoiceLineItem.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *InvoiceLineItemBuilder) Build() InvoiceLineItem {
+	return *b.invoiceLineItem
+}
+
+// SetId sets the Id field.
+func (b *InvoiceLineItemBuilder) SetId(v string) *InvoiceLineItemBuilder {
+	b.invoiceLineItem.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *InvoiceLineItemBuilder) AddExtension(v Extension) *InvoiceLineItemBuilder {
+	b.invoiceLineItem.Extension = append(b.invoiceLineItem.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *InvoiceLineItemBuilder) AddModifierExtension(v Extension) *InvoiceLineItemBuilder {
+	b.invoiceLineItem.ModifierExtension = append(b.invoiceLineItem.ModifierExtension, v)
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *InvoiceLineItemBuilder) SetSequence(v uint32) *InvoiceLineItemBuilder {
+	b.invoiceLineItem.Sequence = &v
+	return b
+}
+
+// SetChargeItemReference sets ChargeItem[x] to its ChargeItemReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *InvoiceLineItemBuilder) SetChargeItemReference(v Reference) *InvoiceLineItemBuilder {
+	b.clearChargeItem()
+	b.invoiceLineItem.ChargeItemReference = &v
+	return b
+}
+
+// SetChargeItemCodeableConcept sets ChargeItem[x] to its ChargeItemCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *InvoiceLineItemBuilder) SetChargeItemCodeableConcept(v CodeableConcept) *InvoiceLineItemBuilder {
+	b.clearChargeItem()
+	b.invoiceLineItem.ChargeItemCodeableConcept = &v
+	return b
+}
+
+// AddPriceComponent adds a PriceComponent element.
+func (b *InvoiceLineItemBuilder) AddPriceComponent(v InvoiceLineItemPriceComponent) *InvoiceLineItemBuilder {
+	b.invoiceLineItem.PriceComponent = append(b.invoiceLineItem.PriceComponent, v)
+	return b
+}
+
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InvoiceLineItemBuilder) SetSequenceExt(v Element) *InvoiceLineItemBuilder {
+	b.invoiceLineItem.SequenceExt = &v
+	return b
+}
+
+// clearChargeItem unsets every variant of ChargeItem[x], including the
+// _field companions of the primitive ones.
+func (b *InvoiceLineItemBuilder) clearChargeItem() {
+	b.invoiceLineItem.ChargeItemReference = nil
+	b.invoiceLineItem.ChargeItemCodeableConcept = nil
+}
+
+// =============================================================================
+// InvoiceLineItemPriceComponent - Fluent Builder
+// =============================================================================
+
+// InvoiceLineItemPriceComponentBuilder provides a fluent API for constructing InvoiceLineItemPriceComponent values.
+type InvoiceLineItemPriceComponentBuilder struct {
+	invoiceLineItemPriceComponent *InvoiceLineItemPriceComponent
+}
+
+// NewInvoiceLineItemPriceComponentBuilder creates a new InvoiceLineItemPriceComponentBuilder.
+func NewInvoiceLineItemPriceComponentBuilder() *InvoiceLineItemPriceComponentBuilder {
+	return &InvoiceLineItemPriceComponentBuilder{
+		invoiceLineItemPriceComponent: &InvoiceLineItemPriceComponent{},
+	}
+}
+
+// Build returns the constructed InvoiceLineItemPriceComponent.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *InvoiceLineItemPriceComponentBuilder) Build() InvoiceLineItemPriceComponent {
+	return *b.invoiceLineItemPriceComponent
+}
+
+// SetId sets the Id field.
+func (b *InvoiceLineItemPriceComponentBuilder) SetId(v string) *InvoiceLineItemPriceComponentBuilder {
+	b.invoiceLineItemPriceComponent.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *InvoiceLineItemPriceComponentBuilder) AddExtension(v Extension) *InvoiceLineItemPriceComponentBuilder {
+	b.invoiceLineItemPriceComponent.Extension = append(b.invoiceLineItemPriceComponent.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *InvoiceLineItemPriceComponentBuilder) AddModifierExtension(v Extension) *InvoiceLineItemPriceComponentBuilder {
+	b.invoiceLineItemPriceComponent.ModifierExtension = append(b.invoiceLineItemPriceComponent.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *InvoiceLineItemPriceComponentBuilder) SetType(v InvoicePriceComponentType) *InvoiceLineItemPriceComponentBuilder {
+	b.invoiceLineItemPriceComponent.Type = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *InvoiceLineItemPriceComponentBuilder) SetCode(v CodeableConcept) *InvoiceLineItemPriceComponentBuilder {
+	b.invoiceLineItemPriceComponent.Code = &v
+	return b
+}
+
+// SetFactor sets the Factor field.
+func (b *InvoiceLineItemPriceComponentBuilder) SetFactor(v Decimal) *InvoiceLineItemPriceComponentBuilder {
+	b.invoiceLineItemPriceComponent.Factor = &v
+	return b
+}
+
+// SetAmount sets the Amount field.
+func (b *InvoiceLineItemPriceComponentBuilder) SetAmount(v Money) *InvoiceLineItemPriceComponentBuilder {
+	b.invoiceLineItemPriceComponent.Amount = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InvoiceLineItemPriceComponentBuilder) SetTypeExt(v Element) *InvoiceLineItemPriceComponentBuilder {
+	b.invoiceLineItemPriceComponent.TypeExt = &v
+	return b
+}
+
+// SetFactorExt sets the extensions carried by Factor, serialized as
+// "_factor".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *InvoiceLineItemPriceComponentBuilder) SetFactorExt(v Element) *InvoiceLineItemPriceComponentBuilder {
+	b.invoiceLineItemPriceComponent.FactorExt = &v
+	return b
+}
+
+// =============================================================================
+// InvoiceParticipant - Fluent Builder
+// =============================================================================
+
+// InvoiceParticipantBuilder provides a fluent API for constructing InvoiceParticipant values.
+type InvoiceParticipantBuilder struct {
+	invoiceParticipant *InvoiceParticipant
+}
+
+// NewInvoiceParticipantBuilder creates a new InvoiceParticipantBuilder.
+func NewInvoiceParticipantBuilder() *InvoiceParticipantBuilder {
+	return &InvoiceParticipantBuilder{
+		invoiceParticipant: &InvoiceParticipant{},
+	}
+}
+
+// Build returns the constructed InvoiceParticipant.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *InvoiceParticipantBuilder) Build() InvoiceParticipant {
+	return *b.invoiceParticipant
+}
+
+// SetId sets the Id field.
+func (b *InvoiceParticipantBuilder) SetId(v string) *InvoiceParticipantBuilder {
+	b.invoiceParticipant.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *InvoiceParticipantBuilder) AddExtension(v Extension) *InvoiceParticipantBuilder {
+	b.invoiceParticipant.Extension = append(b.invoiceParticipant.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *InvoiceParticipantBuilder) AddModifierExtension(v Extension) *InvoiceParticipantBuilder {
+	b.invoiceParticipant.ModifierExtension = append(b.invoiceParticipant.ModifierExtension, v)
+	return b
+}
+
+// SetRole sets the Role field.
+func (b *InvoiceParticipantBuilder) SetRole(v CodeableConcept) *InvoiceParticipantBuilder {
+	b.invoiceParticipant.Role = &v
+	return b
+}
+
+// SetActor sets the Actor field.
+func (b *InvoiceParticipantBuilder) SetActor(v Reference) *InvoiceParticipantBuilder {
+	b.invoiceParticipant.Actor = &v
+	return b
+}

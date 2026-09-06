@@ -420,3 +420,23 @@ func (b *MedicinalProductUndesirableEffectBuilder) AddPopulation(v Population) *
 	b.medicinalProductUndesirableEffect.Population = append(b.medicinalProductUndesirableEffect.Population, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductUndesirableEffectBuilder) SetImplicitRulesExt(v Element) *MedicinalProductUndesirableEffectBuilder {
+	b.medicinalProductUndesirableEffect.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductUndesirableEffectBuilder) SetLanguageExt(v Element) *MedicinalProductUndesirableEffectBuilder {
+	b.medicinalProductUndesirableEffect.LanguageExt = &v
+	return b
+}

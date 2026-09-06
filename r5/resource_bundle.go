@@ -1139,3 +1139,554 @@ func (b *BundleBuilder) SetIssues(v Resource) *BundleBuilder {
 	b.bundle.Issues = v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BundleBuilder) SetImplicitRulesExt(v Element) *BundleBuilder {
+	b.bundle.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BundleBuilder) SetLanguageExt(v Element) *BundleBuilder {
+	b.bundle.LanguageExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BundleBuilder) SetTypeExt(v Element) *BundleBuilder {
+	b.bundle.TypeExt = &v
+	return b
+}
+
+// SetTimestampExt sets the extensions carried by Timestamp, serialized as
+// "_timestamp".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BundleBuilder) SetTimestampExt(v Element) *BundleBuilder {
+	b.bundle.TimestampExt = &v
+	return b
+}
+
+// SetTotalExt sets the extensions carried by Total, serialized as
+// "_total".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BundleBuilder) SetTotalExt(v Element) *BundleBuilder {
+	b.bundle.TotalExt = &v
+	return b
+}
+
+// =============================================================================
+// BundleEntry - Fluent Builder
+// =============================================================================
+
+// BundleEntryBuilder provides a fluent API for constructing BundleEntry values.
+type BundleEntryBuilder struct {
+	bundleEntry *BundleEntry
+}
+
+// NewBundleEntryBuilder creates a new BundleEntryBuilder.
+func NewBundleEntryBuilder() *BundleEntryBuilder {
+	return &BundleEntryBuilder{
+		bundleEntry: &BundleEntry{},
+	}
+}
+
+// Build returns the constructed BundleEntry.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *BundleEntryBuilder) Build() BundleEntry {
+	return *b.bundleEntry
+}
+
+// SetId sets the Id field.
+func (b *BundleEntryBuilder) SetId(v string) *BundleEntryBuilder {
+	b.bundleEntry.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *BundleEntryBuilder) AddExtension(v Extension) *BundleEntryBuilder {
+	b.bundleEntry.Extension = append(b.bundleEntry.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *BundleEntryBuilder) AddModifierExtension(v Extension) *BundleEntryBuilder {
+	b.bundleEntry.ModifierExtension = append(b.bundleEntry.ModifierExtension, v)
+	return b
+}
+
+// AddLink adds a Link element.
+func (b *BundleEntryBuilder) AddLink(v BundleLink) *BundleEntryBuilder {
+	b.bundleEntry.Link = append(b.bundleEntry.Link, v)
+	return b
+}
+
+// SetFullUrl sets the FullUrl field.
+func (b *BundleEntryBuilder) SetFullUrl(v string) *BundleEntryBuilder {
+	b.bundleEntry.FullUrl = &v
+	return b
+}
+
+// SetResource sets the Resource field.
+func (b *BundleEntryBuilder) SetResource(v Resource) *BundleEntryBuilder {
+	b.bundleEntry.Resource = v
+	return b
+}
+
+// SetSearch sets the Search field.
+func (b *BundleEntryBuilder) SetSearch(v BundleEntrySearch) *BundleEntryBuilder {
+	b.bundleEntry.Search = &v
+	return b
+}
+
+// SetRequest sets the Request field.
+func (b *BundleEntryBuilder) SetRequest(v BundleEntryRequest) *BundleEntryBuilder {
+	b.bundleEntry.Request = &v
+	return b
+}
+
+// SetResponse sets the Response field.
+func (b *BundleEntryBuilder) SetResponse(v BundleEntryResponse) *BundleEntryBuilder {
+	b.bundleEntry.Response = &v
+	return b
+}
+
+// SetFullUrlExt sets the extensions carried by FullUrl, serialized as
+// "_fullUrl".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BundleEntryBuilder) SetFullUrlExt(v Element) *BundleEntryBuilder {
+	b.bundleEntry.FullUrlExt = &v
+	return b
+}
+
+// =============================================================================
+// BundleEntryRequest - Fluent Builder
+// =============================================================================
+
+// BundleEntryRequestBuilder provides a fluent API for constructing BundleEntryRequest values.
+type BundleEntryRequestBuilder struct {
+	bundleEntryRequest *BundleEntryRequest
+}
+
+// NewBundleEntryRequestBuilder creates a new BundleEntryRequestBuilder.
+func NewBundleEntryRequestBuilder() *BundleEntryRequestBuilder {
+	return &BundleEntryRequestBuilder{
+		bundleEntryRequest: &BundleEntryRequest{},
+	}
+}
+
+// Build returns the constructed BundleEntryRequest.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *BundleEntryRequestBuilder) Build() BundleEntryRequest {
+	return *b.bundleEntryRequest
+}
+
+// SetId sets the Id field.
+func (b *BundleEntryRequestBuilder) SetId(v string) *BundleEntryRequestBuilder {
+	b.bundleEntryRequest.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *BundleEntryRequestBuilder) AddExtension(v Extension) *BundleEntryRequestBuilder {
+	b.bundleEntryRequest.Extension = append(b.bundleEntryRequest.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *BundleEntryRequestBuilder) AddModifierExtension(v Extension) *BundleEntryRequestBuilder {
+	b.bundleEntryRequest.ModifierExtension = append(b.bundleEntryRequest.ModifierExtension, v)
+	return b
+}
+
+// SetMethod sets the Method field.
+func (b *BundleEntryRequestBuilder) SetMethod(v HTTPVerb) *BundleEntryRequestBuilder {
+	b.bundleEntryRequest.Method = &v
+	return b
+}
+
+// SetUrl sets the Url field.
+func (b *BundleEntryRequestBuilder) SetUrl(v string) *BundleEntryRequestBuilder {
+	b.bundleEntryRequest.Url = &v
+	return b
+}
+
+// SetIfNoneMatch sets the IfNoneMatch field.
+func (b *BundleEntryRequestBuilder) SetIfNoneMatch(v string) *BundleEntryRequestBuilder {
+	b.bundleEntryRequest.IfNoneMatch = &v
+	return b
+}
+
+// SetIfModifiedSince sets the IfModifiedSince field.
+func (b *BundleEntryRequestBuilder) SetIfModifiedSince(v string) *BundleEntryRequestBuilder {
+	b.bundleEntryRequest.IfModifiedSince = &v
+	return b
+}
+
+// SetIfMatch sets the IfMatch field.
+func (b *BundleEntryRequestBuilder) SetIfMatch(v string) *BundleEntryRequestBuilder {
+	b.bundleEntryRequest.IfMatch = &v
+	return b
+}
+
+// SetIfNoneExist sets the IfNoneExist field.
+func (b *BundleEntryRequestBuilder) SetIfNoneExist(v string) *BundleEntryRequestBuilder {
+	b.bundleEntryRequest.IfNoneExist = &v
+	return b
+}
+
+// SetMethodExt sets the extensions carried by Method, serialized as
+// "_method".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BundleEntryRequestBuilder) SetMethodExt(v Element) *BundleEntryRequestBuilder {
+	b.bundleEntryRequest.MethodExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BundleEntryRequestBuilder) SetUrlExt(v Element) *BundleEntryRequestBuilder {
+	b.bundleEntryRequest.UrlExt = &v
+	return b
+}
+
+// SetIfNoneMatchExt sets the extensions carried by IfNoneMatch, serialized as
+// "_ifNoneMatch".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BundleEntryRequestBuilder) SetIfNoneMatchExt(v Element) *BundleEntryRequestBuilder {
+	b.bundleEntryRequest.IfNoneMatchExt = &v
+	return b
+}
+
+// SetIfModifiedSinceExt sets the extensions carried by IfModifiedSince, serialized as
+// "_ifModifiedSince".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BundleEntryRequestBuilder) SetIfModifiedSinceExt(v Element) *BundleEntryRequestBuilder {
+	b.bundleEntryRequest.IfModifiedSinceExt = &v
+	return b
+}
+
+// SetIfMatchExt sets the extensions carried by IfMatch, serialized as
+// "_ifMatch".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BundleEntryRequestBuilder) SetIfMatchExt(v Element) *BundleEntryRequestBuilder {
+	b.bundleEntryRequest.IfMatchExt = &v
+	return b
+}
+
+// SetIfNoneExistExt sets the extensions carried by IfNoneExist, serialized as
+// "_ifNoneExist".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BundleEntryRequestBuilder) SetIfNoneExistExt(v Element) *BundleEntryRequestBuilder {
+	b.bundleEntryRequest.IfNoneExistExt = &v
+	return b
+}
+
+// =============================================================================
+// BundleEntryResponse - Fluent Builder
+// =============================================================================
+
+// BundleEntryResponseBuilder provides a fluent API for constructing BundleEntryResponse values.
+type BundleEntryResponseBuilder struct {
+	bundleEntryResponse *BundleEntryResponse
+}
+
+// NewBundleEntryResponseBuilder creates a new BundleEntryResponseBuilder.
+func NewBundleEntryResponseBuilder() *BundleEntryResponseBuilder {
+	return &BundleEntryResponseBuilder{
+		bundleEntryResponse: &BundleEntryResponse{},
+	}
+}
+
+// Build returns the constructed BundleEntryResponse.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *BundleEntryResponseBuilder) Build() BundleEntryResponse {
+	return *b.bundleEntryResponse
+}
+
+// SetId sets the Id field.
+func (b *BundleEntryResponseBuilder) SetId(v string) *BundleEntryResponseBuilder {
+	b.bundleEntryResponse.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *BundleEntryResponseBuilder) AddExtension(v Extension) *BundleEntryResponseBuilder {
+	b.bundleEntryResponse.Extension = append(b.bundleEntryResponse.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *BundleEntryResponseBuilder) AddModifierExtension(v Extension) *BundleEntryResponseBuilder {
+	b.bundleEntryResponse.ModifierExtension = append(b.bundleEntryResponse.ModifierExtension, v)
+	return b
+}
+
+// SetStatus sets the Status field.
+func (b *BundleEntryResponseBuilder) SetStatus(v string) *BundleEntryResponseBuilder {
+	b.bundleEntryResponse.Status = &v
+	return b
+}
+
+// SetLocation sets the Location field.
+func (b *BundleEntryResponseBuilder) SetLocation(v string) *BundleEntryResponseBuilder {
+	b.bundleEntryResponse.Location = &v
+	return b
+}
+
+// SetEtag sets the Etag field.
+func (b *BundleEntryResponseBuilder) SetEtag(v string) *BundleEntryResponseBuilder {
+	b.bundleEntryResponse.Etag = &v
+	return b
+}
+
+// SetLastModified sets the LastModified field.
+func (b *BundleEntryResponseBuilder) SetLastModified(v string) *BundleEntryResponseBuilder {
+	b.bundleEntryResponse.LastModified = &v
+	return b
+}
+
+// SetOutcome sets the Outcome field.
+func (b *BundleEntryResponseBuilder) SetOutcome(v Resource) *BundleEntryResponseBuilder {
+	b.bundleEntryResponse.Outcome = v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BundleEntryResponseBuilder) SetStatusExt(v Element) *BundleEntryResponseBuilder {
+	b.bundleEntryResponse.StatusExt = &v
+	return b
+}
+
+// SetLocationExt sets the extensions carried by Location, serialized as
+// "_location".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BundleEntryResponseBuilder) SetLocationExt(v Element) *BundleEntryResponseBuilder {
+	b.bundleEntryResponse.LocationExt = &v
+	return b
+}
+
+// SetEtagExt sets the extensions carried by Etag, serialized as
+// "_etag".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BundleEntryResponseBuilder) SetEtagExt(v Element) *BundleEntryResponseBuilder {
+	b.bundleEntryResponse.EtagExt = &v
+	return b
+}
+
+// SetLastModifiedExt sets the extensions carried by LastModified, serialized as
+// "_lastModified".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BundleEntryResponseBuilder) SetLastModifiedExt(v Element) *BundleEntryResponseBuilder {
+	b.bundleEntryResponse.LastModifiedExt = &v
+	return b
+}
+
+// =============================================================================
+// BundleEntrySearch - Fluent Builder
+// =============================================================================
+
+// BundleEntrySearchBuilder provides a fluent API for constructing BundleEntrySearch values.
+type BundleEntrySearchBuilder struct {
+	bundleEntrySearch *BundleEntrySearch
+}
+
+// NewBundleEntrySearchBuilder creates a new BundleEntrySearchBuilder.
+func NewBundleEntrySearchBuilder() *BundleEntrySearchBuilder {
+	return &BundleEntrySearchBuilder{
+		bundleEntrySearch: &BundleEntrySearch{},
+	}
+}
+
+// Build returns the constructed BundleEntrySearch.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *BundleEntrySearchBuilder) Build() BundleEntrySearch {
+	return *b.bundleEntrySearch
+}
+
+// SetId sets the Id field.
+func (b *BundleEntrySearchBuilder) SetId(v string) *BundleEntrySearchBuilder {
+	b.bundleEntrySearch.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *BundleEntrySearchBuilder) AddExtension(v Extension) *BundleEntrySearchBuilder {
+	b.bundleEntrySearch.Extension = append(b.bundleEntrySearch.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *BundleEntrySearchBuilder) AddModifierExtension(v Extension) *BundleEntrySearchBuilder {
+	b.bundleEntrySearch.ModifierExtension = append(b.bundleEntrySearch.ModifierExtension, v)
+	return b
+}
+
+// SetMode sets the Mode field.
+func (b *BundleEntrySearchBuilder) SetMode(v SearchEntryMode) *BundleEntrySearchBuilder {
+	b.bundleEntrySearch.Mode = &v
+	return b
+}
+
+// SetScore sets the Score field.
+func (b *BundleEntrySearchBuilder) SetScore(v Decimal) *BundleEntrySearchBuilder {
+	b.bundleEntrySearch.Score = &v
+	return b
+}
+
+// SetModeExt sets the extensions carried by Mode, serialized as
+// "_mode".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BundleEntrySearchBuilder) SetModeExt(v Element) *BundleEntrySearchBuilder {
+	b.bundleEntrySearch.ModeExt = &v
+	return b
+}
+
+// SetScoreExt sets the extensions carried by Score, serialized as
+// "_score".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BundleEntrySearchBuilder) SetScoreExt(v Element) *BundleEntrySearchBuilder {
+	b.bundleEntrySearch.ScoreExt = &v
+	return b
+}
+
+// =============================================================================
+// BundleLink - Fluent Builder
+// =============================================================================
+
+// BundleLinkBuilder provides a fluent API for constructing BundleLink values.
+type BundleLinkBuilder struct {
+	bundleLink *BundleLink
+}
+
+// NewBundleLinkBuilder creates a new BundleLinkBuilder.
+func NewBundleLinkBuilder() *BundleLinkBuilder {
+	return &BundleLinkBuilder{
+		bundleLink: &BundleLink{},
+	}
+}
+
+// Build returns the constructed BundleLink.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *BundleLinkBuilder) Build() BundleLink {
+	return *b.bundleLink
+}
+
+// SetId sets the Id field.
+func (b *BundleLinkBuilder) SetId(v string) *BundleLinkBuilder {
+	b.bundleLink.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *BundleLinkBuilder) AddExtension(v Extension) *BundleLinkBuilder {
+	b.bundleLink.Extension = append(b.bundleLink.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *BundleLinkBuilder) AddModifierExtension(v Extension) *BundleLinkBuilder {
+	b.bundleLink.ModifierExtension = append(b.bundleLink.ModifierExtension, v)
+	return b
+}
+
+// SetRelation sets the Relation field.
+func (b *BundleLinkBuilder) SetRelation(v string) *BundleLinkBuilder {
+	b.bundleLink.Relation = &v
+	return b
+}
+
+// SetUrl sets the Url field.
+func (b *BundleLinkBuilder) SetUrl(v string) *BundleLinkBuilder {
+	b.bundleLink.Url = &v
+	return b
+}
+
+// SetRelationExt sets the extensions carried by Relation, serialized as
+// "_relation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BundleLinkBuilder) SetRelationExt(v Element) *BundleLinkBuilder {
+	b.bundleLink.RelationExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BundleLinkBuilder) SetUrlExt(v Element) *BundleLinkBuilder {
+	b.bundleLink.UrlExt = &v
+	return b
+}

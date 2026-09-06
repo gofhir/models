@@ -814,10 +814,196 @@ func (b *PractitionerBuilder) AddCommunication(v PractitionerCommunication) *Pra
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PractitionerBuilder) SetImplicitRulesExt(v Element) *PractitionerBuilder {
+	b.practitioner.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PractitionerBuilder) SetLanguageExt(v Element) *PractitionerBuilder {
+	b.practitioner.LanguageExt = &v
+	return b
+}
+
+// SetActiveExt sets the extensions carried by Active, serialized as
+// "_active".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PractitionerBuilder) SetActiveExt(v Element) *PractitionerBuilder {
+	b.practitioner.ActiveExt = &v
+	return b
+}
+
+// SetGenderExt sets the extensions carried by Gender, serialized as
+// "_gender".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PractitionerBuilder) SetGenderExt(v Element) *PractitionerBuilder {
+	b.practitioner.GenderExt = &v
+	return b
+}
+
+// SetBirthDateExt sets the extensions carried by BirthDate, serialized as
+// "_birthDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PractitionerBuilder) SetBirthDateExt(v Element) *PractitionerBuilder {
+	b.practitioner.BirthDateExt = &v
+	return b
+}
+
 // clearDeceased unsets every variant of Deceased[x], including the
 // _field companions of the primitive ones.
 func (b *PractitionerBuilder) clearDeceased() {
 	b.practitioner.DeceasedBoolean = nil
 	b.practitioner.DeceasedDateTime = nil
 	b.practitioner.DeceasedDateTimeExt = nil
+}
+
+// =============================================================================
+// PractitionerCommunication - Fluent Builder
+// =============================================================================
+
+// PractitionerCommunicationBuilder provides a fluent API for constructing PractitionerCommunication values.
+type PractitionerCommunicationBuilder struct {
+	practitionerCommunication *PractitionerCommunication
+}
+
+// NewPractitionerCommunicationBuilder creates a new PractitionerCommunicationBuilder.
+func NewPractitionerCommunicationBuilder() *PractitionerCommunicationBuilder {
+	return &PractitionerCommunicationBuilder{
+		practitionerCommunication: &PractitionerCommunication{},
+	}
+}
+
+// Build returns the constructed PractitionerCommunication.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PractitionerCommunicationBuilder) Build() PractitionerCommunication {
+	return *b.practitionerCommunication
+}
+
+// SetId sets the Id field.
+func (b *PractitionerCommunicationBuilder) SetId(v string) *PractitionerCommunicationBuilder {
+	b.practitionerCommunication.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PractitionerCommunicationBuilder) AddExtension(v Extension) *PractitionerCommunicationBuilder {
+	b.practitionerCommunication.Extension = append(b.practitionerCommunication.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PractitionerCommunicationBuilder) AddModifierExtension(v Extension) *PractitionerCommunicationBuilder {
+	b.practitionerCommunication.ModifierExtension = append(b.practitionerCommunication.ModifierExtension, v)
+	return b
+}
+
+// SetLanguage sets the Language field.
+func (b *PractitionerCommunicationBuilder) SetLanguage(v CodeableConcept) *PractitionerCommunicationBuilder {
+	b.practitionerCommunication.Language = &v
+	return b
+}
+
+// SetPreferred sets the Preferred field.
+func (b *PractitionerCommunicationBuilder) SetPreferred(v bool) *PractitionerCommunicationBuilder {
+	b.practitionerCommunication.Preferred = &v
+	return b
+}
+
+// SetPreferredExt sets the extensions carried by Preferred, serialized as
+// "_preferred".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PractitionerCommunicationBuilder) SetPreferredExt(v Element) *PractitionerCommunicationBuilder {
+	b.practitionerCommunication.PreferredExt = &v
+	return b
+}
+
+// =============================================================================
+// PractitionerQualification - Fluent Builder
+// =============================================================================
+
+// PractitionerQualificationBuilder provides a fluent API for constructing PractitionerQualification values.
+type PractitionerQualificationBuilder struct {
+	practitionerQualification *PractitionerQualification
+}
+
+// NewPractitionerQualificationBuilder creates a new PractitionerQualificationBuilder.
+func NewPractitionerQualificationBuilder() *PractitionerQualificationBuilder {
+	return &PractitionerQualificationBuilder{
+		practitionerQualification: &PractitionerQualification{},
+	}
+}
+
+// Build returns the constructed PractitionerQualification.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PractitionerQualificationBuilder) Build() PractitionerQualification {
+	return *b.practitionerQualification
+}
+
+// SetId sets the Id field.
+func (b *PractitionerQualificationBuilder) SetId(v string) *PractitionerQualificationBuilder {
+	b.practitionerQualification.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PractitionerQualificationBuilder) AddExtension(v Extension) *PractitionerQualificationBuilder {
+	b.practitionerQualification.Extension = append(b.practitionerQualification.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PractitionerQualificationBuilder) AddModifierExtension(v Extension) *PractitionerQualificationBuilder {
+	b.practitionerQualification.ModifierExtension = append(b.practitionerQualification.ModifierExtension, v)
+	return b
+}
+
+// AddIdentifier adds a Identifier element.
+func (b *PractitionerQualificationBuilder) AddIdentifier(v Identifier) *PractitionerQualificationBuilder {
+	b.practitionerQualification.Identifier = append(b.practitionerQualification.Identifier, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *PractitionerQualificationBuilder) SetCode(v CodeableConcept) *PractitionerQualificationBuilder {
+	b.practitionerQualification.Code = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *PractitionerQualificationBuilder) SetPeriod(v Period) *PractitionerQualificationBuilder {
+	b.practitionerQualification.Period = &v
+	return b
+}
+
+// SetIssuer sets the Issuer field.
+func (b *PractitionerQualificationBuilder) SetIssuer(v Reference) *PractitionerQualificationBuilder {
+	b.practitionerQualification.Issuer = &v
+	return b
 }

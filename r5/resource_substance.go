@@ -616,3 +616,143 @@ func (b *SubstanceBuilder) AddIngredient(v SubstanceIngredient) *SubstanceBuilde
 	b.substance.Ingredient = append(b.substance.Ingredient, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceBuilder) SetImplicitRulesExt(v Element) *SubstanceBuilder {
+	b.substance.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceBuilder) SetLanguageExt(v Element) *SubstanceBuilder {
+	b.substance.LanguageExt = &v
+	return b
+}
+
+// SetInstanceExt sets the extensions carried by Instance, serialized as
+// "_instance".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceBuilder) SetInstanceExt(v Element) *SubstanceBuilder {
+	b.substance.InstanceExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceBuilder) SetStatusExt(v Element) *SubstanceBuilder {
+	b.substance.StatusExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceBuilder) SetDescriptionExt(v Element) *SubstanceBuilder {
+	b.substance.DescriptionExt = &v
+	return b
+}
+
+// SetExpiryExt sets the extensions carried by Expiry, serialized as
+// "_expiry".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceBuilder) SetExpiryExt(v Element) *SubstanceBuilder {
+	b.substance.ExpiryExt = &v
+	return b
+}
+
+// =============================================================================
+// SubstanceIngredient - Fluent Builder
+// =============================================================================
+
+// SubstanceIngredientBuilder provides a fluent API for constructing SubstanceIngredient values.
+type SubstanceIngredientBuilder struct {
+	substanceIngredient *SubstanceIngredient
+}
+
+// NewSubstanceIngredientBuilder creates a new SubstanceIngredientBuilder.
+func NewSubstanceIngredientBuilder() *SubstanceIngredientBuilder {
+	return &SubstanceIngredientBuilder{
+		substanceIngredient: &SubstanceIngredient{},
+	}
+}
+
+// Build returns the constructed SubstanceIngredient.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceIngredientBuilder) Build() SubstanceIngredient {
+	return *b.substanceIngredient
+}
+
+// SetId sets the Id field.
+func (b *SubstanceIngredientBuilder) SetId(v string) *SubstanceIngredientBuilder {
+	b.substanceIngredient.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceIngredientBuilder) AddExtension(v Extension) *SubstanceIngredientBuilder {
+	b.substanceIngredient.Extension = append(b.substanceIngredient.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceIngredientBuilder) AddModifierExtension(v Extension) *SubstanceIngredientBuilder {
+	b.substanceIngredient.ModifierExtension = append(b.substanceIngredient.ModifierExtension, v)
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *SubstanceIngredientBuilder) SetQuantity(v Ratio) *SubstanceIngredientBuilder {
+	b.substanceIngredient.Quantity = &v
+	return b
+}
+
+// SetSubstanceCodeableConcept sets Substance[x] to its SubstanceCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SubstanceIngredientBuilder) SetSubstanceCodeableConcept(v CodeableConcept) *SubstanceIngredientBuilder {
+	b.clearSubstance()
+	b.substanceIngredient.SubstanceCodeableConcept = &v
+	return b
+}
+
+// SetSubstanceReference sets Substance[x] to its SubstanceReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SubstanceIngredientBuilder) SetSubstanceReference(v Reference) *SubstanceIngredientBuilder {
+	b.clearSubstance()
+	b.substanceIngredient.SubstanceReference = &v
+	return b
+}
+
+// clearSubstance unsets every variant of Substance[x], including the
+// _field companions of the primitive ones.
+func (b *SubstanceIngredientBuilder) clearSubstance() {
+	b.substanceIngredient.SubstanceCodeableConcept = nil
+	b.substanceIngredient.SubstanceReference = nil
+}

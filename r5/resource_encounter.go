@@ -1467,3 +1467,390 @@ func (b *EncounterBuilder) AddLocation(v EncounterLocation) *EncounterBuilder {
 	b.encounter.Location = append(b.encounter.Location, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EncounterBuilder) SetImplicitRulesExt(v Element) *EncounterBuilder {
+	b.encounter.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EncounterBuilder) SetLanguageExt(v Element) *EncounterBuilder {
+	b.encounter.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EncounterBuilder) SetStatusExt(v Element) *EncounterBuilder {
+	b.encounter.StatusExt = &v
+	return b
+}
+
+// SetPlannedStartDateExt sets the extensions carried by PlannedStartDate, serialized as
+// "_plannedStartDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EncounterBuilder) SetPlannedStartDateExt(v Element) *EncounterBuilder {
+	b.encounter.PlannedStartDateExt = &v
+	return b
+}
+
+// SetPlannedEndDateExt sets the extensions carried by PlannedEndDate, serialized as
+// "_plannedEndDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EncounterBuilder) SetPlannedEndDateExt(v Element) *EncounterBuilder {
+	b.encounter.PlannedEndDateExt = &v
+	return b
+}
+
+// =============================================================================
+// EncounterAdmission - Fluent Builder
+// =============================================================================
+
+// EncounterAdmissionBuilder provides a fluent API for constructing EncounterAdmission values.
+type EncounterAdmissionBuilder struct {
+	encounterAdmission *EncounterAdmission
+}
+
+// NewEncounterAdmissionBuilder creates a new EncounterAdmissionBuilder.
+func NewEncounterAdmissionBuilder() *EncounterAdmissionBuilder {
+	return &EncounterAdmissionBuilder{
+		encounterAdmission: &EncounterAdmission{},
+	}
+}
+
+// Build returns the constructed EncounterAdmission.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *EncounterAdmissionBuilder) Build() EncounterAdmission {
+	return *b.encounterAdmission
+}
+
+// SetId sets the Id field.
+func (b *EncounterAdmissionBuilder) SetId(v string) *EncounterAdmissionBuilder {
+	b.encounterAdmission.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *EncounterAdmissionBuilder) AddExtension(v Extension) *EncounterAdmissionBuilder {
+	b.encounterAdmission.Extension = append(b.encounterAdmission.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *EncounterAdmissionBuilder) AddModifierExtension(v Extension) *EncounterAdmissionBuilder {
+	b.encounterAdmission.ModifierExtension = append(b.encounterAdmission.ModifierExtension, v)
+	return b
+}
+
+// SetPreAdmissionIdentifier sets the PreAdmissionIdentifier field.
+func (b *EncounterAdmissionBuilder) SetPreAdmissionIdentifier(v Identifier) *EncounterAdmissionBuilder {
+	b.encounterAdmission.PreAdmissionIdentifier = &v
+	return b
+}
+
+// SetOrigin sets the Origin field.
+func (b *EncounterAdmissionBuilder) SetOrigin(v Reference) *EncounterAdmissionBuilder {
+	b.encounterAdmission.Origin = &v
+	return b
+}
+
+// SetAdmitSource sets the AdmitSource field.
+func (b *EncounterAdmissionBuilder) SetAdmitSource(v CodeableConcept) *EncounterAdmissionBuilder {
+	b.encounterAdmission.AdmitSource = &v
+	return b
+}
+
+// SetReAdmission sets the ReAdmission field.
+func (b *EncounterAdmissionBuilder) SetReAdmission(v CodeableConcept) *EncounterAdmissionBuilder {
+	b.encounterAdmission.ReAdmission = &v
+	return b
+}
+
+// SetDestination sets the Destination field.
+func (b *EncounterAdmissionBuilder) SetDestination(v Reference) *EncounterAdmissionBuilder {
+	b.encounterAdmission.Destination = &v
+	return b
+}
+
+// SetDischargeDisposition sets the DischargeDisposition field.
+func (b *EncounterAdmissionBuilder) SetDischargeDisposition(v CodeableConcept) *EncounterAdmissionBuilder {
+	b.encounterAdmission.DischargeDisposition = &v
+	return b
+}
+
+// =============================================================================
+// EncounterDiagnosis - Fluent Builder
+// =============================================================================
+
+// EncounterDiagnosisBuilder provides a fluent API for constructing EncounterDiagnosis values.
+type EncounterDiagnosisBuilder struct {
+	encounterDiagnosis *EncounterDiagnosis
+}
+
+// NewEncounterDiagnosisBuilder creates a new EncounterDiagnosisBuilder.
+func NewEncounterDiagnosisBuilder() *EncounterDiagnosisBuilder {
+	return &EncounterDiagnosisBuilder{
+		encounterDiagnosis: &EncounterDiagnosis{},
+	}
+}
+
+// Build returns the constructed EncounterDiagnosis.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *EncounterDiagnosisBuilder) Build() EncounterDiagnosis {
+	return *b.encounterDiagnosis
+}
+
+// SetId sets the Id field.
+func (b *EncounterDiagnosisBuilder) SetId(v string) *EncounterDiagnosisBuilder {
+	b.encounterDiagnosis.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *EncounterDiagnosisBuilder) AddExtension(v Extension) *EncounterDiagnosisBuilder {
+	b.encounterDiagnosis.Extension = append(b.encounterDiagnosis.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *EncounterDiagnosisBuilder) AddModifierExtension(v Extension) *EncounterDiagnosisBuilder {
+	b.encounterDiagnosis.ModifierExtension = append(b.encounterDiagnosis.ModifierExtension, v)
+	return b
+}
+
+// AddCondition adds a Condition element.
+func (b *EncounterDiagnosisBuilder) AddCondition(v CodeableReference) *EncounterDiagnosisBuilder {
+	b.encounterDiagnosis.Condition = append(b.encounterDiagnosis.Condition, v)
+	return b
+}
+
+// AddUse adds a Use element.
+func (b *EncounterDiagnosisBuilder) AddUse(v CodeableConcept) *EncounterDiagnosisBuilder {
+	b.encounterDiagnosis.Use = append(b.encounterDiagnosis.Use, v)
+	return b
+}
+
+// =============================================================================
+// EncounterLocation - Fluent Builder
+// =============================================================================
+
+// EncounterLocationBuilder provides a fluent API for constructing EncounterLocation values.
+type EncounterLocationBuilder struct {
+	encounterLocation *EncounterLocation
+}
+
+// NewEncounterLocationBuilder creates a new EncounterLocationBuilder.
+func NewEncounterLocationBuilder() *EncounterLocationBuilder {
+	return &EncounterLocationBuilder{
+		encounterLocation: &EncounterLocation{},
+	}
+}
+
+// Build returns the constructed EncounterLocation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *EncounterLocationBuilder) Build() EncounterLocation {
+	return *b.encounterLocation
+}
+
+// SetId sets the Id field.
+func (b *EncounterLocationBuilder) SetId(v string) *EncounterLocationBuilder {
+	b.encounterLocation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *EncounterLocationBuilder) AddExtension(v Extension) *EncounterLocationBuilder {
+	b.encounterLocation.Extension = append(b.encounterLocation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *EncounterLocationBuilder) AddModifierExtension(v Extension) *EncounterLocationBuilder {
+	b.encounterLocation.ModifierExtension = append(b.encounterLocation.ModifierExtension, v)
+	return b
+}
+
+// SetLocation sets the Location field.
+func (b *EncounterLocationBuilder) SetLocation(v Reference) *EncounterLocationBuilder {
+	b.encounterLocation.Location = &v
+	return b
+}
+
+// SetStatus sets the Status field.
+func (b *EncounterLocationBuilder) SetStatus(v EncounterLocationStatus) *EncounterLocationBuilder {
+	b.encounterLocation.Status = &v
+	return b
+}
+
+// SetForm sets the Form field.
+func (b *EncounterLocationBuilder) SetForm(v CodeableConcept) *EncounterLocationBuilder {
+	b.encounterLocation.Form = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *EncounterLocationBuilder) SetPeriod(v Period) *EncounterLocationBuilder {
+	b.encounterLocation.Period = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EncounterLocationBuilder) SetStatusExt(v Element) *EncounterLocationBuilder {
+	b.encounterLocation.StatusExt = &v
+	return b
+}
+
+// =============================================================================
+// EncounterParticipant - Fluent Builder
+// =============================================================================
+
+// EncounterParticipantBuilder provides a fluent API for constructing EncounterParticipant values.
+type EncounterParticipantBuilder struct {
+	encounterParticipant *EncounterParticipant
+}
+
+// NewEncounterParticipantBuilder creates a new EncounterParticipantBuilder.
+func NewEncounterParticipantBuilder() *EncounterParticipantBuilder {
+	return &EncounterParticipantBuilder{
+		encounterParticipant: &EncounterParticipant{},
+	}
+}
+
+// Build returns the constructed EncounterParticipant.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *EncounterParticipantBuilder) Build() EncounterParticipant {
+	return *b.encounterParticipant
+}
+
+// SetId sets the Id field.
+func (b *EncounterParticipantBuilder) SetId(v string) *EncounterParticipantBuilder {
+	b.encounterParticipant.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *EncounterParticipantBuilder) AddExtension(v Extension) *EncounterParticipantBuilder {
+	b.encounterParticipant.Extension = append(b.encounterParticipant.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *EncounterParticipantBuilder) AddModifierExtension(v Extension) *EncounterParticipantBuilder {
+	b.encounterParticipant.ModifierExtension = append(b.encounterParticipant.ModifierExtension, v)
+	return b
+}
+
+// AddType adds a Type element.
+func (b *EncounterParticipantBuilder) AddType(v CodeableConcept) *EncounterParticipantBuilder {
+	b.encounterParticipant.Type = append(b.encounterParticipant.Type, v)
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *EncounterParticipantBuilder) SetPeriod(v Period) *EncounterParticipantBuilder {
+	b.encounterParticipant.Period = &v
+	return b
+}
+
+// SetActor sets the Actor field.
+func (b *EncounterParticipantBuilder) SetActor(v Reference) *EncounterParticipantBuilder {
+	b.encounterParticipant.Actor = &v
+	return b
+}
+
+// =============================================================================
+// EncounterReason - Fluent Builder
+// =============================================================================
+
+// EncounterReasonBuilder provides a fluent API for constructing EncounterReason values.
+type EncounterReasonBuilder struct {
+	encounterReason *EncounterReason
+}
+
+// NewEncounterReasonBuilder creates a new EncounterReasonBuilder.
+func NewEncounterReasonBuilder() *EncounterReasonBuilder {
+	return &EncounterReasonBuilder{
+		encounterReason: &EncounterReason{},
+	}
+}
+
+// Build returns the constructed EncounterReason.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *EncounterReasonBuilder) Build() EncounterReason {
+	return *b.encounterReason
+}
+
+// SetId sets the Id field.
+func (b *EncounterReasonBuilder) SetId(v string) *EncounterReasonBuilder {
+	b.encounterReason.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *EncounterReasonBuilder) AddExtension(v Extension) *EncounterReasonBuilder {
+	b.encounterReason.Extension = append(b.encounterReason.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *EncounterReasonBuilder) AddModifierExtension(v Extension) *EncounterReasonBuilder {
+	b.encounterReason.ModifierExtension = append(b.encounterReason.ModifierExtension, v)
+	return b
+}
+
+// AddUse adds a Use element.
+func (b *EncounterReasonBuilder) AddUse(v CodeableConcept) *EncounterReasonBuilder {
+	b.encounterReason.Use = append(b.encounterReason.Use, v)
+	return b
+}
+
+// AddValue adds a Value element.
+func (b *EncounterReasonBuilder) AddValue(v CodeableReference) *EncounterReasonBuilder {
+	b.encounterReason.Value = append(b.encounterReason.Value, v)
+	return b
+}

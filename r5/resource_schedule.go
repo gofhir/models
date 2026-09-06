@@ -499,3 +499,53 @@ func (b *ScheduleBuilder) SetComment(v string) *ScheduleBuilder {
 	b.schedule.Comment = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ScheduleBuilder) SetImplicitRulesExt(v Element) *ScheduleBuilder {
+	b.schedule.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ScheduleBuilder) SetLanguageExt(v Element) *ScheduleBuilder {
+	b.schedule.LanguageExt = &v
+	return b
+}
+
+// SetActiveExt sets the extensions carried by Active, serialized as
+// "_active".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ScheduleBuilder) SetActiveExt(v Element) *ScheduleBuilder {
+	b.schedule.ActiveExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ScheduleBuilder) SetNameExt(v Element) *ScheduleBuilder {
+	b.schedule.NameExt = &v
+	return b
+}
+
+// SetCommentExt sets the extensions carried by Comment, serialized as
+// "_comment".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ScheduleBuilder) SetCommentExt(v Element) *ScheduleBuilder {
+	b.schedule.CommentExt = &v
+	return b
+}

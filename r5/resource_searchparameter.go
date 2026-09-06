@@ -1106,9 +1106,351 @@ func (b *SearchParameterBuilder) AddComponent(v SearchParameterComponent) *Searc
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterBuilder) SetImplicitRulesExt(v Element) *SearchParameterBuilder {
+	b.searchParameter.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterBuilder) SetLanguageExt(v Element) *SearchParameterBuilder {
+	b.searchParameter.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterBuilder) SetUrlExt(v Element) *SearchParameterBuilder {
+	b.searchParameter.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterBuilder) SetVersionExt(v Element) *SearchParameterBuilder {
+	b.searchParameter.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterBuilder) SetNameExt(v Element) *SearchParameterBuilder {
+	b.searchParameter.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterBuilder) SetTitleExt(v Element) *SearchParameterBuilder {
+	b.searchParameter.TitleExt = &v
+	return b
+}
+
+// SetDerivedFromExt sets the extensions carried by DerivedFrom, serialized as
+// "_derivedFrom".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterBuilder) SetDerivedFromExt(v Element) *SearchParameterBuilder {
+	b.searchParameter.DerivedFromExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterBuilder) SetStatusExt(v Element) *SearchParameterBuilder {
+	b.searchParameter.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterBuilder) SetExperimentalExt(v Element) *SearchParameterBuilder {
+	b.searchParameter.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterBuilder) SetDateExt(v Element) *SearchParameterBuilder {
+	b.searchParameter.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterBuilder) SetPublisherExt(v Element) *SearchParameterBuilder {
+	b.searchParameter.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterBuilder) SetDescriptionExt(v Element) *SearchParameterBuilder {
+	b.searchParameter.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterBuilder) SetPurposeExt(v Element) *SearchParameterBuilder {
+	b.searchParameter.PurposeExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterBuilder) SetCopyrightExt(v Element) *SearchParameterBuilder {
+	b.searchParameter.CopyrightExt = &v
+	return b
+}
+
+// SetCopyrightLabelExt sets the extensions carried by CopyrightLabel, serialized as
+// "_copyrightLabel".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterBuilder) SetCopyrightLabelExt(v Element) *SearchParameterBuilder {
+	b.searchParameter.CopyrightLabelExt = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterBuilder) SetCodeExt(v Element) *SearchParameterBuilder {
+	b.searchParameter.CodeExt = &v
+	return b
+}
+
+// AddBaseExt appends an extension slot for Base.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *SearchParameterBuilder) AddBaseExt(v *Element) *SearchParameterBuilder {
+	b.searchParameter.BaseExt = append(b.searchParameter.BaseExt, v)
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterBuilder) SetTypeExt(v Element) *SearchParameterBuilder {
+	b.searchParameter.TypeExt = &v
+	return b
+}
+
+// SetExpressionExt sets the extensions carried by Expression, serialized as
+// "_expression".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterBuilder) SetExpressionExt(v Element) *SearchParameterBuilder {
+	b.searchParameter.ExpressionExt = &v
+	return b
+}
+
+// SetProcessingModeExt sets the extensions carried by ProcessingMode, serialized as
+// "_processingMode".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterBuilder) SetProcessingModeExt(v Element) *SearchParameterBuilder {
+	b.searchParameter.ProcessingModeExt = &v
+	return b
+}
+
+// SetConstraintExt sets the extensions carried by Constraint, serialized as
+// "_constraint".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterBuilder) SetConstraintExt(v Element) *SearchParameterBuilder {
+	b.searchParameter.ConstraintExt = &v
+	return b
+}
+
+// AddTargetExt appends an extension slot for Target.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *SearchParameterBuilder) AddTargetExt(v *Element) *SearchParameterBuilder {
+	b.searchParameter.TargetExt = append(b.searchParameter.TargetExt, v)
+	return b
+}
+
+// SetMultipleOrExt sets the extensions carried by MultipleOr, serialized as
+// "_multipleOr".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterBuilder) SetMultipleOrExt(v Element) *SearchParameterBuilder {
+	b.searchParameter.MultipleOrExt = &v
+	return b
+}
+
+// SetMultipleAndExt sets the extensions carried by MultipleAnd, serialized as
+// "_multipleAnd".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterBuilder) SetMultipleAndExt(v Element) *SearchParameterBuilder {
+	b.searchParameter.MultipleAndExt = &v
+	return b
+}
+
+// AddComparatorExt appends an extension slot for Comparator.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *SearchParameterBuilder) AddComparatorExt(v *Element) *SearchParameterBuilder {
+	b.searchParameter.ComparatorExt = append(b.searchParameter.ComparatorExt, v)
+	return b
+}
+
+// AddModifierExt appends an extension slot for Modifier.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *SearchParameterBuilder) AddModifierExt(v *Element) *SearchParameterBuilder {
+	b.searchParameter.ModifierExt = append(b.searchParameter.ModifierExt, v)
+	return b
+}
+
+// AddChainExt appends an extension slot for Chain.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *SearchParameterBuilder) AddChainExt(v *Element) *SearchParameterBuilder {
+	b.searchParameter.ChainExt = append(b.searchParameter.ChainExt, v)
+	return b
+}
+
 // clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
 // _field companions of the primitive ones.
 func (b *SearchParameterBuilder) clearVersionAlgorithm() {
 	b.searchParameter.VersionAlgorithmString = nil
 	b.searchParameter.VersionAlgorithmCoding = nil
+}
+
+// =============================================================================
+// SearchParameterComponent - Fluent Builder
+// =============================================================================
+
+// SearchParameterComponentBuilder provides a fluent API for constructing SearchParameterComponent values.
+type SearchParameterComponentBuilder struct {
+	searchParameterComponent *SearchParameterComponent
+}
+
+// NewSearchParameterComponentBuilder creates a new SearchParameterComponentBuilder.
+func NewSearchParameterComponentBuilder() *SearchParameterComponentBuilder {
+	return &SearchParameterComponentBuilder{
+		searchParameterComponent: &SearchParameterComponent{},
+	}
+}
+
+// Build returns the constructed SearchParameterComponent.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SearchParameterComponentBuilder) Build() SearchParameterComponent {
+	return *b.searchParameterComponent
+}
+
+// SetId sets the Id field.
+func (b *SearchParameterComponentBuilder) SetId(v string) *SearchParameterComponentBuilder {
+	b.searchParameterComponent.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SearchParameterComponentBuilder) AddExtension(v Extension) *SearchParameterComponentBuilder {
+	b.searchParameterComponent.Extension = append(b.searchParameterComponent.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SearchParameterComponentBuilder) AddModifierExtension(v Extension) *SearchParameterComponentBuilder {
+	b.searchParameterComponent.ModifierExtension = append(b.searchParameterComponent.ModifierExtension, v)
+	return b
+}
+
+// SetDefinition sets the Definition field.
+func (b *SearchParameterComponentBuilder) SetDefinition(v string) *SearchParameterComponentBuilder {
+	b.searchParameterComponent.Definition = &v
+	return b
+}
+
+// SetExpression sets the Expression field.
+func (b *SearchParameterComponentBuilder) SetExpression(v string) *SearchParameterComponentBuilder {
+	b.searchParameterComponent.Expression = &v
+	return b
+}
+
+// SetDefinitionExt sets the extensions carried by Definition, serialized as
+// "_definition".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterComponentBuilder) SetDefinitionExt(v Element) *SearchParameterComponentBuilder {
+	b.searchParameterComponent.DefinitionExt = &v
+	return b
+}
+
+// SetExpressionExt sets the extensions carried by Expression, serialized as
+// "_expression".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SearchParameterComponentBuilder) SetExpressionExt(v Element) *SearchParameterComponentBuilder {
+	b.searchParameterComponent.ExpressionExt = &v
+	return b
 }

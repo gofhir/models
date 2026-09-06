@@ -562,3 +562,107 @@ func (b *MedicinalProductInteractionBuilder) SetManagement(v CodeableConcept) *M
 	b.medicinalProductInteraction.Management = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductInteractionBuilder) SetImplicitRulesExt(v Element) *MedicinalProductInteractionBuilder {
+	b.medicinalProductInteraction.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductInteractionBuilder) SetLanguageExt(v Element) *MedicinalProductInteractionBuilder {
+	b.medicinalProductInteraction.LanguageExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductInteractionBuilder) SetDescriptionExt(v Element) *MedicinalProductInteractionBuilder {
+	b.medicinalProductInteraction.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// MedicinalProductInteractionInteractant - Fluent Builder
+// =============================================================================
+
+// MedicinalProductInteractionInteractantBuilder provides a fluent API for constructing MedicinalProductInteractionInteractant values.
+type MedicinalProductInteractionInteractantBuilder struct {
+	medicinalProductInteractionInteractant *MedicinalProductInteractionInteractant
+}
+
+// NewMedicinalProductInteractionInteractantBuilder creates a new MedicinalProductInteractionInteractantBuilder.
+func NewMedicinalProductInteractionInteractantBuilder() *MedicinalProductInteractionInteractantBuilder {
+	return &MedicinalProductInteractionInteractantBuilder{
+		medicinalProductInteractionInteractant: &MedicinalProductInteractionInteractant{},
+	}
+}
+
+// Build returns the constructed MedicinalProductInteractionInteractant.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicinalProductInteractionInteractantBuilder) Build() MedicinalProductInteractionInteractant {
+	return *b.medicinalProductInteractionInteractant
+}
+
+// SetId sets the Id field.
+func (b *MedicinalProductInteractionInteractantBuilder) SetId(v string) *MedicinalProductInteractionInteractantBuilder {
+	b.medicinalProductInteractionInteractant.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicinalProductInteractionInteractantBuilder) AddExtension(v Extension) *MedicinalProductInteractionInteractantBuilder {
+	b.medicinalProductInteractionInteractant.Extension = append(b.medicinalProductInteractionInteractant.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicinalProductInteractionInteractantBuilder) AddModifierExtension(v Extension) *MedicinalProductInteractionInteractantBuilder {
+	b.medicinalProductInteractionInteractant.ModifierExtension = append(b.medicinalProductInteractionInteractant.ModifierExtension, v)
+	return b
+}
+
+// SetItemReference sets Item[x] to its ItemReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicinalProductInteractionInteractantBuilder) SetItemReference(v Reference) *MedicinalProductInteractionInteractantBuilder {
+	b.clearItem()
+	b.medicinalProductInteractionInteractant.ItemReference = &v
+	return b
+}
+
+// SetItemCodeableConcept sets Item[x] to its ItemCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicinalProductInteractionInteractantBuilder) SetItemCodeableConcept(v CodeableConcept) *MedicinalProductInteractionInteractantBuilder {
+	b.clearItem()
+	b.medicinalProductInteractionInteractant.ItemCodeableConcept = &v
+	return b
+}
+
+// clearItem unsets every variant of Item[x], including the
+// _field companions of the primitive ones.
+func (b *MedicinalProductInteractionInteractantBuilder) clearItem() {
+	b.medicinalProductInteractionInteractant.ItemReference = nil
+	b.medicinalProductInteractionInteractant.ItemCodeableConcept = nil
+}

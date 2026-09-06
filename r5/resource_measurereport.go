@@ -1724,3 +1724,869 @@ func (b *MeasureReportBuilder) AddEvaluatedResource(v Reference) *MeasureReportB
 	b.measureReport.EvaluatedResource = append(b.measureReport.EvaluatedResource, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureReportBuilder) SetImplicitRulesExt(v Element) *MeasureReportBuilder {
+	b.measureReport.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureReportBuilder) SetLanguageExt(v Element) *MeasureReportBuilder {
+	b.measureReport.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureReportBuilder) SetStatusExt(v Element) *MeasureReportBuilder {
+	b.measureReport.StatusExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureReportBuilder) SetTypeExt(v Element) *MeasureReportBuilder {
+	b.measureReport.TypeExt = &v
+	return b
+}
+
+// SetDataUpdateTypeExt sets the extensions carried by DataUpdateType, serialized as
+// "_dataUpdateType".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureReportBuilder) SetDataUpdateTypeExt(v Element) *MeasureReportBuilder {
+	b.measureReport.DataUpdateTypeExt = &v
+	return b
+}
+
+// SetMeasureExt sets the extensions carried by Measure, serialized as
+// "_measure".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureReportBuilder) SetMeasureExt(v Element) *MeasureReportBuilder {
+	b.measureReport.MeasureExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureReportBuilder) SetDateExt(v Element) *MeasureReportBuilder {
+	b.measureReport.DateExt = &v
+	return b
+}
+
+// =============================================================================
+// MeasureReportGroup - Fluent Builder
+// =============================================================================
+
+// MeasureReportGroupBuilder provides a fluent API for constructing MeasureReportGroup values.
+type MeasureReportGroupBuilder struct {
+	measureReportGroup *MeasureReportGroup
+}
+
+// NewMeasureReportGroupBuilder creates a new MeasureReportGroupBuilder.
+func NewMeasureReportGroupBuilder() *MeasureReportGroupBuilder {
+	return &MeasureReportGroupBuilder{
+		measureReportGroup: &MeasureReportGroup{},
+	}
+}
+
+// Build returns the constructed MeasureReportGroup.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MeasureReportGroupBuilder) Build() MeasureReportGroup {
+	return *b.measureReportGroup
+}
+
+// SetId sets the Id field.
+func (b *MeasureReportGroupBuilder) SetId(v string) *MeasureReportGroupBuilder {
+	b.measureReportGroup.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MeasureReportGroupBuilder) AddExtension(v Extension) *MeasureReportGroupBuilder {
+	b.measureReportGroup.Extension = append(b.measureReportGroup.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MeasureReportGroupBuilder) AddModifierExtension(v Extension) *MeasureReportGroupBuilder {
+	b.measureReportGroup.ModifierExtension = append(b.measureReportGroup.ModifierExtension, v)
+	return b
+}
+
+// SetLinkId sets the LinkId field.
+func (b *MeasureReportGroupBuilder) SetLinkId(v string) *MeasureReportGroupBuilder {
+	b.measureReportGroup.LinkId = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MeasureReportGroupBuilder) SetCode(v CodeableConcept) *MeasureReportGroupBuilder {
+	b.measureReportGroup.Code = &v
+	return b
+}
+
+// SetSubject sets the Subject field.
+func (b *MeasureReportGroupBuilder) SetSubject(v Reference) *MeasureReportGroupBuilder {
+	b.measureReportGroup.Subject = &v
+	return b
+}
+
+// AddPopulation adds a Population element.
+func (b *MeasureReportGroupBuilder) AddPopulation(v MeasureReportGroupPopulation) *MeasureReportGroupBuilder {
+	b.measureReportGroup.Population = append(b.measureReportGroup.Population, v)
+	return b
+}
+
+// SetMeasureScoreQuantity sets MeasureScore[x] to its MeasureScoreQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureReportGroupBuilder) SetMeasureScoreQuantity(v Quantity) *MeasureReportGroupBuilder {
+	b.clearMeasureScore()
+	b.measureReportGroup.MeasureScoreQuantity = &v
+	return b
+}
+
+// SetMeasureScoreDateTime sets MeasureScore[x] to its MeasureScoreDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureReportGroupBuilder) SetMeasureScoreDateTime(v string) *MeasureReportGroupBuilder {
+	b.clearMeasureScore()
+	b.measureReportGroup.MeasureScoreDateTime = &v
+	return b
+}
+
+// SetMeasureScoreDateTimeExt sets the MeasureScoreDateTimeExt field.
+func (b *MeasureReportGroupBuilder) SetMeasureScoreDateTimeExt(v Element) *MeasureReportGroupBuilder {
+	b.measureReportGroup.MeasureScoreDateTimeExt = &v
+	return b
+}
+
+// SetMeasureScoreCodeableConcept sets MeasureScore[x] to its MeasureScoreCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureReportGroupBuilder) SetMeasureScoreCodeableConcept(v CodeableConcept) *MeasureReportGroupBuilder {
+	b.clearMeasureScore()
+	b.measureReportGroup.MeasureScoreCodeableConcept = &v
+	return b
+}
+
+// SetMeasureScorePeriod sets MeasureScore[x] to its MeasureScorePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureReportGroupBuilder) SetMeasureScorePeriod(v Period) *MeasureReportGroupBuilder {
+	b.clearMeasureScore()
+	b.measureReportGroup.MeasureScorePeriod = &v
+	return b
+}
+
+// SetMeasureScoreRange sets MeasureScore[x] to its MeasureScoreRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureReportGroupBuilder) SetMeasureScoreRange(v Range) *MeasureReportGroupBuilder {
+	b.clearMeasureScore()
+	b.measureReportGroup.MeasureScoreRange = &v
+	return b
+}
+
+// SetMeasureScoreDuration sets MeasureScore[x] to its MeasureScoreDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureReportGroupBuilder) SetMeasureScoreDuration(v Duration) *MeasureReportGroupBuilder {
+	b.clearMeasureScore()
+	b.measureReportGroup.MeasureScoreDuration = &v
+	return b
+}
+
+// AddStratifier adds a Stratifier element.
+func (b *MeasureReportGroupBuilder) AddStratifier(v MeasureReportGroupStratifier) *MeasureReportGroupBuilder {
+	b.measureReportGroup.Stratifier = append(b.measureReportGroup.Stratifier, v)
+	return b
+}
+
+// SetLinkIdExt sets the extensions carried by LinkId, serialized as
+// "_linkId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureReportGroupBuilder) SetLinkIdExt(v Element) *MeasureReportGroupBuilder {
+	b.measureReportGroup.LinkIdExt = &v
+	return b
+}
+
+// clearMeasureScore unsets every variant of MeasureScore[x], including the
+// _field companions of the primitive ones.
+func (b *MeasureReportGroupBuilder) clearMeasureScore() {
+	b.measureReportGroup.MeasureScoreQuantity = nil
+	b.measureReportGroup.MeasureScoreDateTime = nil
+	b.measureReportGroup.MeasureScoreDateTimeExt = nil
+	b.measureReportGroup.MeasureScoreCodeableConcept = nil
+	b.measureReportGroup.MeasureScorePeriod = nil
+	b.measureReportGroup.MeasureScoreRange = nil
+	b.measureReportGroup.MeasureScoreDuration = nil
+}
+
+// =============================================================================
+// MeasureReportGroupPopulation - Fluent Builder
+// =============================================================================
+
+// MeasureReportGroupPopulationBuilder provides a fluent API for constructing MeasureReportGroupPopulation values.
+type MeasureReportGroupPopulationBuilder struct {
+	measureReportGroupPopulation *MeasureReportGroupPopulation
+}
+
+// NewMeasureReportGroupPopulationBuilder creates a new MeasureReportGroupPopulationBuilder.
+func NewMeasureReportGroupPopulationBuilder() *MeasureReportGroupPopulationBuilder {
+	return &MeasureReportGroupPopulationBuilder{
+		measureReportGroupPopulation: &MeasureReportGroupPopulation{},
+	}
+}
+
+// Build returns the constructed MeasureReportGroupPopulation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MeasureReportGroupPopulationBuilder) Build() MeasureReportGroupPopulation {
+	return *b.measureReportGroupPopulation
+}
+
+// SetId sets the Id field.
+func (b *MeasureReportGroupPopulationBuilder) SetId(v string) *MeasureReportGroupPopulationBuilder {
+	b.measureReportGroupPopulation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MeasureReportGroupPopulationBuilder) AddExtension(v Extension) *MeasureReportGroupPopulationBuilder {
+	b.measureReportGroupPopulation.Extension = append(b.measureReportGroupPopulation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MeasureReportGroupPopulationBuilder) AddModifierExtension(v Extension) *MeasureReportGroupPopulationBuilder {
+	b.measureReportGroupPopulation.ModifierExtension = append(b.measureReportGroupPopulation.ModifierExtension, v)
+	return b
+}
+
+// SetLinkId sets the LinkId field.
+func (b *MeasureReportGroupPopulationBuilder) SetLinkId(v string) *MeasureReportGroupPopulationBuilder {
+	b.measureReportGroupPopulation.LinkId = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MeasureReportGroupPopulationBuilder) SetCode(v CodeableConcept) *MeasureReportGroupPopulationBuilder {
+	b.measureReportGroupPopulation.Code = &v
+	return b
+}
+
+// SetCount sets the Count field.
+func (b *MeasureReportGroupPopulationBuilder) SetCount(v int) *MeasureReportGroupPopulationBuilder {
+	b.measureReportGroupPopulation.Count = &v
+	return b
+}
+
+// SetSubjectResults sets the SubjectResults field.
+func (b *MeasureReportGroupPopulationBuilder) SetSubjectResults(v Reference) *MeasureReportGroupPopulationBuilder {
+	b.measureReportGroupPopulation.SubjectResults = &v
+	return b
+}
+
+// AddSubjectReport adds a SubjectReport element.
+func (b *MeasureReportGroupPopulationBuilder) AddSubjectReport(v Reference) *MeasureReportGroupPopulationBuilder {
+	b.measureReportGroupPopulation.SubjectReport = append(b.measureReportGroupPopulation.SubjectReport, v)
+	return b
+}
+
+// SetSubjects sets the Subjects field.
+func (b *MeasureReportGroupPopulationBuilder) SetSubjects(v Reference) *MeasureReportGroupPopulationBuilder {
+	b.measureReportGroupPopulation.Subjects = &v
+	return b
+}
+
+// SetLinkIdExt sets the extensions carried by LinkId, serialized as
+// "_linkId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureReportGroupPopulationBuilder) SetLinkIdExt(v Element) *MeasureReportGroupPopulationBuilder {
+	b.measureReportGroupPopulation.LinkIdExt = &v
+	return b
+}
+
+// SetCountExt sets the extensions carried by Count, serialized as
+// "_count".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureReportGroupPopulationBuilder) SetCountExt(v Element) *MeasureReportGroupPopulationBuilder {
+	b.measureReportGroupPopulation.CountExt = &v
+	return b
+}
+
+// =============================================================================
+// MeasureReportGroupStratifier - Fluent Builder
+// =============================================================================
+
+// MeasureReportGroupStratifierBuilder provides a fluent API for constructing MeasureReportGroupStratifier values.
+type MeasureReportGroupStratifierBuilder struct {
+	measureReportGroupStratifier *MeasureReportGroupStratifier
+}
+
+// NewMeasureReportGroupStratifierBuilder creates a new MeasureReportGroupStratifierBuilder.
+func NewMeasureReportGroupStratifierBuilder() *MeasureReportGroupStratifierBuilder {
+	return &MeasureReportGroupStratifierBuilder{
+		measureReportGroupStratifier: &MeasureReportGroupStratifier{},
+	}
+}
+
+// Build returns the constructed MeasureReportGroupStratifier.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MeasureReportGroupStratifierBuilder) Build() MeasureReportGroupStratifier {
+	return *b.measureReportGroupStratifier
+}
+
+// SetId sets the Id field.
+func (b *MeasureReportGroupStratifierBuilder) SetId(v string) *MeasureReportGroupStratifierBuilder {
+	b.measureReportGroupStratifier.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MeasureReportGroupStratifierBuilder) AddExtension(v Extension) *MeasureReportGroupStratifierBuilder {
+	b.measureReportGroupStratifier.Extension = append(b.measureReportGroupStratifier.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MeasureReportGroupStratifierBuilder) AddModifierExtension(v Extension) *MeasureReportGroupStratifierBuilder {
+	b.measureReportGroupStratifier.ModifierExtension = append(b.measureReportGroupStratifier.ModifierExtension, v)
+	return b
+}
+
+// SetLinkId sets the LinkId field.
+func (b *MeasureReportGroupStratifierBuilder) SetLinkId(v string) *MeasureReportGroupStratifierBuilder {
+	b.measureReportGroupStratifier.LinkId = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MeasureReportGroupStratifierBuilder) SetCode(v CodeableConcept) *MeasureReportGroupStratifierBuilder {
+	b.measureReportGroupStratifier.Code = &v
+	return b
+}
+
+// AddStratum adds a Stratum element.
+func (b *MeasureReportGroupStratifierBuilder) AddStratum(v MeasureReportGroupStratifierStratum) *MeasureReportGroupStratifierBuilder {
+	b.measureReportGroupStratifier.Stratum = append(b.measureReportGroupStratifier.Stratum, v)
+	return b
+}
+
+// SetLinkIdExt sets the extensions carried by LinkId, serialized as
+// "_linkId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureReportGroupStratifierBuilder) SetLinkIdExt(v Element) *MeasureReportGroupStratifierBuilder {
+	b.measureReportGroupStratifier.LinkIdExt = &v
+	return b
+}
+
+// =============================================================================
+// MeasureReportGroupStratifierStratum - Fluent Builder
+// =============================================================================
+
+// MeasureReportGroupStratifierStratumBuilder provides a fluent API for constructing MeasureReportGroupStratifierStratum values.
+type MeasureReportGroupStratifierStratumBuilder struct {
+	measureReportGroupStratifierStratum *MeasureReportGroupStratifierStratum
+}
+
+// NewMeasureReportGroupStratifierStratumBuilder creates a new MeasureReportGroupStratifierStratumBuilder.
+func NewMeasureReportGroupStratifierStratumBuilder() *MeasureReportGroupStratifierStratumBuilder {
+	return &MeasureReportGroupStratifierStratumBuilder{
+		measureReportGroupStratifierStratum: &MeasureReportGroupStratifierStratum{},
+	}
+}
+
+// Build returns the constructed MeasureReportGroupStratifierStratum.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MeasureReportGroupStratifierStratumBuilder) Build() MeasureReportGroupStratifierStratum {
+	return *b.measureReportGroupStratifierStratum
+}
+
+// SetId sets the Id field.
+func (b *MeasureReportGroupStratifierStratumBuilder) SetId(v string) *MeasureReportGroupStratifierStratumBuilder {
+	b.measureReportGroupStratifierStratum.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MeasureReportGroupStratifierStratumBuilder) AddExtension(v Extension) *MeasureReportGroupStratifierStratumBuilder {
+	b.measureReportGroupStratifierStratum.Extension = append(b.measureReportGroupStratifierStratum.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MeasureReportGroupStratifierStratumBuilder) AddModifierExtension(v Extension) *MeasureReportGroupStratifierStratumBuilder {
+	b.measureReportGroupStratifierStratum.ModifierExtension = append(b.measureReportGroupStratifierStratum.ModifierExtension, v)
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureReportGroupStratifierStratumBuilder) SetValueCodeableConcept(v CodeableConcept) *MeasureReportGroupStratifierStratumBuilder {
+	b.clearValue()
+	b.measureReportGroupStratifierStratum.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureReportGroupStratifierStratumBuilder) SetValueBoolean(v bool) *MeasureReportGroupStratifierStratumBuilder {
+	b.clearValue()
+	b.measureReportGroupStratifierStratum.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *MeasureReportGroupStratifierStratumBuilder) SetValueBooleanExt(v Element) *MeasureReportGroupStratifierStratumBuilder {
+	b.measureReportGroupStratifierStratum.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureReportGroupStratifierStratumBuilder) SetValueQuantity(v Quantity) *MeasureReportGroupStratifierStratumBuilder {
+	b.clearValue()
+	b.measureReportGroupStratifierStratum.ValueQuantity = &v
+	return b
+}
+
+// SetValueRange sets Value[x] to its ValueRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureReportGroupStratifierStratumBuilder) SetValueRange(v Range) *MeasureReportGroupStratifierStratumBuilder {
+	b.clearValue()
+	b.measureReportGroupStratifierStratum.ValueRange = &v
+	return b
+}
+
+// SetValueReference sets Value[x] to its ValueReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureReportGroupStratifierStratumBuilder) SetValueReference(v Reference) *MeasureReportGroupStratifierStratumBuilder {
+	b.clearValue()
+	b.measureReportGroupStratifierStratum.ValueReference = &v
+	return b
+}
+
+// AddComponent adds a Component element.
+func (b *MeasureReportGroupStratifierStratumBuilder) AddComponent(v MeasureReportGroupStratifierStratumComponent) *MeasureReportGroupStratifierStratumBuilder {
+	b.measureReportGroupStratifierStratum.Component = append(b.measureReportGroupStratifierStratum.Component, v)
+	return b
+}
+
+// AddPopulation adds a Population element.
+func (b *MeasureReportGroupStratifierStratumBuilder) AddPopulation(v MeasureReportGroupStratifierStratumPopulation) *MeasureReportGroupStratifierStratumBuilder {
+	b.measureReportGroupStratifierStratum.Population = append(b.measureReportGroupStratifierStratum.Population, v)
+	return b
+}
+
+// SetMeasureScoreQuantity sets MeasureScore[x] to its MeasureScoreQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureReportGroupStratifierStratumBuilder) SetMeasureScoreQuantity(v Quantity) *MeasureReportGroupStratifierStratumBuilder {
+	b.clearMeasureScore()
+	b.measureReportGroupStratifierStratum.MeasureScoreQuantity = &v
+	return b
+}
+
+// SetMeasureScoreDateTime sets MeasureScore[x] to its MeasureScoreDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureReportGroupStratifierStratumBuilder) SetMeasureScoreDateTime(v string) *MeasureReportGroupStratifierStratumBuilder {
+	b.clearMeasureScore()
+	b.measureReportGroupStratifierStratum.MeasureScoreDateTime = &v
+	return b
+}
+
+// SetMeasureScoreDateTimeExt sets the MeasureScoreDateTimeExt field.
+func (b *MeasureReportGroupStratifierStratumBuilder) SetMeasureScoreDateTimeExt(v Element) *MeasureReportGroupStratifierStratumBuilder {
+	b.measureReportGroupStratifierStratum.MeasureScoreDateTimeExt = &v
+	return b
+}
+
+// SetMeasureScoreCodeableConcept sets MeasureScore[x] to its MeasureScoreCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureReportGroupStratifierStratumBuilder) SetMeasureScoreCodeableConcept(v CodeableConcept) *MeasureReportGroupStratifierStratumBuilder {
+	b.clearMeasureScore()
+	b.measureReportGroupStratifierStratum.MeasureScoreCodeableConcept = &v
+	return b
+}
+
+// SetMeasureScorePeriod sets MeasureScore[x] to its MeasureScorePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureReportGroupStratifierStratumBuilder) SetMeasureScorePeriod(v Period) *MeasureReportGroupStratifierStratumBuilder {
+	b.clearMeasureScore()
+	b.measureReportGroupStratifierStratum.MeasureScorePeriod = &v
+	return b
+}
+
+// SetMeasureScoreRange sets MeasureScore[x] to its MeasureScoreRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureReportGroupStratifierStratumBuilder) SetMeasureScoreRange(v Range) *MeasureReportGroupStratifierStratumBuilder {
+	b.clearMeasureScore()
+	b.measureReportGroupStratifierStratum.MeasureScoreRange = &v
+	return b
+}
+
+// SetMeasureScoreDuration sets MeasureScore[x] to its MeasureScoreDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureReportGroupStratifierStratumBuilder) SetMeasureScoreDuration(v Duration) *MeasureReportGroupStratifierStratumBuilder {
+	b.clearMeasureScore()
+	b.measureReportGroupStratifierStratum.MeasureScoreDuration = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *MeasureReportGroupStratifierStratumBuilder) clearValue() {
+	b.measureReportGroupStratifierStratum.ValueCodeableConcept = nil
+	b.measureReportGroupStratifierStratum.ValueBoolean = nil
+	b.measureReportGroupStratifierStratum.ValueBooleanExt = nil
+	b.measureReportGroupStratifierStratum.ValueQuantity = nil
+	b.measureReportGroupStratifierStratum.ValueRange = nil
+	b.measureReportGroupStratifierStratum.ValueReference = nil
+}
+
+// clearMeasureScore unsets every variant of MeasureScore[x], including the
+// _field companions of the primitive ones.
+func (b *MeasureReportGroupStratifierStratumBuilder) clearMeasureScore() {
+	b.measureReportGroupStratifierStratum.MeasureScoreQuantity = nil
+	b.measureReportGroupStratifierStratum.MeasureScoreDateTime = nil
+	b.measureReportGroupStratifierStratum.MeasureScoreDateTimeExt = nil
+	b.measureReportGroupStratifierStratum.MeasureScoreCodeableConcept = nil
+	b.measureReportGroupStratifierStratum.MeasureScorePeriod = nil
+	b.measureReportGroupStratifierStratum.MeasureScoreRange = nil
+	b.measureReportGroupStratifierStratum.MeasureScoreDuration = nil
+}
+
+// =============================================================================
+// MeasureReportGroupStratifierStratumComponent - Fluent Builder
+// =============================================================================
+
+// MeasureReportGroupStratifierStratumComponentBuilder provides a fluent API for constructing MeasureReportGroupStratifierStratumComponent values.
+type MeasureReportGroupStratifierStratumComponentBuilder struct {
+	measureReportGroupStratifierStratumComponent *MeasureReportGroupStratifierStratumComponent
+}
+
+// NewMeasureReportGroupStratifierStratumComponentBuilder creates a new MeasureReportGroupStratifierStratumComponentBuilder.
+func NewMeasureReportGroupStratifierStratumComponentBuilder() *MeasureReportGroupStratifierStratumComponentBuilder {
+	return &MeasureReportGroupStratifierStratumComponentBuilder{
+		measureReportGroupStratifierStratumComponent: &MeasureReportGroupStratifierStratumComponent{},
+	}
+}
+
+// Build returns the constructed MeasureReportGroupStratifierStratumComponent.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MeasureReportGroupStratifierStratumComponentBuilder) Build() MeasureReportGroupStratifierStratumComponent {
+	return *b.measureReportGroupStratifierStratumComponent
+}
+
+// SetId sets the Id field.
+func (b *MeasureReportGroupStratifierStratumComponentBuilder) SetId(v string) *MeasureReportGroupStratifierStratumComponentBuilder {
+	b.measureReportGroupStratifierStratumComponent.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MeasureReportGroupStratifierStratumComponentBuilder) AddExtension(v Extension) *MeasureReportGroupStratifierStratumComponentBuilder {
+	b.measureReportGroupStratifierStratumComponent.Extension = append(b.measureReportGroupStratifierStratumComponent.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MeasureReportGroupStratifierStratumComponentBuilder) AddModifierExtension(v Extension) *MeasureReportGroupStratifierStratumComponentBuilder {
+	b.measureReportGroupStratifierStratumComponent.ModifierExtension = append(b.measureReportGroupStratifierStratumComponent.ModifierExtension, v)
+	return b
+}
+
+// SetLinkId sets the LinkId field.
+func (b *MeasureReportGroupStratifierStratumComponentBuilder) SetLinkId(v string) *MeasureReportGroupStratifierStratumComponentBuilder {
+	b.measureReportGroupStratifierStratumComponent.LinkId = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MeasureReportGroupStratifierStratumComponentBuilder) SetCode(v CodeableConcept) *MeasureReportGroupStratifierStratumComponentBuilder {
+	b.measureReportGroupStratifierStratumComponent.Code = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureReportGroupStratifierStratumComponentBuilder) SetValueCodeableConcept(v CodeableConcept) *MeasureReportGroupStratifierStratumComponentBuilder {
+	b.clearValue()
+	b.measureReportGroupStratifierStratumComponent.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureReportGroupStratifierStratumComponentBuilder) SetValueBoolean(v bool) *MeasureReportGroupStratifierStratumComponentBuilder {
+	b.clearValue()
+	b.measureReportGroupStratifierStratumComponent.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *MeasureReportGroupStratifierStratumComponentBuilder) SetValueBooleanExt(v Element) *MeasureReportGroupStratifierStratumComponentBuilder {
+	b.measureReportGroupStratifierStratumComponent.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureReportGroupStratifierStratumComponentBuilder) SetValueQuantity(v Quantity) *MeasureReportGroupStratifierStratumComponentBuilder {
+	b.clearValue()
+	b.measureReportGroupStratifierStratumComponent.ValueQuantity = &v
+	return b
+}
+
+// SetValueRange sets Value[x] to its ValueRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureReportGroupStratifierStratumComponentBuilder) SetValueRange(v Range) *MeasureReportGroupStratifierStratumComponentBuilder {
+	b.clearValue()
+	b.measureReportGroupStratifierStratumComponent.ValueRange = &v
+	return b
+}
+
+// SetValueReference sets Value[x] to its ValueReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MeasureReportGroupStratifierStratumComponentBuilder) SetValueReference(v Reference) *MeasureReportGroupStratifierStratumComponentBuilder {
+	b.clearValue()
+	b.measureReportGroupStratifierStratumComponent.ValueReference = &v
+	return b
+}
+
+// SetLinkIdExt sets the extensions carried by LinkId, serialized as
+// "_linkId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureReportGroupStratifierStratumComponentBuilder) SetLinkIdExt(v Element) *MeasureReportGroupStratifierStratumComponentBuilder {
+	b.measureReportGroupStratifierStratumComponent.LinkIdExt = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *MeasureReportGroupStratifierStratumComponentBuilder) clearValue() {
+	b.measureReportGroupStratifierStratumComponent.ValueCodeableConcept = nil
+	b.measureReportGroupStratifierStratumComponent.ValueBoolean = nil
+	b.measureReportGroupStratifierStratumComponent.ValueBooleanExt = nil
+	b.measureReportGroupStratifierStratumComponent.ValueQuantity = nil
+	b.measureReportGroupStratifierStratumComponent.ValueRange = nil
+	b.measureReportGroupStratifierStratumComponent.ValueReference = nil
+}
+
+// =============================================================================
+// MeasureReportGroupStratifierStratumPopulation - Fluent Builder
+// =============================================================================
+
+// MeasureReportGroupStratifierStratumPopulationBuilder provides a fluent API for constructing MeasureReportGroupStratifierStratumPopulation values.
+type MeasureReportGroupStratifierStratumPopulationBuilder struct {
+	measureReportGroupStratifierStratumPopulation *MeasureReportGroupStratifierStratumPopulation
+}
+
+// NewMeasureReportGroupStratifierStratumPopulationBuilder creates a new MeasureReportGroupStratifierStratumPopulationBuilder.
+func NewMeasureReportGroupStratifierStratumPopulationBuilder() *MeasureReportGroupStratifierStratumPopulationBuilder {
+	return &MeasureReportGroupStratifierStratumPopulationBuilder{
+		measureReportGroupStratifierStratumPopulation: &MeasureReportGroupStratifierStratumPopulation{},
+	}
+}
+
+// Build returns the constructed MeasureReportGroupStratifierStratumPopulation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MeasureReportGroupStratifierStratumPopulationBuilder) Build() MeasureReportGroupStratifierStratumPopulation {
+	return *b.measureReportGroupStratifierStratumPopulation
+}
+
+// SetId sets the Id field.
+func (b *MeasureReportGroupStratifierStratumPopulationBuilder) SetId(v string) *MeasureReportGroupStratifierStratumPopulationBuilder {
+	b.measureReportGroupStratifierStratumPopulation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MeasureReportGroupStratifierStratumPopulationBuilder) AddExtension(v Extension) *MeasureReportGroupStratifierStratumPopulationBuilder {
+	b.measureReportGroupStratifierStratumPopulation.Extension = append(b.measureReportGroupStratifierStratumPopulation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MeasureReportGroupStratifierStratumPopulationBuilder) AddModifierExtension(v Extension) *MeasureReportGroupStratifierStratumPopulationBuilder {
+	b.measureReportGroupStratifierStratumPopulation.ModifierExtension = append(b.measureReportGroupStratifierStratumPopulation.ModifierExtension, v)
+	return b
+}
+
+// SetLinkId sets the LinkId field.
+func (b *MeasureReportGroupStratifierStratumPopulationBuilder) SetLinkId(v string) *MeasureReportGroupStratifierStratumPopulationBuilder {
+	b.measureReportGroupStratifierStratumPopulation.LinkId = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MeasureReportGroupStratifierStratumPopulationBuilder) SetCode(v CodeableConcept) *MeasureReportGroupStratifierStratumPopulationBuilder {
+	b.measureReportGroupStratifierStratumPopulation.Code = &v
+	return b
+}
+
+// SetCount sets the Count field.
+func (b *MeasureReportGroupStratifierStratumPopulationBuilder) SetCount(v int) *MeasureReportGroupStratifierStratumPopulationBuilder {
+	b.measureReportGroupStratifierStratumPopulation.Count = &v
+	return b
+}
+
+// SetSubjectResults sets the SubjectResults field.
+func (b *MeasureReportGroupStratifierStratumPopulationBuilder) SetSubjectResults(v Reference) *MeasureReportGroupStratifierStratumPopulationBuilder {
+	b.measureReportGroupStratifierStratumPopulation.SubjectResults = &v
+	return b
+}
+
+// AddSubjectReport adds a SubjectReport element.
+func (b *MeasureReportGroupStratifierStratumPopulationBuilder) AddSubjectReport(v Reference) *MeasureReportGroupStratifierStratumPopulationBuilder {
+	b.measureReportGroupStratifierStratumPopulation.SubjectReport = append(b.measureReportGroupStratifierStratumPopulation.SubjectReport, v)
+	return b
+}
+
+// SetSubjects sets the Subjects field.
+func (b *MeasureReportGroupStratifierStratumPopulationBuilder) SetSubjects(v Reference) *MeasureReportGroupStratifierStratumPopulationBuilder {
+	b.measureReportGroupStratifierStratumPopulation.Subjects = &v
+	return b
+}
+
+// SetLinkIdExt sets the extensions carried by LinkId, serialized as
+// "_linkId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureReportGroupStratifierStratumPopulationBuilder) SetLinkIdExt(v Element) *MeasureReportGroupStratifierStratumPopulationBuilder {
+	b.measureReportGroupStratifierStratumPopulation.LinkIdExt = &v
+	return b
+}
+
+// SetCountExt sets the extensions carried by Count, serialized as
+// "_count".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MeasureReportGroupStratifierStratumPopulationBuilder) SetCountExt(v Element) *MeasureReportGroupStratifierStratumPopulationBuilder {
+	b.measureReportGroupStratifierStratumPopulation.CountExt = &v
+	return b
+}

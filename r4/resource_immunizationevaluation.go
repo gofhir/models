@@ -663,6 +663,66 @@ func (b *ImmunizationEvaluationBuilder) SetSeriesDosesStringExt(v Element) *Immu
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationEvaluationBuilder) SetImplicitRulesExt(v Element) *ImmunizationEvaluationBuilder {
+	b.immunizationEvaluation.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationEvaluationBuilder) SetLanguageExt(v Element) *ImmunizationEvaluationBuilder {
+	b.immunizationEvaluation.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationEvaluationBuilder) SetStatusExt(v Element) *ImmunizationEvaluationBuilder {
+	b.immunizationEvaluation.StatusExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationEvaluationBuilder) SetDateExt(v Element) *ImmunizationEvaluationBuilder {
+	b.immunizationEvaluation.DateExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationEvaluationBuilder) SetDescriptionExt(v Element) *ImmunizationEvaluationBuilder {
+	b.immunizationEvaluation.DescriptionExt = &v
+	return b
+}
+
+// SetSeriesExt sets the extensions carried by Series, serialized as
+// "_series".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationEvaluationBuilder) SetSeriesExt(v Element) *ImmunizationEvaluationBuilder {
+	b.immunizationEvaluation.SeriesExt = &v
+	return b
+}
+
 // clearDoseNumber unsets every variant of DoseNumber[x], including the
 // _field companions of the primitive ones.
 func (b *ImmunizationEvaluationBuilder) clearDoseNumber() {

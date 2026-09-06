@@ -1071,3 +1071,365 @@ func (b *VerificationResultBuilder) AddValidator(v VerificationResultValidator) 
 	b.verificationResult.Validator = append(b.verificationResult.Validator, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VerificationResultBuilder) SetImplicitRulesExt(v Element) *VerificationResultBuilder {
+	b.verificationResult.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VerificationResultBuilder) SetLanguageExt(v Element) *VerificationResultBuilder {
+	b.verificationResult.LanguageExt = &v
+	return b
+}
+
+// AddTargetLocationExt appends an extension slot for TargetLocation.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *VerificationResultBuilder) AddTargetLocationExt(v *Element) *VerificationResultBuilder {
+	b.verificationResult.TargetLocationExt = append(b.verificationResult.TargetLocationExt, v)
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VerificationResultBuilder) SetStatusExt(v Element) *VerificationResultBuilder {
+	b.verificationResult.StatusExt = &v
+	return b
+}
+
+// SetStatusDateExt sets the extensions carried by StatusDate, serialized as
+// "_statusDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VerificationResultBuilder) SetStatusDateExt(v Element) *VerificationResultBuilder {
+	b.verificationResult.StatusDateExt = &v
+	return b
+}
+
+// SetLastPerformedExt sets the extensions carried by LastPerformed, serialized as
+// "_lastPerformed".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VerificationResultBuilder) SetLastPerformedExt(v Element) *VerificationResultBuilder {
+	b.verificationResult.LastPerformedExt = &v
+	return b
+}
+
+// SetNextScheduledExt sets the extensions carried by NextScheduled, serialized as
+// "_nextScheduled".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VerificationResultBuilder) SetNextScheduledExt(v Element) *VerificationResultBuilder {
+	b.verificationResult.NextScheduledExt = &v
+	return b
+}
+
+// =============================================================================
+// VerificationResultAttestation - Fluent Builder
+// =============================================================================
+
+// VerificationResultAttestationBuilder provides a fluent API for constructing VerificationResultAttestation values.
+type VerificationResultAttestationBuilder struct {
+	verificationResultAttestation *VerificationResultAttestation
+}
+
+// NewVerificationResultAttestationBuilder creates a new VerificationResultAttestationBuilder.
+func NewVerificationResultAttestationBuilder() *VerificationResultAttestationBuilder {
+	return &VerificationResultAttestationBuilder{
+		verificationResultAttestation: &VerificationResultAttestation{},
+	}
+}
+
+// Build returns the constructed VerificationResultAttestation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *VerificationResultAttestationBuilder) Build() VerificationResultAttestation {
+	return *b.verificationResultAttestation
+}
+
+// SetId sets the Id field.
+func (b *VerificationResultAttestationBuilder) SetId(v string) *VerificationResultAttestationBuilder {
+	b.verificationResultAttestation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *VerificationResultAttestationBuilder) AddExtension(v Extension) *VerificationResultAttestationBuilder {
+	b.verificationResultAttestation.Extension = append(b.verificationResultAttestation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *VerificationResultAttestationBuilder) AddModifierExtension(v Extension) *VerificationResultAttestationBuilder {
+	b.verificationResultAttestation.ModifierExtension = append(b.verificationResultAttestation.ModifierExtension, v)
+	return b
+}
+
+// SetWho sets the Who field.
+func (b *VerificationResultAttestationBuilder) SetWho(v Reference) *VerificationResultAttestationBuilder {
+	b.verificationResultAttestation.Who = &v
+	return b
+}
+
+// SetOnBehalfOf sets the OnBehalfOf field.
+func (b *VerificationResultAttestationBuilder) SetOnBehalfOf(v Reference) *VerificationResultAttestationBuilder {
+	b.verificationResultAttestation.OnBehalfOf = &v
+	return b
+}
+
+// SetCommunicationMethod sets the CommunicationMethod field.
+func (b *VerificationResultAttestationBuilder) SetCommunicationMethod(v CodeableConcept) *VerificationResultAttestationBuilder {
+	b.verificationResultAttestation.CommunicationMethod = &v
+	return b
+}
+
+// SetDate sets the Date field.
+func (b *VerificationResultAttestationBuilder) SetDate(v string) *VerificationResultAttestationBuilder {
+	b.verificationResultAttestation.Date = &v
+	return b
+}
+
+// SetSourceIdentityCertificate sets the SourceIdentityCertificate field.
+func (b *VerificationResultAttestationBuilder) SetSourceIdentityCertificate(v string) *VerificationResultAttestationBuilder {
+	b.verificationResultAttestation.SourceIdentityCertificate = &v
+	return b
+}
+
+// SetProxyIdentityCertificate sets the ProxyIdentityCertificate field.
+func (b *VerificationResultAttestationBuilder) SetProxyIdentityCertificate(v string) *VerificationResultAttestationBuilder {
+	b.verificationResultAttestation.ProxyIdentityCertificate = &v
+	return b
+}
+
+// SetProxySignature sets the ProxySignature field.
+func (b *VerificationResultAttestationBuilder) SetProxySignature(v Signature) *VerificationResultAttestationBuilder {
+	b.verificationResultAttestation.ProxySignature = &v
+	return b
+}
+
+// SetSourceSignature sets the SourceSignature field.
+func (b *VerificationResultAttestationBuilder) SetSourceSignature(v Signature) *VerificationResultAttestationBuilder {
+	b.verificationResultAttestation.SourceSignature = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VerificationResultAttestationBuilder) SetDateExt(v Element) *VerificationResultAttestationBuilder {
+	b.verificationResultAttestation.DateExt = &v
+	return b
+}
+
+// SetSourceIdentityCertificateExt sets the extensions carried by SourceIdentityCertificate, serialized as
+// "_sourceIdentityCertificate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VerificationResultAttestationBuilder) SetSourceIdentityCertificateExt(v Element) *VerificationResultAttestationBuilder {
+	b.verificationResultAttestation.SourceIdentityCertificateExt = &v
+	return b
+}
+
+// SetProxyIdentityCertificateExt sets the extensions carried by ProxyIdentityCertificate, serialized as
+// "_proxyIdentityCertificate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VerificationResultAttestationBuilder) SetProxyIdentityCertificateExt(v Element) *VerificationResultAttestationBuilder {
+	b.verificationResultAttestation.ProxyIdentityCertificateExt = &v
+	return b
+}
+
+// =============================================================================
+// VerificationResultPrimarySource - Fluent Builder
+// =============================================================================
+
+// VerificationResultPrimarySourceBuilder provides a fluent API for constructing VerificationResultPrimarySource values.
+type VerificationResultPrimarySourceBuilder struct {
+	verificationResultPrimarySource *VerificationResultPrimarySource
+}
+
+// NewVerificationResultPrimarySourceBuilder creates a new VerificationResultPrimarySourceBuilder.
+func NewVerificationResultPrimarySourceBuilder() *VerificationResultPrimarySourceBuilder {
+	return &VerificationResultPrimarySourceBuilder{
+		verificationResultPrimarySource: &VerificationResultPrimarySource{},
+	}
+}
+
+// Build returns the constructed VerificationResultPrimarySource.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *VerificationResultPrimarySourceBuilder) Build() VerificationResultPrimarySource {
+	return *b.verificationResultPrimarySource
+}
+
+// SetId sets the Id field.
+func (b *VerificationResultPrimarySourceBuilder) SetId(v string) *VerificationResultPrimarySourceBuilder {
+	b.verificationResultPrimarySource.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *VerificationResultPrimarySourceBuilder) AddExtension(v Extension) *VerificationResultPrimarySourceBuilder {
+	b.verificationResultPrimarySource.Extension = append(b.verificationResultPrimarySource.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *VerificationResultPrimarySourceBuilder) AddModifierExtension(v Extension) *VerificationResultPrimarySourceBuilder {
+	b.verificationResultPrimarySource.ModifierExtension = append(b.verificationResultPrimarySource.ModifierExtension, v)
+	return b
+}
+
+// SetWho sets the Who field.
+func (b *VerificationResultPrimarySourceBuilder) SetWho(v Reference) *VerificationResultPrimarySourceBuilder {
+	b.verificationResultPrimarySource.Who = &v
+	return b
+}
+
+// AddType adds a Type element.
+func (b *VerificationResultPrimarySourceBuilder) AddType(v CodeableConcept) *VerificationResultPrimarySourceBuilder {
+	b.verificationResultPrimarySource.Type = append(b.verificationResultPrimarySource.Type, v)
+	return b
+}
+
+// AddCommunicationMethod adds a CommunicationMethod element.
+func (b *VerificationResultPrimarySourceBuilder) AddCommunicationMethod(v CodeableConcept) *VerificationResultPrimarySourceBuilder {
+	b.verificationResultPrimarySource.CommunicationMethod = append(b.verificationResultPrimarySource.CommunicationMethod, v)
+	return b
+}
+
+// SetValidationStatus sets the ValidationStatus field.
+func (b *VerificationResultPrimarySourceBuilder) SetValidationStatus(v CodeableConcept) *VerificationResultPrimarySourceBuilder {
+	b.verificationResultPrimarySource.ValidationStatus = &v
+	return b
+}
+
+// SetValidationDate sets the ValidationDate field.
+func (b *VerificationResultPrimarySourceBuilder) SetValidationDate(v string) *VerificationResultPrimarySourceBuilder {
+	b.verificationResultPrimarySource.ValidationDate = &v
+	return b
+}
+
+// SetCanPushUpdates sets the CanPushUpdates field.
+func (b *VerificationResultPrimarySourceBuilder) SetCanPushUpdates(v CodeableConcept) *VerificationResultPrimarySourceBuilder {
+	b.verificationResultPrimarySource.CanPushUpdates = &v
+	return b
+}
+
+// AddPushTypeAvailable adds a PushTypeAvailable element.
+func (b *VerificationResultPrimarySourceBuilder) AddPushTypeAvailable(v CodeableConcept) *VerificationResultPrimarySourceBuilder {
+	b.verificationResultPrimarySource.PushTypeAvailable = append(b.verificationResultPrimarySource.PushTypeAvailable, v)
+	return b
+}
+
+// SetValidationDateExt sets the extensions carried by ValidationDate, serialized as
+// "_validationDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VerificationResultPrimarySourceBuilder) SetValidationDateExt(v Element) *VerificationResultPrimarySourceBuilder {
+	b.verificationResultPrimarySource.ValidationDateExt = &v
+	return b
+}
+
+// =============================================================================
+// VerificationResultValidator - Fluent Builder
+// =============================================================================
+
+// VerificationResultValidatorBuilder provides a fluent API for constructing VerificationResultValidator values.
+type VerificationResultValidatorBuilder struct {
+	verificationResultValidator *VerificationResultValidator
+}
+
+// NewVerificationResultValidatorBuilder creates a new VerificationResultValidatorBuilder.
+func NewVerificationResultValidatorBuilder() *VerificationResultValidatorBuilder {
+	return &VerificationResultValidatorBuilder{
+		verificationResultValidator: &VerificationResultValidator{},
+	}
+}
+
+// Build returns the constructed VerificationResultValidator.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *VerificationResultValidatorBuilder) Build() VerificationResultValidator {
+	return *b.verificationResultValidator
+}
+
+// SetId sets the Id field.
+func (b *VerificationResultValidatorBuilder) SetId(v string) *VerificationResultValidatorBuilder {
+	b.verificationResultValidator.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *VerificationResultValidatorBuilder) AddExtension(v Extension) *VerificationResultValidatorBuilder {
+	b.verificationResultValidator.Extension = append(b.verificationResultValidator.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *VerificationResultValidatorBuilder) AddModifierExtension(v Extension) *VerificationResultValidatorBuilder {
+	b.verificationResultValidator.ModifierExtension = append(b.verificationResultValidator.ModifierExtension, v)
+	return b
+}
+
+// SetOrganization sets the Organization field.
+func (b *VerificationResultValidatorBuilder) SetOrganization(v Reference) *VerificationResultValidatorBuilder {
+	b.verificationResultValidator.Organization = &v
+	return b
+}
+
+// SetIdentityCertificate sets the IdentityCertificate field.
+func (b *VerificationResultValidatorBuilder) SetIdentityCertificate(v string) *VerificationResultValidatorBuilder {
+	b.verificationResultValidator.IdentityCertificate = &v
+	return b
+}
+
+// SetAttestationSignature sets the AttestationSignature field.
+func (b *VerificationResultValidatorBuilder) SetAttestationSignature(v Signature) *VerificationResultValidatorBuilder {
+	b.verificationResultValidator.AttestationSignature = &v
+	return b
+}
+
+// SetIdentityCertificateExt sets the extensions carried by IdentityCertificate, serialized as
+// "_identityCertificate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *VerificationResultValidatorBuilder) SetIdentityCertificateExt(v Element) *VerificationResultValidatorBuilder {
+	b.verificationResultValidator.IdentityCertificateExt = &v
+	return b
+}

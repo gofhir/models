@@ -1421,3 +1421,551 @@ func (b *AccountBuilder) SetCalculatedAt(v string) *AccountBuilder {
 	b.account.CalculatedAt = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AccountBuilder) SetImplicitRulesExt(v Element) *AccountBuilder {
+	b.account.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AccountBuilder) SetLanguageExt(v Element) *AccountBuilder {
+	b.account.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AccountBuilder) SetStatusExt(v Element) *AccountBuilder {
+	b.account.StatusExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AccountBuilder) SetNameExt(v Element) *AccountBuilder {
+	b.account.NameExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AccountBuilder) SetDescriptionExt(v Element) *AccountBuilder {
+	b.account.DescriptionExt = &v
+	return b
+}
+
+// SetCalculatedAtExt sets the extensions carried by CalculatedAt, serialized as
+// "_calculatedAt".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AccountBuilder) SetCalculatedAtExt(v Element) *AccountBuilder {
+	b.account.CalculatedAtExt = &v
+	return b
+}
+
+// =============================================================================
+// AccountBalance - Fluent Builder
+// =============================================================================
+
+// AccountBalanceBuilder provides a fluent API for constructing AccountBalance values.
+type AccountBalanceBuilder struct {
+	accountBalance *AccountBalance
+}
+
+// NewAccountBalanceBuilder creates a new AccountBalanceBuilder.
+func NewAccountBalanceBuilder() *AccountBalanceBuilder {
+	return &AccountBalanceBuilder{
+		accountBalance: &AccountBalance{},
+	}
+}
+
+// Build returns the constructed AccountBalance.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AccountBalanceBuilder) Build() AccountBalance {
+	return *b.accountBalance
+}
+
+// SetId sets the Id field.
+func (b *AccountBalanceBuilder) SetId(v string) *AccountBalanceBuilder {
+	b.accountBalance.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AccountBalanceBuilder) AddExtension(v Extension) *AccountBalanceBuilder {
+	b.accountBalance.Extension = append(b.accountBalance.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AccountBalanceBuilder) AddModifierExtension(v Extension) *AccountBalanceBuilder {
+	b.accountBalance.ModifierExtension = append(b.accountBalance.ModifierExtension, v)
+	return b
+}
+
+// SetAggregate sets the Aggregate field.
+func (b *AccountBalanceBuilder) SetAggregate(v CodeableConcept) *AccountBalanceBuilder {
+	b.accountBalance.Aggregate = &v
+	return b
+}
+
+// SetTerm sets the Term field.
+func (b *AccountBalanceBuilder) SetTerm(v CodeableConcept) *AccountBalanceBuilder {
+	b.accountBalance.Term = &v
+	return b
+}
+
+// SetEstimate sets the Estimate field.
+func (b *AccountBalanceBuilder) SetEstimate(v bool) *AccountBalanceBuilder {
+	b.accountBalance.Estimate = &v
+	return b
+}
+
+// SetAmount sets the Amount field.
+func (b *AccountBalanceBuilder) SetAmount(v Money) *AccountBalanceBuilder {
+	b.accountBalance.Amount = &v
+	return b
+}
+
+// SetEstimateExt sets the extensions carried by Estimate, serialized as
+// "_estimate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AccountBalanceBuilder) SetEstimateExt(v Element) *AccountBalanceBuilder {
+	b.accountBalance.EstimateExt = &v
+	return b
+}
+
+// =============================================================================
+// AccountCoverage - Fluent Builder
+// =============================================================================
+
+// AccountCoverageBuilder provides a fluent API for constructing AccountCoverage values.
+type AccountCoverageBuilder struct {
+	accountCoverage *AccountCoverage
+}
+
+// NewAccountCoverageBuilder creates a new AccountCoverageBuilder.
+func NewAccountCoverageBuilder() *AccountCoverageBuilder {
+	return &AccountCoverageBuilder{
+		accountCoverage: &AccountCoverage{},
+	}
+}
+
+// Build returns the constructed AccountCoverage.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AccountCoverageBuilder) Build() AccountCoverage {
+	return *b.accountCoverage
+}
+
+// SetId sets the Id field.
+func (b *AccountCoverageBuilder) SetId(v string) *AccountCoverageBuilder {
+	b.accountCoverage.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AccountCoverageBuilder) AddExtension(v Extension) *AccountCoverageBuilder {
+	b.accountCoverage.Extension = append(b.accountCoverage.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AccountCoverageBuilder) AddModifierExtension(v Extension) *AccountCoverageBuilder {
+	b.accountCoverage.ModifierExtension = append(b.accountCoverage.ModifierExtension, v)
+	return b
+}
+
+// SetCoverage sets the Coverage field.
+func (b *AccountCoverageBuilder) SetCoverage(v Reference) *AccountCoverageBuilder {
+	b.accountCoverage.Coverage = &v
+	return b
+}
+
+// SetPriority sets the Priority field.
+func (b *AccountCoverageBuilder) SetPriority(v uint32) *AccountCoverageBuilder {
+	b.accountCoverage.Priority = &v
+	return b
+}
+
+// SetPriorityExt sets the extensions carried by Priority, serialized as
+// "_priority".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AccountCoverageBuilder) SetPriorityExt(v Element) *AccountCoverageBuilder {
+	b.accountCoverage.PriorityExt = &v
+	return b
+}
+
+// =============================================================================
+// AccountDiagnosis - Fluent Builder
+// =============================================================================
+
+// AccountDiagnosisBuilder provides a fluent API for constructing AccountDiagnosis values.
+type AccountDiagnosisBuilder struct {
+	accountDiagnosis *AccountDiagnosis
+}
+
+// NewAccountDiagnosisBuilder creates a new AccountDiagnosisBuilder.
+func NewAccountDiagnosisBuilder() *AccountDiagnosisBuilder {
+	return &AccountDiagnosisBuilder{
+		accountDiagnosis: &AccountDiagnosis{},
+	}
+}
+
+// Build returns the constructed AccountDiagnosis.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AccountDiagnosisBuilder) Build() AccountDiagnosis {
+	return *b.accountDiagnosis
+}
+
+// SetId sets the Id field.
+func (b *AccountDiagnosisBuilder) SetId(v string) *AccountDiagnosisBuilder {
+	b.accountDiagnosis.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AccountDiagnosisBuilder) AddExtension(v Extension) *AccountDiagnosisBuilder {
+	b.accountDiagnosis.Extension = append(b.accountDiagnosis.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AccountDiagnosisBuilder) AddModifierExtension(v Extension) *AccountDiagnosisBuilder {
+	b.accountDiagnosis.ModifierExtension = append(b.accountDiagnosis.ModifierExtension, v)
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *AccountDiagnosisBuilder) SetSequence(v uint32) *AccountDiagnosisBuilder {
+	b.accountDiagnosis.Sequence = &v
+	return b
+}
+
+// SetCondition sets the Condition field.
+func (b *AccountDiagnosisBuilder) SetCondition(v CodeableReference) *AccountDiagnosisBuilder {
+	b.accountDiagnosis.Condition = &v
+	return b
+}
+
+// SetDateOfDiagnosis sets the DateOfDiagnosis field.
+func (b *AccountDiagnosisBuilder) SetDateOfDiagnosis(v string) *AccountDiagnosisBuilder {
+	b.accountDiagnosis.DateOfDiagnosis = &v
+	return b
+}
+
+// AddType adds a Type element.
+func (b *AccountDiagnosisBuilder) AddType(v CodeableConcept) *AccountDiagnosisBuilder {
+	b.accountDiagnosis.Type = append(b.accountDiagnosis.Type, v)
+	return b
+}
+
+// SetOnAdmission sets the OnAdmission field.
+func (b *AccountDiagnosisBuilder) SetOnAdmission(v bool) *AccountDiagnosisBuilder {
+	b.accountDiagnosis.OnAdmission = &v
+	return b
+}
+
+// AddPackageCode adds a PackageCode element.
+func (b *AccountDiagnosisBuilder) AddPackageCode(v CodeableConcept) *AccountDiagnosisBuilder {
+	b.accountDiagnosis.PackageCode = append(b.accountDiagnosis.PackageCode, v)
+	return b
+}
+
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AccountDiagnosisBuilder) SetSequenceExt(v Element) *AccountDiagnosisBuilder {
+	b.accountDiagnosis.SequenceExt = &v
+	return b
+}
+
+// SetDateOfDiagnosisExt sets the extensions carried by DateOfDiagnosis, serialized as
+// "_dateOfDiagnosis".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AccountDiagnosisBuilder) SetDateOfDiagnosisExt(v Element) *AccountDiagnosisBuilder {
+	b.accountDiagnosis.DateOfDiagnosisExt = &v
+	return b
+}
+
+// SetOnAdmissionExt sets the extensions carried by OnAdmission, serialized as
+// "_onAdmission".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AccountDiagnosisBuilder) SetOnAdmissionExt(v Element) *AccountDiagnosisBuilder {
+	b.accountDiagnosis.OnAdmissionExt = &v
+	return b
+}
+
+// =============================================================================
+// AccountGuarantor - Fluent Builder
+// =============================================================================
+
+// AccountGuarantorBuilder provides a fluent API for constructing AccountGuarantor values.
+type AccountGuarantorBuilder struct {
+	accountGuarantor *AccountGuarantor
+}
+
+// NewAccountGuarantorBuilder creates a new AccountGuarantorBuilder.
+func NewAccountGuarantorBuilder() *AccountGuarantorBuilder {
+	return &AccountGuarantorBuilder{
+		accountGuarantor: &AccountGuarantor{},
+	}
+}
+
+// Build returns the constructed AccountGuarantor.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AccountGuarantorBuilder) Build() AccountGuarantor {
+	return *b.accountGuarantor
+}
+
+// SetId sets the Id field.
+func (b *AccountGuarantorBuilder) SetId(v string) *AccountGuarantorBuilder {
+	b.accountGuarantor.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AccountGuarantorBuilder) AddExtension(v Extension) *AccountGuarantorBuilder {
+	b.accountGuarantor.Extension = append(b.accountGuarantor.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AccountGuarantorBuilder) AddModifierExtension(v Extension) *AccountGuarantorBuilder {
+	b.accountGuarantor.ModifierExtension = append(b.accountGuarantor.ModifierExtension, v)
+	return b
+}
+
+// SetParty sets the Party field.
+func (b *AccountGuarantorBuilder) SetParty(v Reference) *AccountGuarantorBuilder {
+	b.accountGuarantor.Party = &v
+	return b
+}
+
+// SetOnHold sets the OnHold field.
+func (b *AccountGuarantorBuilder) SetOnHold(v bool) *AccountGuarantorBuilder {
+	b.accountGuarantor.OnHold = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *AccountGuarantorBuilder) SetPeriod(v Period) *AccountGuarantorBuilder {
+	b.accountGuarantor.Period = &v
+	return b
+}
+
+// SetOnHoldExt sets the extensions carried by OnHold, serialized as
+// "_onHold".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AccountGuarantorBuilder) SetOnHoldExt(v Element) *AccountGuarantorBuilder {
+	b.accountGuarantor.OnHoldExt = &v
+	return b
+}
+
+// =============================================================================
+// AccountProcedure - Fluent Builder
+// =============================================================================
+
+// AccountProcedureBuilder provides a fluent API for constructing AccountProcedure values.
+type AccountProcedureBuilder struct {
+	accountProcedure *AccountProcedure
+}
+
+// NewAccountProcedureBuilder creates a new AccountProcedureBuilder.
+func NewAccountProcedureBuilder() *AccountProcedureBuilder {
+	return &AccountProcedureBuilder{
+		accountProcedure: &AccountProcedure{},
+	}
+}
+
+// Build returns the constructed AccountProcedure.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AccountProcedureBuilder) Build() AccountProcedure {
+	return *b.accountProcedure
+}
+
+// SetId sets the Id field.
+func (b *AccountProcedureBuilder) SetId(v string) *AccountProcedureBuilder {
+	b.accountProcedure.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AccountProcedureBuilder) AddExtension(v Extension) *AccountProcedureBuilder {
+	b.accountProcedure.Extension = append(b.accountProcedure.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AccountProcedureBuilder) AddModifierExtension(v Extension) *AccountProcedureBuilder {
+	b.accountProcedure.ModifierExtension = append(b.accountProcedure.ModifierExtension, v)
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *AccountProcedureBuilder) SetSequence(v uint32) *AccountProcedureBuilder {
+	b.accountProcedure.Sequence = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *AccountProcedureBuilder) SetCode(v CodeableReference) *AccountProcedureBuilder {
+	b.accountProcedure.Code = &v
+	return b
+}
+
+// SetDateOfService sets the DateOfService field.
+func (b *AccountProcedureBuilder) SetDateOfService(v string) *AccountProcedureBuilder {
+	b.accountProcedure.DateOfService = &v
+	return b
+}
+
+// AddType adds a Type element.
+func (b *AccountProcedureBuilder) AddType(v CodeableConcept) *AccountProcedureBuilder {
+	b.accountProcedure.Type = append(b.accountProcedure.Type, v)
+	return b
+}
+
+// AddPackageCode adds a PackageCode element.
+func (b *AccountProcedureBuilder) AddPackageCode(v CodeableConcept) *AccountProcedureBuilder {
+	b.accountProcedure.PackageCode = append(b.accountProcedure.PackageCode, v)
+	return b
+}
+
+// AddDevice adds a Device element.
+func (b *AccountProcedureBuilder) AddDevice(v Reference) *AccountProcedureBuilder {
+	b.accountProcedure.Device = append(b.accountProcedure.Device, v)
+	return b
+}
+
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AccountProcedureBuilder) SetSequenceExt(v Element) *AccountProcedureBuilder {
+	b.accountProcedure.SequenceExt = &v
+	return b
+}
+
+// SetDateOfServiceExt sets the extensions carried by DateOfService, serialized as
+// "_dateOfService".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AccountProcedureBuilder) SetDateOfServiceExt(v Element) *AccountProcedureBuilder {
+	b.accountProcedure.DateOfServiceExt = &v
+	return b
+}
+
+// =============================================================================
+// AccountRelatedAccount - Fluent Builder
+// =============================================================================
+
+// AccountRelatedAccountBuilder provides a fluent API for constructing AccountRelatedAccount values.
+type AccountRelatedAccountBuilder struct {
+	accountRelatedAccount *AccountRelatedAccount
+}
+
+// NewAccountRelatedAccountBuilder creates a new AccountRelatedAccountBuilder.
+func NewAccountRelatedAccountBuilder() *AccountRelatedAccountBuilder {
+	return &AccountRelatedAccountBuilder{
+		accountRelatedAccount: &AccountRelatedAccount{},
+	}
+}
+
+// Build returns the constructed AccountRelatedAccount.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AccountRelatedAccountBuilder) Build() AccountRelatedAccount {
+	return *b.accountRelatedAccount
+}
+
+// SetId sets the Id field.
+func (b *AccountRelatedAccountBuilder) SetId(v string) *AccountRelatedAccountBuilder {
+	b.accountRelatedAccount.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AccountRelatedAccountBuilder) AddExtension(v Extension) *AccountRelatedAccountBuilder {
+	b.accountRelatedAccount.Extension = append(b.accountRelatedAccount.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AccountRelatedAccountBuilder) AddModifierExtension(v Extension) *AccountRelatedAccountBuilder {
+	b.accountRelatedAccount.ModifierExtension = append(b.accountRelatedAccount.ModifierExtension, v)
+	return b
+}
+
+// SetRelationship sets the Relationship field.
+func (b *AccountRelatedAccountBuilder) SetRelationship(v CodeableConcept) *AccountRelatedAccountBuilder {
+	b.accountRelatedAccount.Relationship = &v
+	return b
+}
+
+// SetAccount sets the Account field.
+func (b *AccountRelatedAccountBuilder) SetAccount(v Reference) *AccountRelatedAccountBuilder {
+	b.accountRelatedAccount.Account = &v
+	return b
+}

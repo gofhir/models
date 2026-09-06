@@ -678,3 +678,135 @@ func (b *CareTeamBuilder) AddNote(v Annotation) *CareTeamBuilder {
 	b.careTeam.Note = append(b.careTeam.Note, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CareTeamBuilder) SetImplicitRulesExt(v Element) *CareTeamBuilder {
+	b.careTeam.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CareTeamBuilder) SetLanguageExt(v Element) *CareTeamBuilder {
+	b.careTeam.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CareTeamBuilder) SetStatusExt(v Element) *CareTeamBuilder {
+	b.careTeam.StatusExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CareTeamBuilder) SetNameExt(v Element) *CareTeamBuilder {
+	b.careTeam.NameExt = &v
+	return b
+}
+
+// =============================================================================
+// CareTeamParticipant - Fluent Builder
+// =============================================================================
+
+// CareTeamParticipantBuilder provides a fluent API for constructing CareTeamParticipant values.
+type CareTeamParticipantBuilder struct {
+	careTeamParticipant *CareTeamParticipant
+}
+
+// NewCareTeamParticipantBuilder creates a new CareTeamParticipantBuilder.
+func NewCareTeamParticipantBuilder() *CareTeamParticipantBuilder {
+	return &CareTeamParticipantBuilder{
+		careTeamParticipant: &CareTeamParticipant{},
+	}
+}
+
+// Build returns the constructed CareTeamParticipant.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CareTeamParticipantBuilder) Build() CareTeamParticipant {
+	return *b.careTeamParticipant
+}
+
+// SetId sets the Id field.
+func (b *CareTeamParticipantBuilder) SetId(v string) *CareTeamParticipantBuilder {
+	b.careTeamParticipant.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CareTeamParticipantBuilder) AddExtension(v Extension) *CareTeamParticipantBuilder {
+	b.careTeamParticipant.Extension = append(b.careTeamParticipant.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CareTeamParticipantBuilder) AddModifierExtension(v Extension) *CareTeamParticipantBuilder {
+	b.careTeamParticipant.ModifierExtension = append(b.careTeamParticipant.ModifierExtension, v)
+	return b
+}
+
+// SetRole sets the Role field.
+func (b *CareTeamParticipantBuilder) SetRole(v CodeableConcept) *CareTeamParticipantBuilder {
+	b.careTeamParticipant.Role = &v
+	return b
+}
+
+// SetMember sets the Member field.
+func (b *CareTeamParticipantBuilder) SetMember(v Reference) *CareTeamParticipantBuilder {
+	b.careTeamParticipant.Member = &v
+	return b
+}
+
+// SetOnBehalfOf sets the OnBehalfOf field.
+func (b *CareTeamParticipantBuilder) SetOnBehalfOf(v Reference) *CareTeamParticipantBuilder {
+	b.careTeamParticipant.OnBehalfOf = &v
+	return b
+}
+
+// SetCoveragePeriod sets Coverage[x] to its CoveragePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CareTeamParticipantBuilder) SetCoveragePeriod(v Period) *CareTeamParticipantBuilder {
+	b.clearCoverage()
+	b.careTeamParticipant.CoveragePeriod = &v
+	return b
+}
+
+// SetCoverageTiming sets Coverage[x] to its CoverageTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CareTeamParticipantBuilder) SetCoverageTiming(v Timing) *CareTeamParticipantBuilder {
+	b.clearCoverage()
+	b.careTeamParticipant.CoverageTiming = &v
+	return b
+}
+
+// clearCoverage unsets every variant of Coverage[x], including the
+// _field companions of the primitive ones.
+func (b *CareTeamParticipantBuilder) clearCoverage() {
+	b.careTeamParticipant.CoveragePeriod = nil
+	b.careTeamParticipant.CoverageTiming = nil
+}

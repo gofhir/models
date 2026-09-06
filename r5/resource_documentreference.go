@@ -1208,3 +1208,360 @@ func (b *DocumentReferenceBuilder) AddContent(v DocumentReferenceContent) *Docum
 	b.documentReference.Content = append(b.documentReference.Content, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DocumentReferenceBuilder) SetImplicitRulesExt(v Element) *DocumentReferenceBuilder {
+	b.documentReference.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DocumentReferenceBuilder) SetLanguageExt(v Element) *DocumentReferenceBuilder {
+	b.documentReference.LanguageExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DocumentReferenceBuilder) SetVersionExt(v Element) *DocumentReferenceBuilder {
+	b.documentReference.VersionExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DocumentReferenceBuilder) SetStatusExt(v Element) *DocumentReferenceBuilder {
+	b.documentReference.StatusExt = &v
+	return b
+}
+
+// SetDocStatusExt sets the extensions carried by DocStatus, serialized as
+// "_docStatus".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DocumentReferenceBuilder) SetDocStatusExt(v Element) *DocumentReferenceBuilder {
+	b.documentReference.DocStatusExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DocumentReferenceBuilder) SetDateExt(v Element) *DocumentReferenceBuilder {
+	b.documentReference.DateExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DocumentReferenceBuilder) SetDescriptionExt(v Element) *DocumentReferenceBuilder {
+	b.documentReference.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// DocumentReferenceAttester - Fluent Builder
+// =============================================================================
+
+// DocumentReferenceAttesterBuilder provides a fluent API for constructing DocumentReferenceAttester values.
+type DocumentReferenceAttesterBuilder struct {
+	documentReferenceAttester *DocumentReferenceAttester
+}
+
+// NewDocumentReferenceAttesterBuilder creates a new DocumentReferenceAttesterBuilder.
+func NewDocumentReferenceAttesterBuilder() *DocumentReferenceAttesterBuilder {
+	return &DocumentReferenceAttesterBuilder{
+		documentReferenceAttester: &DocumentReferenceAttester{},
+	}
+}
+
+// Build returns the constructed DocumentReferenceAttester.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DocumentReferenceAttesterBuilder) Build() DocumentReferenceAttester {
+	return *b.documentReferenceAttester
+}
+
+// SetId sets the Id field.
+func (b *DocumentReferenceAttesterBuilder) SetId(v string) *DocumentReferenceAttesterBuilder {
+	b.documentReferenceAttester.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DocumentReferenceAttesterBuilder) AddExtension(v Extension) *DocumentReferenceAttesterBuilder {
+	b.documentReferenceAttester.Extension = append(b.documentReferenceAttester.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *DocumentReferenceAttesterBuilder) AddModifierExtension(v Extension) *DocumentReferenceAttesterBuilder {
+	b.documentReferenceAttester.ModifierExtension = append(b.documentReferenceAttester.ModifierExtension, v)
+	return b
+}
+
+// SetMode sets the Mode field.
+func (b *DocumentReferenceAttesterBuilder) SetMode(v CodeableConcept) *DocumentReferenceAttesterBuilder {
+	b.documentReferenceAttester.Mode = &v
+	return b
+}
+
+// SetTime sets the Time field.
+func (b *DocumentReferenceAttesterBuilder) SetTime(v string) *DocumentReferenceAttesterBuilder {
+	b.documentReferenceAttester.Time = &v
+	return b
+}
+
+// SetParty sets the Party field.
+func (b *DocumentReferenceAttesterBuilder) SetParty(v Reference) *DocumentReferenceAttesterBuilder {
+	b.documentReferenceAttester.Party = &v
+	return b
+}
+
+// SetTimeExt sets the extensions carried by Time, serialized as
+// "_time".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DocumentReferenceAttesterBuilder) SetTimeExt(v Element) *DocumentReferenceAttesterBuilder {
+	b.documentReferenceAttester.TimeExt = &v
+	return b
+}
+
+// =============================================================================
+// DocumentReferenceContent - Fluent Builder
+// =============================================================================
+
+// DocumentReferenceContentBuilder provides a fluent API for constructing DocumentReferenceContent values.
+type DocumentReferenceContentBuilder struct {
+	documentReferenceContent *DocumentReferenceContent
+}
+
+// NewDocumentReferenceContentBuilder creates a new DocumentReferenceContentBuilder.
+func NewDocumentReferenceContentBuilder() *DocumentReferenceContentBuilder {
+	return &DocumentReferenceContentBuilder{
+		documentReferenceContent: &DocumentReferenceContent{},
+	}
+}
+
+// Build returns the constructed DocumentReferenceContent.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DocumentReferenceContentBuilder) Build() DocumentReferenceContent {
+	return *b.documentReferenceContent
+}
+
+// SetId sets the Id field.
+func (b *DocumentReferenceContentBuilder) SetId(v string) *DocumentReferenceContentBuilder {
+	b.documentReferenceContent.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DocumentReferenceContentBuilder) AddExtension(v Extension) *DocumentReferenceContentBuilder {
+	b.documentReferenceContent.Extension = append(b.documentReferenceContent.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *DocumentReferenceContentBuilder) AddModifierExtension(v Extension) *DocumentReferenceContentBuilder {
+	b.documentReferenceContent.ModifierExtension = append(b.documentReferenceContent.ModifierExtension, v)
+	return b
+}
+
+// SetAttachment sets the Attachment field.
+func (b *DocumentReferenceContentBuilder) SetAttachment(v Attachment) *DocumentReferenceContentBuilder {
+	b.documentReferenceContent.Attachment = &v
+	return b
+}
+
+// AddProfile adds a Profile element.
+func (b *DocumentReferenceContentBuilder) AddProfile(v DocumentReferenceContentProfile) *DocumentReferenceContentBuilder {
+	b.documentReferenceContent.Profile = append(b.documentReferenceContent.Profile, v)
+	return b
+}
+
+// =============================================================================
+// DocumentReferenceContentProfile - Fluent Builder
+// =============================================================================
+
+// DocumentReferenceContentProfileBuilder provides a fluent API for constructing DocumentReferenceContentProfile values.
+type DocumentReferenceContentProfileBuilder struct {
+	documentReferenceContentProfile *DocumentReferenceContentProfile
+}
+
+// NewDocumentReferenceContentProfileBuilder creates a new DocumentReferenceContentProfileBuilder.
+func NewDocumentReferenceContentProfileBuilder() *DocumentReferenceContentProfileBuilder {
+	return &DocumentReferenceContentProfileBuilder{
+		documentReferenceContentProfile: &DocumentReferenceContentProfile{},
+	}
+}
+
+// Build returns the constructed DocumentReferenceContentProfile.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DocumentReferenceContentProfileBuilder) Build() DocumentReferenceContentProfile {
+	return *b.documentReferenceContentProfile
+}
+
+// SetId sets the Id field.
+func (b *DocumentReferenceContentProfileBuilder) SetId(v string) *DocumentReferenceContentProfileBuilder {
+	b.documentReferenceContentProfile.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DocumentReferenceContentProfileBuilder) AddExtension(v Extension) *DocumentReferenceContentProfileBuilder {
+	b.documentReferenceContentProfile.Extension = append(b.documentReferenceContentProfile.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *DocumentReferenceContentProfileBuilder) AddModifierExtension(v Extension) *DocumentReferenceContentProfileBuilder {
+	b.documentReferenceContentProfile.ModifierExtension = append(b.documentReferenceContentProfile.ModifierExtension, v)
+	return b
+}
+
+// SetValueCoding sets Value[x] to its ValueCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DocumentReferenceContentProfileBuilder) SetValueCoding(v Coding) *DocumentReferenceContentProfileBuilder {
+	b.clearValue()
+	b.documentReferenceContentProfile.ValueCoding = &v
+	return b
+}
+
+// SetValueUri sets Value[x] to its ValueUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DocumentReferenceContentProfileBuilder) SetValueUri(v string) *DocumentReferenceContentProfileBuilder {
+	b.clearValue()
+	b.documentReferenceContentProfile.ValueUri = &v
+	return b
+}
+
+// SetValueUriExt sets the ValueUriExt field.
+func (b *DocumentReferenceContentProfileBuilder) SetValueUriExt(v Element) *DocumentReferenceContentProfileBuilder {
+	b.documentReferenceContentProfile.ValueUriExt = &v
+	return b
+}
+
+// SetValueCanonical sets Value[x] to its ValueCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DocumentReferenceContentProfileBuilder) SetValueCanonical(v string) *DocumentReferenceContentProfileBuilder {
+	b.clearValue()
+	b.documentReferenceContentProfile.ValueCanonical = &v
+	return b
+}
+
+// SetValueCanonicalExt sets the ValueCanonicalExt field.
+func (b *DocumentReferenceContentProfileBuilder) SetValueCanonicalExt(v Element) *DocumentReferenceContentProfileBuilder {
+	b.documentReferenceContentProfile.ValueCanonicalExt = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *DocumentReferenceContentProfileBuilder) clearValue() {
+	b.documentReferenceContentProfile.ValueCoding = nil
+	b.documentReferenceContentProfile.ValueUri = nil
+	b.documentReferenceContentProfile.ValueUriExt = nil
+	b.documentReferenceContentProfile.ValueCanonical = nil
+	b.documentReferenceContentProfile.ValueCanonicalExt = nil
+}
+
+// =============================================================================
+// DocumentReferenceRelatesTo - Fluent Builder
+// =============================================================================
+
+// DocumentReferenceRelatesToBuilder provides a fluent API for constructing DocumentReferenceRelatesTo values.
+type DocumentReferenceRelatesToBuilder struct {
+	documentReferenceRelatesTo *DocumentReferenceRelatesTo
+}
+
+// NewDocumentReferenceRelatesToBuilder creates a new DocumentReferenceRelatesToBuilder.
+func NewDocumentReferenceRelatesToBuilder() *DocumentReferenceRelatesToBuilder {
+	return &DocumentReferenceRelatesToBuilder{
+		documentReferenceRelatesTo: &DocumentReferenceRelatesTo{},
+	}
+}
+
+// Build returns the constructed DocumentReferenceRelatesTo.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DocumentReferenceRelatesToBuilder) Build() DocumentReferenceRelatesTo {
+	return *b.documentReferenceRelatesTo
+}
+
+// SetId sets the Id field.
+func (b *DocumentReferenceRelatesToBuilder) SetId(v string) *DocumentReferenceRelatesToBuilder {
+	b.documentReferenceRelatesTo.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DocumentReferenceRelatesToBuilder) AddExtension(v Extension) *DocumentReferenceRelatesToBuilder {
+	b.documentReferenceRelatesTo.Extension = append(b.documentReferenceRelatesTo.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *DocumentReferenceRelatesToBuilder) AddModifierExtension(v Extension) *DocumentReferenceRelatesToBuilder {
+	b.documentReferenceRelatesTo.ModifierExtension = append(b.documentReferenceRelatesTo.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *DocumentReferenceRelatesToBuilder) SetCode(v CodeableConcept) *DocumentReferenceRelatesToBuilder {
+	b.documentReferenceRelatesTo.Code = &v
+	return b
+}
+
+// SetTarget sets the Target field.
+func (b *DocumentReferenceRelatesToBuilder) SetTarget(v Reference) *DocumentReferenceRelatesToBuilder {
+	b.documentReferenceRelatesTo.Target = &v
+	return b
+}

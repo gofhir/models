@@ -1442,3 +1442,705 @@ func (b *SubscriptionTopicBuilder) AddNotificationShape(v SubscriptionTopicNotif
 	b.subscriptionTopic.NotificationShape = append(b.subscriptionTopic.NotificationShape, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicBuilder) SetImplicitRulesExt(v Element) *SubscriptionTopicBuilder {
+	b.subscriptionTopic.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicBuilder) SetLanguageExt(v Element) *SubscriptionTopicBuilder {
+	b.subscriptionTopic.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicBuilder) SetUrlExt(v Element) *SubscriptionTopicBuilder {
+	b.subscriptionTopic.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicBuilder) SetVersionExt(v Element) *SubscriptionTopicBuilder {
+	b.subscriptionTopic.VersionExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicBuilder) SetTitleExt(v Element) *SubscriptionTopicBuilder {
+	b.subscriptionTopic.TitleExt = &v
+	return b
+}
+
+// AddDerivedFromExt appends an extension slot for DerivedFrom.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *SubscriptionTopicBuilder) AddDerivedFromExt(v *Element) *SubscriptionTopicBuilder {
+	b.subscriptionTopic.DerivedFromExt = append(b.subscriptionTopic.DerivedFromExt, v)
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicBuilder) SetStatusExt(v Element) *SubscriptionTopicBuilder {
+	b.subscriptionTopic.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicBuilder) SetExperimentalExt(v Element) *SubscriptionTopicBuilder {
+	b.subscriptionTopic.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicBuilder) SetDateExt(v Element) *SubscriptionTopicBuilder {
+	b.subscriptionTopic.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicBuilder) SetPublisherExt(v Element) *SubscriptionTopicBuilder {
+	b.subscriptionTopic.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicBuilder) SetDescriptionExt(v Element) *SubscriptionTopicBuilder {
+	b.subscriptionTopic.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicBuilder) SetPurposeExt(v Element) *SubscriptionTopicBuilder {
+	b.subscriptionTopic.PurposeExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicBuilder) SetCopyrightExt(v Element) *SubscriptionTopicBuilder {
+	b.subscriptionTopic.CopyrightExt = &v
+	return b
+}
+
+// SetApprovalDateExt sets the extensions carried by ApprovalDate, serialized as
+// "_approvalDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicBuilder) SetApprovalDateExt(v Element) *SubscriptionTopicBuilder {
+	b.subscriptionTopic.ApprovalDateExt = &v
+	return b
+}
+
+// SetLastReviewDateExt sets the extensions carried by LastReviewDate, serialized as
+// "_lastReviewDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicBuilder) SetLastReviewDateExt(v Element) *SubscriptionTopicBuilder {
+	b.subscriptionTopic.LastReviewDateExt = &v
+	return b
+}
+
+// =============================================================================
+// SubscriptionTopicCanFilterBy - Fluent Builder
+// =============================================================================
+
+// SubscriptionTopicCanFilterByBuilder provides a fluent API for constructing SubscriptionTopicCanFilterBy values.
+type SubscriptionTopicCanFilterByBuilder struct {
+	subscriptionTopicCanFilterBy *SubscriptionTopicCanFilterBy
+}
+
+// NewSubscriptionTopicCanFilterByBuilder creates a new SubscriptionTopicCanFilterByBuilder.
+func NewSubscriptionTopicCanFilterByBuilder() *SubscriptionTopicCanFilterByBuilder {
+	return &SubscriptionTopicCanFilterByBuilder{
+		subscriptionTopicCanFilterBy: &SubscriptionTopicCanFilterBy{},
+	}
+}
+
+// Build returns the constructed SubscriptionTopicCanFilterBy.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubscriptionTopicCanFilterByBuilder) Build() SubscriptionTopicCanFilterBy {
+	return *b.subscriptionTopicCanFilterBy
+}
+
+// SetId sets the Id field.
+func (b *SubscriptionTopicCanFilterByBuilder) SetId(v string) *SubscriptionTopicCanFilterByBuilder {
+	b.subscriptionTopicCanFilterBy.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubscriptionTopicCanFilterByBuilder) AddExtension(v Extension) *SubscriptionTopicCanFilterByBuilder {
+	b.subscriptionTopicCanFilterBy.Extension = append(b.subscriptionTopicCanFilterBy.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubscriptionTopicCanFilterByBuilder) AddModifierExtension(v Extension) *SubscriptionTopicCanFilterByBuilder {
+	b.subscriptionTopicCanFilterBy.ModifierExtension = append(b.subscriptionTopicCanFilterBy.ModifierExtension, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *SubscriptionTopicCanFilterByBuilder) SetDescription(v string) *SubscriptionTopicCanFilterByBuilder {
+	b.subscriptionTopicCanFilterBy.Description = &v
+	return b
+}
+
+// SetResource sets the Resource field.
+func (b *SubscriptionTopicCanFilterByBuilder) SetResource(v string) *SubscriptionTopicCanFilterByBuilder {
+	b.subscriptionTopicCanFilterBy.Resource = &v
+	return b
+}
+
+// SetFilterParameter sets the FilterParameter field.
+func (b *SubscriptionTopicCanFilterByBuilder) SetFilterParameter(v string) *SubscriptionTopicCanFilterByBuilder {
+	b.subscriptionTopicCanFilterBy.FilterParameter = &v
+	return b
+}
+
+// SetFilterDefinition sets the FilterDefinition field.
+func (b *SubscriptionTopicCanFilterByBuilder) SetFilterDefinition(v string) *SubscriptionTopicCanFilterByBuilder {
+	b.subscriptionTopicCanFilterBy.FilterDefinition = &v
+	return b
+}
+
+// AddModifier adds a Modifier element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *SubscriptionTopicCanFilterByBuilder) AddModifier(v SubscriptionTopicFilterBySearchModifier) *SubscriptionTopicCanFilterByBuilder {
+	b.subscriptionTopicCanFilterBy.Modifier = append(b.subscriptionTopicCanFilterBy.Modifier, &v)
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicCanFilterByBuilder) SetDescriptionExt(v Element) *SubscriptionTopicCanFilterByBuilder {
+	b.subscriptionTopicCanFilterBy.DescriptionExt = &v
+	return b
+}
+
+// SetResourceExt sets the extensions carried by Resource, serialized as
+// "_resource".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicCanFilterByBuilder) SetResourceExt(v Element) *SubscriptionTopicCanFilterByBuilder {
+	b.subscriptionTopicCanFilterBy.ResourceExt = &v
+	return b
+}
+
+// SetFilterParameterExt sets the extensions carried by FilterParameter, serialized as
+// "_filterParameter".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicCanFilterByBuilder) SetFilterParameterExt(v Element) *SubscriptionTopicCanFilterByBuilder {
+	b.subscriptionTopicCanFilterBy.FilterParameterExt = &v
+	return b
+}
+
+// SetFilterDefinitionExt sets the extensions carried by FilterDefinition, serialized as
+// "_filterDefinition".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicCanFilterByBuilder) SetFilterDefinitionExt(v Element) *SubscriptionTopicCanFilterByBuilder {
+	b.subscriptionTopicCanFilterBy.FilterDefinitionExt = &v
+	return b
+}
+
+// AddModifierExt appends an extension slot for Modifier.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *SubscriptionTopicCanFilterByBuilder) AddModifierExt(v *Element) *SubscriptionTopicCanFilterByBuilder {
+	b.subscriptionTopicCanFilterBy.ModifierExt = append(b.subscriptionTopicCanFilterBy.ModifierExt, v)
+	return b
+}
+
+// =============================================================================
+// SubscriptionTopicEventTrigger - Fluent Builder
+// =============================================================================
+
+// SubscriptionTopicEventTriggerBuilder provides a fluent API for constructing SubscriptionTopicEventTrigger values.
+type SubscriptionTopicEventTriggerBuilder struct {
+	subscriptionTopicEventTrigger *SubscriptionTopicEventTrigger
+}
+
+// NewSubscriptionTopicEventTriggerBuilder creates a new SubscriptionTopicEventTriggerBuilder.
+func NewSubscriptionTopicEventTriggerBuilder() *SubscriptionTopicEventTriggerBuilder {
+	return &SubscriptionTopicEventTriggerBuilder{
+		subscriptionTopicEventTrigger: &SubscriptionTopicEventTrigger{},
+	}
+}
+
+// Build returns the constructed SubscriptionTopicEventTrigger.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubscriptionTopicEventTriggerBuilder) Build() SubscriptionTopicEventTrigger {
+	return *b.subscriptionTopicEventTrigger
+}
+
+// SetId sets the Id field.
+func (b *SubscriptionTopicEventTriggerBuilder) SetId(v string) *SubscriptionTopicEventTriggerBuilder {
+	b.subscriptionTopicEventTrigger.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubscriptionTopicEventTriggerBuilder) AddExtension(v Extension) *SubscriptionTopicEventTriggerBuilder {
+	b.subscriptionTopicEventTrigger.Extension = append(b.subscriptionTopicEventTrigger.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubscriptionTopicEventTriggerBuilder) AddModifierExtension(v Extension) *SubscriptionTopicEventTriggerBuilder {
+	b.subscriptionTopicEventTrigger.ModifierExtension = append(b.subscriptionTopicEventTrigger.ModifierExtension, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *SubscriptionTopicEventTriggerBuilder) SetDescription(v string) *SubscriptionTopicEventTriggerBuilder {
+	b.subscriptionTopicEventTrigger.Description = &v
+	return b
+}
+
+// SetEvent sets the Event field.
+func (b *SubscriptionTopicEventTriggerBuilder) SetEvent(v CodeableConcept) *SubscriptionTopicEventTriggerBuilder {
+	b.subscriptionTopicEventTrigger.Event = &v
+	return b
+}
+
+// SetResource sets the Resource field.
+func (b *SubscriptionTopicEventTriggerBuilder) SetResource(v string) *SubscriptionTopicEventTriggerBuilder {
+	b.subscriptionTopicEventTrigger.Resource = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicEventTriggerBuilder) SetDescriptionExt(v Element) *SubscriptionTopicEventTriggerBuilder {
+	b.subscriptionTopicEventTrigger.DescriptionExt = &v
+	return b
+}
+
+// SetResourceExt sets the extensions carried by Resource, serialized as
+// "_resource".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicEventTriggerBuilder) SetResourceExt(v Element) *SubscriptionTopicEventTriggerBuilder {
+	b.subscriptionTopicEventTrigger.ResourceExt = &v
+	return b
+}
+
+// =============================================================================
+// SubscriptionTopicNotificationShape - Fluent Builder
+// =============================================================================
+
+// SubscriptionTopicNotificationShapeBuilder provides a fluent API for constructing SubscriptionTopicNotificationShape values.
+type SubscriptionTopicNotificationShapeBuilder struct {
+	subscriptionTopicNotificationShape *SubscriptionTopicNotificationShape
+}
+
+// NewSubscriptionTopicNotificationShapeBuilder creates a new SubscriptionTopicNotificationShapeBuilder.
+func NewSubscriptionTopicNotificationShapeBuilder() *SubscriptionTopicNotificationShapeBuilder {
+	return &SubscriptionTopicNotificationShapeBuilder{
+		subscriptionTopicNotificationShape: &SubscriptionTopicNotificationShape{},
+	}
+}
+
+// Build returns the constructed SubscriptionTopicNotificationShape.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubscriptionTopicNotificationShapeBuilder) Build() SubscriptionTopicNotificationShape {
+	return *b.subscriptionTopicNotificationShape
+}
+
+// SetId sets the Id field.
+func (b *SubscriptionTopicNotificationShapeBuilder) SetId(v string) *SubscriptionTopicNotificationShapeBuilder {
+	b.subscriptionTopicNotificationShape.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubscriptionTopicNotificationShapeBuilder) AddExtension(v Extension) *SubscriptionTopicNotificationShapeBuilder {
+	b.subscriptionTopicNotificationShape.Extension = append(b.subscriptionTopicNotificationShape.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubscriptionTopicNotificationShapeBuilder) AddModifierExtension(v Extension) *SubscriptionTopicNotificationShapeBuilder {
+	b.subscriptionTopicNotificationShape.ModifierExtension = append(b.subscriptionTopicNotificationShape.ModifierExtension, v)
+	return b
+}
+
+// SetResource sets the Resource field.
+func (b *SubscriptionTopicNotificationShapeBuilder) SetResource(v string) *SubscriptionTopicNotificationShapeBuilder {
+	b.subscriptionTopicNotificationShape.Resource = &v
+	return b
+}
+
+// AddInclude adds a Include element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *SubscriptionTopicNotificationShapeBuilder) AddInclude(v string) *SubscriptionTopicNotificationShapeBuilder {
+	b.subscriptionTopicNotificationShape.Include = append(b.subscriptionTopicNotificationShape.Include, &v)
+	return b
+}
+
+// AddRevInclude adds a RevInclude element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *SubscriptionTopicNotificationShapeBuilder) AddRevInclude(v string) *SubscriptionTopicNotificationShapeBuilder {
+	b.subscriptionTopicNotificationShape.RevInclude = append(b.subscriptionTopicNotificationShape.RevInclude, &v)
+	return b
+}
+
+// SetResourceExt sets the extensions carried by Resource, serialized as
+// "_resource".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicNotificationShapeBuilder) SetResourceExt(v Element) *SubscriptionTopicNotificationShapeBuilder {
+	b.subscriptionTopicNotificationShape.ResourceExt = &v
+	return b
+}
+
+// AddIncludeExt appends an extension slot for Include.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *SubscriptionTopicNotificationShapeBuilder) AddIncludeExt(v *Element) *SubscriptionTopicNotificationShapeBuilder {
+	b.subscriptionTopicNotificationShape.IncludeExt = append(b.subscriptionTopicNotificationShape.IncludeExt, v)
+	return b
+}
+
+// AddRevIncludeExt appends an extension slot for RevInclude.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *SubscriptionTopicNotificationShapeBuilder) AddRevIncludeExt(v *Element) *SubscriptionTopicNotificationShapeBuilder {
+	b.subscriptionTopicNotificationShape.RevIncludeExt = append(b.subscriptionTopicNotificationShape.RevIncludeExt, v)
+	return b
+}
+
+// =============================================================================
+// SubscriptionTopicResourceTrigger - Fluent Builder
+// =============================================================================
+
+// SubscriptionTopicResourceTriggerBuilder provides a fluent API for constructing SubscriptionTopicResourceTrigger values.
+type SubscriptionTopicResourceTriggerBuilder struct {
+	subscriptionTopicResourceTrigger *SubscriptionTopicResourceTrigger
+}
+
+// NewSubscriptionTopicResourceTriggerBuilder creates a new SubscriptionTopicResourceTriggerBuilder.
+func NewSubscriptionTopicResourceTriggerBuilder() *SubscriptionTopicResourceTriggerBuilder {
+	return &SubscriptionTopicResourceTriggerBuilder{
+		subscriptionTopicResourceTrigger: &SubscriptionTopicResourceTrigger{},
+	}
+}
+
+// Build returns the constructed SubscriptionTopicResourceTrigger.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubscriptionTopicResourceTriggerBuilder) Build() SubscriptionTopicResourceTrigger {
+	return *b.subscriptionTopicResourceTrigger
+}
+
+// SetId sets the Id field.
+func (b *SubscriptionTopicResourceTriggerBuilder) SetId(v string) *SubscriptionTopicResourceTriggerBuilder {
+	b.subscriptionTopicResourceTrigger.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubscriptionTopicResourceTriggerBuilder) AddExtension(v Extension) *SubscriptionTopicResourceTriggerBuilder {
+	b.subscriptionTopicResourceTrigger.Extension = append(b.subscriptionTopicResourceTrigger.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubscriptionTopicResourceTriggerBuilder) AddModifierExtension(v Extension) *SubscriptionTopicResourceTriggerBuilder {
+	b.subscriptionTopicResourceTrigger.ModifierExtension = append(b.subscriptionTopicResourceTrigger.ModifierExtension, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *SubscriptionTopicResourceTriggerBuilder) SetDescription(v string) *SubscriptionTopicResourceTriggerBuilder {
+	b.subscriptionTopicResourceTrigger.Description = &v
+	return b
+}
+
+// SetResource sets the Resource field.
+func (b *SubscriptionTopicResourceTriggerBuilder) SetResource(v string) *SubscriptionTopicResourceTriggerBuilder {
+	b.subscriptionTopicResourceTrigger.Resource = &v
+	return b
+}
+
+// AddSupportedInteraction adds a SupportedInteraction element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *SubscriptionTopicResourceTriggerBuilder) AddSupportedInteraction(v MethodCode) *SubscriptionTopicResourceTriggerBuilder {
+	b.subscriptionTopicResourceTrigger.SupportedInteraction = append(b.subscriptionTopicResourceTrigger.SupportedInteraction, &v)
+	return b
+}
+
+// SetQueryCriteria sets the QueryCriteria field.
+func (b *SubscriptionTopicResourceTriggerBuilder) SetQueryCriteria(v SubscriptionTopicResourceTriggerQueryCriteria) *SubscriptionTopicResourceTriggerBuilder {
+	b.subscriptionTopicResourceTrigger.QueryCriteria = &v
+	return b
+}
+
+// SetFhirPathCriteria sets the FhirPathCriteria field.
+func (b *SubscriptionTopicResourceTriggerBuilder) SetFhirPathCriteria(v string) *SubscriptionTopicResourceTriggerBuilder {
+	b.subscriptionTopicResourceTrigger.FhirPathCriteria = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicResourceTriggerBuilder) SetDescriptionExt(v Element) *SubscriptionTopicResourceTriggerBuilder {
+	b.subscriptionTopicResourceTrigger.DescriptionExt = &v
+	return b
+}
+
+// SetResourceExt sets the extensions carried by Resource, serialized as
+// "_resource".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicResourceTriggerBuilder) SetResourceExt(v Element) *SubscriptionTopicResourceTriggerBuilder {
+	b.subscriptionTopicResourceTrigger.ResourceExt = &v
+	return b
+}
+
+// AddSupportedInteractionExt appends an extension slot for SupportedInteraction.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *SubscriptionTopicResourceTriggerBuilder) AddSupportedInteractionExt(v *Element) *SubscriptionTopicResourceTriggerBuilder {
+	b.subscriptionTopicResourceTrigger.SupportedInteractionExt = append(b.subscriptionTopicResourceTrigger.SupportedInteractionExt, v)
+	return b
+}
+
+// SetFhirPathCriteriaExt sets the extensions carried by FhirPathCriteria, serialized as
+// "_fhirPathCriteria".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicResourceTriggerBuilder) SetFhirPathCriteriaExt(v Element) *SubscriptionTopicResourceTriggerBuilder {
+	b.subscriptionTopicResourceTrigger.FhirPathCriteriaExt = &v
+	return b
+}
+
+// =============================================================================
+// SubscriptionTopicResourceTriggerQueryCriteria - Fluent Builder
+// =============================================================================
+
+// SubscriptionTopicResourceTriggerQueryCriteriaBuilder provides a fluent API for constructing SubscriptionTopicResourceTriggerQueryCriteria values.
+type SubscriptionTopicResourceTriggerQueryCriteriaBuilder struct {
+	subscriptionTopicResourceTriggerQueryCriteria *SubscriptionTopicResourceTriggerQueryCriteria
+}
+
+// NewSubscriptionTopicResourceTriggerQueryCriteriaBuilder creates a new SubscriptionTopicResourceTriggerQueryCriteriaBuilder.
+func NewSubscriptionTopicResourceTriggerQueryCriteriaBuilder() *SubscriptionTopicResourceTriggerQueryCriteriaBuilder {
+	return &SubscriptionTopicResourceTriggerQueryCriteriaBuilder{
+		subscriptionTopicResourceTriggerQueryCriteria: &SubscriptionTopicResourceTriggerQueryCriteria{},
+	}
+}
+
+// Build returns the constructed SubscriptionTopicResourceTriggerQueryCriteria.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubscriptionTopicResourceTriggerQueryCriteriaBuilder) Build() SubscriptionTopicResourceTriggerQueryCriteria {
+	return *b.subscriptionTopicResourceTriggerQueryCriteria
+}
+
+// SetId sets the Id field.
+func (b *SubscriptionTopicResourceTriggerQueryCriteriaBuilder) SetId(v string) *SubscriptionTopicResourceTriggerQueryCriteriaBuilder {
+	b.subscriptionTopicResourceTriggerQueryCriteria.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubscriptionTopicResourceTriggerQueryCriteriaBuilder) AddExtension(v Extension) *SubscriptionTopicResourceTriggerQueryCriteriaBuilder {
+	b.subscriptionTopicResourceTriggerQueryCriteria.Extension = append(b.subscriptionTopicResourceTriggerQueryCriteria.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubscriptionTopicResourceTriggerQueryCriteriaBuilder) AddModifierExtension(v Extension) *SubscriptionTopicResourceTriggerQueryCriteriaBuilder {
+	b.subscriptionTopicResourceTriggerQueryCriteria.ModifierExtension = append(b.subscriptionTopicResourceTriggerQueryCriteria.ModifierExtension, v)
+	return b
+}
+
+// SetPrevious sets the Previous field.
+func (b *SubscriptionTopicResourceTriggerQueryCriteriaBuilder) SetPrevious(v string) *SubscriptionTopicResourceTriggerQueryCriteriaBuilder {
+	b.subscriptionTopicResourceTriggerQueryCriteria.Previous = &v
+	return b
+}
+
+// SetResultForCreate sets the ResultForCreate field.
+func (b *SubscriptionTopicResourceTriggerQueryCriteriaBuilder) SetResultForCreate(v CriteriaNotExistsBehavior) *SubscriptionTopicResourceTriggerQueryCriteriaBuilder {
+	b.subscriptionTopicResourceTriggerQueryCriteria.ResultForCreate = &v
+	return b
+}
+
+// SetCurrent sets the Current field.
+func (b *SubscriptionTopicResourceTriggerQueryCriteriaBuilder) SetCurrent(v string) *SubscriptionTopicResourceTriggerQueryCriteriaBuilder {
+	b.subscriptionTopicResourceTriggerQueryCriteria.Current = &v
+	return b
+}
+
+// SetResultForDelete sets the ResultForDelete field.
+func (b *SubscriptionTopicResourceTriggerQueryCriteriaBuilder) SetResultForDelete(v CriteriaNotExistsBehavior) *SubscriptionTopicResourceTriggerQueryCriteriaBuilder {
+	b.subscriptionTopicResourceTriggerQueryCriteria.ResultForDelete = &v
+	return b
+}
+
+// SetRequireBoth sets the RequireBoth field.
+func (b *SubscriptionTopicResourceTriggerQueryCriteriaBuilder) SetRequireBoth(v bool) *SubscriptionTopicResourceTriggerQueryCriteriaBuilder {
+	b.subscriptionTopicResourceTriggerQueryCriteria.RequireBoth = &v
+	return b
+}
+
+// SetPreviousExt sets the extensions carried by Previous, serialized as
+// "_previous".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicResourceTriggerQueryCriteriaBuilder) SetPreviousExt(v Element) *SubscriptionTopicResourceTriggerQueryCriteriaBuilder {
+	b.subscriptionTopicResourceTriggerQueryCriteria.PreviousExt = &v
+	return b
+}
+
+// SetResultForCreateExt sets the extensions carried by ResultForCreate, serialized as
+// "_resultForCreate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicResourceTriggerQueryCriteriaBuilder) SetResultForCreateExt(v Element) *SubscriptionTopicResourceTriggerQueryCriteriaBuilder {
+	b.subscriptionTopicResourceTriggerQueryCriteria.ResultForCreateExt = &v
+	return b
+}
+
+// SetCurrentExt sets the extensions carried by Current, serialized as
+// "_current".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicResourceTriggerQueryCriteriaBuilder) SetCurrentExt(v Element) *SubscriptionTopicResourceTriggerQueryCriteriaBuilder {
+	b.subscriptionTopicResourceTriggerQueryCriteria.CurrentExt = &v
+	return b
+}
+
+// SetResultForDeleteExt sets the extensions carried by ResultForDelete, serialized as
+// "_resultForDelete".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicResourceTriggerQueryCriteriaBuilder) SetResultForDeleteExt(v Element) *SubscriptionTopicResourceTriggerQueryCriteriaBuilder {
+	b.subscriptionTopicResourceTriggerQueryCriteria.ResultForDeleteExt = &v
+	return b
+}
+
+// SetRequireBothExt sets the extensions carried by RequireBoth, serialized as
+// "_requireBoth".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubscriptionTopicResourceTriggerQueryCriteriaBuilder) SetRequireBothExt(v Element) *SubscriptionTopicResourceTriggerQueryCriteriaBuilder {
+	b.subscriptionTopicResourceTriggerQueryCriteria.RequireBothExt = &v
+	return b
+}

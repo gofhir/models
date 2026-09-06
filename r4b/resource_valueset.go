@@ -1846,3 +1846,1071 @@ func (b *ValueSetBuilder) SetExpansion(v ValueSetExpansion) *ValueSetBuilder {
 	b.valueSet.Expansion = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetBuilder) SetImplicitRulesExt(v Element) *ValueSetBuilder {
+	b.valueSet.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetBuilder) SetLanguageExt(v Element) *ValueSetBuilder {
+	b.valueSet.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetBuilder) SetUrlExt(v Element) *ValueSetBuilder {
+	b.valueSet.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetBuilder) SetVersionExt(v Element) *ValueSetBuilder {
+	b.valueSet.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetBuilder) SetNameExt(v Element) *ValueSetBuilder {
+	b.valueSet.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetBuilder) SetTitleExt(v Element) *ValueSetBuilder {
+	b.valueSet.TitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetBuilder) SetStatusExt(v Element) *ValueSetBuilder {
+	b.valueSet.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetBuilder) SetExperimentalExt(v Element) *ValueSetBuilder {
+	b.valueSet.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetBuilder) SetDateExt(v Element) *ValueSetBuilder {
+	b.valueSet.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetBuilder) SetPublisherExt(v Element) *ValueSetBuilder {
+	b.valueSet.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetBuilder) SetDescriptionExt(v Element) *ValueSetBuilder {
+	b.valueSet.DescriptionExt = &v
+	return b
+}
+
+// SetImmutableExt sets the extensions carried by Immutable, serialized as
+// "_immutable".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetBuilder) SetImmutableExt(v Element) *ValueSetBuilder {
+	b.valueSet.ImmutableExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetBuilder) SetPurposeExt(v Element) *ValueSetBuilder {
+	b.valueSet.PurposeExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetBuilder) SetCopyrightExt(v Element) *ValueSetBuilder {
+	b.valueSet.CopyrightExt = &v
+	return b
+}
+
+// =============================================================================
+// ValueSetCompose - Fluent Builder
+// =============================================================================
+
+// ValueSetComposeBuilder provides a fluent API for constructing ValueSetCompose values.
+type ValueSetComposeBuilder struct {
+	valueSetCompose *ValueSetCompose
+}
+
+// NewValueSetComposeBuilder creates a new ValueSetComposeBuilder.
+func NewValueSetComposeBuilder() *ValueSetComposeBuilder {
+	return &ValueSetComposeBuilder{
+		valueSetCompose: &ValueSetCompose{},
+	}
+}
+
+// Build returns the constructed ValueSetCompose.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ValueSetComposeBuilder) Build() ValueSetCompose {
+	return *b.valueSetCompose
+}
+
+// SetId sets the Id field.
+func (b *ValueSetComposeBuilder) SetId(v string) *ValueSetComposeBuilder {
+	b.valueSetCompose.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ValueSetComposeBuilder) AddExtension(v Extension) *ValueSetComposeBuilder {
+	b.valueSetCompose.Extension = append(b.valueSetCompose.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ValueSetComposeBuilder) AddModifierExtension(v Extension) *ValueSetComposeBuilder {
+	b.valueSetCompose.ModifierExtension = append(b.valueSetCompose.ModifierExtension, v)
+	return b
+}
+
+// SetLockedDate sets the LockedDate field.
+func (b *ValueSetComposeBuilder) SetLockedDate(v string) *ValueSetComposeBuilder {
+	b.valueSetCompose.LockedDate = &v
+	return b
+}
+
+// SetInactive sets the Inactive field.
+func (b *ValueSetComposeBuilder) SetInactive(v bool) *ValueSetComposeBuilder {
+	b.valueSetCompose.Inactive = &v
+	return b
+}
+
+// AddInclude adds a Include element.
+func (b *ValueSetComposeBuilder) AddInclude(v ValueSetComposeInclude) *ValueSetComposeBuilder {
+	b.valueSetCompose.Include = append(b.valueSetCompose.Include, v)
+	return b
+}
+
+// AddExclude adds a Exclude element.
+func (b *ValueSetComposeBuilder) AddExclude(v ValueSetComposeInclude) *ValueSetComposeBuilder {
+	b.valueSetCompose.Exclude = append(b.valueSetCompose.Exclude, v)
+	return b
+}
+
+// SetLockedDateExt sets the extensions carried by LockedDate, serialized as
+// "_lockedDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetComposeBuilder) SetLockedDateExt(v Element) *ValueSetComposeBuilder {
+	b.valueSetCompose.LockedDateExt = &v
+	return b
+}
+
+// SetInactiveExt sets the extensions carried by Inactive, serialized as
+// "_inactive".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetComposeBuilder) SetInactiveExt(v Element) *ValueSetComposeBuilder {
+	b.valueSetCompose.InactiveExt = &v
+	return b
+}
+
+// =============================================================================
+// ValueSetComposeInclude - Fluent Builder
+// =============================================================================
+
+// ValueSetComposeIncludeBuilder provides a fluent API for constructing ValueSetComposeInclude values.
+type ValueSetComposeIncludeBuilder struct {
+	valueSetComposeInclude *ValueSetComposeInclude
+}
+
+// NewValueSetComposeIncludeBuilder creates a new ValueSetComposeIncludeBuilder.
+func NewValueSetComposeIncludeBuilder() *ValueSetComposeIncludeBuilder {
+	return &ValueSetComposeIncludeBuilder{
+		valueSetComposeInclude: &ValueSetComposeInclude{},
+	}
+}
+
+// Build returns the constructed ValueSetComposeInclude.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ValueSetComposeIncludeBuilder) Build() ValueSetComposeInclude {
+	return *b.valueSetComposeInclude
+}
+
+// SetId sets the Id field.
+func (b *ValueSetComposeIncludeBuilder) SetId(v string) *ValueSetComposeIncludeBuilder {
+	b.valueSetComposeInclude.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ValueSetComposeIncludeBuilder) AddExtension(v Extension) *ValueSetComposeIncludeBuilder {
+	b.valueSetComposeInclude.Extension = append(b.valueSetComposeInclude.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ValueSetComposeIncludeBuilder) AddModifierExtension(v Extension) *ValueSetComposeIncludeBuilder {
+	b.valueSetComposeInclude.ModifierExtension = append(b.valueSetComposeInclude.ModifierExtension, v)
+	return b
+}
+
+// SetSystem sets the System field.
+func (b *ValueSetComposeIncludeBuilder) SetSystem(v string) *ValueSetComposeIncludeBuilder {
+	b.valueSetComposeInclude.System = &v
+	return b
+}
+
+// SetVersion sets the Version field.
+func (b *ValueSetComposeIncludeBuilder) SetVersion(v string) *ValueSetComposeIncludeBuilder {
+	b.valueSetComposeInclude.Version = &v
+	return b
+}
+
+// AddConcept adds a Concept element.
+func (b *ValueSetComposeIncludeBuilder) AddConcept(v ValueSetComposeIncludeConcept) *ValueSetComposeIncludeBuilder {
+	b.valueSetComposeInclude.Concept = append(b.valueSetComposeInclude.Concept, v)
+	return b
+}
+
+// AddFilter adds a Filter element.
+func (b *ValueSetComposeIncludeBuilder) AddFilter(v ValueSetComposeIncludeFilter) *ValueSetComposeIncludeBuilder {
+	b.valueSetComposeInclude.Filter = append(b.valueSetComposeInclude.Filter, v)
+	return b
+}
+
+// AddValueSet adds a ValueSet element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ValueSetComposeIncludeBuilder) AddValueSet(v string) *ValueSetComposeIncludeBuilder {
+	b.valueSetComposeInclude.ValueSet = append(b.valueSetComposeInclude.ValueSet, &v)
+	return b
+}
+
+// SetSystemExt sets the extensions carried by System, serialized as
+// "_system".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetComposeIncludeBuilder) SetSystemExt(v Element) *ValueSetComposeIncludeBuilder {
+	b.valueSetComposeInclude.SystemExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetComposeIncludeBuilder) SetVersionExt(v Element) *ValueSetComposeIncludeBuilder {
+	b.valueSetComposeInclude.VersionExt = &v
+	return b
+}
+
+// AddValueSetExt appends an extension slot for ValueSet.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ValueSetComposeIncludeBuilder) AddValueSetExt(v *Element) *ValueSetComposeIncludeBuilder {
+	b.valueSetComposeInclude.ValueSetExt = append(b.valueSetComposeInclude.ValueSetExt, v)
+	return b
+}
+
+// =============================================================================
+// ValueSetComposeIncludeConcept - Fluent Builder
+// =============================================================================
+
+// ValueSetComposeIncludeConceptBuilder provides a fluent API for constructing ValueSetComposeIncludeConcept values.
+type ValueSetComposeIncludeConceptBuilder struct {
+	valueSetComposeIncludeConcept *ValueSetComposeIncludeConcept
+}
+
+// NewValueSetComposeIncludeConceptBuilder creates a new ValueSetComposeIncludeConceptBuilder.
+func NewValueSetComposeIncludeConceptBuilder() *ValueSetComposeIncludeConceptBuilder {
+	return &ValueSetComposeIncludeConceptBuilder{
+		valueSetComposeIncludeConcept: &ValueSetComposeIncludeConcept{},
+	}
+}
+
+// Build returns the constructed ValueSetComposeIncludeConcept.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ValueSetComposeIncludeConceptBuilder) Build() ValueSetComposeIncludeConcept {
+	return *b.valueSetComposeIncludeConcept
+}
+
+// SetId sets the Id field.
+func (b *ValueSetComposeIncludeConceptBuilder) SetId(v string) *ValueSetComposeIncludeConceptBuilder {
+	b.valueSetComposeIncludeConcept.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ValueSetComposeIncludeConceptBuilder) AddExtension(v Extension) *ValueSetComposeIncludeConceptBuilder {
+	b.valueSetComposeIncludeConcept.Extension = append(b.valueSetComposeIncludeConcept.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ValueSetComposeIncludeConceptBuilder) AddModifierExtension(v Extension) *ValueSetComposeIncludeConceptBuilder {
+	b.valueSetComposeIncludeConcept.ModifierExtension = append(b.valueSetComposeIncludeConcept.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *ValueSetComposeIncludeConceptBuilder) SetCode(v string) *ValueSetComposeIncludeConceptBuilder {
+	b.valueSetComposeIncludeConcept.Code = &v
+	return b
+}
+
+// SetDisplay sets the Display field.
+func (b *ValueSetComposeIncludeConceptBuilder) SetDisplay(v string) *ValueSetComposeIncludeConceptBuilder {
+	b.valueSetComposeIncludeConcept.Display = &v
+	return b
+}
+
+// AddDesignation adds a Designation element.
+func (b *ValueSetComposeIncludeConceptBuilder) AddDesignation(v ValueSetComposeIncludeConceptDesignation) *ValueSetComposeIncludeConceptBuilder {
+	b.valueSetComposeIncludeConcept.Designation = append(b.valueSetComposeIncludeConcept.Designation, v)
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetComposeIncludeConceptBuilder) SetCodeExt(v Element) *ValueSetComposeIncludeConceptBuilder {
+	b.valueSetComposeIncludeConcept.CodeExt = &v
+	return b
+}
+
+// SetDisplayExt sets the extensions carried by Display, serialized as
+// "_display".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetComposeIncludeConceptBuilder) SetDisplayExt(v Element) *ValueSetComposeIncludeConceptBuilder {
+	b.valueSetComposeIncludeConcept.DisplayExt = &v
+	return b
+}
+
+// =============================================================================
+// ValueSetComposeIncludeConceptDesignation - Fluent Builder
+// =============================================================================
+
+// ValueSetComposeIncludeConceptDesignationBuilder provides a fluent API for constructing ValueSetComposeIncludeConceptDesignation values.
+type ValueSetComposeIncludeConceptDesignationBuilder struct {
+	valueSetComposeIncludeConceptDesignation *ValueSetComposeIncludeConceptDesignation
+}
+
+// NewValueSetComposeIncludeConceptDesignationBuilder creates a new ValueSetComposeIncludeConceptDesignationBuilder.
+func NewValueSetComposeIncludeConceptDesignationBuilder() *ValueSetComposeIncludeConceptDesignationBuilder {
+	return &ValueSetComposeIncludeConceptDesignationBuilder{
+		valueSetComposeIncludeConceptDesignation: &ValueSetComposeIncludeConceptDesignation{},
+	}
+}
+
+// Build returns the constructed ValueSetComposeIncludeConceptDesignation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ValueSetComposeIncludeConceptDesignationBuilder) Build() ValueSetComposeIncludeConceptDesignation {
+	return *b.valueSetComposeIncludeConceptDesignation
+}
+
+// SetId sets the Id field.
+func (b *ValueSetComposeIncludeConceptDesignationBuilder) SetId(v string) *ValueSetComposeIncludeConceptDesignationBuilder {
+	b.valueSetComposeIncludeConceptDesignation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ValueSetComposeIncludeConceptDesignationBuilder) AddExtension(v Extension) *ValueSetComposeIncludeConceptDesignationBuilder {
+	b.valueSetComposeIncludeConceptDesignation.Extension = append(b.valueSetComposeIncludeConceptDesignation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ValueSetComposeIncludeConceptDesignationBuilder) AddModifierExtension(v Extension) *ValueSetComposeIncludeConceptDesignationBuilder {
+	b.valueSetComposeIncludeConceptDesignation.ModifierExtension = append(b.valueSetComposeIncludeConceptDesignation.ModifierExtension, v)
+	return b
+}
+
+// SetLanguage sets the Language field.
+func (b *ValueSetComposeIncludeConceptDesignationBuilder) SetLanguage(v string) *ValueSetComposeIncludeConceptDesignationBuilder {
+	b.valueSetComposeIncludeConceptDesignation.Language = &v
+	return b
+}
+
+// SetUse sets the Use field.
+func (b *ValueSetComposeIncludeConceptDesignationBuilder) SetUse(v Coding) *ValueSetComposeIncludeConceptDesignationBuilder {
+	b.valueSetComposeIncludeConceptDesignation.Use = &v
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *ValueSetComposeIncludeConceptDesignationBuilder) SetValue(v string) *ValueSetComposeIncludeConceptDesignationBuilder {
+	b.valueSetComposeIncludeConceptDesignation.Value = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetComposeIncludeConceptDesignationBuilder) SetLanguageExt(v Element) *ValueSetComposeIncludeConceptDesignationBuilder {
+	b.valueSetComposeIncludeConceptDesignation.LanguageExt = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetComposeIncludeConceptDesignationBuilder) SetValueExt(v Element) *ValueSetComposeIncludeConceptDesignationBuilder {
+	b.valueSetComposeIncludeConceptDesignation.ValueExt = &v
+	return b
+}
+
+// =============================================================================
+// ValueSetComposeIncludeFilter - Fluent Builder
+// =============================================================================
+
+// ValueSetComposeIncludeFilterBuilder provides a fluent API for constructing ValueSetComposeIncludeFilter values.
+type ValueSetComposeIncludeFilterBuilder struct {
+	valueSetComposeIncludeFilter *ValueSetComposeIncludeFilter
+}
+
+// NewValueSetComposeIncludeFilterBuilder creates a new ValueSetComposeIncludeFilterBuilder.
+func NewValueSetComposeIncludeFilterBuilder() *ValueSetComposeIncludeFilterBuilder {
+	return &ValueSetComposeIncludeFilterBuilder{
+		valueSetComposeIncludeFilter: &ValueSetComposeIncludeFilter{},
+	}
+}
+
+// Build returns the constructed ValueSetComposeIncludeFilter.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ValueSetComposeIncludeFilterBuilder) Build() ValueSetComposeIncludeFilter {
+	return *b.valueSetComposeIncludeFilter
+}
+
+// SetId sets the Id field.
+func (b *ValueSetComposeIncludeFilterBuilder) SetId(v string) *ValueSetComposeIncludeFilterBuilder {
+	b.valueSetComposeIncludeFilter.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ValueSetComposeIncludeFilterBuilder) AddExtension(v Extension) *ValueSetComposeIncludeFilterBuilder {
+	b.valueSetComposeIncludeFilter.Extension = append(b.valueSetComposeIncludeFilter.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ValueSetComposeIncludeFilterBuilder) AddModifierExtension(v Extension) *ValueSetComposeIncludeFilterBuilder {
+	b.valueSetComposeIncludeFilter.ModifierExtension = append(b.valueSetComposeIncludeFilter.ModifierExtension, v)
+	return b
+}
+
+// SetProperty sets the Property field.
+func (b *ValueSetComposeIncludeFilterBuilder) SetProperty(v string) *ValueSetComposeIncludeFilterBuilder {
+	b.valueSetComposeIncludeFilter.Property = &v
+	return b
+}
+
+// SetOp sets the Op field.
+func (b *ValueSetComposeIncludeFilterBuilder) SetOp(v FilterOperator) *ValueSetComposeIncludeFilterBuilder {
+	b.valueSetComposeIncludeFilter.Op = &v
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *ValueSetComposeIncludeFilterBuilder) SetValue(v string) *ValueSetComposeIncludeFilterBuilder {
+	b.valueSetComposeIncludeFilter.Value = &v
+	return b
+}
+
+// SetPropertyExt sets the extensions carried by Property, serialized as
+// "_property".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetComposeIncludeFilterBuilder) SetPropertyExt(v Element) *ValueSetComposeIncludeFilterBuilder {
+	b.valueSetComposeIncludeFilter.PropertyExt = &v
+	return b
+}
+
+// SetOpExt sets the extensions carried by Op, serialized as
+// "_op".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetComposeIncludeFilterBuilder) SetOpExt(v Element) *ValueSetComposeIncludeFilterBuilder {
+	b.valueSetComposeIncludeFilter.OpExt = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetComposeIncludeFilterBuilder) SetValueExt(v Element) *ValueSetComposeIncludeFilterBuilder {
+	b.valueSetComposeIncludeFilter.ValueExt = &v
+	return b
+}
+
+// =============================================================================
+// ValueSetExpansion - Fluent Builder
+// =============================================================================
+
+// ValueSetExpansionBuilder provides a fluent API for constructing ValueSetExpansion values.
+type ValueSetExpansionBuilder struct {
+	valueSetExpansion *ValueSetExpansion
+}
+
+// NewValueSetExpansionBuilder creates a new ValueSetExpansionBuilder.
+func NewValueSetExpansionBuilder() *ValueSetExpansionBuilder {
+	return &ValueSetExpansionBuilder{
+		valueSetExpansion: &ValueSetExpansion{},
+	}
+}
+
+// Build returns the constructed ValueSetExpansion.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ValueSetExpansionBuilder) Build() ValueSetExpansion {
+	return *b.valueSetExpansion
+}
+
+// SetId sets the Id field.
+func (b *ValueSetExpansionBuilder) SetId(v string) *ValueSetExpansionBuilder {
+	b.valueSetExpansion.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ValueSetExpansionBuilder) AddExtension(v Extension) *ValueSetExpansionBuilder {
+	b.valueSetExpansion.Extension = append(b.valueSetExpansion.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ValueSetExpansionBuilder) AddModifierExtension(v Extension) *ValueSetExpansionBuilder {
+	b.valueSetExpansion.ModifierExtension = append(b.valueSetExpansion.ModifierExtension, v)
+	return b
+}
+
+// SetIdentifier sets the Identifier field.
+func (b *ValueSetExpansionBuilder) SetIdentifier(v string) *ValueSetExpansionBuilder {
+	b.valueSetExpansion.Identifier = &v
+	return b
+}
+
+// SetTimestamp sets the Timestamp field.
+func (b *ValueSetExpansionBuilder) SetTimestamp(v string) *ValueSetExpansionBuilder {
+	b.valueSetExpansion.Timestamp = &v
+	return b
+}
+
+// SetTotal sets the Total field.
+func (b *ValueSetExpansionBuilder) SetTotal(v int) *ValueSetExpansionBuilder {
+	b.valueSetExpansion.Total = &v
+	return b
+}
+
+// SetOffset sets the Offset field.
+func (b *ValueSetExpansionBuilder) SetOffset(v int) *ValueSetExpansionBuilder {
+	b.valueSetExpansion.Offset = &v
+	return b
+}
+
+// AddParameter adds a Parameter element.
+func (b *ValueSetExpansionBuilder) AddParameter(v ValueSetExpansionParameter) *ValueSetExpansionBuilder {
+	b.valueSetExpansion.Parameter = append(b.valueSetExpansion.Parameter, v)
+	return b
+}
+
+// AddContains adds a Contains element.
+func (b *ValueSetExpansionBuilder) AddContains(v ValueSetExpansionContains) *ValueSetExpansionBuilder {
+	b.valueSetExpansion.Contains = append(b.valueSetExpansion.Contains, v)
+	return b
+}
+
+// SetIdentifierExt sets the extensions carried by Identifier, serialized as
+// "_identifier".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetExpansionBuilder) SetIdentifierExt(v Element) *ValueSetExpansionBuilder {
+	b.valueSetExpansion.IdentifierExt = &v
+	return b
+}
+
+// SetTimestampExt sets the extensions carried by Timestamp, serialized as
+// "_timestamp".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetExpansionBuilder) SetTimestampExt(v Element) *ValueSetExpansionBuilder {
+	b.valueSetExpansion.TimestampExt = &v
+	return b
+}
+
+// SetTotalExt sets the extensions carried by Total, serialized as
+// "_total".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetExpansionBuilder) SetTotalExt(v Element) *ValueSetExpansionBuilder {
+	b.valueSetExpansion.TotalExt = &v
+	return b
+}
+
+// SetOffsetExt sets the extensions carried by Offset, serialized as
+// "_offset".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetExpansionBuilder) SetOffsetExt(v Element) *ValueSetExpansionBuilder {
+	b.valueSetExpansion.OffsetExt = &v
+	return b
+}
+
+// =============================================================================
+// ValueSetExpansionContains - Fluent Builder
+// =============================================================================
+
+// ValueSetExpansionContainsBuilder provides a fluent API for constructing ValueSetExpansionContains values.
+type ValueSetExpansionContainsBuilder struct {
+	valueSetExpansionContains *ValueSetExpansionContains
+}
+
+// NewValueSetExpansionContainsBuilder creates a new ValueSetExpansionContainsBuilder.
+func NewValueSetExpansionContainsBuilder() *ValueSetExpansionContainsBuilder {
+	return &ValueSetExpansionContainsBuilder{
+		valueSetExpansionContains: &ValueSetExpansionContains{},
+	}
+}
+
+// Build returns the constructed ValueSetExpansionContains.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ValueSetExpansionContainsBuilder) Build() ValueSetExpansionContains {
+	return *b.valueSetExpansionContains
+}
+
+// SetId sets the Id field.
+func (b *ValueSetExpansionContainsBuilder) SetId(v string) *ValueSetExpansionContainsBuilder {
+	b.valueSetExpansionContains.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ValueSetExpansionContainsBuilder) AddExtension(v Extension) *ValueSetExpansionContainsBuilder {
+	b.valueSetExpansionContains.Extension = append(b.valueSetExpansionContains.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ValueSetExpansionContainsBuilder) AddModifierExtension(v Extension) *ValueSetExpansionContainsBuilder {
+	b.valueSetExpansionContains.ModifierExtension = append(b.valueSetExpansionContains.ModifierExtension, v)
+	return b
+}
+
+// SetSystem sets the System field.
+func (b *ValueSetExpansionContainsBuilder) SetSystem(v string) *ValueSetExpansionContainsBuilder {
+	b.valueSetExpansionContains.System = &v
+	return b
+}
+
+// SetAbstract sets the Abstract field.
+func (b *ValueSetExpansionContainsBuilder) SetAbstract(v bool) *ValueSetExpansionContainsBuilder {
+	b.valueSetExpansionContains.Abstract = &v
+	return b
+}
+
+// SetInactive sets the Inactive field.
+func (b *ValueSetExpansionContainsBuilder) SetInactive(v bool) *ValueSetExpansionContainsBuilder {
+	b.valueSetExpansionContains.Inactive = &v
+	return b
+}
+
+// SetVersion sets the Version field.
+func (b *ValueSetExpansionContainsBuilder) SetVersion(v string) *ValueSetExpansionContainsBuilder {
+	b.valueSetExpansionContains.Version = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *ValueSetExpansionContainsBuilder) SetCode(v string) *ValueSetExpansionContainsBuilder {
+	b.valueSetExpansionContains.Code = &v
+	return b
+}
+
+// SetDisplay sets the Display field.
+func (b *ValueSetExpansionContainsBuilder) SetDisplay(v string) *ValueSetExpansionContainsBuilder {
+	b.valueSetExpansionContains.Display = &v
+	return b
+}
+
+// AddDesignation adds a Designation element.
+func (b *ValueSetExpansionContainsBuilder) AddDesignation(v ValueSetComposeIncludeConceptDesignation) *ValueSetExpansionContainsBuilder {
+	b.valueSetExpansionContains.Designation = append(b.valueSetExpansionContains.Designation, v)
+	return b
+}
+
+// AddContains adds a Contains element.
+func (b *ValueSetExpansionContainsBuilder) AddContains(v ValueSetExpansionContains) *ValueSetExpansionContainsBuilder {
+	b.valueSetExpansionContains.Contains = append(b.valueSetExpansionContains.Contains, v)
+	return b
+}
+
+// SetSystemExt sets the extensions carried by System, serialized as
+// "_system".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetExpansionContainsBuilder) SetSystemExt(v Element) *ValueSetExpansionContainsBuilder {
+	b.valueSetExpansionContains.SystemExt = &v
+	return b
+}
+
+// SetAbstractExt sets the extensions carried by Abstract, serialized as
+// "_abstract".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetExpansionContainsBuilder) SetAbstractExt(v Element) *ValueSetExpansionContainsBuilder {
+	b.valueSetExpansionContains.AbstractExt = &v
+	return b
+}
+
+// SetInactiveExt sets the extensions carried by Inactive, serialized as
+// "_inactive".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetExpansionContainsBuilder) SetInactiveExt(v Element) *ValueSetExpansionContainsBuilder {
+	b.valueSetExpansionContains.InactiveExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetExpansionContainsBuilder) SetVersionExt(v Element) *ValueSetExpansionContainsBuilder {
+	b.valueSetExpansionContains.VersionExt = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetExpansionContainsBuilder) SetCodeExt(v Element) *ValueSetExpansionContainsBuilder {
+	b.valueSetExpansionContains.CodeExt = &v
+	return b
+}
+
+// SetDisplayExt sets the extensions carried by Display, serialized as
+// "_display".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetExpansionContainsBuilder) SetDisplayExt(v Element) *ValueSetExpansionContainsBuilder {
+	b.valueSetExpansionContains.DisplayExt = &v
+	return b
+}
+
+// =============================================================================
+// ValueSetExpansionParameter - Fluent Builder
+// =============================================================================
+
+// ValueSetExpansionParameterBuilder provides a fluent API for constructing ValueSetExpansionParameter values.
+type ValueSetExpansionParameterBuilder struct {
+	valueSetExpansionParameter *ValueSetExpansionParameter
+}
+
+// NewValueSetExpansionParameterBuilder creates a new ValueSetExpansionParameterBuilder.
+func NewValueSetExpansionParameterBuilder() *ValueSetExpansionParameterBuilder {
+	return &ValueSetExpansionParameterBuilder{
+		valueSetExpansionParameter: &ValueSetExpansionParameter{},
+	}
+}
+
+// Build returns the constructed ValueSetExpansionParameter.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ValueSetExpansionParameterBuilder) Build() ValueSetExpansionParameter {
+	return *b.valueSetExpansionParameter
+}
+
+// SetId sets the Id field.
+func (b *ValueSetExpansionParameterBuilder) SetId(v string) *ValueSetExpansionParameterBuilder {
+	b.valueSetExpansionParameter.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ValueSetExpansionParameterBuilder) AddExtension(v Extension) *ValueSetExpansionParameterBuilder {
+	b.valueSetExpansionParameter.Extension = append(b.valueSetExpansionParameter.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ValueSetExpansionParameterBuilder) AddModifierExtension(v Extension) *ValueSetExpansionParameterBuilder {
+	b.valueSetExpansionParameter.ModifierExtension = append(b.valueSetExpansionParameter.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *ValueSetExpansionParameterBuilder) SetName(v string) *ValueSetExpansionParameterBuilder {
+	b.valueSetExpansionParameter.Name = &v
+	return b
+}
+
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ValueSetExpansionParameterBuilder) SetValueString(v string) *ValueSetExpansionParameterBuilder {
+	b.clearValue()
+	b.valueSetExpansionParameter.ValueString = &v
+	return b
+}
+
+// SetValueStringExt sets the ValueStringExt field.
+func (b *ValueSetExpansionParameterBuilder) SetValueStringExt(v Element) *ValueSetExpansionParameterBuilder {
+	b.valueSetExpansionParameter.ValueStringExt = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ValueSetExpansionParameterBuilder) SetValueBoolean(v bool) *ValueSetExpansionParameterBuilder {
+	b.clearValue()
+	b.valueSetExpansionParameter.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *ValueSetExpansionParameterBuilder) SetValueBooleanExt(v Element) *ValueSetExpansionParameterBuilder {
+	b.valueSetExpansionParameter.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueInteger sets Value[x] to its ValueInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ValueSetExpansionParameterBuilder) SetValueInteger(v int) *ValueSetExpansionParameterBuilder {
+	b.clearValue()
+	b.valueSetExpansionParameter.ValueInteger = &v
+	return b
+}
+
+// SetValueIntegerExt sets the ValueIntegerExt field.
+func (b *ValueSetExpansionParameterBuilder) SetValueIntegerExt(v Element) *ValueSetExpansionParameterBuilder {
+	b.valueSetExpansionParameter.ValueIntegerExt = &v
+	return b
+}
+
+// SetValueDecimal sets Value[x] to its ValueDecimal variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ValueSetExpansionParameterBuilder) SetValueDecimal(v Decimal) *ValueSetExpansionParameterBuilder {
+	b.clearValue()
+	b.valueSetExpansionParameter.ValueDecimal = &v
+	return b
+}
+
+// SetValueDecimalExt sets the ValueDecimalExt field.
+func (b *ValueSetExpansionParameterBuilder) SetValueDecimalExt(v Element) *ValueSetExpansionParameterBuilder {
+	b.valueSetExpansionParameter.ValueDecimalExt = &v
+	return b
+}
+
+// SetValueUri sets Value[x] to its ValueUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ValueSetExpansionParameterBuilder) SetValueUri(v string) *ValueSetExpansionParameterBuilder {
+	b.clearValue()
+	b.valueSetExpansionParameter.ValueUri = &v
+	return b
+}
+
+// SetValueUriExt sets the ValueUriExt field.
+func (b *ValueSetExpansionParameterBuilder) SetValueUriExt(v Element) *ValueSetExpansionParameterBuilder {
+	b.valueSetExpansionParameter.ValueUriExt = &v
+	return b
+}
+
+// SetValueCode sets Value[x] to its ValueCode variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ValueSetExpansionParameterBuilder) SetValueCode(v string) *ValueSetExpansionParameterBuilder {
+	b.clearValue()
+	b.valueSetExpansionParameter.ValueCode = &v
+	return b
+}
+
+// SetValueCodeExt sets the ValueCodeExt field.
+func (b *ValueSetExpansionParameterBuilder) SetValueCodeExt(v Element) *ValueSetExpansionParameterBuilder {
+	b.valueSetExpansionParameter.ValueCodeExt = &v
+	return b
+}
+
+// SetValueDateTime sets Value[x] to its ValueDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ValueSetExpansionParameterBuilder) SetValueDateTime(v string) *ValueSetExpansionParameterBuilder {
+	b.clearValue()
+	b.valueSetExpansionParameter.ValueDateTime = &v
+	return b
+}
+
+// SetValueDateTimeExt sets the ValueDateTimeExt field.
+func (b *ValueSetExpansionParameterBuilder) SetValueDateTimeExt(v Element) *ValueSetExpansionParameterBuilder {
+	b.valueSetExpansionParameter.ValueDateTimeExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ValueSetExpansionParameterBuilder) SetNameExt(v Element) *ValueSetExpansionParameterBuilder {
+	b.valueSetExpansionParameter.NameExt = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *ValueSetExpansionParameterBuilder) clearValue() {
+	b.valueSetExpansionParameter.ValueString = nil
+	b.valueSetExpansionParameter.ValueBoolean = nil
+	b.valueSetExpansionParameter.ValueBooleanExt = nil
+	b.valueSetExpansionParameter.ValueInteger = nil
+	b.valueSetExpansionParameter.ValueIntegerExt = nil
+	b.valueSetExpansionParameter.ValueDecimal = nil
+	b.valueSetExpansionParameter.ValueDecimalExt = nil
+	b.valueSetExpansionParameter.ValueUri = nil
+	b.valueSetExpansionParameter.ValueUriExt = nil
+	b.valueSetExpansionParameter.ValueCode = nil
+	b.valueSetExpansionParameter.ValueCodeExt = nil
+	b.valueSetExpansionParameter.ValueDateTime = nil
+	b.valueSetExpansionParameter.ValueDateTimeExt = nil
+}

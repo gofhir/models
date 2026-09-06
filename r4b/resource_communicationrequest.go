@@ -901,9 +901,161 @@ func (b *CommunicationRequestBuilder) AddNote(v Annotation) *CommunicationReques
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CommunicationRequestBuilder) SetImplicitRulesExt(v Element) *CommunicationRequestBuilder {
+	b.communicationRequest.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CommunicationRequestBuilder) SetLanguageExt(v Element) *CommunicationRequestBuilder {
+	b.communicationRequest.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CommunicationRequestBuilder) SetStatusExt(v Element) *CommunicationRequestBuilder {
+	b.communicationRequest.StatusExt = &v
+	return b
+}
+
+// SetPriorityExt sets the extensions carried by Priority, serialized as
+// "_priority".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CommunicationRequestBuilder) SetPriorityExt(v Element) *CommunicationRequestBuilder {
+	b.communicationRequest.PriorityExt = &v
+	return b
+}
+
+// SetDoNotPerformExt sets the extensions carried by DoNotPerform, serialized as
+// "_doNotPerform".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CommunicationRequestBuilder) SetDoNotPerformExt(v Element) *CommunicationRequestBuilder {
+	b.communicationRequest.DoNotPerformExt = &v
+	return b
+}
+
+// SetAuthoredOnExt sets the extensions carried by AuthoredOn, serialized as
+// "_authoredOn".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CommunicationRequestBuilder) SetAuthoredOnExt(v Element) *CommunicationRequestBuilder {
+	b.communicationRequest.AuthoredOnExt = &v
+	return b
+}
+
 // clearOccurrence unsets every variant of Occurrence[x], including the
 // _field companions of the primitive ones.
 func (b *CommunicationRequestBuilder) clearOccurrence() {
 	b.communicationRequest.OccurrenceDateTime = nil
 	b.communicationRequest.OccurrencePeriod = nil
+}
+
+// =============================================================================
+// CommunicationRequestPayload - Fluent Builder
+// =============================================================================
+
+// CommunicationRequestPayloadBuilder provides a fluent API for constructing CommunicationRequestPayload values.
+type CommunicationRequestPayloadBuilder struct {
+	communicationRequestPayload *CommunicationRequestPayload
+}
+
+// NewCommunicationRequestPayloadBuilder creates a new CommunicationRequestPayloadBuilder.
+func NewCommunicationRequestPayloadBuilder() *CommunicationRequestPayloadBuilder {
+	return &CommunicationRequestPayloadBuilder{
+		communicationRequestPayload: &CommunicationRequestPayload{},
+	}
+}
+
+// Build returns the constructed CommunicationRequestPayload.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CommunicationRequestPayloadBuilder) Build() CommunicationRequestPayload {
+	return *b.communicationRequestPayload
+}
+
+// SetId sets the Id field.
+func (b *CommunicationRequestPayloadBuilder) SetId(v string) *CommunicationRequestPayloadBuilder {
+	b.communicationRequestPayload.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CommunicationRequestPayloadBuilder) AddExtension(v Extension) *CommunicationRequestPayloadBuilder {
+	b.communicationRequestPayload.Extension = append(b.communicationRequestPayload.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CommunicationRequestPayloadBuilder) AddModifierExtension(v Extension) *CommunicationRequestPayloadBuilder {
+	b.communicationRequestPayload.ModifierExtension = append(b.communicationRequestPayload.ModifierExtension, v)
+	return b
+}
+
+// SetContentString sets Content[x] to its ContentString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CommunicationRequestPayloadBuilder) SetContentString(v string) *CommunicationRequestPayloadBuilder {
+	b.clearContent()
+	b.communicationRequestPayload.ContentString = &v
+	return b
+}
+
+// SetContentStringExt sets the ContentStringExt field.
+func (b *CommunicationRequestPayloadBuilder) SetContentStringExt(v Element) *CommunicationRequestPayloadBuilder {
+	b.communicationRequestPayload.ContentStringExt = &v
+	return b
+}
+
+// SetContentAttachment sets Content[x] to its ContentAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CommunicationRequestPayloadBuilder) SetContentAttachment(v Attachment) *CommunicationRequestPayloadBuilder {
+	b.clearContent()
+	b.communicationRequestPayload.ContentAttachment = &v
+	return b
+}
+
+// SetContentReference sets Content[x] to its ContentReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CommunicationRequestPayloadBuilder) SetContentReference(v Reference) *CommunicationRequestPayloadBuilder {
+	b.clearContent()
+	b.communicationRequestPayload.ContentReference = &v
+	return b
+}
+
+// clearContent unsets every variant of Content[x], including the
+// _field companions of the primitive ones.
+func (b *CommunicationRequestPayloadBuilder) clearContent() {
+	b.communicationRequestPayload.ContentString = nil
+	b.communicationRequestPayload.ContentAttachment = nil
+	b.communicationRequestPayload.ContentReference = nil
 }

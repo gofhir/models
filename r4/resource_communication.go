@@ -895,3 +895,173 @@ func (b *CommunicationBuilder) AddNote(v Annotation) *CommunicationBuilder {
 	b.communication.Note = append(b.communication.Note, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CommunicationBuilder) SetImplicitRulesExt(v Element) *CommunicationBuilder {
+	b.communication.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CommunicationBuilder) SetLanguageExt(v Element) *CommunicationBuilder {
+	b.communication.LanguageExt = &v
+	return b
+}
+
+// AddInstantiatesCanonicalExt appends an extension slot for InstantiatesCanonical.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *CommunicationBuilder) AddInstantiatesCanonicalExt(v *Element) *CommunicationBuilder {
+	b.communication.InstantiatesCanonicalExt = append(b.communication.InstantiatesCanonicalExt, v)
+	return b
+}
+
+// AddInstantiatesUriExt appends an extension slot for InstantiatesUri.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *CommunicationBuilder) AddInstantiatesUriExt(v *Element) *CommunicationBuilder {
+	b.communication.InstantiatesUriExt = append(b.communication.InstantiatesUriExt, v)
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CommunicationBuilder) SetStatusExt(v Element) *CommunicationBuilder {
+	b.communication.StatusExt = &v
+	return b
+}
+
+// SetPriorityExt sets the extensions carried by Priority, serialized as
+// "_priority".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CommunicationBuilder) SetPriorityExt(v Element) *CommunicationBuilder {
+	b.communication.PriorityExt = &v
+	return b
+}
+
+// SetSentExt sets the extensions carried by Sent, serialized as
+// "_sent".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CommunicationBuilder) SetSentExt(v Element) *CommunicationBuilder {
+	b.communication.SentExt = &v
+	return b
+}
+
+// SetReceivedExt sets the extensions carried by Received, serialized as
+// "_received".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CommunicationBuilder) SetReceivedExt(v Element) *CommunicationBuilder {
+	b.communication.ReceivedExt = &v
+	return b
+}
+
+// =============================================================================
+// CommunicationPayload - Fluent Builder
+// =============================================================================
+
+// CommunicationPayloadBuilder provides a fluent API for constructing CommunicationPayload values.
+type CommunicationPayloadBuilder struct {
+	communicationPayload *CommunicationPayload
+}
+
+// NewCommunicationPayloadBuilder creates a new CommunicationPayloadBuilder.
+func NewCommunicationPayloadBuilder() *CommunicationPayloadBuilder {
+	return &CommunicationPayloadBuilder{
+		communicationPayload: &CommunicationPayload{},
+	}
+}
+
+// Build returns the constructed CommunicationPayload.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CommunicationPayloadBuilder) Build() CommunicationPayload {
+	return *b.communicationPayload
+}
+
+// SetId sets the Id field.
+func (b *CommunicationPayloadBuilder) SetId(v string) *CommunicationPayloadBuilder {
+	b.communicationPayload.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CommunicationPayloadBuilder) AddExtension(v Extension) *CommunicationPayloadBuilder {
+	b.communicationPayload.Extension = append(b.communicationPayload.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CommunicationPayloadBuilder) AddModifierExtension(v Extension) *CommunicationPayloadBuilder {
+	b.communicationPayload.ModifierExtension = append(b.communicationPayload.ModifierExtension, v)
+	return b
+}
+
+// SetContentString sets Content[x] to its ContentString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CommunicationPayloadBuilder) SetContentString(v string) *CommunicationPayloadBuilder {
+	b.clearContent()
+	b.communicationPayload.ContentString = &v
+	return b
+}
+
+// SetContentStringExt sets the ContentStringExt field.
+func (b *CommunicationPayloadBuilder) SetContentStringExt(v Element) *CommunicationPayloadBuilder {
+	b.communicationPayload.ContentStringExt = &v
+	return b
+}
+
+// SetContentAttachment sets Content[x] to its ContentAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CommunicationPayloadBuilder) SetContentAttachment(v Attachment) *CommunicationPayloadBuilder {
+	b.clearContent()
+	b.communicationPayload.ContentAttachment = &v
+	return b
+}
+
+// SetContentReference sets Content[x] to its ContentReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CommunicationPayloadBuilder) SetContentReference(v Reference) *CommunicationPayloadBuilder {
+	b.clearContent()
+	b.communicationPayload.ContentReference = &v
+	return b
+}
+
+// clearContent unsets every variant of Content[x], including the
+// _field companions of the primitive ones.
+func (b *CommunicationPayloadBuilder) clearContent() {
+	b.communicationPayload.ContentString = nil
+	b.communicationPayload.ContentAttachment = nil
+	b.communicationPayload.ContentReference = nil
+}

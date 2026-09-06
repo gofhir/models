@@ -1026,3 +1026,432 @@ func (b *IngredientBuilder) SetSubstance(v IngredientSubstance) *IngredientBuild
 	b.ingredient.Substance = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *IngredientBuilder) SetImplicitRulesExt(v Element) *IngredientBuilder {
+	b.ingredient.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *IngredientBuilder) SetLanguageExt(v Element) *IngredientBuilder {
+	b.ingredient.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *IngredientBuilder) SetStatusExt(v Element) *IngredientBuilder {
+	b.ingredient.StatusExt = &v
+	return b
+}
+
+// SetAllergenicIndicatorExt sets the extensions carried by AllergenicIndicator, serialized as
+// "_allergenicIndicator".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *IngredientBuilder) SetAllergenicIndicatorExt(v Element) *IngredientBuilder {
+	b.ingredient.AllergenicIndicatorExt = &v
+	return b
+}
+
+// =============================================================================
+// IngredientManufacturer - Fluent Builder
+// =============================================================================
+
+// IngredientManufacturerBuilder provides a fluent API for constructing IngredientManufacturer values.
+type IngredientManufacturerBuilder struct {
+	ingredientManufacturer *IngredientManufacturer
+}
+
+// NewIngredientManufacturerBuilder creates a new IngredientManufacturerBuilder.
+func NewIngredientManufacturerBuilder() *IngredientManufacturerBuilder {
+	return &IngredientManufacturerBuilder{
+		ingredientManufacturer: &IngredientManufacturer{},
+	}
+}
+
+// Build returns the constructed IngredientManufacturer.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *IngredientManufacturerBuilder) Build() IngredientManufacturer {
+	return *b.ingredientManufacturer
+}
+
+// SetId sets the Id field.
+func (b *IngredientManufacturerBuilder) SetId(v string) *IngredientManufacturerBuilder {
+	b.ingredientManufacturer.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *IngredientManufacturerBuilder) AddExtension(v Extension) *IngredientManufacturerBuilder {
+	b.ingredientManufacturer.Extension = append(b.ingredientManufacturer.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *IngredientManufacturerBuilder) AddModifierExtension(v Extension) *IngredientManufacturerBuilder {
+	b.ingredientManufacturer.ModifierExtension = append(b.ingredientManufacturer.ModifierExtension, v)
+	return b
+}
+
+// SetRole sets the Role field.
+func (b *IngredientManufacturerBuilder) SetRole(v IngredientManufacturerRole) *IngredientManufacturerBuilder {
+	b.ingredientManufacturer.Role = &v
+	return b
+}
+
+// SetManufacturer sets the Manufacturer field.
+func (b *IngredientManufacturerBuilder) SetManufacturer(v Reference) *IngredientManufacturerBuilder {
+	b.ingredientManufacturer.Manufacturer = &v
+	return b
+}
+
+// SetRoleExt sets the extensions carried by Role, serialized as
+// "_role".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *IngredientManufacturerBuilder) SetRoleExt(v Element) *IngredientManufacturerBuilder {
+	b.ingredientManufacturer.RoleExt = &v
+	return b
+}
+
+// =============================================================================
+// IngredientSubstance - Fluent Builder
+// =============================================================================
+
+// IngredientSubstanceBuilder provides a fluent API for constructing IngredientSubstance values.
+type IngredientSubstanceBuilder struct {
+	ingredientSubstance *IngredientSubstance
+}
+
+// NewIngredientSubstanceBuilder creates a new IngredientSubstanceBuilder.
+func NewIngredientSubstanceBuilder() *IngredientSubstanceBuilder {
+	return &IngredientSubstanceBuilder{
+		ingredientSubstance: &IngredientSubstance{},
+	}
+}
+
+// Build returns the constructed IngredientSubstance.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *IngredientSubstanceBuilder) Build() IngredientSubstance {
+	return *b.ingredientSubstance
+}
+
+// SetId sets the Id field.
+func (b *IngredientSubstanceBuilder) SetId(v string) *IngredientSubstanceBuilder {
+	b.ingredientSubstance.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *IngredientSubstanceBuilder) AddExtension(v Extension) *IngredientSubstanceBuilder {
+	b.ingredientSubstance.Extension = append(b.ingredientSubstance.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *IngredientSubstanceBuilder) AddModifierExtension(v Extension) *IngredientSubstanceBuilder {
+	b.ingredientSubstance.ModifierExtension = append(b.ingredientSubstance.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *IngredientSubstanceBuilder) SetCode(v CodeableReference) *IngredientSubstanceBuilder {
+	b.ingredientSubstance.Code = &v
+	return b
+}
+
+// AddStrength adds a Strength element.
+func (b *IngredientSubstanceBuilder) AddStrength(v IngredientSubstanceStrength) *IngredientSubstanceBuilder {
+	b.ingredientSubstance.Strength = append(b.ingredientSubstance.Strength, v)
+	return b
+}
+
+// =============================================================================
+// IngredientSubstanceStrength - Fluent Builder
+// =============================================================================
+
+// IngredientSubstanceStrengthBuilder provides a fluent API for constructing IngredientSubstanceStrength values.
+type IngredientSubstanceStrengthBuilder struct {
+	ingredientSubstanceStrength *IngredientSubstanceStrength
+}
+
+// NewIngredientSubstanceStrengthBuilder creates a new IngredientSubstanceStrengthBuilder.
+func NewIngredientSubstanceStrengthBuilder() *IngredientSubstanceStrengthBuilder {
+	return &IngredientSubstanceStrengthBuilder{
+		ingredientSubstanceStrength: &IngredientSubstanceStrength{},
+	}
+}
+
+// Build returns the constructed IngredientSubstanceStrength.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *IngredientSubstanceStrengthBuilder) Build() IngredientSubstanceStrength {
+	return *b.ingredientSubstanceStrength
+}
+
+// SetId sets the Id field.
+func (b *IngredientSubstanceStrengthBuilder) SetId(v string) *IngredientSubstanceStrengthBuilder {
+	b.ingredientSubstanceStrength.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *IngredientSubstanceStrengthBuilder) AddExtension(v Extension) *IngredientSubstanceStrengthBuilder {
+	b.ingredientSubstanceStrength.Extension = append(b.ingredientSubstanceStrength.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *IngredientSubstanceStrengthBuilder) AddModifierExtension(v Extension) *IngredientSubstanceStrengthBuilder {
+	b.ingredientSubstanceStrength.ModifierExtension = append(b.ingredientSubstanceStrength.ModifierExtension, v)
+	return b
+}
+
+// SetPresentationRatio sets Presentation[x] to its PresentationRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *IngredientSubstanceStrengthBuilder) SetPresentationRatio(v Ratio) *IngredientSubstanceStrengthBuilder {
+	b.clearPresentation()
+	b.ingredientSubstanceStrength.PresentationRatio = &v
+	return b
+}
+
+// SetPresentationRatioRange sets Presentation[x] to its PresentationRatioRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *IngredientSubstanceStrengthBuilder) SetPresentationRatioRange(v RatioRange) *IngredientSubstanceStrengthBuilder {
+	b.clearPresentation()
+	b.ingredientSubstanceStrength.PresentationRatioRange = &v
+	return b
+}
+
+// SetTextPresentation sets the TextPresentation field.
+func (b *IngredientSubstanceStrengthBuilder) SetTextPresentation(v string) *IngredientSubstanceStrengthBuilder {
+	b.ingredientSubstanceStrength.TextPresentation = &v
+	return b
+}
+
+// SetConcentrationRatio sets Concentration[x] to its ConcentrationRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *IngredientSubstanceStrengthBuilder) SetConcentrationRatio(v Ratio) *IngredientSubstanceStrengthBuilder {
+	b.clearConcentration()
+	b.ingredientSubstanceStrength.ConcentrationRatio = &v
+	return b
+}
+
+// SetConcentrationRatioRange sets Concentration[x] to its ConcentrationRatioRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *IngredientSubstanceStrengthBuilder) SetConcentrationRatioRange(v RatioRange) *IngredientSubstanceStrengthBuilder {
+	b.clearConcentration()
+	b.ingredientSubstanceStrength.ConcentrationRatioRange = &v
+	return b
+}
+
+// SetTextConcentration sets the TextConcentration field.
+func (b *IngredientSubstanceStrengthBuilder) SetTextConcentration(v string) *IngredientSubstanceStrengthBuilder {
+	b.ingredientSubstanceStrength.TextConcentration = &v
+	return b
+}
+
+// SetMeasurementPoint sets the MeasurementPoint field.
+func (b *IngredientSubstanceStrengthBuilder) SetMeasurementPoint(v string) *IngredientSubstanceStrengthBuilder {
+	b.ingredientSubstanceStrength.MeasurementPoint = &v
+	return b
+}
+
+// AddCountry adds a Country element.
+func (b *IngredientSubstanceStrengthBuilder) AddCountry(v CodeableConcept) *IngredientSubstanceStrengthBuilder {
+	b.ingredientSubstanceStrength.Country = append(b.ingredientSubstanceStrength.Country, v)
+	return b
+}
+
+// AddReferenceStrength adds a ReferenceStrength element.
+func (b *IngredientSubstanceStrengthBuilder) AddReferenceStrength(v IngredientSubstanceStrengthReferenceStrength) *IngredientSubstanceStrengthBuilder {
+	b.ingredientSubstanceStrength.ReferenceStrength = append(b.ingredientSubstanceStrength.ReferenceStrength, v)
+	return b
+}
+
+// SetTextPresentationExt sets the extensions carried by TextPresentation, serialized as
+// "_textPresentation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *IngredientSubstanceStrengthBuilder) SetTextPresentationExt(v Element) *IngredientSubstanceStrengthBuilder {
+	b.ingredientSubstanceStrength.TextPresentationExt = &v
+	return b
+}
+
+// SetTextConcentrationExt sets the extensions carried by TextConcentration, serialized as
+// "_textConcentration".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *IngredientSubstanceStrengthBuilder) SetTextConcentrationExt(v Element) *IngredientSubstanceStrengthBuilder {
+	b.ingredientSubstanceStrength.TextConcentrationExt = &v
+	return b
+}
+
+// SetMeasurementPointExt sets the extensions carried by MeasurementPoint, serialized as
+// "_measurementPoint".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *IngredientSubstanceStrengthBuilder) SetMeasurementPointExt(v Element) *IngredientSubstanceStrengthBuilder {
+	b.ingredientSubstanceStrength.MeasurementPointExt = &v
+	return b
+}
+
+// clearPresentation unsets every variant of Presentation[x], including the
+// _field companions of the primitive ones.
+func (b *IngredientSubstanceStrengthBuilder) clearPresentation() {
+	b.ingredientSubstanceStrength.PresentationRatio = nil
+	b.ingredientSubstanceStrength.PresentationRatioRange = nil
+}
+
+// clearConcentration unsets every variant of Concentration[x], including the
+// _field companions of the primitive ones.
+func (b *IngredientSubstanceStrengthBuilder) clearConcentration() {
+	b.ingredientSubstanceStrength.ConcentrationRatio = nil
+	b.ingredientSubstanceStrength.ConcentrationRatioRange = nil
+}
+
+// =============================================================================
+// IngredientSubstanceStrengthReferenceStrength - Fluent Builder
+// =============================================================================
+
+// IngredientSubstanceStrengthReferenceStrengthBuilder provides a fluent API for constructing IngredientSubstanceStrengthReferenceStrength values.
+type IngredientSubstanceStrengthReferenceStrengthBuilder struct {
+	ingredientSubstanceStrengthReferenceStrength *IngredientSubstanceStrengthReferenceStrength
+}
+
+// NewIngredientSubstanceStrengthReferenceStrengthBuilder creates a new IngredientSubstanceStrengthReferenceStrengthBuilder.
+func NewIngredientSubstanceStrengthReferenceStrengthBuilder() *IngredientSubstanceStrengthReferenceStrengthBuilder {
+	return &IngredientSubstanceStrengthReferenceStrengthBuilder{
+		ingredientSubstanceStrengthReferenceStrength: &IngredientSubstanceStrengthReferenceStrength{},
+	}
+}
+
+// Build returns the constructed IngredientSubstanceStrengthReferenceStrength.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *IngredientSubstanceStrengthReferenceStrengthBuilder) Build() IngredientSubstanceStrengthReferenceStrength {
+	return *b.ingredientSubstanceStrengthReferenceStrength
+}
+
+// SetId sets the Id field.
+func (b *IngredientSubstanceStrengthReferenceStrengthBuilder) SetId(v string) *IngredientSubstanceStrengthReferenceStrengthBuilder {
+	b.ingredientSubstanceStrengthReferenceStrength.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *IngredientSubstanceStrengthReferenceStrengthBuilder) AddExtension(v Extension) *IngredientSubstanceStrengthReferenceStrengthBuilder {
+	b.ingredientSubstanceStrengthReferenceStrength.Extension = append(b.ingredientSubstanceStrengthReferenceStrength.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *IngredientSubstanceStrengthReferenceStrengthBuilder) AddModifierExtension(v Extension) *IngredientSubstanceStrengthReferenceStrengthBuilder {
+	b.ingredientSubstanceStrengthReferenceStrength.ModifierExtension = append(b.ingredientSubstanceStrengthReferenceStrength.ModifierExtension, v)
+	return b
+}
+
+// SetSubstance sets the Substance field.
+func (b *IngredientSubstanceStrengthReferenceStrengthBuilder) SetSubstance(v CodeableReference) *IngredientSubstanceStrengthReferenceStrengthBuilder {
+	b.ingredientSubstanceStrengthReferenceStrength.Substance = &v
+	return b
+}
+
+// SetStrengthRatio sets Strength[x] to its StrengthRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *IngredientSubstanceStrengthReferenceStrengthBuilder) SetStrengthRatio(v Ratio) *IngredientSubstanceStrengthReferenceStrengthBuilder {
+	b.clearStrength()
+	b.ingredientSubstanceStrengthReferenceStrength.StrengthRatio = &v
+	return b
+}
+
+// SetStrengthRatioRange sets Strength[x] to its StrengthRatioRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *IngredientSubstanceStrengthReferenceStrengthBuilder) SetStrengthRatioRange(v RatioRange) *IngredientSubstanceStrengthReferenceStrengthBuilder {
+	b.clearStrength()
+	b.ingredientSubstanceStrengthReferenceStrength.StrengthRatioRange = &v
+	return b
+}
+
+// SetMeasurementPoint sets the MeasurementPoint field.
+func (b *IngredientSubstanceStrengthReferenceStrengthBuilder) SetMeasurementPoint(v string) *IngredientSubstanceStrengthReferenceStrengthBuilder {
+	b.ingredientSubstanceStrengthReferenceStrength.MeasurementPoint = &v
+	return b
+}
+
+// AddCountry adds a Country element.
+func (b *IngredientSubstanceStrengthReferenceStrengthBuilder) AddCountry(v CodeableConcept) *IngredientSubstanceStrengthReferenceStrengthBuilder {
+	b.ingredientSubstanceStrengthReferenceStrength.Country = append(b.ingredientSubstanceStrengthReferenceStrength.Country, v)
+	return b
+}
+
+// SetMeasurementPointExt sets the extensions carried by MeasurementPoint, serialized as
+// "_measurementPoint".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *IngredientSubstanceStrengthReferenceStrengthBuilder) SetMeasurementPointExt(v Element) *IngredientSubstanceStrengthReferenceStrengthBuilder {
+	b.ingredientSubstanceStrengthReferenceStrength.MeasurementPointExt = &v
+	return b
+}
+
+// clearStrength unsets every variant of Strength[x], including the
+// _field companions of the primitive ones.
+func (b *IngredientSubstanceStrengthReferenceStrengthBuilder) clearStrength() {
+	b.ingredientSubstanceStrengthReferenceStrength.StrengthRatio = nil
+	b.ingredientSubstanceStrengthReferenceStrength.StrengthRatioRange = nil
+}

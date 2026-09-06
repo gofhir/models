@@ -1843,3 +1843,700 @@ func (b *ResearchStudyBuilder) AddResult(v Reference) *ResearchStudyBuilder {
 	b.researchStudy.Result = append(b.researchStudy.Result, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyBuilder) SetImplicitRulesExt(v Element) *ResearchStudyBuilder {
+	b.researchStudy.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyBuilder) SetLanguageExt(v Element) *ResearchStudyBuilder {
+	b.researchStudy.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyBuilder) SetUrlExt(v Element) *ResearchStudyBuilder {
+	b.researchStudy.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyBuilder) SetVersionExt(v Element) *ResearchStudyBuilder {
+	b.researchStudy.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyBuilder) SetNameExt(v Element) *ResearchStudyBuilder {
+	b.researchStudy.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyBuilder) SetTitleExt(v Element) *ResearchStudyBuilder {
+	b.researchStudy.TitleExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyBuilder) SetDateExt(v Element) *ResearchStudyBuilder {
+	b.researchStudy.DateExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyBuilder) SetStatusExt(v Element) *ResearchStudyBuilder {
+	b.researchStudy.StatusExt = &v
+	return b
+}
+
+// SetDescriptionSummaryExt sets the extensions carried by DescriptionSummary, serialized as
+// "_descriptionSummary".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyBuilder) SetDescriptionSummaryExt(v Element) *ResearchStudyBuilder {
+	b.researchStudy.DescriptionSummaryExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyBuilder) SetDescriptionExt(v Element) *ResearchStudyBuilder {
+	b.researchStudy.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// ResearchStudyAssociatedParty - Fluent Builder
+// =============================================================================
+
+// ResearchStudyAssociatedPartyBuilder provides a fluent API for constructing ResearchStudyAssociatedParty values.
+type ResearchStudyAssociatedPartyBuilder struct {
+	researchStudyAssociatedParty *ResearchStudyAssociatedParty
+}
+
+// NewResearchStudyAssociatedPartyBuilder creates a new ResearchStudyAssociatedPartyBuilder.
+func NewResearchStudyAssociatedPartyBuilder() *ResearchStudyAssociatedPartyBuilder {
+	return &ResearchStudyAssociatedPartyBuilder{
+		researchStudyAssociatedParty: &ResearchStudyAssociatedParty{},
+	}
+}
+
+// Build returns the constructed ResearchStudyAssociatedParty.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ResearchStudyAssociatedPartyBuilder) Build() ResearchStudyAssociatedParty {
+	return *b.researchStudyAssociatedParty
+}
+
+// SetId sets the Id field.
+func (b *ResearchStudyAssociatedPartyBuilder) SetId(v string) *ResearchStudyAssociatedPartyBuilder {
+	b.researchStudyAssociatedParty.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ResearchStudyAssociatedPartyBuilder) AddExtension(v Extension) *ResearchStudyAssociatedPartyBuilder {
+	b.researchStudyAssociatedParty.Extension = append(b.researchStudyAssociatedParty.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ResearchStudyAssociatedPartyBuilder) AddModifierExtension(v Extension) *ResearchStudyAssociatedPartyBuilder {
+	b.researchStudyAssociatedParty.ModifierExtension = append(b.researchStudyAssociatedParty.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *ResearchStudyAssociatedPartyBuilder) SetName(v string) *ResearchStudyAssociatedPartyBuilder {
+	b.researchStudyAssociatedParty.Name = &v
+	return b
+}
+
+// SetRole sets the Role field.
+func (b *ResearchStudyAssociatedPartyBuilder) SetRole(v CodeableConcept) *ResearchStudyAssociatedPartyBuilder {
+	b.researchStudyAssociatedParty.Role = &v
+	return b
+}
+
+// AddPeriod adds a Period element.
+func (b *ResearchStudyAssociatedPartyBuilder) AddPeriod(v Period) *ResearchStudyAssociatedPartyBuilder {
+	b.researchStudyAssociatedParty.Period = append(b.researchStudyAssociatedParty.Period, v)
+	return b
+}
+
+// AddClassifier adds a Classifier element.
+func (b *ResearchStudyAssociatedPartyBuilder) AddClassifier(v CodeableConcept) *ResearchStudyAssociatedPartyBuilder {
+	b.researchStudyAssociatedParty.Classifier = append(b.researchStudyAssociatedParty.Classifier, v)
+	return b
+}
+
+// SetParty sets the Party field.
+func (b *ResearchStudyAssociatedPartyBuilder) SetParty(v Reference) *ResearchStudyAssociatedPartyBuilder {
+	b.researchStudyAssociatedParty.Party = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyAssociatedPartyBuilder) SetNameExt(v Element) *ResearchStudyAssociatedPartyBuilder {
+	b.researchStudyAssociatedParty.NameExt = &v
+	return b
+}
+
+// =============================================================================
+// ResearchStudyComparisonGroup - Fluent Builder
+// =============================================================================
+
+// ResearchStudyComparisonGroupBuilder provides a fluent API for constructing ResearchStudyComparisonGroup values.
+type ResearchStudyComparisonGroupBuilder struct {
+	researchStudyComparisonGroup *ResearchStudyComparisonGroup
+}
+
+// NewResearchStudyComparisonGroupBuilder creates a new ResearchStudyComparisonGroupBuilder.
+func NewResearchStudyComparisonGroupBuilder() *ResearchStudyComparisonGroupBuilder {
+	return &ResearchStudyComparisonGroupBuilder{
+		researchStudyComparisonGroup: &ResearchStudyComparisonGroup{},
+	}
+}
+
+// Build returns the constructed ResearchStudyComparisonGroup.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ResearchStudyComparisonGroupBuilder) Build() ResearchStudyComparisonGroup {
+	return *b.researchStudyComparisonGroup
+}
+
+// SetId sets the Id field.
+func (b *ResearchStudyComparisonGroupBuilder) SetId(v string) *ResearchStudyComparisonGroupBuilder {
+	b.researchStudyComparisonGroup.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ResearchStudyComparisonGroupBuilder) AddExtension(v Extension) *ResearchStudyComparisonGroupBuilder {
+	b.researchStudyComparisonGroup.Extension = append(b.researchStudyComparisonGroup.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ResearchStudyComparisonGroupBuilder) AddModifierExtension(v Extension) *ResearchStudyComparisonGroupBuilder {
+	b.researchStudyComparisonGroup.ModifierExtension = append(b.researchStudyComparisonGroup.ModifierExtension, v)
+	return b
+}
+
+// SetLinkId sets the LinkId field.
+func (b *ResearchStudyComparisonGroupBuilder) SetLinkId(v string) *ResearchStudyComparisonGroupBuilder {
+	b.researchStudyComparisonGroup.LinkId = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *ResearchStudyComparisonGroupBuilder) SetName(v string) *ResearchStudyComparisonGroupBuilder {
+	b.researchStudyComparisonGroup.Name = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ResearchStudyComparisonGroupBuilder) SetType(v CodeableConcept) *ResearchStudyComparisonGroupBuilder {
+	b.researchStudyComparisonGroup.Type = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *ResearchStudyComparisonGroupBuilder) SetDescription(v string) *ResearchStudyComparisonGroupBuilder {
+	b.researchStudyComparisonGroup.Description = &v
+	return b
+}
+
+// AddIntendedExposure adds a IntendedExposure element.
+func (b *ResearchStudyComparisonGroupBuilder) AddIntendedExposure(v Reference) *ResearchStudyComparisonGroupBuilder {
+	b.researchStudyComparisonGroup.IntendedExposure = append(b.researchStudyComparisonGroup.IntendedExposure, v)
+	return b
+}
+
+// SetObservedGroup sets the ObservedGroup field.
+func (b *ResearchStudyComparisonGroupBuilder) SetObservedGroup(v Reference) *ResearchStudyComparisonGroupBuilder {
+	b.researchStudyComparisonGroup.ObservedGroup = &v
+	return b
+}
+
+// SetLinkIdExt sets the extensions carried by LinkId, serialized as
+// "_linkId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyComparisonGroupBuilder) SetLinkIdExt(v Element) *ResearchStudyComparisonGroupBuilder {
+	b.researchStudyComparisonGroup.LinkIdExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyComparisonGroupBuilder) SetNameExt(v Element) *ResearchStudyComparisonGroupBuilder {
+	b.researchStudyComparisonGroup.NameExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyComparisonGroupBuilder) SetDescriptionExt(v Element) *ResearchStudyComparisonGroupBuilder {
+	b.researchStudyComparisonGroup.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// ResearchStudyLabel - Fluent Builder
+// =============================================================================
+
+// ResearchStudyLabelBuilder provides a fluent API for constructing ResearchStudyLabel values.
+type ResearchStudyLabelBuilder struct {
+	researchStudyLabel *ResearchStudyLabel
+}
+
+// NewResearchStudyLabelBuilder creates a new ResearchStudyLabelBuilder.
+func NewResearchStudyLabelBuilder() *ResearchStudyLabelBuilder {
+	return &ResearchStudyLabelBuilder{
+		researchStudyLabel: &ResearchStudyLabel{},
+	}
+}
+
+// Build returns the constructed ResearchStudyLabel.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ResearchStudyLabelBuilder) Build() ResearchStudyLabel {
+	return *b.researchStudyLabel
+}
+
+// SetId sets the Id field.
+func (b *ResearchStudyLabelBuilder) SetId(v string) *ResearchStudyLabelBuilder {
+	b.researchStudyLabel.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ResearchStudyLabelBuilder) AddExtension(v Extension) *ResearchStudyLabelBuilder {
+	b.researchStudyLabel.Extension = append(b.researchStudyLabel.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ResearchStudyLabelBuilder) AddModifierExtension(v Extension) *ResearchStudyLabelBuilder {
+	b.researchStudyLabel.ModifierExtension = append(b.researchStudyLabel.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ResearchStudyLabelBuilder) SetType(v CodeableConcept) *ResearchStudyLabelBuilder {
+	b.researchStudyLabel.Type = &v
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *ResearchStudyLabelBuilder) SetValue(v string) *ResearchStudyLabelBuilder {
+	b.researchStudyLabel.Value = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyLabelBuilder) SetValueExt(v Element) *ResearchStudyLabelBuilder {
+	b.researchStudyLabel.ValueExt = &v
+	return b
+}
+
+// =============================================================================
+// ResearchStudyObjective - Fluent Builder
+// =============================================================================
+
+// ResearchStudyObjectiveBuilder provides a fluent API for constructing ResearchStudyObjective values.
+type ResearchStudyObjectiveBuilder struct {
+	researchStudyObjective *ResearchStudyObjective
+}
+
+// NewResearchStudyObjectiveBuilder creates a new ResearchStudyObjectiveBuilder.
+func NewResearchStudyObjectiveBuilder() *ResearchStudyObjectiveBuilder {
+	return &ResearchStudyObjectiveBuilder{
+		researchStudyObjective: &ResearchStudyObjective{},
+	}
+}
+
+// Build returns the constructed ResearchStudyObjective.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ResearchStudyObjectiveBuilder) Build() ResearchStudyObjective {
+	return *b.researchStudyObjective
+}
+
+// SetId sets the Id field.
+func (b *ResearchStudyObjectiveBuilder) SetId(v string) *ResearchStudyObjectiveBuilder {
+	b.researchStudyObjective.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ResearchStudyObjectiveBuilder) AddExtension(v Extension) *ResearchStudyObjectiveBuilder {
+	b.researchStudyObjective.Extension = append(b.researchStudyObjective.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ResearchStudyObjectiveBuilder) AddModifierExtension(v Extension) *ResearchStudyObjectiveBuilder {
+	b.researchStudyObjective.ModifierExtension = append(b.researchStudyObjective.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *ResearchStudyObjectiveBuilder) SetName(v string) *ResearchStudyObjectiveBuilder {
+	b.researchStudyObjective.Name = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ResearchStudyObjectiveBuilder) SetType(v CodeableConcept) *ResearchStudyObjectiveBuilder {
+	b.researchStudyObjective.Type = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *ResearchStudyObjectiveBuilder) SetDescription(v string) *ResearchStudyObjectiveBuilder {
+	b.researchStudyObjective.Description = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyObjectiveBuilder) SetNameExt(v Element) *ResearchStudyObjectiveBuilder {
+	b.researchStudyObjective.NameExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyObjectiveBuilder) SetDescriptionExt(v Element) *ResearchStudyObjectiveBuilder {
+	b.researchStudyObjective.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// ResearchStudyOutcomeMeasure - Fluent Builder
+// =============================================================================
+
+// ResearchStudyOutcomeMeasureBuilder provides a fluent API for constructing ResearchStudyOutcomeMeasure values.
+type ResearchStudyOutcomeMeasureBuilder struct {
+	researchStudyOutcomeMeasure *ResearchStudyOutcomeMeasure
+}
+
+// NewResearchStudyOutcomeMeasureBuilder creates a new ResearchStudyOutcomeMeasureBuilder.
+func NewResearchStudyOutcomeMeasureBuilder() *ResearchStudyOutcomeMeasureBuilder {
+	return &ResearchStudyOutcomeMeasureBuilder{
+		researchStudyOutcomeMeasure: &ResearchStudyOutcomeMeasure{},
+	}
+}
+
+// Build returns the constructed ResearchStudyOutcomeMeasure.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ResearchStudyOutcomeMeasureBuilder) Build() ResearchStudyOutcomeMeasure {
+	return *b.researchStudyOutcomeMeasure
+}
+
+// SetId sets the Id field.
+func (b *ResearchStudyOutcomeMeasureBuilder) SetId(v string) *ResearchStudyOutcomeMeasureBuilder {
+	b.researchStudyOutcomeMeasure.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ResearchStudyOutcomeMeasureBuilder) AddExtension(v Extension) *ResearchStudyOutcomeMeasureBuilder {
+	b.researchStudyOutcomeMeasure.Extension = append(b.researchStudyOutcomeMeasure.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ResearchStudyOutcomeMeasureBuilder) AddModifierExtension(v Extension) *ResearchStudyOutcomeMeasureBuilder {
+	b.researchStudyOutcomeMeasure.ModifierExtension = append(b.researchStudyOutcomeMeasure.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *ResearchStudyOutcomeMeasureBuilder) SetName(v string) *ResearchStudyOutcomeMeasureBuilder {
+	b.researchStudyOutcomeMeasure.Name = &v
+	return b
+}
+
+// AddType adds a Type element.
+func (b *ResearchStudyOutcomeMeasureBuilder) AddType(v CodeableConcept) *ResearchStudyOutcomeMeasureBuilder {
+	b.researchStudyOutcomeMeasure.Type = append(b.researchStudyOutcomeMeasure.Type, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *ResearchStudyOutcomeMeasureBuilder) SetDescription(v string) *ResearchStudyOutcomeMeasureBuilder {
+	b.researchStudyOutcomeMeasure.Description = &v
+	return b
+}
+
+// SetReference sets the Reference field.
+func (b *ResearchStudyOutcomeMeasureBuilder) SetReference(v Reference) *ResearchStudyOutcomeMeasureBuilder {
+	b.researchStudyOutcomeMeasure.Reference = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyOutcomeMeasureBuilder) SetNameExt(v Element) *ResearchStudyOutcomeMeasureBuilder {
+	b.researchStudyOutcomeMeasure.NameExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyOutcomeMeasureBuilder) SetDescriptionExt(v Element) *ResearchStudyOutcomeMeasureBuilder {
+	b.researchStudyOutcomeMeasure.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// ResearchStudyProgressStatus - Fluent Builder
+// =============================================================================
+
+// ResearchStudyProgressStatusBuilder provides a fluent API for constructing ResearchStudyProgressStatus values.
+type ResearchStudyProgressStatusBuilder struct {
+	researchStudyProgressStatus *ResearchStudyProgressStatus
+}
+
+// NewResearchStudyProgressStatusBuilder creates a new ResearchStudyProgressStatusBuilder.
+func NewResearchStudyProgressStatusBuilder() *ResearchStudyProgressStatusBuilder {
+	return &ResearchStudyProgressStatusBuilder{
+		researchStudyProgressStatus: &ResearchStudyProgressStatus{},
+	}
+}
+
+// Build returns the constructed ResearchStudyProgressStatus.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ResearchStudyProgressStatusBuilder) Build() ResearchStudyProgressStatus {
+	return *b.researchStudyProgressStatus
+}
+
+// SetId sets the Id field.
+func (b *ResearchStudyProgressStatusBuilder) SetId(v string) *ResearchStudyProgressStatusBuilder {
+	b.researchStudyProgressStatus.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ResearchStudyProgressStatusBuilder) AddExtension(v Extension) *ResearchStudyProgressStatusBuilder {
+	b.researchStudyProgressStatus.Extension = append(b.researchStudyProgressStatus.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ResearchStudyProgressStatusBuilder) AddModifierExtension(v Extension) *ResearchStudyProgressStatusBuilder {
+	b.researchStudyProgressStatus.ModifierExtension = append(b.researchStudyProgressStatus.ModifierExtension, v)
+	return b
+}
+
+// SetState sets the State field.
+func (b *ResearchStudyProgressStatusBuilder) SetState(v CodeableConcept) *ResearchStudyProgressStatusBuilder {
+	b.researchStudyProgressStatus.State = &v
+	return b
+}
+
+// SetActual sets the Actual field.
+func (b *ResearchStudyProgressStatusBuilder) SetActual(v bool) *ResearchStudyProgressStatusBuilder {
+	b.researchStudyProgressStatus.Actual = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *ResearchStudyProgressStatusBuilder) SetPeriod(v Period) *ResearchStudyProgressStatusBuilder {
+	b.researchStudyProgressStatus.Period = &v
+	return b
+}
+
+// SetActualExt sets the extensions carried by Actual, serialized as
+// "_actual".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyProgressStatusBuilder) SetActualExt(v Element) *ResearchStudyProgressStatusBuilder {
+	b.researchStudyProgressStatus.ActualExt = &v
+	return b
+}
+
+// =============================================================================
+// ResearchStudyRecruitment - Fluent Builder
+// =============================================================================
+
+// ResearchStudyRecruitmentBuilder provides a fluent API for constructing ResearchStudyRecruitment values.
+type ResearchStudyRecruitmentBuilder struct {
+	researchStudyRecruitment *ResearchStudyRecruitment
+}
+
+// NewResearchStudyRecruitmentBuilder creates a new ResearchStudyRecruitmentBuilder.
+func NewResearchStudyRecruitmentBuilder() *ResearchStudyRecruitmentBuilder {
+	return &ResearchStudyRecruitmentBuilder{
+		researchStudyRecruitment: &ResearchStudyRecruitment{},
+	}
+}
+
+// Build returns the constructed ResearchStudyRecruitment.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ResearchStudyRecruitmentBuilder) Build() ResearchStudyRecruitment {
+	return *b.researchStudyRecruitment
+}
+
+// SetId sets the Id field.
+func (b *ResearchStudyRecruitmentBuilder) SetId(v string) *ResearchStudyRecruitmentBuilder {
+	b.researchStudyRecruitment.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ResearchStudyRecruitmentBuilder) AddExtension(v Extension) *ResearchStudyRecruitmentBuilder {
+	b.researchStudyRecruitment.Extension = append(b.researchStudyRecruitment.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ResearchStudyRecruitmentBuilder) AddModifierExtension(v Extension) *ResearchStudyRecruitmentBuilder {
+	b.researchStudyRecruitment.ModifierExtension = append(b.researchStudyRecruitment.ModifierExtension, v)
+	return b
+}
+
+// SetTargetNumber sets the TargetNumber field.
+func (b *ResearchStudyRecruitmentBuilder) SetTargetNumber(v uint32) *ResearchStudyRecruitmentBuilder {
+	b.researchStudyRecruitment.TargetNumber = &v
+	return b
+}
+
+// SetActualNumber sets the ActualNumber field.
+func (b *ResearchStudyRecruitmentBuilder) SetActualNumber(v uint32) *ResearchStudyRecruitmentBuilder {
+	b.researchStudyRecruitment.ActualNumber = &v
+	return b
+}
+
+// SetEligibility sets the Eligibility field.
+func (b *ResearchStudyRecruitmentBuilder) SetEligibility(v Reference) *ResearchStudyRecruitmentBuilder {
+	b.researchStudyRecruitment.Eligibility = &v
+	return b
+}
+
+// SetActualGroup sets the ActualGroup field.
+func (b *ResearchStudyRecruitmentBuilder) SetActualGroup(v Reference) *ResearchStudyRecruitmentBuilder {
+	b.researchStudyRecruitment.ActualGroup = &v
+	return b
+}
+
+// SetTargetNumberExt sets the extensions carried by TargetNumber, serialized as
+// "_targetNumber".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyRecruitmentBuilder) SetTargetNumberExt(v Element) *ResearchStudyRecruitmentBuilder {
+	b.researchStudyRecruitment.TargetNumberExt = &v
+	return b
+}
+
+// SetActualNumberExt sets the extensions carried by ActualNumber, serialized as
+// "_actualNumber".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchStudyRecruitmentBuilder) SetActualNumberExt(v Element) *ResearchStudyRecruitmentBuilder {
+	b.researchStudyRecruitment.ActualNumberExt = &v
+	return b
+}

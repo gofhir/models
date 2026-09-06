@@ -1703,3 +1703,585 @@ func (b *MedicinalProductDefinitionBuilder) AddCharacteristic(v MedicinalProduct
 	b.medicinalProductDefinition.Characteristic = append(b.medicinalProductDefinition.Characteristic, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductDefinitionBuilder) SetImplicitRulesExt(v Element) *MedicinalProductDefinitionBuilder {
+	b.medicinalProductDefinition.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductDefinitionBuilder) SetLanguageExt(v Element) *MedicinalProductDefinitionBuilder {
+	b.medicinalProductDefinition.LanguageExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductDefinitionBuilder) SetVersionExt(v Element) *MedicinalProductDefinitionBuilder {
+	b.medicinalProductDefinition.VersionExt = &v
+	return b
+}
+
+// SetStatusDateExt sets the extensions carried by StatusDate, serialized as
+// "_statusDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductDefinitionBuilder) SetStatusDateExt(v Element) *MedicinalProductDefinitionBuilder {
+	b.medicinalProductDefinition.StatusDateExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductDefinitionBuilder) SetDescriptionExt(v Element) *MedicinalProductDefinitionBuilder {
+	b.medicinalProductDefinition.DescriptionExt = &v
+	return b
+}
+
+// SetIndicationExt sets the extensions carried by Indication, serialized as
+// "_indication".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductDefinitionBuilder) SetIndicationExt(v Element) *MedicinalProductDefinitionBuilder {
+	b.medicinalProductDefinition.IndicationExt = &v
+	return b
+}
+
+// =============================================================================
+// MedicinalProductDefinitionCharacteristic - Fluent Builder
+// =============================================================================
+
+// MedicinalProductDefinitionCharacteristicBuilder provides a fluent API for constructing MedicinalProductDefinitionCharacteristic values.
+type MedicinalProductDefinitionCharacteristicBuilder struct {
+	medicinalProductDefinitionCharacteristic *MedicinalProductDefinitionCharacteristic
+}
+
+// NewMedicinalProductDefinitionCharacteristicBuilder creates a new MedicinalProductDefinitionCharacteristicBuilder.
+func NewMedicinalProductDefinitionCharacteristicBuilder() *MedicinalProductDefinitionCharacteristicBuilder {
+	return &MedicinalProductDefinitionCharacteristicBuilder{
+		medicinalProductDefinitionCharacteristic: &MedicinalProductDefinitionCharacteristic{},
+	}
+}
+
+// Build returns the constructed MedicinalProductDefinitionCharacteristic.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicinalProductDefinitionCharacteristicBuilder) Build() MedicinalProductDefinitionCharacteristic {
+	return *b.medicinalProductDefinitionCharacteristic
+}
+
+// SetId sets the Id field.
+func (b *MedicinalProductDefinitionCharacteristicBuilder) SetId(v string) *MedicinalProductDefinitionCharacteristicBuilder {
+	b.medicinalProductDefinitionCharacteristic.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicinalProductDefinitionCharacteristicBuilder) AddExtension(v Extension) *MedicinalProductDefinitionCharacteristicBuilder {
+	b.medicinalProductDefinitionCharacteristic.Extension = append(b.medicinalProductDefinitionCharacteristic.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicinalProductDefinitionCharacteristicBuilder) AddModifierExtension(v Extension) *MedicinalProductDefinitionCharacteristicBuilder {
+	b.medicinalProductDefinitionCharacteristic.ModifierExtension = append(b.medicinalProductDefinitionCharacteristic.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *MedicinalProductDefinitionCharacteristicBuilder) SetType(v CodeableConcept) *MedicinalProductDefinitionCharacteristicBuilder {
+	b.medicinalProductDefinitionCharacteristic.Type = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicinalProductDefinitionCharacteristicBuilder) SetValueCodeableConcept(v CodeableConcept) *MedicinalProductDefinitionCharacteristicBuilder {
+	b.clearValue()
+	b.medicinalProductDefinitionCharacteristic.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicinalProductDefinitionCharacteristicBuilder) SetValueQuantity(v Quantity) *MedicinalProductDefinitionCharacteristicBuilder {
+	b.clearValue()
+	b.medicinalProductDefinitionCharacteristic.ValueQuantity = &v
+	return b
+}
+
+// SetValueDate sets Value[x] to its ValueDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicinalProductDefinitionCharacteristicBuilder) SetValueDate(v string) *MedicinalProductDefinitionCharacteristicBuilder {
+	b.clearValue()
+	b.medicinalProductDefinitionCharacteristic.ValueDate = &v
+	return b
+}
+
+// SetValueDateExt sets the ValueDateExt field.
+func (b *MedicinalProductDefinitionCharacteristicBuilder) SetValueDateExt(v Element) *MedicinalProductDefinitionCharacteristicBuilder {
+	b.medicinalProductDefinitionCharacteristic.ValueDateExt = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicinalProductDefinitionCharacteristicBuilder) SetValueBoolean(v bool) *MedicinalProductDefinitionCharacteristicBuilder {
+	b.clearValue()
+	b.medicinalProductDefinitionCharacteristic.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *MedicinalProductDefinitionCharacteristicBuilder) SetValueBooleanExt(v Element) *MedicinalProductDefinitionCharacteristicBuilder {
+	b.medicinalProductDefinitionCharacteristic.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueAttachment sets Value[x] to its ValueAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *MedicinalProductDefinitionCharacteristicBuilder) SetValueAttachment(v Attachment) *MedicinalProductDefinitionCharacteristicBuilder {
+	b.clearValue()
+	b.medicinalProductDefinitionCharacteristic.ValueAttachment = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *MedicinalProductDefinitionCharacteristicBuilder) clearValue() {
+	b.medicinalProductDefinitionCharacteristic.ValueCodeableConcept = nil
+	b.medicinalProductDefinitionCharacteristic.ValueQuantity = nil
+	b.medicinalProductDefinitionCharacteristic.ValueDate = nil
+	b.medicinalProductDefinitionCharacteristic.ValueDateExt = nil
+	b.medicinalProductDefinitionCharacteristic.ValueBoolean = nil
+	b.medicinalProductDefinitionCharacteristic.ValueBooleanExt = nil
+	b.medicinalProductDefinitionCharacteristic.ValueAttachment = nil
+}
+
+// =============================================================================
+// MedicinalProductDefinitionContact - Fluent Builder
+// =============================================================================
+
+// MedicinalProductDefinitionContactBuilder provides a fluent API for constructing MedicinalProductDefinitionContact values.
+type MedicinalProductDefinitionContactBuilder struct {
+	medicinalProductDefinitionContact *MedicinalProductDefinitionContact
+}
+
+// NewMedicinalProductDefinitionContactBuilder creates a new MedicinalProductDefinitionContactBuilder.
+func NewMedicinalProductDefinitionContactBuilder() *MedicinalProductDefinitionContactBuilder {
+	return &MedicinalProductDefinitionContactBuilder{
+		medicinalProductDefinitionContact: &MedicinalProductDefinitionContact{},
+	}
+}
+
+// Build returns the constructed MedicinalProductDefinitionContact.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicinalProductDefinitionContactBuilder) Build() MedicinalProductDefinitionContact {
+	return *b.medicinalProductDefinitionContact
+}
+
+// SetId sets the Id field.
+func (b *MedicinalProductDefinitionContactBuilder) SetId(v string) *MedicinalProductDefinitionContactBuilder {
+	b.medicinalProductDefinitionContact.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicinalProductDefinitionContactBuilder) AddExtension(v Extension) *MedicinalProductDefinitionContactBuilder {
+	b.medicinalProductDefinitionContact.Extension = append(b.medicinalProductDefinitionContact.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicinalProductDefinitionContactBuilder) AddModifierExtension(v Extension) *MedicinalProductDefinitionContactBuilder {
+	b.medicinalProductDefinitionContact.ModifierExtension = append(b.medicinalProductDefinitionContact.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *MedicinalProductDefinitionContactBuilder) SetType(v CodeableConcept) *MedicinalProductDefinitionContactBuilder {
+	b.medicinalProductDefinitionContact.Type = &v
+	return b
+}
+
+// SetContact sets the Contact field.
+func (b *MedicinalProductDefinitionContactBuilder) SetContact(v Reference) *MedicinalProductDefinitionContactBuilder {
+	b.medicinalProductDefinitionContact.Contact = &v
+	return b
+}
+
+// =============================================================================
+// MedicinalProductDefinitionCrossReference - Fluent Builder
+// =============================================================================
+
+// MedicinalProductDefinitionCrossReferenceBuilder provides a fluent API for constructing MedicinalProductDefinitionCrossReference values.
+type MedicinalProductDefinitionCrossReferenceBuilder struct {
+	medicinalProductDefinitionCrossReference *MedicinalProductDefinitionCrossReference
+}
+
+// NewMedicinalProductDefinitionCrossReferenceBuilder creates a new MedicinalProductDefinitionCrossReferenceBuilder.
+func NewMedicinalProductDefinitionCrossReferenceBuilder() *MedicinalProductDefinitionCrossReferenceBuilder {
+	return &MedicinalProductDefinitionCrossReferenceBuilder{
+		medicinalProductDefinitionCrossReference: &MedicinalProductDefinitionCrossReference{},
+	}
+}
+
+// Build returns the constructed MedicinalProductDefinitionCrossReference.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicinalProductDefinitionCrossReferenceBuilder) Build() MedicinalProductDefinitionCrossReference {
+	return *b.medicinalProductDefinitionCrossReference
+}
+
+// SetId sets the Id field.
+func (b *MedicinalProductDefinitionCrossReferenceBuilder) SetId(v string) *MedicinalProductDefinitionCrossReferenceBuilder {
+	b.medicinalProductDefinitionCrossReference.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicinalProductDefinitionCrossReferenceBuilder) AddExtension(v Extension) *MedicinalProductDefinitionCrossReferenceBuilder {
+	b.medicinalProductDefinitionCrossReference.Extension = append(b.medicinalProductDefinitionCrossReference.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicinalProductDefinitionCrossReferenceBuilder) AddModifierExtension(v Extension) *MedicinalProductDefinitionCrossReferenceBuilder {
+	b.medicinalProductDefinitionCrossReference.ModifierExtension = append(b.medicinalProductDefinitionCrossReference.ModifierExtension, v)
+	return b
+}
+
+// SetProduct sets the Product field.
+func (b *MedicinalProductDefinitionCrossReferenceBuilder) SetProduct(v CodeableReference) *MedicinalProductDefinitionCrossReferenceBuilder {
+	b.medicinalProductDefinitionCrossReference.Product = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *MedicinalProductDefinitionCrossReferenceBuilder) SetType(v CodeableConcept) *MedicinalProductDefinitionCrossReferenceBuilder {
+	b.medicinalProductDefinitionCrossReference.Type = &v
+	return b
+}
+
+// =============================================================================
+// MedicinalProductDefinitionName - Fluent Builder
+// =============================================================================
+
+// MedicinalProductDefinitionNameBuilder provides a fluent API for constructing MedicinalProductDefinitionName values.
+type MedicinalProductDefinitionNameBuilder struct {
+	medicinalProductDefinitionName *MedicinalProductDefinitionName
+}
+
+// NewMedicinalProductDefinitionNameBuilder creates a new MedicinalProductDefinitionNameBuilder.
+func NewMedicinalProductDefinitionNameBuilder() *MedicinalProductDefinitionNameBuilder {
+	return &MedicinalProductDefinitionNameBuilder{
+		medicinalProductDefinitionName: &MedicinalProductDefinitionName{},
+	}
+}
+
+// Build returns the constructed MedicinalProductDefinitionName.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicinalProductDefinitionNameBuilder) Build() MedicinalProductDefinitionName {
+	return *b.medicinalProductDefinitionName
+}
+
+// SetId sets the Id field.
+func (b *MedicinalProductDefinitionNameBuilder) SetId(v string) *MedicinalProductDefinitionNameBuilder {
+	b.medicinalProductDefinitionName.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicinalProductDefinitionNameBuilder) AddExtension(v Extension) *MedicinalProductDefinitionNameBuilder {
+	b.medicinalProductDefinitionName.Extension = append(b.medicinalProductDefinitionName.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicinalProductDefinitionNameBuilder) AddModifierExtension(v Extension) *MedicinalProductDefinitionNameBuilder {
+	b.medicinalProductDefinitionName.ModifierExtension = append(b.medicinalProductDefinitionName.ModifierExtension, v)
+	return b
+}
+
+// SetProductName sets the ProductName field.
+func (b *MedicinalProductDefinitionNameBuilder) SetProductName(v string) *MedicinalProductDefinitionNameBuilder {
+	b.medicinalProductDefinitionName.ProductName = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *MedicinalProductDefinitionNameBuilder) SetType(v CodeableConcept) *MedicinalProductDefinitionNameBuilder {
+	b.medicinalProductDefinitionName.Type = &v
+	return b
+}
+
+// AddNamePart adds a NamePart element.
+func (b *MedicinalProductDefinitionNameBuilder) AddNamePart(v MedicinalProductDefinitionNameNamePart) *MedicinalProductDefinitionNameBuilder {
+	b.medicinalProductDefinitionName.NamePart = append(b.medicinalProductDefinitionName.NamePart, v)
+	return b
+}
+
+// AddCountryLanguage adds a CountryLanguage element.
+func (b *MedicinalProductDefinitionNameBuilder) AddCountryLanguage(v MedicinalProductDefinitionNameCountryLanguage) *MedicinalProductDefinitionNameBuilder {
+	b.medicinalProductDefinitionName.CountryLanguage = append(b.medicinalProductDefinitionName.CountryLanguage, v)
+	return b
+}
+
+// SetProductNameExt sets the extensions carried by ProductName, serialized as
+// "_productName".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductDefinitionNameBuilder) SetProductNameExt(v Element) *MedicinalProductDefinitionNameBuilder {
+	b.medicinalProductDefinitionName.ProductNameExt = &v
+	return b
+}
+
+// =============================================================================
+// MedicinalProductDefinitionNameCountryLanguage - Fluent Builder
+// =============================================================================
+
+// MedicinalProductDefinitionNameCountryLanguageBuilder provides a fluent API for constructing MedicinalProductDefinitionNameCountryLanguage values.
+type MedicinalProductDefinitionNameCountryLanguageBuilder struct {
+	medicinalProductDefinitionNameCountryLanguage *MedicinalProductDefinitionNameCountryLanguage
+}
+
+// NewMedicinalProductDefinitionNameCountryLanguageBuilder creates a new MedicinalProductDefinitionNameCountryLanguageBuilder.
+func NewMedicinalProductDefinitionNameCountryLanguageBuilder() *MedicinalProductDefinitionNameCountryLanguageBuilder {
+	return &MedicinalProductDefinitionNameCountryLanguageBuilder{
+		medicinalProductDefinitionNameCountryLanguage: &MedicinalProductDefinitionNameCountryLanguage{},
+	}
+}
+
+// Build returns the constructed MedicinalProductDefinitionNameCountryLanguage.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicinalProductDefinitionNameCountryLanguageBuilder) Build() MedicinalProductDefinitionNameCountryLanguage {
+	return *b.medicinalProductDefinitionNameCountryLanguage
+}
+
+// SetId sets the Id field.
+func (b *MedicinalProductDefinitionNameCountryLanguageBuilder) SetId(v string) *MedicinalProductDefinitionNameCountryLanguageBuilder {
+	b.medicinalProductDefinitionNameCountryLanguage.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicinalProductDefinitionNameCountryLanguageBuilder) AddExtension(v Extension) *MedicinalProductDefinitionNameCountryLanguageBuilder {
+	b.medicinalProductDefinitionNameCountryLanguage.Extension = append(b.medicinalProductDefinitionNameCountryLanguage.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicinalProductDefinitionNameCountryLanguageBuilder) AddModifierExtension(v Extension) *MedicinalProductDefinitionNameCountryLanguageBuilder {
+	b.medicinalProductDefinitionNameCountryLanguage.ModifierExtension = append(b.medicinalProductDefinitionNameCountryLanguage.ModifierExtension, v)
+	return b
+}
+
+// SetCountry sets the Country field.
+func (b *MedicinalProductDefinitionNameCountryLanguageBuilder) SetCountry(v CodeableConcept) *MedicinalProductDefinitionNameCountryLanguageBuilder {
+	b.medicinalProductDefinitionNameCountryLanguage.Country = &v
+	return b
+}
+
+// SetJurisdiction sets the Jurisdiction field.
+func (b *MedicinalProductDefinitionNameCountryLanguageBuilder) SetJurisdiction(v CodeableConcept) *MedicinalProductDefinitionNameCountryLanguageBuilder {
+	b.medicinalProductDefinitionNameCountryLanguage.Jurisdiction = &v
+	return b
+}
+
+// SetLanguage sets the Language field.
+func (b *MedicinalProductDefinitionNameCountryLanguageBuilder) SetLanguage(v CodeableConcept) *MedicinalProductDefinitionNameCountryLanguageBuilder {
+	b.medicinalProductDefinitionNameCountryLanguage.Language = &v
+	return b
+}
+
+// =============================================================================
+// MedicinalProductDefinitionNameNamePart - Fluent Builder
+// =============================================================================
+
+// MedicinalProductDefinitionNameNamePartBuilder provides a fluent API for constructing MedicinalProductDefinitionNameNamePart values.
+type MedicinalProductDefinitionNameNamePartBuilder struct {
+	medicinalProductDefinitionNameNamePart *MedicinalProductDefinitionNameNamePart
+}
+
+// NewMedicinalProductDefinitionNameNamePartBuilder creates a new MedicinalProductDefinitionNameNamePartBuilder.
+func NewMedicinalProductDefinitionNameNamePartBuilder() *MedicinalProductDefinitionNameNamePartBuilder {
+	return &MedicinalProductDefinitionNameNamePartBuilder{
+		medicinalProductDefinitionNameNamePart: &MedicinalProductDefinitionNameNamePart{},
+	}
+}
+
+// Build returns the constructed MedicinalProductDefinitionNameNamePart.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicinalProductDefinitionNameNamePartBuilder) Build() MedicinalProductDefinitionNameNamePart {
+	return *b.medicinalProductDefinitionNameNamePart
+}
+
+// SetId sets the Id field.
+func (b *MedicinalProductDefinitionNameNamePartBuilder) SetId(v string) *MedicinalProductDefinitionNameNamePartBuilder {
+	b.medicinalProductDefinitionNameNamePart.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicinalProductDefinitionNameNamePartBuilder) AddExtension(v Extension) *MedicinalProductDefinitionNameNamePartBuilder {
+	b.medicinalProductDefinitionNameNamePart.Extension = append(b.medicinalProductDefinitionNameNamePart.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicinalProductDefinitionNameNamePartBuilder) AddModifierExtension(v Extension) *MedicinalProductDefinitionNameNamePartBuilder {
+	b.medicinalProductDefinitionNameNamePart.ModifierExtension = append(b.medicinalProductDefinitionNameNamePart.ModifierExtension, v)
+	return b
+}
+
+// SetPart sets the Part field.
+func (b *MedicinalProductDefinitionNameNamePartBuilder) SetPart(v string) *MedicinalProductDefinitionNameNamePartBuilder {
+	b.medicinalProductDefinitionNameNamePart.Part = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *MedicinalProductDefinitionNameNamePartBuilder) SetType(v CodeableConcept) *MedicinalProductDefinitionNameNamePartBuilder {
+	b.medicinalProductDefinitionNameNamePart.Type = &v
+	return b
+}
+
+// SetPartExt sets the extensions carried by Part, serialized as
+// "_part".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductDefinitionNameNamePartBuilder) SetPartExt(v Element) *MedicinalProductDefinitionNameNamePartBuilder {
+	b.medicinalProductDefinitionNameNamePart.PartExt = &v
+	return b
+}
+
+// =============================================================================
+// MedicinalProductDefinitionOperation - Fluent Builder
+// =============================================================================
+
+// MedicinalProductDefinitionOperationBuilder provides a fluent API for constructing MedicinalProductDefinitionOperation values.
+type MedicinalProductDefinitionOperationBuilder struct {
+	medicinalProductDefinitionOperation *MedicinalProductDefinitionOperation
+}
+
+// NewMedicinalProductDefinitionOperationBuilder creates a new MedicinalProductDefinitionOperationBuilder.
+func NewMedicinalProductDefinitionOperationBuilder() *MedicinalProductDefinitionOperationBuilder {
+	return &MedicinalProductDefinitionOperationBuilder{
+		medicinalProductDefinitionOperation: &MedicinalProductDefinitionOperation{},
+	}
+}
+
+// Build returns the constructed MedicinalProductDefinitionOperation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicinalProductDefinitionOperationBuilder) Build() MedicinalProductDefinitionOperation {
+	return *b.medicinalProductDefinitionOperation
+}
+
+// SetId sets the Id field.
+func (b *MedicinalProductDefinitionOperationBuilder) SetId(v string) *MedicinalProductDefinitionOperationBuilder {
+	b.medicinalProductDefinitionOperation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicinalProductDefinitionOperationBuilder) AddExtension(v Extension) *MedicinalProductDefinitionOperationBuilder {
+	b.medicinalProductDefinitionOperation.Extension = append(b.medicinalProductDefinitionOperation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicinalProductDefinitionOperationBuilder) AddModifierExtension(v Extension) *MedicinalProductDefinitionOperationBuilder {
+	b.medicinalProductDefinitionOperation.ModifierExtension = append(b.medicinalProductDefinitionOperation.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *MedicinalProductDefinitionOperationBuilder) SetType(v CodeableReference) *MedicinalProductDefinitionOperationBuilder {
+	b.medicinalProductDefinitionOperation.Type = &v
+	return b
+}
+
+// SetEffectiveDate sets the EffectiveDate field.
+func (b *MedicinalProductDefinitionOperationBuilder) SetEffectiveDate(v Period) *MedicinalProductDefinitionOperationBuilder {
+	b.medicinalProductDefinitionOperation.EffectiveDate = &v
+	return b
+}
+
+// AddOrganization adds a Organization element.
+func (b *MedicinalProductDefinitionOperationBuilder) AddOrganization(v Reference) *MedicinalProductDefinitionOperationBuilder {
+	b.medicinalProductDefinitionOperation.Organization = append(b.medicinalProductDefinitionOperation.Organization, v)
+	return b
+}
+
+// SetConfidentialityIndicator sets the ConfidentialityIndicator field.
+func (b *MedicinalProductDefinitionOperationBuilder) SetConfidentialityIndicator(v CodeableConcept) *MedicinalProductDefinitionOperationBuilder {
+	b.medicinalProductDefinitionOperation.ConfidentialityIndicator = &v
+	return b
+}

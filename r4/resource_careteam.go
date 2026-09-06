@@ -703,3 +703,112 @@ func (b *CareTeamBuilder) AddNote(v Annotation) *CareTeamBuilder {
 	b.careTeam.Note = append(b.careTeam.Note, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CareTeamBuilder) SetImplicitRulesExt(v Element) *CareTeamBuilder {
+	b.careTeam.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CareTeamBuilder) SetLanguageExt(v Element) *CareTeamBuilder {
+	b.careTeam.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CareTeamBuilder) SetStatusExt(v Element) *CareTeamBuilder {
+	b.careTeam.StatusExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CareTeamBuilder) SetNameExt(v Element) *CareTeamBuilder {
+	b.careTeam.NameExt = &v
+	return b
+}
+
+// =============================================================================
+// CareTeamParticipant - Fluent Builder
+// =============================================================================
+
+// CareTeamParticipantBuilder provides a fluent API for constructing CareTeamParticipant values.
+type CareTeamParticipantBuilder struct {
+	careTeamParticipant *CareTeamParticipant
+}
+
+// NewCareTeamParticipantBuilder creates a new CareTeamParticipantBuilder.
+func NewCareTeamParticipantBuilder() *CareTeamParticipantBuilder {
+	return &CareTeamParticipantBuilder{
+		careTeamParticipant: &CareTeamParticipant{},
+	}
+}
+
+// Build returns the constructed CareTeamParticipant.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CareTeamParticipantBuilder) Build() CareTeamParticipant {
+	return *b.careTeamParticipant
+}
+
+// SetId sets the Id field.
+func (b *CareTeamParticipantBuilder) SetId(v string) *CareTeamParticipantBuilder {
+	b.careTeamParticipant.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CareTeamParticipantBuilder) AddExtension(v Extension) *CareTeamParticipantBuilder {
+	b.careTeamParticipant.Extension = append(b.careTeamParticipant.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CareTeamParticipantBuilder) AddModifierExtension(v Extension) *CareTeamParticipantBuilder {
+	b.careTeamParticipant.ModifierExtension = append(b.careTeamParticipant.ModifierExtension, v)
+	return b
+}
+
+// AddRole adds a Role element.
+func (b *CareTeamParticipantBuilder) AddRole(v CodeableConcept) *CareTeamParticipantBuilder {
+	b.careTeamParticipant.Role = append(b.careTeamParticipant.Role, v)
+	return b
+}
+
+// SetMember sets the Member field.
+func (b *CareTeamParticipantBuilder) SetMember(v Reference) *CareTeamParticipantBuilder {
+	b.careTeamParticipant.Member = &v
+	return b
+}
+
+// SetOnBehalfOf sets the OnBehalfOf field.
+func (b *CareTeamParticipantBuilder) SetOnBehalfOf(v Reference) *CareTeamParticipantBuilder {
+	b.careTeamParticipant.OnBehalfOf = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *CareTeamParticipantBuilder) SetPeriod(v Period) *CareTeamParticipantBuilder {
+	b.careTeamParticipant.Period = &v
+	return b
+}

@@ -1096,6 +1096,56 @@ func (b *PatientBuilder) AddLink(v PatientLink) *PatientBuilder {
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PatientBuilder) SetImplicitRulesExt(v Element) *PatientBuilder {
+	b.patient.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PatientBuilder) SetLanguageExt(v Element) *PatientBuilder {
+	b.patient.LanguageExt = &v
+	return b
+}
+
+// SetActiveExt sets the extensions carried by Active, serialized as
+// "_active".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PatientBuilder) SetActiveExt(v Element) *PatientBuilder {
+	b.patient.ActiveExt = &v
+	return b
+}
+
+// SetGenderExt sets the extensions carried by Gender, serialized as
+// "_gender".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PatientBuilder) SetGenderExt(v Element) *PatientBuilder {
+	b.patient.GenderExt = &v
+	return b
+}
+
+// SetBirthDateExt sets the extensions carried by BirthDate, serialized as
+// "_birthDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PatientBuilder) SetBirthDateExt(v Element) *PatientBuilder {
+	b.patient.BirthDateExt = &v
+	return b
+}
+
 // clearDeceased unsets every variant of Deceased[x], including the
 // _field companions of the primitive ones.
 func (b *PatientBuilder) clearDeceased() {
@@ -1110,4 +1160,235 @@ func (b *PatientBuilder) clearMultipleBirth() {
 	b.patient.MultipleBirthBoolean = nil
 	b.patient.MultipleBirthInteger = nil
 	b.patient.MultipleBirthIntegerExt = nil
+}
+
+// =============================================================================
+// PatientCommunication - Fluent Builder
+// =============================================================================
+
+// PatientCommunicationBuilder provides a fluent API for constructing PatientCommunication values.
+type PatientCommunicationBuilder struct {
+	patientCommunication *PatientCommunication
+}
+
+// NewPatientCommunicationBuilder creates a new PatientCommunicationBuilder.
+func NewPatientCommunicationBuilder() *PatientCommunicationBuilder {
+	return &PatientCommunicationBuilder{
+		patientCommunication: &PatientCommunication{},
+	}
+}
+
+// Build returns the constructed PatientCommunication.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PatientCommunicationBuilder) Build() PatientCommunication {
+	return *b.patientCommunication
+}
+
+// SetId sets the Id field.
+func (b *PatientCommunicationBuilder) SetId(v string) *PatientCommunicationBuilder {
+	b.patientCommunication.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PatientCommunicationBuilder) AddExtension(v Extension) *PatientCommunicationBuilder {
+	b.patientCommunication.Extension = append(b.patientCommunication.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PatientCommunicationBuilder) AddModifierExtension(v Extension) *PatientCommunicationBuilder {
+	b.patientCommunication.ModifierExtension = append(b.patientCommunication.ModifierExtension, v)
+	return b
+}
+
+// SetLanguage sets the Language field.
+func (b *PatientCommunicationBuilder) SetLanguage(v CodeableConcept) *PatientCommunicationBuilder {
+	b.patientCommunication.Language = &v
+	return b
+}
+
+// SetPreferred sets the Preferred field.
+func (b *PatientCommunicationBuilder) SetPreferred(v bool) *PatientCommunicationBuilder {
+	b.patientCommunication.Preferred = &v
+	return b
+}
+
+// SetPreferredExt sets the extensions carried by Preferred, serialized as
+// "_preferred".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PatientCommunicationBuilder) SetPreferredExt(v Element) *PatientCommunicationBuilder {
+	b.patientCommunication.PreferredExt = &v
+	return b
+}
+
+// =============================================================================
+// PatientContact - Fluent Builder
+// =============================================================================
+
+// PatientContactBuilder provides a fluent API for constructing PatientContact values.
+type PatientContactBuilder struct {
+	patientContact *PatientContact
+}
+
+// NewPatientContactBuilder creates a new PatientContactBuilder.
+func NewPatientContactBuilder() *PatientContactBuilder {
+	return &PatientContactBuilder{
+		patientContact: &PatientContact{},
+	}
+}
+
+// Build returns the constructed PatientContact.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PatientContactBuilder) Build() PatientContact {
+	return *b.patientContact
+}
+
+// SetId sets the Id field.
+func (b *PatientContactBuilder) SetId(v string) *PatientContactBuilder {
+	b.patientContact.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PatientContactBuilder) AddExtension(v Extension) *PatientContactBuilder {
+	b.patientContact.Extension = append(b.patientContact.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PatientContactBuilder) AddModifierExtension(v Extension) *PatientContactBuilder {
+	b.patientContact.ModifierExtension = append(b.patientContact.ModifierExtension, v)
+	return b
+}
+
+// AddRelationship adds a Relationship element.
+func (b *PatientContactBuilder) AddRelationship(v CodeableConcept) *PatientContactBuilder {
+	b.patientContact.Relationship = append(b.patientContact.Relationship, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *PatientContactBuilder) SetName(v HumanName) *PatientContactBuilder {
+	b.patientContact.Name = &v
+	return b
+}
+
+// AddTelecom adds a Telecom element.
+func (b *PatientContactBuilder) AddTelecom(v ContactPoint) *PatientContactBuilder {
+	b.patientContact.Telecom = append(b.patientContact.Telecom, v)
+	return b
+}
+
+// SetAddress sets the Address field.
+func (b *PatientContactBuilder) SetAddress(v Address) *PatientContactBuilder {
+	b.patientContact.Address = &v
+	return b
+}
+
+// SetGender sets the Gender field.
+func (b *PatientContactBuilder) SetGender(v AdministrativeGender) *PatientContactBuilder {
+	b.patientContact.Gender = &v
+	return b
+}
+
+// SetOrganization sets the Organization field.
+func (b *PatientContactBuilder) SetOrganization(v Reference) *PatientContactBuilder {
+	b.patientContact.Organization = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *PatientContactBuilder) SetPeriod(v Period) *PatientContactBuilder {
+	b.patientContact.Period = &v
+	return b
+}
+
+// SetGenderExt sets the extensions carried by Gender, serialized as
+// "_gender".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PatientContactBuilder) SetGenderExt(v Element) *PatientContactBuilder {
+	b.patientContact.GenderExt = &v
+	return b
+}
+
+// =============================================================================
+// PatientLink - Fluent Builder
+// =============================================================================
+
+// PatientLinkBuilder provides a fluent API for constructing PatientLink values.
+type PatientLinkBuilder struct {
+	patientLink *PatientLink
+}
+
+// NewPatientLinkBuilder creates a new PatientLinkBuilder.
+func NewPatientLinkBuilder() *PatientLinkBuilder {
+	return &PatientLinkBuilder{
+		patientLink: &PatientLink{},
+	}
+}
+
+// Build returns the constructed PatientLink.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PatientLinkBuilder) Build() PatientLink {
+	return *b.patientLink
+}
+
+// SetId sets the Id field.
+func (b *PatientLinkBuilder) SetId(v string) *PatientLinkBuilder {
+	b.patientLink.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PatientLinkBuilder) AddExtension(v Extension) *PatientLinkBuilder {
+	b.patientLink.Extension = append(b.patientLink.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PatientLinkBuilder) AddModifierExtension(v Extension) *PatientLinkBuilder {
+	b.patientLink.ModifierExtension = append(b.patientLink.ModifierExtension, v)
+	return b
+}
+
+// SetOther sets the Other field.
+func (b *PatientLinkBuilder) SetOther(v Reference) *PatientLinkBuilder {
+	b.patientLink.Other = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *PatientLinkBuilder) SetType(v LinkType) *PatientLinkBuilder {
+	b.patientLink.Type = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PatientLinkBuilder) SetTypeExt(v Element) *PatientLinkBuilder {
+	b.patientLink.TypeExt = &v
+	return b
 }

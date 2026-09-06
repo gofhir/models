@@ -820,3 +820,291 @@ func (b *GroupBuilder) AddMember(v GroupMember) *GroupBuilder {
 	b.group.Member = append(b.group.Member, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GroupBuilder) SetImplicitRulesExt(v Element) *GroupBuilder {
+	b.group.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GroupBuilder) SetLanguageExt(v Element) *GroupBuilder {
+	b.group.LanguageExt = &v
+	return b
+}
+
+// SetActiveExt sets the extensions carried by Active, serialized as
+// "_active".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GroupBuilder) SetActiveExt(v Element) *GroupBuilder {
+	b.group.ActiveExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GroupBuilder) SetTypeExt(v Element) *GroupBuilder {
+	b.group.TypeExt = &v
+	return b
+}
+
+// SetActualExt sets the extensions carried by Actual, serialized as
+// "_actual".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GroupBuilder) SetActualExt(v Element) *GroupBuilder {
+	b.group.ActualExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GroupBuilder) SetNameExt(v Element) *GroupBuilder {
+	b.group.NameExt = &v
+	return b
+}
+
+// SetQuantityExt sets the extensions carried by Quantity, serialized as
+// "_quantity".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GroupBuilder) SetQuantityExt(v Element) *GroupBuilder {
+	b.group.QuantityExt = &v
+	return b
+}
+
+// =============================================================================
+// GroupCharacteristic - Fluent Builder
+// =============================================================================
+
+// GroupCharacteristicBuilder provides a fluent API for constructing GroupCharacteristic values.
+type GroupCharacteristicBuilder struct {
+	groupCharacteristic *GroupCharacteristic
+}
+
+// NewGroupCharacteristicBuilder creates a new GroupCharacteristicBuilder.
+func NewGroupCharacteristicBuilder() *GroupCharacteristicBuilder {
+	return &GroupCharacteristicBuilder{
+		groupCharacteristic: &GroupCharacteristic{},
+	}
+}
+
+// Build returns the constructed GroupCharacteristic.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *GroupCharacteristicBuilder) Build() GroupCharacteristic {
+	return *b.groupCharacteristic
+}
+
+// SetId sets the Id field.
+func (b *GroupCharacteristicBuilder) SetId(v string) *GroupCharacteristicBuilder {
+	b.groupCharacteristic.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *GroupCharacteristicBuilder) AddExtension(v Extension) *GroupCharacteristicBuilder {
+	b.groupCharacteristic.Extension = append(b.groupCharacteristic.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *GroupCharacteristicBuilder) AddModifierExtension(v Extension) *GroupCharacteristicBuilder {
+	b.groupCharacteristic.ModifierExtension = append(b.groupCharacteristic.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *GroupCharacteristicBuilder) SetCode(v CodeableConcept) *GroupCharacteristicBuilder {
+	b.groupCharacteristic.Code = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *GroupCharacteristicBuilder) SetValueCodeableConcept(v CodeableConcept) *GroupCharacteristicBuilder {
+	b.clearValue()
+	b.groupCharacteristic.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *GroupCharacteristicBuilder) SetValueBoolean(v bool) *GroupCharacteristicBuilder {
+	b.clearValue()
+	b.groupCharacteristic.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *GroupCharacteristicBuilder) SetValueBooleanExt(v Element) *GroupCharacteristicBuilder {
+	b.groupCharacteristic.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *GroupCharacteristicBuilder) SetValueQuantity(v Quantity) *GroupCharacteristicBuilder {
+	b.clearValue()
+	b.groupCharacteristic.ValueQuantity = &v
+	return b
+}
+
+// SetValueRange sets Value[x] to its ValueRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *GroupCharacteristicBuilder) SetValueRange(v Range) *GroupCharacteristicBuilder {
+	b.clearValue()
+	b.groupCharacteristic.ValueRange = &v
+	return b
+}
+
+// SetValueReference sets Value[x] to its ValueReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *GroupCharacteristicBuilder) SetValueReference(v Reference) *GroupCharacteristicBuilder {
+	b.clearValue()
+	b.groupCharacteristic.ValueReference = &v
+	return b
+}
+
+// SetExclude sets the Exclude field.
+func (b *GroupCharacteristicBuilder) SetExclude(v bool) *GroupCharacteristicBuilder {
+	b.groupCharacteristic.Exclude = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *GroupCharacteristicBuilder) SetPeriod(v Period) *GroupCharacteristicBuilder {
+	b.groupCharacteristic.Period = &v
+	return b
+}
+
+// SetExcludeExt sets the extensions carried by Exclude, serialized as
+// "_exclude".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GroupCharacteristicBuilder) SetExcludeExt(v Element) *GroupCharacteristicBuilder {
+	b.groupCharacteristic.ExcludeExt = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *GroupCharacteristicBuilder) clearValue() {
+	b.groupCharacteristic.ValueCodeableConcept = nil
+	b.groupCharacteristic.ValueBoolean = nil
+	b.groupCharacteristic.ValueBooleanExt = nil
+	b.groupCharacteristic.ValueQuantity = nil
+	b.groupCharacteristic.ValueRange = nil
+	b.groupCharacteristic.ValueReference = nil
+}
+
+// =============================================================================
+// GroupMember - Fluent Builder
+// =============================================================================
+
+// GroupMemberBuilder provides a fluent API for constructing GroupMember values.
+type GroupMemberBuilder struct {
+	groupMember *GroupMember
+}
+
+// NewGroupMemberBuilder creates a new GroupMemberBuilder.
+func NewGroupMemberBuilder() *GroupMemberBuilder {
+	return &GroupMemberBuilder{
+		groupMember: &GroupMember{},
+	}
+}
+
+// Build returns the constructed GroupMember.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *GroupMemberBuilder) Build() GroupMember {
+	return *b.groupMember
+}
+
+// SetId sets the Id field.
+func (b *GroupMemberBuilder) SetId(v string) *GroupMemberBuilder {
+	b.groupMember.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *GroupMemberBuilder) AddExtension(v Extension) *GroupMemberBuilder {
+	b.groupMember.Extension = append(b.groupMember.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *GroupMemberBuilder) AddModifierExtension(v Extension) *GroupMemberBuilder {
+	b.groupMember.ModifierExtension = append(b.groupMember.ModifierExtension, v)
+	return b
+}
+
+// SetEntity sets the Entity field.
+func (b *GroupMemberBuilder) SetEntity(v Reference) *GroupMemberBuilder {
+	b.groupMember.Entity = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *GroupMemberBuilder) SetPeriod(v Period) *GroupMemberBuilder {
+	b.groupMember.Period = &v
+	return b
+}
+
+// SetInactive sets the Inactive field.
+func (b *GroupMemberBuilder) SetInactive(v bool) *GroupMemberBuilder {
+	b.groupMember.Inactive = &v
+	return b
+}
+
+// SetInactiveExt sets the extensions carried by Inactive, serialized as
+// "_inactive".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GroupMemberBuilder) SetInactiveExt(v Element) *GroupMemberBuilder {
+	b.groupMember.InactiveExt = &v
+	return b
+}

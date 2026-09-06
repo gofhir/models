@@ -622,3 +622,120 @@ func (b *PersonBuilder) AddLink(v PersonLink) *PersonBuilder {
 	b.person.Link = append(b.person.Link, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PersonBuilder) SetImplicitRulesExt(v Element) *PersonBuilder {
+	b.person.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PersonBuilder) SetLanguageExt(v Element) *PersonBuilder {
+	b.person.LanguageExt = &v
+	return b
+}
+
+// SetGenderExt sets the extensions carried by Gender, serialized as
+// "_gender".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PersonBuilder) SetGenderExt(v Element) *PersonBuilder {
+	b.person.GenderExt = &v
+	return b
+}
+
+// SetBirthDateExt sets the extensions carried by BirthDate, serialized as
+// "_birthDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PersonBuilder) SetBirthDateExt(v Element) *PersonBuilder {
+	b.person.BirthDateExt = &v
+	return b
+}
+
+// SetActiveExt sets the extensions carried by Active, serialized as
+// "_active".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PersonBuilder) SetActiveExt(v Element) *PersonBuilder {
+	b.person.ActiveExt = &v
+	return b
+}
+
+// =============================================================================
+// PersonLink - Fluent Builder
+// =============================================================================
+
+// PersonLinkBuilder provides a fluent API for constructing PersonLink values.
+type PersonLinkBuilder struct {
+	personLink *PersonLink
+}
+
+// NewPersonLinkBuilder creates a new PersonLinkBuilder.
+func NewPersonLinkBuilder() *PersonLinkBuilder {
+	return &PersonLinkBuilder{
+		personLink: &PersonLink{},
+	}
+}
+
+// Build returns the constructed PersonLink.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PersonLinkBuilder) Build() PersonLink {
+	return *b.personLink
+}
+
+// SetId sets the Id field.
+func (b *PersonLinkBuilder) SetId(v string) *PersonLinkBuilder {
+	b.personLink.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *PersonLinkBuilder) AddExtension(v Extension) *PersonLinkBuilder {
+	b.personLink.Extension = append(b.personLink.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *PersonLinkBuilder) AddModifierExtension(v Extension) *PersonLinkBuilder {
+	b.personLink.ModifierExtension = append(b.personLink.ModifierExtension, v)
+	return b
+}
+
+// SetTarget sets the Target field.
+func (b *PersonLinkBuilder) SetTarget(v Reference) *PersonLinkBuilder {
+	b.personLink.Target = &v
+	return b
+}
+
+// SetAssurance sets the Assurance field.
+func (b *PersonLinkBuilder) SetAssurance(v IdentityAssuranceLevel) *PersonLinkBuilder {
+	b.personLink.Assurance = &v
+	return b
+}
+
+// SetAssuranceExt sets the extensions carried by Assurance, serialized as
+// "_assurance".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PersonLinkBuilder) SetAssuranceExt(v Element) *PersonLinkBuilder {
+	b.personLink.AssuranceExt = &v
+	return b
+}

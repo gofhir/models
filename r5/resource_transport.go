@@ -2683,3 +2683,1872 @@ func (b *TransportBuilder) SetHistory(v Reference) *TransportBuilder {
 	b.transport.History = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TransportBuilder) SetImplicitRulesExt(v Element) *TransportBuilder {
+	b.transport.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TransportBuilder) SetLanguageExt(v Element) *TransportBuilder {
+	b.transport.LanguageExt = &v
+	return b
+}
+
+// SetInstantiatesCanonicalExt sets the extensions carried by InstantiatesCanonical, serialized as
+// "_instantiatesCanonical".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TransportBuilder) SetInstantiatesCanonicalExt(v Element) *TransportBuilder {
+	b.transport.InstantiatesCanonicalExt = &v
+	return b
+}
+
+// SetInstantiatesUriExt sets the extensions carried by InstantiatesUri, serialized as
+// "_instantiatesUri".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TransportBuilder) SetInstantiatesUriExt(v Element) *TransportBuilder {
+	b.transport.InstantiatesUriExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TransportBuilder) SetStatusExt(v Element) *TransportBuilder {
+	b.transport.StatusExt = &v
+	return b
+}
+
+// SetIntentExt sets the extensions carried by Intent, serialized as
+// "_intent".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TransportBuilder) SetIntentExt(v Element) *TransportBuilder {
+	b.transport.IntentExt = &v
+	return b
+}
+
+// SetPriorityExt sets the extensions carried by Priority, serialized as
+// "_priority".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TransportBuilder) SetPriorityExt(v Element) *TransportBuilder {
+	b.transport.PriorityExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TransportBuilder) SetDescriptionExt(v Element) *TransportBuilder {
+	b.transport.DescriptionExt = &v
+	return b
+}
+
+// SetCompletionTimeExt sets the extensions carried by CompletionTime, serialized as
+// "_completionTime".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TransportBuilder) SetCompletionTimeExt(v Element) *TransportBuilder {
+	b.transport.CompletionTimeExt = &v
+	return b
+}
+
+// SetAuthoredOnExt sets the extensions carried by AuthoredOn, serialized as
+// "_authoredOn".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TransportBuilder) SetAuthoredOnExt(v Element) *TransportBuilder {
+	b.transport.AuthoredOnExt = &v
+	return b
+}
+
+// SetLastModifiedExt sets the extensions carried by LastModified, serialized as
+// "_lastModified".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TransportBuilder) SetLastModifiedExt(v Element) *TransportBuilder {
+	b.transport.LastModifiedExt = &v
+	return b
+}
+
+// =============================================================================
+// TransportInput - Fluent Builder
+// =============================================================================
+
+// TransportInputBuilder provides a fluent API for constructing TransportInput values.
+type TransportInputBuilder struct {
+	transportInput *TransportInput
+}
+
+// NewTransportInputBuilder creates a new TransportInputBuilder.
+func NewTransportInputBuilder() *TransportInputBuilder {
+	return &TransportInputBuilder{
+		transportInput: &TransportInput{},
+	}
+}
+
+// Build returns the constructed TransportInput.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TransportInputBuilder) Build() TransportInput {
+	return *b.transportInput
+}
+
+// SetId sets the Id field.
+func (b *TransportInputBuilder) SetId(v string) *TransportInputBuilder {
+	b.transportInput.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TransportInputBuilder) AddExtension(v Extension) *TransportInputBuilder {
+	b.transportInput.Extension = append(b.transportInput.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TransportInputBuilder) AddModifierExtension(v Extension) *TransportInputBuilder {
+	b.transportInput.ModifierExtension = append(b.transportInput.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *TransportInputBuilder) SetType(v CodeableConcept) *TransportInputBuilder {
+	b.transportInput.Type = &v
+	return b
+}
+
+// SetValueBase64Binary sets Value[x] to its ValueBase64Binary variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueBase64Binary(v string) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueBase64Binary = &v
+	return b
+}
+
+// SetValueBase64BinaryExt sets the ValueBase64BinaryExt field.
+func (b *TransportInputBuilder) SetValueBase64BinaryExt(v Element) *TransportInputBuilder {
+	b.transportInput.ValueBase64BinaryExt = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueBoolean(v bool) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *TransportInputBuilder) SetValueBooleanExt(v Element) *TransportInputBuilder {
+	b.transportInput.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueCanonical sets Value[x] to its ValueCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueCanonical(v string) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueCanonical = &v
+	return b
+}
+
+// SetValueCanonicalExt sets the ValueCanonicalExt field.
+func (b *TransportInputBuilder) SetValueCanonicalExt(v Element) *TransportInputBuilder {
+	b.transportInput.ValueCanonicalExt = &v
+	return b
+}
+
+// SetValueCode sets Value[x] to its ValueCode variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueCode(v string) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueCode = &v
+	return b
+}
+
+// SetValueCodeExt sets the ValueCodeExt field.
+func (b *TransportInputBuilder) SetValueCodeExt(v Element) *TransportInputBuilder {
+	b.transportInput.ValueCodeExt = &v
+	return b
+}
+
+// SetValueDate sets Value[x] to its ValueDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueDate(v string) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueDate = &v
+	return b
+}
+
+// SetValueDateExt sets the ValueDateExt field.
+func (b *TransportInputBuilder) SetValueDateExt(v Element) *TransportInputBuilder {
+	b.transportInput.ValueDateExt = &v
+	return b
+}
+
+// SetValueDateTime sets Value[x] to its ValueDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueDateTime(v string) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueDateTime = &v
+	return b
+}
+
+// SetValueDateTimeExt sets the ValueDateTimeExt field.
+func (b *TransportInputBuilder) SetValueDateTimeExt(v Element) *TransportInputBuilder {
+	b.transportInput.ValueDateTimeExt = &v
+	return b
+}
+
+// SetValueDecimal sets Value[x] to its ValueDecimal variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueDecimal(v Decimal) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueDecimal = &v
+	return b
+}
+
+// SetValueDecimalExt sets the ValueDecimalExt field.
+func (b *TransportInputBuilder) SetValueDecimalExt(v Element) *TransportInputBuilder {
+	b.transportInput.ValueDecimalExt = &v
+	return b
+}
+
+// SetValueId sets Value[x] to its ValueId variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueId(v string) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueId = &v
+	return b
+}
+
+// SetValueIdExt sets the ValueIdExt field.
+func (b *TransportInputBuilder) SetValueIdExt(v Element) *TransportInputBuilder {
+	b.transportInput.ValueIdExt = &v
+	return b
+}
+
+// SetValueInstant sets Value[x] to its ValueInstant variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueInstant(v string) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueInstant = &v
+	return b
+}
+
+// SetValueInstantExt sets the ValueInstantExt field.
+func (b *TransportInputBuilder) SetValueInstantExt(v Element) *TransportInputBuilder {
+	b.transportInput.ValueInstantExt = &v
+	return b
+}
+
+// SetValueInteger sets Value[x] to its ValueInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueInteger(v int) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueInteger = &v
+	return b
+}
+
+// SetValueIntegerExt sets the ValueIntegerExt field.
+func (b *TransportInputBuilder) SetValueIntegerExt(v Element) *TransportInputBuilder {
+	b.transportInput.ValueIntegerExt = &v
+	return b
+}
+
+// SetValueInteger64 sets Value[x] to its ValueInteger64 variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueInteger64(v Integer64) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueInteger64 = &v
+	return b
+}
+
+// SetValueInteger64Ext sets the ValueInteger64Ext field.
+func (b *TransportInputBuilder) SetValueInteger64Ext(v Element) *TransportInputBuilder {
+	b.transportInput.ValueInteger64Ext = &v
+	return b
+}
+
+// SetValueMarkdown sets Value[x] to its ValueMarkdown variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueMarkdown(v string) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueMarkdown = &v
+	return b
+}
+
+// SetValueMarkdownExt sets the ValueMarkdownExt field.
+func (b *TransportInputBuilder) SetValueMarkdownExt(v Element) *TransportInputBuilder {
+	b.transportInput.ValueMarkdownExt = &v
+	return b
+}
+
+// SetValueOid sets Value[x] to its ValueOid variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueOid(v string) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueOid = &v
+	return b
+}
+
+// SetValueOidExt sets the ValueOidExt field.
+func (b *TransportInputBuilder) SetValueOidExt(v Element) *TransportInputBuilder {
+	b.transportInput.ValueOidExt = &v
+	return b
+}
+
+// SetValuePositiveInt sets Value[x] to its ValuePositiveInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValuePositiveInt(v uint32) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValuePositiveInt = &v
+	return b
+}
+
+// SetValuePositiveIntExt sets the ValuePositiveIntExt field.
+func (b *TransportInputBuilder) SetValuePositiveIntExt(v Element) *TransportInputBuilder {
+	b.transportInput.ValuePositiveIntExt = &v
+	return b
+}
+
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueString(v string) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueString = &v
+	return b
+}
+
+// SetValueStringExt sets the ValueStringExt field.
+func (b *TransportInputBuilder) SetValueStringExt(v Element) *TransportInputBuilder {
+	b.transportInput.ValueStringExt = &v
+	return b
+}
+
+// SetValueTime sets Value[x] to its ValueTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueTime(v string) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueTime = &v
+	return b
+}
+
+// SetValueTimeExt sets the ValueTimeExt field.
+func (b *TransportInputBuilder) SetValueTimeExt(v Element) *TransportInputBuilder {
+	b.transportInput.ValueTimeExt = &v
+	return b
+}
+
+// SetValueUnsignedInt sets Value[x] to its ValueUnsignedInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueUnsignedInt(v uint32) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueUnsignedInt = &v
+	return b
+}
+
+// SetValueUnsignedIntExt sets the ValueUnsignedIntExt field.
+func (b *TransportInputBuilder) SetValueUnsignedIntExt(v Element) *TransportInputBuilder {
+	b.transportInput.ValueUnsignedIntExt = &v
+	return b
+}
+
+// SetValueUri sets Value[x] to its ValueUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueUri(v string) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueUri = &v
+	return b
+}
+
+// SetValueUriExt sets the ValueUriExt field.
+func (b *TransportInputBuilder) SetValueUriExt(v Element) *TransportInputBuilder {
+	b.transportInput.ValueUriExt = &v
+	return b
+}
+
+// SetValueUrl sets Value[x] to its ValueUrl variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueUrl(v string) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueUrl = &v
+	return b
+}
+
+// SetValueUrlExt sets the ValueUrlExt field.
+func (b *TransportInputBuilder) SetValueUrlExt(v Element) *TransportInputBuilder {
+	b.transportInput.ValueUrlExt = &v
+	return b
+}
+
+// SetValueUuid sets Value[x] to its ValueUuid variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueUuid(v string) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueUuid = &v
+	return b
+}
+
+// SetValueUuidExt sets the ValueUuidExt field.
+func (b *TransportInputBuilder) SetValueUuidExt(v Element) *TransportInputBuilder {
+	b.transportInput.ValueUuidExt = &v
+	return b
+}
+
+// SetValueAddress sets Value[x] to its ValueAddress variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueAddress(v Address) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueAddress = &v
+	return b
+}
+
+// SetValueAge sets Value[x] to its ValueAge variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueAge(v Age) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueAge = &v
+	return b
+}
+
+// SetValueAnnotation sets Value[x] to its ValueAnnotation variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueAnnotation(v Annotation) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueAnnotation = &v
+	return b
+}
+
+// SetValueAttachment sets Value[x] to its ValueAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueAttachment(v Attachment) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueAttachment = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueCodeableConcept(v CodeableConcept) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueCodeableReference sets Value[x] to its ValueCodeableReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueCodeableReference(v CodeableReference) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueCodeableReference = &v
+	return b
+}
+
+// SetValueCoding sets Value[x] to its ValueCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueCoding(v Coding) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueCoding = &v
+	return b
+}
+
+// SetValueContactPoint sets Value[x] to its ValueContactPoint variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueContactPoint(v ContactPoint) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueContactPoint = &v
+	return b
+}
+
+// SetValueCount sets Value[x] to its ValueCount variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueCount(v Count) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueCount = &v
+	return b
+}
+
+// SetValueDistance sets Value[x] to its ValueDistance variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueDistance(v Distance) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueDistance = &v
+	return b
+}
+
+// SetValueDuration sets Value[x] to its ValueDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueDuration(v Duration) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueDuration = &v
+	return b
+}
+
+// SetValueHumanName sets Value[x] to its ValueHumanName variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueHumanName(v HumanName) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueHumanName = &v
+	return b
+}
+
+// SetValueIdentifier sets Value[x] to its ValueIdentifier variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueIdentifier(v Identifier) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueIdentifier = &v
+	return b
+}
+
+// SetValueMoney sets Value[x] to its ValueMoney variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueMoney(v Money) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueMoney = &v
+	return b
+}
+
+// SetValuePeriod sets Value[x] to its ValuePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValuePeriod(v Period) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValuePeriod = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueQuantity(v Quantity) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueQuantity = &v
+	return b
+}
+
+// SetValueRange sets Value[x] to its ValueRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueRange(v Range) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueRange = &v
+	return b
+}
+
+// SetValueRatio sets Value[x] to its ValueRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueRatio(v Ratio) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueRatio = &v
+	return b
+}
+
+// SetValueRatioRange sets Value[x] to its ValueRatioRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueRatioRange(v RatioRange) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueRatioRange = &v
+	return b
+}
+
+// SetValueReference sets Value[x] to its ValueReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueReference(v Reference) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueReference = &v
+	return b
+}
+
+// SetValueSampledData sets Value[x] to its ValueSampledData variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueSampledData(v SampledData) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueSampledData = &v
+	return b
+}
+
+// SetValueSignature sets Value[x] to its ValueSignature variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueSignature(v Signature) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueSignature = &v
+	return b
+}
+
+// SetValueTiming sets Value[x] to its ValueTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueTiming(v Timing) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueTiming = &v
+	return b
+}
+
+// SetValueContactDetail sets Value[x] to its ValueContactDetail variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueContactDetail(v ContactDetail) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueContactDetail = &v
+	return b
+}
+
+// SetValueDataRequirement sets Value[x] to its ValueDataRequirement variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueDataRequirement(v DataRequirement) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueDataRequirement = &v
+	return b
+}
+
+// SetValueExpression sets Value[x] to its ValueExpression variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueExpression(v Expression) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueExpression = &v
+	return b
+}
+
+// SetValueParameterDefinition sets Value[x] to its ValueParameterDefinition variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueParameterDefinition(v ParameterDefinition) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueParameterDefinition = &v
+	return b
+}
+
+// SetValueRelatedArtifact sets Value[x] to its ValueRelatedArtifact variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueRelatedArtifact(v RelatedArtifact) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueRelatedArtifact = &v
+	return b
+}
+
+// SetValueTriggerDefinition sets Value[x] to its ValueTriggerDefinition variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueTriggerDefinition(v TriggerDefinition) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueTriggerDefinition = &v
+	return b
+}
+
+// SetValueUsageContext sets Value[x] to its ValueUsageContext variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueUsageContext(v UsageContext) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueUsageContext = &v
+	return b
+}
+
+// SetValueAvailability sets Value[x] to its ValueAvailability variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueAvailability(v Availability) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueAvailability = &v
+	return b
+}
+
+// SetValueExtendedContactDetail sets Value[x] to its ValueExtendedContactDetail variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueExtendedContactDetail(v ExtendedContactDetail) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueExtendedContactDetail = &v
+	return b
+}
+
+// SetValueDosage sets Value[x] to its ValueDosage variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueDosage(v Dosage) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueDosage = &v
+	return b
+}
+
+// SetValueMeta sets Value[x] to its ValueMeta variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportInputBuilder) SetValueMeta(v Meta) *TransportInputBuilder {
+	b.clearValue()
+	b.transportInput.ValueMeta = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *TransportInputBuilder) clearValue() {
+	b.transportInput.ValueBase64Binary = nil
+	b.transportInput.ValueBoolean = nil
+	b.transportInput.ValueBooleanExt = nil
+	b.transportInput.ValueCanonical = nil
+	b.transportInput.ValueCanonicalExt = nil
+	b.transportInput.ValueCode = nil
+	b.transportInput.ValueCodeExt = nil
+	b.transportInput.ValueDate = nil
+	b.transportInput.ValueDateExt = nil
+	b.transportInput.ValueDateTime = nil
+	b.transportInput.ValueDateTimeExt = nil
+	b.transportInput.ValueDecimal = nil
+	b.transportInput.ValueDecimalExt = nil
+	b.transportInput.ValueId = nil
+	b.transportInput.ValueIdExt = nil
+	b.transportInput.ValueInstant = nil
+	b.transportInput.ValueInstantExt = nil
+	b.transportInput.ValueInteger = nil
+	b.transportInput.ValueIntegerExt = nil
+	b.transportInput.ValueInteger64 = nil
+	b.transportInput.ValueInteger64Ext = nil
+	b.transportInput.ValueMarkdown = nil
+	b.transportInput.ValueMarkdownExt = nil
+	b.transportInput.ValueOid = nil
+	b.transportInput.ValueOidExt = nil
+	b.transportInput.ValuePositiveInt = nil
+	b.transportInput.ValuePositiveIntExt = nil
+	b.transportInput.ValueString = nil
+	b.transportInput.ValueStringExt = nil
+	b.transportInput.ValueTime = nil
+	b.transportInput.ValueTimeExt = nil
+	b.transportInput.ValueUnsignedInt = nil
+	b.transportInput.ValueUnsignedIntExt = nil
+	b.transportInput.ValueUri = nil
+	b.transportInput.ValueUriExt = nil
+	b.transportInput.ValueUrl = nil
+	b.transportInput.ValueUrlExt = nil
+	b.transportInput.ValueUuid = nil
+	b.transportInput.ValueUuidExt = nil
+	b.transportInput.ValueAddress = nil
+	b.transportInput.ValueAge = nil
+	b.transportInput.ValueAnnotation = nil
+	b.transportInput.ValueAttachment = nil
+	b.transportInput.ValueCodeableConcept = nil
+	b.transportInput.ValueCodeableReference = nil
+	b.transportInput.ValueCoding = nil
+	b.transportInput.ValueContactPoint = nil
+	b.transportInput.ValueCount = nil
+	b.transportInput.ValueDistance = nil
+	b.transportInput.ValueDuration = nil
+	b.transportInput.ValueHumanName = nil
+	b.transportInput.ValueIdentifier = nil
+	b.transportInput.ValueMoney = nil
+	b.transportInput.ValuePeriod = nil
+	b.transportInput.ValueQuantity = nil
+	b.transportInput.ValueRange = nil
+	b.transportInput.ValueRatio = nil
+	b.transportInput.ValueRatioRange = nil
+	b.transportInput.ValueReference = nil
+	b.transportInput.ValueSampledData = nil
+	b.transportInput.ValueSignature = nil
+	b.transportInput.ValueTiming = nil
+	b.transportInput.ValueContactDetail = nil
+	b.transportInput.ValueDataRequirement = nil
+	b.transportInput.ValueExpression = nil
+	b.transportInput.ValueParameterDefinition = nil
+	b.transportInput.ValueRelatedArtifact = nil
+	b.transportInput.ValueTriggerDefinition = nil
+	b.transportInput.ValueUsageContext = nil
+	b.transportInput.ValueAvailability = nil
+	b.transportInput.ValueExtendedContactDetail = nil
+	b.transportInput.ValueDosage = nil
+	b.transportInput.ValueMeta = nil
+}
+
+// =============================================================================
+// TransportOutput - Fluent Builder
+// =============================================================================
+
+// TransportOutputBuilder provides a fluent API for constructing TransportOutput values.
+type TransportOutputBuilder struct {
+	transportOutput *TransportOutput
+}
+
+// NewTransportOutputBuilder creates a new TransportOutputBuilder.
+func NewTransportOutputBuilder() *TransportOutputBuilder {
+	return &TransportOutputBuilder{
+		transportOutput: &TransportOutput{},
+	}
+}
+
+// Build returns the constructed TransportOutput.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TransportOutputBuilder) Build() TransportOutput {
+	return *b.transportOutput
+}
+
+// SetId sets the Id field.
+func (b *TransportOutputBuilder) SetId(v string) *TransportOutputBuilder {
+	b.transportOutput.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TransportOutputBuilder) AddExtension(v Extension) *TransportOutputBuilder {
+	b.transportOutput.Extension = append(b.transportOutput.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TransportOutputBuilder) AddModifierExtension(v Extension) *TransportOutputBuilder {
+	b.transportOutput.ModifierExtension = append(b.transportOutput.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *TransportOutputBuilder) SetType(v CodeableConcept) *TransportOutputBuilder {
+	b.transportOutput.Type = &v
+	return b
+}
+
+// SetValueBase64Binary sets Value[x] to its ValueBase64Binary variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueBase64Binary(v string) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueBase64Binary = &v
+	return b
+}
+
+// SetValueBase64BinaryExt sets the ValueBase64BinaryExt field.
+func (b *TransportOutputBuilder) SetValueBase64BinaryExt(v Element) *TransportOutputBuilder {
+	b.transportOutput.ValueBase64BinaryExt = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueBoolean(v bool) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *TransportOutputBuilder) SetValueBooleanExt(v Element) *TransportOutputBuilder {
+	b.transportOutput.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueCanonical sets Value[x] to its ValueCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueCanonical(v string) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueCanonical = &v
+	return b
+}
+
+// SetValueCanonicalExt sets the ValueCanonicalExt field.
+func (b *TransportOutputBuilder) SetValueCanonicalExt(v Element) *TransportOutputBuilder {
+	b.transportOutput.ValueCanonicalExt = &v
+	return b
+}
+
+// SetValueCode sets Value[x] to its ValueCode variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueCode(v string) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueCode = &v
+	return b
+}
+
+// SetValueCodeExt sets the ValueCodeExt field.
+func (b *TransportOutputBuilder) SetValueCodeExt(v Element) *TransportOutputBuilder {
+	b.transportOutput.ValueCodeExt = &v
+	return b
+}
+
+// SetValueDate sets Value[x] to its ValueDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueDate(v string) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueDate = &v
+	return b
+}
+
+// SetValueDateExt sets the ValueDateExt field.
+func (b *TransportOutputBuilder) SetValueDateExt(v Element) *TransportOutputBuilder {
+	b.transportOutput.ValueDateExt = &v
+	return b
+}
+
+// SetValueDateTime sets Value[x] to its ValueDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueDateTime(v string) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueDateTime = &v
+	return b
+}
+
+// SetValueDateTimeExt sets the ValueDateTimeExt field.
+func (b *TransportOutputBuilder) SetValueDateTimeExt(v Element) *TransportOutputBuilder {
+	b.transportOutput.ValueDateTimeExt = &v
+	return b
+}
+
+// SetValueDecimal sets Value[x] to its ValueDecimal variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueDecimal(v Decimal) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueDecimal = &v
+	return b
+}
+
+// SetValueDecimalExt sets the ValueDecimalExt field.
+func (b *TransportOutputBuilder) SetValueDecimalExt(v Element) *TransportOutputBuilder {
+	b.transportOutput.ValueDecimalExt = &v
+	return b
+}
+
+// SetValueId sets Value[x] to its ValueId variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueId(v string) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueId = &v
+	return b
+}
+
+// SetValueIdExt sets the ValueIdExt field.
+func (b *TransportOutputBuilder) SetValueIdExt(v Element) *TransportOutputBuilder {
+	b.transportOutput.ValueIdExt = &v
+	return b
+}
+
+// SetValueInstant sets Value[x] to its ValueInstant variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueInstant(v string) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueInstant = &v
+	return b
+}
+
+// SetValueInstantExt sets the ValueInstantExt field.
+func (b *TransportOutputBuilder) SetValueInstantExt(v Element) *TransportOutputBuilder {
+	b.transportOutput.ValueInstantExt = &v
+	return b
+}
+
+// SetValueInteger sets Value[x] to its ValueInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueInteger(v int) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueInteger = &v
+	return b
+}
+
+// SetValueIntegerExt sets the ValueIntegerExt field.
+func (b *TransportOutputBuilder) SetValueIntegerExt(v Element) *TransportOutputBuilder {
+	b.transportOutput.ValueIntegerExt = &v
+	return b
+}
+
+// SetValueInteger64 sets Value[x] to its ValueInteger64 variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueInteger64(v Integer64) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueInteger64 = &v
+	return b
+}
+
+// SetValueInteger64Ext sets the ValueInteger64Ext field.
+func (b *TransportOutputBuilder) SetValueInteger64Ext(v Element) *TransportOutputBuilder {
+	b.transportOutput.ValueInteger64Ext = &v
+	return b
+}
+
+// SetValueMarkdown sets Value[x] to its ValueMarkdown variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueMarkdown(v string) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueMarkdown = &v
+	return b
+}
+
+// SetValueMarkdownExt sets the ValueMarkdownExt field.
+func (b *TransportOutputBuilder) SetValueMarkdownExt(v Element) *TransportOutputBuilder {
+	b.transportOutput.ValueMarkdownExt = &v
+	return b
+}
+
+// SetValueOid sets Value[x] to its ValueOid variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueOid(v string) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueOid = &v
+	return b
+}
+
+// SetValueOidExt sets the ValueOidExt field.
+func (b *TransportOutputBuilder) SetValueOidExt(v Element) *TransportOutputBuilder {
+	b.transportOutput.ValueOidExt = &v
+	return b
+}
+
+// SetValuePositiveInt sets Value[x] to its ValuePositiveInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValuePositiveInt(v uint32) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValuePositiveInt = &v
+	return b
+}
+
+// SetValuePositiveIntExt sets the ValuePositiveIntExt field.
+func (b *TransportOutputBuilder) SetValuePositiveIntExt(v Element) *TransportOutputBuilder {
+	b.transportOutput.ValuePositiveIntExt = &v
+	return b
+}
+
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueString(v string) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueString = &v
+	return b
+}
+
+// SetValueStringExt sets the ValueStringExt field.
+func (b *TransportOutputBuilder) SetValueStringExt(v Element) *TransportOutputBuilder {
+	b.transportOutput.ValueStringExt = &v
+	return b
+}
+
+// SetValueTime sets Value[x] to its ValueTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueTime(v string) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueTime = &v
+	return b
+}
+
+// SetValueTimeExt sets the ValueTimeExt field.
+func (b *TransportOutputBuilder) SetValueTimeExt(v Element) *TransportOutputBuilder {
+	b.transportOutput.ValueTimeExt = &v
+	return b
+}
+
+// SetValueUnsignedInt sets Value[x] to its ValueUnsignedInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueUnsignedInt(v uint32) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueUnsignedInt = &v
+	return b
+}
+
+// SetValueUnsignedIntExt sets the ValueUnsignedIntExt field.
+func (b *TransportOutputBuilder) SetValueUnsignedIntExt(v Element) *TransportOutputBuilder {
+	b.transportOutput.ValueUnsignedIntExt = &v
+	return b
+}
+
+// SetValueUri sets Value[x] to its ValueUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueUri(v string) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueUri = &v
+	return b
+}
+
+// SetValueUriExt sets the ValueUriExt field.
+func (b *TransportOutputBuilder) SetValueUriExt(v Element) *TransportOutputBuilder {
+	b.transportOutput.ValueUriExt = &v
+	return b
+}
+
+// SetValueUrl sets Value[x] to its ValueUrl variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueUrl(v string) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueUrl = &v
+	return b
+}
+
+// SetValueUrlExt sets the ValueUrlExt field.
+func (b *TransportOutputBuilder) SetValueUrlExt(v Element) *TransportOutputBuilder {
+	b.transportOutput.ValueUrlExt = &v
+	return b
+}
+
+// SetValueUuid sets Value[x] to its ValueUuid variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueUuid(v string) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueUuid = &v
+	return b
+}
+
+// SetValueUuidExt sets the ValueUuidExt field.
+func (b *TransportOutputBuilder) SetValueUuidExt(v Element) *TransportOutputBuilder {
+	b.transportOutput.ValueUuidExt = &v
+	return b
+}
+
+// SetValueAddress sets Value[x] to its ValueAddress variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueAddress(v Address) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueAddress = &v
+	return b
+}
+
+// SetValueAge sets Value[x] to its ValueAge variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueAge(v Age) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueAge = &v
+	return b
+}
+
+// SetValueAnnotation sets Value[x] to its ValueAnnotation variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueAnnotation(v Annotation) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueAnnotation = &v
+	return b
+}
+
+// SetValueAttachment sets Value[x] to its ValueAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueAttachment(v Attachment) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueAttachment = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueCodeableConcept(v CodeableConcept) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueCodeableReference sets Value[x] to its ValueCodeableReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueCodeableReference(v CodeableReference) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueCodeableReference = &v
+	return b
+}
+
+// SetValueCoding sets Value[x] to its ValueCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueCoding(v Coding) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueCoding = &v
+	return b
+}
+
+// SetValueContactPoint sets Value[x] to its ValueContactPoint variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueContactPoint(v ContactPoint) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueContactPoint = &v
+	return b
+}
+
+// SetValueCount sets Value[x] to its ValueCount variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueCount(v Count) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueCount = &v
+	return b
+}
+
+// SetValueDistance sets Value[x] to its ValueDistance variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueDistance(v Distance) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueDistance = &v
+	return b
+}
+
+// SetValueDuration sets Value[x] to its ValueDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueDuration(v Duration) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueDuration = &v
+	return b
+}
+
+// SetValueHumanName sets Value[x] to its ValueHumanName variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueHumanName(v HumanName) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueHumanName = &v
+	return b
+}
+
+// SetValueIdentifier sets Value[x] to its ValueIdentifier variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueIdentifier(v Identifier) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueIdentifier = &v
+	return b
+}
+
+// SetValueMoney sets Value[x] to its ValueMoney variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueMoney(v Money) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueMoney = &v
+	return b
+}
+
+// SetValuePeriod sets Value[x] to its ValuePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValuePeriod(v Period) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValuePeriod = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueQuantity(v Quantity) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueQuantity = &v
+	return b
+}
+
+// SetValueRange sets Value[x] to its ValueRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueRange(v Range) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueRange = &v
+	return b
+}
+
+// SetValueRatio sets Value[x] to its ValueRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueRatio(v Ratio) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueRatio = &v
+	return b
+}
+
+// SetValueRatioRange sets Value[x] to its ValueRatioRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueRatioRange(v RatioRange) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueRatioRange = &v
+	return b
+}
+
+// SetValueReference sets Value[x] to its ValueReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueReference(v Reference) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueReference = &v
+	return b
+}
+
+// SetValueSampledData sets Value[x] to its ValueSampledData variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueSampledData(v SampledData) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueSampledData = &v
+	return b
+}
+
+// SetValueSignature sets Value[x] to its ValueSignature variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueSignature(v Signature) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueSignature = &v
+	return b
+}
+
+// SetValueTiming sets Value[x] to its ValueTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueTiming(v Timing) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueTiming = &v
+	return b
+}
+
+// SetValueContactDetail sets Value[x] to its ValueContactDetail variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueContactDetail(v ContactDetail) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueContactDetail = &v
+	return b
+}
+
+// SetValueDataRequirement sets Value[x] to its ValueDataRequirement variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueDataRequirement(v DataRequirement) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueDataRequirement = &v
+	return b
+}
+
+// SetValueExpression sets Value[x] to its ValueExpression variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueExpression(v Expression) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueExpression = &v
+	return b
+}
+
+// SetValueParameterDefinition sets Value[x] to its ValueParameterDefinition variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueParameterDefinition(v ParameterDefinition) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueParameterDefinition = &v
+	return b
+}
+
+// SetValueRelatedArtifact sets Value[x] to its ValueRelatedArtifact variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueRelatedArtifact(v RelatedArtifact) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueRelatedArtifact = &v
+	return b
+}
+
+// SetValueTriggerDefinition sets Value[x] to its ValueTriggerDefinition variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueTriggerDefinition(v TriggerDefinition) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueTriggerDefinition = &v
+	return b
+}
+
+// SetValueUsageContext sets Value[x] to its ValueUsageContext variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueUsageContext(v UsageContext) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueUsageContext = &v
+	return b
+}
+
+// SetValueAvailability sets Value[x] to its ValueAvailability variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueAvailability(v Availability) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueAvailability = &v
+	return b
+}
+
+// SetValueExtendedContactDetail sets Value[x] to its ValueExtendedContactDetail variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueExtendedContactDetail(v ExtendedContactDetail) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueExtendedContactDetail = &v
+	return b
+}
+
+// SetValueDosage sets Value[x] to its ValueDosage variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueDosage(v Dosage) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueDosage = &v
+	return b
+}
+
+// SetValueMeta sets Value[x] to its ValueMeta variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TransportOutputBuilder) SetValueMeta(v Meta) *TransportOutputBuilder {
+	b.clearValue()
+	b.transportOutput.ValueMeta = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *TransportOutputBuilder) clearValue() {
+	b.transportOutput.ValueBase64Binary = nil
+	b.transportOutput.ValueBoolean = nil
+	b.transportOutput.ValueBooleanExt = nil
+	b.transportOutput.ValueCanonical = nil
+	b.transportOutput.ValueCanonicalExt = nil
+	b.transportOutput.ValueCode = nil
+	b.transportOutput.ValueCodeExt = nil
+	b.transportOutput.ValueDate = nil
+	b.transportOutput.ValueDateExt = nil
+	b.transportOutput.ValueDateTime = nil
+	b.transportOutput.ValueDateTimeExt = nil
+	b.transportOutput.ValueDecimal = nil
+	b.transportOutput.ValueDecimalExt = nil
+	b.transportOutput.ValueId = nil
+	b.transportOutput.ValueIdExt = nil
+	b.transportOutput.ValueInstant = nil
+	b.transportOutput.ValueInstantExt = nil
+	b.transportOutput.ValueInteger = nil
+	b.transportOutput.ValueIntegerExt = nil
+	b.transportOutput.ValueInteger64 = nil
+	b.transportOutput.ValueInteger64Ext = nil
+	b.transportOutput.ValueMarkdown = nil
+	b.transportOutput.ValueMarkdownExt = nil
+	b.transportOutput.ValueOid = nil
+	b.transportOutput.ValueOidExt = nil
+	b.transportOutput.ValuePositiveInt = nil
+	b.transportOutput.ValuePositiveIntExt = nil
+	b.transportOutput.ValueString = nil
+	b.transportOutput.ValueStringExt = nil
+	b.transportOutput.ValueTime = nil
+	b.transportOutput.ValueTimeExt = nil
+	b.transportOutput.ValueUnsignedInt = nil
+	b.transportOutput.ValueUnsignedIntExt = nil
+	b.transportOutput.ValueUri = nil
+	b.transportOutput.ValueUriExt = nil
+	b.transportOutput.ValueUrl = nil
+	b.transportOutput.ValueUrlExt = nil
+	b.transportOutput.ValueUuid = nil
+	b.transportOutput.ValueUuidExt = nil
+	b.transportOutput.ValueAddress = nil
+	b.transportOutput.ValueAge = nil
+	b.transportOutput.ValueAnnotation = nil
+	b.transportOutput.ValueAttachment = nil
+	b.transportOutput.ValueCodeableConcept = nil
+	b.transportOutput.ValueCodeableReference = nil
+	b.transportOutput.ValueCoding = nil
+	b.transportOutput.ValueContactPoint = nil
+	b.transportOutput.ValueCount = nil
+	b.transportOutput.ValueDistance = nil
+	b.transportOutput.ValueDuration = nil
+	b.transportOutput.ValueHumanName = nil
+	b.transportOutput.ValueIdentifier = nil
+	b.transportOutput.ValueMoney = nil
+	b.transportOutput.ValuePeriod = nil
+	b.transportOutput.ValueQuantity = nil
+	b.transportOutput.ValueRange = nil
+	b.transportOutput.ValueRatio = nil
+	b.transportOutput.ValueRatioRange = nil
+	b.transportOutput.ValueReference = nil
+	b.transportOutput.ValueSampledData = nil
+	b.transportOutput.ValueSignature = nil
+	b.transportOutput.ValueTiming = nil
+	b.transportOutput.ValueContactDetail = nil
+	b.transportOutput.ValueDataRequirement = nil
+	b.transportOutput.ValueExpression = nil
+	b.transportOutput.ValueParameterDefinition = nil
+	b.transportOutput.ValueRelatedArtifact = nil
+	b.transportOutput.ValueTriggerDefinition = nil
+	b.transportOutput.ValueUsageContext = nil
+	b.transportOutput.ValueAvailability = nil
+	b.transportOutput.ValueExtendedContactDetail = nil
+	b.transportOutput.ValueDosage = nil
+	b.transportOutput.ValueMeta = nil
+}
+
+// =============================================================================
+// TransportRestriction - Fluent Builder
+// =============================================================================
+
+// TransportRestrictionBuilder provides a fluent API for constructing TransportRestriction values.
+type TransportRestrictionBuilder struct {
+	transportRestriction *TransportRestriction
+}
+
+// NewTransportRestrictionBuilder creates a new TransportRestrictionBuilder.
+func NewTransportRestrictionBuilder() *TransportRestrictionBuilder {
+	return &TransportRestrictionBuilder{
+		transportRestriction: &TransportRestriction{},
+	}
+}
+
+// Build returns the constructed TransportRestriction.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TransportRestrictionBuilder) Build() TransportRestriction {
+	return *b.transportRestriction
+}
+
+// SetId sets the Id field.
+func (b *TransportRestrictionBuilder) SetId(v string) *TransportRestrictionBuilder {
+	b.transportRestriction.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TransportRestrictionBuilder) AddExtension(v Extension) *TransportRestrictionBuilder {
+	b.transportRestriction.Extension = append(b.transportRestriction.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *TransportRestrictionBuilder) AddModifierExtension(v Extension) *TransportRestrictionBuilder {
+	b.transportRestriction.ModifierExtension = append(b.transportRestriction.ModifierExtension, v)
+	return b
+}
+
+// SetRepetitions sets the Repetitions field.
+func (b *TransportRestrictionBuilder) SetRepetitions(v uint32) *TransportRestrictionBuilder {
+	b.transportRestriction.Repetitions = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *TransportRestrictionBuilder) SetPeriod(v Period) *TransportRestrictionBuilder {
+	b.transportRestriction.Period = &v
+	return b
+}
+
+// AddRecipient adds a Recipient element.
+func (b *TransportRestrictionBuilder) AddRecipient(v Reference) *TransportRestrictionBuilder {
+	b.transportRestriction.Recipient = append(b.transportRestriction.Recipient, v)
+	return b
+}
+
+// SetRepetitionsExt sets the extensions carried by Repetitions, serialized as
+// "_repetitions".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TransportRestrictionBuilder) SetRepetitionsExt(v Element) *TransportRestrictionBuilder {
+	b.transportRestriction.RepetitionsExt = &v
+	return b
+}

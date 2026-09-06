@@ -652,3 +652,121 @@ func (b *OrganizationBuilder) AddEndpoint(v Reference) *OrganizationBuilder {
 	b.organization.Endpoint = append(b.organization.Endpoint, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OrganizationBuilder) SetImplicitRulesExt(v Element) *OrganizationBuilder {
+	b.organization.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OrganizationBuilder) SetLanguageExt(v Element) *OrganizationBuilder {
+	b.organization.LanguageExt = &v
+	return b
+}
+
+// SetActiveExt sets the extensions carried by Active, serialized as
+// "_active".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OrganizationBuilder) SetActiveExt(v Element) *OrganizationBuilder {
+	b.organization.ActiveExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *OrganizationBuilder) SetNameExt(v Element) *OrganizationBuilder {
+	b.organization.NameExt = &v
+	return b
+}
+
+// AddAliasExt appends an extension slot for Alias.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *OrganizationBuilder) AddAliasExt(v *Element) *OrganizationBuilder {
+	b.organization.AliasExt = append(b.organization.AliasExt, v)
+	return b
+}
+
+// =============================================================================
+// OrganizationContact - Fluent Builder
+// =============================================================================
+
+// OrganizationContactBuilder provides a fluent API for constructing OrganizationContact values.
+type OrganizationContactBuilder struct {
+	organizationContact *OrganizationContact
+}
+
+// NewOrganizationContactBuilder creates a new OrganizationContactBuilder.
+func NewOrganizationContactBuilder() *OrganizationContactBuilder {
+	return &OrganizationContactBuilder{
+		organizationContact: &OrganizationContact{},
+	}
+}
+
+// Build returns the constructed OrganizationContact.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *OrganizationContactBuilder) Build() OrganizationContact {
+	return *b.organizationContact
+}
+
+// SetId sets the Id field.
+func (b *OrganizationContactBuilder) SetId(v string) *OrganizationContactBuilder {
+	b.organizationContact.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *OrganizationContactBuilder) AddExtension(v Extension) *OrganizationContactBuilder {
+	b.organizationContact.Extension = append(b.organizationContact.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *OrganizationContactBuilder) AddModifierExtension(v Extension) *OrganizationContactBuilder {
+	b.organizationContact.ModifierExtension = append(b.organizationContact.ModifierExtension, v)
+	return b
+}
+
+// SetPurpose sets the Purpose field.
+func (b *OrganizationContactBuilder) SetPurpose(v CodeableConcept) *OrganizationContactBuilder {
+	b.organizationContact.Purpose = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *OrganizationContactBuilder) SetName(v HumanName) *OrganizationContactBuilder {
+	b.organizationContact.Name = &v
+	return b
+}
+
+// AddTelecom adds a Telecom element.
+func (b *OrganizationContactBuilder) AddTelecom(v ContactPoint) *OrganizationContactBuilder {
+	b.organizationContact.Telecom = append(b.organizationContact.Telecom, v)
+	return b
+}
+
+// SetAddress sets the Address field.
+func (b *OrganizationContactBuilder) SetAddress(v Address) *OrganizationContactBuilder {
+	b.organizationContact.Address = &v
+	return b
+}

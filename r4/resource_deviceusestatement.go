@@ -635,6 +635,46 @@ func (b *DeviceUseStatementBuilder) AddNote(v Annotation) *DeviceUseStatementBui
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceUseStatementBuilder) SetImplicitRulesExt(v Element) *DeviceUseStatementBuilder {
+	b.deviceUseStatement.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceUseStatementBuilder) SetLanguageExt(v Element) *DeviceUseStatementBuilder {
+	b.deviceUseStatement.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceUseStatementBuilder) SetStatusExt(v Element) *DeviceUseStatementBuilder {
+	b.deviceUseStatement.StatusExt = &v
+	return b
+}
+
+// SetRecordedOnExt sets the extensions carried by RecordedOn, serialized as
+// "_recordedOn".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceUseStatementBuilder) SetRecordedOnExt(v Element) *DeviceUseStatementBuilder {
+	b.deviceUseStatement.RecordedOnExt = &v
+	return b
+}
+
 // clearTiming unsets every variant of Timing[x], including the
 // _field companions of the primitive ones.
 func (b *DeviceUseStatementBuilder) clearTiming() {

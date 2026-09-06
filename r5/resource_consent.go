@@ -1359,3 +1359,459 @@ func (b *ConsentBuilder) AddProvision(v ConsentProvision) *ConsentBuilder {
 	b.consent.Provision = append(b.consent.Provision, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConsentBuilder) SetImplicitRulesExt(v Element) *ConsentBuilder {
+	b.consent.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConsentBuilder) SetLanguageExt(v Element) *ConsentBuilder {
+	b.consent.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConsentBuilder) SetStatusExt(v Element) *ConsentBuilder {
+	b.consent.StatusExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConsentBuilder) SetDateExt(v Element) *ConsentBuilder {
+	b.consent.DateExt = &v
+	return b
+}
+
+// SetDecisionExt sets the extensions carried by Decision, serialized as
+// "_decision".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConsentBuilder) SetDecisionExt(v Element) *ConsentBuilder {
+	b.consent.DecisionExt = &v
+	return b
+}
+
+// =============================================================================
+// ConsentPolicyBasis - Fluent Builder
+// =============================================================================
+
+// ConsentPolicyBasisBuilder provides a fluent API for constructing ConsentPolicyBasis values.
+type ConsentPolicyBasisBuilder struct {
+	consentPolicyBasis *ConsentPolicyBasis
+}
+
+// NewConsentPolicyBasisBuilder creates a new ConsentPolicyBasisBuilder.
+func NewConsentPolicyBasisBuilder() *ConsentPolicyBasisBuilder {
+	return &ConsentPolicyBasisBuilder{
+		consentPolicyBasis: &ConsentPolicyBasis{},
+	}
+}
+
+// Build returns the constructed ConsentPolicyBasis.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ConsentPolicyBasisBuilder) Build() ConsentPolicyBasis {
+	return *b.consentPolicyBasis
+}
+
+// SetId sets the Id field.
+func (b *ConsentPolicyBasisBuilder) SetId(v string) *ConsentPolicyBasisBuilder {
+	b.consentPolicyBasis.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ConsentPolicyBasisBuilder) AddExtension(v Extension) *ConsentPolicyBasisBuilder {
+	b.consentPolicyBasis.Extension = append(b.consentPolicyBasis.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ConsentPolicyBasisBuilder) AddModifierExtension(v Extension) *ConsentPolicyBasisBuilder {
+	b.consentPolicyBasis.ModifierExtension = append(b.consentPolicyBasis.ModifierExtension, v)
+	return b
+}
+
+// SetReference sets the Reference field.
+func (b *ConsentPolicyBasisBuilder) SetReference(v Reference) *ConsentPolicyBasisBuilder {
+	b.consentPolicyBasis.Reference = &v
+	return b
+}
+
+// SetUrl sets the Url field.
+func (b *ConsentPolicyBasisBuilder) SetUrl(v string) *ConsentPolicyBasisBuilder {
+	b.consentPolicyBasis.Url = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConsentPolicyBasisBuilder) SetUrlExt(v Element) *ConsentPolicyBasisBuilder {
+	b.consentPolicyBasis.UrlExt = &v
+	return b
+}
+
+// =============================================================================
+// ConsentProvision - Fluent Builder
+// =============================================================================
+
+// ConsentProvisionBuilder provides a fluent API for constructing ConsentProvision values.
+type ConsentProvisionBuilder struct {
+	consentProvision *ConsentProvision
+}
+
+// NewConsentProvisionBuilder creates a new ConsentProvisionBuilder.
+func NewConsentProvisionBuilder() *ConsentProvisionBuilder {
+	return &ConsentProvisionBuilder{
+		consentProvision: &ConsentProvision{},
+	}
+}
+
+// Build returns the constructed ConsentProvision.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ConsentProvisionBuilder) Build() ConsentProvision {
+	return *b.consentProvision
+}
+
+// SetId sets the Id field.
+func (b *ConsentProvisionBuilder) SetId(v string) *ConsentProvisionBuilder {
+	b.consentProvision.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ConsentProvisionBuilder) AddExtension(v Extension) *ConsentProvisionBuilder {
+	b.consentProvision.Extension = append(b.consentProvision.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ConsentProvisionBuilder) AddModifierExtension(v Extension) *ConsentProvisionBuilder {
+	b.consentProvision.ModifierExtension = append(b.consentProvision.ModifierExtension, v)
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *ConsentProvisionBuilder) SetPeriod(v Period) *ConsentProvisionBuilder {
+	b.consentProvision.Period = &v
+	return b
+}
+
+// AddActor adds a Actor element.
+func (b *ConsentProvisionBuilder) AddActor(v ConsentProvisionActor) *ConsentProvisionBuilder {
+	b.consentProvision.Actor = append(b.consentProvision.Actor, v)
+	return b
+}
+
+// AddAction adds a Action element.
+func (b *ConsentProvisionBuilder) AddAction(v CodeableConcept) *ConsentProvisionBuilder {
+	b.consentProvision.Action = append(b.consentProvision.Action, v)
+	return b
+}
+
+// AddSecurityLabel adds a SecurityLabel element.
+func (b *ConsentProvisionBuilder) AddSecurityLabel(v Coding) *ConsentProvisionBuilder {
+	b.consentProvision.SecurityLabel = append(b.consentProvision.SecurityLabel, v)
+	return b
+}
+
+// AddPurpose adds a Purpose element.
+func (b *ConsentProvisionBuilder) AddPurpose(v Coding) *ConsentProvisionBuilder {
+	b.consentProvision.Purpose = append(b.consentProvision.Purpose, v)
+	return b
+}
+
+// AddDocumentType adds a DocumentType element.
+func (b *ConsentProvisionBuilder) AddDocumentType(v Coding) *ConsentProvisionBuilder {
+	b.consentProvision.DocumentType = append(b.consentProvision.DocumentType, v)
+	return b
+}
+
+// AddResourceType adds a ResourceType element.
+func (b *ConsentProvisionBuilder) AddResourceType(v Coding) *ConsentProvisionBuilder {
+	b.consentProvision.ResourceType = append(b.consentProvision.ResourceType, v)
+	return b
+}
+
+// AddCode adds a Code element.
+func (b *ConsentProvisionBuilder) AddCode(v CodeableConcept) *ConsentProvisionBuilder {
+	b.consentProvision.Code = append(b.consentProvision.Code, v)
+	return b
+}
+
+// SetDataPeriod sets the DataPeriod field.
+func (b *ConsentProvisionBuilder) SetDataPeriod(v Period) *ConsentProvisionBuilder {
+	b.consentProvision.DataPeriod = &v
+	return b
+}
+
+// AddData adds a Data element.
+func (b *ConsentProvisionBuilder) AddData(v ConsentProvisionData) *ConsentProvisionBuilder {
+	b.consentProvision.Data = append(b.consentProvision.Data, v)
+	return b
+}
+
+// SetExpression sets the Expression field.
+func (b *ConsentProvisionBuilder) SetExpression(v Expression) *ConsentProvisionBuilder {
+	b.consentProvision.Expression = &v
+	return b
+}
+
+// AddProvision adds a Provision element.
+func (b *ConsentProvisionBuilder) AddProvision(v ConsentProvision) *ConsentProvisionBuilder {
+	b.consentProvision.Provision = append(b.consentProvision.Provision, v)
+	return b
+}
+
+// =============================================================================
+// ConsentProvisionActor - Fluent Builder
+// =============================================================================
+
+// ConsentProvisionActorBuilder provides a fluent API for constructing ConsentProvisionActor values.
+type ConsentProvisionActorBuilder struct {
+	consentProvisionActor *ConsentProvisionActor
+}
+
+// NewConsentProvisionActorBuilder creates a new ConsentProvisionActorBuilder.
+func NewConsentProvisionActorBuilder() *ConsentProvisionActorBuilder {
+	return &ConsentProvisionActorBuilder{
+		consentProvisionActor: &ConsentProvisionActor{},
+	}
+}
+
+// Build returns the constructed ConsentProvisionActor.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ConsentProvisionActorBuilder) Build() ConsentProvisionActor {
+	return *b.consentProvisionActor
+}
+
+// SetId sets the Id field.
+func (b *ConsentProvisionActorBuilder) SetId(v string) *ConsentProvisionActorBuilder {
+	b.consentProvisionActor.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ConsentProvisionActorBuilder) AddExtension(v Extension) *ConsentProvisionActorBuilder {
+	b.consentProvisionActor.Extension = append(b.consentProvisionActor.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ConsentProvisionActorBuilder) AddModifierExtension(v Extension) *ConsentProvisionActorBuilder {
+	b.consentProvisionActor.ModifierExtension = append(b.consentProvisionActor.ModifierExtension, v)
+	return b
+}
+
+// SetRole sets the Role field.
+func (b *ConsentProvisionActorBuilder) SetRole(v CodeableConcept) *ConsentProvisionActorBuilder {
+	b.consentProvisionActor.Role = &v
+	return b
+}
+
+// SetReference sets the Reference field.
+func (b *ConsentProvisionActorBuilder) SetReference(v Reference) *ConsentProvisionActorBuilder {
+	b.consentProvisionActor.Reference = &v
+	return b
+}
+
+// =============================================================================
+// ConsentProvisionData - Fluent Builder
+// =============================================================================
+
+// ConsentProvisionDataBuilder provides a fluent API for constructing ConsentProvisionData values.
+type ConsentProvisionDataBuilder struct {
+	consentProvisionData *ConsentProvisionData
+}
+
+// NewConsentProvisionDataBuilder creates a new ConsentProvisionDataBuilder.
+func NewConsentProvisionDataBuilder() *ConsentProvisionDataBuilder {
+	return &ConsentProvisionDataBuilder{
+		consentProvisionData: &ConsentProvisionData{},
+	}
+}
+
+// Build returns the constructed ConsentProvisionData.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ConsentProvisionDataBuilder) Build() ConsentProvisionData {
+	return *b.consentProvisionData
+}
+
+// SetId sets the Id field.
+func (b *ConsentProvisionDataBuilder) SetId(v string) *ConsentProvisionDataBuilder {
+	b.consentProvisionData.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ConsentProvisionDataBuilder) AddExtension(v Extension) *ConsentProvisionDataBuilder {
+	b.consentProvisionData.Extension = append(b.consentProvisionData.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ConsentProvisionDataBuilder) AddModifierExtension(v Extension) *ConsentProvisionDataBuilder {
+	b.consentProvisionData.ModifierExtension = append(b.consentProvisionData.ModifierExtension, v)
+	return b
+}
+
+// SetMeaning sets the Meaning field.
+func (b *ConsentProvisionDataBuilder) SetMeaning(v ConsentDataMeaning) *ConsentProvisionDataBuilder {
+	b.consentProvisionData.Meaning = &v
+	return b
+}
+
+// SetReference sets the Reference field.
+func (b *ConsentProvisionDataBuilder) SetReference(v Reference) *ConsentProvisionDataBuilder {
+	b.consentProvisionData.Reference = &v
+	return b
+}
+
+// SetMeaningExt sets the extensions carried by Meaning, serialized as
+// "_meaning".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConsentProvisionDataBuilder) SetMeaningExt(v Element) *ConsentProvisionDataBuilder {
+	b.consentProvisionData.MeaningExt = &v
+	return b
+}
+
+// =============================================================================
+// ConsentVerification - Fluent Builder
+// =============================================================================
+
+// ConsentVerificationBuilder provides a fluent API for constructing ConsentVerification values.
+type ConsentVerificationBuilder struct {
+	consentVerification *ConsentVerification
+}
+
+// NewConsentVerificationBuilder creates a new ConsentVerificationBuilder.
+func NewConsentVerificationBuilder() *ConsentVerificationBuilder {
+	return &ConsentVerificationBuilder{
+		consentVerification: &ConsentVerification{},
+	}
+}
+
+// Build returns the constructed ConsentVerification.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ConsentVerificationBuilder) Build() ConsentVerification {
+	return *b.consentVerification
+}
+
+// SetId sets the Id field.
+func (b *ConsentVerificationBuilder) SetId(v string) *ConsentVerificationBuilder {
+	b.consentVerification.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ConsentVerificationBuilder) AddExtension(v Extension) *ConsentVerificationBuilder {
+	b.consentVerification.Extension = append(b.consentVerification.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ConsentVerificationBuilder) AddModifierExtension(v Extension) *ConsentVerificationBuilder {
+	b.consentVerification.ModifierExtension = append(b.consentVerification.ModifierExtension, v)
+	return b
+}
+
+// SetVerified sets the Verified field.
+func (b *ConsentVerificationBuilder) SetVerified(v bool) *ConsentVerificationBuilder {
+	b.consentVerification.Verified = &v
+	return b
+}
+
+// SetVerificationType sets the VerificationType field.
+func (b *ConsentVerificationBuilder) SetVerificationType(v CodeableConcept) *ConsentVerificationBuilder {
+	b.consentVerification.VerificationType = &v
+	return b
+}
+
+// SetVerifiedBy sets the VerifiedBy field.
+func (b *ConsentVerificationBuilder) SetVerifiedBy(v Reference) *ConsentVerificationBuilder {
+	b.consentVerification.VerifiedBy = &v
+	return b
+}
+
+// SetVerifiedWith sets the VerifiedWith field.
+func (b *ConsentVerificationBuilder) SetVerifiedWith(v Reference) *ConsentVerificationBuilder {
+	b.consentVerification.VerifiedWith = &v
+	return b
+}
+
+// AddVerificationDate adds a VerificationDate element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ConsentVerificationBuilder) AddVerificationDate(v string) *ConsentVerificationBuilder {
+	b.consentVerification.VerificationDate = append(b.consentVerification.VerificationDate, &v)
+	return b
+}
+
+// SetVerifiedExt sets the extensions carried by Verified, serialized as
+// "_verified".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConsentVerificationBuilder) SetVerifiedExt(v Element) *ConsentVerificationBuilder {
+	b.consentVerification.VerifiedExt = &v
+	return b
+}
+
+// AddVerificationDateExt appends an extension slot for VerificationDate.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ConsentVerificationBuilder) AddVerificationDateExt(v *Element) *ConsentVerificationBuilder {
+	b.consentVerification.VerificationDateExt = append(b.consentVerification.VerificationDateExt, v)
+	return b
+}

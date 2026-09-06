@@ -831,3 +831,120 @@ func (b *DeviceDispenseBuilder) AddEventHistory(v Reference) *DeviceDispenseBuil
 	b.deviceDispense.EventHistory = append(b.deviceDispense.EventHistory, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceDispenseBuilder) SetImplicitRulesExt(v Element) *DeviceDispenseBuilder {
+	b.deviceDispense.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceDispenseBuilder) SetLanguageExt(v Element) *DeviceDispenseBuilder {
+	b.deviceDispense.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceDispenseBuilder) SetStatusExt(v Element) *DeviceDispenseBuilder {
+	b.deviceDispense.StatusExt = &v
+	return b
+}
+
+// SetPreparedDateExt sets the extensions carried by PreparedDate, serialized as
+// "_preparedDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceDispenseBuilder) SetPreparedDateExt(v Element) *DeviceDispenseBuilder {
+	b.deviceDispense.PreparedDateExt = &v
+	return b
+}
+
+// SetWhenHandedOverExt sets the extensions carried by WhenHandedOver, serialized as
+// "_whenHandedOver".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceDispenseBuilder) SetWhenHandedOverExt(v Element) *DeviceDispenseBuilder {
+	b.deviceDispense.WhenHandedOverExt = &v
+	return b
+}
+
+// SetUsageInstructionExt sets the extensions carried by UsageInstruction, serialized as
+// "_usageInstruction".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DeviceDispenseBuilder) SetUsageInstructionExt(v Element) *DeviceDispenseBuilder {
+	b.deviceDispense.UsageInstructionExt = &v
+	return b
+}
+
+// =============================================================================
+// DeviceDispensePerformer - Fluent Builder
+// =============================================================================
+
+// DeviceDispensePerformerBuilder provides a fluent API for constructing DeviceDispensePerformer values.
+type DeviceDispensePerformerBuilder struct {
+	deviceDispensePerformer *DeviceDispensePerformer
+}
+
+// NewDeviceDispensePerformerBuilder creates a new DeviceDispensePerformerBuilder.
+func NewDeviceDispensePerformerBuilder() *DeviceDispensePerformerBuilder {
+	return &DeviceDispensePerformerBuilder{
+		deviceDispensePerformer: &DeviceDispensePerformer{},
+	}
+}
+
+// Build returns the constructed DeviceDispensePerformer.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DeviceDispensePerformerBuilder) Build() DeviceDispensePerformer {
+	return *b.deviceDispensePerformer
+}
+
+// SetId sets the Id field.
+func (b *DeviceDispensePerformerBuilder) SetId(v string) *DeviceDispensePerformerBuilder {
+	b.deviceDispensePerformer.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DeviceDispensePerformerBuilder) AddExtension(v Extension) *DeviceDispensePerformerBuilder {
+	b.deviceDispensePerformer.Extension = append(b.deviceDispensePerformer.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *DeviceDispensePerformerBuilder) AddModifierExtension(v Extension) *DeviceDispensePerformerBuilder {
+	b.deviceDispensePerformer.ModifierExtension = append(b.deviceDispensePerformer.ModifierExtension, v)
+	return b
+}
+
+// SetFunction sets the Function field.
+func (b *DeviceDispensePerformerBuilder) SetFunction(v CodeableConcept) *DeviceDispensePerformerBuilder {
+	b.deviceDispensePerformer.Function = &v
+	return b
+}
+
+// SetActor sets the Actor field.
+func (b *DeviceDispensePerformerBuilder) SetActor(v Reference) *DeviceDispensePerformerBuilder {
+	b.deviceDispensePerformer.Actor = &v
+	return b
+}

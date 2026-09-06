@@ -1128,9 +1128,330 @@ func (b *NamingSystemBuilder) AddUniqueId(v NamingSystemUniqueId) *NamingSystemB
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemBuilder) SetImplicitRulesExt(v Element) *NamingSystemBuilder {
+	b.namingSystem.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemBuilder) SetLanguageExt(v Element) *NamingSystemBuilder {
+	b.namingSystem.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemBuilder) SetUrlExt(v Element) *NamingSystemBuilder {
+	b.namingSystem.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemBuilder) SetVersionExt(v Element) *NamingSystemBuilder {
+	b.namingSystem.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemBuilder) SetNameExt(v Element) *NamingSystemBuilder {
+	b.namingSystem.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemBuilder) SetTitleExt(v Element) *NamingSystemBuilder {
+	b.namingSystem.TitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemBuilder) SetStatusExt(v Element) *NamingSystemBuilder {
+	b.namingSystem.StatusExt = &v
+	return b
+}
+
+// SetKindExt sets the extensions carried by Kind, serialized as
+// "_kind".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemBuilder) SetKindExt(v Element) *NamingSystemBuilder {
+	b.namingSystem.KindExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemBuilder) SetExperimentalExt(v Element) *NamingSystemBuilder {
+	b.namingSystem.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemBuilder) SetDateExt(v Element) *NamingSystemBuilder {
+	b.namingSystem.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemBuilder) SetPublisherExt(v Element) *NamingSystemBuilder {
+	b.namingSystem.PublisherExt = &v
+	return b
+}
+
+// SetResponsibleExt sets the extensions carried by Responsible, serialized as
+// "_responsible".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemBuilder) SetResponsibleExt(v Element) *NamingSystemBuilder {
+	b.namingSystem.ResponsibleExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemBuilder) SetDescriptionExt(v Element) *NamingSystemBuilder {
+	b.namingSystem.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemBuilder) SetPurposeExt(v Element) *NamingSystemBuilder {
+	b.namingSystem.PurposeExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemBuilder) SetCopyrightExt(v Element) *NamingSystemBuilder {
+	b.namingSystem.CopyrightExt = &v
+	return b
+}
+
+// SetCopyrightLabelExt sets the extensions carried by CopyrightLabel, serialized as
+// "_copyrightLabel".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemBuilder) SetCopyrightLabelExt(v Element) *NamingSystemBuilder {
+	b.namingSystem.CopyrightLabelExt = &v
+	return b
+}
+
+// SetApprovalDateExt sets the extensions carried by ApprovalDate, serialized as
+// "_approvalDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemBuilder) SetApprovalDateExt(v Element) *NamingSystemBuilder {
+	b.namingSystem.ApprovalDateExt = &v
+	return b
+}
+
+// SetLastReviewDateExt sets the extensions carried by LastReviewDate, serialized as
+// "_lastReviewDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemBuilder) SetLastReviewDateExt(v Element) *NamingSystemBuilder {
+	b.namingSystem.LastReviewDateExt = &v
+	return b
+}
+
+// SetUsageExt sets the extensions carried by Usage, serialized as
+// "_usage".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemBuilder) SetUsageExt(v Element) *NamingSystemBuilder {
+	b.namingSystem.UsageExt = &v
+	return b
+}
+
 // clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
 // _field companions of the primitive ones.
 func (b *NamingSystemBuilder) clearVersionAlgorithm() {
 	b.namingSystem.VersionAlgorithmString = nil
 	b.namingSystem.VersionAlgorithmCoding = nil
+}
+
+// =============================================================================
+// NamingSystemUniqueId - Fluent Builder
+// =============================================================================
+
+// NamingSystemUniqueIdBuilder provides a fluent API for constructing NamingSystemUniqueId values.
+type NamingSystemUniqueIdBuilder struct {
+	namingSystemUniqueId *NamingSystemUniqueId
+}
+
+// NewNamingSystemUniqueIdBuilder creates a new NamingSystemUniqueIdBuilder.
+func NewNamingSystemUniqueIdBuilder() *NamingSystemUniqueIdBuilder {
+	return &NamingSystemUniqueIdBuilder{
+		namingSystemUniqueId: &NamingSystemUniqueId{},
+	}
+}
+
+// Build returns the constructed NamingSystemUniqueId.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *NamingSystemUniqueIdBuilder) Build() NamingSystemUniqueId {
+	return *b.namingSystemUniqueId
+}
+
+// SetId sets the Id field.
+func (b *NamingSystemUniqueIdBuilder) SetId(v string) *NamingSystemUniqueIdBuilder {
+	b.namingSystemUniqueId.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *NamingSystemUniqueIdBuilder) AddExtension(v Extension) *NamingSystemUniqueIdBuilder {
+	b.namingSystemUniqueId.Extension = append(b.namingSystemUniqueId.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *NamingSystemUniqueIdBuilder) AddModifierExtension(v Extension) *NamingSystemUniqueIdBuilder {
+	b.namingSystemUniqueId.ModifierExtension = append(b.namingSystemUniqueId.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *NamingSystemUniqueIdBuilder) SetType(v NamingSystemIdentifierType) *NamingSystemUniqueIdBuilder {
+	b.namingSystemUniqueId.Type = &v
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *NamingSystemUniqueIdBuilder) SetValue(v string) *NamingSystemUniqueIdBuilder {
+	b.namingSystemUniqueId.Value = &v
+	return b
+}
+
+// SetPreferred sets the Preferred field.
+func (b *NamingSystemUniqueIdBuilder) SetPreferred(v bool) *NamingSystemUniqueIdBuilder {
+	b.namingSystemUniqueId.Preferred = &v
+	return b
+}
+
+// SetComment sets the Comment field.
+func (b *NamingSystemUniqueIdBuilder) SetComment(v string) *NamingSystemUniqueIdBuilder {
+	b.namingSystemUniqueId.Comment = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *NamingSystemUniqueIdBuilder) SetPeriod(v Period) *NamingSystemUniqueIdBuilder {
+	b.namingSystemUniqueId.Period = &v
+	return b
+}
+
+// SetAuthoritative sets the Authoritative field.
+func (b *NamingSystemUniqueIdBuilder) SetAuthoritative(v bool) *NamingSystemUniqueIdBuilder {
+	b.namingSystemUniqueId.Authoritative = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemUniqueIdBuilder) SetTypeExt(v Element) *NamingSystemUniqueIdBuilder {
+	b.namingSystemUniqueId.TypeExt = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemUniqueIdBuilder) SetValueExt(v Element) *NamingSystemUniqueIdBuilder {
+	b.namingSystemUniqueId.ValueExt = &v
+	return b
+}
+
+// SetPreferredExt sets the extensions carried by Preferred, serialized as
+// "_preferred".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemUniqueIdBuilder) SetPreferredExt(v Element) *NamingSystemUniqueIdBuilder {
+	b.namingSystemUniqueId.PreferredExt = &v
+	return b
+}
+
+// SetCommentExt sets the extensions carried by Comment, serialized as
+// "_comment".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemUniqueIdBuilder) SetCommentExt(v Element) *NamingSystemUniqueIdBuilder {
+	b.namingSystemUniqueId.CommentExt = &v
+	return b
+}
+
+// SetAuthoritativeExt sets the extensions carried by Authoritative, serialized as
+// "_authoritative".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NamingSystemUniqueIdBuilder) SetAuthoritativeExt(v Element) *NamingSystemUniqueIdBuilder {
+	b.namingSystemUniqueId.AuthoritativeExt = &v
+	return b
 }

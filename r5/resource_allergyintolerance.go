@@ -1009,6 +1009,65 @@ func (b *AllergyIntoleranceBuilder) AddReaction(v AllergyIntoleranceReaction) *A
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AllergyIntoleranceBuilder) SetImplicitRulesExt(v Element) *AllergyIntoleranceBuilder {
+	b.allergyIntolerance.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AllergyIntoleranceBuilder) SetLanguageExt(v Element) *AllergyIntoleranceBuilder {
+	b.allergyIntolerance.LanguageExt = &v
+	return b
+}
+
+// AddCategoryExt appends an extension slot for Category.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *AllergyIntoleranceBuilder) AddCategoryExt(v *Element) *AllergyIntoleranceBuilder {
+	b.allergyIntolerance.CategoryExt = append(b.allergyIntolerance.CategoryExt, v)
+	return b
+}
+
+// SetCriticalityExt sets the extensions carried by Criticality, serialized as
+// "_criticality".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AllergyIntoleranceBuilder) SetCriticalityExt(v Element) *AllergyIntoleranceBuilder {
+	b.allergyIntolerance.CriticalityExt = &v
+	return b
+}
+
+// SetRecordedDateExt sets the extensions carried by RecordedDate, serialized as
+// "_recordedDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AllergyIntoleranceBuilder) SetRecordedDateExt(v Element) *AllergyIntoleranceBuilder {
+	b.allergyIntolerance.RecordedDateExt = &v
+	return b
+}
+
+// SetLastOccurrenceExt sets the extensions carried by LastOccurrence, serialized as
+// "_lastOccurrence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AllergyIntoleranceBuilder) SetLastOccurrenceExt(v Element) *AllergyIntoleranceBuilder {
+	b.allergyIntolerance.LastOccurrenceExt = &v
+	return b
+}
+
 // clearOnset unsets every variant of Onset[x], including the
 // _field companions of the primitive ones.
 func (b *AllergyIntoleranceBuilder) clearOnset() {
@@ -1018,4 +1077,178 @@ func (b *AllergyIntoleranceBuilder) clearOnset() {
 	b.allergyIntolerance.OnsetRange = nil
 	b.allergyIntolerance.OnsetString = nil
 	b.allergyIntolerance.OnsetStringExt = nil
+}
+
+// =============================================================================
+// AllergyIntoleranceParticipant - Fluent Builder
+// =============================================================================
+
+// AllergyIntoleranceParticipantBuilder provides a fluent API for constructing AllergyIntoleranceParticipant values.
+type AllergyIntoleranceParticipantBuilder struct {
+	allergyIntoleranceParticipant *AllergyIntoleranceParticipant
+}
+
+// NewAllergyIntoleranceParticipantBuilder creates a new AllergyIntoleranceParticipantBuilder.
+func NewAllergyIntoleranceParticipantBuilder() *AllergyIntoleranceParticipantBuilder {
+	return &AllergyIntoleranceParticipantBuilder{
+		allergyIntoleranceParticipant: &AllergyIntoleranceParticipant{},
+	}
+}
+
+// Build returns the constructed AllergyIntoleranceParticipant.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AllergyIntoleranceParticipantBuilder) Build() AllergyIntoleranceParticipant {
+	return *b.allergyIntoleranceParticipant
+}
+
+// SetId sets the Id field.
+func (b *AllergyIntoleranceParticipantBuilder) SetId(v string) *AllergyIntoleranceParticipantBuilder {
+	b.allergyIntoleranceParticipant.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AllergyIntoleranceParticipantBuilder) AddExtension(v Extension) *AllergyIntoleranceParticipantBuilder {
+	b.allergyIntoleranceParticipant.Extension = append(b.allergyIntoleranceParticipant.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AllergyIntoleranceParticipantBuilder) AddModifierExtension(v Extension) *AllergyIntoleranceParticipantBuilder {
+	b.allergyIntoleranceParticipant.ModifierExtension = append(b.allergyIntoleranceParticipant.ModifierExtension, v)
+	return b
+}
+
+// SetFunction sets the Function field.
+func (b *AllergyIntoleranceParticipantBuilder) SetFunction(v CodeableConcept) *AllergyIntoleranceParticipantBuilder {
+	b.allergyIntoleranceParticipant.Function = &v
+	return b
+}
+
+// SetActor sets the Actor field.
+func (b *AllergyIntoleranceParticipantBuilder) SetActor(v Reference) *AllergyIntoleranceParticipantBuilder {
+	b.allergyIntoleranceParticipant.Actor = &v
+	return b
+}
+
+// =============================================================================
+// AllergyIntoleranceReaction - Fluent Builder
+// =============================================================================
+
+// AllergyIntoleranceReactionBuilder provides a fluent API for constructing AllergyIntoleranceReaction values.
+type AllergyIntoleranceReactionBuilder struct {
+	allergyIntoleranceReaction *AllergyIntoleranceReaction
+}
+
+// NewAllergyIntoleranceReactionBuilder creates a new AllergyIntoleranceReactionBuilder.
+func NewAllergyIntoleranceReactionBuilder() *AllergyIntoleranceReactionBuilder {
+	return &AllergyIntoleranceReactionBuilder{
+		allergyIntoleranceReaction: &AllergyIntoleranceReaction{},
+	}
+}
+
+// Build returns the constructed AllergyIntoleranceReaction.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AllergyIntoleranceReactionBuilder) Build() AllergyIntoleranceReaction {
+	return *b.allergyIntoleranceReaction
+}
+
+// SetId sets the Id field.
+func (b *AllergyIntoleranceReactionBuilder) SetId(v string) *AllergyIntoleranceReactionBuilder {
+	b.allergyIntoleranceReaction.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AllergyIntoleranceReactionBuilder) AddExtension(v Extension) *AllergyIntoleranceReactionBuilder {
+	b.allergyIntoleranceReaction.Extension = append(b.allergyIntoleranceReaction.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AllergyIntoleranceReactionBuilder) AddModifierExtension(v Extension) *AllergyIntoleranceReactionBuilder {
+	b.allergyIntoleranceReaction.ModifierExtension = append(b.allergyIntoleranceReaction.ModifierExtension, v)
+	return b
+}
+
+// SetSubstance sets the Substance field.
+func (b *AllergyIntoleranceReactionBuilder) SetSubstance(v CodeableConcept) *AllergyIntoleranceReactionBuilder {
+	b.allergyIntoleranceReaction.Substance = &v
+	return b
+}
+
+// AddManifestation adds a Manifestation element.
+func (b *AllergyIntoleranceReactionBuilder) AddManifestation(v CodeableReference) *AllergyIntoleranceReactionBuilder {
+	b.allergyIntoleranceReaction.Manifestation = append(b.allergyIntoleranceReaction.Manifestation, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *AllergyIntoleranceReactionBuilder) SetDescription(v string) *AllergyIntoleranceReactionBuilder {
+	b.allergyIntoleranceReaction.Description = &v
+	return b
+}
+
+// SetOnset sets the Onset field.
+func (b *AllergyIntoleranceReactionBuilder) SetOnset(v string) *AllergyIntoleranceReactionBuilder {
+	b.allergyIntoleranceReaction.Onset = &v
+	return b
+}
+
+// SetSeverity sets the Severity field.
+func (b *AllergyIntoleranceReactionBuilder) SetSeverity(v AllergyIntoleranceSeverity) *AllergyIntoleranceReactionBuilder {
+	b.allergyIntoleranceReaction.Severity = &v
+	return b
+}
+
+// SetExposureRoute sets the ExposureRoute field.
+func (b *AllergyIntoleranceReactionBuilder) SetExposureRoute(v CodeableConcept) *AllergyIntoleranceReactionBuilder {
+	b.allergyIntoleranceReaction.ExposureRoute = &v
+	return b
+}
+
+// AddNote adds a Note element.
+func (b *AllergyIntoleranceReactionBuilder) AddNote(v Annotation) *AllergyIntoleranceReactionBuilder {
+	b.allergyIntoleranceReaction.Note = append(b.allergyIntoleranceReaction.Note, v)
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AllergyIntoleranceReactionBuilder) SetDescriptionExt(v Element) *AllergyIntoleranceReactionBuilder {
+	b.allergyIntoleranceReaction.DescriptionExt = &v
+	return b
+}
+
+// SetOnsetExt sets the extensions carried by Onset, serialized as
+// "_onset".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AllergyIntoleranceReactionBuilder) SetOnsetExt(v Element) *AllergyIntoleranceReactionBuilder {
+	b.allergyIntoleranceReaction.OnsetExt = &v
+	return b
+}
+
+// SetSeverityExt sets the extensions carried by Severity, serialized as
+// "_severity".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AllergyIntoleranceReactionBuilder) SetSeverityExt(v Element) *AllergyIntoleranceReactionBuilder {
+	b.allergyIntoleranceReaction.SeverityExt = &v
+	return b
 }

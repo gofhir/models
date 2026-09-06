@@ -1184,9 +1184,416 @@ func (b *CoverageEligibilityRequestBuilder) AddItem(v CoverageEligibilityRequest
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageEligibilityRequestBuilder) SetImplicitRulesExt(v Element) *CoverageEligibilityRequestBuilder {
+	b.coverageEligibilityRequest.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageEligibilityRequestBuilder) SetLanguageExt(v Element) *CoverageEligibilityRequestBuilder {
+	b.coverageEligibilityRequest.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageEligibilityRequestBuilder) SetStatusExt(v Element) *CoverageEligibilityRequestBuilder {
+	b.coverageEligibilityRequest.StatusExt = &v
+	return b
+}
+
+// AddPurposeExt appends an extension slot for Purpose.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *CoverageEligibilityRequestBuilder) AddPurposeExt(v *Element) *CoverageEligibilityRequestBuilder {
+	b.coverageEligibilityRequest.PurposeExt = append(b.coverageEligibilityRequest.PurposeExt, v)
+	return b
+}
+
+// SetCreatedExt sets the extensions carried by Created, serialized as
+// "_created".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageEligibilityRequestBuilder) SetCreatedExt(v Element) *CoverageEligibilityRequestBuilder {
+	b.coverageEligibilityRequest.CreatedExt = &v
+	return b
+}
+
 // clearServiced unsets every variant of Serviced[x], including the
 // _field companions of the primitive ones.
 func (b *CoverageEligibilityRequestBuilder) clearServiced() {
 	b.coverageEligibilityRequest.ServicedDate = nil
 	b.coverageEligibilityRequest.ServicedPeriod = nil
+}
+
+// =============================================================================
+// CoverageEligibilityRequestInsurance - Fluent Builder
+// =============================================================================
+
+// CoverageEligibilityRequestInsuranceBuilder provides a fluent API for constructing CoverageEligibilityRequestInsurance values.
+type CoverageEligibilityRequestInsuranceBuilder struct {
+	coverageEligibilityRequestInsurance *CoverageEligibilityRequestInsurance
+}
+
+// NewCoverageEligibilityRequestInsuranceBuilder creates a new CoverageEligibilityRequestInsuranceBuilder.
+func NewCoverageEligibilityRequestInsuranceBuilder() *CoverageEligibilityRequestInsuranceBuilder {
+	return &CoverageEligibilityRequestInsuranceBuilder{
+		coverageEligibilityRequestInsurance: &CoverageEligibilityRequestInsurance{},
+	}
+}
+
+// Build returns the constructed CoverageEligibilityRequestInsurance.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CoverageEligibilityRequestInsuranceBuilder) Build() CoverageEligibilityRequestInsurance {
+	return *b.coverageEligibilityRequestInsurance
+}
+
+// SetId sets the Id field.
+func (b *CoverageEligibilityRequestInsuranceBuilder) SetId(v string) *CoverageEligibilityRequestInsuranceBuilder {
+	b.coverageEligibilityRequestInsurance.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CoverageEligibilityRequestInsuranceBuilder) AddExtension(v Extension) *CoverageEligibilityRequestInsuranceBuilder {
+	b.coverageEligibilityRequestInsurance.Extension = append(b.coverageEligibilityRequestInsurance.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CoverageEligibilityRequestInsuranceBuilder) AddModifierExtension(v Extension) *CoverageEligibilityRequestInsuranceBuilder {
+	b.coverageEligibilityRequestInsurance.ModifierExtension = append(b.coverageEligibilityRequestInsurance.ModifierExtension, v)
+	return b
+}
+
+// SetFocal sets the Focal field.
+func (b *CoverageEligibilityRequestInsuranceBuilder) SetFocal(v bool) *CoverageEligibilityRequestInsuranceBuilder {
+	b.coverageEligibilityRequestInsurance.Focal = &v
+	return b
+}
+
+// SetCoverage sets the Coverage field.
+func (b *CoverageEligibilityRequestInsuranceBuilder) SetCoverage(v Reference) *CoverageEligibilityRequestInsuranceBuilder {
+	b.coverageEligibilityRequestInsurance.Coverage = &v
+	return b
+}
+
+// SetBusinessArrangement sets the BusinessArrangement field.
+func (b *CoverageEligibilityRequestInsuranceBuilder) SetBusinessArrangement(v string) *CoverageEligibilityRequestInsuranceBuilder {
+	b.coverageEligibilityRequestInsurance.BusinessArrangement = &v
+	return b
+}
+
+// SetFocalExt sets the extensions carried by Focal, serialized as
+// "_focal".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageEligibilityRequestInsuranceBuilder) SetFocalExt(v Element) *CoverageEligibilityRequestInsuranceBuilder {
+	b.coverageEligibilityRequestInsurance.FocalExt = &v
+	return b
+}
+
+// SetBusinessArrangementExt sets the extensions carried by BusinessArrangement, serialized as
+// "_businessArrangement".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageEligibilityRequestInsuranceBuilder) SetBusinessArrangementExt(v Element) *CoverageEligibilityRequestInsuranceBuilder {
+	b.coverageEligibilityRequestInsurance.BusinessArrangementExt = &v
+	return b
+}
+
+// =============================================================================
+// CoverageEligibilityRequestItem - Fluent Builder
+// =============================================================================
+
+// CoverageEligibilityRequestItemBuilder provides a fluent API for constructing CoverageEligibilityRequestItem values.
+type CoverageEligibilityRequestItemBuilder struct {
+	coverageEligibilityRequestItem *CoverageEligibilityRequestItem
+}
+
+// NewCoverageEligibilityRequestItemBuilder creates a new CoverageEligibilityRequestItemBuilder.
+func NewCoverageEligibilityRequestItemBuilder() *CoverageEligibilityRequestItemBuilder {
+	return &CoverageEligibilityRequestItemBuilder{
+		coverageEligibilityRequestItem: &CoverageEligibilityRequestItem{},
+	}
+}
+
+// Build returns the constructed CoverageEligibilityRequestItem.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CoverageEligibilityRequestItemBuilder) Build() CoverageEligibilityRequestItem {
+	return *b.coverageEligibilityRequestItem
+}
+
+// SetId sets the Id field.
+func (b *CoverageEligibilityRequestItemBuilder) SetId(v string) *CoverageEligibilityRequestItemBuilder {
+	b.coverageEligibilityRequestItem.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CoverageEligibilityRequestItemBuilder) AddExtension(v Extension) *CoverageEligibilityRequestItemBuilder {
+	b.coverageEligibilityRequestItem.Extension = append(b.coverageEligibilityRequestItem.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CoverageEligibilityRequestItemBuilder) AddModifierExtension(v Extension) *CoverageEligibilityRequestItemBuilder {
+	b.coverageEligibilityRequestItem.ModifierExtension = append(b.coverageEligibilityRequestItem.ModifierExtension, v)
+	return b
+}
+
+// AddSupportingInfoSequence adds a SupportingInfoSequence element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *CoverageEligibilityRequestItemBuilder) AddSupportingInfoSequence(v uint32) *CoverageEligibilityRequestItemBuilder {
+	b.coverageEligibilityRequestItem.SupportingInfoSequence = append(b.coverageEligibilityRequestItem.SupportingInfoSequence, &v)
+	return b
+}
+
+// SetCategory sets the Category field.
+func (b *CoverageEligibilityRequestItemBuilder) SetCategory(v CodeableConcept) *CoverageEligibilityRequestItemBuilder {
+	b.coverageEligibilityRequestItem.Category = &v
+	return b
+}
+
+// SetProductOrService sets the ProductOrService field.
+func (b *CoverageEligibilityRequestItemBuilder) SetProductOrService(v CodeableConcept) *CoverageEligibilityRequestItemBuilder {
+	b.coverageEligibilityRequestItem.ProductOrService = &v
+	return b
+}
+
+// AddModifier adds a Modifier element.
+func (b *CoverageEligibilityRequestItemBuilder) AddModifier(v CodeableConcept) *CoverageEligibilityRequestItemBuilder {
+	b.coverageEligibilityRequestItem.Modifier = append(b.coverageEligibilityRequestItem.Modifier, v)
+	return b
+}
+
+// SetProvider sets the Provider field.
+func (b *CoverageEligibilityRequestItemBuilder) SetProvider(v Reference) *CoverageEligibilityRequestItemBuilder {
+	b.coverageEligibilityRequestItem.Provider = &v
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *CoverageEligibilityRequestItemBuilder) SetQuantity(v Quantity) *CoverageEligibilityRequestItemBuilder {
+	b.coverageEligibilityRequestItem.Quantity = &v
+	return b
+}
+
+// SetUnitPrice sets the UnitPrice field.
+func (b *CoverageEligibilityRequestItemBuilder) SetUnitPrice(v Money) *CoverageEligibilityRequestItemBuilder {
+	b.coverageEligibilityRequestItem.UnitPrice = &v
+	return b
+}
+
+// SetFacility sets the Facility field.
+func (b *CoverageEligibilityRequestItemBuilder) SetFacility(v Reference) *CoverageEligibilityRequestItemBuilder {
+	b.coverageEligibilityRequestItem.Facility = &v
+	return b
+}
+
+// AddDiagnosis adds a Diagnosis element.
+func (b *CoverageEligibilityRequestItemBuilder) AddDiagnosis(v CoverageEligibilityRequestItemDiagnosis) *CoverageEligibilityRequestItemBuilder {
+	b.coverageEligibilityRequestItem.Diagnosis = append(b.coverageEligibilityRequestItem.Diagnosis, v)
+	return b
+}
+
+// AddDetail adds a Detail element.
+func (b *CoverageEligibilityRequestItemBuilder) AddDetail(v Reference) *CoverageEligibilityRequestItemBuilder {
+	b.coverageEligibilityRequestItem.Detail = append(b.coverageEligibilityRequestItem.Detail, v)
+	return b
+}
+
+// AddSupportingInfoSequenceExt appends an extension slot for SupportingInfoSequence.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *CoverageEligibilityRequestItemBuilder) AddSupportingInfoSequenceExt(v *Element) *CoverageEligibilityRequestItemBuilder {
+	b.coverageEligibilityRequestItem.SupportingInfoSequenceExt = append(b.coverageEligibilityRequestItem.SupportingInfoSequenceExt, v)
+	return b
+}
+
+// =============================================================================
+// CoverageEligibilityRequestItemDiagnosis - Fluent Builder
+// =============================================================================
+
+// CoverageEligibilityRequestItemDiagnosisBuilder provides a fluent API for constructing CoverageEligibilityRequestItemDiagnosis values.
+type CoverageEligibilityRequestItemDiagnosisBuilder struct {
+	coverageEligibilityRequestItemDiagnosis *CoverageEligibilityRequestItemDiagnosis
+}
+
+// NewCoverageEligibilityRequestItemDiagnosisBuilder creates a new CoverageEligibilityRequestItemDiagnosisBuilder.
+func NewCoverageEligibilityRequestItemDiagnosisBuilder() *CoverageEligibilityRequestItemDiagnosisBuilder {
+	return &CoverageEligibilityRequestItemDiagnosisBuilder{
+		coverageEligibilityRequestItemDiagnosis: &CoverageEligibilityRequestItemDiagnosis{},
+	}
+}
+
+// Build returns the constructed CoverageEligibilityRequestItemDiagnosis.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CoverageEligibilityRequestItemDiagnosisBuilder) Build() CoverageEligibilityRequestItemDiagnosis {
+	return *b.coverageEligibilityRequestItemDiagnosis
+}
+
+// SetId sets the Id field.
+func (b *CoverageEligibilityRequestItemDiagnosisBuilder) SetId(v string) *CoverageEligibilityRequestItemDiagnosisBuilder {
+	b.coverageEligibilityRequestItemDiagnosis.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CoverageEligibilityRequestItemDiagnosisBuilder) AddExtension(v Extension) *CoverageEligibilityRequestItemDiagnosisBuilder {
+	b.coverageEligibilityRequestItemDiagnosis.Extension = append(b.coverageEligibilityRequestItemDiagnosis.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CoverageEligibilityRequestItemDiagnosisBuilder) AddModifierExtension(v Extension) *CoverageEligibilityRequestItemDiagnosisBuilder {
+	b.coverageEligibilityRequestItemDiagnosis.ModifierExtension = append(b.coverageEligibilityRequestItemDiagnosis.ModifierExtension, v)
+	return b
+}
+
+// SetDiagnosisCodeableConcept sets Diagnosis[x] to its DiagnosisCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CoverageEligibilityRequestItemDiagnosisBuilder) SetDiagnosisCodeableConcept(v CodeableConcept) *CoverageEligibilityRequestItemDiagnosisBuilder {
+	b.clearDiagnosis()
+	b.coverageEligibilityRequestItemDiagnosis.DiagnosisCodeableConcept = &v
+	return b
+}
+
+// SetDiagnosisReference sets Diagnosis[x] to its DiagnosisReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CoverageEligibilityRequestItemDiagnosisBuilder) SetDiagnosisReference(v Reference) *CoverageEligibilityRequestItemDiagnosisBuilder {
+	b.clearDiagnosis()
+	b.coverageEligibilityRequestItemDiagnosis.DiagnosisReference = &v
+	return b
+}
+
+// clearDiagnosis unsets every variant of Diagnosis[x], including the
+// _field companions of the primitive ones.
+func (b *CoverageEligibilityRequestItemDiagnosisBuilder) clearDiagnosis() {
+	b.coverageEligibilityRequestItemDiagnosis.DiagnosisCodeableConcept = nil
+	b.coverageEligibilityRequestItemDiagnosis.DiagnosisReference = nil
+}
+
+// =============================================================================
+// CoverageEligibilityRequestSupportingInfo - Fluent Builder
+// =============================================================================
+
+// CoverageEligibilityRequestSupportingInfoBuilder provides a fluent API for constructing CoverageEligibilityRequestSupportingInfo values.
+type CoverageEligibilityRequestSupportingInfoBuilder struct {
+	coverageEligibilityRequestSupportingInfo *CoverageEligibilityRequestSupportingInfo
+}
+
+// NewCoverageEligibilityRequestSupportingInfoBuilder creates a new CoverageEligibilityRequestSupportingInfoBuilder.
+func NewCoverageEligibilityRequestSupportingInfoBuilder() *CoverageEligibilityRequestSupportingInfoBuilder {
+	return &CoverageEligibilityRequestSupportingInfoBuilder{
+		coverageEligibilityRequestSupportingInfo: &CoverageEligibilityRequestSupportingInfo{},
+	}
+}
+
+// Build returns the constructed CoverageEligibilityRequestSupportingInfo.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CoverageEligibilityRequestSupportingInfoBuilder) Build() CoverageEligibilityRequestSupportingInfo {
+	return *b.coverageEligibilityRequestSupportingInfo
+}
+
+// SetId sets the Id field.
+func (b *CoverageEligibilityRequestSupportingInfoBuilder) SetId(v string) *CoverageEligibilityRequestSupportingInfoBuilder {
+	b.coverageEligibilityRequestSupportingInfo.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CoverageEligibilityRequestSupportingInfoBuilder) AddExtension(v Extension) *CoverageEligibilityRequestSupportingInfoBuilder {
+	b.coverageEligibilityRequestSupportingInfo.Extension = append(b.coverageEligibilityRequestSupportingInfo.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CoverageEligibilityRequestSupportingInfoBuilder) AddModifierExtension(v Extension) *CoverageEligibilityRequestSupportingInfoBuilder {
+	b.coverageEligibilityRequestSupportingInfo.ModifierExtension = append(b.coverageEligibilityRequestSupportingInfo.ModifierExtension, v)
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *CoverageEligibilityRequestSupportingInfoBuilder) SetSequence(v uint32) *CoverageEligibilityRequestSupportingInfoBuilder {
+	b.coverageEligibilityRequestSupportingInfo.Sequence = &v
+	return b
+}
+
+// SetInformation sets the Information field.
+func (b *CoverageEligibilityRequestSupportingInfoBuilder) SetInformation(v Reference) *CoverageEligibilityRequestSupportingInfoBuilder {
+	b.coverageEligibilityRequestSupportingInfo.Information = &v
+	return b
+}
+
+// SetAppliesToAll sets the AppliesToAll field.
+func (b *CoverageEligibilityRequestSupportingInfoBuilder) SetAppliesToAll(v bool) *CoverageEligibilityRequestSupportingInfoBuilder {
+	b.coverageEligibilityRequestSupportingInfo.AppliesToAll = &v
+	return b
+}
+
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageEligibilityRequestSupportingInfoBuilder) SetSequenceExt(v Element) *CoverageEligibilityRequestSupportingInfoBuilder {
+	b.coverageEligibilityRequestSupportingInfo.SequenceExt = &v
+	return b
+}
+
+// SetAppliesToAllExt sets the extensions carried by AppliesToAll, serialized as
+// "_appliesToAll".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CoverageEligibilityRequestSupportingInfoBuilder) SetAppliesToAllExt(v Element) *CoverageEligibilityRequestSupportingInfoBuilder {
+	b.coverageEligibilityRequestSupportingInfo.AppliesToAllExt = &v
+	return b
 }

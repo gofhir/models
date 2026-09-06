@@ -478,3 +478,33 @@ func (b *FlagBuilder) SetAuthor(v Reference) *FlagBuilder {
 	b.flag.Author = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *FlagBuilder) SetImplicitRulesExt(v Element) *FlagBuilder {
+	b.flag.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *FlagBuilder) SetLanguageExt(v Element) *FlagBuilder {
+	b.flag.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *FlagBuilder) SetStatusExt(v Element) *FlagBuilder {
+	b.flag.StatusExt = &v
+	return b
+}

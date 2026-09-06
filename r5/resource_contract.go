@@ -3686,6 +3686,115 @@ func (b *ContractBuilder) SetLegallyBindingReference(v Reference) *ContractBuild
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractBuilder) SetImplicitRulesExt(v Element) *ContractBuilder {
+	b.contract.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractBuilder) SetLanguageExt(v Element) *ContractBuilder {
+	b.contract.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractBuilder) SetUrlExt(v Element) *ContractBuilder {
+	b.contract.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractBuilder) SetVersionExt(v Element) *ContractBuilder {
+	b.contract.VersionExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractBuilder) SetStatusExt(v Element) *ContractBuilder {
+	b.contract.StatusExt = &v
+	return b
+}
+
+// SetInstantiatesUriExt sets the extensions carried by InstantiatesUri, serialized as
+// "_instantiatesUri".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractBuilder) SetInstantiatesUriExt(v Element) *ContractBuilder {
+	b.contract.InstantiatesUriExt = &v
+	return b
+}
+
+// SetIssuedExt sets the extensions carried by Issued, serialized as
+// "_issued".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractBuilder) SetIssuedExt(v Element) *ContractBuilder {
+	b.contract.IssuedExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractBuilder) SetNameExt(v Element) *ContractBuilder {
+	b.contract.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractBuilder) SetTitleExt(v Element) *ContractBuilder {
+	b.contract.TitleExt = &v
+	return b
+}
+
+// SetSubtitleExt sets the extensions carried by Subtitle, serialized as
+// "_subtitle".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractBuilder) SetSubtitleExt(v Element) *ContractBuilder {
+	b.contract.SubtitleExt = &v
+	return b
+}
+
+// AddAliasExt appends an extension slot for Alias.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ContractBuilder) AddAliasExt(v *Element) *ContractBuilder {
+	b.contract.AliasExt = append(b.contract.AliasExt, v)
+	return b
+}
+
 // clearTopic unsets every variant of Topic[x], including the
 // _field companions of the primitive ones.
 func (b *ContractBuilder) clearTopic() {
@@ -3698,4 +3807,1916 @@ func (b *ContractBuilder) clearTopic() {
 func (b *ContractBuilder) clearLegallyBinding() {
 	b.contract.LegallyBindingAttachment = nil
 	b.contract.LegallyBindingReference = nil
+}
+
+// =============================================================================
+// ContractContentDefinition - Fluent Builder
+// =============================================================================
+
+// ContractContentDefinitionBuilder provides a fluent API for constructing ContractContentDefinition values.
+type ContractContentDefinitionBuilder struct {
+	contractContentDefinition *ContractContentDefinition
+}
+
+// NewContractContentDefinitionBuilder creates a new ContractContentDefinitionBuilder.
+func NewContractContentDefinitionBuilder() *ContractContentDefinitionBuilder {
+	return &ContractContentDefinitionBuilder{
+		contractContentDefinition: &ContractContentDefinition{},
+	}
+}
+
+// Build returns the constructed ContractContentDefinition.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ContractContentDefinitionBuilder) Build() ContractContentDefinition {
+	return *b.contractContentDefinition
+}
+
+// SetId sets the Id field.
+func (b *ContractContentDefinitionBuilder) SetId(v string) *ContractContentDefinitionBuilder {
+	b.contractContentDefinition.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ContractContentDefinitionBuilder) AddExtension(v Extension) *ContractContentDefinitionBuilder {
+	b.contractContentDefinition.Extension = append(b.contractContentDefinition.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ContractContentDefinitionBuilder) AddModifierExtension(v Extension) *ContractContentDefinitionBuilder {
+	b.contractContentDefinition.ModifierExtension = append(b.contractContentDefinition.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ContractContentDefinitionBuilder) SetType(v CodeableConcept) *ContractContentDefinitionBuilder {
+	b.contractContentDefinition.Type = &v
+	return b
+}
+
+// SetSubType sets the SubType field.
+func (b *ContractContentDefinitionBuilder) SetSubType(v CodeableConcept) *ContractContentDefinitionBuilder {
+	b.contractContentDefinition.SubType = &v
+	return b
+}
+
+// SetPublisher sets the Publisher field.
+func (b *ContractContentDefinitionBuilder) SetPublisher(v Reference) *ContractContentDefinitionBuilder {
+	b.contractContentDefinition.Publisher = &v
+	return b
+}
+
+// SetPublicationDate sets the PublicationDate field.
+func (b *ContractContentDefinitionBuilder) SetPublicationDate(v string) *ContractContentDefinitionBuilder {
+	b.contractContentDefinition.PublicationDate = &v
+	return b
+}
+
+// SetPublicationStatus sets the PublicationStatus field.
+func (b *ContractContentDefinitionBuilder) SetPublicationStatus(v ContractPublicationStatus) *ContractContentDefinitionBuilder {
+	b.contractContentDefinition.PublicationStatus = &v
+	return b
+}
+
+// SetCopyright sets the Copyright field.
+func (b *ContractContentDefinitionBuilder) SetCopyright(v string) *ContractContentDefinitionBuilder {
+	b.contractContentDefinition.Copyright = &v
+	return b
+}
+
+// SetPublicationDateExt sets the extensions carried by PublicationDate, serialized as
+// "_publicationDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractContentDefinitionBuilder) SetPublicationDateExt(v Element) *ContractContentDefinitionBuilder {
+	b.contractContentDefinition.PublicationDateExt = &v
+	return b
+}
+
+// SetPublicationStatusExt sets the extensions carried by PublicationStatus, serialized as
+// "_publicationStatus".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractContentDefinitionBuilder) SetPublicationStatusExt(v Element) *ContractContentDefinitionBuilder {
+	b.contractContentDefinition.PublicationStatusExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractContentDefinitionBuilder) SetCopyrightExt(v Element) *ContractContentDefinitionBuilder {
+	b.contractContentDefinition.CopyrightExt = &v
+	return b
+}
+
+// =============================================================================
+// ContractFriendly - Fluent Builder
+// =============================================================================
+
+// ContractFriendlyBuilder provides a fluent API for constructing ContractFriendly values.
+type ContractFriendlyBuilder struct {
+	contractFriendly *ContractFriendly
+}
+
+// NewContractFriendlyBuilder creates a new ContractFriendlyBuilder.
+func NewContractFriendlyBuilder() *ContractFriendlyBuilder {
+	return &ContractFriendlyBuilder{
+		contractFriendly: &ContractFriendly{},
+	}
+}
+
+// Build returns the constructed ContractFriendly.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ContractFriendlyBuilder) Build() ContractFriendly {
+	return *b.contractFriendly
+}
+
+// SetId sets the Id field.
+func (b *ContractFriendlyBuilder) SetId(v string) *ContractFriendlyBuilder {
+	b.contractFriendly.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ContractFriendlyBuilder) AddExtension(v Extension) *ContractFriendlyBuilder {
+	b.contractFriendly.Extension = append(b.contractFriendly.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ContractFriendlyBuilder) AddModifierExtension(v Extension) *ContractFriendlyBuilder {
+	b.contractFriendly.ModifierExtension = append(b.contractFriendly.ModifierExtension, v)
+	return b
+}
+
+// SetContentAttachment sets Content[x] to its ContentAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractFriendlyBuilder) SetContentAttachment(v Attachment) *ContractFriendlyBuilder {
+	b.clearContent()
+	b.contractFriendly.ContentAttachment = &v
+	return b
+}
+
+// SetContentReference sets Content[x] to its ContentReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractFriendlyBuilder) SetContentReference(v Reference) *ContractFriendlyBuilder {
+	b.clearContent()
+	b.contractFriendly.ContentReference = &v
+	return b
+}
+
+// clearContent unsets every variant of Content[x], including the
+// _field companions of the primitive ones.
+func (b *ContractFriendlyBuilder) clearContent() {
+	b.contractFriendly.ContentAttachment = nil
+	b.contractFriendly.ContentReference = nil
+}
+
+// =============================================================================
+// ContractLegal - Fluent Builder
+// =============================================================================
+
+// ContractLegalBuilder provides a fluent API for constructing ContractLegal values.
+type ContractLegalBuilder struct {
+	contractLegal *ContractLegal
+}
+
+// NewContractLegalBuilder creates a new ContractLegalBuilder.
+func NewContractLegalBuilder() *ContractLegalBuilder {
+	return &ContractLegalBuilder{
+		contractLegal: &ContractLegal{},
+	}
+}
+
+// Build returns the constructed ContractLegal.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ContractLegalBuilder) Build() ContractLegal {
+	return *b.contractLegal
+}
+
+// SetId sets the Id field.
+func (b *ContractLegalBuilder) SetId(v string) *ContractLegalBuilder {
+	b.contractLegal.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ContractLegalBuilder) AddExtension(v Extension) *ContractLegalBuilder {
+	b.contractLegal.Extension = append(b.contractLegal.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ContractLegalBuilder) AddModifierExtension(v Extension) *ContractLegalBuilder {
+	b.contractLegal.ModifierExtension = append(b.contractLegal.ModifierExtension, v)
+	return b
+}
+
+// SetContentAttachment sets Content[x] to its ContentAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractLegalBuilder) SetContentAttachment(v Attachment) *ContractLegalBuilder {
+	b.clearContent()
+	b.contractLegal.ContentAttachment = &v
+	return b
+}
+
+// SetContentReference sets Content[x] to its ContentReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractLegalBuilder) SetContentReference(v Reference) *ContractLegalBuilder {
+	b.clearContent()
+	b.contractLegal.ContentReference = &v
+	return b
+}
+
+// clearContent unsets every variant of Content[x], including the
+// _field companions of the primitive ones.
+func (b *ContractLegalBuilder) clearContent() {
+	b.contractLegal.ContentAttachment = nil
+	b.contractLegal.ContentReference = nil
+}
+
+// =============================================================================
+// ContractRule - Fluent Builder
+// =============================================================================
+
+// ContractRuleBuilder provides a fluent API for constructing ContractRule values.
+type ContractRuleBuilder struct {
+	contractRule *ContractRule
+}
+
+// NewContractRuleBuilder creates a new ContractRuleBuilder.
+func NewContractRuleBuilder() *ContractRuleBuilder {
+	return &ContractRuleBuilder{
+		contractRule: &ContractRule{},
+	}
+}
+
+// Build returns the constructed ContractRule.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ContractRuleBuilder) Build() ContractRule {
+	return *b.contractRule
+}
+
+// SetId sets the Id field.
+func (b *ContractRuleBuilder) SetId(v string) *ContractRuleBuilder {
+	b.contractRule.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ContractRuleBuilder) AddExtension(v Extension) *ContractRuleBuilder {
+	b.contractRule.Extension = append(b.contractRule.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ContractRuleBuilder) AddModifierExtension(v Extension) *ContractRuleBuilder {
+	b.contractRule.ModifierExtension = append(b.contractRule.ModifierExtension, v)
+	return b
+}
+
+// SetContentAttachment sets Content[x] to its ContentAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractRuleBuilder) SetContentAttachment(v Attachment) *ContractRuleBuilder {
+	b.clearContent()
+	b.contractRule.ContentAttachment = &v
+	return b
+}
+
+// SetContentReference sets Content[x] to its ContentReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractRuleBuilder) SetContentReference(v Reference) *ContractRuleBuilder {
+	b.clearContent()
+	b.contractRule.ContentReference = &v
+	return b
+}
+
+// clearContent unsets every variant of Content[x], including the
+// _field companions of the primitive ones.
+func (b *ContractRuleBuilder) clearContent() {
+	b.contractRule.ContentAttachment = nil
+	b.contractRule.ContentReference = nil
+}
+
+// =============================================================================
+// ContractSigner - Fluent Builder
+// =============================================================================
+
+// ContractSignerBuilder provides a fluent API for constructing ContractSigner values.
+type ContractSignerBuilder struct {
+	contractSigner *ContractSigner
+}
+
+// NewContractSignerBuilder creates a new ContractSignerBuilder.
+func NewContractSignerBuilder() *ContractSignerBuilder {
+	return &ContractSignerBuilder{
+		contractSigner: &ContractSigner{},
+	}
+}
+
+// Build returns the constructed ContractSigner.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ContractSignerBuilder) Build() ContractSigner {
+	return *b.contractSigner
+}
+
+// SetId sets the Id field.
+func (b *ContractSignerBuilder) SetId(v string) *ContractSignerBuilder {
+	b.contractSigner.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ContractSignerBuilder) AddExtension(v Extension) *ContractSignerBuilder {
+	b.contractSigner.Extension = append(b.contractSigner.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ContractSignerBuilder) AddModifierExtension(v Extension) *ContractSignerBuilder {
+	b.contractSigner.ModifierExtension = append(b.contractSigner.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ContractSignerBuilder) SetType(v Coding) *ContractSignerBuilder {
+	b.contractSigner.Type = &v
+	return b
+}
+
+// SetParty sets the Party field.
+func (b *ContractSignerBuilder) SetParty(v Reference) *ContractSignerBuilder {
+	b.contractSigner.Party = &v
+	return b
+}
+
+// AddSignature adds a Signature element.
+func (b *ContractSignerBuilder) AddSignature(v Signature) *ContractSignerBuilder {
+	b.contractSigner.Signature = append(b.contractSigner.Signature, v)
+	return b
+}
+
+// =============================================================================
+// ContractTerm - Fluent Builder
+// =============================================================================
+
+// ContractTermBuilder provides a fluent API for constructing ContractTerm values.
+type ContractTermBuilder struct {
+	contractTerm *ContractTerm
+}
+
+// NewContractTermBuilder creates a new ContractTermBuilder.
+func NewContractTermBuilder() *ContractTermBuilder {
+	return &ContractTermBuilder{
+		contractTerm: &ContractTerm{},
+	}
+}
+
+// Build returns the constructed ContractTerm.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ContractTermBuilder) Build() ContractTerm {
+	return *b.contractTerm
+}
+
+// SetId sets the Id field.
+func (b *ContractTermBuilder) SetId(v string) *ContractTermBuilder {
+	b.contractTerm.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ContractTermBuilder) AddExtension(v Extension) *ContractTermBuilder {
+	b.contractTerm.Extension = append(b.contractTerm.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ContractTermBuilder) AddModifierExtension(v Extension) *ContractTermBuilder {
+	b.contractTerm.ModifierExtension = append(b.contractTerm.ModifierExtension, v)
+	return b
+}
+
+// SetIdentifier sets the Identifier field.
+func (b *ContractTermBuilder) SetIdentifier(v Identifier) *ContractTermBuilder {
+	b.contractTerm.Identifier = &v
+	return b
+}
+
+// SetIssued sets the Issued field.
+func (b *ContractTermBuilder) SetIssued(v string) *ContractTermBuilder {
+	b.contractTerm.Issued = &v
+	return b
+}
+
+// SetApplies sets the Applies field.
+func (b *ContractTermBuilder) SetApplies(v Period) *ContractTermBuilder {
+	b.contractTerm.Applies = &v
+	return b
+}
+
+// SetTopicCodeableConcept sets Topic[x] to its TopicCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractTermBuilder) SetTopicCodeableConcept(v CodeableConcept) *ContractTermBuilder {
+	b.clearTopic()
+	b.contractTerm.TopicCodeableConcept = &v
+	return b
+}
+
+// SetTopicReference sets Topic[x] to its TopicReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractTermBuilder) SetTopicReference(v Reference) *ContractTermBuilder {
+	b.clearTopic()
+	b.contractTerm.TopicReference = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ContractTermBuilder) SetType(v CodeableConcept) *ContractTermBuilder {
+	b.contractTerm.Type = &v
+	return b
+}
+
+// SetSubType sets the SubType field.
+func (b *ContractTermBuilder) SetSubType(v CodeableConcept) *ContractTermBuilder {
+	b.contractTerm.SubType = &v
+	return b
+}
+
+// SetText sets the Text field.
+func (b *ContractTermBuilder) SetText(v string) *ContractTermBuilder {
+	b.contractTerm.Text = &v
+	return b
+}
+
+// AddSecurityLabel adds a SecurityLabel element.
+func (b *ContractTermBuilder) AddSecurityLabel(v ContractTermSecurityLabel) *ContractTermBuilder {
+	b.contractTerm.SecurityLabel = append(b.contractTerm.SecurityLabel, v)
+	return b
+}
+
+// SetOffer sets the Offer field.
+func (b *ContractTermBuilder) SetOffer(v ContractTermOffer) *ContractTermBuilder {
+	b.contractTerm.Offer = &v
+	return b
+}
+
+// AddAsset adds a Asset element.
+func (b *ContractTermBuilder) AddAsset(v ContractTermAsset) *ContractTermBuilder {
+	b.contractTerm.Asset = append(b.contractTerm.Asset, v)
+	return b
+}
+
+// AddAction adds a Action element.
+func (b *ContractTermBuilder) AddAction(v ContractTermAction) *ContractTermBuilder {
+	b.contractTerm.Action = append(b.contractTerm.Action, v)
+	return b
+}
+
+// AddGroup adds a Group element.
+func (b *ContractTermBuilder) AddGroup(v ContractTerm) *ContractTermBuilder {
+	b.contractTerm.Group = append(b.contractTerm.Group, v)
+	return b
+}
+
+// SetIssuedExt sets the extensions carried by Issued, serialized as
+// "_issued".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractTermBuilder) SetIssuedExt(v Element) *ContractTermBuilder {
+	b.contractTerm.IssuedExt = &v
+	return b
+}
+
+// SetTextExt sets the extensions carried by Text, serialized as
+// "_text".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractTermBuilder) SetTextExt(v Element) *ContractTermBuilder {
+	b.contractTerm.TextExt = &v
+	return b
+}
+
+// clearTopic unsets every variant of Topic[x], including the
+// _field companions of the primitive ones.
+func (b *ContractTermBuilder) clearTopic() {
+	b.contractTerm.TopicCodeableConcept = nil
+	b.contractTerm.TopicReference = nil
+}
+
+// =============================================================================
+// ContractTermAction - Fluent Builder
+// =============================================================================
+
+// ContractTermActionBuilder provides a fluent API for constructing ContractTermAction values.
+type ContractTermActionBuilder struct {
+	contractTermAction *ContractTermAction
+}
+
+// NewContractTermActionBuilder creates a new ContractTermActionBuilder.
+func NewContractTermActionBuilder() *ContractTermActionBuilder {
+	return &ContractTermActionBuilder{
+		contractTermAction: &ContractTermAction{},
+	}
+}
+
+// Build returns the constructed ContractTermAction.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ContractTermActionBuilder) Build() ContractTermAction {
+	return *b.contractTermAction
+}
+
+// SetId sets the Id field.
+func (b *ContractTermActionBuilder) SetId(v string) *ContractTermActionBuilder {
+	b.contractTermAction.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ContractTermActionBuilder) AddExtension(v Extension) *ContractTermActionBuilder {
+	b.contractTermAction.Extension = append(b.contractTermAction.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ContractTermActionBuilder) AddModifierExtension(v Extension) *ContractTermActionBuilder {
+	b.contractTermAction.ModifierExtension = append(b.contractTermAction.ModifierExtension, v)
+	return b
+}
+
+// SetDoNotPerform sets the DoNotPerform field.
+func (b *ContractTermActionBuilder) SetDoNotPerform(v bool) *ContractTermActionBuilder {
+	b.contractTermAction.DoNotPerform = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ContractTermActionBuilder) SetType(v CodeableConcept) *ContractTermActionBuilder {
+	b.contractTermAction.Type = &v
+	return b
+}
+
+// AddSubject adds a Subject element.
+func (b *ContractTermActionBuilder) AddSubject(v ContractTermActionSubject) *ContractTermActionBuilder {
+	b.contractTermAction.Subject = append(b.contractTermAction.Subject, v)
+	return b
+}
+
+// SetIntent sets the Intent field.
+func (b *ContractTermActionBuilder) SetIntent(v CodeableConcept) *ContractTermActionBuilder {
+	b.contractTermAction.Intent = &v
+	return b
+}
+
+// AddLinkId adds a LinkId element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ContractTermActionBuilder) AddLinkId(v string) *ContractTermActionBuilder {
+	b.contractTermAction.LinkId = append(b.contractTermAction.LinkId, &v)
+	return b
+}
+
+// SetStatus sets the Status field.
+func (b *ContractTermActionBuilder) SetStatus(v CodeableConcept) *ContractTermActionBuilder {
+	b.contractTermAction.Status = &v
+	return b
+}
+
+// SetContext sets the Context field.
+func (b *ContractTermActionBuilder) SetContext(v Reference) *ContractTermActionBuilder {
+	b.contractTermAction.Context = &v
+	return b
+}
+
+// AddContextLinkId adds a ContextLinkId element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ContractTermActionBuilder) AddContextLinkId(v string) *ContractTermActionBuilder {
+	b.contractTermAction.ContextLinkId = append(b.contractTermAction.ContextLinkId, &v)
+	return b
+}
+
+// SetOccurrenceDateTime sets Occurrence[x] to its OccurrenceDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractTermActionBuilder) SetOccurrenceDateTime(v string) *ContractTermActionBuilder {
+	b.clearOccurrence()
+	b.contractTermAction.OccurrenceDateTime = &v
+	return b
+}
+
+// SetOccurrenceDateTimeExt sets the OccurrenceDateTimeExt field.
+func (b *ContractTermActionBuilder) SetOccurrenceDateTimeExt(v Element) *ContractTermActionBuilder {
+	b.contractTermAction.OccurrenceDateTimeExt = &v
+	return b
+}
+
+// SetOccurrencePeriod sets Occurrence[x] to its OccurrencePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractTermActionBuilder) SetOccurrencePeriod(v Period) *ContractTermActionBuilder {
+	b.clearOccurrence()
+	b.contractTermAction.OccurrencePeriod = &v
+	return b
+}
+
+// SetOccurrenceTiming sets Occurrence[x] to its OccurrenceTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractTermActionBuilder) SetOccurrenceTiming(v Timing) *ContractTermActionBuilder {
+	b.clearOccurrence()
+	b.contractTermAction.OccurrenceTiming = &v
+	return b
+}
+
+// AddRequester adds a Requester element.
+func (b *ContractTermActionBuilder) AddRequester(v Reference) *ContractTermActionBuilder {
+	b.contractTermAction.Requester = append(b.contractTermAction.Requester, v)
+	return b
+}
+
+// AddRequesterLinkId adds a RequesterLinkId element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ContractTermActionBuilder) AddRequesterLinkId(v string) *ContractTermActionBuilder {
+	b.contractTermAction.RequesterLinkId = append(b.contractTermAction.RequesterLinkId, &v)
+	return b
+}
+
+// AddPerformerType adds a PerformerType element.
+func (b *ContractTermActionBuilder) AddPerformerType(v CodeableConcept) *ContractTermActionBuilder {
+	b.contractTermAction.PerformerType = append(b.contractTermAction.PerformerType, v)
+	return b
+}
+
+// SetPerformerRole sets the PerformerRole field.
+func (b *ContractTermActionBuilder) SetPerformerRole(v CodeableConcept) *ContractTermActionBuilder {
+	b.contractTermAction.PerformerRole = &v
+	return b
+}
+
+// SetPerformer sets the Performer field.
+func (b *ContractTermActionBuilder) SetPerformer(v Reference) *ContractTermActionBuilder {
+	b.contractTermAction.Performer = &v
+	return b
+}
+
+// AddPerformerLinkId adds a PerformerLinkId element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ContractTermActionBuilder) AddPerformerLinkId(v string) *ContractTermActionBuilder {
+	b.contractTermAction.PerformerLinkId = append(b.contractTermAction.PerformerLinkId, &v)
+	return b
+}
+
+// AddReason adds a Reason element.
+func (b *ContractTermActionBuilder) AddReason(v CodeableReference) *ContractTermActionBuilder {
+	b.contractTermAction.Reason = append(b.contractTermAction.Reason, v)
+	return b
+}
+
+// AddReasonLinkId adds a ReasonLinkId element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ContractTermActionBuilder) AddReasonLinkId(v string) *ContractTermActionBuilder {
+	b.contractTermAction.ReasonLinkId = append(b.contractTermAction.ReasonLinkId, &v)
+	return b
+}
+
+// AddNote adds a Note element.
+func (b *ContractTermActionBuilder) AddNote(v Annotation) *ContractTermActionBuilder {
+	b.contractTermAction.Note = append(b.contractTermAction.Note, v)
+	return b
+}
+
+// AddSecurityLabelNumber adds a SecurityLabelNumber element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ContractTermActionBuilder) AddSecurityLabelNumber(v uint32) *ContractTermActionBuilder {
+	b.contractTermAction.SecurityLabelNumber = append(b.contractTermAction.SecurityLabelNumber, &v)
+	return b
+}
+
+// SetDoNotPerformExt sets the extensions carried by DoNotPerform, serialized as
+// "_doNotPerform".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractTermActionBuilder) SetDoNotPerformExt(v Element) *ContractTermActionBuilder {
+	b.contractTermAction.DoNotPerformExt = &v
+	return b
+}
+
+// AddLinkIdExt appends an extension slot for LinkId.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ContractTermActionBuilder) AddLinkIdExt(v *Element) *ContractTermActionBuilder {
+	b.contractTermAction.LinkIdExt = append(b.contractTermAction.LinkIdExt, v)
+	return b
+}
+
+// AddContextLinkIdExt appends an extension slot for ContextLinkId.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ContractTermActionBuilder) AddContextLinkIdExt(v *Element) *ContractTermActionBuilder {
+	b.contractTermAction.ContextLinkIdExt = append(b.contractTermAction.ContextLinkIdExt, v)
+	return b
+}
+
+// AddRequesterLinkIdExt appends an extension slot for RequesterLinkId.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ContractTermActionBuilder) AddRequesterLinkIdExt(v *Element) *ContractTermActionBuilder {
+	b.contractTermAction.RequesterLinkIdExt = append(b.contractTermAction.RequesterLinkIdExt, v)
+	return b
+}
+
+// AddPerformerLinkIdExt appends an extension slot for PerformerLinkId.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ContractTermActionBuilder) AddPerformerLinkIdExt(v *Element) *ContractTermActionBuilder {
+	b.contractTermAction.PerformerLinkIdExt = append(b.contractTermAction.PerformerLinkIdExt, v)
+	return b
+}
+
+// AddReasonLinkIdExt appends an extension slot for ReasonLinkId.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ContractTermActionBuilder) AddReasonLinkIdExt(v *Element) *ContractTermActionBuilder {
+	b.contractTermAction.ReasonLinkIdExt = append(b.contractTermAction.ReasonLinkIdExt, v)
+	return b
+}
+
+// AddSecurityLabelNumberExt appends an extension slot for SecurityLabelNumber.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ContractTermActionBuilder) AddSecurityLabelNumberExt(v *Element) *ContractTermActionBuilder {
+	b.contractTermAction.SecurityLabelNumberExt = append(b.contractTermAction.SecurityLabelNumberExt, v)
+	return b
+}
+
+// clearOccurrence unsets every variant of Occurrence[x], including the
+// _field companions of the primitive ones.
+func (b *ContractTermActionBuilder) clearOccurrence() {
+	b.contractTermAction.OccurrenceDateTime = nil
+	b.contractTermAction.OccurrencePeriod = nil
+	b.contractTermAction.OccurrenceTiming = nil
+}
+
+// =============================================================================
+// ContractTermActionSubject - Fluent Builder
+// =============================================================================
+
+// ContractTermActionSubjectBuilder provides a fluent API for constructing ContractTermActionSubject values.
+type ContractTermActionSubjectBuilder struct {
+	contractTermActionSubject *ContractTermActionSubject
+}
+
+// NewContractTermActionSubjectBuilder creates a new ContractTermActionSubjectBuilder.
+func NewContractTermActionSubjectBuilder() *ContractTermActionSubjectBuilder {
+	return &ContractTermActionSubjectBuilder{
+		contractTermActionSubject: &ContractTermActionSubject{},
+	}
+}
+
+// Build returns the constructed ContractTermActionSubject.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ContractTermActionSubjectBuilder) Build() ContractTermActionSubject {
+	return *b.contractTermActionSubject
+}
+
+// SetId sets the Id field.
+func (b *ContractTermActionSubjectBuilder) SetId(v string) *ContractTermActionSubjectBuilder {
+	b.contractTermActionSubject.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ContractTermActionSubjectBuilder) AddExtension(v Extension) *ContractTermActionSubjectBuilder {
+	b.contractTermActionSubject.Extension = append(b.contractTermActionSubject.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ContractTermActionSubjectBuilder) AddModifierExtension(v Extension) *ContractTermActionSubjectBuilder {
+	b.contractTermActionSubject.ModifierExtension = append(b.contractTermActionSubject.ModifierExtension, v)
+	return b
+}
+
+// AddReference adds a Reference element.
+func (b *ContractTermActionSubjectBuilder) AddReference(v Reference) *ContractTermActionSubjectBuilder {
+	b.contractTermActionSubject.Reference = append(b.contractTermActionSubject.Reference, v)
+	return b
+}
+
+// SetRole sets the Role field.
+func (b *ContractTermActionSubjectBuilder) SetRole(v CodeableConcept) *ContractTermActionSubjectBuilder {
+	b.contractTermActionSubject.Role = &v
+	return b
+}
+
+// =============================================================================
+// ContractTermAsset - Fluent Builder
+// =============================================================================
+
+// ContractTermAssetBuilder provides a fluent API for constructing ContractTermAsset values.
+type ContractTermAssetBuilder struct {
+	contractTermAsset *ContractTermAsset
+}
+
+// NewContractTermAssetBuilder creates a new ContractTermAssetBuilder.
+func NewContractTermAssetBuilder() *ContractTermAssetBuilder {
+	return &ContractTermAssetBuilder{
+		contractTermAsset: &ContractTermAsset{},
+	}
+}
+
+// Build returns the constructed ContractTermAsset.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ContractTermAssetBuilder) Build() ContractTermAsset {
+	return *b.contractTermAsset
+}
+
+// SetId sets the Id field.
+func (b *ContractTermAssetBuilder) SetId(v string) *ContractTermAssetBuilder {
+	b.contractTermAsset.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ContractTermAssetBuilder) AddExtension(v Extension) *ContractTermAssetBuilder {
+	b.contractTermAsset.Extension = append(b.contractTermAsset.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ContractTermAssetBuilder) AddModifierExtension(v Extension) *ContractTermAssetBuilder {
+	b.contractTermAsset.ModifierExtension = append(b.contractTermAsset.ModifierExtension, v)
+	return b
+}
+
+// SetScope sets the Scope field.
+func (b *ContractTermAssetBuilder) SetScope(v CodeableConcept) *ContractTermAssetBuilder {
+	b.contractTermAsset.Scope = &v
+	return b
+}
+
+// AddType adds a Type element.
+func (b *ContractTermAssetBuilder) AddType(v CodeableConcept) *ContractTermAssetBuilder {
+	b.contractTermAsset.Type = append(b.contractTermAsset.Type, v)
+	return b
+}
+
+// AddTypeReference adds a TypeReference element.
+func (b *ContractTermAssetBuilder) AddTypeReference(v Reference) *ContractTermAssetBuilder {
+	b.contractTermAsset.TypeReference = append(b.contractTermAsset.TypeReference, v)
+	return b
+}
+
+// AddSubtype adds a Subtype element.
+func (b *ContractTermAssetBuilder) AddSubtype(v CodeableConcept) *ContractTermAssetBuilder {
+	b.contractTermAsset.Subtype = append(b.contractTermAsset.Subtype, v)
+	return b
+}
+
+// SetRelationship sets the Relationship field.
+func (b *ContractTermAssetBuilder) SetRelationship(v Coding) *ContractTermAssetBuilder {
+	b.contractTermAsset.Relationship = &v
+	return b
+}
+
+// AddContext adds a Context element.
+func (b *ContractTermAssetBuilder) AddContext(v ContractTermAssetContext) *ContractTermAssetBuilder {
+	b.contractTermAsset.Context = append(b.contractTermAsset.Context, v)
+	return b
+}
+
+// SetCondition sets the Condition field.
+func (b *ContractTermAssetBuilder) SetCondition(v string) *ContractTermAssetBuilder {
+	b.contractTermAsset.Condition = &v
+	return b
+}
+
+// AddPeriodType adds a PeriodType element.
+func (b *ContractTermAssetBuilder) AddPeriodType(v CodeableConcept) *ContractTermAssetBuilder {
+	b.contractTermAsset.PeriodType = append(b.contractTermAsset.PeriodType, v)
+	return b
+}
+
+// AddPeriod adds a Period element.
+func (b *ContractTermAssetBuilder) AddPeriod(v Period) *ContractTermAssetBuilder {
+	b.contractTermAsset.Period = append(b.contractTermAsset.Period, v)
+	return b
+}
+
+// AddUsePeriod adds a UsePeriod element.
+func (b *ContractTermAssetBuilder) AddUsePeriod(v Period) *ContractTermAssetBuilder {
+	b.contractTermAsset.UsePeriod = append(b.contractTermAsset.UsePeriod, v)
+	return b
+}
+
+// SetText sets the Text field.
+func (b *ContractTermAssetBuilder) SetText(v string) *ContractTermAssetBuilder {
+	b.contractTermAsset.Text = &v
+	return b
+}
+
+// AddLinkId adds a LinkId element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ContractTermAssetBuilder) AddLinkId(v string) *ContractTermAssetBuilder {
+	b.contractTermAsset.LinkId = append(b.contractTermAsset.LinkId, &v)
+	return b
+}
+
+// AddAnswer adds a Answer element.
+func (b *ContractTermAssetBuilder) AddAnswer(v ContractTermOfferAnswer) *ContractTermAssetBuilder {
+	b.contractTermAsset.Answer = append(b.contractTermAsset.Answer, v)
+	return b
+}
+
+// AddSecurityLabelNumber adds a SecurityLabelNumber element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ContractTermAssetBuilder) AddSecurityLabelNumber(v uint32) *ContractTermAssetBuilder {
+	b.contractTermAsset.SecurityLabelNumber = append(b.contractTermAsset.SecurityLabelNumber, &v)
+	return b
+}
+
+// AddValuedItem adds a ValuedItem element.
+func (b *ContractTermAssetBuilder) AddValuedItem(v ContractTermAssetValuedItem) *ContractTermAssetBuilder {
+	b.contractTermAsset.ValuedItem = append(b.contractTermAsset.ValuedItem, v)
+	return b
+}
+
+// SetConditionExt sets the extensions carried by Condition, serialized as
+// "_condition".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractTermAssetBuilder) SetConditionExt(v Element) *ContractTermAssetBuilder {
+	b.contractTermAsset.ConditionExt = &v
+	return b
+}
+
+// SetTextExt sets the extensions carried by Text, serialized as
+// "_text".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractTermAssetBuilder) SetTextExt(v Element) *ContractTermAssetBuilder {
+	b.contractTermAsset.TextExt = &v
+	return b
+}
+
+// AddLinkIdExt appends an extension slot for LinkId.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ContractTermAssetBuilder) AddLinkIdExt(v *Element) *ContractTermAssetBuilder {
+	b.contractTermAsset.LinkIdExt = append(b.contractTermAsset.LinkIdExt, v)
+	return b
+}
+
+// AddSecurityLabelNumberExt appends an extension slot for SecurityLabelNumber.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ContractTermAssetBuilder) AddSecurityLabelNumberExt(v *Element) *ContractTermAssetBuilder {
+	b.contractTermAsset.SecurityLabelNumberExt = append(b.contractTermAsset.SecurityLabelNumberExt, v)
+	return b
+}
+
+// =============================================================================
+// ContractTermAssetContext - Fluent Builder
+// =============================================================================
+
+// ContractTermAssetContextBuilder provides a fluent API for constructing ContractTermAssetContext values.
+type ContractTermAssetContextBuilder struct {
+	contractTermAssetContext *ContractTermAssetContext
+}
+
+// NewContractTermAssetContextBuilder creates a new ContractTermAssetContextBuilder.
+func NewContractTermAssetContextBuilder() *ContractTermAssetContextBuilder {
+	return &ContractTermAssetContextBuilder{
+		contractTermAssetContext: &ContractTermAssetContext{},
+	}
+}
+
+// Build returns the constructed ContractTermAssetContext.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ContractTermAssetContextBuilder) Build() ContractTermAssetContext {
+	return *b.contractTermAssetContext
+}
+
+// SetId sets the Id field.
+func (b *ContractTermAssetContextBuilder) SetId(v string) *ContractTermAssetContextBuilder {
+	b.contractTermAssetContext.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ContractTermAssetContextBuilder) AddExtension(v Extension) *ContractTermAssetContextBuilder {
+	b.contractTermAssetContext.Extension = append(b.contractTermAssetContext.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ContractTermAssetContextBuilder) AddModifierExtension(v Extension) *ContractTermAssetContextBuilder {
+	b.contractTermAssetContext.ModifierExtension = append(b.contractTermAssetContext.ModifierExtension, v)
+	return b
+}
+
+// SetReference sets the Reference field.
+func (b *ContractTermAssetContextBuilder) SetReference(v Reference) *ContractTermAssetContextBuilder {
+	b.contractTermAssetContext.Reference = &v
+	return b
+}
+
+// AddCode adds a Code element.
+func (b *ContractTermAssetContextBuilder) AddCode(v CodeableConcept) *ContractTermAssetContextBuilder {
+	b.contractTermAssetContext.Code = append(b.contractTermAssetContext.Code, v)
+	return b
+}
+
+// SetText sets the Text field.
+func (b *ContractTermAssetContextBuilder) SetText(v string) *ContractTermAssetContextBuilder {
+	b.contractTermAssetContext.Text = &v
+	return b
+}
+
+// SetTextExt sets the extensions carried by Text, serialized as
+// "_text".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractTermAssetContextBuilder) SetTextExt(v Element) *ContractTermAssetContextBuilder {
+	b.contractTermAssetContext.TextExt = &v
+	return b
+}
+
+// =============================================================================
+// ContractTermAssetValuedItem - Fluent Builder
+// =============================================================================
+
+// ContractTermAssetValuedItemBuilder provides a fluent API for constructing ContractTermAssetValuedItem values.
+type ContractTermAssetValuedItemBuilder struct {
+	contractTermAssetValuedItem *ContractTermAssetValuedItem
+}
+
+// NewContractTermAssetValuedItemBuilder creates a new ContractTermAssetValuedItemBuilder.
+func NewContractTermAssetValuedItemBuilder() *ContractTermAssetValuedItemBuilder {
+	return &ContractTermAssetValuedItemBuilder{
+		contractTermAssetValuedItem: &ContractTermAssetValuedItem{},
+	}
+}
+
+// Build returns the constructed ContractTermAssetValuedItem.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ContractTermAssetValuedItemBuilder) Build() ContractTermAssetValuedItem {
+	return *b.contractTermAssetValuedItem
+}
+
+// SetId sets the Id field.
+func (b *ContractTermAssetValuedItemBuilder) SetId(v string) *ContractTermAssetValuedItemBuilder {
+	b.contractTermAssetValuedItem.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ContractTermAssetValuedItemBuilder) AddExtension(v Extension) *ContractTermAssetValuedItemBuilder {
+	b.contractTermAssetValuedItem.Extension = append(b.contractTermAssetValuedItem.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ContractTermAssetValuedItemBuilder) AddModifierExtension(v Extension) *ContractTermAssetValuedItemBuilder {
+	b.contractTermAssetValuedItem.ModifierExtension = append(b.contractTermAssetValuedItem.ModifierExtension, v)
+	return b
+}
+
+// SetEntityCodeableConcept sets Entity[x] to its EntityCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractTermAssetValuedItemBuilder) SetEntityCodeableConcept(v CodeableConcept) *ContractTermAssetValuedItemBuilder {
+	b.clearEntity()
+	b.contractTermAssetValuedItem.EntityCodeableConcept = &v
+	return b
+}
+
+// SetEntityReference sets Entity[x] to its EntityReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractTermAssetValuedItemBuilder) SetEntityReference(v Reference) *ContractTermAssetValuedItemBuilder {
+	b.clearEntity()
+	b.contractTermAssetValuedItem.EntityReference = &v
+	return b
+}
+
+// SetIdentifier sets the Identifier field.
+func (b *ContractTermAssetValuedItemBuilder) SetIdentifier(v Identifier) *ContractTermAssetValuedItemBuilder {
+	b.contractTermAssetValuedItem.Identifier = &v
+	return b
+}
+
+// SetEffectiveTime sets the EffectiveTime field.
+func (b *ContractTermAssetValuedItemBuilder) SetEffectiveTime(v string) *ContractTermAssetValuedItemBuilder {
+	b.contractTermAssetValuedItem.EffectiveTime = &v
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *ContractTermAssetValuedItemBuilder) SetQuantity(v Quantity) *ContractTermAssetValuedItemBuilder {
+	b.contractTermAssetValuedItem.Quantity = &v
+	return b
+}
+
+// SetUnitPrice sets the UnitPrice field.
+func (b *ContractTermAssetValuedItemBuilder) SetUnitPrice(v Money) *ContractTermAssetValuedItemBuilder {
+	b.contractTermAssetValuedItem.UnitPrice = &v
+	return b
+}
+
+// SetFactor sets the Factor field.
+func (b *ContractTermAssetValuedItemBuilder) SetFactor(v Decimal) *ContractTermAssetValuedItemBuilder {
+	b.contractTermAssetValuedItem.Factor = &v
+	return b
+}
+
+// SetPoints sets the Points field.
+func (b *ContractTermAssetValuedItemBuilder) SetPoints(v Decimal) *ContractTermAssetValuedItemBuilder {
+	b.contractTermAssetValuedItem.Points = &v
+	return b
+}
+
+// SetNet sets the Net field.
+func (b *ContractTermAssetValuedItemBuilder) SetNet(v Money) *ContractTermAssetValuedItemBuilder {
+	b.contractTermAssetValuedItem.Net = &v
+	return b
+}
+
+// SetPayment sets the Payment field.
+func (b *ContractTermAssetValuedItemBuilder) SetPayment(v string) *ContractTermAssetValuedItemBuilder {
+	b.contractTermAssetValuedItem.Payment = &v
+	return b
+}
+
+// SetPaymentDate sets the PaymentDate field.
+func (b *ContractTermAssetValuedItemBuilder) SetPaymentDate(v string) *ContractTermAssetValuedItemBuilder {
+	b.contractTermAssetValuedItem.PaymentDate = &v
+	return b
+}
+
+// SetResponsible sets the Responsible field.
+func (b *ContractTermAssetValuedItemBuilder) SetResponsible(v Reference) *ContractTermAssetValuedItemBuilder {
+	b.contractTermAssetValuedItem.Responsible = &v
+	return b
+}
+
+// SetRecipient sets the Recipient field.
+func (b *ContractTermAssetValuedItemBuilder) SetRecipient(v Reference) *ContractTermAssetValuedItemBuilder {
+	b.contractTermAssetValuedItem.Recipient = &v
+	return b
+}
+
+// AddLinkId adds a LinkId element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ContractTermAssetValuedItemBuilder) AddLinkId(v string) *ContractTermAssetValuedItemBuilder {
+	b.contractTermAssetValuedItem.LinkId = append(b.contractTermAssetValuedItem.LinkId, &v)
+	return b
+}
+
+// AddSecurityLabelNumber adds a SecurityLabelNumber element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ContractTermAssetValuedItemBuilder) AddSecurityLabelNumber(v uint32) *ContractTermAssetValuedItemBuilder {
+	b.contractTermAssetValuedItem.SecurityLabelNumber = append(b.contractTermAssetValuedItem.SecurityLabelNumber, &v)
+	return b
+}
+
+// SetEffectiveTimeExt sets the extensions carried by EffectiveTime, serialized as
+// "_effectiveTime".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractTermAssetValuedItemBuilder) SetEffectiveTimeExt(v Element) *ContractTermAssetValuedItemBuilder {
+	b.contractTermAssetValuedItem.EffectiveTimeExt = &v
+	return b
+}
+
+// SetFactorExt sets the extensions carried by Factor, serialized as
+// "_factor".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractTermAssetValuedItemBuilder) SetFactorExt(v Element) *ContractTermAssetValuedItemBuilder {
+	b.contractTermAssetValuedItem.FactorExt = &v
+	return b
+}
+
+// SetPointsExt sets the extensions carried by Points, serialized as
+// "_points".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractTermAssetValuedItemBuilder) SetPointsExt(v Element) *ContractTermAssetValuedItemBuilder {
+	b.contractTermAssetValuedItem.PointsExt = &v
+	return b
+}
+
+// SetPaymentExt sets the extensions carried by Payment, serialized as
+// "_payment".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractTermAssetValuedItemBuilder) SetPaymentExt(v Element) *ContractTermAssetValuedItemBuilder {
+	b.contractTermAssetValuedItem.PaymentExt = &v
+	return b
+}
+
+// SetPaymentDateExt sets the extensions carried by PaymentDate, serialized as
+// "_paymentDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractTermAssetValuedItemBuilder) SetPaymentDateExt(v Element) *ContractTermAssetValuedItemBuilder {
+	b.contractTermAssetValuedItem.PaymentDateExt = &v
+	return b
+}
+
+// AddLinkIdExt appends an extension slot for LinkId.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ContractTermAssetValuedItemBuilder) AddLinkIdExt(v *Element) *ContractTermAssetValuedItemBuilder {
+	b.contractTermAssetValuedItem.LinkIdExt = append(b.contractTermAssetValuedItem.LinkIdExt, v)
+	return b
+}
+
+// AddSecurityLabelNumberExt appends an extension slot for SecurityLabelNumber.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ContractTermAssetValuedItemBuilder) AddSecurityLabelNumberExt(v *Element) *ContractTermAssetValuedItemBuilder {
+	b.contractTermAssetValuedItem.SecurityLabelNumberExt = append(b.contractTermAssetValuedItem.SecurityLabelNumberExt, v)
+	return b
+}
+
+// clearEntity unsets every variant of Entity[x], including the
+// _field companions of the primitive ones.
+func (b *ContractTermAssetValuedItemBuilder) clearEntity() {
+	b.contractTermAssetValuedItem.EntityCodeableConcept = nil
+	b.contractTermAssetValuedItem.EntityReference = nil
+}
+
+// =============================================================================
+// ContractTermOffer - Fluent Builder
+// =============================================================================
+
+// ContractTermOfferBuilder provides a fluent API for constructing ContractTermOffer values.
+type ContractTermOfferBuilder struct {
+	contractTermOffer *ContractTermOffer
+}
+
+// NewContractTermOfferBuilder creates a new ContractTermOfferBuilder.
+func NewContractTermOfferBuilder() *ContractTermOfferBuilder {
+	return &ContractTermOfferBuilder{
+		contractTermOffer: &ContractTermOffer{},
+	}
+}
+
+// Build returns the constructed ContractTermOffer.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ContractTermOfferBuilder) Build() ContractTermOffer {
+	return *b.contractTermOffer
+}
+
+// SetId sets the Id field.
+func (b *ContractTermOfferBuilder) SetId(v string) *ContractTermOfferBuilder {
+	b.contractTermOffer.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ContractTermOfferBuilder) AddExtension(v Extension) *ContractTermOfferBuilder {
+	b.contractTermOffer.Extension = append(b.contractTermOffer.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ContractTermOfferBuilder) AddModifierExtension(v Extension) *ContractTermOfferBuilder {
+	b.contractTermOffer.ModifierExtension = append(b.contractTermOffer.ModifierExtension, v)
+	return b
+}
+
+// AddIdentifier adds a Identifier element.
+func (b *ContractTermOfferBuilder) AddIdentifier(v Identifier) *ContractTermOfferBuilder {
+	b.contractTermOffer.Identifier = append(b.contractTermOffer.Identifier, v)
+	return b
+}
+
+// AddParty adds a Party element.
+func (b *ContractTermOfferBuilder) AddParty(v ContractTermOfferParty) *ContractTermOfferBuilder {
+	b.contractTermOffer.Party = append(b.contractTermOffer.Party, v)
+	return b
+}
+
+// SetTopic sets the Topic field.
+func (b *ContractTermOfferBuilder) SetTopic(v Reference) *ContractTermOfferBuilder {
+	b.contractTermOffer.Topic = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ContractTermOfferBuilder) SetType(v CodeableConcept) *ContractTermOfferBuilder {
+	b.contractTermOffer.Type = &v
+	return b
+}
+
+// SetDecision sets the Decision field.
+func (b *ContractTermOfferBuilder) SetDecision(v CodeableConcept) *ContractTermOfferBuilder {
+	b.contractTermOffer.Decision = &v
+	return b
+}
+
+// AddDecisionMode adds a DecisionMode element.
+func (b *ContractTermOfferBuilder) AddDecisionMode(v CodeableConcept) *ContractTermOfferBuilder {
+	b.contractTermOffer.DecisionMode = append(b.contractTermOffer.DecisionMode, v)
+	return b
+}
+
+// AddAnswer adds a Answer element.
+func (b *ContractTermOfferBuilder) AddAnswer(v ContractTermOfferAnswer) *ContractTermOfferBuilder {
+	b.contractTermOffer.Answer = append(b.contractTermOffer.Answer, v)
+	return b
+}
+
+// SetText sets the Text field.
+func (b *ContractTermOfferBuilder) SetText(v string) *ContractTermOfferBuilder {
+	b.contractTermOffer.Text = &v
+	return b
+}
+
+// AddLinkId adds a LinkId element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ContractTermOfferBuilder) AddLinkId(v string) *ContractTermOfferBuilder {
+	b.contractTermOffer.LinkId = append(b.contractTermOffer.LinkId, &v)
+	return b
+}
+
+// AddSecurityLabelNumber adds a SecurityLabelNumber element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ContractTermOfferBuilder) AddSecurityLabelNumber(v uint32) *ContractTermOfferBuilder {
+	b.contractTermOffer.SecurityLabelNumber = append(b.contractTermOffer.SecurityLabelNumber, &v)
+	return b
+}
+
+// SetTextExt sets the extensions carried by Text, serialized as
+// "_text".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContractTermOfferBuilder) SetTextExt(v Element) *ContractTermOfferBuilder {
+	b.contractTermOffer.TextExt = &v
+	return b
+}
+
+// AddLinkIdExt appends an extension slot for LinkId.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ContractTermOfferBuilder) AddLinkIdExt(v *Element) *ContractTermOfferBuilder {
+	b.contractTermOffer.LinkIdExt = append(b.contractTermOffer.LinkIdExt, v)
+	return b
+}
+
+// AddSecurityLabelNumberExt appends an extension slot for SecurityLabelNumber.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ContractTermOfferBuilder) AddSecurityLabelNumberExt(v *Element) *ContractTermOfferBuilder {
+	b.contractTermOffer.SecurityLabelNumberExt = append(b.contractTermOffer.SecurityLabelNumberExt, v)
+	return b
+}
+
+// =============================================================================
+// ContractTermOfferAnswer - Fluent Builder
+// =============================================================================
+
+// ContractTermOfferAnswerBuilder provides a fluent API for constructing ContractTermOfferAnswer values.
+type ContractTermOfferAnswerBuilder struct {
+	contractTermOfferAnswer *ContractTermOfferAnswer
+}
+
+// NewContractTermOfferAnswerBuilder creates a new ContractTermOfferAnswerBuilder.
+func NewContractTermOfferAnswerBuilder() *ContractTermOfferAnswerBuilder {
+	return &ContractTermOfferAnswerBuilder{
+		contractTermOfferAnswer: &ContractTermOfferAnswer{},
+	}
+}
+
+// Build returns the constructed ContractTermOfferAnswer.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ContractTermOfferAnswerBuilder) Build() ContractTermOfferAnswer {
+	return *b.contractTermOfferAnswer
+}
+
+// SetId sets the Id field.
+func (b *ContractTermOfferAnswerBuilder) SetId(v string) *ContractTermOfferAnswerBuilder {
+	b.contractTermOfferAnswer.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ContractTermOfferAnswerBuilder) AddExtension(v Extension) *ContractTermOfferAnswerBuilder {
+	b.contractTermOfferAnswer.Extension = append(b.contractTermOfferAnswer.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ContractTermOfferAnswerBuilder) AddModifierExtension(v Extension) *ContractTermOfferAnswerBuilder {
+	b.contractTermOfferAnswer.ModifierExtension = append(b.contractTermOfferAnswer.ModifierExtension, v)
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractTermOfferAnswerBuilder) SetValueBoolean(v bool) *ContractTermOfferAnswerBuilder {
+	b.clearValue()
+	b.contractTermOfferAnswer.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *ContractTermOfferAnswerBuilder) SetValueBooleanExt(v Element) *ContractTermOfferAnswerBuilder {
+	b.contractTermOfferAnswer.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueDecimal sets Value[x] to its ValueDecimal variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractTermOfferAnswerBuilder) SetValueDecimal(v Decimal) *ContractTermOfferAnswerBuilder {
+	b.clearValue()
+	b.contractTermOfferAnswer.ValueDecimal = &v
+	return b
+}
+
+// SetValueDecimalExt sets the ValueDecimalExt field.
+func (b *ContractTermOfferAnswerBuilder) SetValueDecimalExt(v Element) *ContractTermOfferAnswerBuilder {
+	b.contractTermOfferAnswer.ValueDecimalExt = &v
+	return b
+}
+
+// SetValueInteger sets Value[x] to its ValueInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractTermOfferAnswerBuilder) SetValueInteger(v int) *ContractTermOfferAnswerBuilder {
+	b.clearValue()
+	b.contractTermOfferAnswer.ValueInteger = &v
+	return b
+}
+
+// SetValueIntegerExt sets the ValueIntegerExt field.
+func (b *ContractTermOfferAnswerBuilder) SetValueIntegerExt(v Element) *ContractTermOfferAnswerBuilder {
+	b.contractTermOfferAnswer.ValueIntegerExt = &v
+	return b
+}
+
+// SetValueDate sets Value[x] to its ValueDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractTermOfferAnswerBuilder) SetValueDate(v string) *ContractTermOfferAnswerBuilder {
+	b.clearValue()
+	b.contractTermOfferAnswer.ValueDate = &v
+	return b
+}
+
+// SetValueDateExt sets the ValueDateExt field.
+func (b *ContractTermOfferAnswerBuilder) SetValueDateExt(v Element) *ContractTermOfferAnswerBuilder {
+	b.contractTermOfferAnswer.ValueDateExt = &v
+	return b
+}
+
+// SetValueDateTime sets Value[x] to its ValueDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractTermOfferAnswerBuilder) SetValueDateTime(v string) *ContractTermOfferAnswerBuilder {
+	b.clearValue()
+	b.contractTermOfferAnswer.ValueDateTime = &v
+	return b
+}
+
+// SetValueDateTimeExt sets the ValueDateTimeExt field.
+func (b *ContractTermOfferAnswerBuilder) SetValueDateTimeExt(v Element) *ContractTermOfferAnswerBuilder {
+	b.contractTermOfferAnswer.ValueDateTimeExt = &v
+	return b
+}
+
+// SetValueTime sets Value[x] to its ValueTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractTermOfferAnswerBuilder) SetValueTime(v string) *ContractTermOfferAnswerBuilder {
+	b.clearValue()
+	b.contractTermOfferAnswer.ValueTime = &v
+	return b
+}
+
+// SetValueTimeExt sets the ValueTimeExt field.
+func (b *ContractTermOfferAnswerBuilder) SetValueTimeExt(v Element) *ContractTermOfferAnswerBuilder {
+	b.contractTermOfferAnswer.ValueTimeExt = &v
+	return b
+}
+
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractTermOfferAnswerBuilder) SetValueString(v string) *ContractTermOfferAnswerBuilder {
+	b.clearValue()
+	b.contractTermOfferAnswer.ValueString = &v
+	return b
+}
+
+// SetValueStringExt sets the ValueStringExt field.
+func (b *ContractTermOfferAnswerBuilder) SetValueStringExt(v Element) *ContractTermOfferAnswerBuilder {
+	b.contractTermOfferAnswer.ValueStringExt = &v
+	return b
+}
+
+// SetValueUri sets Value[x] to its ValueUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractTermOfferAnswerBuilder) SetValueUri(v string) *ContractTermOfferAnswerBuilder {
+	b.clearValue()
+	b.contractTermOfferAnswer.ValueUri = &v
+	return b
+}
+
+// SetValueUriExt sets the ValueUriExt field.
+func (b *ContractTermOfferAnswerBuilder) SetValueUriExt(v Element) *ContractTermOfferAnswerBuilder {
+	b.contractTermOfferAnswer.ValueUriExt = &v
+	return b
+}
+
+// SetValueAttachment sets Value[x] to its ValueAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractTermOfferAnswerBuilder) SetValueAttachment(v Attachment) *ContractTermOfferAnswerBuilder {
+	b.clearValue()
+	b.contractTermOfferAnswer.ValueAttachment = &v
+	return b
+}
+
+// SetValueCoding sets Value[x] to its ValueCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractTermOfferAnswerBuilder) SetValueCoding(v Coding) *ContractTermOfferAnswerBuilder {
+	b.clearValue()
+	b.contractTermOfferAnswer.ValueCoding = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractTermOfferAnswerBuilder) SetValueQuantity(v Quantity) *ContractTermOfferAnswerBuilder {
+	b.clearValue()
+	b.contractTermOfferAnswer.ValueQuantity = &v
+	return b
+}
+
+// SetValueReference sets Value[x] to its ValueReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ContractTermOfferAnswerBuilder) SetValueReference(v Reference) *ContractTermOfferAnswerBuilder {
+	b.clearValue()
+	b.contractTermOfferAnswer.ValueReference = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *ContractTermOfferAnswerBuilder) clearValue() {
+	b.contractTermOfferAnswer.ValueBoolean = nil
+	b.contractTermOfferAnswer.ValueDecimal = nil
+	b.contractTermOfferAnswer.ValueDecimalExt = nil
+	b.contractTermOfferAnswer.ValueInteger = nil
+	b.contractTermOfferAnswer.ValueIntegerExt = nil
+	b.contractTermOfferAnswer.ValueDate = nil
+	b.contractTermOfferAnswer.ValueDateExt = nil
+	b.contractTermOfferAnswer.ValueDateTime = nil
+	b.contractTermOfferAnswer.ValueDateTimeExt = nil
+	b.contractTermOfferAnswer.ValueTime = nil
+	b.contractTermOfferAnswer.ValueTimeExt = nil
+	b.contractTermOfferAnswer.ValueString = nil
+	b.contractTermOfferAnswer.ValueStringExt = nil
+	b.contractTermOfferAnswer.ValueUri = nil
+	b.contractTermOfferAnswer.ValueUriExt = nil
+	b.contractTermOfferAnswer.ValueAttachment = nil
+	b.contractTermOfferAnswer.ValueCoding = nil
+	b.contractTermOfferAnswer.ValueQuantity = nil
+	b.contractTermOfferAnswer.ValueReference = nil
+}
+
+// =============================================================================
+// ContractTermOfferParty - Fluent Builder
+// =============================================================================
+
+// ContractTermOfferPartyBuilder provides a fluent API for constructing ContractTermOfferParty values.
+type ContractTermOfferPartyBuilder struct {
+	contractTermOfferParty *ContractTermOfferParty
+}
+
+// NewContractTermOfferPartyBuilder creates a new ContractTermOfferPartyBuilder.
+func NewContractTermOfferPartyBuilder() *ContractTermOfferPartyBuilder {
+	return &ContractTermOfferPartyBuilder{
+		contractTermOfferParty: &ContractTermOfferParty{},
+	}
+}
+
+// Build returns the constructed ContractTermOfferParty.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ContractTermOfferPartyBuilder) Build() ContractTermOfferParty {
+	return *b.contractTermOfferParty
+}
+
+// SetId sets the Id field.
+func (b *ContractTermOfferPartyBuilder) SetId(v string) *ContractTermOfferPartyBuilder {
+	b.contractTermOfferParty.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ContractTermOfferPartyBuilder) AddExtension(v Extension) *ContractTermOfferPartyBuilder {
+	b.contractTermOfferParty.Extension = append(b.contractTermOfferParty.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ContractTermOfferPartyBuilder) AddModifierExtension(v Extension) *ContractTermOfferPartyBuilder {
+	b.contractTermOfferParty.ModifierExtension = append(b.contractTermOfferParty.ModifierExtension, v)
+	return b
+}
+
+// AddReference adds a Reference element.
+func (b *ContractTermOfferPartyBuilder) AddReference(v Reference) *ContractTermOfferPartyBuilder {
+	b.contractTermOfferParty.Reference = append(b.contractTermOfferParty.Reference, v)
+	return b
+}
+
+// SetRole sets the Role field.
+func (b *ContractTermOfferPartyBuilder) SetRole(v CodeableConcept) *ContractTermOfferPartyBuilder {
+	b.contractTermOfferParty.Role = &v
+	return b
+}
+
+// =============================================================================
+// ContractTermSecurityLabel - Fluent Builder
+// =============================================================================
+
+// ContractTermSecurityLabelBuilder provides a fluent API for constructing ContractTermSecurityLabel values.
+type ContractTermSecurityLabelBuilder struct {
+	contractTermSecurityLabel *ContractTermSecurityLabel
+}
+
+// NewContractTermSecurityLabelBuilder creates a new ContractTermSecurityLabelBuilder.
+func NewContractTermSecurityLabelBuilder() *ContractTermSecurityLabelBuilder {
+	return &ContractTermSecurityLabelBuilder{
+		contractTermSecurityLabel: &ContractTermSecurityLabel{},
+	}
+}
+
+// Build returns the constructed ContractTermSecurityLabel.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ContractTermSecurityLabelBuilder) Build() ContractTermSecurityLabel {
+	return *b.contractTermSecurityLabel
+}
+
+// SetId sets the Id field.
+func (b *ContractTermSecurityLabelBuilder) SetId(v string) *ContractTermSecurityLabelBuilder {
+	b.contractTermSecurityLabel.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ContractTermSecurityLabelBuilder) AddExtension(v Extension) *ContractTermSecurityLabelBuilder {
+	b.contractTermSecurityLabel.Extension = append(b.contractTermSecurityLabel.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ContractTermSecurityLabelBuilder) AddModifierExtension(v Extension) *ContractTermSecurityLabelBuilder {
+	b.contractTermSecurityLabel.ModifierExtension = append(b.contractTermSecurityLabel.ModifierExtension, v)
+	return b
+}
+
+// AddNumber adds a Number element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ContractTermSecurityLabelBuilder) AddNumber(v uint32) *ContractTermSecurityLabelBuilder {
+	b.contractTermSecurityLabel.Number = append(b.contractTermSecurityLabel.Number, &v)
+	return b
+}
+
+// SetClassification sets the Classification field.
+func (b *ContractTermSecurityLabelBuilder) SetClassification(v Coding) *ContractTermSecurityLabelBuilder {
+	b.contractTermSecurityLabel.Classification = &v
+	return b
+}
+
+// AddCategory adds a Category element.
+func (b *ContractTermSecurityLabelBuilder) AddCategory(v Coding) *ContractTermSecurityLabelBuilder {
+	b.contractTermSecurityLabel.Category = append(b.contractTermSecurityLabel.Category, v)
+	return b
+}
+
+// AddControl adds a Control element.
+func (b *ContractTermSecurityLabelBuilder) AddControl(v Coding) *ContractTermSecurityLabelBuilder {
+	b.contractTermSecurityLabel.Control = append(b.contractTermSecurityLabel.Control, v)
+	return b
+}
+
+// AddNumberExt appends an extension slot for Number.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ContractTermSecurityLabelBuilder) AddNumberExt(v *Element) *ContractTermSecurityLabelBuilder {
+	b.contractTermSecurityLabel.NumberExt = append(b.contractTermSecurityLabel.NumberExt, v)
+	return b
 }

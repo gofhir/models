@@ -1580,3 +1580,578 @@ func (b *RiskEvidenceSynthesisBuilder) AddCertainty(v RiskEvidenceSynthesisCerta
 	b.riskEvidenceSynthesis.Certainty = append(b.riskEvidenceSynthesis.Certainty, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskEvidenceSynthesisBuilder) SetImplicitRulesExt(v Element) *RiskEvidenceSynthesisBuilder {
+	b.riskEvidenceSynthesis.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskEvidenceSynthesisBuilder) SetLanguageExt(v Element) *RiskEvidenceSynthesisBuilder {
+	b.riskEvidenceSynthesis.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskEvidenceSynthesisBuilder) SetUrlExt(v Element) *RiskEvidenceSynthesisBuilder {
+	b.riskEvidenceSynthesis.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskEvidenceSynthesisBuilder) SetVersionExt(v Element) *RiskEvidenceSynthesisBuilder {
+	b.riskEvidenceSynthesis.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskEvidenceSynthesisBuilder) SetNameExt(v Element) *RiskEvidenceSynthesisBuilder {
+	b.riskEvidenceSynthesis.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskEvidenceSynthesisBuilder) SetTitleExt(v Element) *RiskEvidenceSynthesisBuilder {
+	b.riskEvidenceSynthesis.TitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskEvidenceSynthesisBuilder) SetStatusExt(v Element) *RiskEvidenceSynthesisBuilder {
+	b.riskEvidenceSynthesis.StatusExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskEvidenceSynthesisBuilder) SetDateExt(v Element) *RiskEvidenceSynthesisBuilder {
+	b.riskEvidenceSynthesis.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskEvidenceSynthesisBuilder) SetPublisherExt(v Element) *RiskEvidenceSynthesisBuilder {
+	b.riskEvidenceSynthesis.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskEvidenceSynthesisBuilder) SetDescriptionExt(v Element) *RiskEvidenceSynthesisBuilder {
+	b.riskEvidenceSynthesis.DescriptionExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskEvidenceSynthesisBuilder) SetCopyrightExt(v Element) *RiskEvidenceSynthesisBuilder {
+	b.riskEvidenceSynthesis.CopyrightExt = &v
+	return b
+}
+
+// SetApprovalDateExt sets the extensions carried by ApprovalDate, serialized as
+// "_approvalDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskEvidenceSynthesisBuilder) SetApprovalDateExt(v Element) *RiskEvidenceSynthesisBuilder {
+	b.riskEvidenceSynthesis.ApprovalDateExt = &v
+	return b
+}
+
+// SetLastReviewDateExt sets the extensions carried by LastReviewDate, serialized as
+// "_lastReviewDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskEvidenceSynthesisBuilder) SetLastReviewDateExt(v Element) *RiskEvidenceSynthesisBuilder {
+	b.riskEvidenceSynthesis.LastReviewDateExt = &v
+	return b
+}
+
+// =============================================================================
+// RiskEvidenceSynthesisCertainty - Fluent Builder
+// =============================================================================
+
+// RiskEvidenceSynthesisCertaintyBuilder provides a fluent API for constructing RiskEvidenceSynthesisCertainty values.
+type RiskEvidenceSynthesisCertaintyBuilder struct {
+	riskEvidenceSynthesisCertainty *RiskEvidenceSynthesisCertainty
+}
+
+// NewRiskEvidenceSynthesisCertaintyBuilder creates a new RiskEvidenceSynthesisCertaintyBuilder.
+func NewRiskEvidenceSynthesisCertaintyBuilder() *RiskEvidenceSynthesisCertaintyBuilder {
+	return &RiskEvidenceSynthesisCertaintyBuilder{
+		riskEvidenceSynthesisCertainty: &RiskEvidenceSynthesisCertainty{},
+	}
+}
+
+// Build returns the constructed RiskEvidenceSynthesisCertainty.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *RiskEvidenceSynthesisCertaintyBuilder) Build() RiskEvidenceSynthesisCertainty {
+	return *b.riskEvidenceSynthesisCertainty
+}
+
+// SetId sets the Id field.
+func (b *RiskEvidenceSynthesisCertaintyBuilder) SetId(v string) *RiskEvidenceSynthesisCertaintyBuilder {
+	b.riskEvidenceSynthesisCertainty.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *RiskEvidenceSynthesisCertaintyBuilder) AddExtension(v Extension) *RiskEvidenceSynthesisCertaintyBuilder {
+	b.riskEvidenceSynthesisCertainty.Extension = append(b.riskEvidenceSynthesisCertainty.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *RiskEvidenceSynthesisCertaintyBuilder) AddModifierExtension(v Extension) *RiskEvidenceSynthesisCertaintyBuilder {
+	b.riskEvidenceSynthesisCertainty.ModifierExtension = append(b.riskEvidenceSynthesisCertainty.ModifierExtension, v)
+	return b
+}
+
+// AddRating adds a Rating element.
+func (b *RiskEvidenceSynthesisCertaintyBuilder) AddRating(v CodeableConcept) *RiskEvidenceSynthesisCertaintyBuilder {
+	b.riskEvidenceSynthesisCertainty.Rating = append(b.riskEvidenceSynthesisCertainty.Rating, v)
+	return b
+}
+
+// AddNote adds a Note element.
+func (b *RiskEvidenceSynthesisCertaintyBuilder) AddNote(v Annotation) *RiskEvidenceSynthesisCertaintyBuilder {
+	b.riskEvidenceSynthesisCertainty.Note = append(b.riskEvidenceSynthesisCertainty.Note, v)
+	return b
+}
+
+// AddCertaintySubcomponent adds a CertaintySubcomponent element.
+func (b *RiskEvidenceSynthesisCertaintyBuilder) AddCertaintySubcomponent(v RiskEvidenceSynthesisCertaintyCertaintySubcomponent) *RiskEvidenceSynthesisCertaintyBuilder {
+	b.riskEvidenceSynthesisCertainty.CertaintySubcomponent = append(b.riskEvidenceSynthesisCertainty.CertaintySubcomponent, v)
+	return b
+}
+
+// =============================================================================
+// RiskEvidenceSynthesisCertaintyCertaintySubcomponent - Fluent Builder
+// =============================================================================
+
+// RiskEvidenceSynthesisCertaintyCertaintySubcomponentBuilder provides a fluent API for constructing RiskEvidenceSynthesisCertaintyCertaintySubcomponent values.
+type RiskEvidenceSynthesisCertaintyCertaintySubcomponentBuilder struct {
+	riskEvidenceSynthesisCertaintyCertaintySubcomponent *RiskEvidenceSynthesisCertaintyCertaintySubcomponent
+}
+
+// NewRiskEvidenceSynthesisCertaintyCertaintySubcomponentBuilder creates a new RiskEvidenceSynthesisCertaintyCertaintySubcomponentBuilder.
+func NewRiskEvidenceSynthesisCertaintyCertaintySubcomponentBuilder() *RiskEvidenceSynthesisCertaintyCertaintySubcomponentBuilder {
+	return &RiskEvidenceSynthesisCertaintyCertaintySubcomponentBuilder{
+		riskEvidenceSynthesisCertaintyCertaintySubcomponent: &RiskEvidenceSynthesisCertaintyCertaintySubcomponent{},
+	}
+}
+
+// Build returns the constructed RiskEvidenceSynthesisCertaintyCertaintySubcomponent.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *RiskEvidenceSynthesisCertaintyCertaintySubcomponentBuilder) Build() RiskEvidenceSynthesisCertaintyCertaintySubcomponent {
+	return *b.riskEvidenceSynthesisCertaintyCertaintySubcomponent
+}
+
+// SetId sets the Id field.
+func (b *RiskEvidenceSynthesisCertaintyCertaintySubcomponentBuilder) SetId(v string) *RiskEvidenceSynthesisCertaintyCertaintySubcomponentBuilder {
+	b.riskEvidenceSynthesisCertaintyCertaintySubcomponent.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *RiskEvidenceSynthesisCertaintyCertaintySubcomponentBuilder) AddExtension(v Extension) *RiskEvidenceSynthesisCertaintyCertaintySubcomponentBuilder {
+	b.riskEvidenceSynthesisCertaintyCertaintySubcomponent.Extension = append(b.riskEvidenceSynthesisCertaintyCertaintySubcomponent.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *RiskEvidenceSynthesisCertaintyCertaintySubcomponentBuilder) AddModifierExtension(v Extension) *RiskEvidenceSynthesisCertaintyCertaintySubcomponentBuilder {
+	b.riskEvidenceSynthesisCertaintyCertaintySubcomponent.ModifierExtension = append(b.riskEvidenceSynthesisCertaintyCertaintySubcomponent.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *RiskEvidenceSynthesisCertaintyCertaintySubcomponentBuilder) SetType(v CodeableConcept) *RiskEvidenceSynthesisCertaintyCertaintySubcomponentBuilder {
+	b.riskEvidenceSynthesisCertaintyCertaintySubcomponent.Type = &v
+	return b
+}
+
+// AddRating adds a Rating element.
+func (b *RiskEvidenceSynthesisCertaintyCertaintySubcomponentBuilder) AddRating(v CodeableConcept) *RiskEvidenceSynthesisCertaintyCertaintySubcomponentBuilder {
+	b.riskEvidenceSynthesisCertaintyCertaintySubcomponent.Rating = append(b.riskEvidenceSynthesisCertaintyCertaintySubcomponent.Rating, v)
+	return b
+}
+
+// AddNote adds a Note element.
+func (b *RiskEvidenceSynthesisCertaintyCertaintySubcomponentBuilder) AddNote(v Annotation) *RiskEvidenceSynthesisCertaintyCertaintySubcomponentBuilder {
+	b.riskEvidenceSynthesisCertaintyCertaintySubcomponent.Note = append(b.riskEvidenceSynthesisCertaintyCertaintySubcomponent.Note, v)
+	return b
+}
+
+// =============================================================================
+// RiskEvidenceSynthesisRiskEstimate - Fluent Builder
+// =============================================================================
+
+// RiskEvidenceSynthesisRiskEstimateBuilder provides a fluent API for constructing RiskEvidenceSynthesisRiskEstimate values.
+type RiskEvidenceSynthesisRiskEstimateBuilder struct {
+	riskEvidenceSynthesisRiskEstimate *RiskEvidenceSynthesisRiskEstimate
+}
+
+// NewRiskEvidenceSynthesisRiskEstimateBuilder creates a new RiskEvidenceSynthesisRiskEstimateBuilder.
+func NewRiskEvidenceSynthesisRiskEstimateBuilder() *RiskEvidenceSynthesisRiskEstimateBuilder {
+	return &RiskEvidenceSynthesisRiskEstimateBuilder{
+		riskEvidenceSynthesisRiskEstimate: &RiskEvidenceSynthesisRiskEstimate{},
+	}
+}
+
+// Build returns the constructed RiskEvidenceSynthesisRiskEstimate.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *RiskEvidenceSynthesisRiskEstimateBuilder) Build() RiskEvidenceSynthesisRiskEstimate {
+	return *b.riskEvidenceSynthesisRiskEstimate
+}
+
+// SetId sets the Id field.
+func (b *RiskEvidenceSynthesisRiskEstimateBuilder) SetId(v string) *RiskEvidenceSynthesisRiskEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimate.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *RiskEvidenceSynthesisRiskEstimateBuilder) AddExtension(v Extension) *RiskEvidenceSynthesisRiskEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimate.Extension = append(b.riskEvidenceSynthesisRiskEstimate.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *RiskEvidenceSynthesisRiskEstimateBuilder) AddModifierExtension(v Extension) *RiskEvidenceSynthesisRiskEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimate.ModifierExtension = append(b.riskEvidenceSynthesisRiskEstimate.ModifierExtension, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *RiskEvidenceSynthesisRiskEstimateBuilder) SetDescription(v string) *RiskEvidenceSynthesisRiskEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimate.Description = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *RiskEvidenceSynthesisRiskEstimateBuilder) SetType(v CodeableConcept) *RiskEvidenceSynthesisRiskEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimate.Type = &v
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *RiskEvidenceSynthesisRiskEstimateBuilder) SetValue(v Decimal) *RiskEvidenceSynthesisRiskEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimate.Value = &v
+	return b
+}
+
+// SetUnitOfMeasure sets the UnitOfMeasure field.
+func (b *RiskEvidenceSynthesisRiskEstimateBuilder) SetUnitOfMeasure(v CodeableConcept) *RiskEvidenceSynthesisRiskEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimate.UnitOfMeasure = &v
+	return b
+}
+
+// SetDenominatorCount sets the DenominatorCount field.
+func (b *RiskEvidenceSynthesisRiskEstimateBuilder) SetDenominatorCount(v int) *RiskEvidenceSynthesisRiskEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimate.DenominatorCount = &v
+	return b
+}
+
+// SetNumeratorCount sets the NumeratorCount field.
+func (b *RiskEvidenceSynthesisRiskEstimateBuilder) SetNumeratorCount(v int) *RiskEvidenceSynthesisRiskEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimate.NumeratorCount = &v
+	return b
+}
+
+// AddPrecisionEstimate adds a PrecisionEstimate element.
+func (b *RiskEvidenceSynthesisRiskEstimateBuilder) AddPrecisionEstimate(v RiskEvidenceSynthesisRiskEstimatePrecisionEstimate) *RiskEvidenceSynthesisRiskEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimate.PrecisionEstimate = append(b.riskEvidenceSynthesisRiskEstimate.PrecisionEstimate, v)
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskEvidenceSynthesisRiskEstimateBuilder) SetDescriptionExt(v Element) *RiskEvidenceSynthesisRiskEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimate.DescriptionExt = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskEvidenceSynthesisRiskEstimateBuilder) SetValueExt(v Element) *RiskEvidenceSynthesisRiskEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimate.ValueExt = &v
+	return b
+}
+
+// SetDenominatorCountExt sets the extensions carried by DenominatorCount, serialized as
+// "_denominatorCount".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskEvidenceSynthesisRiskEstimateBuilder) SetDenominatorCountExt(v Element) *RiskEvidenceSynthesisRiskEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimate.DenominatorCountExt = &v
+	return b
+}
+
+// SetNumeratorCountExt sets the extensions carried by NumeratorCount, serialized as
+// "_numeratorCount".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskEvidenceSynthesisRiskEstimateBuilder) SetNumeratorCountExt(v Element) *RiskEvidenceSynthesisRiskEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimate.NumeratorCountExt = &v
+	return b
+}
+
+// =============================================================================
+// RiskEvidenceSynthesisRiskEstimatePrecisionEstimate - Fluent Builder
+// =============================================================================
+
+// RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder provides a fluent API for constructing RiskEvidenceSynthesisRiskEstimatePrecisionEstimate values.
+type RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder struct {
+	riskEvidenceSynthesisRiskEstimatePrecisionEstimate *RiskEvidenceSynthesisRiskEstimatePrecisionEstimate
+}
+
+// NewRiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder creates a new RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder.
+func NewRiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder() *RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder {
+	return &RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder{
+		riskEvidenceSynthesisRiskEstimatePrecisionEstimate: &RiskEvidenceSynthesisRiskEstimatePrecisionEstimate{},
+	}
+}
+
+// Build returns the constructed RiskEvidenceSynthesisRiskEstimatePrecisionEstimate.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder) Build() RiskEvidenceSynthesisRiskEstimatePrecisionEstimate {
+	return *b.riskEvidenceSynthesisRiskEstimatePrecisionEstimate
+}
+
+// SetId sets the Id field.
+func (b *RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder) SetId(v string) *RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimatePrecisionEstimate.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder) AddExtension(v Extension) *RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimatePrecisionEstimate.Extension = append(b.riskEvidenceSynthesisRiskEstimatePrecisionEstimate.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder) AddModifierExtension(v Extension) *RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimatePrecisionEstimate.ModifierExtension = append(b.riskEvidenceSynthesisRiskEstimatePrecisionEstimate.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder) SetType(v CodeableConcept) *RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimatePrecisionEstimate.Type = &v
+	return b
+}
+
+// SetLevel sets the Level field.
+func (b *RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder) SetLevel(v Decimal) *RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimatePrecisionEstimate.Level = &v
+	return b
+}
+
+// SetFrom sets the From field.
+func (b *RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder) SetFrom(v Decimal) *RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimatePrecisionEstimate.From = &v
+	return b
+}
+
+// SetTo sets the To field.
+func (b *RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder) SetTo(v Decimal) *RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimatePrecisionEstimate.To = &v
+	return b
+}
+
+// SetLevelExt sets the extensions carried by Level, serialized as
+// "_level".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder) SetLevelExt(v Element) *RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimatePrecisionEstimate.LevelExt = &v
+	return b
+}
+
+// SetFromExt sets the extensions carried by From, serialized as
+// "_from".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder) SetFromExt(v Element) *RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimatePrecisionEstimate.FromExt = &v
+	return b
+}
+
+// SetToExt sets the extensions carried by To, serialized as
+// "_to".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder) SetToExt(v Element) *RiskEvidenceSynthesisRiskEstimatePrecisionEstimateBuilder {
+	b.riskEvidenceSynthesisRiskEstimatePrecisionEstimate.ToExt = &v
+	return b
+}
+
+// =============================================================================
+// RiskEvidenceSynthesisSampleSize - Fluent Builder
+// =============================================================================
+
+// RiskEvidenceSynthesisSampleSizeBuilder provides a fluent API for constructing RiskEvidenceSynthesisSampleSize values.
+type RiskEvidenceSynthesisSampleSizeBuilder struct {
+	riskEvidenceSynthesisSampleSize *RiskEvidenceSynthesisSampleSize
+}
+
+// NewRiskEvidenceSynthesisSampleSizeBuilder creates a new RiskEvidenceSynthesisSampleSizeBuilder.
+func NewRiskEvidenceSynthesisSampleSizeBuilder() *RiskEvidenceSynthesisSampleSizeBuilder {
+	return &RiskEvidenceSynthesisSampleSizeBuilder{
+		riskEvidenceSynthesisSampleSize: &RiskEvidenceSynthesisSampleSize{},
+	}
+}
+
+// Build returns the constructed RiskEvidenceSynthesisSampleSize.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *RiskEvidenceSynthesisSampleSizeBuilder) Build() RiskEvidenceSynthesisSampleSize {
+	return *b.riskEvidenceSynthesisSampleSize
+}
+
+// SetId sets the Id field.
+func (b *RiskEvidenceSynthesisSampleSizeBuilder) SetId(v string) *RiskEvidenceSynthesisSampleSizeBuilder {
+	b.riskEvidenceSynthesisSampleSize.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *RiskEvidenceSynthesisSampleSizeBuilder) AddExtension(v Extension) *RiskEvidenceSynthesisSampleSizeBuilder {
+	b.riskEvidenceSynthesisSampleSize.Extension = append(b.riskEvidenceSynthesisSampleSize.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *RiskEvidenceSynthesisSampleSizeBuilder) AddModifierExtension(v Extension) *RiskEvidenceSynthesisSampleSizeBuilder {
+	b.riskEvidenceSynthesisSampleSize.ModifierExtension = append(b.riskEvidenceSynthesisSampleSize.ModifierExtension, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *RiskEvidenceSynthesisSampleSizeBuilder) SetDescription(v string) *RiskEvidenceSynthesisSampleSizeBuilder {
+	b.riskEvidenceSynthesisSampleSize.Description = &v
+	return b
+}
+
+// SetNumberOfStudies sets the NumberOfStudies field.
+func (b *RiskEvidenceSynthesisSampleSizeBuilder) SetNumberOfStudies(v int) *RiskEvidenceSynthesisSampleSizeBuilder {
+	b.riskEvidenceSynthesisSampleSize.NumberOfStudies = &v
+	return b
+}
+
+// SetNumberOfParticipants sets the NumberOfParticipants field.
+func (b *RiskEvidenceSynthesisSampleSizeBuilder) SetNumberOfParticipants(v int) *RiskEvidenceSynthesisSampleSizeBuilder {
+	b.riskEvidenceSynthesisSampleSize.NumberOfParticipants = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskEvidenceSynthesisSampleSizeBuilder) SetDescriptionExt(v Element) *RiskEvidenceSynthesisSampleSizeBuilder {
+	b.riskEvidenceSynthesisSampleSize.DescriptionExt = &v
+	return b
+}
+
+// SetNumberOfStudiesExt sets the extensions carried by NumberOfStudies, serialized as
+// "_numberOfStudies".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskEvidenceSynthesisSampleSizeBuilder) SetNumberOfStudiesExt(v Element) *RiskEvidenceSynthesisSampleSizeBuilder {
+	b.riskEvidenceSynthesisSampleSize.NumberOfStudiesExt = &v
+	return b
+}
+
+// SetNumberOfParticipantsExt sets the extensions carried by NumberOfParticipants, serialized as
+// "_numberOfParticipants".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RiskEvidenceSynthesisSampleSizeBuilder) SetNumberOfParticipantsExt(v Element) *RiskEvidenceSynthesisSampleSizeBuilder {
+	b.riskEvidenceSynthesisSampleSize.NumberOfParticipantsExt = &v
+	return b
+}

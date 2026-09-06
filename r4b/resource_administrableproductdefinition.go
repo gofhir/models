@@ -1074,3 +1074,386 @@ func (b *AdministrableProductDefinitionBuilder) AddRouteOfAdministration(v Admin
 	b.administrableProductDefinition.RouteOfAdministration = append(b.administrableProductDefinition.RouteOfAdministration, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AdministrableProductDefinitionBuilder) SetImplicitRulesExt(v Element) *AdministrableProductDefinitionBuilder {
+	b.administrableProductDefinition.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AdministrableProductDefinitionBuilder) SetLanguageExt(v Element) *AdministrableProductDefinitionBuilder {
+	b.administrableProductDefinition.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AdministrableProductDefinitionBuilder) SetStatusExt(v Element) *AdministrableProductDefinitionBuilder {
+	b.administrableProductDefinition.StatusExt = &v
+	return b
+}
+
+// =============================================================================
+// AdministrableProductDefinitionProperty - Fluent Builder
+// =============================================================================
+
+// AdministrableProductDefinitionPropertyBuilder provides a fluent API for constructing AdministrableProductDefinitionProperty values.
+type AdministrableProductDefinitionPropertyBuilder struct {
+	administrableProductDefinitionProperty *AdministrableProductDefinitionProperty
+}
+
+// NewAdministrableProductDefinitionPropertyBuilder creates a new AdministrableProductDefinitionPropertyBuilder.
+func NewAdministrableProductDefinitionPropertyBuilder() *AdministrableProductDefinitionPropertyBuilder {
+	return &AdministrableProductDefinitionPropertyBuilder{
+		administrableProductDefinitionProperty: &AdministrableProductDefinitionProperty{},
+	}
+}
+
+// Build returns the constructed AdministrableProductDefinitionProperty.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AdministrableProductDefinitionPropertyBuilder) Build() AdministrableProductDefinitionProperty {
+	return *b.administrableProductDefinitionProperty
+}
+
+// SetId sets the Id field.
+func (b *AdministrableProductDefinitionPropertyBuilder) SetId(v string) *AdministrableProductDefinitionPropertyBuilder {
+	b.administrableProductDefinitionProperty.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AdministrableProductDefinitionPropertyBuilder) AddExtension(v Extension) *AdministrableProductDefinitionPropertyBuilder {
+	b.administrableProductDefinitionProperty.Extension = append(b.administrableProductDefinitionProperty.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AdministrableProductDefinitionPropertyBuilder) AddModifierExtension(v Extension) *AdministrableProductDefinitionPropertyBuilder {
+	b.administrableProductDefinitionProperty.ModifierExtension = append(b.administrableProductDefinitionProperty.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *AdministrableProductDefinitionPropertyBuilder) SetType(v CodeableConcept) *AdministrableProductDefinitionPropertyBuilder {
+	b.administrableProductDefinitionProperty.Type = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AdministrableProductDefinitionPropertyBuilder) SetValueCodeableConcept(v CodeableConcept) *AdministrableProductDefinitionPropertyBuilder {
+	b.clearValue()
+	b.administrableProductDefinitionProperty.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AdministrableProductDefinitionPropertyBuilder) SetValueQuantity(v Quantity) *AdministrableProductDefinitionPropertyBuilder {
+	b.clearValue()
+	b.administrableProductDefinitionProperty.ValueQuantity = &v
+	return b
+}
+
+// SetValueDate sets Value[x] to its ValueDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AdministrableProductDefinitionPropertyBuilder) SetValueDate(v string) *AdministrableProductDefinitionPropertyBuilder {
+	b.clearValue()
+	b.administrableProductDefinitionProperty.ValueDate = &v
+	return b
+}
+
+// SetValueDateExt sets the ValueDateExt field.
+func (b *AdministrableProductDefinitionPropertyBuilder) SetValueDateExt(v Element) *AdministrableProductDefinitionPropertyBuilder {
+	b.administrableProductDefinitionProperty.ValueDateExt = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AdministrableProductDefinitionPropertyBuilder) SetValueBoolean(v bool) *AdministrableProductDefinitionPropertyBuilder {
+	b.clearValue()
+	b.administrableProductDefinitionProperty.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *AdministrableProductDefinitionPropertyBuilder) SetValueBooleanExt(v Element) *AdministrableProductDefinitionPropertyBuilder {
+	b.administrableProductDefinitionProperty.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueAttachment sets Value[x] to its ValueAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AdministrableProductDefinitionPropertyBuilder) SetValueAttachment(v Attachment) *AdministrableProductDefinitionPropertyBuilder {
+	b.clearValue()
+	b.administrableProductDefinitionProperty.ValueAttachment = &v
+	return b
+}
+
+// SetStatus sets the Status field.
+func (b *AdministrableProductDefinitionPropertyBuilder) SetStatus(v CodeableConcept) *AdministrableProductDefinitionPropertyBuilder {
+	b.administrableProductDefinitionProperty.Status = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *AdministrableProductDefinitionPropertyBuilder) clearValue() {
+	b.administrableProductDefinitionProperty.ValueCodeableConcept = nil
+	b.administrableProductDefinitionProperty.ValueQuantity = nil
+	b.administrableProductDefinitionProperty.ValueDate = nil
+	b.administrableProductDefinitionProperty.ValueDateExt = nil
+	b.administrableProductDefinitionProperty.ValueBoolean = nil
+	b.administrableProductDefinitionProperty.ValueBooleanExt = nil
+	b.administrableProductDefinitionProperty.ValueAttachment = nil
+}
+
+// =============================================================================
+// AdministrableProductDefinitionRouteOfAdministration - Fluent Builder
+// =============================================================================
+
+// AdministrableProductDefinitionRouteOfAdministrationBuilder provides a fluent API for constructing AdministrableProductDefinitionRouteOfAdministration values.
+type AdministrableProductDefinitionRouteOfAdministrationBuilder struct {
+	administrableProductDefinitionRouteOfAdministration *AdministrableProductDefinitionRouteOfAdministration
+}
+
+// NewAdministrableProductDefinitionRouteOfAdministrationBuilder creates a new AdministrableProductDefinitionRouteOfAdministrationBuilder.
+func NewAdministrableProductDefinitionRouteOfAdministrationBuilder() *AdministrableProductDefinitionRouteOfAdministrationBuilder {
+	return &AdministrableProductDefinitionRouteOfAdministrationBuilder{
+		administrableProductDefinitionRouteOfAdministration: &AdministrableProductDefinitionRouteOfAdministration{},
+	}
+}
+
+// Build returns the constructed AdministrableProductDefinitionRouteOfAdministration.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AdministrableProductDefinitionRouteOfAdministrationBuilder) Build() AdministrableProductDefinitionRouteOfAdministration {
+	return *b.administrableProductDefinitionRouteOfAdministration
+}
+
+// SetId sets the Id field.
+func (b *AdministrableProductDefinitionRouteOfAdministrationBuilder) SetId(v string) *AdministrableProductDefinitionRouteOfAdministrationBuilder {
+	b.administrableProductDefinitionRouteOfAdministration.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AdministrableProductDefinitionRouteOfAdministrationBuilder) AddExtension(v Extension) *AdministrableProductDefinitionRouteOfAdministrationBuilder {
+	b.administrableProductDefinitionRouteOfAdministration.Extension = append(b.administrableProductDefinitionRouteOfAdministration.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AdministrableProductDefinitionRouteOfAdministrationBuilder) AddModifierExtension(v Extension) *AdministrableProductDefinitionRouteOfAdministrationBuilder {
+	b.administrableProductDefinitionRouteOfAdministration.ModifierExtension = append(b.administrableProductDefinitionRouteOfAdministration.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *AdministrableProductDefinitionRouteOfAdministrationBuilder) SetCode(v CodeableConcept) *AdministrableProductDefinitionRouteOfAdministrationBuilder {
+	b.administrableProductDefinitionRouteOfAdministration.Code = &v
+	return b
+}
+
+// SetFirstDose sets the FirstDose field.
+func (b *AdministrableProductDefinitionRouteOfAdministrationBuilder) SetFirstDose(v Quantity) *AdministrableProductDefinitionRouteOfAdministrationBuilder {
+	b.administrableProductDefinitionRouteOfAdministration.FirstDose = &v
+	return b
+}
+
+// SetMaxSingleDose sets the MaxSingleDose field.
+func (b *AdministrableProductDefinitionRouteOfAdministrationBuilder) SetMaxSingleDose(v Quantity) *AdministrableProductDefinitionRouteOfAdministrationBuilder {
+	b.administrableProductDefinitionRouteOfAdministration.MaxSingleDose = &v
+	return b
+}
+
+// SetMaxDosePerDay sets the MaxDosePerDay field.
+func (b *AdministrableProductDefinitionRouteOfAdministrationBuilder) SetMaxDosePerDay(v Quantity) *AdministrableProductDefinitionRouteOfAdministrationBuilder {
+	b.administrableProductDefinitionRouteOfAdministration.MaxDosePerDay = &v
+	return b
+}
+
+// SetMaxDosePerTreatmentPeriod sets the MaxDosePerTreatmentPeriod field.
+func (b *AdministrableProductDefinitionRouteOfAdministrationBuilder) SetMaxDosePerTreatmentPeriod(v Ratio) *AdministrableProductDefinitionRouteOfAdministrationBuilder {
+	b.administrableProductDefinitionRouteOfAdministration.MaxDosePerTreatmentPeriod = &v
+	return b
+}
+
+// SetMaxTreatmentPeriod sets the MaxTreatmentPeriod field.
+func (b *AdministrableProductDefinitionRouteOfAdministrationBuilder) SetMaxTreatmentPeriod(v Duration) *AdministrableProductDefinitionRouteOfAdministrationBuilder {
+	b.administrableProductDefinitionRouteOfAdministration.MaxTreatmentPeriod = &v
+	return b
+}
+
+// AddTargetSpecies adds a TargetSpecies element.
+func (b *AdministrableProductDefinitionRouteOfAdministrationBuilder) AddTargetSpecies(v AdministrableProductDefinitionRouteOfAdministrationTargetSpecies) *AdministrableProductDefinitionRouteOfAdministrationBuilder {
+	b.administrableProductDefinitionRouteOfAdministration.TargetSpecies = append(b.administrableProductDefinitionRouteOfAdministration.TargetSpecies, v)
+	return b
+}
+
+// =============================================================================
+// AdministrableProductDefinitionRouteOfAdministrationTargetSpecies - Fluent Builder
+// =============================================================================
+
+// AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesBuilder provides a fluent API for constructing AdministrableProductDefinitionRouteOfAdministrationTargetSpecies values.
+type AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesBuilder struct {
+	administrableProductDefinitionRouteOfAdministrationTargetSpecies *AdministrableProductDefinitionRouteOfAdministrationTargetSpecies
+}
+
+// NewAdministrableProductDefinitionRouteOfAdministrationTargetSpeciesBuilder creates a new AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesBuilder.
+func NewAdministrableProductDefinitionRouteOfAdministrationTargetSpeciesBuilder() *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesBuilder {
+	return &AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesBuilder{
+		administrableProductDefinitionRouteOfAdministrationTargetSpecies: &AdministrableProductDefinitionRouteOfAdministrationTargetSpecies{},
+	}
+}
+
+// Build returns the constructed AdministrableProductDefinitionRouteOfAdministrationTargetSpecies.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesBuilder) Build() AdministrableProductDefinitionRouteOfAdministrationTargetSpecies {
+	return *b.administrableProductDefinitionRouteOfAdministrationTargetSpecies
+}
+
+// SetId sets the Id field.
+func (b *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesBuilder) SetId(v string) *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesBuilder {
+	b.administrableProductDefinitionRouteOfAdministrationTargetSpecies.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesBuilder) AddExtension(v Extension) *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesBuilder {
+	b.administrableProductDefinitionRouteOfAdministrationTargetSpecies.Extension = append(b.administrableProductDefinitionRouteOfAdministrationTargetSpecies.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesBuilder) AddModifierExtension(v Extension) *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesBuilder {
+	b.administrableProductDefinitionRouteOfAdministrationTargetSpecies.ModifierExtension = append(b.administrableProductDefinitionRouteOfAdministrationTargetSpecies.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesBuilder) SetCode(v CodeableConcept) *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesBuilder {
+	b.administrableProductDefinitionRouteOfAdministrationTargetSpecies.Code = &v
+	return b
+}
+
+// AddWithdrawalPeriod adds a WithdrawalPeriod element.
+func (b *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesBuilder) AddWithdrawalPeriod(v AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriod) *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesBuilder {
+	b.administrableProductDefinitionRouteOfAdministrationTargetSpecies.WithdrawalPeriod = append(b.administrableProductDefinitionRouteOfAdministrationTargetSpecies.WithdrawalPeriod, v)
+	return b
+}
+
+// =============================================================================
+// AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriod - Fluent Builder
+// =============================================================================
+
+// AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder provides a fluent API for constructing AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriod values.
+type AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder struct {
+	administrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriod *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriod
+}
+
+// NewAdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder creates a new AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder.
+func NewAdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder() *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder {
+	return &AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder{
+		administrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriod: &AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriod{},
+	}
+}
+
+// Build returns the constructed AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriod.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder) Build() AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriod {
+	return *b.administrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriod
+}
+
+// SetId sets the Id field.
+func (b *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder) SetId(v string) *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder {
+	b.administrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriod.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder) AddExtension(v Extension) *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder {
+	b.administrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriod.Extension = append(b.administrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriod.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder) AddModifierExtension(v Extension) *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder {
+	b.administrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriod.ModifierExtension = append(b.administrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriod.ModifierExtension, v)
+	return b
+}
+
+// SetTissue sets the Tissue field.
+func (b *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder) SetTissue(v CodeableConcept) *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder {
+	b.administrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriod.Tissue = &v
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder) SetValue(v Quantity) *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder {
+	b.administrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriod.Value = &v
+	return b
+}
+
+// SetSupportingInformation sets the SupportingInformation field.
+func (b *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder) SetSupportingInformation(v string) *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder {
+	b.administrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriod.SupportingInformation = &v
+	return b
+}
+
+// SetSupportingInformationExt sets the extensions carried by SupportingInformation, serialized as
+// "_supportingInformation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder) SetSupportingInformationExt(v Element) *AdministrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder {
+	b.administrableProductDefinitionRouteOfAdministrationTargetSpeciesWithdrawalPeriod.SupportingInformationExt = &v
+	return b
+}

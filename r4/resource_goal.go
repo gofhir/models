@@ -880,9 +880,255 @@ func (b *GoalBuilder) AddOutcomeReference(v Reference) *GoalBuilder {
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GoalBuilder) SetImplicitRulesExt(v Element) *GoalBuilder {
+	b.goal.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GoalBuilder) SetLanguageExt(v Element) *GoalBuilder {
+	b.goal.LanguageExt = &v
+	return b
+}
+
+// SetLifecycleStatusExt sets the extensions carried by LifecycleStatus, serialized as
+// "_lifecycleStatus".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GoalBuilder) SetLifecycleStatusExt(v Element) *GoalBuilder {
+	b.goal.LifecycleStatusExt = &v
+	return b
+}
+
+// SetStatusDateExt sets the extensions carried by StatusDate, serialized as
+// "_statusDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GoalBuilder) SetStatusDateExt(v Element) *GoalBuilder {
+	b.goal.StatusDateExt = &v
+	return b
+}
+
+// SetStatusReasonExt sets the extensions carried by StatusReason, serialized as
+// "_statusReason".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *GoalBuilder) SetStatusReasonExt(v Element) *GoalBuilder {
+	b.goal.StatusReasonExt = &v
+	return b
+}
+
 // clearStart unsets every variant of Start[x], including the
 // _field companions of the primitive ones.
 func (b *GoalBuilder) clearStart() {
 	b.goal.StartDate = nil
 	b.goal.StartCodeableConcept = nil
+}
+
+// =============================================================================
+// GoalTarget - Fluent Builder
+// =============================================================================
+
+// GoalTargetBuilder provides a fluent API for constructing GoalTarget values.
+type GoalTargetBuilder struct {
+	goalTarget *GoalTarget
+}
+
+// NewGoalTargetBuilder creates a new GoalTargetBuilder.
+func NewGoalTargetBuilder() *GoalTargetBuilder {
+	return &GoalTargetBuilder{
+		goalTarget: &GoalTarget{},
+	}
+}
+
+// Build returns the constructed GoalTarget.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *GoalTargetBuilder) Build() GoalTarget {
+	return *b.goalTarget
+}
+
+// SetId sets the Id field.
+func (b *GoalTargetBuilder) SetId(v string) *GoalTargetBuilder {
+	b.goalTarget.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *GoalTargetBuilder) AddExtension(v Extension) *GoalTargetBuilder {
+	b.goalTarget.Extension = append(b.goalTarget.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *GoalTargetBuilder) AddModifierExtension(v Extension) *GoalTargetBuilder {
+	b.goalTarget.ModifierExtension = append(b.goalTarget.ModifierExtension, v)
+	return b
+}
+
+// SetMeasure sets the Measure field.
+func (b *GoalTargetBuilder) SetMeasure(v CodeableConcept) *GoalTargetBuilder {
+	b.goalTarget.Measure = &v
+	return b
+}
+
+// SetDetailQuantity sets Detail[x] to its DetailQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *GoalTargetBuilder) SetDetailQuantity(v Quantity) *GoalTargetBuilder {
+	b.clearDetail()
+	b.goalTarget.DetailQuantity = &v
+	return b
+}
+
+// SetDetailRange sets Detail[x] to its DetailRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *GoalTargetBuilder) SetDetailRange(v Range) *GoalTargetBuilder {
+	b.clearDetail()
+	b.goalTarget.DetailRange = &v
+	return b
+}
+
+// SetDetailCodeableConcept sets Detail[x] to its DetailCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *GoalTargetBuilder) SetDetailCodeableConcept(v CodeableConcept) *GoalTargetBuilder {
+	b.clearDetail()
+	b.goalTarget.DetailCodeableConcept = &v
+	return b
+}
+
+// SetDetailString sets Detail[x] to its DetailString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *GoalTargetBuilder) SetDetailString(v string) *GoalTargetBuilder {
+	b.clearDetail()
+	b.goalTarget.DetailString = &v
+	return b
+}
+
+// SetDetailStringExt sets the DetailStringExt field.
+func (b *GoalTargetBuilder) SetDetailStringExt(v Element) *GoalTargetBuilder {
+	b.goalTarget.DetailStringExt = &v
+	return b
+}
+
+// SetDetailBoolean sets Detail[x] to its DetailBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *GoalTargetBuilder) SetDetailBoolean(v bool) *GoalTargetBuilder {
+	b.clearDetail()
+	b.goalTarget.DetailBoolean = &v
+	return b
+}
+
+// SetDetailBooleanExt sets the DetailBooleanExt field.
+func (b *GoalTargetBuilder) SetDetailBooleanExt(v Element) *GoalTargetBuilder {
+	b.goalTarget.DetailBooleanExt = &v
+	return b
+}
+
+// SetDetailInteger sets Detail[x] to its DetailInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *GoalTargetBuilder) SetDetailInteger(v int) *GoalTargetBuilder {
+	b.clearDetail()
+	b.goalTarget.DetailInteger = &v
+	return b
+}
+
+// SetDetailIntegerExt sets the DetailIntegerExt field.
+func (b *GoalTargetBuilder) SetDetailIntegerExt(v Element) *GoalTargetBuilder {
+	b.goalTarget.DetailIntegerExt = &v
+	return b
+}
+
+// SetDetailRatio sets Detail[x] to its DetailRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *GoalTargetBuilder) SetDetailRatio(v Ratio) *GoalTargetBuilder {
+	b.clearDetail()
+	b.goalTarget.DetailRatio = &v
+	return b
+}
+
+// SetDueDate sets Due[x] to its DueDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *GoalTargetBuilder) SetDueDate(v string) *GoalTargetBuilder {
+	b.clearDue()
+	b.goalTarget.DueDate = &v
+	return b
+}
+
+// SetDueDateExt sets the DueDateExt field.
+func (b *GoalTargetBuilder) SetDueDateExt(v Element) *GoalTargetBuilder {
+	b.goalTarget.DueDateExt = &v
+	return b
+}
+
+// SetDueDuration sets Due[x] to its DueDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *GoalTargetBuilder) SetDueDuration(v Duration) *GoalTargetBuilder {
+	b.clearDue()
+	b.goalTarget.DueDuration = &v
+	return b
+}
+
+// clearDetail unsets every variant of Detail[x], including the
+// _field companions of the primitive ones.
+func (b *GoalTargetBuilder) clearDetail() {
+	b.goalTarget.DetailQuantity = nil
+	b.goalTarget.DetailRange = nil
+	b.goalTarget.DetailCodeableConcept = nil
+	b.goalTarget.DetailString = nil
+	b.goalTarget.DetailStringExt = nil
+	b.goalTarget.DetailBoolean = nil
+	b.goalTarget.DetailBooleanExt = nil
+	b.goalTarget.DetailInteger = nil
+	b.goalTarget.DetailIntegerExt = nil
+	b.goalTarget.DetailRatio = nil
+}
+
+// clearDue unsets every variant of Due[x], including the
+// _field companions of the primitive ones.
+func (b *GoalTargetBuilder) clearDue() {
+	b.goalTarget.DueDate = nil
+	b.goalTarget.DueDuration = nil
 }

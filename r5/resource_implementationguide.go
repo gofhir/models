@@ -2296,9 +2296,1298 @@ func (b *ImplementationGuideBuilder) SetManifest(v ImplementationGuideManifest) 
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideBuilder) SetImplicitRulesExt(v Element) *ImplementationGuideBuilder {
+	b.implementationGuide.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideBuilder) SetLanguageExt(v Element) *ImplementationGuideBuilder {
+	b.implementationGuide.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideBuilder) SetUrlExt(v Element) *ImplementationGuideBuilder {
+	b.implementationGuide.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideBuilder) SetVersionExt(v Element) *ImplementationGuideBuilder {
+	b.implementationGuide.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideBuilder) SetNameExt(v Element) *ImplementationGuideBuilder {
+	b.implementationGuide.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideBuilder) SetTitleExt(v Element) *ImplementationGuideBuilder {
+	b.implementationGuide.TitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideBuilder) SetStatusExt(v Element) *ImplementationGuideBuilder {
+	b.implementationGuide.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideBuilder) SetExperimentalExt(v Element) *ImplementationGuideBuilder {
+	b.implementationGuide.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideBuilder) SetDateExt(v Element) *ImplementationGuideBuilder {
+	b.implementationGuide.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideBuilder) SetPublisherExt(v Element) *ImplementationGuideBuilder {
+	b.implementationGuide.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideBuilder) SetDescriptionExt(v Element) *ImplementationGuideBuilder {
+	b.implementationGuide.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideBuilder) SetPurposeExt(v Element) *ImplementationGuideBuilder {
+	b.implementationGuide.PurposeExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideBuilder) SetCopyrightExt(v Element) *ImplementationGuideBuilder {
+	b.implementationGuide.CopyrightExt = &v
+	return b
+}
+
+// SetCopyrightLabelExt sets the extensions carried by CopyrightLabel, serialized as
+// "_copyrightLabel".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideBuilder) SetCopyrightLabelExt(v Element) *ImplementationGuideBuilder {
+	b.implementationGuide.CopyrightLabelExt = &v
+	return b
+}
+
+// SetPackageIdExt sets the extensions carried by PackageId, serialized as
+// "_packageId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideBuilder) SetPackageIdExt(v Element) *ImplementationGuideBuilder {
+	b.implementationGuide.PackageIdExt = &v
+	return b
+}
+
+// SetLicenseExt sets the extensions carried by License, serialized as
+// "_license".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideBuilder) SetLicenseExt(v Element) *ImplementationGuideBuilder {
+	b.implementationGuide.LicenseExt = &v
+	return b
+}
+
+// AddFhirVersionExt appends an extension slot for FhirVersion.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ImplementationGuideBuilder) AddFhirVersionExt(v *Element) *ImplementationGuideBuilder {
+	b.implementationGuide.FhirVersionExt = append(b.implementationGuide.FhirVersionExt, v)
+	return b
+}
+
 // clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
 // _field companions of the primitive ones.
 func (b *ImplementationGuideBuilder) clearVersionAlgorithm() {
 	b.implementationGuide.VersionAlgorithmString = nil
 	b.implementationGuide.VersionAlgorithmCoding = nil
+}
+
+// =============================================================================
+// ImplementationGuideDefinition - Fluent Builder
+// =============================================================================
+
+// ImplementationGuideDefinitionBuilder provides a fluent API for constructing ImplementationGuideDefinition values.
+type ImplementationGuideDefinitionBuilder struct {
+	implementationGuideDefinition *ImplementationGuideDefinition
+}
+
+// NewImplementationGuideDefinitionBuilder creates a new ImplementationGuideDefinitionBuilder.
+func NewImplementationGuideDefinitionBuilder() *ImplementationGuideDefinitionBuilder {
+	return &ImplementationGuideDefinitionBuilder{
+		implementationGuideDefinition: &ImplementationGuideDefinition{},
+	}
+}
+
+// Build returns the constructed ImplementationGuideDefinition.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImplementationGuideDefinitionBuilder) Build() ImplementationGuideDefinition {
+	return *b.implementationGuideDefinition
+}
+
+// SetId sets the Id field.
+func (b *ImplementationGuideDefinitionBuilder) SetId(v string) *ImplementationGuideDefinitionBuilder {
+	b.implementationGuideDefinition.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImplementationGuideDefinitionBuilder) AddExtension(v Extension) *ImplementationGuideDefinitionBuilder {
+	b.implementationGuideDefinition.Extension = append(b.implementationGuideDefinition.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImplementationGuideDefinitionBuilder) AddModifierExtension(v Extension) *ImplementationGuideDefinitionBuilder {
+	b.implementationGuideDefinition.ModifierExtension = append(b.implementationGuideDefinition.ModifierExtension, v)
+	return b
+}
+
+// AddGrouping adds a Grouping element.
+func (b *ImplementationGuideDefinitionBuilder) AddGrouping(v ImplementationGuideDefinitionGrouping) *ImplementationGuideDefinitionBuilder {
+	b.implementationGuideDefinition.Grouping = append(b.implementationGuideDefinition.Grouping, v)
+	return b
+}
+
+// AddResource adds a Resource element.
+func (b *ImplementationGuideDefinitionBuilder) AddResource(v ImplementationGuideDefinitionResource) *ImplementationGuideDefinitionBuilder {
+	b.implementationGuideDefinition.Resource = append(b.implementationGuideDefinition.Resource, v)
+	return b
+}
+
+// SetPage sets the Page field.
+func (b *ImplementationGuideDefinitionBuilder) SetPage(v ImplementationGuideDefinitionPage) *ImplementationGuideDefinitionBuilder {
+	b.implementationGuideDefinition.Page = &v
+	return b
+}
+
+// AddParameter adds a Parameter element.
+func (b *ImplementationGuideDefinitionBuilder) AddParameter(v ImplementationGuideDefinitionParameter) *ImplementationGuideDefinitionBuilder {
+	b.implementationGuideDefinition.Parameter = append(b.implementationGuideDefinition.Parameter, v)
+	return b
+}
+
+// AddTemplate adds a Template element.
+func (b *ImplementationGuideDefinitionBuilder) AddTemplate(v ImplementationGuideDefinitionTemplate) *ImplementationGuideDefinitionBuilder {
+	b.implementationGuideDefinition.Template = append(b.implementationGuideDefinition.Template, v)
+	return b
+}
+
+// =============================================================================
+// ImplementationGuideDefinitionGrouping - Fluent Builder
+// =============================================================================
+
+// ImplementationGuideDefinitionGroupingBuilder provides a fluent API for constructing ImplementationGuideDefinitionGrouping values.
+type ImplementationGuideDefinitionGroupingBuilder struct {
+	implementationGuideDefinitionGrouping *ImplementationGuideDefinitionGrouping
+}
+
+// NewImplementationGuideDefinitionGroupingBuilder creates a new ImplementationGuideDefinitionGroupingBuilder.
+func NewImplementationGuideDefinitionGroupingBuilder() *ImplementationGuideDefinitionGroupingBuilder {
+	return &ImplementationGuideDefinitionGroupingBuilder{
+		implementationGuideDefinitionGrouping: &ImplementationGuideDefinitionGrouping{},
+	}
+}
+
+// Build returns the constructed ImplementationGuideDefinitionGrouping.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImplementationGuideDefinitionGroupingBuilder) Build() ImplementationGuideDefinitionGrouping {
+	return *b.implementationGuideDefinitionGrouping
+}
+
+// SetId sets the Id field.
+func (b *ImplementationGuideDefinitionGroupingBuilder) SetId(v string) *ImplementationGuideDefinitionGroupingBuilder {
+	b.implementationGuideDefinitionGrouping.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImplementationGuideDefinitionGroupingBuilder) AddExtension(v Extension) *ImplementationGuideDefinitionGroupingBuilder {
+	b.implementationGuideDefinitionGrouping.Extension = append(b.implementationGuideDefinitionGrouping.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImplementationGuideDefinitionGroupingBuilder) AddModifierExtension(v Extension) *ImplementationGuideDefinitionGroupingBuilder {
+	b.implementationGuideDefinitionGrouping.ModifierExtension = append(b.implementationGuideDefinitionGrouping.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *ImplementationGuideDefinitionGroupingBuilder) SetName(v string) *ImplementationGuideDefinitionGroupingBuilder {
+	b.implementationGuideDefinitionGrouping.Name = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *ImplementationGuideDefinitionGroupingBuilder) SetDescription(v string) *ImplementationGuideDefinitionGroupingBuilder {
+	b.implementationGuideDefinitionGrouping.Description = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideDefinitionGroupingBuilder) SetNameExt(v Element) *ImplementationGuideDefinitionGroupingBuilder {
+	b.implementationGuideDefinitionGrouping.NameExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideDefinitionGroupingBuilder) SetDescriptionExt(v Element) *ImplementationGuideDefinitionGroupingBuilder {
+	b.implementationGuideDefinitionGrouping.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// ImplementationGuideDefinitionPage - Fluent Builder
+// =============================================================================
+
+// ImplementationGuideDefinitionPageBuilder provides a fluent API for constructing ImplementationGuideDefinitionPage values.
+type ImplementationGuideDefinitionPageBuilder struct {
+	implementationGuideDefinitionPage *ImplementationGuideDefinitionPage
+}
+
+// NewImplementationGuideDefinitionPageBuilder creates a new ImplementationGuideDefinitionPageBuilder.
+func NewImplementationGuideDefinitionPageBuilder() *ImplementationGuideDefinitionPageBuilder {
+	return &ImplementationGuideDefinitionPageBuilder{
+		implementationGuideDefinitionPage: &ImplementationGuideDefinitionPage{},
+	}
+}
+
+// Build returns the constructed ImplementationGuideDefinitionPage.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImplementationGuideDefinitionPageBuilder) Build() ImplementationGuideDefinitionPage {
+	return *b.implementationGuideDefinitionPage
+}
+
+// SetId sets the Id field.
+func (b *ImplementationGuideDefinitionPageBuilder) SetId(v string) *ImplementationGuideDefinitionPageBuilder {
+	b.implementationGuideDefinitionPage.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImplementationGuideDefinitionPageBuilder) AddExtension(v Extension) *ImplementationGuideDefinitionPageBuilder {
+	b.implementationGuideDefinitionPage.Extension = append(b.implementationGuideDefinitionPage.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImplementationGuideDefinitionPageBuilder) AddModifierExtension(v Extension) *ImplementationGuideDefinitionPageBuilder {
+	b.implementationGuideDefinitionPage.ModifierExtension = append(b.implementationGuideDefinitionPage.ModifierExtension, v)
+	return b
+}
+
+// SetSourceUrl sets Source[x] to its SourceUrl variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ImplementationGuideDefinitionPageBuilder) SetSourceUrl(v string) *ImplementationGuideDefinitionPageBuilder {
+	b.clearSource()
+	b.implementationGuideDefinitionPage.SourceUrl = &v
+	return b
+}
+
+// SetSourceUrlExt sets the SourceUrlExt field.
+func (b *ImplementationGuideDefinitionPageBuilder) SetSourceUrlExt(v Element) *ImplementationGuideDefinitionPageBuilder {
+	b.implementationGuideDefinitionPage.SourceUrlExt = &v
+	return b
+}
+
+// SetSourceString sets Source[x] to its SourceString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ImplementationGuideDefinitionPageBuilder) SetSourceString(v string) *ImplementationGuideDefinitionPageBuilder {
+	b.clearSource()
+	b.implementationGuideDefinitionPage.SourceString = &v
+	return b
+}
+
+// SetSourceStringExt sets the SourceStringExt field.
+func (b *ImplementationGuideDefinitionPageBuilder) SetSourceStringExt(v Element) *ImplementationGuideDefinitionPageBuilder {
+	b.implementationGuideDefinitionPage.SourceStringExt = &v
+	return b
+}
+
+// SetSourceMarkdown sets Source[x] to its SourceMarkdown variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ImplementationGuideDefinitionPageBuilder) SetSourceMarkdown(v string) *ImplementationGuideDefinitionPageBuilder {
+	b.clearSource()
+	b.implementationGuideDefinitionPage.SourceMarkdown = &v
+	return b
+}
+
+// SetSourceMarkdownExt sets the SourceMarkdownExt field.
+func (b *ImplementationGuideDefinitionPageBuilder) SetSourceMarkdownExt(v Element) *ImplementationGuideDefinitionPageBuilder {
+	b.implementationGuideDefinitionPage.SourceMarkdownExt = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *ImplementationGuideDefinitionPageBuilder) SetName(v string) *ImplementationGuideDefinitionPageBuilder {
+	b.implementationGuideDefinitionPage.Name = &v
+	return b
+}
+
+// SetTitle sets the Title field.
+func (b *ImplementationGuideDefinitionPageBuilder) SetTitle(v string) *ImplementationGuideDefinitionPageBuilder {
+	b.implementationGuideDefinitionPage.Title = &v
+	return b
+}
+
+// SetGeneration sets the Generation field.
+func (b *ImplementationGuideDefinitionPageBuilder) SetGeneration(v GuidePageGeneration) *ImplementationGuideDefinitionPageBuilder {
+	b.implementationGuideDefinitionPage.Generation = &v
+	return b
+}
+
+// AddPage adds a Page element.
+func (b *ImplementationGuideDefinitionPageBuilder) AddPage(v ImplementationGuideDefinitionPage) *ImplementationGuideDefinitionPageBuilder {
+	b.implementationGuideDefinitionPage.Page = append(b.implementationGuideDefinitionPage.Page, v)
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideDefinitionPageBuilder) SetNameExt(v Element) *ImplementationGuideDefinitionPageBuilder {
+	b.implementationGuideDefinitionPage.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideDefinitionPageBuilder) SetTitleExt(v Element) *ImplementationGuideDefinitionPageBuilder {
+	b.implementationGuideDefinitionPage.TitleExt = &v
+	return b
+}
+
+// SetGenerationExt sets the extensions carried by Generation, serialized as
+// "_generation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideDefinitionPageBuilder) SetGenerationExt(v Element) *ImplementationGuideDefinitionPageBuilder {
+	b.implementationGuideDefinitionPage.GenerationExt = &v
+	return b
+}
+
+// clearSource unsets every variant of Source[x], including the
+// _field companions of the primitive ones.
+func (b *ImplementationGuideDefinitionPageBuilder) clearSource() {
+	b.implementationGuideDefinitionPage.SourceUrl = nil
+	b.implementationGuideDefinitionPage.SourceString = nil
+	b.implementationGuideDefinitionPage.SourceStringExt = nil
+	b.implementationGuideDefinitionPage.SourceMarkdown = nil
+	b.implementationGuideDefinitionPage.SourceMarkdownExt = nil
+}
+
+// =============================================================================
+// ImplementationGuideDefinitionParameter - Fluent Builder
+// =============================================================================
+
+// ImplementationGuideDefinitionParameterBuilder provides a fluent API for constructing ImplementationGuideDefinitionParameter values.
+type ImplementationGuideDefinitionParameterBuilder struct {
+	implementationGuideDefinitionParameter *ImplementationGuideDefinitionParameter
+}
+
+// NewImplementationGuideDefinitionParameterBuilder creates a new ImplementationGuideDefinitionParameterBuilder.
+func NewImplementationGuideDefinitionParameterBuilder() *ImplementationGuideDefinitionParameterBuilder {
+	return &ImplementationGuideDefinitionParameterBuilder{
+		implementationGuideDefinitionParameter: &ImplementationGuideDefinitionParameter{},
+	}
+}
+
+// Build returns the constructed ImplementationGuideDefinitionParameter.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImplementationGuideDefinitionParameterBuilder) Build() ImplementationGuideDefinitionParameter {
+	return *b.implementationGuideDefinitionParameter
+}
+
+// SetId sets the Id field.
+func (b *ImplementationGuideDefinitionParameterBuilder) SetId(v string) *ImplementationGuideDefinitionParameterBuilder {
+	b.implementationGuideDefinitionParameter.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImplementationGuideDefinitionParameterBuilder) AddExtension(v Extension) *ImplementationGuideDefinitionParameterBuilder {
+	b.implementationGuideDefinitionParameter.Extension = append(b.implementationGuideDefinitionParameter.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImplementationGuideDefinitionParameterBuilder) AddModifierExtension(v Extension) *ImplementationGuideDefinitionParameterBuilder {
+	b.implementationGuideDefinitionParameter.ModifierExtension = append(b.implementationGuideDefinitionParameter.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *ImplementationGuideDefinitionParameterBuilder) SetCode(v Coding) *ImplementationGuideDefinitionParameterBuilder {
+	b.implementationGuideDefinitionParameter.Code = &v
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *ImplementationGuideDefinitionParameterBuilder) SetValue(v string) *ImplementationGuideDefinitionParameterBuilder {
+	b.implementationGuideDefinitionParameter.Value = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideDefinitionParameterBuilder) SetValueExt(v Element) *ImplementationGuideDefinitionParameterBuilder {
+	b.implementationGuideDefinitionParameter.ValueExt = &v
+	return b
+}
+
+// =============================================================================
+// ImplementationGuideDefinitionResource - Fluent Builder
+// =============================================================================
+
+// ImplementationGuideDefinitionResourceBuilder provides a fluent API for constructing ImplementationGuideDefinitionResource values.
+type ImplementationGuideDefinitionResourceBuilder struct {
+	implementationGuideDefinitionResource *ImplementationGuideDefinitionResource
+}
+
+// NewImplementationGuideDefinitionResourceBuilder creates a new ImplementationGuideDefinitionResourceBuilder.
+func NewImplementationGuideDefinitionResourceBuilder() *ImplementationGuideDefinitionResourceBuilder {
+	return &ImplementationGuideDefinitionResourceBuilder{
+		implementationGuideDefinitionResource: &ImplementationGuideDefinitionResource{},
+	}
+}
+
+// Build returns the constructed ImplementationGuideDefinitionResource.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImplementationGuideDefinitionResourceBuilder) Build() ImplementationGuideDefinitionResource {
+	return *b.implementationGuideDefinitionResource
+}
+
+// SetId sets the Id field.
+func (b *ImplementationGuideDefinitionResourceBuilder) SetId(v string) *ImplementationGuideDefinitionResourceBuilder {
+	b.implementationGuideDefinitionResource.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImplementationGuideDefinitionResourceBuilder) AddExtension(v Extension) *ImplementationGuideDefinitionResourceBuilder {
+	b.implementationGuideDefinitionResource.Extension = append(b.implementationGuideDefinitionResource.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImplementationGuideDefinitionResourceBuilder) AddModifierExtension(v Extension) *ImplementationGuideDefinitionResourceBuilder {
+	b.implementationGuideDefinitionResource.ModifierExtension = append(b.implementationGuideDefinitionResource.ModifierExtension, v)
+	return b
+}
+
+// SetReference sets the Reference field.
+func (b *ImplementationGuideDefinitionResourceBuilder) SetReference(v Reference) *ImplementationGuideDefinitionResourceBuilder {
+	b.implementationGuideDefinitionResource.Reference = &v
+	return b
+}
+
+// AddFhirVersion adds a FhirVersion element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ImplementationGuideDefinitionResourceBuilder) AddFhirVersion(v FHIRVersion) *ImplementationGuideDefinitionResourceBuilder {
+	b.implementationGuideDefinitionResource.FhirVersion = append(b.implementationGuideDefinitionResource.FhirVersion, &v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *ImplementationGuideDefinitionResourceBuilder) SetName(v string) *ImplementationGuideDefinitionResourceBuilder {
+	b.implementationGuideDefinitionResource.Name = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *ImplementationGuideDefinitionResourceBuilder) SetDescription(v string) *ImplementationGuideDefinitionResourceBuilder {
+	b.implementationGuideDefinitionResource.Description = &v
+	return b
+}
+
+// SetIsExample sets the IsExample field.
+func (b *ImplementationGuideDefinitionResourceBuilder) SetIsExample(v bool) *ImplementationGuideDefinitionResourceBuilder {
+	b.implementationGuideDefinitionResource.IsExample = &v
+	return b
+}
+
+// AddProfile adds a Profile element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ImplementationGuideDefinitionResourceBuilder) AddProfile(v string) *ImplementationGuideDefinitionResourceBuilder {
+	b.implementationGuideDefinitionResource.Profile = append(b.implementationGuideDefinitionResource.Profile, &v)
+	return b
+}
+
+// SetGroupingId sets the GroupingId field.
+func (b *ImplementationGuideDefinitionResourceBuilder) SetGroupingId(v string) *ImplementationGuideDefinitionResourceBuilder {
+	b.implementationGuideDefinitionResource.GroupingId = &v
+	return b
+}
+
+// AddFhirVersionExt appends an extension slot for FhirVersion.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ImplementationGuideDefinitionResourceBuilder) AddFhirVersionExt(v *Element) *ImplementationGuideDefinitionResourceBuilder {
+	b.implementationGuideDefinitionResource.FhirVersionExt = append(b.implementationGuideDefinitionResource.FhirVersionExt, v)
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideDefinitionResourceBuilder) SetNameExt(v Element) *ImplementationGuideDefinitionResourceBuilder {
+	b.implementationGuideDefinitionResource.NameExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideDefinitionResourceBuilder) SetDescriptionExt(v Element) *ImplementationGuideDefinitionResourceBuilder {
+	b.implementationGuideDefinitionResource.DescriptionExt = &v
+	return b
+}
+
+// SetIsExampleExt sets the extensions carried by IsExample, serialized as
+// "_isExample".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideDefinitionResourceBuilder) SetIsExampleExt(v Element) *ImplementationGuideDefinitionResourceBuilder {
+	b.implementationGuideDefinitionResource.IsExampleExt = &v
+	return b
+}
+
+// AddProfileExt appends an extension slot for Profile.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ImplementationGuideDefinitionResourceBuilder) AddProfileExt(v *Element) *ImplementationGuideDefinitionResourceBuilder {
+	b.implementationGuideDefinitionResource.ProfileExt = append(b.implementationGuideDefinitionResource.ProfileExt, v)
+	return b
+}
+
+// SetGroupingIdExt sets the extensions carried by GroupingId, serialized as
+// "_groupingId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideDefinitionResourceBuilder) SetGroupingIdExt(v Element) *ImplementationGuideDefinitionResourceBuilder {
+	b.implementationGuideDefinitionResource.GroupingIdExt = &v
+	return b
+}
+
+// =============================================================================
+// ImplementationGuideDefinitionTemplate - Fluent Builder
+// =============================================================================
+
+// ImplementationGuideDefinitionTemplateBuilder provides a fluent API for constructing ImplementationGuideDefinitionTemplate values.
+type ImplementationGuideDefinitionTemplateBuilder struct {
+	implementationGuideDefinitionTemplate *ImplementationGuideDefinitionTemplate
+}
+
+// NewImplementationGuideDefinitionTemplateBuilder creates a new ImplementationGuideDefinitionTemplateBuilder.
+func NewImplementationGuideDefinitionTemplateBuilder() *ImplementationGuideDefinitionTemplateBuilder {
+	return &ImplementationGuideDefinitionTemplateBuilder{
+		implementationGuideDefinitionTemplate: &ImplementationGuideDefinitionTemplate{},
+	}
+}
+
+// Build returns the constructed ImplementationGuideDefinitionTemplate.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImplementationGuideDefinitionTemplateBuilder) Build() ImplementationGuideDefinitionTemplate {
+	return *b.implementationGuideDefinitionTemplate
+}
+
+// SetId sets the Id field.
+func (b *ImplementationGuideDefinitionTemplateBuilder) SetId(v string) *ImplementationGuideDefinitionTemplateBuilder {
+	b.implementationGuideDefinitionTemplate.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImplementationGuideDefinitionTemplateBuilder) AddExtension(v Extension) *ImplementationGuideDefinitionTemplateBuilder {
+	b.implementationGuideDefinitionTemplate.Extension = append(b.implementationGuideDefinitionTemplate.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImplementationGuideDefinitionTemplateBuilder) AddModifierExtension(v Extension) *ImplementationGuideDefinitionTemplateBuilder {
+	b.implementationGuideDefinitionTemplate.ModifierExtension = append(b.implementationGuideDefinitionTemplate.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *ImplementationGuideDefinitionTemplateBuilder) SetCode(v string) *ImplementationGuideDefinitionTemplateBuilder {
+	b.implementationGuideDefinitionTemplate.Code = &v
+	return b
+}
+
+// SetSource sets the Source field.
+func (b *ImplementationGuideDefinitionTemplateBuilder) SetSource(v string) *ImplementationGuideDefinitionTemplateBuilder {
+	b.implementationGuideDefinitionTemplate.Source = &v
+	return b
+}
+
+// SetScope sets the Scope field.
+func (b *ImplementationGuideDefinitionTemplateBuilder) SetScope(v string) *ImplementationGuideDefinitionTemplateBuilder {
+	b.implementationGuideDefinitionTemplate.Scope = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideDefinitionTemplateBuilder) SetCodeExt(v Element) *ImplementationGuideDefinitionTemplateBuilder {
+	b.implementationGuideDefinitionTemplate.CodeExt = &v
+	return b
+}
+
+// SetSourceExt sets the extensions carried by Source, serialized as
+// "_source".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideDefinitionTemplateBuilder) SetSourceExt(v Element) *ImplementationGuideDefinitionTemplateBuilder {
+	b.implementationGuideDefinitionTemplate.SourceExt = &v
+	return b
+}
+
+// SetScopeExt sets the extensions carried by Scope, serialized as
+// "_scope".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideDefinitionTemplateBuilder) SetScopeExt(v Element) *ImplementationGuideDefinitionTemplateBuilder {
+	b.implementationGuideDefinitionTemplate.ScopeExt = &v
+	return b
+}
+
+// =============================================================================
+// ImplementationGuideDependsOn - Fluent Builder
+// =============================================================================
+
+// ImplementationGuideDependsOnBuilder provides a fluent API for constructing ImplementationGuideDependsOn values.
+type ImplementationGuideDependsOnBuilder struct {
+	implementationGuideDependsOn *ImplementationGuideDependsOn
+}
+
+// NewImplementationGuideDependsOnBuilder creates a new ImplementationGuideDependsOnBuilder.
+func NewImplementationGuideDependsOnBuilder() *ImplementationGuideDependsOnBuilder {
+	return &ImplementationGuideDependsOnBuilder{
+		implementationGuideDependsOn: &ImplementationGuideDependsOn{},
+	}
+}
+
+// Build returns the constructed ImplementationGuideDependsOn.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImplementationGuideDependsOnBuilder) Build() ImplementationGuideDependsOn {
+	return *b.implementationGuideDependsOn
+}
+
+// SetId sets the Id field.
+func (b *ImplementationGuideDependsOnBuilder) SetId(v string) *ImplementationGuideDependsOnBuilder {
+	b.implementationGuideDependsOn.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImplementationGuideDependsOnBuilder) AddExtension(v Extension) *ImplementationGuideDependsOnBuilder {
+	b.implementationGuideDependsOn.Extension = append(b.implementationGuideDependsOn.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImplementationGuideDependsOnBuilder) AddModifierExtension(v Extension) *ImplementationGuideDependsOnBuilder {
+	b.implementationGuideDependsOn.ModifierExtension = append(b.implementationGuideDependsOn.ModifierExtension, v)
+	return b
+}
+
+// SetUri sets the Uri field.
+func (b *ImplementationGuideDependsOnBuilder) SetUri(v string) *ImplementationGuideDependsOnBuilder {
+	b.implementationGuideDependsOn.Uri = &v
+	return b
+}
+
+// SetPackageId sets the PackageId field.
+func (b *ImplementationGuideDependsOnBuilder) SetPackageId(v string) *ImplementationGuideDependsOnBuilder {
+	b.implementationGuideDependsOn.PackageId = &v
+	return b
+}
+
+// SetVersion sets the Version field.
+func (b *ImplementationGuideDependsOnBuilder) SetVersion(v string) *ImplementationGuideDependsOnBuilder {
+	b.implementationGuideDependsOn.Version = &v
+	return b
+}
+
+// SetReason sets the Reason field.
+func (b *ImplementationGuideDependsOnBuilder) SetReason(v string) *ImplementationGuideDependsOnBuilder {
+	b.implementationGuideDependsOn.Reason = &v
+	return b
+}
+
+// SetUriExt sets the extensions carried by Uri, serialized as
+// "_uri".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideDependsOnBuilder) SetUriExt(v Element) *ImplementationGuideDependsOnBuilder {
+	b.implementationGuideDependsOn.UriExt = &v
+	return b
+}
+
+// SetPackageIdExt sets the extensions carried by PackageId, serialized as
+// "_packageId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideDependsOnBuilder) SetPackageIdExt(v Element) *ImplementationGuideDependsOnBuilder {
+	b.implementationGuideDependsOn.PackageIdExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideDependsOnBuilder) SetVersionExt(v Element) *ImplementationGuideDependsOnBuilder {
+	b.implementationGuideDependsOn.VersionExt = &v
+	return b
+}
+
+// SetReasonExt sets the extensions carried by Reason, serialized as
+// "_reason".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideDependsOnBuilder) SetReasonExt(v Element) *ImplementationGuideDependsOnBuilder {
+	b.implementationGuideDependsOn.ReasonExt = &v
+	return b
+}
+
+// =============================================================================
+// ImplementationGuideGlobal - Fluent Builder
+// =============================================================================
+
+// ImplementationGuideGlobalBuilder provides a fluent API for constructing ImplementationGuideGlobal values.
+type ImplementationGuideGlobalBuilder struct {
+	implementationGuideGlobal *ImplementationGuideGlobal
+}
+
+// NewImplementationGuideGlobalBuilder creates a new ImplementationGuideGlobalBuilder.
+func NewImplementationGuideGlobalBuilder() *ImplementationGuideGlobalBuilder {
+	return &ImplementationGuideGlobalBuilder{
+		implementationGuideGlobal: &ImplementationGuideGlobal{},
+	}
+}
+
+// Build returns the constructed ImplementationGuideGlobal.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImplementationGuideGlobalBuilder) Build() ImplementationGuideGlobal {
+	return *b.implementationGuideGlobal
+}
+
+// SetId sets the Id field.
+func (b *ImplementationGuideGlobalBuilder) SetId(v string) *ImplementationGuideGlobalBuilder {
+	b.implementationGuideGlobal.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImplementationGuideGlobalBuilder) AddExtension(v Extension) *ImplementationGuideGlobalBuilder {
+	b.implementationGuideGlobal.Extension = append(b.implementationGuideGlobal.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImplementationGuideGlobalBuilder) AddModifierExtension(v Extension) *ImplementationGuideGlobalBuilder {
+	b.implementationGuideGlobal.ModifierExtension = append(b.implementationGuideGlobal.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ImplementationGuideGlobalBuilder) SetType(v string) *ImplementationGuideGlobalBuilder {
+	b.implementationGuideGlobal.Type = &v
+	return b
+}
+
+// SetProfile sets the Profile field.
+func (b *ImplementationGuideGlobalBuilder) SetProfile(v string) *ImplementationGuideGlobalBuilder {
+	b.implementationGuideGlobal.Profile = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideGlobalBuilder) SetTypeExt(v Element) *ImplementationGuideGlobalBuilder {
+	b.implementationGuideGlobal.TypeExt = &v
+	return b
+}
+
+// SetProfileExt sets the extensions carried by Profile, serialized as
+// "_profile".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideGlobalBuilder) SetProfileExt(v Element) *ImplementationGuideGlobalBuilder {
+	b.implementationGuideGlobal.ProfileExt = &v
+	return b
+}
+
+// =============================================================================
+// ImplementationGuideManifest - Fluent Builder
+// =============================================================================
+
+// ImplementationGuideManifestBuilder provides a fluent API for constructing ImplementationGuideManifest values.
+type ImplementationGuideManifestBuilder struct {
+	implementationGuideManifest *ImplementationGuideManifest
+}
+
+// NewImplementationGuideManifestBuilder creates a new ImplementationGuideManifestBuilder.
+func NewImplementationGuideManifestBuilder() *ImplementationGuideManifestBuilder {
+	return &ImplementationGuideManifestBuilder{
+		implementationGuideManifest: &ImplementationGuideManifest{},
+	}
+}
+
+// Build returns the constructed ImplementationGuideManifest.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImplementationGuideManifestBuilder) Build() ImplementationGuideManifest {
+	return *b.implementationGuideManifest
+}
+
+// SetId sets the Id field.
+func (b *ImplementationGuideManifestBuilder) SetId(v string) *ImplementationGuideManifestBuilder {
+	b.implementationGuideManifest.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImplementationGuideManifestBuilder) AddExtension(v Extension) *ImplementationGuideManifestBuilder {
+	b.implementationGuideManifest.Extension = append(b.implementationGuideManifest.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImplementationGuideManifestBuilder) AddModifierExtension(v Extension) *ImplementationGuideManifestBuilder {
+	b.implementationGuideManifest.ModifierExtension = append(b.implementationGuideManifest.ModifierExtension, v)
+	return b
+}
+
+// SetRendering sets the Rendering field.
+func (b *ImplementationGuideManifestBuilder) SetRendering(v string) *ImplementationGuideManifestBuilder {
+	b.implementationGuideManifest.Rendering = &v
+	return b
+}
+
+// AddResource adds a Resource element.
+func (b *ImplementationGuideManifestBuilder) AddResource(v ImplementationGuideManifestResource) *ImplementationGuideManifestBuilder {
+	b.implementationGuideManifest.Resource = append(b.implementationGuideManifest.Resource, v)
+	return b
+}
+
+// AddPage adds a Page element.
+func (b *ImplementationGuideManifestBuilder) AddPage(v ImplementationGuideManifestPage) *ImplementationGuideManifestBuilder {
+	b.implementationGuideManifest.Page = append(b.implementationGuideManifest.Page, v)
+	return b
+}
+
+// AddImage adds a Image element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ImplementationGuideManifestBuilder) AddImage(v string) *ImplementationGuideManifestBuilder {
+	b.implementationGuideManifest.Image = append(b.implementationGuideManifest.Image, &v)
+	return b
+}
+
+// AddOther adds a Other element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ImplementationGuideManifestBuilder) AddOther(v string) *ImplementationGuideManifestBuilder {
+	b.implementationGuideManifest.Other = append(b.implementationGuideManifest.Other, &v)
+	return b
+}
+
+// SetRenderingExt sets the extensions carried by Rendering, serialized as
+// "_rendering".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideManifestBuilder) SetRenderingExt(v Element) *ImplementationGuideManifestBuilder {
+	b.implementationGuideManifest.RenderingExt = &v
+	return b
+}
+
+// AddImageExt appends an extension slot for Image.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ImplementationGuideManifestBuilder) AddImageExt(v *Element) *ImplementationGuideManifestBuilder {
+	b.implementationGuideManifest.ImageExt = append(b.implementationGuideManifest.ImageExt, v)
+	return b
+}
+
+// AddOtherExt appends an extension slot for Other.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ImplementationGuideManifestBuilder) AddOtherExt(v *Element) *ImplementationGuideManifestBuilder {
+	b.implementationGuideManifest.OtherExt = append(b.implementationGuideManifest.OtherExt, v)
+	return b
+}
+
+// =============================================================================
+// ImplementationGuideManifestPage - Fluent Builder
+// =============================================================================
+
+// ImplementationGuideManifestPageBuilder provides a fluent API for constructing ImplementationGuideManifestPage values.
+type ImplementationGuideManifestPageBuilder struct {
+	implementationGuideManifestPage *ImplementationGuideManifestPage
+}
+
+// NewImplementationGuideManifestPageBuilder creates a new ImplementationGuideManifestPageBuilder.
+func NewImplementationGuideManifestPageBuilder() *ImplementationGuideManifestPageBuilder {
+	return &ImplementationGuideManifestPageBuilder{
+		implementationGuideManifestPage: &ImplementationGuideManifestPage{},
+	}
+}
+
+// Build returns the constructed ImplementationGuideManifestPage.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImplementationGuideManifestPageBuilder) Build() ImplementationGuideManifestPage {
+	return *b.implementationGuideManifestPage
+}
+
+// SetId sets the Id field.
+func (b *ImplementationGuideManifestPageBuilder) SetId(v string) *ImplementationGuideManifestPageBuilder {
+	b.implementationGuideManifestPage.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImplementationGuideManifestPageBuilder) AddExtension(v Extension) *ImplementationGuideManifestPageBuilder {
+	b.implementationGuideManifestPage.Extension = append(b.implementationGuideManifestPage.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImplementationGuideManifestPageBuilder) AddModifierExtension(v Extension) *ImplementationGuideManifestPageBuilder {
+	b.implementationGuideManifestPage.ModifierExtension = append(b.implementationGuideManifestPage.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *ImplementationGuideManifestPageBuilder) SetName(v string) *ImplementationGuideManifestPageBuilder {
+	b.implementationGuideManifestPage.Name = &v
+	return b
+}
+
+// SetTitle sets the Title field.
+func (b *ImplementationGuideManifestPageBuilder) SetTitle(v string) *ImplementationGuideManifestPageBuilder {
+	b.implementationGuideManifestPage.Title = &v
+	return b
+}
+
+// AddAnchor adds a Anchor element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ImplementationGuideManifestPageBuilder) AddAnchor(v string) *ImplementationGuideManifestPageBuilder {
+	b.implementationGuideManifestPage.Anchor = append(b.implementationGuideManifestPage.Anchor, &v)
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideManifestPageBuilder) SetNameExt(v Element) *ImplementationGuideManifestPageBuilder {
+	b.implementationGuideManifestPage.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideManifestPageBuilder) SetTitleExt(v Element) *ImplementationGuideManifestPageBuilder {
+	b.implementationGuideManifestPage.TitleExt = &v
+	return b
+}
+
+// AddAnchorExt appends an extension slot for Anchor.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ImplementationGuideManifestPageBuilder) AddAnchorExt(v *Element) *ImplementationGuideManifestPageBuilder {
+	b.implementationGuideManifestPage.AnchorExt = append(b.implementationGuideManifestPage.AnchorExt, v)
+	return b
+}
+
+// =============================================================================
+// ImplementationGuideManifestResource - Fluent Builder
+// =============================================================================
+
+// ImplementationGuideManifestResourceBuilder provides a fluent API for constructing ImplementationGuideManifestResource values.
+type ImplementationGuideManifestResourceBuilder struct {
+	implementationGuideManifestResource *ImplementationGuideManifestResource
+}
+
+// NewImplementationGuideManifestResourceBuilder creates a new ImplementationGuideManifestResourceBuilder.
+func NewImplementationGuideManifestResourceBuilder() *ImplementationGuideManifestResourceBuilder {
+	return &ImplementationGuideManifestResourceBuilder{
+		implementationGuideManifestResource: &ImplementationGuideManifestResource{},
+	}
+}
+
+// Build returns the constructed ImplementationGuideManifestResource.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImplementationGuideManifestResourceBuilder) Build() ImplementationGuideManifestResource {
+	return *b.implementationGuideManifestResource
+}
+
+// SetId sets the Id field.
+func (b *ImplementationGuideManifestResourceBuilder) SetId(v string) *ImplementationGuideManifestResourceBuilder {
+	b.implementationGuideManifestResource.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImplementationGuideManifestResourceBuilder) AddExtension(v Extension) *ImplementationGuideManifestResourceBuilder {
+	b.implementationGuideManifestResource.Extension = append(b.implementationGuideManifestResource.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImplementationGuideManifestResourceBuilder) AddModifierExtension(v Extension) *ImplementationGuideManifestResourceBuilder {
+	b.implementationGuideManifestResource.ModifierExtension = append(b.implementationGuideManifestResource.ModifierExtension, v)
+	return b
+}
+
+// SetReference sets the Reference field.
+func (b *ImplementationGuideManifestResourceBuilder) SetReference(v Reference) *ImplementationGuideManifestResourceBuilder {
+	b.implementationGuideManifestResource.Reference = &v
+	return b
+}
+
+// SetIsExample sets the IsExample field.
+func (b *ImplementationGuideManifestResourceBuilder) SetIsExample(v bool) *ImplementationGuideManifestResourceBuilder {
+	b.implementationGuideManifestResource.IsExample = &v
+	return b
+}
+
+// AddProfile adds a Profile element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ImplementationGuideManifestResourceBuilder) AddProfile(v string) *ImplementationGuideManifestResourceBuilder {
+	b.implementationGuideManifestResource.Profile = append(b.implementationGuideManifestResource.Profile, &v)
+	return b
+}
+
+// SetRelativePath sets the RelativePath field.
+func (b *ImplementationGuideManifestResourceBuilder) SetRelativePath(v string) *ImplementationGuideManifestResourceBuilder {
+	b.implementationGuideManifestResource.RelativePath = &v
+	return b
+}
+
+// SetIsExampleExt sets the extensions carried by IsExample, serialized as
+// "_isExample".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideManifestResourceBuilder) SetIsExampleExt(v Element) *ImplementationGuideManifestResourceBuilder {
+	b.implementationGuideManifestResource.IsExampleExt = &v
+	return b
+}
+
+// AddProfileExt appends an extension slot for Profile.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ImplementationGuideManifestResourceBuilder) AddProfileExt(v *Element) *ImplementationGuideManifestResourceBuilder {
+	b.implementationGuideManifestResource.ProfileExt = append(b.implementationGuideManifestResource.ProfileExt, v)
+	return b
+}
+
+// SetRelativePathExt sets the extensions carried by RelativePath, serialized as
+// "_relativePath".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImplementationGuideManifestResourceBuilder) SetRelativePathExt(v Element) *ImplementationGuideManifestResourceBuilder {
+	b.implementationGuideManifestResource.RelativePathExt = &v
+	return b
 }

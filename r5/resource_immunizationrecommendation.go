@@ -762,3 +762,257 @@ func (b *ImmunizationRecommendationBuilder) AddRecommendation(v ImmunizationReco
 	b.immunizationRecommendation.Recommendation = append(b.immunizationRecommendation.Recommendation, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationRecommendationBuilder) SetImplicitRulesExt(v Element) *ImmunizationRecommendationBuilder {
+	b.immunizationRecommendation.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationRecommendationBuilder) SetLanguageExt(v Element) *ImmunizationRecommendationBuilder {
+	b.immunizationRecommendation.LanguageExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationRecommendationBuilder) SetDateExt(v Element) *ImmunizationRecommendationBuilder {
+	b.immunizationRecommendation.DateExt = &v
+	return b
+}
+
+// =============================================================================
+// ImmunizationRecommendationRecommendation - Fluent Builder
+// =============================================================================
+
+// ImmunizationRecommendationRecommendationBuilder provides a fluent API for constructing ImmunizationRecommendationRecommendation values.
+type ImmunizationRecommendationRecommendationBuilder struct {
+	immunizationRecommendationRecommendation *ImmunizationRecommendationRecommendation
+}
+
+// NewImmunizationRecommendationRecommendationBuilder creates a new ImmunizationRecommendationRecommendationBuilder.
+func NewImmunizationRecommendationRecommendationBuilder() *ImmunizationRecommendationRecommendationBuilder {
+	return &ImmunizationRecommendationRecommendationBuilder{
+		immunizationRecommendationRecommendation: &ImmunizationRecommendationRecommendation{},
+	}
+}
+
+// Build returns the constructed ImmunizationRecommendationRecommendation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImmunizationRecommendationRecommendationBuilder) Build() ImmunizationRecommendationRecommendation {
+	return *b.immunizationRecommendationRecommendation
+}
+
+// SetId sets the Id field.
+func (b *ImmunizationRecommendationRecommendationBuilder) SetId(v string) *ImmunizationRecommendationRecommendationBuilder {
+	b.immunizationRecommendationRecommendation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImmunizationRecommendationRecommendationBuilder) AddExtension(v Extension) *ImmunizationRecommendationRecommendationBuilder {
+	b.immunizationRecommendationRecommendation.Extension = append(b.immunizationRecommendationRecommendation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImmunizationRecommendationRecommendationBuilder) AddModifierExtension(v Extension) *ImmunizationRecommendationRecommendationBuilder {
+	b.immunizationRecommendationRecommendation.ModifierExtension = append(b.immunizationRecommendationRecommendation.ModifierExtension, v)
+	return b
+}
+
+// AddVaccineCode adds a VaccineCode element.
+func (b *ImmunizationRecommendationRecommendationBuilder) AddVaccineCode(v CodeableConcept) *ImmunizationRecommendationRecommendationBuilder {
+	b.immunizationRecommendationRecommendation.VaccineCode = append(b.immunizationRecommendationRecommendation.VaccineCode, v)
+	return b
+}
+
+// AddTargetDisease adds a TargetDisease element.
+func (b *ImmunizationRecommendationRecommendationBuilder) AddTargetDisease(v CodeableConcept) *ImmunizationRecommendationRecommendationBuilder {
+	b.immunizationRecommendationRecommendation.TargetDisease = append(b.immunizationRecommendationRecommendation.TargetDisease, v)
+	return b
+}
+
+// AddContraindicatedVaccineCode adds a ContraindicatedVaccineCode element.
+func (b *ImmunizationRecommendationRecommendationBuilder) AddContraindicatedVaccineCode(v CodeableConcept) *ImmunizationRecommendationRecommendationBuilder {
+	b.immunizationRecommendationRecommendation.ContraindicatedVaccineCode = append(b.immunizationRecommendationRecommendation.ContraindicatedVaccineCode, v)
+	return b
+}
+
+// SetForecastStatus sets the ForecastStatus field.
+func (b *ImmunizationRecommendationRecommendationBuilder) SetForecastStatus(v CodeableConcept) *ImmunizationRecommendationRecommendationBuilder {
+	b.immunizationRecommendationRecommendation.ForecastStatus = &v
+	return b
+}
+
+// AddForecastReason adds a ForecastReason element.
+func (b *ImmunizationRecommendationRecommendationBuilder) AddForecastReason(v CodeableConcept) *ImmunizationRecommendationRecommendationBuilder {
+	b.immunizationRecommendationRecommendation.ForecastReason = append(b.immunizationRecommendationRecommendation.ForecastReason, v)
+	return b
+}
+
+// AddDateCriterion adds a DateCriterion element.
+func (b *ImmunizationRecommendationRecommendationBuilder) AddDateCriterion(v ImmunizationRecommendationRecommendationDateCriterion) *ImmunizationRecommendationRecommendationBuilder {
+	b.immunizationRecommendationRecommendation.DateCriterion = append(b.immunizationRecommendationRecommendation.DateCriterion, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *ImmunizationRecommendationRecommendationBuilder) SetDescription(v string) *ImmunizationRecommendationRecommendationBuilder {
+	b.immunizationRecommendationRecommendation.Description = &v
+	return b
+}
+
+// SetSeries sets the Series field.
+func (b *ImmunizationRecommendationRecommendationBuilder) SetSeries(v string) *ImmunizationRecommendationRecommendationBuilder {
+	b.immunizationRecommendationRecommendation.Series = &v
+	return b
+}
+
+// SetDoseNumber sets the DoseNumber field.
+func (b *ImmunizationRecommendationRecommendationBuilder) SetDoseNumber(v string) *ImmunizationRecommendationRecommendationBuilder {
+	b.immunizationRecommendationRecommendation.DoseNumber = &v
+	return b
+}
+
+// SetSeriesDoses sets the SeriesDoses field.
+func (b *ImmunizationRecommendationRecommendationBuilder) SetSeriesDoses(v string) *ImmunizationRecommendationRecommendationBuilder {
+	b.immunizationRecommendationRecommendation.SeriesDoses = &v
+	return b
+}
+
+// AddSupportingImmunization adds a SupportingImmunization element.
+func (b *ImmunizationRecommendationRecommendationBuilder) AddSupportingImmunization(v Reference) *ImmunizationRecommendationRecommendationBuilder {
+	b.immunizationRecommendationRecommendation.SupportingImmunization = append(b.immunizationRecommendationRecommendation.SupportingImmunization, v)
+	return b
+}
+
+// AddSupportingPatientInformation adds a SupportingPatientInformation element.
+func (b *ImmunizationRecommendationRecommendationBuilder) AddSupportingPatientInformation(v Reference) *ImmunizationRecommendationRecommendationBuilder {
+	b.immunizationRecommendationRecommendation.SupportingPatientInformation = append(b.immunizationRecommendationRecommendation.SupportingPatientInformation, v)
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationRecommendationRecommendationBuilder) SetDescriptionExt(v Element) *ImmunizationRecommendationRecommendationBuilder {
+	b.immunizationRecommendationRecommendation.DescriptionExt = &v
+	return b
+}
+
+// SetSeriesExt sets the extensions carried by Series, serialized as
+// "_series".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationRecommendationRecommendationBuilder) SetSeriesExt(v Element) *ImmunizationRecommendationRecommendationBuilder {
+	b.immunizationRecommendationRecommendation.SeriesExt = &v
+	return b
+}
+
+// SetDoseNumberExt sets the extensions carried by DoseNumber, serialized as
+// "_doseNumber".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationRecommendationRecommendationBuilder) SetDoseNumberExt(v Element) *ImmunizationRecommendationRecommendationBuilder {
+	b.immunizationRecommendationRecommendation.DoseNumberExt = &v
+	return b
+}
+
+// SetSeriesDosesExt sets the extensions carried by SeriesDoses, serialized as
+// "_seriesDoses".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationRecommendationRecommendationBuilder) SetSeriesDosesExt(v Element) *ImmunizationRecommendationRecommendationBuilder {
+	b.immunizationRecommendationRecommendation.SeriesDosesExt = &v
+	return b
+}
+
+// =============================================================================
+// ImmunizationRecommendationRecommendationDateCriterion - Fluent Builder
+// =============================================================================
+
+// ImmunizationRecommendationRecommendationDateCriterionBuilder provides a fluent API for constructing ImmunizationRecommendationRecommendationDateCriterion values.
+type ImmunizationRecommendationRecommendationDateCriterionBuilder struct {
+	immunizationRecommendationRecommendationDateCriterion *ImmunizationRecommendationRecommendationDateCriterion
+}
+
+// NewImmunizationRecommendationRecommendationDateCriterionBuilder creates a new ImmunizationRecommendationRecommendationDateCriterionBuilder.
+func NewImmunizationRecommendationRecommendationDateCriterionBuilder() *ImmunizationRecommendationRecommendationDateCriterionBuilder {
+	return &ImmunizationRecommendationRecommendationDateCriterionBuilder{
+		immunizationRecommendationRecommendationDateCriterion: &ImmunizationRecommendationRecommendationDateCriterion{},
+	}
+}
+
+// Build returns the constructed ImmunizationRecommendationRecommendationDateCriterion.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ImmunizationRecommendationRecommendationDateCriterionBuilder) Build() ImmunizationRecommendationRecommendationDateCriterion {
+	return *b.immunizationRecommendationRecommendationDateCriterion
+}
+
+// SetId sets the Id field.
+func (b *ImmunizationRecommendationRecommendationDateCriterionBuilder) SetId(v string) *ImmunizationRecommendationRecommendationDateCriterionBuilder {
+	b.immunizationRecommendationRecommendationDateCriterion.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ImmunizationRecommendationRecommendationDateCriterionBuilder) AddExtension(v Extension) *ImmunizationRecommendationRecommendationDateCriterionBuilder {
+	b.immunizationRecommendationRecommendationDateCriterion.Extension = append(b.immunizationRecommendationRecommendationDateCriterion.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ImmunizationRecommendationRecommendationDateCriterionBuilder) AddModifierExtension(v Extension) *ImmunizationRecommendationRecommendationDateCriterionBuilder {
+	b.immunizationRecommendationRecommendationDateCriterion.ModifierExtension = append(b.immunizationRecommendationRecommendationDateCriterion.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *ImmunizationRecommendationRecommendationDateCriterionBuilder) SetCode(v CodeableConcept) *ImmunizationRecommendationRecommendationDateCriterionBuilder {
+	b.immunizationRecommendationRecommendationDateCriterion.Code = &v
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *ImmunizationRecommendationRecommendationDateCriterionBuilder) SetValue(v string) *ImmunizationRecommendationRecommendationDateCriterionBuilder {
+	b.immunizationRecommendationRecommendationDateCriterion.Value = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ImmunizationRecommendationRecommendationDateCriterionBuilder) SetValueExt(v Element) *ImmunizationRecommendationRecommendationDateCriterionBuilder {
+	b.immunizationRecommendationRecommendationDateCriterion.ValueExt = &v
+	return b
+}

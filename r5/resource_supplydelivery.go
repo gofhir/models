@@ -712,10 +712,120 @@ func (b *SupplyDeliveryBuilder) AddReceiver(v Reference) *SupplyDeliveryBuilder 
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SupplyDeliveryBuilder) SetImplicitRulesExt(v Element) *SupplyDeliveryBuilder {
+	b.supplyDelivery.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SupplyDeliveryBuilder) SetLanguageExt(v Element) *SupplyDeliveryBuilder {
+	b.supplyDelivery.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SupplyDeliveryBuilder) SetStatusExt(v Element) *SupplyDeliveryBuilder {
+	b.supplyDelivery.StatusExt = &v
+	return b
+}
+
 // clearOccurrence unsets every variant of Occurrence[x], including the
 // _field companions of the primitive ones.
 func (b *SupplyDeliveryBuilder) clearOccurrence() {
 	b.supplyDelivery.OccurrenceDateTime = nil
 	b.supplyDelivery.OccurrencePeriod = nil
 	b.supplyDelivery.OccurrenceTiming = nil
+}
+
+// =============================================================================
+// SupplyDeliverySuppliedItem - Fluent Builder
+// =============================================================================
+
+// SupplyDeliverySuppliedItemBuilder provides a fluent API for constructing SupplyDeliverySuppliedItem values.
+type SupplyDeliverySuppliedItemBuilder struct {
+	supplyDeliverySuppliedItem *SupplyDeliverySuppliedItem
+}
+
+// NewSupplyDeliverySuppliedItemBuilder creates a new SupplyDeliverySuppliedItemBuilder.
+func NewSupplyDeliverySuppliedItemBuilder() *SupplyDeliverySuppliedItemBuilder {
+	return &SupplyDeliverySuppliedItemBuilder{
+		supplyDeliverySuppliedItem: &SupplyDeliverySuppliedItem{},
+	}
+}
+
+// Build returns the constructed SupplyDeliverySuppliedItem.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SupplyDeliverySuppliedItemBuilder) Build() SupplyDeliverySuppliedItem {
+	return *b.supplyDeliverySuppliedItem
+}
+
+// SetId sets the Id field.
+func (b *SupplyDeliverySuppliedItemBuilder) SetId(v string) *SupplyDeliverySuppliedItemBuilder {
+	b.supplyDeliverySuppliedItem.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SupplyDeliverySuppliedItemBuilder) AddExtension(v Extension) *SupplyDeliverySuppliedItemBuilder {
+	b.supplyDeliverySuppliedItem.Extension = append(b.supplyDeliverySuppliedItem.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SupplyDeliverySuppliedItemBuilder) AddModifierExtension(v Extension) *SupplyDeliverySuppliedItemBuilder {
+	b.supplyDeliverySuppliedItem.ModifierExtension = append(b.supplyDeliverySuppliedItem.ModifierExtension, v)
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *SupplyDeliverySuppliedItemBuilder) SetQuantity(v Quantity) *SupplyDeliverySuppliedItemBuilder {
+	b.supplyDeliverySuppliedItem.Quantity = &v
+	return b
+}
+
+// SetItemCodeableConcept sets Item[x] to its ItemCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SupplyDeliverySuppliedItemBuilder) SetItemCodeableConcept(v CodeableConcept) *SupplyDeliverySuppliedItemBuilder {
+	b.clearItem()
+	b.supplyDeliverySuppliedItem.ItemCodeableConcept = &v
+	return b
+}
+
+// SetItemReference sets Item[x] to its ItemReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SupplyDeliverySuppliedItemBuilder) SetItemReference(v Reference) *SupplyDeliverySuppliedItemBuilder {
+	b.clearItem()
+	b.supplyDeliverySuppliedItem.ItemReference = &v
+	return b
+}
+
+// clearItem unsets every variant of Item[x], including the
+// _field companions of the primitive ones.
+func (b *SupplyDeliverySuppliedItemBuilder) clearItem() {
+	b.supplyDeliverySuppliedItem.ItemCodeableConcept = nil
+	b.supplyDeliverySuppliedItem.ItemReference = nil
 }

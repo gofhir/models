@@ -594,3 +594,185 @@ func (b *SubstanceProteinBuilder) AddSubunit(v SubstanceProteinSubunit) *Substan
 	b.substanceProtein.Subunit = append(b.substanceProtein.Subunit, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceProteinBuilder) SetImplicitRulesExt(v Element) *SubstanceProteinBuilder {
+	b.substanceProtein.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceProteinBuilder) SetLanguageExt(v Element) *SubstanceProteinBuilder {
+	b.substanceProtein.LanguageExt = &v
+	return b
+}
+
+// SetNumberOfSubunitsExt sets the extensions carried by NumberOfSubunits, serialized as
+// "_numberOfSubunits".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceProteinBuilder) SetNumberOfSubunitsExt(v Element) *SubstanceProteinBuilder {
+	b.substanceProtein.NumberOfSubunitsExt = &v
+	return b
+}
+
+// AddDisulfideLinkageExt appends an extension slot for DisulfideLinkage.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *SubstanceProteinBuilder) AddDisulfideLinkageExt(v *Element) *SubstanceProteinBuilder {
+	b.substanceProtein.DisulfideLinkageExt = append(b.substanceProtein.DisulfideLinkageExt, v)
+	return b
+}
+
+// =============================================================================
+// SubstanceProteinSubunit - Fluent Builder
+// =============================================================================
+
+// SubstanceProteinSubunitBuilder provides a fluent API for constructing SubstanceProteinSubunit values.
+type SubstanceProteinSubunitBuilder struct {
+	substanceProteinSubunit *SubstanceProteinSubunit
+}
+
+// NewSubstanceProteinSubunitBuilder creates a new SubstanceProteinSubunitBuilder.
+func NewSubstanceProteinSubunitBuilder() *SubstanceProteinSubunitBuilder {
+	return &SubstanceProteinSubunitBuilder{
+		substanceProteinSubunit: &SubstanceProteinSubunit{},
+	}
+}
+
+// Build returns the constructed SubstanceProteinSubunit.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceProteinSubunitBuilder) Build() SubstanceProteinSubunit {
+	return *b.substanceProteinSubunit
+}
+
+// SetId sets the Id field.
+func (b *SubstanceProteinSubunitBuilder) SetId(v string) *SubstanceProteinSubunitBuilder {
+	b.substanceProteinSubunit.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceProteinSubunitBuilder) AddExtension(v Extension) *SubstanceProteinSubunitBuilder {
+	b.substanceProteinSubunit.Extension = append(b.substanceProteinSubunit.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceProteinSubunitBuilder) AddModifierExtension(v Extension) *SubstanceProteinSubunitBuilder {
+	b.substanceProteinSubunit.ModifierExtension = append(b.substanceProteinSubunit.ModifierExtension, v)
+	return b
+}
+
+// SetSubunit sets the Subunit field.
+func (b *SubstanceProteinSubunitBuilder) SetSubunit(v int) *SubstanceProteinSubunitBuilder {
+	b.substanceProteinSubunit.Subunit = &v
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *SubstanceProteinSubunitBuilder) SetSequence(v string) *SubstanceProteinSubunitBuilder {
+	b.substanceProteinSubunit.Sequence = &v
+	return b
+}
+
+// SetLength sets the Length field.
+func (b *SubstanceProteinSubunitBuilder) SetLength(v int) *SubstanceProteinSubunitBuilder {
+	b.substanceProteinSubunit.Length = &v
+	return b
+}
+
+// SetSequenceAttachment sets the SequenceAttachment field.
+func (b *SubstanceProteinSubunitBuilder) SetSequenceAttachment(v Attachment) *SubstanceProteinSubunitBuilder {
+	b.substanceProteinSubunit.SequenceAttachment = &v
+	return b
+}
+
+// SetNTerminalModificationId sets the NTerminalModificationId field.
+func (b *SubstanceProteinSubunitBuilder) SetNTerminalModificationId(v Identifier) *SubstanceProteinSubunitBuilder {
+	b.substanceProteinSubunit.NTerminalModificationId = &v
+	return b
+}
+
+// SetNTerminalModification sets the NTerminalModification field.
+func (b *SubstanceProteinSubunitBuilder) SetNTerminalModification(v string) *SubstanceProteinSubunitBuilder {
+	b.substanceProteinSubunit.NTerminalModification = &v
+	return b
+}
+
+// SetCTerminalModificationId sets the CTerminalModificationId field.
+func (b *SubstanceProteinSubunitBuilder) SetCTerminalModificationId(v Identifier) *SubstanceProteinSubunitBuilder {
+	b.substanceProteinSubunit.CTerminalModificationId = &v
+	return b
+}
+
+// SetCTerminalModification sets the CTerminalModification field.
+func (b *SubstanceProteinSubunitBuilder) SetCTerminalModification(v string) *SubstanceProteinSubunitBuilder {
+	b.substanceProteinSubunit.CTerminalModification = &v
+	return b
+}
+
+// SetSubunitExt sets the extensions carried by Subunit, serialized as
+// "_subunit".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceProteinSubunitBuilder) SetSubunitExt(v Element) *SubstanceProteinSubunitBuilder {
+	b.substanceProteinSubunit.SubunitExt = &v
+	return b
+}
+
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceProteinSubunitBuilder) SetSequenceExt(v Element) *SubstanceProteinSubunitBuilder {
+	b.substanceProteinSubunit.SequenceExt = &v
+	return b
+}
+
+// SetLengthExt sets the extensions carried by Length, serialized as
+// "_length".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceProteinSubunitBuilder) SetLengthExt(v Element) *SubstanceProteinSubunitBuilder {
+	b.substanceProteinSubunit.LengthExt = &v
+	return b
+}
+
+// SetNTerminalModificationExt sets the extensions carried by NTerminalModification, serialized as
+// "_nTerminalModification".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceProteinSubunitBuilder) SetNTerminalModificationExt(v Element) *SubstanceProteinSubunitBuilder {
+	b.substanceProteinSubunit.NTerminalModificationExt = &v
+	return b
+}
+
+// SetCTerminalModificationExt sets the extensions carried by CTerminalModification, serialized as
+// "_cTerminalModification".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceProteinSubunitBuilder) SetCTerminalModificationExt(v Element) *SubstanceProteinSubunitBuilder {
+	b.substanceProteinSubunit.CTerminalModificationExt = &v
+	return b
+}

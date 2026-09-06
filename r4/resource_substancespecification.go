@@ -2305,3 +2305,1115 @@ func (b *SubstanceSpecificationBuilder) SetSourceMaterial(v Reference) *Substanc
 	b.substanceSpecification.SourceMaterial = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSpecificationBuilder) SetImplicitRulesExt(v Element) *SubstanceSpecificationBuilder {
+	b.substanceSpecification.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSpecificationBuilder) SetLanguageExt(v Element) *SubstanceSpecificationBuilder {
+	b.substanceSpecification.LanguageExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSpecificationBuilder) SetDescriptionExt(v Element) *SubstanceSpecificationBuilder {
+	b.substanceSpecification.DescriptionExt = &v
+	return b
+}
+
+// SetCommentExt sets the extensions carried by Comment, serialized as
+// "_comment".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSpecificationBuilder) SetCommentExt(v Element) *SubstanceSpecificationBuilder {
+	b.substanceSpecification.CommentExt = &v
+	return b
+}
+
+// =============================================================================
+// SubstanceSpecificationCode - Fluent Builder
+// =============================================================================
+
+// SubstanceSpecificationCodeBuilder provides a fluent API for constructing SubstanceSpecificationCode values.
+type SubstanceSpecificationCodeBuilder struct {
+	substanceSpecificationCode *SubstanceSpecificationCode
+}
+
+// NewSubstanceSpecificationCodeBuilder creates a new SubstanceSpecificationCodeBuilder.
+func NewSubstanceSpecificationCodeBuilder() *SubstanceSpecificationCodeBuilder {
+	return &SubstanceSpecificationCodeBuilder{
+		substanceSpecificationCode: &SubstanceSpecificationCode{},
+	}
+}
+
+// Build returns the constructed SubstanceSpecificationCode.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceSpecificationCodeBuilder) Build() SubstanceSpecificationCode {
+	return *b.substanceSpecificationCode
+}
+
+// SetId sets the Id field.
+func (b *SubstanceSpecificationCodeBuilder) SetId(v string) *SubstanceSpecificationCodeBuilder {
+	b.substanceSpecificationCode.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceSpecificationCodeBuilder) AddExtension(v Extension) *SubstanceSpecificationCodeBuilder {
+	b.substanceSpecificationCode.Extension = append(b.substanceSpecificationCode.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceSpecificationCodeBuilder) AddModifierExtension(v Extension) *SubstanceSpecificationCodeBuilder {
+	b.substanceSpecificationCode.ModifierExtension = append(b.substanceSpecificationCode.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *SubstanceSpecificationCodeBuilder) SetCode(v CodeableConcept) *SubstanceSpecificationCodeBuilder {
+	b.substanceSpecificationCode.Code = &v
+	return b
+}
+
+// SetStatus sets the Status field.
+func (b *SubstanceSpecificationCodeBuilder) SetStatus(v CodeableConcept) *SubstanceSpecificationCodeBuilder {
+	b.substanceSpecificationCode.Status = &v
+	return b
+}
+
+// SetStatusDate sets the StatusDate field.
+func (b *SubstanceSpecificationCodeBuilder) SetStatusDate(v string) *SubstanceSpecificationCodeBuilder {
+	b.substanceSpecificationCode.StatusDate = &v
+	return b
+}
+
+// SetComment sets the Comment field.
+func (b *SubstanceSpecificationCodeBuilder) SetComment(v string) *SubstanceSpecificationCodeBuilder {
+	b.substanceSpecificationCode.Comment = &v
+	return b
+}
+
+// AddSource adds a Source element.
+func (b *SubstanceSpecificationCodeBuilder) AddSource(v Reference) *SubstanceSpecificationCodeBuilder {
+	b.substanceSpecificationCode.Source = append(b.substanceSpecificationCode.Source, v)
+	return b
+}
+
+// SetStatusDateExt sets the extensions carried by StatusDate, serialized as
+// "_statusDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSpecificationCodeBuilder) SetStatusDateExt(v Element) *SubstanceSpecificationCodeBuilder {
+	b.substanceSpecificationCode.StatusDateExt = &v
+	return b
+}
+
+// SetCommentExt sets the extensions carried by Comment, serialized as
+// "_comment".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSpecificationCodeBuilder) SetCommentExt(v Element) *SubstanceSpecificationCodeBuilder {
+	b.substanceSpecificationCode.CommentExt = &v
+	return b
+}
+
+// =============================================================================
+// SubstanceSpecificationMoiety - Fluent Builder
+// =============================================================================
+
+// SubstanceSpecificationMoietyBuilder provides a fluent API for constructing SubstanceSpecificationMoiety values.
+type SubstanceSpecificationMoietyBuilder struct {
+	substanceSpecificationMoiety *SubstanceSpecificationMoiety
+}
+
+// NewSubstanceSpecificationMoietyBuilder creates a new SubstanceSpecificationMoietyBuilder.
+func NewSubstanceSpecificationMoietyBuilder() *SubstanceSpecificationMoietyBuilder {
+	return &SubstanceSpecificationMoietyBuilder{
+		substanceSpecificationMoiety: &SubstanceSpecificationMoiety{},
+	}
+}
+
+// Build returns the constructed SubstanceSpecificationMoiety.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceSpecificationMoietyBuilder) Build() SubstanceSpecificationMoiety {
+	return *b.substanceSpecificationMoiety
+}
+
+// SetId sets the Id field.
+func (b *SubstanceSpecificationMoietyBuilder) SetId(v string) *SubstanceSpecificationMoietyBuilder {
+	b.substanceSpecificationMoiety.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceSpecificationMoietyBuilder) AddExtension(v Extension) *SubstanceSpecificationMoietyBuilder {
+	b.substanceSpecificationMoiety.Extension = append(b.substanceSpecificationMoiety.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceSpecificationMoietyBuilder) AddModifierExtension(v Extension) *SubstanceSpecificationMoietyBuilder {
+	b.substanceSpecificationMoiety.ModifierExtension = append(b.substanceSpecificationMoiety.ModifierExtension, v)
+	return b
+}
+
+// SetRole sets the Role field.
+func (b *SubstanceSpecificationMoietyBuilder) SetRole(v CodeableConcept) *SubstanceSpecificationMoietyBuilder {
+	b.substanceSpecificationMoiety.Role = &v
+	return b
+}
+
+// SetIdentifier sets the Identifier field.
+func (b *SubstanceSpecificationMoietyBuilder) SetIdentifier(v Identifier) *SubstanceSpecificationMoietyBuilder {
+	b.substanceSpecificationMoiety.Identifier = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *SubstanceSpecificationMoietyBuilder) SetName(v string) *SubstanceSpecificationMoietyBuilder {
+	b.substanceSpecificationMoiety.Name = &v
+	return b
+}
+
+// SetStereochemistry sets the Stereochemistry field.
+func (b *SubstanceSpecificationMoietyBuilder) SetStereochemistry(v CodeableConcept) *SubstanceSpecificationMoietyBuilder {
+	b.substanceSpecificationMoiety.Stereochemistry = &v
+	return b
+}
+
+// SetOpticalActivity sets the OpticalActivity field.
+func (b *SubstanceSpecificationMoietyBuilder) SetOpticalActivity(v CodeableConcept) *SubstanceSpecificationMoietyBuilder {
+	b.substanceSpecificationMoiety.OpticalActivity = &v
+	return b
+}
+
+// SetMolecularFormula sets the MolecularFormula field.
+func (b *SubstanceSpecificationMoietyBuilder) SetMolecularFormula(v string) *SubstanceSpecificationMoietyBuilder {
+	b.substanceSpecificationMoiety.MolecularFormula = &v
+	return b
+}
+
+// SetAmountQuantity sets Amount[x] to its AmountQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SubstanceSpecificationMoietyBuilder) SetAmountQuantity(v Quantity) *SubstanceSpecificationMoietyBuilder {
+	b.clearAmount()
+	b.substanceSpecificationMoiety.AmountQuantity = &v
+	return b
+}
+
+// SetAmountString sets Amount[x] to its AmountString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SubstanceSpecificationMoietyBuilder) SetAmountString(v string) *SubstanceSpecificationMoietyBuilder {
+	b.clearAmount()
+	b.substanceSpecificationMoiety.AmountString = &v
+	return b
+}
+
+// SetAmountStringExt sets the AmountStringExt field.
+func (b *SubstanceSpecificationMoietyBuilder) SetAmountStringExt(v Element) *SubstanceSpecificationMoietyBuilder {
+	b.substanceSpecificationMoiety.AmountStringExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSpecificationMoietyBuilder) SetNameExt(v Element) *SubstanceSpecificationMoietyBuilder {
+	b.substanceSpecificationMoiety.NameExt = &v
+	return b
+}
+
+// SetMolecularFormulaExt sets the extensions carried by MolecularFormula, serialized as
+// "_molecularFormula".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSpecificationMoietyBuilder) SetMolecularFormulaExt(v Element) *SubstanceSpecificationMoietyBuilder {
+	b.substanceSpecificationMoiety.MolecularFormulaExt = &v
+	return b
+}
+
+// clearAmount unsets every variant of Amount[x], including the
+// _field companions of the primitive ones.
+func (b *SubstanceSpecificationMoietyBuilder) clearAmount() {
+	b.substanceSpecificationMoiety.AmountQuantity = nil
+	b.substanceSpecificationMoiety.AmountString = nil
+	b.substanceSpecificationMoiety.AmountStringExt = nil
+}
+
+// =============================================================================
+// SubstanceSpecificationName - Fluent Builder
+// =============================================================================
+
+// SubstanceSpecificationNameBuilder provides a fluent API for constructing SubstanceSpecificationName values.
+type SubstanceSpecificationNameBuilder struct {
+	substanceSpecificationName *SubstanceSpecificationName
+}
+
+// NewSubstanceSpecificationNameBuilder creates a new SubstanceSpecificationNameBuilder.
+func NewSubstanceSpecificationNameBuilder() *SubstanceSpecificationNameBuilder {
+	return &SubstanceSpecificationNameBuilder{
+		substanceSpecificationName: &SubstanceSpecificationName{},
+	}
+}
+
+// Build returns the constructed SubstanceSpecificationName.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceSpecificationNameBuilder) Build() SubstanceSpecificationName {
+	return *b.substanceSpecificationName
+}
+
+// SetId sets the Id field.
+func (b *SubstanceSpecificationNameBuilder) SetId(v string) *SubstanceSpecificationNameBuilder {
+	b.substanceSpecificationName.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceSpecificationNameBuilder) AddExtension(v Extension) *SubstanceSpecificationNameBuilder {
+	b.substanceSpecificationName.Extension = append(b.substanceSpecificationName.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceSpecificationNameBuilder) AddModifierExtension(v Extension) *SubstanceSpecificationNameBuilder {
+	b.substanceSpecificationName.ModifierExtension = append(b.substanceSpecificationName.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *SubstanceSpecificationNameBuilder) SetName(v string) *SubstanceSpecificationNameBuilder {
+	b.substanceSpecificationName.Name = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *SubstanceSpecificationNameBuilder) SetType(v CodeableConcept) *SubstanceSpecificationNameBuilder {
+	b.substanceSpecificationName.Type = &v
+	return b
+}
+
+// SetStatus sets the Status field.
+func (b *SubstanceSpecificationNameBuilder) SetStatus(v CodeableConcept) *SubstanceSpecificationNameBuilder {
+	b.substanceSpecificationName.Status = &v
+	return b
+}
+
+// SetPreferred sets the Preferred field.
+func (b *SubstanceSpecificationNameBuilder) SetPreferred(v bool) *SubstanceSpecificationNameBuilder {
+	b.substanceSpecificationName.Preferred = &v
+	return b
+}
+
+// AddLanguage adds a Language element.
+func (b *SubstanceSpecificationNameBuilder) AddLanguage(v CodeableConcept) *SubstanceSpecificationNameBuilder {
+	b.substanceSpecificationName.Language = append(b.substanceSpecificationName.Language, v)
+	return b
+}
+
+// AddDomain adds a Domain element.
+func (b *SubstanceSpecificationNameBuilder) AddDomain(v CodeableConcept) *SubstanceSpecificationNameBuilder {
+	b.substanceSpecificationName.Domain = append(b.substanceSpecificationName.Domain, v)
+	return b
+}
+
+// AddJurisdiction adds a Jurisdiction element.
+func (b *SubstanceSpecificationNameBuilder) AddJurisdiction(v CodeableConcept) *SubstanceSpecificationNameBuilder {
+	b.substanceSpecificationName.Jurisdiction = append(b.substanceSpecificationName.Jurisdiction, v)
+	return b
+}
+
+// AddSynonym adds a Synonym element.
+func (b *SubstanceSpecificationNameBuilder) AddSynonym(v SubstanceSpecificationName) *SubstanceSpecificationNameBuilder {
+	b.substanceSpecificationName.Synonym = append(b.substanceSpecificationName.Synonym, v)
+	return b
+}
+
+// AddTranslation adds a Translation element.
+func (b *SubstanceSpecificationNameBuilder) AddTranslation(v SubstanceSpecificationName) *SubstanceSpecificationNameBuilder {
+	b.substanceSpecificationName.Translation = append(b.substanceSpecificationName.Translation, v)
+	return b
+}
+
+// AddOfficial adds a Official element.
+func (b *SubstanceSpecificationNameBuilder) AddOfficial(v SubstanceSpecificationNameOfficial) *SubstanceSpecificationNameBuilder {
+	b.substanceSpecificationName.Official = append(b.substanceSpecificationName.Official, v)
+	return b
+}
+
+// AddSource adds a Source element.
+func (b *SubstanceSpecificationNameBuilder) AddSource(v Reference) *SubstanceSpecificationNameBuilder {
+	b.substanceSpecificationName.Source = append(b.substanceSpecificationName.Source, v)
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSpecificationNameBuilder) SetNameExt(v Element) *SubstanceSpecificationNameBuilder {
+	b.substanceSpecificationName.NameExt = &v
+	return b
+}
+
+// SetPreferredExt sets the extensions carried by Preferred, serialized as
+// "_preferred".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSpecificationNameBuilder) SetPreferredExt(v Element) *SubstanceSpecificationNameBuilder {
+	b.substanceSpecificationName.PreferredExt = &v
+	return b
+}
+
+// =============================================================================
+// SubstanceSpecificationNameOfficial - Fluent Builder
+// =============================================================================
+
+// SubstanceSpecificationNameOfficialBuilder provides a fluent API for constructing SubstanceSpecificationNameOfficial values.
+type SubstanceSpecificationNameOfficialBuilder struct {
+	substanceSpecificationNameOfficial *SubstanceSpecificationNameOfficial
+}
+
+// NewSubstanceSpecificationNameOfficialBuilder creates a new SubstanceSpecificationNameOfficialBuilder.
+func NewSubstanceSpecificationNameOfficialBuilder() *SubstanceSpecificationNameOfficialBuilder {
+	return &SubstanceSpecificationNameOfficialBuilder{
+		substanceSpecificationNameOfficial: &SubstanceSpecificationNameOfficial{},
+	}
+}
+
+// Build returns the constructed SubstanceSpecificationNameOfficial.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceSpecificationNameOfficialBuilder) Build() SubstanceSpecificationNameOfficial {
+	return *b.substanceSpecificationNameOfficial
+}
+
+// SetId sets the Id field.
+func (b *SubstanceSpecificationNameOfficialBuilder) SetId(v string) *SubstanceSpecificationNameOfficialBuilder {
+	b.substanceSpecificationNameOfficial.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceSpecificationNameOfficialBuilder) AddExtension(v Extension) *SubstanceSpecificationNameOfficialBuilder {
+	b.substanceSpecificationNameOfficial.Extension = append(b.substanceSpecificationNameOfficial.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceSpecificationNameOfficialBuilder) AddModifierExtension(v Extension) *SubstanceSpecificationNameOfficialBuilder {
+	b.substanceSpecificationNameOfficial.ModifierExtension = append(b.substanceSpecificationNameOfficial.ModifierExtension, v)
+	return b
+}
+
+// SetAuthority sets the Authority field.
+func (b *SubstanceSpecificationNameOfficialBuilder) SetAuthority(v CodeableConcept) *SubstanceSpecificationNameOfficialBuilder {
+	b.substanceSpecificationNameOfficial.Authority = &v
+	return b
+}
+
+// SetStatus sets the Status field.
+func (b *SubstanceSpecificationNameOfficialBuilder) SetStatus(v CodeableConcept) *SubstanceSpecificationNameOfficialBuilder {
+	b.substanceSpecificationNameOfficial.Status = &v
+	return b
+}
+
+// SetDate sets the Date field.
+func (b *SubstanceSpecificationNameOfficialBuilder) SetDate(v string) *SubstanceSpecificationNameOfficialBuilder {
+	b.substanceSpecificationNameOfficial.Date = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSpecificationNameOfficialBuilder) SetDateExt(v Element) *SubstanceSpecificationNameOfficialBuilder {
+	b.substanceSpecificationNameOfficial.DateExt = &v
+	return b
+}
+
+// =============================================================================
+// SubstanceSpecificationProperty - Fluent Builder
+// =============================================================================
+
+// SubstanceSpecificationPropertyBuilder provides a fluent API for constructing SubstanceSpecificationProperty values.
+type SubstanceSpecificationPropertyBuilder struct {
+	substanceSpecificationProperty *SubstanceSpecificationProperty
+}
+
+// NewSubstanceSpecificationPropertyBuilder creates a new SubstanceSpecificationPropertyBuilder.
+func NewSubstanceSpecificationPropertyBuilder() *SubstanceSpecificationPropertyBuilder {
+	return &SubstanceSpecificationPropertyBuilder{
+		substanceSpecificationProperty: &SubstanceSpecificationProperty{},
+	}
+}
+
+// Build returns the constructed SubstanceSpecificationProperty.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceSpecificationPropertyBuilder) Build() SubstanceSpecificationProperty {
+	return *b.substanceSpecificationProperty
+}
+
+// SetId sets the Id field.
+func (b *SubstanceSpecificationPropertyBuilder) SetId(v string) *SubstanceSpecificationPropertyBuilder {
+	b.substanceSpecificationProperty.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceSpecificationPropertyBuilder) AddExtension(v Extension) *SubstanceSpecificationPropertyBuilder {
+	b.substanceSpecificationProperty.Extension = append(b.substanceSpecificationProperty.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceSpecificationPropertyBuilder) AddModifierExtension(v Extension) *SubstanceSpecificationPropertyBuilder {
+	b.substanceSpecificationProperty.ModifierExtension = append(b.substanceSpecificationProperty.ModifierExtension, v)
+	return b
+}
+
+// SetCategory sets the Category field.
+func (b *SubstanceSpecificationPropertyBuilder) SetCategory(v CodeableConcept) *SubstanceSpecificationPropertyBuilder {
+	b.substanceSpecificationProperty.Category = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *SubstanceSpecificationPropertyBuilder) SetCode(v CodeableConcept) *SubstanceSpecificationPropertyBuilder {
+	b.substanceSpecificationProperty.Code = &v
+	return b
+}
+
+// SetParameters sets the Parameters field.
+func (b *SubstanceSpecificationPropertyBuilder) SetParameters(v string) *SubstanceSpecificationPropertyBuilder {
+	b.substanceSpecificationProperty.Parameters = &v
+	return b
+}
+
+// SetDefiningSubstanceReference sets DefiningSubstance[x] to its DefiningSubstanceReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SubstanceSpecificationPropertyBuilder) SetDefiningSubstanceReference(v Reference) *SubstanceSpecificationPropertyBuilder {
+	b.clearDefiningSubstance()
+	b.substanceSpecificationProperty.DefiningSubstanceReference = &v
+	return b
+}
+
+// SetDefiningSubstanceCodeableConcept sets DefiningSubstance[x] to its DefiningSubstanceCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SubstanceSpecificationPropertyBuilder) SetDefiningSubstanceCodeableConcept(v CodeableConcept) *SubstanceSpecificationPropertyBuilder {
+	b.clearDefiningSubstance()
+	b.substanceSpecificationProperty.DefiningSubstanceCodeableConcept = &v
+	return b
+}
+
+// SetAmountQuantity sets Amount[x] to its AmountQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SubstanceSpecificationPropertyBuilder) SetAmountQuantity(v Quantity) *SubstanceSpecificationPropertyBuilder {
+	b.clearAmount()
+	b.substanceSpecificationProperty.AmountQuantity = &v
+	return b
+}
+
+// SetAmountString sets Amount[x] to its AmountString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SubstanceSpecificationPropertyBuilder) SetAmountString(v string) *SubstanceSpecificationPropertyBuilder {
+	b.clearAmount()
+	b.substanceSpecificationProperty.AmountString = &v
+	return b
+}
+
+// SetAmountStringExt sets the AmountStringExt field.
+func (b *SubstanceSpecificationPropertyBuilder) SetAmountStringExt(v Element) *SubstanceSpecificationPropertyBuilder {
+	b.substanceSpecificationProperty.AmountStringExt = &v
+	return b
+}
+
+// SetParametersExt sets the extensions carried by Parameters, serialized as
+// "_parameters".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSpecificationPropertyBuilder) SetParametersExt(v Element) *SubstanceSpecificationPropertyBuilder {
+	b.substanceSpecificationProperty.ParametersExt = &v
+	return b
+}
+
+// clearDefiningSubstance unsets every variant of DefiningSubstance[x], including the
+// _field companions of the primitive ones.
+func (b *SubstanceSpecificationPropertyBuilder) clearDefiningSubstance() {
+	b.substanceSpecificationProperty.DefiningSubstanceReference = nil
+	b.substanceSpecificationProperty.DefiningSubstanceCodeableConcept = nil
+}
+
+// clearAmount unsets every variant of Amount[x], including the
+// _field companions of the primitive ones.
+func (b *SubstanceSpecificationPropertyBuilder) clearAmount() {
+	b.substanceSpecificationProperty.AmountQuantity = nil
+	b.substanceSpecificationProperty.AmountString = nil
+	b.substanceSpecificationProperty.AmountStringExt = nil
+}
+
+// =============================================================================
+// SubstanceSpecificationRelationship - Fluent Builder
+// =============================================================================
+
+// SubstanceSpecificationRelationshipBuilder provides a fluent API for constructing SubstanceSpecificationRelationship values.
+type SubstanceSpecificationRelationshipBuilder struct {
+	substanceSpecificationRelationship *SubstanceSpecificationRelationship
+}
+
+// NewSubstanceSpecificationRelationshipBuilder creates a new SubstanceSpecificationRelationshipBuilder.
+func NewSubstanceSpecificationRelationshipBuilder() *SubstanceSpecificationRelationshipBuilder {
+	return &SubstanceSpecificationRelationshipBuilder{
+		substanceSpecificationRelationship: &SubstanceSpecificationRelationship{},
+	}
+}
+
+// Build returns the constructed SubstanceSpecificationRelationship.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceSpecificationRelationshipBuilder) Build() SubstanceSpecificationRelationship {
+	return *b.substanceSpecificationRelationship
+}
+
+// SetId sets the Id field.
+func (b *SubstanceSpecificationRelationshipBuilder) SetId(v string) *SubstanceSpecificationRelationshipBuilder {
+	b.substanceSpecificationRelationship.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceSpecificationRelationshipBuilder) AddExtension(v Extension) *SubstanceSpecificationRelationshipBuilder {
+	b.substanceSpecificationRelationship.Extension = append(b.substanceSpecificationRelationship.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceSpecificationRelationshipBuilder) AddModifierExtension(v Extension) *SubstanceSpecificationRelationshipBuilder {
+	b.substanceSpecificationRelationship.ModifierExtension = append(b.substanceSpecificationRelationship.ModifierExtension, v)
+	return b
+}
+
+// SetSubstanceReference sets Substance[x] to its SubstanceReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SubstanceSpecificationRelationshipBuilder) SetSubstanceReference(v Reference) *SubstanceSpecificationRelationshipBuilder {
+	b.clearSubstance()
+	b.substanceSpecificationRelationship.SubstanceReference = &v
+	return b
+}
+
+// SetSubstanceCodeableConcept sets Substance[x] to its SubstanceCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SubstanceSpecificationRelationshipBuilder) SetSubstanceCodeableConcept(v CodeableConcept) *SubstanceSpecificationRelationshipBuilder {
+	b.clearSubstance()
+	b.substanceSpecificationRelationship.SubstanceCodeableConcept = &v
+	return b
+}
+
+// SetRelationship sets the Relationship field.
+func (b *SubstanceSpecificationRelationshipBuilder) SetRelationship(v CodeableConcept) *SubstanceSpecificationRelationshipBuilder {
+	b.substanceSpecificationRelationship.Relationship = &v
+	return b
+}
+
+// SetIsDefining sets the IsDefining field.
+func (b *SubstanceSpecificationRelationshipBuilder) SetIsDefining(v bool) *SubstanceSpecificationRelationshipBuilder {
+	b.substanceSpecificationRelationship.IsDefining = &v
+	return b
+}
+
+// SetAmountQuantity sets Amount[x] to its AmountQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SubstanceSpecificationRelationshipBuilder) SetAmountQuantity(v Quantity) *SubstanceSpecificationRelationshipBuilder {
+	b.clearAmount()
+	b.substanceSpecificationRelationship.AmountQuantity = &v
+	return b
+}
+
+// SetAmountRange sets Amount[x] to its AmountRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SubstanceSpecificationRelationshipBuilder) SetAmountRange(v Range) *SubstanceSpecificationRelationshipBuilder {
+	b.clearAmount()
+	b.substanceSpecificationRelationship.AmountRange = &v
+	return b
+}
+
+// SetAmountRatio sets Amount[x] to its AmountRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SubstanceSpecificationRelationshipBuilder) SetAmountRatio(v Ratio) *SubstanceSpecificationRelationshipBuilder {
+	b.clearAmount()
+	b.substanceSpecificationRelationship.AmountRatio = &v
+	return b
+}
+
+// SetAmountString sets Amount[x] to its AmountString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *SubstanceSpecificationRelationshipBuilder) SetAmountString(v string) *SubstanceSpecificationRelationshipBuilder {
+	b.clearAmount()
+	b.substanceSpecificationRelationship.AmountString = &v
+	return b
+}
+
+// SetAmountStringExt sets the AmountStringExt field.
+func (b *SubstanceSpecificationRelationshipBuilder) SetAmountStringExt(v Element) *SubstanceSpecificationRelationshipBuilder {
+	b.substanceSpecificationRelationship.AmountStringExt = &v
+	return b
+}
+
+// SetAmountRatioLowLimit sets the AmountRatioLowLimit field.
+func (b *SubstanceSpecificationRelationshipBuilder) SetAmountRatioLowLimit(v Ratio) *SubstanceSpecificationRelationshipBuilder {
+	b.substanceSpecificationRelationship.AmountRatioLowLimit = &v
+	return b
+}
+
+// SetAmountType sets the AmountType field.
+func (b *SubstanceSpecificationRelationshipBuilder) SetAmountType(v CodeableConcept) *SubstanceSpecificationRelationshipBuilder {
+	b.substanceSpecificationRelationship.AmountType = &v
+	return b
+}
+
+// AddSource adds a Source element.
+func (b *SubstanceSpecificationRelationshipBuilder) AddSource(v Reference) *SubstanceSpecificationRelationshipBuilder {
+	b.substanceSpecificationRelationship.Source = append(b.substanceSpecificationRelationship.Source, v)
+	return b
+}
+
+// SetIsDefiningExt sets the extensions carried by IsDefining, serialized as
+// "_isDefining".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSpecificationRelationshipBuilder) SetIsDefiningExt(v Element) *SubstanceSpecificationRelationshipBuilder {
+	b.substanceSpecificationRelationship.IsDefiningExt = &v
+	return b
+}
+
+// clearSubstance unsets every variant of Substance[x], including the
+// _field companions of the primitive ones.
+func (b *SubstanceSpecificationRelationshipBuilder) clearSubstance() {
+	b.substanceSpecificationRelationship.SubstanceReference = nil
+	b.substanceSpecificationRelationship.SubstanceCodeableConcept = nil
+}
+
+// clearAmount unsets every variant of Amount[x], including the
+// _field companions of the primitive ones.
+func (b *SubstanceSpecificationRelationshipBuilder) clearAmount() {
+	b.substanceSpecificationRelationship.AmountQuantity = nil
+	b.substanceSpecificationRelationship.AmountRange = nil
+	b.substanceSpecificationRelationship.AmountRatio = nil
+	b.substanceSpecificationRelationship.AmountString = nil
+	b.substanceSpecificationRelationship.AmountStringExt = nil
+}
+
+// =============================================================================
+// SubstanceSpecificationStructure - Fluent Builder
+// =============================================================================
+
+// SubstanceSpecificationStructureBuilder provides a fluent API for constructing SubstanceSpecificationStructure values.
+type SubstanceSpecificationStructureBuilder struct {
+	substanceSpecificationStructure *SubstanceSpecificationStructure
+}
+
+// NewSubstanceSpecificationStructureBuilder creates a new SubstanceSpecificationStructureBuilder.
+func NewSubstanceSpecificationStructureBuilder() *SubstanceSpecificationStructureBuilder {
+	return &SubstanceSpecificationStructureBuilder{
+		substanceSpecificationStructure: &SubstanceSpecificationStructure{},
+	}
+}
+
+// Build returns the constructed SubstanceSpecificationStructure.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceSpecificationStructureBuilder) Build() SubstanceSpecificationStructure {
+	return *b.substanceSpecificationStructure
+}
+
+// SetId sets the Id field.
+func (b *SubstanceSpecificationStructureBuilder) SetId(v string) *SubstanceSpecificationStructureBuilder {
+	b.substanceSpecificationStructure.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceSpecificationStructureBuilder) AddExtension(v Extension) *SubstanceSpecificationStructureBuilder {
+	b.substanceSpecificationStructure.Extension = append(b.substanceSpecificationStructure.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceSpecificationStructureBuilder) AddModifierExtension(v Extension) *SubstanceSpecificationStructureBuilder {
+	b.substanceSpecificationStructure.ModifierExtension = append(b.substanceSpecificationStructure.ModifierExtension, v)
+	return b
+}
+
+// SetStereochemistry sets the Stereochemistry field.
+func (b *SubstanceSpecificationStructureBuilder) SetStereochemistry(v CodeableConcept) *SubstanceSpecificationStructureBuilder {
+	b.substanceSpecificationStructure.Stereochemistry = &v
+	return b
+}
+
+// SetOpticalActivity sets the OpticalActivity field.
+func (b *SubstanceSpecificationStructureBuilder) SetOpticalActivity(v CodeableConcept) *SubstanceSpecificationStructureBuilder {
+	b.substanceSpecificationStructure.OpticalActivity = &v
+	return b
+}
+
+// SetMolecularFormula sets the MolecularFormula field.
+func (b *SubstanceSpecificationStructureBuilder) SetMolecularFormula(v string) *SubstanceSpecificationStructureBuilder {
+	b.substanceSpecificationStructure.MolecularFormula = &v
+	return b
+}
+
+// SetMolecularFormulaByMoiety sets the MolecularFormulaByMoiety field.
+func (b *SubstanceSpecificationStructureBuilder) SetMolecularFormulaByMoiety(v string) *SubstanceSpecificationStructureBuilder {
+	b.substanceSpecificationStructure.MolecularFormulaByMoiety = &v
+	return b
+}
+
+// AddIsotope adds a Isotope element.
+func (b *SubstanceSpecificationStructureBuilder) AddIsotope(v SubstanceSpecificationStructureIsotope) *SubstanceSpecificationStructureBuilder {
+	b.substanceSpecificationStructure.Isotope = append(b.substanceSpecificationStructure.Isotope, v)
+	return b
+}
+
+// SetMolecularWeight sets the MolecularWeight field.
+func (b *SubstanceSpecificationStructureBuilder) SetMolecularWeight(v SubstanceSpecificationStructureIsotopeMolecularWeight) *SubstanceSpecificationStructureBuilder {
+	b.substanceSpecificationStructure.MolecularWeight = &v
+	return b
+}
+
+// AddSource adds a Source element.
+func (b *SubstanceSpecificationStructureBuilder) AddSource(v Reference) *SubstanceSpecificationStructureBuilder {
+	b.substanceSpecificationStructure.Source = append(b.substanceSpecificationStructure.Source, v)
+	return b
+}
+
+// AddRepresentation adds a Representation element.
+func (b *SubstanceSpecificationStructureBuilder) AddRepresentation(v SubstanceSpecificationStructureRepresentation) *SubstanceSpecificationStructureBuilder {
+	b.substanceSpecificationStructure.Representation = append(b.substanceSpecificationStructure.Representation, v)
+	return b
+}
+
+// SetMolecularFormulaExt sets the extensions carried by MolecularFormula, serialized as
+// "_molecularFormula".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSpecificationStructureBuilder) SetMolecularFormulaExt(v Element) *SubstanceSpecificationStructureBuilder {
+	b.substanceSpecificationStructure.MolecularFormulaExt = &v
+	return b
+}
+
+// SetMolecularFormulaByMoietyExt sets the extensions carried by MolecularFormulaByMoiety, serialized as
+// "_molecularFormulaByMoiety".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSpecificationStructureBuilder) SetMolecularFormulaByMoietyExt(v Element) *SubstanceSpecificationStructureBuilder {
+	b.substanceSpecificationStructure.MolecularFormulaByMoietyExt = &v
+	return b
+}
+
+// =============================================================================
+// SubstanceSpecificationStructureIsotope - Fluent Builder
+// =============================================================================
+
+// SubstanceSpecificationStructureIsotopeBuilder provides a fluent API for constructing SubstanceSpecificationStructureIsotope values.
+type SubstanceSpecificationStructureIsotopeBuilder struct {
+	substanceSpecificationStructureIsotope *SubstanceSpecificationStructureIsotope
+}
+
+// NewSubstanceSpecificationStructureIsotopeBuilder creates a new SubstanceSpecificationStructureIsotopeBuilder.
+func NewSubstanceSpecificationStructureIsotopeBuilder() *SubstanceSpecificationStructureIsotopeBuilder {
+	return &SubstanceSpecificationStructureIsotopeBuilder{
+		substanceSpecificationStructureIsotope: &SubstanceSpecificationStructureIsotope{},
+	}
+}
+
+// Build returns the constructed SubstanceSpecificationStructureIsotope.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceSpecificationStructureIsotopeBuilder) Build() SubstanceSpecificationStructureIsotope {
+	return *b.substanceSpecificationStructureIsotope
+}
+
+// SetId sets the Id field.
+func (b *SubstanceSpecificationStructureIsotopeBuilder) SetId(v string) *SubstanceSpecificationStructureIsotopeBuilder {
+	b.substanceSpecificationStructureIsotope.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceSpecificationStructureIsotopeBuilder) AddExtension(v Extension) *SubstanceSpecificationStructureIsotopeBuilder {
+	b.substanceSpecificationStructureIsotope.Extension = append(b.substanceSpecificationStructureIsotope.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceSpecificationStructureIsotopeBuilder) AddModifierExtension(v Extension) *SubstanceSpecificationStructureIsotopeBuilder {
+	b.substanceSpecificationStructureIsotope.ModifierExtension = append(b.substanceSpecificationStructureIsotope.ModifierExtension, v)
+	return b
+}
+
+// SetIdentifier sets the Identifier field.
+func (b *SubstanceSpecificationStructureIsotopeBuilder) SetIdentifier(v Identifier) *SubstanceSpecificationStructureIsotopeBuilder {
+	b.substanceSpecificationStructureIsotope.Identifier = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *SubstanceSpecificationStructureIsotopeBuilder) SetName(v CodeableConcept) *SubstanceSpecificationStructureIsotopeBuilder {
+	b.substanceSpecificationStructureIsotope.Name = &v
+	return b
+}
+
+// SetSubstitution sets the Substitution field.
+func (b *SubstanceSpecificationStructureIsotopeBuilder) SetSubstitution(v CodeableConcept) *SubstanceSpecificationStructureIsotopeBuilder {
+	b.substanceSpecificationStructureIsotope.Substitution = &v
+	return b
+}
+
+// SetHalfLife sets the HalfLife field.
+func (b *SubstanceSpecificationStructureIsotopeBuilder) SetHalfLife(v Quantity) *SubstanceSpecificationStructureIsotopeBuilder {
+	b.substanceSpecificationStructureIsotope.HalfLife = &v
+	return b
+}
+
+// SetMolecularWeight sets the MolecularWeight field.
+func (b *SubstanceSpecificationStructureIsotopeBuilder) SetMolecularWeight(v SubstanceSpecificationStructureIsotopeMolecularWeight) *SubstanceSpecificationStructureIsotopeBuilder {
+	b.substanceSpecificationStructureIsotope.MolecularWeight = &v
+	return b
+}
+
+// =============================================================================
+// SubstanceSpecificationStructureIsotopeMolecularWeight - Fluent Builder
+// =============================================================================
+
+// SubstanceSpecificationStructureIsotopeMolecularWeightBuilder provides a fluent API for constructing SubstanceSpecificationStructureIsotopeMolecularWeight values.
+type SubstanceSpecificationStructureIsotopeMolecularWeightBuilder struct {
+	substanceSpecificationStructureIsotopeMolecularWeight *SubstanceSpecificationStructureIsotopeMolecularWeight
+}
+
+// NewSubstanceSpecificationStructureIsotopeMolecularWeightBuilder creates a new SubstanceSpecificationStructureIsotopeMolecularWeightBuilder.
+func NewSubstanceSpecificationStructureIsotopeMolecularWeightBuilder() *SubstanceSpecificationStructureIsotopeMolecularWeightBuilder {
+	return &SubstanceSpecificationStructureIsotopeMolecularWeightBuilder{
+		substanceSpecificationStructureIsotopeMolecularWeight: &SubstanceSpecificationStructureIsotopeMolecularWeight{},
+	}
+}
+
+// Build returns the constructed SubstanceSpecificationStructureIsotopeMolecularWeight.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceSpecificationStructureIsotopeMolecularWeightBuilder) Build() SubstanceSpecificationStructureIsotopeMolecularWeight {
+	return *b.substanceSpecificationStructureIsotopeMolecularWeight
+}
+
+// SetId sets the Id field.
+func (b *SubstanceSpecificationStructureIsotopeMolecularWeightBuilder) SetId(v string) *SubstanceSpecificationStructureIsotopeMolecularWeightBuilder {
+	b.substanceSpecificationStructureIsotopeMolecularWeight.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceSpecificationStructureIsotopeMolecularWeightBuilder) AddExtension(v Extension) *SubstanceSpecificationStructureIsotopeMolecularWeightBuilder {
+	b.substanceSpecificationStructureIsotopeMolecularWeight.Extension = append(b.substanceSpecificationStructureIsotopeMolecularWeight.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceSpecificationStructureIsotopeMolecularWeightBuilder) AddModifierExtension(v Extension) *SubstanceSpecificationStructureIsotopeMolecularWeightBuilder {
+	b.substanceSpecificationStructureIsotopeMolecularWeight.ModifierExtension = append(b.substanceSpecificationStructureIsotopeMolecularWeight.ModifierExtension, v)
+	return b
+}
+
+// SetMethod sets the Method field.
+func (b *SubstanceSpecificationStructureIsotopeMolecularWeightBuilder) SetMethod(v CodeableConcept) *SubstanceSpecificationStructureIsotopeMolecularWeightBuilder {
+	b.substanceSpecificationStructureIsotopeMolecularWeight.Method = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *SubstanceSpecificationStructureIsotopeMolecularWeightBuilder) SetType(v CodeableConcept) *SubstanceSpecificationStructureIsotopeMolecularWeightBuilder {
+	b.substanceSpecificationStructureIsotopeMolecularWeight.Type = &v
+	return b
+}
+
+// SetAmount sets the Amount field.
+func (b *SubstanceSpecificationStructureIsotopeMolecularWeightBuilder) SetAmount(v Quantity) *SubstanceSpecificationStructureIsotopeMolecularWeightBuilder {
+	b.substanceSpecificationStructureIsotopeMolecularWeight.Amount = &v
+	return b
+}
+
+// =============================================================================
+// SubstanceSpecificationStructureRepresentation - Fluent Builder
+// =============================================================================
+
+// SubstanceSpecificationStructureRepresentationBuilder provides a fluent API for constructing SubstanceSpecificationStructureRepresentation values.
+type SubstanceSpecificationStructureRepresentationBuilder struct {
+	substanceSpecificationStructureRepresentation *SubstanceSpecificationStructureRepresentation
+}
+
+// NewSubstanceSpecificationStructureRepresentationBuilder creates a new SubstanceSpecificationStructureRepresentationBuilder.
+func NewSubstanceSpecificationStructureRepresentationBuilder() *SubstanceSpecificationStructureRepresentationBuilder {
+	return &SubstanceSpecificationStructureRepresentationBuilder{
+		substanceSpecificationStructureRepresentation: &SubstanceSpecificationStructureRepresentation{},
+	}
+}
+
+// Build returns the constructed SubstanceSpecificationStructureRepresentation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceSpecificationStructureRepresentationBuilder) Build() SubstanceSpecificationStructureRepresentation {
+	return *b.substanceSpecificationStructureRepresentation
+}
+
+// SetId sets the Id field.
+func (b *SubstanceSpecificationStructureRepresentationBuilder) SetId(v string) *SubstanceSpecificationStructureRepresentationBuilder {
+	b.substanceSpecificationStructureRepresentation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceSpecificationStructureRepresentationBuilder) AddExtension(v Extension) *SubstanceSpecificationStructureRepresentationBuilder {
+	b.substanceSpecificationStructureRepresentation.Extension = append(b.substanceSpecificationStructureRepresentation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *SubstanceSpecificationStructureRepresentationBuilder) AddModifierExtension(v Extension) *SubstanceSpecificationStructureRepresentationBuilder {
+	b.substanceSpecificationStructureRepresentation.ModifierExtension = append(b.substanceSpecificationStructureRepresentation.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *SubstanceSpecificationStructureRepresentationBuilder) SetType(v CodeableConcept) *SubstanceSpecificationStructureRepresentationBuilder {
+	b.substanceSpecificationStructureRepresentation.Type = &v
+	return b
+}
+
+// SetRepresentation sets the Representation field.
+func (b *SubstanceSpecificationStructureRepresentationBuilder) SetRepresentation(v string) *SubstanceSpecificationStructureRepresentationBuilder {
+	b.substanceSpecificationStructureRepresentation.Representation = &v
+	return b
+}
+
+// SetAttachment sets the Attachment field.
+func (b *SubstanceSpecificationStructureRepresentationBuilder) SetAttachment(v Attachment) *SubstanceSpecificationStructureRepresentationBuilder {
+	b.substanceSpecificationStructureRepresentation.Attachment = &v
+	return b
+}
+
+// SetRepresentationExt sets the extensions carried by Representation, serialized as
+// "_representation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceSpecificationStructureRepresentationBuilder) SetRepresentationExt(v Element) *SubstanceSpecificationStructureRepresentationBuilder {
+	b.substanceSpecificationStructureRepresentation.RepresentationExt = &v
+	return b
+}

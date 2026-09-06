@@ -902,6 +902,176 @@ func (b *EventDefinitionBuilder) AddTrigger(v TriggerDefinition) *EventDefinitio
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EventDefinitionBuilder) SetImplicitRulesExt(v Element) *EventDefinitionBuilder {
+	b.eventDefinition.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EventDefinitionBuilder) SetLanguageExt(v Element) *EventDefinitionBuilder {
+	b.eventDefinition.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EventDefinitionBuilder) SetUrlExt(v Element) *EventDefinitionBuilder {
+	b.eventDefinition.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EventDefinitionBuilder) SetVersionExt(v Element) *EventDefinitionBuilder {
+	b.eventDefinition.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EventDefinitionBuilder) SetNameExt(v Element) *EventDefinitionBuilder {
+	b.eventDefinition.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EventDefinitionBuilder) SetTitleExt(v Element) *EventDefinitionBuilder {
+	b.eventDefinition.TitleExt = &v
+	return b
+}
+
+// SetSubtitleExt sets the extensions carried by Subtitle, serialized as
+// "_subtitle".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EventDefinitionBuilder) SetSubtitleExt(v Element) *EventDefinitionBuilder {
+	b.eventDefinition.SubtitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EventDefinitionBuilder) SetStatusExt(v Element) *EventDefinitionBuilder {
+	b.eventDefinition.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EventDefinitionBuilder) SetExperimentalExt(v Element) *EventDefinitionBuilder {
+	b.eventDefinition.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EventDefinitionBuilder) SetDateExt(v Element) *EventDefinitionBuilder {
+	b.eventDefinition.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EventDefinitionBuilder) SetPublisherExt(v Element) *EventDefinitionBuilder {
+	b.eventDefinition.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EventDefinitionBuilder) SetDescriptionExt(v Element) *EventDefinitionBuilder {
+	b.eventDefinition.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EventDefinitionBuilder) SetPurposeExt(v Element) *EventDefinitionBuilder {
+	b.eventDefinition.PurposeExt = &v
+	return b
+}
+
+// SetUsageExt sets the extensions carried by Usage, serialized as
+// "_usage".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EventDefinitionBuilder) SetUsageExt(v Element) *EventDefinitionBuilder {
+	b.eventDefinition.UsageExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EventDefinitionBuilder) SetCopyrightExt(v Element) *EventDefinitionBuilder {
+	b.eventDefinition.CopyrightExt = &v
+	return b
+}
+
+// SetApprovalDateExt sets the extensions carried by ApprovalDate, serialized as
+// "_approvalDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EventDefinitionBuilder) SetApprovalDateExt(v Element) *EventDefinitionBuilder {
+	b.eventDefinition.ApprovalDateExt = &v
+	return b
+}
+
+// SetLastReviewDateExt sets the extensions carried by LastReviewDate, serialized as
+// "_lastReviewDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EventDefinitionBuilder) SetLastReviewDateExt(v Element) *EventDefinitionBuilder {
+	b.eventDefinition.LastReviewDateExt = &v
+	return b
+}
+
 // clearSubject unsets every variant of Subject[x], including the
 // _field companions of the primitive ones.
 func (b *EventDefinitionBuilder) clearSubject() {

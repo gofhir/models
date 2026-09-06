@@ -2541,6 +2541,95 @@ func (b *AddressBuilder) SetPeriod(v Period) *AddressBuilder {
 	return b
 }
 
+// SetUseExt sets the extensions carried by Use, serialized as
+// "_use".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AddressBuilder) SetUseExt(v Element) *AddressBuilder {
+	b.address.UseExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AddressBuilder) SetTypeExt(v Element) *AddressBuilder {
+	b.address.TypeExt = &v
+	return b
+}
+
+// SetTextExt sets the extensions carried by Text, serialized as
+// "_text".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AddressBuilder) SetTextExt(v Element) *AddressBuilder {
+	b.address.TextExt = &v
+	return b
+}
+
+// AddLineExt appends an extension slot for Line.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *AddressBuilder) AddLineExt(v *Element) *AddressBuilder {
+	b.address.LineExt = append(b.address.LineExt, v)
+	return b
+}
+
+// SetCityExt sets the extensions carried by City, serialized as
+// "_city".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AddressBuilder) SetCityExt(v Element) *AddressBuilder {
+	b.address.CityExt = &v
+	return b
+}
+
+// SetDistrictExt sets the extensions carried by District, serialized as
+// "_district".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AddressBuilder) SetDistrictExt(v Element) *AddressBuilder {
+	b.address.DistrictExt = &v
+	return b
+}
+
+// SetStateExt sets the extensions carried by State, serialized as
+// "_state".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AddressBuilder) SetStateExt(v Element) *AddressBuilder {
+	b.address.StateExt = &v
+	return b
+}
+
+// SetPostalCodeExt sets the extensions carried by PostalCode, serialized as
+// "_postalCode".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AddressBuilder) SetPostalCodeExt(v Element) *AddressBuilder {
+	b.address.PostalCodeExt = &v
+	return b
+}
+
+// SetCountryExt sets the extensions carried by Country, serialized as
+// "_country".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AddressBuilder) SetCountryExt(v Element) *AddressBuilder {
+	b.address.CountryExt = &v
+	return b
+}
+
 // =============================================================================
 // Age - Fluent Builder
 // =============================================================================
@@ -2607,6 +2696,56 @@ func (b *AgeBuilder) SetSystem(v string) *AgeBuilder {
 // SetCode sets the Code field.
 func (b *AgeBuilder) SetCode(v string) *AgeBuilder {
 	b.age.Code = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AgeBuilder) SetValueExt(v Element) *AgeBuilder {
+	b.age.ValueExt = &v
+	return b
+}
+
+// SetComparatorExt sets the extensions carried by Comparator, serialized as
+// "_comparator".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AgeBuilder) SetComparatorExt(v Element) *AgeBuilder {
+	b.age.ComparatorExt = &v
+	return b
+}
+
+// SetUnitExt sets the extensions carried by Unit, serialized as
+// "_unit".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AgeBuilder) SetUnitExt(v Element) *AgeBuilder {
+	b.age.UnitExt = &v
+	return b
+}
+
+// SetSystemExt sets the extensions carried by System, serialized as
+// "_system".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AgeBuilder) SetSystemExt(v Element) *AgeBuilder {
+	b.age.SystemExt = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AgeBuilder) SetCodeExt(v Element) *AgeBuilder {
+	b.age.CodeExt = &v
 	return b
 }
 
@@ -2686,6 +2825,26 @@ func (b *AnnotationBuilder) SetTime(v string) *AnnotationBuilder {
 // SetText sets the Text field.
 func (b *AnnotationBuilder) SetText(v string) *AnnotationBuilder {
 	b.annotation.Text = &v
+	return b
+}
+
+// SetTimeExt sets the extensions carried by Time, serialized as
+// "_time".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AnnotationBuilder) SetTimeExt(v Element) *AnnotationBuilder {
+	b.annotation.TimeExt = &v
+	return b
+}
+
+// SetTextExt sets the extensions carried by Text, serialized as
+// "_text".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AnnotationBuilder) SetTextExt(v Element) *AnnotationBuilder {
+	b.annotation.TextExt = &v
 	return b
 }
 
@@ -2784,6 +2943,86 @@ func (b *AttachmentBuilder) SetCreation(v string) *AttachmentBuilder {
 	return b
 }
 
+// SetContentTypeExt sets the extensions carried by ContentType, serialized as
+// "_contentType".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AttachmentBuilder) SetContentTypeExt(v Element) *AttachmentBuilder {
+	b.attachment.ContentTypeExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AttachmentBuilder) SetLanguageExt(v Element) *AttachmentBuilder {
+	b.attachment.LanguageExt = &v
+	return b
+}
+
+// SetDataExt sets the extensions carried by Data, serialized as
+// "_data".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AttachmentBuilder) SetDataExt(v Element) *AttachmentBuilder {
+	b.attachment.DataExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AttachmentBuilder) SetUrlExt(v Element) *AttachmentBuilder {
+	b.attachment.UrlExt = &v
+	return b
+}
+
+// SetSizeExt sets the extensions carried by Size, serialized as
+// "_size".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AttachmentBuilder) SetSizeExt(v Element) *AttachmentBuilder {
+	b.attachment.SizeExt = &v
+	return b
+}
+
+// SetHashExt sets the extensions carried by Hash, serialized as
+// "_hash".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AttachmentBuilder) SetHashExt(v Element) *AttachmentBuilder {
+	b.attachment.HashExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AttachmentBuilder) SetTitleExt(v Element) *AttachmentBuilder {
+	b.attachment.TitleExt = &v
+	return b
+}
+
+// SetCreationExt sets the extensions carried by Creation, serialized as
+// "_creation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AttachmentBuilder) SetCreationExt(v Element) *AttachmentBuilder {
+	b.attachment.CreationExt = &v
+	return b
+}
+
 // =============================================================================
 // CodeableConcept - Fluent Builder
 // =============================================================================
@@ -2832,6 +3071,16 @@ func (b *CodeableConceptBuilder) AddCoding(v Coding) *CodeableConceptBuilder {
 // SetText sets the Text field.
 func (b *CodeableConceptBuilder) SetText(v string) *CodeableConceptBuilder {
 	b.codeableConcept.Text = &v
+	return b
+}
+
+// SetTextExt sets the extensions carried by Text, serialized as
+// "_text".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeableConceptBuilder) SetTextExt(v Element) *CodeableConceptBuilder {
+	b.codeableConcept.TextExt = &v
 	return b
 }
 
@@ -2904,6 +3153,56 @@ func (b *CodingBuilder) SetUserSelected(v bool) *CodingBuilder {
 	return b
 }
 
+// SetSystemExt sets the extensions carried by System, serialized as
+// "_system".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodingBuilder) SetSystemExt(v Element) *CodingBuilder {
+	b.coding.SystemExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodingBuilder) SetVersionExt(v Element) *CodingBuilder {
+	b.coding.VersionExt = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodingBuilder) SetCodeExt(v Element) *CodingBuilder {
+	b.coding.CodeExt = &v
+	return b
+}
+
+// SetDisplayExt sets the extensions carried by Display, serialized as
+// "_display".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodingBuilder) SetDisplayExt(v Element) *CodingBuilder {
+	b.coding.DisplayExt = &v
+	return b
+}
+
+// SetUserSelectedExt sets the extensions carried by UserSelected, serialized as
+// "_userSelected".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodingBuilder) SetUserSelectedExt(v Element) *CodingBuilder {
+	b.coding.UserSelectedExt = &v
+	return b
+}
+
 // =============================================================================
 // ContactDetail - Fluent Builder
 // =============================================================================
@@ -2952,6 +3251,16 @@ func (b *ContactDetailBuilder) SetName(v string) *ContactDetailBuilder {
 // AddTelecom adds a Telecom element.
 func (b *ContactDetailBuilder) AddTelecom(v ContactPoint) *ContactDetailBuilder {
 	b.contactDetail.Telecom = append(b.contactDetail.Telecom, v)
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContactDetailBuilder) SetNameExt(v Element) *ContactDetailBuilder {
+	b.contactDetail.NameExt = &v
 	return b
 }
 
@@ -3024,6 +3333,46 @@ func (b *ContactPointBuilder) SetPeriod(v Period) *ContactPointBuilder {
 	return b
 }
 
+// SetSystemExt sets the extensions carried by System, serialized as
+// "_system".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContactPointBuilder) SetSystemExt(v Element) *ContactPointBuilder {
+	b.contactPoint.SystemExt = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContactPointBuilder) SetValueExt(v Element) *ContactPointBuilder {
+	b.contactPoint.ValueExt = &v
+	return b
+}
+
+// SetUseExt sets the extensions carried by Use, serialized as
+// "_use".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContactPointBuilder) SetUseExt(v Element) *ContactPointBuilder {
+	b.contactPoint.UseExt = &v
+	return b
+}
+
+// SetRankExt sets the extensions carried by Rank, serialized as
+// "_rank".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContactPointBuilder) SetRankExt(v Element) *ContactPointBuilder {
+	b.contactPoint.RankExt = &v
+	return b
+}
+
 // =============================================================================
 // Contributor - Fluent Builder
 // =============================================================================
@@ -3078,6 +3427,26 @@ func (b *ContributorBuilder) SetName(v string) *ContributorBuilder {
 // AddContact adds a Contact element.
 func (b *ContributorBuilder) AddContact(v ContactDetail) *ContributorBuilder {
 	b.contributor.Contact = append(b.contributor.Contact, v)
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContributorBuilder) SetTypeExt(v Element) *ContributorBuilder {
+	b.contributor.TypeExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ContributorBuilder) SetNameExt(v Element) *ContributorBuilder {
+	b.contributor.NameExt = &v
 	return b
 }
 
@@ -3147,6 +3516,56 @@ func (b *CountBuilder) SetSystem(v string) *CountBuilder {
 // SetCode sets the Code field.
 func (b *CountBuilder) SetCode(v string) *CountBuilder {
 	b.count.Code = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CountBuilder) SetValueExt(v Element) *CountBuilder {
+	b.count.ValueExt = &v
+	return b
+}
+
+// SetComparatorExt sets the extensions carried by Comparator, serialized as
+// "_comparator".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CountBuilder) SetComparatorExt(v Element) *CountBuilder {
+	b.count.ComparatorExt = &v
+	return b
+}
+
+// SetUnitExt sets the extensions carried by Unit, serialized as
+// "_unit".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CountBuilder) SetUnitExt(v Element) *CountBuilder {
+	b.count.UnitExt = &v
+	return b
+}
+
+// SetSystemExt sets the extensions carried by System, serialized as
+// "_system".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CountBuilder) SetSystemExt(v Element) *CountBuilder {
+	b.count.SystemExt = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CountBuilder) SetCodeExt(v Element) *CountBuilder {
+	b.count.CodeExt = &v
 	return b
 }
 
@@ -3261,6 +3680,44 @@ func (b *DataRequirementBuilder) AddSort(v DataRequirementSort) *DataRequirement
 	return b
 }
 
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DataRequirementBuilder) SetTypeExt(v Element) *DataRequirementBuilder {
+	b.dataRequirement.TypeExt = &v
+	return b
+}
+
+// AddProfileExt appends an extension slot for Profile.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *DataRequirementBuilder) AddProfileExt(v *Element) *DataRequirementBuilder {
+	b.dataRequirement.ProfileExt = append(b.dataRequirement.ProfileExt, v)
+	return b
+}
+
+// AddMustSupportExt appends an extension slot for MustSupport.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *DataRequirementBuilder) AddMustSupportExt(v *Element) *DataRequirementBuilder {
+	b.dataRequirement.MustSupportExt = append(b.dataRequirement.MustSupportExt, v)
+	return b
+}
+
+// SetLimitExt sets the extensions carried by Limit, serialized as
+// "_limit".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DataRequirementBuilder) SetLimitExt(v Element) *DataRequirementBuilder {
+	b.dataRequirement.LimitExt = &v
+	return b
+}
+
 // clearSubject unsets every variant of Subject[x], including the
 // _field companions of the primitive ones.
 func (b *DataRequirementBuilder) clearSubject() {
@@ -3334,6 +3791,56 @@ func (b *DistanceBuilder) SetSystem(v string) *DistanceBuilder {
 // SetCode sets the Code field.
 func (b *DistanceBuilder) SetCode(v string) *DistanceBuilder {
 	b.distance.Code = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DistanceBuilder) SetValueExt(v Element) *DistanceBuilder {
+	b.distance.ValueExt = &v
+	return b
+}
+
+// SetComparatorExt sets the extensions carried by Comparator, serialized as
+// "_comparator".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DistanceBuilder) SetComparatorExt(v Element) *DistanceBuilder {
+	b.distance.ComparatorExt = &v
+	return b
+}
+
+// SetUnitExt sets the extensions carried by Unit, serialized as
+// "_unit".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DistanceBuilder) SetUnitExt(v Element) *DistanceBuilder {
+	b.distance.UnitExt = &v
+	return b
+}
+
+// SetSystemExt sets the extensions carried by System, serialized as
+// "_system".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DistanceBuilder) SetSystemExt(v Element) *DistanceBuilder {
+	b.distance.SystemExt = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DistanceBuilder) SetCodeExt(v Element) *DistanceBuilder {
+	b.distance.CodeExt = &v
 	return b
 }
 
@@ -3482,6 +3989,36 @@ func (b *DosageBuilder) SetMaxDosePerLifetime(v Quantity) *DosageBuilder {
 	return b
 }
 
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DosageBuilder) SetSequenceExt(v Element) *DosageBuilder {
+	b.dosage.SequenceExt = &v
+	return b
+}
+
+// SetTextExt sets the extensions carried by Text, serialized as
+// "_text".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DosageBuilder) SetTextExt(v Element) *DosageBuilder {
+	b.dosage.TextExt = &v
+	return b
+}
+
+// SetPatientInstructionExt sets the extensions carried by PatientInstruction, serialized as
+// "_patientInstruction".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DosageBuilder) SetPatientInstructionExt(v Element) *DosageBuilder {
+	b.dosage.PatientInstructionExt = &v
+	return b
+}
+
 // clearAsNeeded unsets every variant of AsNeeded[x], including the
 // _field companions of the primitive ones.
 func (b *DosageBuilder) clearAsNeeded() {
@@ -3555,6 +4092,56 @@ func (b *DurationBuilder) SetSystem(v string) *DurationBuilder {
 // SetCode sets the Code field.
 func (b *DurationBuilder) SetCode(v string) *DurationBuilder {
 	b.duration.Code = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DurationBuilder) SetValueExt(v Element) *DurationBuilder {
+	b.duration.ValueExt = &v
+	return b
+}
+
+// SetComparatorExt sets the extensions carried by Comparator, serialized as
+// "_comparator".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DurationBuilder) SetComparatorExt(v Element) *DurationBuilder {
+	b.duration.ComparatorExt = &v
+	return b
+}
+
+// SetUnitExt sets the extensions carried by Unit, serialized as
+// "_unit".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DurationBuilder) SetUnitExt(v Element) *DurationBuilder {
+	b.duration.UnitExt = &v
+	return b
+}
+
+// SetSystemExt sets the extensions carried by System, serialized as
+// "_system".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DurationBuilder) SetSystemExt(v Element) *DurationBuilder {
+	b.duration.SystemExt = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DurationBuilder) SetCodeExt(v Element) *DurationBuilder {
+	b.duration.CodeExt = &v
 	return b
 }
 
@@ -6075,6 +6662,213 @@ func (b *ElementDefinitionBuilder) AddMapping(v ElementDefinitionMapping) *Eleme
 	return b
 }
 
+// SetPathExt sets the extensions carried by Path, serialized as
+// "_path".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBuilder) SetPathExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.PathExt = &v
+	return b
+}
+
+// AddRepresentationExt appends an extension slot for Representation.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ElementDefinitionBuilder) AddRepresentationExt(v *Element) *ElementDefinitionBuilder {
+	b.elementDefinition.RepresentationExt = append(b.elementDefinition.RepresentationExt, v)
+	return b
+}
+
+// SetSliceNameExt sets the extensions carried by SliceName, serialized as
+// "_sliceName".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBuilder) SetSliceNameExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.SliceNameExt = &v
+	return b
+}
+
+// SetSliceIsConstrainingExt sets the extensions carried by SliceIsConstraining, serialized as
+// "_sliceIsConstraining".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBuilder) SetSliceIsConstrainingExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.SliceIsConstrainingExt = &v
+	return b
+}
+
+// SetLabelExt sets the extensions carried by Label, serialized as
+// "_label".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBuilder) SetLabelExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.LabelExt = &v
+	return b
+}
+
+// SetShortExt sets the extensions carried by Short, serialized as
+// "_short".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBuilder) SetShortExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.ShortExt = &v
+	return b
+}
+
+// SetDefinitionExt sets the extensions carried by Definition, serialized as
+// "_definition".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBuilder) SetDefinitionExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.DefinitionExt = &v
+	return b
+}
+
+// SetCommentExt sets the extensions carried by Comment, serialized as
+// "_comment".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBuilder) SetCommentExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.CommentExt = &v
+	return b
+}
+
+// SetRequirementsExt sets the extensions carried by Requirements, serialized as
+// "_requirements".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBuilder) SetRequirementsExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.RequirementsExt = &v
+	return b
+}
+
+// AddAliasExt appends an extension slot for Alias.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ElementDefinitionBuilder) AddAliasExt(v *Element) *ElementDefinitionBuilder {
+	b.elementDefinition.AliasExt = append(b.elementDefinition.AliasExt, v)
+	return b
+}
+
+// SetMinExt sets the extensions carried by Min, serialized as
+// "_min".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBuilder) SetMinExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.MinExt = &v
+	return b
+}
+
+// SetMaxExt sets the extensions carried by Max, serialized as
+// "_max".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBuilder) SetMaxExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.MaxExt = &v
+	return b
+}
+
+// SetContentReferenceExt sets the extensions carried by ContentReference, serialized as
+// "_contentReference".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBuilder) SetContentReferenceExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.ContentReferenceExt = &v
+	return b
+}
+
+// SetMeaningWhenMissingExt sets the extensions carried by MeaningWhenMissing, serialized as
+// "_meaningWhenMissing".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBuilder) SetMeaningWhenMissingExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.MeaningWhenMissingExt = &v
+	return b
+}
+
+// SetOrderMeaningExt sets the extensions carried by OrderMeaning, serialized as
+// "_orderMeaning".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBuilder) SetOrderMeaningExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.OrderMeaningExt = &v
+	return b
+}
+
+// SetMaxLengthExt sets the extensions carried by MaxLength, serialized as
+// "_maxLength".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBuilder) SetMaxLengthExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.MaxLengthExt = &v
+	return b
+}
+
+// AddConditionExt appends an extension slot for Condition.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ElementDefinitionBuilder) AddConditionExt(v *Element) *ElementDefinitionBuilder {
+	b.elementDefinition.ConditionExt = append(b.elementDefinition.ConditionExt, v)
+	return b
+}
+
+// SetMustSupportExt sets the extensions carried by MustSupport, serialized as
+// "_mustSupport".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBuilder) SetMustSupportExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.MustSupportExt = &v
+	return b
+}
+
+// SetIsModifierExt sets the extensions carried by IsModifier, serialized as
+// "_isModifier".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBuilder) SetIsModifierExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.IsModifierExt = &v
+	return b
+}
+
+// SetIsModifierReasonExt sets the extensions carried by IsModifierReason, serialized as
+// "_isModifierReason".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBuilder) SetIsModifierReasonExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.IsModifierReasonExt = &v
+	return b
+}
+
+// SetIsSummaryExt sets the extensions carried by IsSummary, serialized as
+// "_isSummary".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBuilder) SetIsSummaryExt(v Element) *ElementDefinitionBuilder {
+	b.elementDefinition.IsSummaryExt = &v
+	return b
+}
+
 // clearDefaultValue unsets every variant of DefaultValue[x], including the
 // _field companions of the primitive ones.
 func (b *ElementDefinitionBuilder) clearDefaultValue() {
@@ -6402,6 +7196,56 @@ func (b *ExpressionBuilder) SetExpression(v string) *ExpressionBuilder {
 // SetReference sets the Reference field.
 func (b *ExpressionBuilder) SetReference(v string) *ExpressionBuilder {
 	b.expression.Reference = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExpressionBuilder) SetDescriptionExt(v Element) *ExpressionBuilder {
+	b.expression.DescriptionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExpressionBuilder) SetNameExt(v Element) *ExpressionBuilder {
+	b.expression.NameExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExpressionBuilder) SetLanguageExt(v Element) *ExpressionBuilder {
+	b.expression.LanguageExt = &v
+	return b
+}
+
+// SetExpressionExt sets the extensions carried by Expression, serialized as
+// "_expression".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExpressionBuilder) SetExpressionExt(v Element) *ExpressionBuilder {
+	b.expression.ExpressionExt = &v
+	return b
+}
+
+// SetReferenceExt sets the extensions carried by Reference, serialized as
+// "_reference".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExpressionBuilder) SetReferenceExt(v Element) *ExpressionBuilder {
+	b.expression.ReferenceExt = &v
 	return b
 }
 
@@ -7280,6 +8124,63 @@ func (b *HumanNameBuilder) SetPeriod(v Period) *HumanNameBuilder {
 	return b
 }
 
+// SetUseExt sets the extensions carried by Use, serialized as
+// "_use".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HumanNameBuilder) SetUseExt(v Element) *HumanNameBuilder {
+	b.humanName.UseExt = &v
+	return b
+}
+
+// SetTextExt sets the extensions carried by Text, serialized as
+// "_text".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HumanNameBuilder) SetTextExt(v Element) *HumanNameBuilder {
+	b.humanName.TextExt = &v
+	return b
+}
+
+// SetFamilyExt sets the extensions carried by Family, serialized as
+// "_family".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *HumanNameBuilder) SetFamilyExt(v Element) *HumanNameBuilder {
+	b.humanName.FamilyExt = &v
+	return b
+}
+
+// AddGivenExt appends an extension slot for Given.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *HumanNameBuilder) AddGivenExt(v *Element) *HumanNameBuilder {
+	b.humanName.GivenExt = append(b.humanName.GivenExt, v)
+	return b
+}
+
+// AddPrefixExt appends an extension slot for Prefix.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *HumanNameBuilder) AddPrefixExt(v *Element) *HumanNameBuilder {
+	b.humanName.PrefixExt = append(b.humanName.PrefixExt, v)
+	return b
+}
+
+// AddSuffixExt appends an extension slot for Suffix.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *HumanNameBuilder) AddSuffixExt(v *Element) *HumanNameBuilder {
+	b.humanName.SuffixExt = append(b.humanName.SuffixExt, v)
+	return b
+}
+
 // =============================================================================
 // Identifier - Fluent Builder
 // =============================================================================
@@ -7355,6 +8256,36 @@ func (b *IdentifierBuilder) SetAssigner(v Reference) *IdentifierBuilder {
 	return b
 }
 
+// SetUseExt sets the extensions carried by Use, serialized as
+// "_use".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *IdentifierBuilder) SetUseExt(v Element) *IdentifierBuilder {
+	b.identifier.UseExt = &v
+	return b
+}
+
+// SetSystemExt sets the extensions carried by System, serialized as
+// "_system".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *IdentifierBuilder) SetSystemExt(v Element) *IdentifierBuilder {
+	b.identifier.SystemExt = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *IdentifierBuilder) SetValueExt(v Element) *IdentifierBuilder {
+	b.identifier.ValueExt = &v
+	return b
+}
+
 // =============================================================================
 // MarketingStatus - Fluent Builder
 // =============================================================================
@@ -7427,6 +8358,16 @@ func (b *MarketingStatusBuilder) SetDateRange(v Period) *MarketingStatusBuilder 
 // SetRestoreDate sets the RestoreDate field.
 func (b *MarketingStatusBuilder) SetRestoreDate(v string) *MarketingStatusBuilder {
 	b.marketingStatus.RestoreDate = &v
+	return b
+}
+
+// SetRestoreDateExt sets the extensions carried by RestoreDate, serialized as
+// "_restoreDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MarketingStatusBuilder) SetRestoreDateExt(v Element) *MarketingStatusBuilder {
+	b.marketingStatus.RestoreDateExt = &v
 	return b
 }
 
@@ -7509,6 +8450,45 @@ func (b *MetaBuilder) AddTag(v Coding) *MetaBuilder {
 	return b
 }
 
+// SetVersionIdExt sets the extensions carried by VersionId, serialized as
+// "_versionId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MetaBuilder) SetVersionIdExt(v Element) *MetaBuilder {
+	b.meta.VersionIdExt = &v
+	return b
+}
+
+// SetLastUpdatedExt sets the extensions carried by LastUpdated, serialized as
+// "_lastUpdated".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MetaBuilder) SetLastUpdatedExt(v Element) *MetaBuilder {
+	b.meta.LastUpdatedExt = &v
+	return b
+}
+
+// SetSourceExt sets the extensions carried by Source, serialized as
+// "_source".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MetaBuilder) SetSourceExt(v Element) *MetaBuilder {
+	b.meta.SourceExt = &v
+	return b
+}
+
+// AddProfileExt appends an extension slot for Profile.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *MetaBuilder) AddProfileExt(v *Element) *MetaBuilder {
+	b.meta.ProfileExt = append(b.meta.ProfileExt, v)
+	return b
+}
+
 // =============================================================================
 // Money - Fluent Builder
 // =============================================================================
@@ -7560,6 +8540,26 @@ func (b *MoneyBuilder) SetCurrency(v string) *MoneyBuilder {
 	return b
 }
 
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MoneyBuilder) SetValueExt(v Element) *MoneyBuilder {
+	b.money.ValueExt = &v
+	return b
+}
+
+// SetCurrencyExt sets the extensions carried by Currency, serialized as
+// "_currency".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MoneyBuilder) SetCurrencyExt(v Element) *MoneyBuilder {
+	b.money.CurrencyExt = &v
+	return b
+}
+
 // =============================================================================
 // Narrative - Fluent Builder
 // =============================================================================
@@ -7608,6 +8608,26 @@ func (b *NarrativeBuilder) SetStatus(v NarrativeStatus) *NarrativeBuilder {
 // SetDiv sets the Div field.
 func (b *NarrativeBuilder) SetDiv(v string) *NarrativeBuilder {
 	b.narrative.Div = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NarrativeBuilder) SetStatusExt(v Element) *NarrativeBuilder {
+	b.narrative.StatusExt = &v
+	return b
+}
+
+// SetDivExt sets the extensions carried by Div, serialized as
+// "_div".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *NarrativeBuilder) SetDivExt(v Element) *NarrativeBuilder {
+	b.narrative.DivExt = &v
 	return b
 }
 
@@ -7692,6 +8712,76 @@ func (b *ParameterDefinitionBuilder) SetProfile(v string) *ParameterDefinitionBu
 	return b
 }
 
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ParameterDefinitionBuilder) SetNameExt(v Element) *ParameterDefinitionBuilder {
+	b.parameterDefinition.NameExt = &v
+	return b
+}
+
+// SetUseExt sets the extensions carried by Use, serialized as
+// "_use".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ParameterDefinitionBuilder) SetUseExt(v Element) *ParameterDefinitionBuilder {
+	b.parameterDefinition.UseExt = &v
+	return b
+}
+
+// SetMinExt sets the extensions carried by Min, serialized as
+// "_min".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ParameterDefinitionBuilder) SetMinExt(v Element) *ParameterDefinitionBuilder {
+	b.parameterDefinition.MinExt = &v
+	return b
+}
+
+// SetMaxExt sets the extensions carried by Max, serialized as
+// "_max".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ParameterDefinitionBuilder) SetMaxExt(v Element) *ParameterDefinitionBuilder {
+	b.parameterDefinition.MaxExt = &v
+	return b
+}
+
+// SetDocumentationExt sets the extensions carried by Documentation, serialized as
+// "_documentation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ParameterDefinitionBuilder) SetDocumentationExt(v Element) *ParameterDefinitionBuilder {
+	b.parameterDefinition.DocumentationExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ParameterDefinitionBuilder) SetTypeExt(v Element) *ParameterDefinitionBuilder {
+	b.parameterDefinition.TypeExt = &v
+	return b
+}
+
+// SetProfileExt sets the extensions carried by Profile, serialized as
+// "_profile".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ParameterDefinitionBuilder) SetProfileExt(v Element) *ParameterDefinitionBuilder {
+	b.parameterDefinition.ProfileExt = &v
+	return b
+}
+
 // =============================================================================
 // Period - Fluent Builder
 // =============================================================================
@@ -7740,6 +8830,26 @@ func (b *PeriodBuilder) SetStart(v string) *PeriodBuilder {
 // SetEnd sets the End field.
 func (b *PeriodBuilder) SetEnd(v string) *PeriodBuilder {
 	b.period.End = &v
+	return b
+}
+
+// SetStartExt sets the extensions carried by Start, serialized as
+// "_start".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PeriodBuilder) SetStartExt(v Element) *PeriodBuilder {
+	b.period.StartExt = &v
+	return b
+}
+
+// SetEndExt sets the extensions carried by End, serialized as
+// "_end".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *PeriodBuilder) SetEndExt(v Element) *PeriodBuilder {
+	b.period.EndExt = &v
 	return b
 }
 
@@ -7954,6 +9064,34 @@ func (b *ProdCharacteristicBuilder) SetScoring(v CodeableConcept) *ProdCharacter
 	return b
 }
 
+// SetShapeExt sets the extensions carried by Shape, serialized as
+// "_shape".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ProdCharacteristicBuilder) SetShapeExt(v Element) *ProdCharacteristicBuilder {
+	b.prodCharacteristic.ShapeExt = &v
+	return b
+}
+
+// AddColorExt appends an extension slot for Color.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ProdCharacteristicBuilder) AddColorExt(v *Element) *ProdCharacteristicBuilder {
+	b.prodCharacteristic.ColorExt = append(b.prodCharacteristic.ColorExt, v)
+	return b
+}
+
+// AddImprintExt appends an extension slot for Imprint.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ProdCharacteristicBuilder) AddImprintExt(v *Element) *ProdCharacteristicBuilder {
+	b.prodCharacteristic.ImprintExt = append(b.prodCharacteristic.ImprintExt, v)
+	return b
+}
+
 // =============================================================================
 // ProductShelfLife - Fluent Builder
 // =============================================================================
@@ -8089,6 +9227,56 @@ func (b *QuantityBuilder) SetSystem(v string) *QuantityBuilder {
 // SetCode sets the Code field.
 func (b *QuantityBuilder) SetCode(v string) *QuantityBuilder {
 	b.quantity.Code = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *QuantityBuilder) SetValueExt(v Element) *QuantityBuilder {
+	b.quantity.ValueExt = &v
+	return b
+}
+
+// SetComparatorExt sets the extensions carried by Comparator, serialized as
+// "_comparator".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *QuantityBuilder) SetComparatorExt(v Element) *QuantityBuilder {
+	b.quantity.ComparatorExt = &v
+	return b
+}
+
+// SetUnitExt sets the extensions carried by Unit, serialized as
+// "_unit".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *QuantityBuilder) SetUnitExt(v Element) *QuantityBuilder {
+	b.quantity.UnitExt = &v
+	return b
+}
+
+// SetSystemExt sets the extensions carried by System, serialized as
+// "_system".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *QuantityBuilder) SetSystemExt(v Element) *QuantityBuilder {
+	b.quantity.SystemExt = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *QuantityBuilder) SetCodeExt(v Element) *QuantityBuilder {
+	b.quantity.CodeExt = &v
 	return b
 }
 
@@ -8257,6 +9445,36 @@ func (b *ReferenceBuilder) SetDisplay(v string) *ReferenceBuilder {
 	return b
 }
 
+// SetReferenceExt sets the extensions carried by Reference, serialized as
+// "_reference".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ReferenceBuilder) SetReferenceExt(v Element) *ReferenceBuilder {
+	b.reference.ReferenceExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ReferenceBuilder) SetTypeExt(v Element) *ReferenceBuilder {
+	b.reference.TypeExt = &v
+	return b
+}
+
+// SetDisplayExt sets the extensions carried by Display, serialized as
+// "_display".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ReferenceBuilder) SetDisplayExt(v Element) *ReferenceBuilder {
+	b.reference.DisplayExt = &v
+	return b
+}
+
 // =============================================================================
 // RelatedArtifact - Fluent Builder
 // =============================================================================
@@ -8335,6 +9553,66 @@ func (b *RelatedArtifactBuilder) SetDocument(v Attachment) *RelatedArtifactBuild
 // SetResource sets the Resource field.
 func (b *RelatedArtifactBuilder) SetResource(v string) *RelatedArtifactBuilder {
 	b.relatedArtifact.Resource = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RelatedArtifactBuilder) SetTypeExt(v Element) *RelatedArtifactBuilder {
+	b.relatedArtifact.TypeExt = &v
+	return b
+}
+
+// SetLabelExt sets the extensions carried by Label, serialized as
+// "_label".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RelatedArtifactBuilder) SetLabelExt(v Element) *RelatedArtifactBuilder {
+	b.relatedArtifact.LabelExt = &v
+	return b
+}
+
+// SetDisplayExt sets the extensions carried by Display, serialized as
+// "_display".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RelatedArtifactBuilder) SetDisplayExt(v Element) *RelatedArtifactBuilder {
+	b.relatedArtifact.DisplayExt = &v
+	return b
+}
+
+// SetCitationExt sets the extensions carried by Citation, serialized as
+// "_citation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RelatedArtifactBuilder) SetCitationExt(v Element) *RelatedArtifactBuilder {
+	b.relatedArtifact.CitationExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RelatedArtifactBuilder) SetUrlExt(v Element) *RelatedArtifactBuilder {
+	b.relatedArtifact.UrlExt = &v
+	return b
+}
+
+// SetResourceExt sets the extensions carried by Resource, serialized as
+// "_resource".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RelatedArtifactBuilder) SetResourceExt(v Element) *RelatedArtifactBuilder {
+	b.relatedArtifact.ResourceExt = &v
 	return b
 }
 
@@ -8419,6 +9697,66 @@ func (b *SampledDataBuilder) SetData(v string) *SampledDataBuilder {
 	return b
 }
 
+// SetPeriodExt sets the extensions carried by Period, serialized as
+// "_period".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SampledDataBuilder) SetPeriodExt(v Element) *SampledDataBuilder {
+	b.sampledData.PeriodExt = &v
+	return b
+}
+
+// SetFactorExt sets the extensions carried by Factor, serialized as
+// "_factor".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SampledDataBuilder) SetFactorExt(v Element) *SampledDataBuilder {
+	b.sampledData.FactorExt = &v
+	return b
+}
+
+// SetLowerLimitExt sets the extensions carried by LowerLimit, serialized as
+// "_lowerLimit".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SampledDataBuilder) SetLowerLimitExt(v Element) *SampledDataBuilder {
+	b.sampledData.LowerLimitExt = &v
+	return b
+}
+
+// SetUpperLimitExt sets the extensions carried by UpperLimit, serialized as
+// "_upperLimit".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SampledDataBuilder) SetUpperLimitExt(v Element) *SampledDataBuilder {
+	b.sampledData.UpperLimitExt = &v
+	return b
+}
+
+// SetDimensionsExt sets the extensions carried by Dimensions, serialized as
+// "_dimensions".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SampledDataBuilder) SetDimensionsExt(v Element) *SampledDataBuilder {
+	b.sampledData.DimensionsExt = &v
+	return b
+}
+
+// SetDataExt sets the extensions carried by Data, serialized as
+// "_data".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SampledDataBuilder) SetDataExt(v Element) *SampledDataBuilder {
+	b.sampledData.DataExt = &v
+	return b
+}
+
 // =============================================================================
 // Signature - Fluent Builder
 // =============================================================================
@@ -8497,6 +9835,46 @@ func (b *SignatureBuilder) SetSigFormat(v string) *SignatureBuilder {
 // SetData sets the Data field.
 func (b *SignatureBuilder) SetData(v string) *SignatureBuilder {
 	b.signature.Data = &v
+	return b
+}
+
+// SetWhenExt sets the extensions carried by When, serialized as
+// "_when".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SignatureBuilder) SetWhenExt(v Element) *SignatureBuilder {
+	b.signature.WhenExt = &v
+	return b
+}
+
+// SetTargetFormatExt sets the extensions carried by TargetFormat, serialized as
+// "_targetFormat".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SignatureBuilder) SetTargetFormatExt(v Element) *SignatureBuilder {
+	b.signature.TargetFormatExt = &v
+	return b
+}
+
+// SetSigFormatExt sets the extensions carried by SigFormat, serialized as
+// "_sigFormat".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SignatureBuilder) SetSigFormatExt(v Element) *SignatureBuilder {
+	b.signature.SigFormatExt = &v
+	return b
+}
+
+// SetDataExt sets the extensions carried by Data, serialized as
+// "_data".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SignatureBuilder) SetDataExt(v Element) *SignatureBuilder {
+	b.signature.DataExt = &v
 	return b
 }
 
@@ -8602,6 +9980,16 @@ func (b *SubstanceAmountBuilder) SetReferenceRange(v SubstanceAmountReferenceRan
 	return b
 }
 
+// SetAmountTextExt sets the extensions carried by AmountText, serialized as
+// "_amountText".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SubstanceAmountBuilder) SetAmountTextExt(v Element) *SubstanceAmountBuilder {
+	b.substanceAmount.AmountTextExt = &v
+	return b
+}
+
 // clearAmount unsets every variant of Amount[x], including the
 // _field companions of the primitive ones.
 func (b *SubstanceAmountBuilder) clearAmount() {
@@ -8675,6 +10063,15 @@ func (b *TimingBuilder) SetRepeat(v TimingRepeat) *TimingBuilder {
 // SetCode sets the Code field.
 func (b *TimingBuilder) SetCode(v CodeableConcept) *TimingBuilder {
 	b.timing.Code = &v
+	return b
+}
+
+// AddEventExt appends an extension slot for Event.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *TimingBuilder) AddEventExt(v *Element) *TimingBuilder {
+	b.timing.EventExt = append(b.timing.EventExt, v)
 	return b
 }
 
@@ -8794,6 +10191,26 @@ func (b *TriggerDefinitionBuilder) AddData(v DataRequirement) *TriggerDefinition
 // SetCondition sets the Condition field.
 func (b *TriggerDefinitionBuilder) SetCondition(v Expression) *TriggerDefinitionBuilder {
 	b.triggerDefinition.Condition = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TriggerDefinitionBuilder) SetTypeExt(v Element) *TriggerDefinitionBuilder {
+	b.triggerDefinition.TypeExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TriggerDefinitionBuilder) SetNameExt(v Element) *TriggerDefinitionBuilder {
+	b.triggerDefinition.NameExt = &v
 	return b
 }
 
@@ -8975,6 +10392,56 @@ func (b *MoneyQuantityBuilder) SetCode(v string) *MoneyQuantityBuilder {
 	return b
 }
 
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MoneyQuantityBuilder) SetValueExt(v Element) *MoneyQuantityBuilder {
+	b.moneyQuantity.ValueExt = &v
+	return b
+}
+
+// SetComparatorExt sets the extensions carried by Comparator, serialized as
+// "_comparator".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MoneyQuantityBuilder) SetComparatorExt(v Element) *MoneyQuantityBuilder {
+	b.moneyQuantity.ComparatorExt = &v
+	return b
+}
+
+// SetUnitExt sets the extensions carried by Unit, serialized as
+// "_unit".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MoneyQuantityBuilder) SetUnitExt(v Element) *MoneyQuantityBuilder {
+	b.moneyQuantity.UnitExt = &v
+	return b
+}
+
+// SetSystemExt sets the extensions carried by System, serialized as
+// "_system".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MoneyQuantityBuilder) SetSystemExt(v Element) *MoneyQuantityBuilder {
+	b.moneyQuantity.SystemExt = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MoneyQuantityBuilder) SetCodeExt(v Element) *MoneyQuantityBuilder {
+	b.moneyQuantity.CodeExt = &v
+	return b
+}
+
 // =============================================================================
 // SimpleQuantity - Fluent Builder
 // =============================================================================
@@ -9041,6 +10508,56 @@ func (b *SimpleQuantityBuilder) SetSystem(v string) *SimpleQuantityBuilder {
 // SetCode sets the Code field.
 func (b *SimpleQuantityBuilder) SetCode(v string) *SimpleQuantityBuilder {
 	b.simpleQuantity.Code = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SimpleQuantityBuilder) SetValueExt(v Element) *SimpleQuantityBuilder {
+	b.simpleQuantity.ValueExt = &v
+	return b
+}
+
+// SetComparatorExt sets the extensions carried by Comparator, serialized as
+// "_comparator".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SimpleQuantityBuilder) SetComparatorExt(v Element) *SimpleQuantityBuilder {
+	b.simpleQuantity.ComparatorExt = &v
+	return b
+}
+
+// SetUnitExt sets the extensions carried by Unit, serialized as
+// "_unit".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SimpleQuantityBuilder) SetUnitExt(v Element) *SimpleQuantityBuilder {
+	b.simpleQuantity.UnitExt = &v
+	return b
+}
+
+// SetSystemExt sets the extensions carried by System, serialized as
+// "_system".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SimpleQuantityBuilder) SetSystemExt(v Element) *SimpleQuantityBuilder {
+	b.simpleQuantity.SystemExt = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *SimpleQuantityBuilder) SetCodeExt(v Element) *SimpleQuantityBuilder {
+	b.simpleQuantity.CodeExt = &v
 	return b
 }
 
@@ -9204,6 +10721,2389 @@ func (b *MetadataResourceBuilder) AddUseContext(v UsageContext) *MetadataResourc
 func (b *MetadataResourceBuilder) AddJurisdiction(v CodeableConcept) *MetadataResourceBuilder {
 	b.metadataResource.Jurisdiction = append(b.metadataResource.Jurisdiction, v)
 	return b
+}
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MetadataResourceBuilder) SetImplicitRulesExt(v Element) *MetadataResourceBuilder {
+	b.metadataResource.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MetadataResourceBuilder) SetLanguageExt(v Element) *MetadataResourceBuilder {
+	b.metadataResource.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MetadataResourceBuilder) SetUrlExt(v Element) *MetadataResourceBuilder {
+	b.metadataResource.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MetadataResourceBuilder) SetVersionExt(v Element) *MetadataResourceBuilder {
+	b.metadataResource.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MetadataResourceBuilder) SetNameExt(v Element) *MetadataResourceBuilder {
+	b.metadataResource.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MetadataResourceBuilder) SetTitleExt(v Element) *MetadataResourceBuilder {
+	b.metadataResource.TitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MetadataResourceBuilder) SetStatusExt(v Element) *MetadataResourceBuilder {
+	b.metadataResource.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MetadataResourceBuilder) SetExperimentalExt(v Element) *MetadataResourceBuilder {
+	b.metadataResource.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MetadataResourceBuilder) SetDateExt(v Element) *MetadataResourceBuilder {
+	b.metadataResource.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MetadataResourceBuilder) SetPublisherExt(v Element) *MetadataResourceBuilder {
+	b.metadataResource.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MetadataResourceBuilder) SetDescriptionExt(v Element) *MetadataResourceBuilder {
+	b.metadataResource.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// DataRequirementCodeFilter - Fluent Builder
+// =============================================================================
+
+// DataRequirementCodeFilterBuilder provides a fluent API for constructing DataRequirementCodeFilter values.
+type DataRequirementCodeFilterBuilder struct {
+	dataRequirementCodeFilter *DataRequirementCodeFilter
+}
+
+// NewDataRequirementCodeFilterBuilder creates a new DataRequirementCodeFilterBuilder.
+func NewDataRequirementCodeFilterBuilder() *DataRequirementCodeFilterBuilder {
+	return &DataRequirementCodeFilterBuilder{
+		dataRequirementCodeFilter: &DataRequirementCodeFilter{},
+	}
+}
+
+// Build returns the constructed DataRequirementCodeFilter.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DataRequirementCodeFilterBuilder) Build() DataRequirementCodeFilter {
+	return *b.dataRequirementCodeFilter
+}
+
+// SetId sets the Id field.
+func (b *DataRequirementCodeFilterBuilder) SetId(v string) *DataRequirementCodeFilterBuilder {
+	b.dataRequirementCodeFilter.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DataRequirementCodeFilterBuilder) AddExtension(v Extension) *DataRequirementCodeFilterBuilder {
+	b.dataRequirementCodeFilter.Extension = append(b.dataRequirementCodeFilter.Extension, v)
+	return b
+}
+
+// SetPath sets the Path field.
+func (b *DataRequirementCodeFilterBuilder) SetPath(v string) *DataRequirementCodeFilterBuilder {
+	b.dataRequirementCodeFilter.Path = &v
+	return b
+}
+
+// SetSearchParam sets the SearchParam field.
+func (b *DataRequirementCodeFilterBuilder) SetSearchParam(v string) *DataRequirementCodeFilterBuilder {
+	b.dataRequirementCodeFilter.SearchParam = &v
+	return b
+}
+
+// SetValueSet sets the ValueSet field.
+func (b *DataRequirementCodeFilterBuilder) SetValueSet(v string) *DataRequirementCodeFilterBuilder {
+	b.dataRequirementCodeFilter.ValueSet = &v
+	return b
+}
+
+// AddCode adds a Code element.
+func (b *DataRequirementCodeFilterBuilder) AddCode(v Coding) *DataRequirementCodeFilterBuilder {
+	b.dataRequirementCodeFilter.Code = append(b.dataRequirementCodeFilter.Code, v)
+	return b
+}
+
+// SetPathExt sets the extensions carried by Path, serialized as
+// "_path".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DataRequirementCodeFilterBuilder) SetPathExt(v Element) *DataRequirementCodeFilterBuilder {
+	b.dataRequirementCodeFilter.PathExt = &v
+	return b
+}
+
+// SetSearchParamExt sets the extensions carried by SearchParam, serialized as
+// "_searchParam".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DataRequirementCodeFilterBuilder) SetSearchParamExt(v Element) *DataRequirementCodeFilterBuilder {
+	b.dataRequirementCodeFilter.SearchParamExt = &v
+	return b
+}
+
+// SetValueSetExt sets the extensions carried by ValueSet, serialized as
+// "_valueSet".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DataRequirementCodeFilterBuilder) SetValueSetExt(v Element) *DataRequirementCodeFilterBuilder {
+	b.dataRequirementCodeFilter.ValueSetExt = &v
+	return b
+}
+
+// =============================================================================
+// DataRequirementDateFilter - Fluent Builder
+// =============================================================================
+
+// DataRequirementDateFilterBuilder provides a fluent API for constructing DataRequirementDateFilter values.
+type DataRequirementDateFilterBuilder struct {
+	dataRequirementDateFilter *DataRequirementDateFilter
+}
+
+// NewDataRequirementDateFilterBuilder creates a new DataRequirementDateFilterBuilder.
+func NewDataRequirementDateFilterBuilder() *DataRequirementDateFilterBuilder {
+	return &DataRequirementDateFilterBuilder{
+		dataRequirementDateFilter: &DataRequirementDateFilter{},
+	}
+}
+
+// Build returns the constructed DataRequirementDateFilter.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DataRequirementDateFilterBuilder) Build() DataRequirementDateFilter {
+	return *b.dataRequirementDateFilter
+}
+
+// SetId sets the Id field.
+func (b *DataRequirementDateFilterBuilder) SetId(v string) *DataRequirementDateFilterBuilder {
+	b.dataRequirementDateFilter.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DataRequirementDateFilterBuilder) AddExtension(v Extension) *DataRequirementDateFilterBuilder {
+	b.dataRequirementDateFilter.Extension = append(b.dataRequirementDateFilter.Extension, v)
+	return b
+}
+
+// SetPath sets the Path field.
+func (b *DataRequirementDateFilterBuilder) SetPath(v string) *DataRequirementDateFilterBuilder {
+	b.dataRequirementDateFilter.Path = &v
+	return b
+}
+
+// SetSearchParam sets the SearchParam field.
+func (b *DataRequirementDateFilterBuilder) SetSearchParam(v string) *DataRequirementDateFilterBuilder {
+	b.dataRequirementDateFilter.SearchParam = &v
+	return b
+}
+
+// SetValueDateTime sets Value[x] to its ValueDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DataRequirementDateFilterBuilder) SetValueDateTime(v string) *DataRequirementDateFilterBuilder {
+	b.clearValue()
+	b.dataRequirementDateFilter.ValueDateTime = &v
+	return b
+}
+
+// SetValueDateTimeExt sets the ValueDateTimeExt field.
+func (b *DataRequirementDateFilterBuilder) SetValueDateTimeExt(v Element) *DataRequirementDateFilterBuilder {
+	b.dataRequirementDateFilter.ValueDateTimeExt = &v
+	return b
+}
+
+// SetValuePeriod sets Value[x] to its ValuePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DataRequirementDateFilterBuilder) SetValuePeriod(v Period) *DataRequirementDateFilterBuilder {
+	b.clearValue()
+	b.dataRequirementDateFilter.ValuePeriod = &v
+	return b
+}
+
+// SetValueDuration sets Value[x] to its ValueDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DataRequirementDateFilterBuilder) SetValueDuration(v Duration) *DataRequirementDateFilterBuilder {
+	b.clearValue()
+	b.dataRequirementDateFilter.ValueDuration = &v
+	return b
+}
+
+// SetPathExt sets the extensions carried by Path, serialized as
+// "_path".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DataRequirementDateFilterBuilder) SetPathExt(v Element) *DataRequirementDateFilterBuilder {
+	b.dataRequirementDateFilter.PathExt = &v
+	return b
+}
+
+// SetSearchParamExt sets the extensions carried by SearchParam, serialized as
+// "_searchParam".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DataRequirementDateFilterBuilder) SetSearchParamExt(v Element) *DataRequirementDateFilterBuilder {
+	b.dataRequirementDateFilter.SearchParamExt = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *DataRequirementDateFilterBuilder) clearValue() {
+	b.dataRequirementDateFilter.ValueDateTime = nil
+	b.dataRequirementDateFilter.ValuePeriod = nil
+	b.dataRequirementDateFilter.ValueDuration = nil
+}
+
+// =============================================================================
+// DataRequirementSort - Fluent Builder
+// =============================================================================
+
+// DataRequirementSortBuilder provides a fluent API for constructing DataRequirementSort values.
+type DataRequirementSortBuilder struct {
+	dataRequirementSort *DataRequirementSort
+}
+
+// NewDataRequirementSortBuilder creates a new DataRequirementSortBuilder.
+func NewDataRequirementSortBuilder() *DataRequirementSortBuilder {
+	return &DataRequirementSortBuilder{
+		dataRequirementSort: &DataRequirementSort{},
+	}
+}
+
+// Build returns the constructed DataRequirementSort.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DataRequirementSortBuilder) Build() DataRequirementSort {
+	return *b.dataRequirementSort
+}
+
+// SetId sets the Id field.
+func (b *DataRequirementSortBuilder) SetId(v string) *DataRequirementSortBuilder {
+	b.dataRequirementSort.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DataRequirementSortBuilder) AddExtension(v Extension) *DataRequirementSortBuilder {
+	b.dataRequirementSort.Extension = append(b.dataRequirementSort.Extension, v)
+	return b
+}
+
+// SetPath sets the Path field.
+func (b *DataRequirementSortBuilder) SetPath(v string) *DataRequirementSortBuilder {
+	b.dataRequirementSort.Path = &v
+	return b
+}
+
+// SetDirection sets the Direction field.
+func (b *DataRequirementSortBuilder) SetDirection(v SortDirection) *DataRequirementSortBuilder {
+	b.dataRequirementSort.Direction = &v
+	return b
+}
+
+// SetPathExt sets the extensions carried by Path, serialized as
+// "_path".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DataRequirementSortBuilder) SetPathExt(v Element) *DataRequirementSortBuilder {
+	b.dataRequirementSort.PathExt = &v
+	return b
+}
+
+// SetDirectionExt sets the extensions carried by Direction, serialized as
+// "_direction".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *DataRequirementSortBuilder) SetDirectionExt(v Element) *DataRequirementSortBuilder {
+	b.dataRequirementSort.DirectionExt = &v
+	return b
+}
+
+// =============================================================================
+// DosageDoseAndRate - Fluent Builder
+// =============================================================================
+
+// DosageDoseAndRateBuilder provides a fluent API for constructing DosageDoseAndRate values.
+type DosageDoseAndRateBuilder struct {
+	dosageDoseAndRate *DosageDoseAndRate
+}
+
+// NewDosageDoseAndRateBuilder creates a new DosageDoseAndRateBuilder.
+func NewDosageDoseAndRateBuilder() *DosageDoseAndRateBuilder {
+	return &DosageDoseAndRateBuilder{
+		dosageDoseAndRate: &DosageDoseAndRate{},
+	}
+}
+
+// Build returns the constructed DosageDoseAndRate.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DosageDoseAndRateBuilder) Build() DosageDoseAndRate {
+	return *b.dosageDoseAndRate
+}
+
+// SetId sets the Id field.
+func (b *DosageDoseAndRateBuilder) SetId(v string) *DosageDoseAndRateBuilder {
+	b.dosageDoseAndRate.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *DosageDoseAndRateBuilder) AddExtension(v Extension) *DosageDoseAndRateBuilder {
+	b.dosageDoseAndRate.Extension = append(b.dosageDoseAndRate.Extension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *DosageDoseAndRateBuilder) SetType(v CodeableConcept) *DosageDoseAndRateBuilder {
+	b.dosageDoseAndRate.Type = &v
+	return b
+}
+
+// SetDoseRange sets Dose[x] to its DoseRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DosageDoseAndRateBuilder) SetDoseRange(v Range) *DosageDoseAndRateBuilder {
+	b.clearDose()
+	b.dosageDoseAndRate.DoseRange = &v
+	return b
+}
+
+// SetDoseQuantity sets Dose[x] to its DoseQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DosageDoseAndRateBuilder) SetDoseQuantity(v Quantity) *DosageDoseAndRateBuilder {
+	b.clearDose()
+	b.dosageDoseAndRate.DoseQuantity = &v
+	return b
+}
+
+// SetRateRatio sets Rate[x] to its RateRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DosageDoseAndRateBuilder) SetRateRatio(v Ratio) *DosageDoseAndRateBuilder {
+	b.clearRate()
+	b.dosageDoseAndRate.RateRatio = &v
+	return b
+}
+
+// SetRateRange sets Rate[x] to its RateRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DosageDoseAndRateBuilder) SetRateRange(v Range) *DosageDoseAndRateBuilder {
+	b.clearRate()
+	b.dosageDoseAndRate.RateRange = &v
+	return b
+}
+
+// SetRateQuantity sets Rate[x] to its RateQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *DosageDoseAndRateBuilder) SetRateQuantity(v Quantity) *DosageDoseAndRateBuilder {
+	b.clearRate()
+	b.dosageDoseAndRate.RateQuantity = &v
+	return b
+}
+
+// clearDose unsets every variant of Dose[x], including the
+// _field companions of the primitive ones.
+func (b *DosageDoseAndRateBuilder) clearDose() {
+	b.dosageDoseAndRate.DoseRange = nil
+	b.dosageDoseAndRate.DoseQuantity = nil
+}
+
+// clearRate unsets every variant of Rate[x], including the
+// _field companions of the primitive ones.
+func (b *DosageDoseAndRateBuilder) clearRate() {
+	b.dosageDoseAndRate.RateRatio = nil
+	b.dosageDoseAndRate.RateRange = nil
+	b.dosageDoseAndRate.RateQuantity = nil
+}
+
+// =============================================================================
+// ElementDefinitionBase - Fluent Builder
+// =============================================================================
+
+// ElementDefinitionBaseBuilder provides a fluent API for constructing ElementDefinitionBase values.
+type ElementDefinitionBaseBuilder struct {
+	elementDefinitionBase *ElementDefinitionBase
+}
+
+// NewElementDefinitionBaseBuilder creates a new ElementDefinitionBaseBuilder.
+func NewElementDefinitionBaseBuilder() *ElementDefinitionBaseBuilder {
+	return &ElementDefinitionBaseBuilder{
+		elementDefinitionBase: &ElementDefinitionBase{},
+	}
+}
+
+// Build returns the constructed ElementDefinitionBase.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ElementDefinitionBaseBuilder) Build() ElementDefinitionBase {
+	return *b.elementDefinitionBase
+}
+
+// SetId sets the Id field.
+func (b *ElementDefinitionBaseBuilder) SetId(v string) *ElementDefinitionBaseBuilder {
+	b.elementDefinitionBase.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ElementDefinitionBaseBuilder) AddExtension(v Extension) *ElementDefinitionBaseBuilder {
+	b.elementDefinitionBase.Extension = append(b.elementDefinitionBase.Extension, v)
+	return b
+}
+
+// SetPath sets the Path field.
+func (b *ElementDefinitionBaseBuilder) SetPath(v string) *ElementDefinitionBaseBuilder {
+	b.elementDefinitionBase.Path = &v
+	return b
+}
+
+// SetMin sets the Min field.
+func (b *ElementDefinitionBaseBuilder) SetMin(v uint32) *ElementDefinitionBaseBuilder {
+	b.elementDefinitionBase.Min = &v
+	return b
+}
+
+// SetMax sets the Max field.
+func (b *ElementDefinitionBaseBuilder) SetMax(v string) *ElementDefinitionBaseBuilder {
+	b.elementDefinitionBase.Max = &v
+	return b
+}
+
+// SetPathExt sets the extensions carried by Path, serialized as
+// "_path".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBaseBuilder) SetPathExt(v Element) *ElementDefinitionBaseBuilder {
+	b.elementDefinitionBase.PathExt = &v
+	return b
+}
+
+// SetMinExt sets the extensions carried by Min, serialized as
+// "_min".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBaseBuilder) SetMinExt(v Element) *ElementDefinitionBaseBuilder {
+	b.elementDefinitionBase.MinExt = &v
+	return b
+}
+
+// SetMaxExt sets the extensions carried by Max, serialized as
+// "_max".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBaseBuilder) SetMaxExt(v Element) *ElementDefinitionBaseBuilder {
+	b.elementDefinitionBase.MaxExt = &v
+	return b
+}
+
+// =============================================================================
+// ElementDefinitionBinding - Fluent Builder
+// =============================================================================
+
+// ElementDefinitionBindingBuilder provides a fluent API for constructing ElementDefinitionBinding values.
+type ElementDefinitionBindingBuilder struct {
+	elementDefinitionBinding *ElementDefinitionBinding
+}
+
+// NewElementDefinitionBindingBuilder creates a new ElementDefinitionBindingBuilder.
+func NewElementDefinitionBindingBuilder() *ElementDefinitionBindingBuilder {
+	return &ElementDefinitionBindingBuilder{
+		elementDefinitionBinding: &ElementDefinitionBinding{},
+	}
+}
+
+// Build returns the constructed ElementDefinitionBinding.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ElementDefinitionBindingBuilder) Build() ElementDefinitionBinding {
+	return *b.elementDefinitionBinding
+}
+
+// SetId sets the Id field.
+func (b *ElementDefinitionBindingBuilder) SetId(v string) *ElementDefinitionBindingBuilder {
+	b.elementDefinitionBinding.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ElementDefinitionBindingBuilder) AddExtension(v Extension) *ElementDefinitionBindingBuilder {
+	b.elementDefinitionBinding.Extension = append(b.elementDefinitionBinding.Extension, v)
+	return b
+}
+
+// SetStrength sets the Strength field.
+func (b *ElementDefinitionBindingBuilder) SetStrength(v BindingStrength) *ElementDefinitionBindingBuilder {
+	b.elementDefinitionBinding.Strength = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *ElementDefinitionBindingBuilder) SetDescription(v string) *ElementDefinitionBindingBuilder {
+	b.elementDefinitionBinding.Description = &v
+	return b
+}
+
+// SetValueSet sets the ValueSet field.
+func (b *ElementDefinitionBindingBuilder) SetValueSet(v string) *ElementDefinitionBindingBuilder {
+	b.elementDefinitionBinding.ValueSet = &v
+	return b
+}
+
+// SetStrengthExt sets the extensions carried by Strength, serialized as
+// "_strength".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBindingBuilder) SetStrengthExt(v Element) *ElementDefinitionBindingBuilder {
+	b.elementDefinitionBinding.StrengthExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBindingBuilder) SetDescriptionExt(v Element) *ElementDefinitionBindingBuilder {
+	b.elementDefinitionBinding.DescriptionExt = &v
+	return b
+}
+
+// SetValueSetExt sets the extensions carried by ValueSet, serialized as
+// "_valueSet".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionBindingBuilder) SetValueSetExt(v Element) *ElementDefinitionBindingBuilder {
+	b.elementDefinitionBinding.ValueSetExt = &v
+	return b
+}
+
+// =============================================================================
+// ElementDefinitionConstraint - Fluent Builder
+// =============================================================================
+
+// ElementDefinitionConstraintBuilder provides a fluent API for constructing ElementDefinitionConstraint values.
+type ElementDefinitionConstraintBuilder struct {
+	elementDefinitionConstraint *ElementDefinitionConstraint
+}
+
+// NewElementDefinitionConstraintBuilder creates a new ElementDefinitionConstraintBuilder.
+func NewElementDefinitionConstraintBuilder() *ElementDefinitionConstraintBuilder {
+	return &ElementDefinitionConstraintBuilder{
+		elementDefinitionConstraint: &ElementDefinitionConstraint{},
+	}
+}
+
+// Build returns the constructed ElementDefinitionConstraint.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ElementDefinitionConstraintBuilder) Build() ElementDefinitionConstraint {
+	return *b.elementDefinitionConstraint
+}
+
+// SetId sets the Id field.
+func (b *ElementDefinitionConstraintBuilder) SetId(v string) *ElementDefinitionConstraintBuilder {
+	b.elementDefinitionConstraint.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ElementDefinitionConstraintBuilder) AddExtension(v Extension) *ElementDefinitionConstraintBuilder {
+	b.elementDefinitionConstraint.Extension = append(b.elementDefinitionConstraint.Extension, v)
+	return b
+}
+
+// SetKey sets the Key field.
+func (b *ElementDefinitionConstraintBuilder) SetKey(v string) *ElementDefinitionConstraintBuilder {
+	b.elementDefinitionConstraint.Key = &v
+	return b
+}
+
+// SetRequirements sets the Requirements field.
+func (b *ElementDefinitionConstraintBuilder) SetRequirements(v string) *ElementDefinitionConstraintBuilder {
+	b.elementDefinitionConstraint.Requirements = &v
+	return b
+}
+
+// SetSeverity sets the Severity field.
+func (b *ElementDefinitionConstraintBuilder) SetSeverity(v ConstraintSeverity) *ElementDefinitionConstraintBuilder {
+	b.elementDefinitionConstraint.Severity = &v
+	return b
+}
+
+// SetHuman sets the Human field.
+func (b *ElementDefinitionConstraintBuilder) SetHuman(v string) *ElementDefinitionConstraintBuilder {
+	b.elementDefinitionConstraint.Human = &v
+	return b
+}
+
+// SetExpression sets the Expression field.
+func (b *ElementDefinitionConstraintBuilder) SetExpression(v string) *ElementDefinitionConstraintBuilder {
+	b.elementDefinitionConstraint.Expression = &v
+	return b
+}
+
+// SetXpath sets the Xpath field.
+func (b *ElementDefinitionConstraintBuilder) SetXpath(v string) *ElementDefinitionConstraintBuilder {
+	b.elementDefinitionConstraint.Xpath = &v
+	return b
+}
+
+// SetSource sets the Source field.
+func (b *ElementDefinitionConstraintBuilder) SetSource(v string) *ElementDefinitionConstraintBuilder {
+	b.elementDefinitionConstraint.Source = &v
+	return b
+}
+
+// SetKeyExt sets the extensions carried by Key, serialized as
+// "_key".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionConstraintBuilder) SetKeyExt(v Element) *ElementDefinitionConstraintBuilder {
+	b.elementDefinitionConstraint.KeyExt = &v
+	return b
+}
+
+// SetRequirementsExt sets the extensions carried by Requirements, serialized as
+// "_requirements".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionConstraintBuilder) SetRequirementsExt(v Element) *ElementDefinitionConstraintBuilder {
+	b.elementDefinitionConstraint.RequirementsExt = &v
+	return b
+}
+
+// SetSeverityExt sets the extensions carried by Severity, serialized as
+// "_severity".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionConstraintBuilder) SetSeverityExt(v Element) *ElementDefinitionConstraintBuilder {
+	b.elementDefinitionConstraint.SeverityExt = &v
+	return b
+}
+
+// SetHumanExt sets the extensions carried by Human, serialized as
+// "_human".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionConstraintBuilder) SetHumanExt(v Element) *ElementDefinitionConstraintBuilder {
+	b.elementDefinitionConstraint.HumanExt = &v
+	return b
+}
+
+// SetExpressionExt sets the extensions carried by Expression, serialized as
+// "_expression".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionConstraintBuilder) SetExpressionExt(v Element) *ElementDefinitionConstraintBuilder {
+	b.elementDefinitionConstraint.ExpressionExt = &v
+	return b
+}
+
+// SetXpathExt sets the extensions carried by Xpath, serialized as
+// "_xpath".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionConstraintBuilder) SetXpathExt(v Element) *ElementDefinitionConstraintBuilder {
+	b.elementDefinitionConstraint.XpathExt = &v
+	return b
+}
+
+// SetSourceExt sets the extensions carried by Source, serialized as
+// "_source".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionConstraintBuilder) SetSourceExt(v Element) *ElementDefinitionConstraintBuilder {
+	b.elementDefinitionConstraint.SourceExt = &v
+	return b
+}
+
+// =============================================================================
+// ElementDefinitionExample - Fluent Builder
+// =============================================================================
+
+// ElementDefinitionExampleBuilder provides a fluent API for constructing ElementDefinitionExample values.
+type ElementDefinitionExampleBuilder struct {
+	elementDefinitionExample *ElementDefinitionExample
+}
+
+// NewElementDefinitionExampleBuilder creates a new ElementDefinitionExampleBuilder.
+func NewElementDefinitionExampleBuilder() *ElementDefinitionExampleBuilder {
+	return &ElementDefinitionExampleBuilder{
+		elementDefinitionExample: &ElementDefinitionExample{},
+	}
+}
+
+// Build returns the constructed ElementDefinitionExample.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ElementDefinitionExampleBuilder) Build() ElementDefinitionExample {
+	return *b.elementDefinitionExample
+}
+
+// SetId sets the Id field.
+func (b *ElementDefinitionExampleBuilder) SetId(v string) *ElementDefinitionExampleBuilder {
+	b.elementDefinitionExample.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ElementDefinitionExampleBuilder) AddExtension(v Extension) *ElementDefinitionExampleBuilder {
+	b.elementDefinitionExample.Extension = append(b.elementDefinitionExample.Extension, v)
+	return b
+}
+
+// SetLabel sets the Label field.
+func (b *ElementDefinitionExampleBuilder) SetLabel(v string) *ElementDefinitionExampleBuilder {
+	b.elementDefinitionExample.Label = &v
+	return b
+}
+
+// SetValueBase64Binary sets Value[x] to its ValueBase64Binary variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueBase64Binary(v string) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueBase64Binary = &v
+	return b
+}
+
+// SetValueBase64BinaryExt sets the ValueBase64BinaryExt field.
+func (b *ElementDefinitionExampleBuilder) SetValueBase64BinaryExt(v Element) *ElementDefinitionExampleBuilder {
+	b.elementDefinitionExample.ValueBase64BinaryExt = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueBoolean(v bool) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *ElementDefinitionExampleBuilder) SetValueBooleanExt(v Element) *ElementDefinitionExampleBuilder {
+	b.elementDefinitionExample.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueCanonical sets Value[x] to its ValueCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueCanonical(v string) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueCanonical = &v
+	return b
+}
+
+// SetValueCanonicalExt sets the ValueCanonicalExt field.
+func (b *ElementDefinitionExampleBuilder) SetValueCanonicalExt(v Element) *ElementDefinitionExampleBuilder {
+	b.elementDefinitionExample.ValueCanonicalExt = &v
+	return b
+}
+
+// SetValueCode sets Value[x] to its ValueCode variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueCode(v string) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueCode = &v
+	return b
+}
+
+// SetValueCodeExt sets the ValueCodeExt field.
+func (b *ElementDefinitionExampleBuilder) SetValueCodeExt(v Element) *ElementDefinitionExampleBuilder {
+	b.elementDefinitionExample.ValueCodeExt = &v
+	return b
+}
+
+// SetValueDate sets Value[x] to its ValueDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueDate(v string) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueDate = &v
+	return b
+}
+
+// SetValueDateExt sets the ValueDateExt field.
+func (b *ElementDefinitionExampleBuilder) SetValueDateExt(v Element) *ElementDefinitionExampleBuilder {
+	b.elementDefinitionExample.ValueDateExt = &v
+	return b
+}
+
+// SetValueDateTime sets Value[x] to its ValueDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueDateTime(v string) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueDateTime = &v
+	return b
+}
+
+// SetValueDateTimeExt sets the ValueDateTimeExt field.
+func (b *ElementDefinitionExampleBuilder) SetValueDateTimeExt(v Element) *ElementDefinitionExampleBuilder {
+	b.elementDefinitionExample.ValueDateTimeExt = &v
+	return b
+}
+
+// SetValueDecimal sets Value[x] to its ValueDecimal variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueDecimal(v Decimal) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueDecimal = &v
+	return b
+}
+
+// SetValueDecimalExt sets the ValueDecimalExt field.
+func (b *ElementDefinitionExampleBuilder) SetValueDecimalExt(v Element) *ElementDefinitionExampleBuilder {
+	b.elementDefinitionExample.ValueDecimalExt = &v
+	return b
+}
+
+// SetValueId sets Value[x] to its ValueId variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueId(v string) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueId = &v
+	return b
+}
+
+// SetValueIdExt sets the ValueIdExt field.
+func (b *ElementDefinitionExampleBuilder) SetValueIdExt(v Element) *ElementDefinitionExampleBuilder {
+	b.elementDefinitionExample.ValueIdExt = &v
+	return b
+}
+
+// SetValueInstant sets Value[x] to its ValueInstant variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueInstant(v string) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueInstant = &v
+	return b
+}
+
+// SetValueInstantExt sets the ValueInstantExt field.
+func (b *ElementDefinitionExampleBuilder) SetValueInstantExt(v Element) *ElementDefinitionExampleBuilder {
+	b.elementDefinitionExample.ValueInstantExt = &v
+	return b
+}
+
+// SetValueInteger sets Value[x] to its ValueInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueInteger(v int) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueInteger = &v
+	return b
+}
+
+// SetValueIntegerExt sets the ValueIntegerExt field.
+func (b *ElementDefinitionExampleBuilder) SetValueIntegerExt(v Element) *ElementDefinitionExampleBuilder {
+	b.elementDefinitionExample.ValueIntegerExt = &v
+	return b
+}
+
+// SetValueMarkdown sets Value[x] to its ValueMarkdown variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueMarkdown(v string) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueMarkdown = &v
+	return b
+}
+
+// SetValueMarkdownExt sets the ValueMarkdownExt field.
+func (b *ElementDefinitionExampleBuilder) SetValueMarkdownExt(v Element) *ElementDefinitionExampleBuilder {
+	b.elementDefinitionExample.ValueMarkdownExt = &v
+	return b
+}
+
+// SetValueOid sets Value[x] to its ValueOid variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueOid(v string) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueOid = &v
+	return b
+}
+
+// SetValueOidExt sets the ValueOidExt field.
+func (b *ElementDefinitionExampleBuilder) SetValueOidExt(v Element) *ElementDefinitionExampleBuilder {
+	b.elementDefinitionExample.ValueOidExt = &v
+	return b
+}
+
+// SetValuePositiveInt sets Value[x] to its ValuePositiveInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValuePositiveInt(v uint32) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValuePositiveInt = &v
+	return b
+}
+
+// SetValuePositiveIntExt sets the ValuePositiveIntExt field.
+func (b *ElementDefinitionExampleBuilder) SetValuePositiveIntExt(v Element) *ElementDefinitionExampleBuilder {
+	b.elementDefinitionExample.ValuePositiveIntExt = &v
+	return b
+}
+
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueString(v string) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueString = &v
+	return b
+}
+
+// SetValueStringExt sets the ValueStringExt field.
+func (b *ElementDefinitionExampleBuilder) SetValueStringExt(v Element) *ElementDefinitionExampleBuilder {
+	b.elementDefinitionExample.ValueStringExt = &v
+	return b
+}
+
+// SetValueTime sets Value[x] to its ValueTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueTime(v string) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueTime = &v
+	return b
+}
+
+// SetValueTimeExt sets the ValueTimeExt field.
+func (b *ElementDefinitionExampleBuilder) SetValueTimeExt(v Element) *ElementDefinitionExampleBuilder {
+	b.elementDefinitionExample.ValueTimeExt = &v
+	return b
+}
+
+// SetValueUnsignedInt sets Value[x] to its ValueUnsignedInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueUnsignedInt(v uint32) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueUnsignedInt = &v
+	return b
+}
+
+// SetValueUnsignedIntExt sets the ValueUnsignedIntExt field.
+func (b *ElementDefinitionExampleBuilder) SetValueUnsignedIntExt(v Element) *ElementDefinitionExampleBuilder {
+	b.elementDefinitionExample.ValueUnsignedIntExt = &v
+	return b
+}
+
+// SetValueUri sets Value[x] to its ValueUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueUri(v string) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueUri = &v
+	return b
+}
+
+// SetValueUriExt sets the ValueUriExt field.
+func (b *ElementDefinitionExampleBuilder) SetValueUriExt(v Element) *ElementDefinitionExampleBuilder {
+	b.elementDefinitionExample.ValueUriExt = &v
+	return b
+}
+
+// SetValueUrl sets Value[x] to its ValueUrl variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueUrl(v string) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueUrl = &v
+	return b
+}
+
+// SetValueUrlExt sets the ValueUrlExt field.
+func (b *ElementDefinitionExampleBuilder) SetValueUrlExt(v Element) *ElementDefinitionExampleBuilder {
+	b.elementDefinitionExample.ValueUrlExt = &v
+	return b
+}
+
+// SetValueUuid sets Value[x] to its ValueUuid variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueUuid(v string) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueUuid = &v
+	return b
+}
+
+// SetValueUuidExt sets the ValueUuidExt field.
+func (b *ElementDefinitionExampleBuilder) SetValueUuidExt(v Element) *ElementDefinitionExampleBuilder {
+	b.elementDefinitionExample.ValueUuidExt = &v
+	return b
+}
+
+// SetValueAddress sets Value[x] to its ValueAddress variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueAddress(v Address) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueAddress = &v
+	return b
+}
+
+// SetValueAge sets Value[x] to its ValueAge variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueAge(v Age) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueAge = &v
+	return b
+}
+
+// SetValueAnnotation sets Value[x] to its ValueAnnotation variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueAnnotation(v Annotation) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueAnnotation = &v
+	return b
+}
+
+// SetValueAttachment sets Value[x] to its ValueAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueAttachment(v Attachment) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueAttachment = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueCodeableConcept(v CodeableConcept) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueCoding sets Value[x] to its ValueCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueCoding(v Coding) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueCoding = &v
+	return b
+}
+
+// SetValueContactPoint sets Value[x] to its ValueContactPoint variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueContactPoint(v ContactPoint) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueContactPoint = &v
+	return b
+}
+
+// SetValueCount sets Value[x] to its ValueCount variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueCount(v Count) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueCount = &v
+	return b
+}
+
+// SetValueDistance sets Value[x] to its ValueDistance variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueDistance(v Distance) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueDistance = &v
+	return b
+}
+
+// SetValueDuration sets Value[x] to its ValueDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueDuration(v Duration) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueDuration = &v
+	return b
+}
+
+// SetValueHumanName sets Value[x] to its ValueHumanName variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueHumanName(v HumanName) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueHumanName = &v
+	return b
+}
+
+// SetValueIdentifier sets Value[x] to its ValueIdentifier variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueIdentifier(v Identifier) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueIdentifier = &v
+	return b
+}
+
+// SetValueMoney sets Value[x] to its ValueMoney variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueMoney(v Money) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueMoney = &v
+	return b
+}
+
+// SetValuePeriod sets Value[x] to its ValuePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValuePeriod(v Period) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValuePeriod = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueQuantity(v Quantity) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueQuantity = &v
+	return b
+}
+
+// SetValueRange sets Value[x] to its ValueRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueRange(v Range) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueRange = &v
+	return b
+}
+
+// SetValueRatio sets Value[x] to its ValueRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueRatio(v Ratio) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueRatio = &v
+	return b
+}
+
+// SetValueReference sets Value[x] to its ValueReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueReference(v Reference) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueReference = &v
+	return b
+}
+
+// SetValueSampledData sets Value[x] to its ValueSampledData variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueSampledData(v SampledData) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueSampledData = &v
+	return b
+}
+
+// SetValueSignature sets Value[x] to its ValueSignature variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueSignature(v Signature) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueSignature = &v
+	return b
+}
+
+// SetValueTiming sets Value[x] to its ValueTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueTiming(v Timing) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueTiming = &v
+	return b
+}
+
+// SetValueContactDetail sets Value[x] to its ValueContactDetail variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueContactDetail(v ContactDetail) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueContactDetail = &v
+	return b
+}
+
+// SetValueContributor sets Value[x] to its ValueContributor variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueContributor(v Contributor) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueContributor = &v
+	return b
+}
+
+// SetValueDataRequirement sets Value[x] to its ValueDataRequirement variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueDataRequirement(v DataRequirement) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueDataRequirement = &v
+	return b
+}
+
+// SetValueExpression sets Value[x] to its ValueExpression variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueExpression(v Expression) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueExpression = &v
+	return b
+}
+
+// SetValueParameterDefinition sets Value[x] to its ValueParameterDefinition variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueParameterDefinition(v ParameterDefinition) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueParameterDefinition = &v
+	return b
+}
+
+// SetValueRelatedArtifact sets Value[x] to its ValueRelatedArtifact variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueRelatedArtifact(v RelatedArtifact) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueRelatedArtifact = &v
+	return b
+}
+
+// SetValueTriggerDefinition sets Value[x] to its ValueTriggerDefinition variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueTriggerDefinition(v TriggerDefinition) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueTriggerDefinition = &v
+	return b
+}
+
+// SetValueUsageContext sets Value[x] to its ValueUsageContext variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueUsageContext(v UsageContext) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueUsageContext = &v
+	return b
+}
+
+// SetValueDosage sets Value[x] to its ValueDosage variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueDosage(v Dosage) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueDosage = &v
+	return b
+}
+
+// SetValueMeta sets Value[x] to its ValueMeta variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ElementDefinitionExampleBuilder) SetValueMeta(v Meta) *ElementDefinitionExampleBuilder {
+	b.clearValue()
+	b.elementDefinitionExample.ValueMeta = &v
+	return b
+}
+
+// SetLabelExt sets the extensions carried by Label, serialized as
+// "_label".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionExampleBuilder) SetLabelExt(v Element) *ElementDefinitionExampleBuilder {
+	b.elementDefinitionExample.LabelExt = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *ElementDefinitionExampleBuilder) clearValue() {
+	b.elementDefinitionExample.ValueBase64Binary = nil
+	b.elementDefinitionExample.ValueBoolean = nil
+	b.elementDefinitionExample.ValueBooleanExt = nil
+	b.elementDefinitionExample.ValueCanonical = nil
+	b.elementDefinitionExample.ValueCanonicalExt = nil
+	b.elementDefinitionExample.ValueCode = nil
+	b.elementDefinitionExample.ValueCodeExt = nil
+	b.elementDefinitionExample.ValueDate = nil
+	b.elementDefinitionExample.ValueDateExt = nil
+	b.elementDefinitionExample.ValueDateTime = nil
+	b.elementDefinitionExample.ValueDateTimeExt = nil
+	b.elementDefinitionExample.ValueDecimal = nil
+	b.elementDefinitionExample.ValueDecimalExt = nil
+	b.elementDefinitionExample.ValueId = nil
+	b.elementDefinitionExample.ValueIdExt = nil
+	b.elementDefinitionExample.ValueInstant = nil
+	b.elementDefinitionExample.ValueInstantExt = nil
+	b.elementDefinitionExample.ValueInteger = nil
+	b.elementDefinitionExample.ValueIntegerExt = nil
+	b.elementDefinitionExample.ValueMarkdown = nil
+	b.elementDefinitionExample.ValueMarkdownExt = nil
+	b.elementDefinitionExample.ValueOid = nil
+	b.elementDefinitionExample.ValueOidExt = nil
+	b.elementDefinitionExample.ValuePositiveInt = nil
+	b.elementDefinitionExample.ValuePositiveIntExt = nil
+	b.elementDefinitionExample.ValueString = nil
+	b.elementDefinitionExample.ValueStringExt = nil
+	b.elementDefinitionExample.ValueTime = nil
+	b.elementDefinitionExample.ValueTimeExt = nil
+	b.elementDefinitionExample.ValueUnsignedInt = nil
+	b.elementDefinitionExample.ValueUnsignedIntExt = nil
+	b.elementDefinitionExample.ValueUri = nil
+	b.elementDefinitionExample.ValueUriExt = nil
+	b.elementDefinitionExample.ValueUrl = nil
+	b.elementDefinitionExample.ValueUrlExt = nil
+	b.elementDefinitionExample.ValueUuid = nil
+	b.elementDefinitionExample.ValueUuidExt = nil
+	b.elementDefinitionExample.ValueAddress = nil
+	b.elementDefinitionExample.ValueAge = nil
+	b.elementDefinitionExample.ValueAnnotation = nil
+	b.elementDefinitionExample.ValueAttachment = nil
+	b.elementDefinitionExample.ValueCodeableConcept = nil
+	b.elementDefinitionExample.ValueCoding = nil
+	b.elementDefinitionExample.ValueContactPoint = nil
+	b.elementDefinitionExample.ValueCount = nil
+	b.elementDefinitionExample.ValueDistance = nil
+	b.elementDefinitionExample.ValueDuration = nil
+	b.elementDefinitionExample.ValueHumanName = nil
+	b.elementDefinitionExample.ValueIdentifier = nil
+	b.elementDefinitionExample.ValueMoney = nil
+	b.elementDefinitionExample.ValuePeriod = nil
+	b.elementDefinitionExample.ValueQuantity = nil
+	b.elementDefinitionExample.ValueRange = nil
+	b.elementDefinitionExample.ValueRatio = nil
+	b.elementDefinitionExample.ValueReference = nil
+	b.elementDefinitionExample.ValueSampledData = nil
+	b.elementDefinitionExample.ValueSignature = nil
+	b.elementDefinitionExample.ValueTiming = nil
+	b.elementDefinitionExample.ValueContactDetail = nil
+	b.elementDefinitionExample.ValueContributor = nil
+	b.elementDefinitionExample.ValueDataRequirement = nil
+	b.elementDefinitionExample.ValueExpression = nil
+	b.elementDefinitionExample.ValueParameterDefinition = nil
+	b.elementDefinitionExample.ValueRelatedArtifact = nil
+	b.elementDefinitionExample.ValueTriggerDefinition = nil
+	b.elementDefinitionExample.ValueUsageContext = nil
+	b.elementDefinitionExample.ValueDosage = nil
+	b.elementDefinitionExample.ValueMeta = nil
+}
+
+// =============================================================================
+// ElementDefinitionMapping - Fluent Builder
+// =============================================================================
+
+// ElementDefinitionMappingBuilder provides a fluent API for constructing ElementDefinitionMapping values.
+type ElementDefinitionMappingBuilder struct {
+	elementDefinitionMapping *ElementDefinitionMapping
+}
+
+// NewElementDefinitionMappingBuilder creates a new ElementDefinitionMappingBuilder.
+func NewElementDefinitionMappingBuilder() *ElementDefinitionMappingBuilder {
+	return &ElementDefinitionMappingBuilder{
+		elementDefinitionMapping: &ElementDefinitionMapping{},
+	}
+}
+
+// Build returns the constructed ElementDefinitionMapping.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ElementDefinitionMappingBuilder) Build() ElementDefinitionMapping {
+	return *b.elementDefinitionMapping
+}
+
+// SetId sets the Id field.
+func (b *ElementDefinitionMappingBuilder) SetId(v string) *ElementDefinitionMappingBuilder {
+	b.elementDefinitionMapping.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ElementDefinitionMappingBuilder) AddExtension(v Extension) *ElementDefinitionMappingBuilder {
+	b.elementDefinitionMapping.Extension = append(b.elementDefinitionMapping.Extension, v)
+	return b
+}
+
+// SetIdentity sets the Identity field.
+func (b *ElementDefinitionMappingBuilder) SetIdentity(v string) *ElementDefinitionMappingBuilder {
+	b.elementDefinitionMapping.Identity = &v
+	return b
+}
+
+// SetLanguage sets the Language field.
+func (b *ElementDefinitionMappingBuilder) SetLanguage(v string) *ElementDefinitionMappingBuilder {
+	b.elementDefinitionMapping.Language = &v
+	return b
+}
+
+// SetMap sets the Map field.
+func (b *ElementDefinitionMappingBuilder) SetMap(v string) *ElementDefinitionMappingBuilder {
+	b.elementDefinitionMapping.Map = &v
+	return b
+}
+
+// SetComment sets the Comment field.
+func (b *ElementDefinitionMappingBuilder) SetComment(v string) *ElementDefinitionMappingBuilder {
+	b.elementDefinitionMapping.Comment = &v
+	return b
+}
+
+// SetIdentityExt sets the extensions carried by Identity, serialized as
+// "_identity".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionMappingBuilder) SetIdentityExt(v Element) *ElementDefinitionMappingBuilder {
+	b.elementDefinitionMapping.IdentityExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionMappingBuilder) SetLanguageExt(v Element) *ElementDefinitionMappingBuilder {
+	b.elementDefinitionMapping.LanguageExt = &v
+	return b
+}
+
+// SetMapExt sets the extensions carried by Map, serialized as
+// "_map".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionMappingBuilder) SetMapExt(v Element) *ElementDefinitionMappingBuilder {
+	b.elementDefinitionMapping.MapExt = &v
+	return b
+}
+
+// SetCommentExt sets the extensions carried by Comment, serialized as
+// "_comment".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionMappingBuilder) SetCommentExt(v Element) *ElementDefinitionMappingBuilder {
+	b.elementDefinitionMapping.CommentExt = &v
+	return b
+}
+
+// =============================================================================
+// ElementDefinitionSlicing - Fluent Builder
+// =============================================================================
+
+// ElementDefinitionSlicingBuilder provides a fluent API for constructing ElementDefinitionSlicing values.
+type ElementDefinitionSlicingBuilder struct {
+	elementDefinitionSlicing *ElementDefinitionSlicing
+}
+
+// NewElementDefinitionSlicingBuilder creates a new ElementDefinitionSlicingBuilder.
+func NewElementDefinitionSlicingBuilder() *ElementDefinitionSlicingBuilder {
+	return &ElementDefinitionSlicingBuilder{
+		elementDefinitionSlicing: &ElementDefinitionSlicing{},
+	}
+}
+
+// Build returns the constructed ElementDefinitionSlicing.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ElementDefinitionSlicingBuilder) Build() ElementDefinitionSlicing {
+	return *b.elementDefinitionSlicing
+}
+
+// SetId sets the Id field.
+func (b *ElementDefinitionSlicingBuilder) SetId(v string) *ElementDefinitionSlicingBuilder {
+	b.elementDefinitionSlicing.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ElementDefinitionSlicingBuilder) AddExtension(v Extension) *ElementDefinitionSlicingBuilder {
+	b.elementDefinitionSlicing.Extension = append(b.elementDefinitionSlicing.Extension, v)
+	return b
+}
+
+// AddDiscriminator adds a Discriminator element.
+func (b *ElementDefinitionSlicingBuilder) AddDiscriminator(v ElementDefinitionSlicingDiscriminator) *ElementDefinitionSlicingBuilder {
+	b.elementDefinitionSlicing.Discriminator = append(b.elementDefinitionSlicing.Discriminator, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *ElementDefinitionSlicingBuilder) SetDescription(v string) *ElementDefinitionSlicingBuilder {
+	b.elementDefinitionSlicing.Description = &v
+	return b
+}
+
+// SetOrdered sets the Ordered field.
+func (b *ElementDefinitionSlicingBuilder) SetOrdered(v bool) *ElementDefinitionSlicingBuilder {
+	b.elementDefinitionSlicing.Ordered = &v
+	return b
+}
+
+// SetRules sets the Rules field.
+func (b *ElementDefinitionSlicingBuilder) SetRules(v SlicingRules) *ElementDefinitionSlicingBuilder {
+	b.elementDefinitionSlicing.Rules = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionSlicingBuilder) SetDescriptionExt(v Element) *ElementDefinitionSlicingBuilder {
+	b.elementDefinitionSlicing.DescriptionExt = &v
+	return b
+}
+
+// SetOrderedExt sets the extensions carried by Ordered, serialized as
+// "_ordered".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionSlicingBuilder) SetOrderedExt(v Element) *ElementDefinitionSlicingBuilder {
+	b.elementDefinitionSlicing.OrderedExt = &v
+	return b
+}
+
+// SetRulesExt sets the extensions carried by Rules, serialized as
+// "_rules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionSlicingBuilder) SetRulesExt(v Element) *ElementDefinitionSlicingBuilder {
+	b.elementDefinitionSlicing.RulesExt = &v
+	return b
+}
+
+// =============================================================================
+// ElementDefinitionSlicingDiscriminator - Fluent Builder
+// =============================================================================
+
+// ElementDefinitionSlicingDiscriminatorBuilder provides a fluent API for constructing ElementDefinitionSlicingDiscriminator values.
+type ElementDefinitionSlicingDiscriminatorBuilder struct {
+	elementDefinitionSlicingDiscriminator *ElementDefinitionSlicingDiscriminator
+}
+
+// NewElementDefinitionSlicingDiscriminatorBuilder creates a new ElementDefinitionSlicingDiscriminatorBuilder.
+func NewElementDefinitionSlicingDiscriminatorBuilder() *ElementDefinitionSlicingDiscriminatorBuilder {
+	return &ElementDefinitionSlicingDiscriminatorBuilder{
+		elementDefinitionSlicingDiscriminator: &ElementDefinitionSlicingDiscriminator{},
+	}
+}
+
+// Build returns the constructed ElementDefinitionSlicingDiscriminator.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ElementDefinitionSlicingDiscriminatorBuilder) Build() ElementDefinitionSlicingDiscriminator {
+	return *b.elementDefinitionSlicingDiscriminator
+}
+
+// SetId sets the Id field.
+func (b *ElementDefinitionSlicingDiscriminatorBuilder) SetId(v string) *ElementDefinitionSlicingDiscriminatorBuilder {
+	b.elementDefinitionSlicingDiscriminator.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ElementDefinitionSlicingDiscriminatorBuilder) AddExtension(v Extension) *ElementDefinitionSlicingDiscriminatorBuilder {
+	b.elementDefinitionSlicingDiscriminator.Extension = append(b.elementDefinitionSlicingDiscriminator.Extension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ElementDefinitionSlicingDiscriminatorBuilder) SetType(v DiscriminatorType) *ElementDefinitionSlicingDiscriminatorBuilder {
+	b.elementDefinitionSlicingDiscriminator.Type = &v
+	return b
+}
+
+// SetPath sets the Path field.
+func (b *ElementDefinitionSlicingDiscriminatorBuilder) SetPath(v string) *ElementDefinitionSlicingDiscriminatorBuilder {
+	b.elementDefinitionSlicingDiscriminator.Path = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionSlicingDiscriminatorBuilder) SetTypeExt(v Element) *ElementDefinitionSlicingDiscriminatorBuilder {
+	b.elementDefinitionSlicingDiscriminator.TypeExt = &v
+	return b
+}
+
+// SetPathExt sets the extensions carried by Path, serialized as
+// "_path".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionSlicingDiscriminatorBuilder) SetPathExt(v Element) *ElementDefinitionSlicingDiscriminatorBuilder {
+	b.elementDefinitionSlicingDiscriminator.PathExt = &v
+	return b
+}
+
+// =============================================================================
+// ElementDefinitionType - Fluent Builder
+// =============================================================================
+
+// ElementDefinitionTypeBuilder provides a fluent API for constructing ElementDefinitionType values.
+type ElementDefinitionTypeBuilder struct {
+	elementDefinitionType *ElementDefinitionType
+}
+
+// NewElementDefinitionTypeBuilder creates a new ElementDefinitionTypeBuilder.
+func NewElementDefinitionTypeBuilder() *ElementDefinitionTypeBuilder {
+	return &ElementDefinitionTypeBuilder{
+		elementDefinitionType: &ElementDefinitionType{},
+	}
+}
+
+// Build returns the constructed ElementDefinitionType.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ElementDefinitionTypeBuilder) Build() ElementDefinitionType {
+	return *b.elementDefinitionType
+}
+
+// SetId sets the Id field.
+func (b *ElementDefinitionTypeBuilder) SetId(v string) *ElementDefinitionTypeBuilder {
+	b.elementDefinitionType.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ElementDefinitionTypeBuilder) AddExtension(v Extension) *ElementDefinitionTypeBuilder {
+	b.elementDefinitionType.Extension = append(b.elementDefinitionType.Extension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *ElementDefinitionTypeBuilder) SetCode(v string) *ElementDefinitionTypeBuilder {
+	b.elementDefinitionType.Code = &v
+	return b
+}
+
+// AddProfile adds a Profile element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ElementDefinitionTypeBuilder) AddProfile(v string) *ElementDefinitionTypeBuilder {
+	b.elementDefinitionType.Profile = append(b.elementDefinitionType.Profile, &v)
+	return b
+}
+
+// AddTargetProfile adds a TargetProfile element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ElementDefinitionTypeBuilder) AddTargetProfile(v string) *ElementDefinitionTypeBuilder {
+	b.elementDefinitionType.TargetProfile = append(b.elementDefinitionType.TargetProfile, &v)
+	return b
+}
+
+// AddAggregation adds a Aggregation element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ElementDefinitionTypeBuilder) AddAggregation(v AggregationMode) *ElementDefinitionTypeBuilder {
+	b.elementDefinitionType.Aggregation = append(b.elementDefinitionType.Aggregation, &v)
+	return b
+}
+
+// SetVersioning sets the Versioning field.
+func (b *ElementDefinitionTypeBuilder) SetVersioning(v ReferenceVersionRules) *ElementDefinitionTypeBuilder {
+	b.elementDefinitionType.Versioning = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionTypeBuilder) SetCodeExt(v Element) *ElementDefinitionTypeBuilder {
+	b.elementDefinitionType.CodeExt = &v
+	return b
+}
+
+// AddProfileExt appends an extension slot for Profile.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ElementDefinitionTypeBuilder) AddProfileExt(v *Element) *ElementDefinitionTypeBuilder {
+	b.elementDefinitionType.ProfileExt = append(b.elementDefinitionType.ProfileExt, v)
+	return b
+}
+
+// AddTargetProfileExt appends an extension slot for TargetProfile.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ElementDefinitionTypeBuilder) AddTargetProfileExt(v *Element) *ElementDefinitionTypeBuilder {
+	b.elementDefinitionType.TargetProfileExt = append(b.elementDefinitionType.TargetProfileExt, v)
+	return b
+}
+
+// AddAggregationExt appends an extension slot for Aggregation.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ElementDefinitionTypeBuilder) AddAggregationExt(v *Element) *ElementDefinitionTypeBuilder {
+	b.elementDefinitionType.AggregationExt = append(b.elementDefinitionType.AggregationExt, v)
+	return b
+}
+
+// SetVersioningExt sets the extensions carried by Versioning, serialized as
+// "_versioning".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ElementDefinitionTypeBuilder) SetVersioningExt(v Element) *ElementDefinitionTypeBuilder {
+	b.elementDefinitionType.VersioningExt = &v
+	return b
+}
+
+// =============================================================================
+// SubstanceAmountReferenceRange - Fluent Builder
+// =============================================================================
+
+// SubstanceAmountReferenceRangeBuilder provides a fluent API for constructing SubstanceAmountReferenceRange values.
+type SubstanceAmountReferenceRangeBuilder struct {
+	substanceAmountReferenceRange *SubstanceAmountReferenceRange
+}
+
+// NewSubstanceAmountReferenceRangeBuilder creates a new SubstanceAmountReferenceRangeBuilder.
+func NewSubstanceAmountReferenceRangeBuilder() *SubstanceAmountReferenceRangeBuilder {
+	return &SubstanceAmountReferenceRangeBuilder{
+		substanceAmountReferenceRange: &SubstanceAmountReferenceRange{},
+	}
+}
+
+// Build returns the constructed SubstanceAmountReferenceRange.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SubstanceAmountReferenceRangeBuilder) Build() SubstanceAmountReferenceRange {
+	return *b.substanceAmountReferenceRange
+}
+
+// SetId sets the Id field.
+func (b *SubstanceAmountReferenceRangeBuilder) SetId(v string) *SubstanceAmountReferenceRangeBuilder {
+	b.substanceAmountReferenceRange.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *SubstanceAmountReferenceRangeBuilder) AddExtension(v Extension) *SubstanceAmountReferenceRangeBuilder {
+	b.substanceAmountReferenceRange.Extension = append(b.substanceAmountReferenceRange.Extension, v)
+	return b
+}
+
+// SetLowLimit sets the LowLimit field.
+func (b *SubstanceAmountReferenceRangeBuilder) SetLowLimit(v Quantity) *SubstanceAmountReferenceRangeBuilder {
+	b.substanceAmountReferenceRange.LowLimit = &v
+	return b
+}
+
+// SetHighLimit sets the HighLimit field.
+func (b *SubstanceAmountReferenceRangeBuilder) SetHighLimit(v Quantity) *SubstanceAmountReferenceRangeBuilder {
+	b.substanceAmountReferenceRange.HighLimit = &v
+	return b
+}
+
+// =============================================================================
+// TimingRepeat - Fluent Builder
+// =============================================================================
+
+// TimingRepeatBuilder provides a fluent API for constructing TimingRepeat values.
+type TimingRepeatBuilder struct {
+	timingRepeat *TimingRepeat
+}
+
+// NewTimingRepeatBuilder creates a new TimingRepeatBuilder.
+func NewTimingRepeatBuilder() *TimingRepeatBuilder {
+	return &TimingRepeatBuilder{
+		timingRepeat: &TimingRepeat{},
+	}
+}
+
+// Build returns the constructed TimingRepeat.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TimingRepeatBuilder) Build() TimingRepeat {
+	return *b.timingRepeat
+}
+
+// SetId sets the Id field.
+func (b *TimingRepeatBuilder) SetId(v string) *TimingRepeatBuilder {
+	b.timingRepeat.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *TimingRepeatBuilder) AddExtension(v Extension) *TimingRepeatBuilder {
+	b.timingRepeat.Extension = append(b.timingRepeat.Extension, v)
+	return b
+}
+
+// SetBoundsDuration sets Bounds[x] to its BoundsDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TimingRepeatBuilder) SetBoundsDuration(v Duration) *TimingRepeatBuilder {
+	b.clearBounds()
+	b.timingRepeat.BoundsDuration = &v
+	return b
+}
+
+// SetBoundsRange sets Bounds[x] to its BoundsRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TimingRepeatBuilder) SetBoundsRange(v Range) *TimingRepeatBuilder {
+	b.clearBounds()
+	b.timingRepeat.BoundsRange = &v
+	return b
+}
+
+// SetBoundsPeriod sets Bounds[x] to its BoundsPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *TimingRepeatBuilder) SetBoundsPeriod(v Period) *TimingRepeatBuilder {
+	b.clearBounds()
+	b.timingRepeat.BoundsPeriod = &v
+	return b
+}
+
+// SetCount sets the Count field.
+func (b *TimingRepeatBuilder) SetCount(v uint32) *TimingRepeatBuilder {
+	b.timingRepeat.Count = &v
+	return b
+}
+
+// SetCountMax sets the CountMax field.
+func (b *TimingRepeatBuilder) SetCountMax(v uint32) *TimingRepeatBuilder {
+	b.timingRepeat.CountMax = &v
+	return b
+}
+
+// SetDuration sets the Duration field.
+func (b *TimingRepeatBuilder) SetDuration(v Decimal) *TimingRepeatBuilder {
+	b.timingRepeat.Duration = &v
+	return b
+}
+
+// SetDurationMax sets the DurationMax field.
+func (b *TimingRepeatBuilder) SetDurationMax(v Decimal) *TimingRepeatBuilder {
+	b.timingRepeat.DurationMax = &v
+	return b
+}
+
+// SetDurationUnit sets the DurationUnit field.
+func (b *TimingRepeatBuilder) SetDurationUnit(v UnitsOfTime) *TimingRepeatBuilder {
+	b.timingRepeat.DurationUnit = &v
+	return b
+}
+
+// SetFrequency sets the Frequency field.
+func (b *TimingRepeatBuilder) SetFrequency(v uint32) *TimingRepeatBuilder {
+	b.timingRepeat.Frequency = &v
+	return b
+}
+
+// SetFrequencyMax sets the FrequencyMax field.
+func (b *TimingRepeatBuilder) SetFrequencyMax(v uint32) *TimingRepeatBuilder {
+	b.timingRepeat.FrequencyMax = &v
+	return b
+}
+
+// SetPeriod sets the Period field.
+func (b *TimingRepeatBuilder) SetPeriod(v Decimal) *TimingRepeatBuilder {
+	b.timingRepeat.Period = &v
+	return b
+}
+
+// SetPeriodMax sets the PeriodMax field.
+func (b *TimingRepeatBuilder) SetPeriodMax(v Decimal) *TimingRepeatBuilder {
+	b.timingRepeat.PeriodMax = &v
+	return b
+}
+
+// SetPeriodUnit sets the PeriodUnit field.
+func (b *TimingRepeatBuilder) SetPeriodUnit(v UnitsOfTime) *TimingRepeatBuilder {
+	b.timingRepeat.PeriodUnit = &v
+	return b
+}
+
+// AddDayOfWeek adds a DayOfWeek element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *TimingRepeatBuilder) AddDayOfWeek(v DaysOfWeek) *TimingRepeatBuilder {
+	b.timingRepeat.DayOfWeek = append(b.timingRepeat.DayOfWeek, &v)
+	return b
+}
+
+// AddTimeOfDay adds a TimeOfDay element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *TimingRepeatBuilder) AddTimeOfDay(v string) *TimingRepeatBuilder {
+	b.timingRepeat.TimeOfDay = append(b.timingRepeat.TimeOfDay, &v)
+	return b
+}
+
+// AddWhen adds a When element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *TimingRepeatBuilder) AddWhen(v EventTiming) *TimingRepeatBuilder {
+	b.timingRepeat.When = append(b.timingRepeat.When, &v)
+	return b
+}
+
+// SetOffset sets the Offset field.
+func (b *TimingRepeatBuilder) SetOffset(v uint32) *TimingRepeatBuilder {
+	b.timingRepeat.Offset = &v
+	return b
+}
+
+// SetCountExt sets the extensions carried by Count, serialized as
+// "_count".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TimingRepeatBuilder) SetCountExt(v Element) *TimingRepeatBuilder {
+	b.timingRepeat.CountExt = &v
+	return b
+}
+
+// SetCountMaxExt sets the extensions carried by CountMax, serialized as
+// "_countMax".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TimingRepeatBuilder) SetCountMaxExt(v Element) *TimingRepeatBuilder {
+	b.timingRepeat.CountMaxExt = &v
+	return b
+}
+
+// SetDurationExt sets the extensions carried by Duration, serialized as
+// "_duration".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TimingRepeatBuilder) SetDurationExt(v Element) *TimingRepeatBuilder {
+	b.timingRepeat.DurationExt = &v
+	return b
+}
+
+// SetDurationMaxExt sets the extensions carried by DurationMax, serialized as
+// "_durationMax".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TimingRepeatBuilder) SetDurationMaxExt(v Element) *TimingRepeatBuilder {
+	b.timingRepeat.DurationMaxExt = &v
+	return b
+}
+
+// SetDurationUnitExt sets the extensions carried by DurationUnit, serialized as
+// "_durationUnit".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TimingRepeatBuilder) SetDurationUnitExt(v Element) *TimingRepeatBuilder {
+	b.timingRepeat.DurationUnitExt = &v
+	return b
+}
+
+// SetFrequencyExt sets the extensions carried by Frequency, serialized as
+// "_frequency".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TimingRepeatBuilder) SetFrequencyExt(v Element) *TimingRepeatBuilder {
+	b.timingRepeat.FrequencyExt = &v
+	return b
+}
+
+// SetFrequencyMaxExt sets the extensions carried by FrequencyMax, serialized as
+// "_frequencyMax".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TimingRepeatBuilder) SetFrequencyMaxExt(v Element) *TimingRepeatBuilder {
+	b.timingRepeat.FrequencyMaxExt = &v
+	return b
+}
+
+// SetPeriodExt sets the extensions carried by Period, serialized as
+// "_period".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TimingRepeatBuilder) SetPeriodExt(v Element) *TimingRepeatBuilder {
+	b.timingRepeat.PeriodExt = &v
+	return b
+}
+
+// SetPeriodMaxExt sets the extensions carried by PeriodMax, serialized as
+// "_periodMax".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TimingRepeatBuilder) SetPeriodMaxExt(v Element) *TimingRepeatBuilder {
+	b.timingRepeat.PeriodMaxExt = &v
+	return b
+}
+
+// SetPeriodUnitExt sets the extensions carried by PeriodUnit, serialized as
+// "_periodUnit".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TimingRepeatBuilder) SetPeriodUnitExt(v Element) *TimingRepeatBuilder {
+	b.timingRepeat.PeriodUnitExt = &v
+	return b
+}
+
+// AddDayOfWeekExt appends an extension slot for DayOfWeek.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *TimingRepeatBuilder) AddDayOfWeekExt(v *Element) *TimingRepeatBuilder {
+	b.timingRepeat.DayOfWeekExt = append(b.timingRepeat.DayOfWeekExt, v)
+	return b
+}
+
+// AddTimeOfDayExt appends an extension slot for TimeOfDay.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *TimingRepeatBuilder) AddTimeOfDayExt(v *Element) *TimingRepeatBuilder {
+	b.timingRepeat.TimeOfDayExt = append(b.timingRepeat.TimeOfDayExt, v)
+	return b
+}
+
+// AddWhenExt appends an extension slot for When.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *TimingRepeatBuilder) AddWhenExt(v *Element) *TimingRepeatBuilder {
+	b.timingRepeat.WhenExt = append(b.timingRepeat.WhenExt, v)
+	return b
+}
+
+// SetOffsetExt sets the extensions carried by Offset, serialized as
+// "_offset".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *TimingRepeatBuilder) SetOffsetExt(v Element) *TimingRepeatBuilder {
+	b.timingRepeat.OffsetExt = &v
+	return b
+}
+
+// clearBounds unsets every variant of Bounds[x], including the
+// _field companions of the primitive ones.
+func (b *TimingRepeatBuilder) clearBounds() {
+	b.timingRepeat.BoundsDuration = nil
+	b.timingRepeat.BoundsRange = nil
+	b.timingRepeat.BoundsPeriod = nil
 }
 
 // =============================================================================

@@ -480,3 +480,53 @@ func (b *ResearchSubjectBuilder) SetConsent(v Reference) *ResearchSubjectBuilder
 	b.researchSubject.Consent = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchSubjectBuilder) SetImplicitRulesExt(v Element) *ResearchSubjectBuilder {
+	b.researchSubject.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchSubjectBuilder) SetLanguageExt(v Element) *ResearchSubjectBuilder {
+	b.researchSubject.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchSubjectBuilder) SetStatusExt(v Element) *ResearchSubjectBuilder {
+	b.researchSubject.StatusExt = &v
+	return b
+}
+
+// SetAssignedArmExt sets the extensions carried by AssignedArm, serialized as
+// "_assignedArm".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchSubjectBuilder) SetAssignedArmExt(v Element) *ResearchSubjectBuilder {
+	b.researchSubject.AssignedArmExt = &v
+	return b
+}
+
+// SetActualArmExt sets the extensions carried by ActualArm, serialized as
+// "_actualArm".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ResearchSubjectBuilder) SetActualArmExt(v Element) *ResearchSubjectBuilder {
+	b.researchSubject.ActualArmExt = &v
+	return b
+}

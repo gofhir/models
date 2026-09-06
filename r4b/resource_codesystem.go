@@ -1569,3 +1569,819 @@ func (b *CodeSystemBuilder) AddConcept(v CodeSystemConcept) *CodeSystemBuilder {
 	b.codeSystem.Concept = append(b.codeSystem.Concept, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemBuilder) SetImplicitRulesExt(v Element) *CodeSystemBuilder {
+	b.codeSystem.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemBuilder) SetLanguageExt(v Element) *CodeSystemBuilder {
+	b.codeSystem.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemBuilder) SetUrlExt(v Element) *CodeSystemBuilder {
+	b.codeSystem.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemBuilder) SetVersionExt(v Element) *CodeSystemBuilder {
+	b.codeSystem.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemBuilder) SetNameExt(v Element) *CodeSystemBuilder {
+	b.codeSystem.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemBuilder) SetTitleExt(v Element) *CodeSystemBuilder {
+	b.codeSystem.TitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemBuilder) SetStatusExt(v Element) *CodeSystemBuilder {
+	b.codeSystem.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemBuilder) SetExperimentalExt(v Element) *CodeSystemBuilder {
+	b.codeSystem.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemBuilder) SetDateExt(v Element) *CodeSystemBuilder {
+	b.codeSystem.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemBuilder) SetPublisherExt(v Element) *CodeSystemBuilder {
+	b.codeSystem.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemBuilder) SetDescriptionExt(v Element) *CodeSystemBuilder {
+	b.codeSystem.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemBuilder) SetPurposeExt(v Element) *CodeSystemBuilder {
+	b.codeSystem.PurposeExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemBuilder) SetCopyrightExt(v Element) *CodeSystemBuilder {
+	b.codeSystem.CopyrightExt = &v
+	return b
+}
+
+// SetCaseSensitiveExt sets the extensions carried by CaseSensitive, serialized as
+// "_caseSensitive".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemBuilder) SetCaseSensitiveExt(v Element) *CodeSystemBuilder {
+	b.codeSystem.CaseSensitiveExt = &v
+	return b
+}
+
+// SetValueSetExt sets the extensions carried by ValueSet, serialized as
+// "_valueSet".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemBuilder) SetValueSetExt(v Element) *CodeSystemBuilder {
+	b.codeSystem.ValueSetExt = &v
+	return b
+}
+
+// SetHierarchyMeaningExt sets the extensions carried by HierarchyMeaning, serialized as
+// "_hierarchyMeaning".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemBuilder) SetHierarchyMeaningExt(v Element) *CodeSystemBuilder {
+	b.codeSystem.HierarchyMeaningExt = &v
+	return b
+}
+
+// SetCompositionalExt sets the extensions carried by Compositional, serialized as
+// "_compositional".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemBuilder) SetCompositionalExt(v Element) *CodeSystemBuilder {
+	b.codeSystem.CompositionalExt = &v
+	return b
+}
+
+// SetVersionNeededExt sets the extensions carried by VersionNeeded, serialized as
+// "_versionNeeded".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemBuilder) SetVersionNeededExt(v Element) *CodeSystemBuilder {
+	b.codeSystem.VersionNeededExt = &v
+	return b
+}
+
+// SetContentExt sets the extensions carried by Content, serialized as
+// "_content".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemBuilder) SetContentExt(v Element) *CodeSystemBuilder {
+	b.codeSystem.ContentExt = &v
+	return b
+}
+
+// SetSupplementsExt sets the extensions carried by Supplements, serialized as
+// "_supplements".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemBuilder) SetSupplementsExt(v Element) *CodeSystemBuilder {
+	b.codeSystem.SupplementsExt = &v
+	return b
+}
+
+// SetCountExt sets the extensions carried by Count, serialized as
+// "_count".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemBuilder) SetCountExt(v Element) *CodeSystemBuilder {
+	b.codeSystem.CountExt = &v
+	return b
+}
+
+// =============================================================================
+// CodeSystemConcept - Fluent Builder
+// =============================================================================
+
+// CodeSystemConceptBuilder provides a fluent API for constructing CodeSystemConcept values.
+type CodeSystemConceptBuilder struct {
+	codeSystemConcept *CodeSystemConcept
+}
+
+// NewCodeSystemConceptBuilder creates a new CodeSystemConceptBuilder.
+func NewCodeSystemConceptBuilder() *CodeSystemConceptBuilder {
+	return &CodeSystemConceptBuilder{
+		codeSystemConcept: &CodeSystemConcept{},
+	}
+}
+
+// Build returns the constructed CodeSystemConcept.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CodeSystemConceptBuilder) Build() CodeSystemConcept {
+	return *b.codeSystemConcept
+}
+
+// SetId sets the Id field.
+func (b *CodeSystemConceptBuilder) SetId(v string) *CodeSystemConceptBuilder {
+	b.codeSystemConcept.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CodeSystemConceptBuilder) AddExtension(v Extension) *CodeSystemConceptBuilder {
+	b.codeSystemConcept.Extension = append(b.codeSystemConcept.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CodeSystemConceptBuilder) AddModifierExtension(v Extension) *CodeSystemConceptBuilder {
+	b.codeSystemConcept.ModifierExtension = append(b.codeSystemConcept.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *CodeSystemConceptBuilder) SetCode(v string) *CodeSystemConceptBuilder {
+	b.codeSystemConcept.Code = &v
+	return b
+}
+
+// SetDisplay sets the Display field.
+func (b *CodeSystemConceptBuilder) SetDisplay(v string) *CodeSystemConceptBuilder {
+	b.codeSystemConcept.Display = &v
+	return b
+}
+
+// SetDefinition sets the Definition field.
+func (b *CodeSystemConceptBuilder) SetDefinition(v string) *CodeSystemConceptBuilder {
+	b.codeSystemConcept.Definition = &v
+	return b
+}
+
+// AddDesignation adds a Designation element.
+func (b *CodeSystemConceptBuilder) AddDesignation(v CodeSystemConceptDesignation) *CodeSystemConceptBuilder {
+	b.codeSystemConcept.Designation = append(b.codeSystemConcept.Designation, v)
+	return b
+}
+
+// AddProperty adds a Property element.
+func (b *CodeSystemConceptBuilder) AddProperty(v CodeSystemConceptProperty) *CodeSystemConceptBuilder {
+	b.codeSystemConcept.Property = append(b.codeSystemConcept.Property, v)
+	return b
+}
+
+// AddConcept adds a Concept element.
+func (b *CodeSystemConceptBuilder) AddConcept(v CodeSystemConcept) *CodeSystemConceptBuilder {
+	b.codeSystemConcept.Concept = append(b.codeSystemConcept.Concept, v)
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemConceptBuilder) SetCodeExt(v Element) *CodeSystemConceptBuilder {
+	b.codeSystemConcept.CodeExt = &v
+	return b
+}
+
+// SetDisplayExt sets the extensions carried by Display, serialized as
+// "_display".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemConceptBuilder) SetDisplayExt(v Element) *CodeSystemConceptBuilder {
+	b.codeSystemConcept.DisplayExt = &v
+	return b
+}
+
+// SetDefinitionExt sets the extensions carried by Definition, serialized as
+// "_definition".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemConceptBuilder) SetDefinitionExt(v Element) *CodeSystemConceptBuilder {
+	b.codeSystemConcept.DefinitionExt = &v
+	return b
+}
+
+// =============================================================================
+// CodeSystemConceptDesignation - Fluent Builder
+// =============================================================================
+
+// CodeSystemConceptDesignationBuilder provides a fluent API for constructing CodeSystemConceptDesignation values.
+type CodeSystemConceptDesignationBuilder struct {
+	codeSystemConceptDesignation *CodeSystemConceptDesignation
+}
+
+// NewCodeSystemConceptDesignationBuilder creates a new CodeSystemConceptDesignationBuilder.
+func NewCodeSystemConceptDesignationBuilder() *CodeSystemConceptDesignationBuilder {
+	return &CodeSystemConceptDesignationBuilder{
+		codeSystemConceptDesignation: &CodeSystemConceptDesignation{},
+	}
+}
+
+// Build returns the constructed CodeSystemConceptDesignation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CodeSystemConceptDesignationBuilder) Build() CodeSystemConceptDesignation {
+	return *b.codeSystemConceptDesignation
+}
+
+// SetId sets the Id field.
+func (b *CodeSystemConceptDesignationBuilder) SetId(v string) *CodeSystemConceptDesignationBuilder {
+	b.codeSystemConceptDesignation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CodeSystemConceptDesignationBuilder) AddExtension(v Extension) *CodeSystemConceptDesignationBuilder {
+	b.codeSystemConceptDesignation.Extension = append(b.codeSystemConceptDesignation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CodeSystemConceptDesignationBuilder) AddModifierExtension(v Extension) *CodeSystemConceptDesignationBuilder {
+	b.codeSystemConceptDesignation.ModifierExtension = append(b.codeSystemConceptDesignation.ModifierExtension, v)
+	return b
+}
+
+// SetLanguage sets the Language field.
+func (b *CodeSystemConceptDesignationBuilder) SetLanguage(v string) *CodeSystemConceptDesignationBuilder {
+	b.codeSystemConceptDesignation.Language = &v
+	return b
+}
+
+// SetUse sets the Use field.
+func (b *CodeSystemConceptDesignationBuilder) SetUse(v Coding) *CodeSystemConceptDesignationBuilder {
+	b.codeSystemConceptDesignation.Use = &v
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *CodeSystemConceptDesignationBuilder) SetValue(v string) *CodeSystemConceptDesignationBuilder {
+	b.codeSystemConceptDesignation.Value = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemConceptDesignationBuilder) SetLanguageExt(v Element) *CodeSystemConceptDesignationBuilder {
+	b.codeSystemConceptDesignation.LanguageExt = &v
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemConceptDesignationBuilder) SetValueExt(v Element) *CodeSystemConceptDesignationBuilder {
+	b.codeSystemConceptDesignation.ValueExt = &v
+	return b
+}
+
+// =============================================================================
+// CodeSystemConceptProperty - Fluent Builder
+// =============================================================================
+
+// CodeSystemConceptPropertyBuilder provides a fluent API for constructing CodeSystemConceptProperty values.
+type CodeSystemConceptPropertyBuilder struct {
+	codeSystemConceptProperty *CodeSystemConceptProperty
+}
+
+// NewCodeSystemConceptPropertyBuilder creates a new CodeSystemConceptPropertyBuilder.
+func NewCodeSystemConceptPropertyBuilder() *CodeSystemConceptPropertyBuilder {
+	return &CodeSystemConceptPropertyBuilder{
+		codeSystemConceptProperty: &CodeSystemConceptProperty{},
+	}
+}
+
+// Build returns the constructed CodeSystemConceptProperty.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CodeSystemConceptPropertyBuilder) Build() CodeSystemConceptProperty {
+	return *b.codeSystemConceptProperty
+}
+
+// SetId sets the Id field.
+func (b *CodeSystemConceptPropertyBuilder) SetId(v string) *CodeSystemConceptPropertyBuilder {
+	b.codeSystemConceptProperty.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CodeSystemConceptPropertyBuilder) AddExtension(v Extension) *CodeSystemConceptPropertyBuilder {
+	b.codeSystemConceptProperty.Extension = append(b.codeSystemConceptProperty.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CodeSystemConceptPropertyBuilder) AddModifierExtension(v Extension) *CodeSystemConceptPropertyBuilder {
+	b.codeSystemConceptProperty.ModifierExtension = append(b.codeSystemConceptProperty.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *CodeSystemConceptPropertyBuilder) SetCode(v string) *CodeSystemConceptPropertyBuilder {
+	b.codeSystemConceptProperty.Code = &v
+	return b
+}
+
+// SetValueCode sets Value[x] to its ValueCode variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CodeSystemConceptPropertyBuilder) SetValueCode(v string) *CodeSystemConceptPropertyBuilder {
+	b.clearValue()
+	b.codeSystemConceptProperty.ValueCode = &v
+	return b
+}
+
+// SetValueCodeExt sets the ValueCodeExt field.
+func (b *CodeSystemConceptPropertyBuilder) SetValueCodeExt(v Element) *CodeSystemConceptPropertyBuilder {
+	b.codeSystemConceptProperty.ValueCodeExt = &v
+	return b
+}
+
+// SetValueCoding sets Value[x] to its ValueCoding variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CodeSystemConceptPropertyBuilder) SetValueCoding(v Coding) *CodeSystemConceptPropertyBuilder {
+	b.clearValue()
+	b.codeSystemConceptProperty.ValueCoding = &v
+	return b
+}
+
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CodeSystemConceptPropertyBuilder) SetValueString(v string) *CodeSystemConceptPropertyBuilder {
+	b.clearValue()
+	b.codeSystemConceptProperty.ValueString = &v
+	return b
+}
+
+// SetValueStringExt sets the ValueStringExt field.
+func (b *CodeSystemConceptPropertyBuilder) SetValueStringExt(v Element) *CodeSystemConceptPropertyBuilder {
+	b.codeSystemConceptProperty.ValueStringExt = &v
+	return b
+}
+
+// SetValueInteger sets Value[x] to its ValueInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CodeSystemConceptPropertyBuilder) SetValueInteger(v int) *CodeSystemConceptPropertyBuilder {
+	b.clearValue()
+	b.codeSystemConceptProperty.ValueInteger = &v
+	return b
+}
+
+// SetValueIntegerExt sets the ValueIntegerExt field.
+func (b *CodeSystemConceptPropertyBuilder) SetValueIntegerExt(v Element) *CodeSystemConceptPropertyBuilder {
+	b.codeSystemConceptProperty.ValueIntegerExt = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CodeSystemConceptPropertyBuilder) SetValueBoolean(v bool) *CodeSystemConceptPropertyBuilder {
+	b.clearValue()
+	b.codeSystemConceptProperty.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *CodeSystemConceptPropertyBuilder) SetValueBooleanExt(v Element) *CodeSystemConceptPropertyBuilder {
+	b.codeSystemConceptProperty.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueDateTime sets Value[x] to its ValueDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CodeSystemConceptPropertyBuilder) SetValueDateTime(v string) *CodeSystemConceptPropertyBuilder {
+	b.clearValue()
+	b.codeSystemConceptProperty.ValueDateTime = &v
+	return b
+}
+
+// SetValueDateTimeExt sets the ValueDateTimeExt field.
+func (b *CodeSystemConceptPropertyBuilder) SetValueDateTimeExt(v Element) *CodeSystemConceptPropertyBuilder {
+	b.codeSystemConceptProperty.ValueDateTimeExt = &v
+	return b
+}
+
+// SetValueDecimal sets Value[x] to its ValueDecimal variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *CodeSystemConceptPropertyBuilder) SetValueDecimal(v Decimal) *CodeSystemConceptPropertyBuilder {
+	b.clearValue()
+	b.codeSystemConceptProperty.ValueDecimal = &v
+	return b
+}
+
+// SetValueDecimalExt sets the ValueDecimalExt field.
+func (b *CodeSystemConceptPropertyBuilder) SetValueDecimalExt(v Element) *CodeSystemConceptPropertyBuilder {
+	b.codeSystemConceptProperty.ValueDecimalExt = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemConceptPropertyBuilder) SetCodeExt(v Element) *CodeSystemConceptPropertyBuilder {
+	b.codeSystemConceptProperty.CodeExt = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *CodeSystemConceptPropertyBuilder) clearValue() {
+	b.codeSystemConceptProperty.ValueCode = nil
+	b.codeSystemConceptProperty.ValueCoding = nil
+	b.codeSystemConceptProperty.ValueString = nil
+	b.codeSystemConceptProperty.ValueStringExt = nil
+	b.codeSystemConceptProperty.ValueInteger = nil
+	b.codeSystemConceptProperty.ValueIntegerExt = nil
+	b.codeSystemConceptProperty.ValueBoolean = nil
+	b.codeSystemConceptProperty.ValueBooleanExt = nil
+	b.codeSystemConceptProperty.ValueDateTime = nil
+	b.codeSystemConceptProperty.ValueDateTimeExt = nil
+	b.codeSystemConceptProperty.ValueDecimal = nil
+	b.codeSystemConceptProperty.ValueDecimalExt = nil
+}
+
+// =============================================================================
+// CodeSystemFilter - Fluent Builder
+// =============================================================================
+
+// CodeSystemFilterBuilder provides a fluent API for constructing CodeSystemFilter values.
+type CodeSystemFilterBuilder struct {
+	codeSystemFilter *CodeSystemFilter
+}
+
+// NewCodeSystemFilterBuilder creates a new CodeSystemFilterBuilder.
+func NewCodeSystemFilterBuilder() *CodeSystemFilterBuilder {
+	return &CodeSystemFilterBuilder{
+		codeSystemFilter: &CodeSystemFilter{},
+	}
+}
+
+// Build returns the constructed CodeSystemFilter.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CodeSystemFilterBuilder) Build() CodeSystemFilter {
+	return *b.codeSystemFilter
+}
+
+// SetId sets the Id field.
+func (b *CodeSystemFilterBuilder) SetId(v string) *CodeSystemFilterBuilder {
+	b.codeSystemFilter.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CodeSystemFilterBuilder) AddExtension(v Extension) *CodeSystemFilterBuilder {
+	b.codeSystemFilter.Extension = append(b.codeSystemFilter.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CodeSystemFilterBuilder) AddModifierExtension(v Extension) *CodeSystemFilterBuilder {
+	b.codeSystemFilter.ModifierExtension = append(b.codeSystemFilter.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *CodeSystemFilterBuilder) SetCode(v string) *CodeSystemFilterBuilder {
+	b.codeSystemFilter.Code = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *CodeSystemFilterBuilder) SetDescription(v string) *CodeSystemFilterBuilder {
+	b.codeSystemFilter.Description = &v
+	return b
+}
+
+// AddOperator adds a Operator element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *CodeSystemFilterBuilder) AddOperator(v FilterOperator) *CodeSystemFilterBuilder {
+	b.codeSystemFilter.Operator = append(b.codeSystemFilter.Operator, &v)
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *CodeSystemFilterBuilder) SetValue(v string) *CodeSystemFilterBuilder {
+	b.codeSystemFilter.Value = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemFilterBuilder) SetCodeExt(v Element) *CodeSystemFilterBuilder {
+	b.codeSystemFilter.CodeExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemFilterBuilder) SetDescriptionExt(v Element) *CodeSystemFilterBuilder {
+	b.codeSystemFilter.DescriptionExt = &v
+	return b
+}
+
+// AddOperatorExt appends an extension slot for Operator.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *CodeSystemFilterBuilder) AddOperatorExt(v *Element) *CodeSystemFilterBuilder {
+	b.codeSystemFilter.OperatorExt = append(b.codeSystemFilter.OperatorExt, v)
+	return b
+}
+
+// SetValueExt sets the extensions carried by Value, serialized as
+// "_value".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemFilterBuilder) SetValueExt(v Element) *CodeSystemFilterBuilder {
+	b.codeSystemFilter.ValueExt = &v
+	return b
+}
+
+// =============================================================================
+// CodeSystemProperty - Fluent Builder
+// =============================================================================
+
+// CodeSystemPropertyBuilder provides a fluent API for constructing CodeSystemProperty values.
+type CodeSystemPropertyBuilder struct {
+	codeSystemProperty *CodeSystemProperty
+}
+
+// NewCodeSystemPropertyBuilder creates a new CodeSystemPropertyBuilder.
+func NewCodeSystemPropertyBuilder() *CodeSystemPropertyBuilder {
+	return &CodeSystemPropertyBuilder{
+		codeSystemProperty: &CodeSystemProperty{},
+	}
+}
+
+// Build returns the constructed CodeSystemProperty.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CodeSystemPropertyBuilder) Build() CodeSystemProperty {
+	return *b.codeSystemProperty
+}
+
+// SetId sets the Id field.
+func (b *CodeSystemPropertyBuilder) SetId(v string) *CodeSystemPropertyBuilder {
+	b.codeSystemProperty.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CodeSystemPropertyBuilder) AddExtension(v Extension) *CodeSystemPropertyBuilder {
+	b.codeSystemProperty.Extension = append(b.codeSystemProperty.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CodeSystemPropertyBuilder) AddModifierExtension(v Extension) *CodeSystemPropertyBuilder {
+	b.codeSystemProperty.ModifierExtension = append(b.codeSystemProperty.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *CodeSystemPropertyBuilder) SetCode(v string) *CodeSystemPropertyBuilder {
+	b.codeSystemProperty.Code = &v
+	return b
+}
+
+// SetUri sets the Uri field.
+func (b *CodeSystemPropertyBuilder) SetUri(v string) *CodeSystemPropertyBuilder {
+	b.codeSystemProperty.Uri = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *CodeSystemPropertyBuilder) SetDescription(v string) *CodeSystemPropertyBuilder {
+	b.codeSystemProperty.Description = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *CodeSystemPropertyBuilder) SetType(v PropertyType) *CodeSystemPropertyBuilder {
+	b.codeSystemProperty.Type = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemPropertyBuilder) SetCodeExt(v Element) *CodeSystemPropertyBuilder {
+	b.codeSystemProperty.CodeExt = &v
+	return b
+}
+
+// SetUriExt sets the extensions carried by Uri, serialized as
+// "_uri".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemPropertyBuilder) SetUriExt(v Element) *CodeSystemPropertyBuilder {
+	b.codeSystemProperty.UriExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemPropertyBuilder) SetDescriptionExt(v Element) *CodeSystemPropertyBuilder {
+	b.codeSystemProperty.DescriptionExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CodeSystemPropertyBuilder) SetTypeExt(v Element) *CodeSystemPropertyBuilder {
+	b.codeSystemProperty.TypeExt = &v
+	return b
+}

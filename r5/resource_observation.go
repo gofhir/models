@@ -1886,6 +1886,46 @@ func (b *ObservationBuilder) AddComponent(v ObservationComponent) *ObservationBu
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationBuilder) SetImplicitRulesExt(v Element) *ObservationBuilder {
+	b.observation.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationBuilder) SetLanguageExt(v Element) *ObservationBuilder {
+	b.observation.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationBuilder) SetStatusExt(v Element) *ObservationBuilder {
+	b.observation.StatusExt = &v
+	return b
+}
+
+// SetIssuedExt sets the extensions carried by Issued, serialized as
+// "_issued".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationBuilder) SetIssuedExt(v Element) *ObservationBuilder {
+	b.observation.IssuedExt = &v
+	return b
+}
+
 // clearInstantiates unsets every variant of Instantiates[x], including the
 // _field companions of the primitive ones.
 func (b *ObservationBuilder) clearInstantiates() {
@@ -1924,4 +1964,449 @@ func (b *ObservationBuilder) clearValue() {
 	b.observation.ValuePeriod = nil
 	b.observation.ValueAttachment = nil
 	b.observation.ValueReference = nil
+}
+
+// =============================================================================
+// ObservationComponent - Fluent Builder
+// =============================================================================
+
+// ObservationComponentBuilder provides a fluent API for constructing ObservationComponent values.
+type ObservationComponentBuilder struct {
+	observationComponent *ObservationComponent
+}
+
+// NewObservationComponentBuilder creates a new ObservationComponentBuilder.
+func NewObservationComponentBuilder() *ObservationComponentBuilder {
+	return &ObservationComponentBuilder{
+		observationComponent: &ObservationComponent{},
+	}
+}
+
+// Build returns the constructed ObservationComponent.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ObservationComponentBuilder) Build() ObservationComponent {
+	return *b.observationComponent
+}
+
+// SetId sets the Id field.
+func (b *ObservationComponentBuilder) SetId(v string) *ObservationComponentBuilder {
+	b.observationComponent.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ObservationComponentBuilder) AddExtension(v Extension) *ObservationComponentBuilder {
+	b.observationComponent.Extension = append(b.observationComponent.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ObservationComponentBuilder) AddModifierExtension(v Extension) *ObservationComponentBuilder {
+	b.observationComponent.ModifierExtension = append(b.observationComponent.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *ObservationComponentBuilder) SetCode(v CodeableConcept) *ObservationComponentBuilder {
+	b.observationComponent.Code = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ObservationComponentBuilder) SetValueQuantity(v Quantity) *ObservationComponentBuilder {
+	b.clearValue()
+	b.observationComponent.ValueQuantity = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ObservationComponentBuilder) SetValueCodeableConcept(v CodeableConcept) *ObservationComponentBuilder {
+	b.clearValue()
+	b.observationComponent.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ObservationComponentBuilder) SetValueString(v string) *ObservationComponentBuilder {
+	b.clearValue()
+	b.observationComponent.ValueString = &v
+	return b
+}
+
+// SetValueStringExt sets the ValueStringExt field.
+func (b *ObservationComponentBuilder) SetValueStringExt(v Element) *ObservationComponentBuilder {
+	b.observationComponent.ValueStringExt = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ObservationComponentBuilder) SetValueBoolean(v bool) *ObservationComponentBuilder {
+	b.clearValue()
+	b.observationComponent.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *ObservationComponentBuilder) SetValueBooleanExt(v Element) *ObservationComponentBuilder {
+	b.observationComponent.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueInteger sets Value[x] to its ValueInteger variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ObservationComponentBuilder) SetValueInteger(v int) *ObservationComponentBuilder {
+	b.clearValue()
+	b.observationComponent.ValueInteger = &v
+	return b
+}
+
+// SetValueIntegerExt sets the ValueIntegerExt field.
+func (b *ObservationComponentBuilder) SetValueIntegerExt(v Element) *ObservationComponentBuilder {
+	b.observationComponent.ValueIntegerExt = &v
+	return b
+}
+
+// SetValueRange sets Value[x] to its ValueRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ObservationComponentBuilder) SetValueRange(v Range) *ObservationComponentBuilder {
+	b.clearValue()
+	b.observationComponent.ValueRange = &v
+	return b
+}
+
+// SetValueRatio sets Value[x] to its ValueRatio variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ObservationComponentBuilder) SetValueRatio(v Ratio) *ObservationComponentBuilder {
+	b.clearValue()
+	b.observationComponent.ValueRatio = &v
+	return b
+}
+
+// SetValueSampledData sets Value[x] to its ValueSampledData variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ObservationComponentBuilder) SetValueSampledData(v SampledData) *ObservationComponentBuilder {
+	b.clearValue()
+	b.observationComponent.ValueSampledData = &v
+	return b
+}
+
+// SetValueTime sets Value[x] to its ValueTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ObservationComponentBuilder) SetValueTime(v string) *ObservationComponentBuilder {
+	b.clearValue()
+	b.observationComponent.ValueTime = &v
+	return b
+}
+
+// SetValueTimeExt sets the ValueTimeExt field.
+func (b *ObservationComponentBuilder) SetValueTimeExt(v Element) *ObservationComponentBuilder {
+	b.observationComponent.ValueTimeExt = &v
+	return b
+}
+
+// SetValueDateTime sets Value[x] to its ValueDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ObservationComponentBuilder) SetValueDateTime(v string) *ObservationComponentBuilder {
+	b.clearValue()
+	b.observationComponent.ValueDateTime = &v
+	return b
+}
+
+// SetValueDateTimeExt sets the ValueDateTimeExt field.
+func (b *ObservationComponentBuilder) SetValueDateTimeExt(v Element) *ObservationComponentBuilder {
+	b.observationComponent.ValueDateTimeExt = &v
+	return b
+}
+
+// SetValuePeriod sets Value[x] to its ValuePeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ObservationComponentBuilder) SetValuePeriod(v Period) *ObservationComponentBuilder {
+	b.clearValue()
+	b.observationComponent.ValuePeriod = &v
+	return b
+}
+
+// SetValueAttachment sets Value[x] to its ValueAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ObservationComponentBuilder) SetValueAttachment(v Attachment) *ObservationComponentBuilder {
+	b.clearValue()
+	b.observationComponent.ValueAttachment = &v
+	return b
+}
+
+// SetValueReference sets Value[x] to its ValueReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ObservationComponentBuilder) SetValueReference(v Reference) *ObservationComponentBuilder {
+	b.clearValue()
+	b.observationComponent.ValueReference = &v
+	return b
+}
+
+// SetDataAbsentReason sets the DataAbsentReason field.
+func (b *ObservationComponentBuilder) SetDataAbsentReason(v CodeableConcept) *ObservationComponentBuilder {
+	b.observationComponent.DataAbsentReason = &v
+	return b
+}
+
+// AddInterpretation adds a Interpretation element.
+func (b *ObservationComponentBuilder) AddInterpretation(v CodeableConcept) *ObservationComponentBuilder {
+	b.observationComponent.Interpretation = append(b.observationComponent.Interpretation, v)
+	return b
+}
+
+// AddReferenceRange adds a ReferenceRange element.
+func (b *ObservationComponentBuilder) AddReferenceRange(v ObservationReferenceRange) *ObservationComponentBuilder {
+	b.observationComponent.ReferenceRange = append(b.observationComponent.ReferenceRange, v)
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *ObservationComponentBuilder) clearValue() {
+	b.observationComponent.ValueQuantity = nil
+	b.observationComponent.ValueCodeableConcept = nil
+	b.observationComponent.ValueString = nil
+	b.observationComponent.ValueStringExt = nil
+	b.observationComponent.ValueBoolean = nil
+	b.observationComponent.ValueBooleanExt = nil
+	b.observationComponent.ValueInteger = nil
+	b.observationComponent.ValueIntegerExt = nil
+	b.observationComponent.ValueRange = nil
+	b.observationComponent.ValueRatio = nil
+	b.observationComponent.ValueSampledData = nil
+	b.observationComponent.ValueTime = nil
+	b.observationComponent.ValueTimeExt = nil
+	b.observationComponent.ValueDateTime = nil
+	b.observationComponent.ValueDateTimeExt = nil
+	b.observationComponent.ValuePeriod = nil
+	b.observationComponent.ValueAttachment = nil
+	b.observationComponent.ValueReference = nil
+}
+
+// =============================================================================
+// ObservationReferenceRange - Fluent Builder
+// =============================================================================
+
+// ObservationReferenceRangeBuilder provides a fluent API for constructing ObservationReferenceRange values.
+type ObservationReferenceRangeBuilder struct {
+	observationReferenceRange *ObservationReferenceRange
+}
+
+// NewObservationReferenceRangeBuilder creates a new ObservationReferenceRangeBuilder.
+func NewObservationReferenceRangeBuilder() *ObservationReferenceRangeBuilder {
+	return &ObservationReferenceRangeBuilder{
+		observationReferenceRange: &ObservationReferenceRange{},
+	}
+}
+
+// Build returns the constructed ObservationReferenceRange.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ObservationReferenceRangeBuilder) Build() ObservationReferenceRange {
+	return *b.observationReferenceRange
+}
+
+// SetId sets the Id field.
+func (b *ObservationReferenceRangeBuilder) SetId(v string) *ObservationReferenceRangeBuilder {
+	b.observationReferenceRange.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ObservationReferenceRangeBuilder) AddExtension(v Extension) *ObservationReferenceRangeBuilder {
+	b.observationReferenceRange.Extension = append(b.observationReferenceRange.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ObservationReferenceRangeBuilder) AddModifierExtension(v Extension) *ObservationReferenceRangeBuilder {
+	b.observationReferenceRange.ModifierExtension = append(b.observationReferenceRange.ModifierExtension, v)
+	return b
+}
+
+// SetLow sets the Low field.
+func (b *ObservationReferenceRangeBuilder) SetLow(v Quantity) *ObservationReferenceRangeBuilder {
+	b.observationReferenceRange.Low = &v
+	return b
+}
+
+// SetHigh sets the High field.
+func (b *ObservationReferenceRangeBuilder) SetHigh(v Quantity) *ObservationReferenceRangeBuilder {
+	b.observationReferenceRange.High = &v
+	return b
+}
+
+// SetNormalValue sets the NormalValue field.
+func (b *ObservationReferenceRangeBuilder) SetNormalValue(v CodeableConcept) *ObservationReferenceRangeBuilder {
+	b.observationReferenceRange.NormalValue = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ObservationReferenceRangeBuilder) SetType(v CodeableConcept) *ObservationReferenceRangeBuilder {
+	b.observationReferenceRange.Type = &v
+	return b
+}
+
+// AddAppliesTo adds a AppliesTo element.
+func (b *ObservationReferenceRangeBuilder) AddAppliesTo(v CodeableConcept) *ObservationReferenceRangeBuilder {
+	b.observationReferenceRange.AppliesTo = append(b.observationReferenceRange.AppliesTo, v)
+	return b
+}
+
+// SetAge sets the Age field.
+func (b *ObservationReferenceRangeBuilder) SetAge(v Range) *ObservationReferenceRangeBuilder {
+	b.observationReferenceRange.Age = &v
+	return b
+}
+
+// SetText sets the Text field.
+func (b *ObservationReferenceRangeBuilder) SetText(v string) *ObservationReferenceRangeBuilder {
+	b.observationReferenceRange.Text = &v
+	return b
+}
+
+// SetTextExt sets the extensions carried by Text, serialized as
+// "_text".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationReferenceRangeBuilder) SetTextExt(v Element) *ObservationReferenceRangeBuilder {
+	b.observationReferenceRange.TextExt = &v
+	return b
+}
+
+// =============================================================================
+// ObservationTriggeredBy - Fluent Builder
+// =============================================================================
+
+// ObservationTriggeredByBuilder provides a fluent API for constructing ObservationTriggeredBy values.
+type ObservationTriggeredByBuilder struct {
+	observationTriggeredBy *ObservationTriggeredBy
+}
+
+// NewObservationTriggeredByBuilder creates a new ObservationTriggeredByBuilder.
+func NewObservationTriggeredByBuilder() *ObservationTriggeredByBuilder {
+	return &ObservationTriggeredByBuilder{
+		observationTriggeredBy: &ObservationTriggeredBy{},
+	}
+}
+
+// Build returns the constructed ObservationTriggeredBy.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ObservationTriggeredByBuilder) Build() ObservationTriggeredBy {
+	return *b.observationTriggeredBy
+}
+
+// SetId sets the Id field.
+func (b *ObservationTriggeredByBuilder) SetId(v string) *ObservationTriggeredByBuilder {
+	b.observationTriggeredBy.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ObservationTriggeredByBuilder) AddExtension(v Extension) *ObservationTriggeredByBuilder {
+	b.observationTriggeredBy.Extension = append(b.observationTriggeredBy.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ObservationTriggeredByBuilder) AddModifierExtension(v Extension) *ObservationTriggeredByBuilder {
+	b.observationTriggeredBy.ModifierExtension = append(b.observationTriggeredBy.ModifierExtension, v)
+	return b
+}
+
+// SetObservation sets the Observation field.
+func (b *ObservationTriggeredByBuilder) SetObservation(v Reference) *ObservationTriggeredByBuilder {
+	b.observationTriggeredBy.Observation = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ObservationTriggeredByBuilder) SetType(v TriggeredByType) *ObservationTriggeredByBuilder {
+	b.observationTriggeredBy.Type = &v
+	return b
+}
+
+// SetReason sets the Reason field.
+func (b *ObservationTriggeredByBuilder) SetReason(v string) *ObservationTriggeredByBuilder {
+	b.observationTriggeredBy.Reason = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationTriggeredByBuilder) SetTypeExt(v Element) *ObservationTriggeredByBuilder {
+	b.observationTriggeredBy.TypeExt = &v
+	return b
+}
+
+// SetReasonExt sets the extensions carried by Reason, serialized as
+// "_reason".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ObservationTriggeredByBuilder) SetReasonExt(v Element) *ObservationTriggeredByBuilder {
+	b.observationTriggeredBy.ReasonExt = &v
+	return b
 }

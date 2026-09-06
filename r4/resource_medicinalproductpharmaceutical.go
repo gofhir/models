@@ -949,3 +949,297 @@ func (b *MedicinalProductPharmaceuticalBuilder) AddRouteOfAdministration(v Medic
 	b.medicinalProductPharmaceutical.RouteOfAdministration = append(b.medicinalProductPharmaceutical.RouteOfAdministration, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductPharmaceuticalBuilder) SetImplicitRulesExt(v Element) *MedicinalProductPharmaceuticalBuilder {
+	b.medicinalProductPharmaceutical.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductPharmaceuticalBuilder) SetLanguageExt(v Element) *MedicinalProductPharmaceuticalBuilder {
+	b.medicinalProductPharmaceutical.LanguageExt = &v
+	return b
+}
+
+// =============================================================================
+// MedicinalProductPharmaceuticalCharacteristics - Fluent Builder
+// =============================================================================
+
+// MedicinalProductPharmaceuticalCharacteristicsBuilder provides a fluent API for constructing MedicinalProductPharmaceuticalCharacteristics values.
+type MedicinalProductPharmaceuticalCharacteristicsBuilder struct {
+	medicinalProductPharmaceuticalCharacteristics *MedicinalProductPharmaceuticalCharacteristics
+}
+
+// NewMedicinalProductPharmaceuticalCharacteristicsBuilder creates a new MedicinalProductPharmaceuticalCharacteristicsBuilder.
+func NewMedicinalProductPharmaceuticalCharacteristicsBuilder() *MedicinalProductPharmaceuticalCharacteristicsBuilder {
+	return &MedicinalProductPharmaceuticalCharacteristicsBuilder{
+		medicinalProductPharmaceuticalCharacteristics: &MedicinalProductPharmaceuticalCharacteristics{},
+	}
+}
+
+// Build returns the constructed MedicinalProductPharmaceuticalCharacteristics.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicinalProductPharmaceuticalCharacteristicsBuilder) Build() MedicinalProductPharmaceuticalCharacteristics {
+	return *b.medicinalProductPharmaceuticalCharacteristics
+}
+
+// SetId sets the Id field.
+func (b *MedicinalProductPharmaceuticalCharacteristicsBuilder) SetId(v string) *MedicinalProductPharmaceuticalCharacteristicsBuilder {
+	b.medicinalProductPharmaceuticalCharacteristics.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicinalProductPharmaceuticalCharacteristicsBuilder) AddExtension(v Extension) *MedicinalProductPharmaceuticalCharacteristicsBuilder {
+	b.medicinalProductPharmaceuticalCharacteristics.Extension = append(b.medicinalProductPharmaceuticalCharacteristics.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicinalProductPharmaceuticalCharacteristicsBuilder) AddModifierExtension(v Extension) *MedicinalProductPharmaceuticalCharacteristicsBuilder {
+	b.medicinalProductPharmaceuticalCharacteristics.ModifierExtension = append(b.medicinalProductPharmaceuticalCharacteristics.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MedicinalProductPharmaceuticalCharacteristicsBuilder) SetCode(v CodeableConcept) *MedicinalProductPharmaceuticalCharacteristicsBuilder {
+	b.medicinalProductPharmaceuticalCharacteristics.Code = &v
+	return b
+}
+
+// SetStatus sets the Status field.
+func (b *MedicinalProductPharmaceuticalCharacteristicsBuilder) SetStatus(v CodeableConcept) *MedicinalProductPharmaceuticalCharacteristicsBuilder {
+	b.medicinalProductPharmaceuticalCharacteristics.Status = &v
+	return b
+}
+
+// =============================================================================
+// MedicinalProductPharmaceuticalRouteOfAdministration - Fluent Builder
+// =============================================================================
+
+// MedicinalProductPharmaceuticalRouteOfAdministrationBuilder provides a fluent API for constructing MedicinalProductPharmaceuticalRouteOfAdministration values.
+type MedicinalProductPharmaceuticalRouteOfAdministrationBuilder struct {
+	medicinalProductPharmaceuticalRouteOfAdministration *MedicinalProductPharmaceuticalRouteOfAdministration
+}
+
+// NewMedicinalProductPharmaceuticalRouteOfAdministrationBuilder creates a new MedicinalProductPharmaceuticalRouteOfAdministrationBuilder.
+func NewMedicinalProductPharmaceuticalRouteOfAdministrationBuilder() *MedicinalProductPharmaceuticalRouteOfAdministrationBuilder {
+	return &MedicinalProductPharmaceuticalRouteOfAdministrationBuilder{
+		medicinalProductPharmaceuticalRouteOfAdministration: &MedicinalProductPharmaceuticalRouteOfAdministration{},
+	}
+}
+
+// Build returns the constructed MedicinalProductPharmaceuticalRouteOfAdministration.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationBuilder) Build() MedicinalProductPharmaceuticalRouteOfAdministration {
+	return *b.medicinalProductPharmaceuticalRouteOfAdministration
+}
+
+// SetId sets the Id field.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationBuilder) SetId(v string) *MedicinalProductPharmaceuticalRouteOfAdministrationBuilder {
+	b.medicinalProductPharmaceuticalRouteOfAdministration.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationBuilder) AddExtension(v Extension) *MedicinalProductPharmaceuticalRouteOfAdministrationBuilder {
+	b.medicinalProductPharmaceuticalRouteOfAdministration.Extension = append(b.medicinalProductPharmaceuticalRouteOfAdministration.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationBuilder) AddModifierExtension(v Extension) *MedicinalProductPharmaceuticalRouteOfAdministrationBuilder {
+	b.medicinalProductPharmaceuticalRouteOfAdministration.ModifierExtension = append(b.medicinalProductPharmaceuticalRouteOfAdministration.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationBuilder) SetCode(v CodeableConcept) *MedicinalProductPharmaceuticalRouteOfAdministrationBuilder {
+	b.medicinalProductPharmaceuticalRouteOfAdministration.Code = &v
+	return b
+}
+
+// SetFirstDose sets the FirstDose field.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationBuilder) SetFirstDose(v Quantity) *MedicinalProductPharmaceuticalRouteOfAdministrationBuilder {
+	b.medicinalProductPharmaceuticalRouteOfAdministration.FirstDose = &v
+	return b
+}
+
+// SetMaxSingleDose sets the MaxSingleDose field.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationBuilder) SetMaxSingleDose(v Quantity) *MedicinalProductPharmaceuticalRouteOfAdministrationBuilder {
+	b.medicinalProductPharmaceuticalRouteOfAdministration.MaxSingleDose = &v
+	return b
+}
+
+// SetMaxDosePerDay sets the MaxDosePerDay field.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationBuilder) SetMaxDosePerDay(v Quantity) *MedicinalProductPharmaceuticalRouteOfAdministrationBuilder {
+	b.medicinalProductPharmaceuticalRouteOfAdministration.MaxDosePerDay = &v
+	return b
+}
+
+// SetMaxDosePerTreatmentPeriod sets the MaxDosePerTreatmentPeriod field.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationBuilder) SetMaxDosePerTreatmentPeriod(v Ratio) *MedicinalProductPharmaceuticalRouteOfAdministrationBuilder {
+	b.medicinalProductPharmaceuticalRouteOfAdministration.MaxDosePerTreatmentPeriod = &v
+	return b
+}
+
+// SetMaxTreatmentPeriod sets the MaxTreatmentPeriod field.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationBuilder) SetMaxTreatmentPeriod(v Duration) *MedicinalProductPharmaceuticalRouteOfAdministrationBuilder {
+	b.medicinalProductPharmaceuticalRouteOfAdministration.MaxTreatmentPeriod = &v
+	return b
+}
+
+// AddTargetSpecies adds a TargetSpecies element.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationBuilder) AddTargetSpecies(v MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies) *MedicinalProductPharmaceuticalRouteOfAdministrationBuilder {
+	b.medicinalProductPharmaceuticalRouteOfAdministration.TargetSpecies = append(b.medicinalProductPharmaceuticalRouteOfAdministration.TargetSpecies, v)
+	return b
+}
+
+// =============================================================================
+// MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies - Fluent Builder
+// =============================================================================
+
+// MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesBuilder provides a fluent API for constructing MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies values.
+type MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesBuilder struct {
+	medicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies
+}
+
+// NewMedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesBuilder creates a new MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesBuilder.
+func NewMedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesBuilder() *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesBuilder {
+	return &MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesBuilder{
+		medicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies: &MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies{},
+	}
+}
+
+// Build returns the constructed MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesBuilder) Build() MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies {
+	return *b.medicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies
+}
+
+// SetId sets the Id field.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesBuilder) SetId(v string) *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesBuilder {
+	b.medicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesBuilder) AddExtension(v Extension) *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesBuilder {
+	b.medicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies.Extension = append(b.medicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesBuilder) AddModifierExtension(v Extension) *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesBuilder {
+	b.medicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies.ModifierExtension = append(b.medicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesBuilder) SetCode(v CodeableConcept) *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesBuilder {
+	b.medicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies.Code = &v
+	return b
+}
+
+// AddWithdrawalPeriod adds a WithdrawalPeriod element.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesBuilder) AddWithdrawalPeriod(v MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod) *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesBuilder {
+	b.medicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies.WithdrawalPeriod = append(b.medicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies.WithdrawalPeriod, v)
+	return b
+}
+
+// =============================================================================
+// MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod - Fluent Builder
+// =============================================================================
+
+// MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder provides a fluent API for constructing MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod values.
+type MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder struct {
+	medicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod
+}
+
+// NewMedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder creates a new MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder.
+func NewMedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder() *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder {
+	return &MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder{
+		medicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod: &MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod{},
+	}
+}
+
+// Build returns the constructed MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder) Build() MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod {
+	return *b.medicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod
+}
+
+// SetId sets the Id field.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder) SetId(v string) *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder {
+	b.medicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder) AddExtension(v Extension) *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder {
+	b.medicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod.Extension = append(b.medicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder) AddModifierExtension(v Extension) *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder {
+	b.medicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod.ModifierExtension = append(b.medicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod.ModifierExtension, v)
+	return b
+}
+
+// SetTissue sets the Tissue field.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder) SetTissue(v CodeableConcept) *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder {
+	b.medicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod.Tissue = &v
+	return b
+}
+
+// SetValue sets the Value field.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder) SetValue(v Quantity) *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder {
+	b.medicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod.Value = &v
+	return b
+}
+
+// SetSupportingInformation sets the SupportingInformation field.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder) SetSupportingInformation(v string) *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder {
+	b.medicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod.SupportingInformation = &v
+	return b
+}
+
+// SetSupportingInformationExt sets the extensions carried by SupportingInformation, serialized as
+// "_supportingInformation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder) SetSupportingInformationExt(v Element) *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriodBuilder {
+	b.medicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod.SupportingInformationExt = &v
+	return b
+}

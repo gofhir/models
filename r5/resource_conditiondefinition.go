@@ -1475,9 +1475,502 @@ func (b *ConditionDefinitionBuilder) AddPlan(v ConditionDefinitionPlan) *Conditi
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConditionDefinitionBuilder) SetImplicitRulesExt(v Element) *ConditionDefinitionBuilder {
+	b.conditionDefinition.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConditionDefinitionBuilder) SetLanguageExt(v Element) *ConditionDefinitionBuilder {
+	b.conditionDefinition.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConditionDefinitionBuilder) SetUrlExt(v Element) *ConditionDefinitionBuilder {
+	b.conditionDefinition.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConditionDefinitionBuilder) SetVersionExt(v Element) *ConditionDefinitionBuilder {
+	b.conditionDefinition.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConditionDefinitionBuilder) SetNameExt(v Element) *ConditionDefinitionBuilder {
+	b.conditionDefinition.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConditionDefinitionBuilder) SetTitleExt(v Element) *ConditionDefinitionBuilder {
+	b.conditionDefinition.TitleExt = &v
+	return b
+}
+
+// SetSubtitleExt sets the extensions carried by Subtitle, serialized as
+// "_subtitle".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConditionDefinitionBuilder) SetSubtitleExt(v Element) *ConditionDefinitionBuilder {
+	b.conditionDefinition.SubtitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConditionDefinitionBuilder) SetStatusExt(v Element) *ConditionDefinitionBuilder {
+	b.conditionDefinition.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConditionDefinitionBuilder) SetExperimentalExt(v Element) *ConditionDefinitionBuilder {
+	b.conditionDefinition.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConditionDefinitionBuilder) SetDateExt(v Element) *ConditionDefinitionBuilder {
+	b.conditionDefinition.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConditionDefinitionBuilder) SetPublisherExt(v Element) *ConditionDefinitionBuilder {
+	b.conditionDefinition.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConditionDefinitionBuilder) SetDescriptionExt(v Element) *ConditionDefinitionBuilder {
+	b.conditionDefinition.DescriptionExt = &v
+	return b
+}
+
+// SetHasSeverityExt sets the extensions carried by HasSeverity, serialized as
+// "_hasSeverity".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConditionDefinitionBuilder) SetHasSeverityExt(v Element) *ConditionDefinitionBuilder {
+	b.conditionDefinition.HasSeverityExt = &v
+	return b
+}
+
+// SetHasBodySiteExt sets the extensions carried by HasBodySite, serialized as
+// "_hasBodySite".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConditionDefinitionBuilder) SetHasBodySiteExt(v Element) *ConditionDefinitionBuilder {
+	b.conditionDefinition.HasBodySiteExt = &v
+	return b
+}
+
+// SetHasStageExt sets the extensions carried by HasStage, serialized as
+// "_hasStage".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConditionDefinitionBuilder) SetHasStageExt(v Element) *ConditionDefinitionBuilder {
+	b.conditionDefinition.HasStageExt = &v
+	return b
+}
+
+// AddDefinitionExt appends an extension slot for Definition.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ConditionDefinitionBuilder) AddDefinitionExt(v *Element) *ConditionDefinitionBuilder {
+	b.conditionDefinition.DefinitionExt = append(b.conditionDefinition.DefinitionExt, v)
+	return b
+}
+
 // clearVersionAlgorithm unsets every variant of VersionAlgorithm[x], including the
 // _field companions of the primitive ones.
 func (b *ConditionDefinitionBuilder) clearVersionAlgorithm() {
 	b.conditionDefinition.VersionAlgorithmString = nil
 	b.conditionDefinition.VersionAlgorithmCoding = nil
+}
+
+// =============================================================================
+// ConditionDefinitionMedication - Fluent Builder
+// =============================================================================
+
+// ConditionDefinitionMedicationBuilder provides a fluent API for constructing ConditionDefinitionMedication values.
+type ConditionDefinitionMedicationBuilder struct {
+	conditionDefinitionMedication *ConditionDefinitionMedication
+}
+
+// NewConditionDefinitionMedicationBuilder creates a new ConditionDefinitionMedicationBuilder.
+func NewConditionDefinitionMedicationBuilder() *ConditionDefinitionMedicationBuilder {
+	return &ConditionDefinitionMedicationBuilder{
+		conditionDefinitionMedication: &ConditionDefinitionMedication{},
+	}
+}
+
+// Build returns the constructed ConditionDefinitionMedication.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ConditionDefinitionMedicationBuilder) Build() ConditionDefinitionMedication {
+	return *b.conditionDefinitionMedication
+}
+
+// SetId sets the Id field.
+func (b *ConditionDefinitionMedicationBuilder) SetId(v string) *ConditionDefinitionMedicationBuilder {
+	b.conditionDefinitionMedication.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ConditionDefinitionMedicationBuilder) AddExtension(v Extension) *ConditionDefinitionMedicationBuilder {
+	b.conditionDefinitionMedication.Extension = append(b.conditionDefinitionMedication.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ConditionDefinitionMedicationBuilder) AddModifierExtension(v Extension) *ConditionDefinitionMedicationBuilder {
+	b.conditionDefinitionMedication.ModifierExtension = append(b.conditionDefinitionMedication.ModifierExtension, v)
+	return b
+}
+
+// SetCategory sets the Category field.
+func (b *ConditionDefinitionMedicationBuilder) SetCategory(v CodeableConcept) *ConditionDefinitionMedicationBuilder {
+	b.conditionDefinitionMedication.Category = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *ConditionDefinitionMedicationBuilder) SetCode(v CodeableConcept) *ConditionDefinitionMedicationBuilder {
+	b.conditionDefinitionMedication.Code = &v
+	return b
+}
+
+// =============================================================================
+// ConditionDefinitionObservation - Fluent Builder
+// =============================================================================
+
+// ConditionDefinitionObservationBuilder provides a fluent API for constructing ConditionDefinitionObservation values.
+type ConditionDefinitionObservationBuilder struct {
+	conditionDefinitionObservation *ConditionDefinitionObservation
+}
+
+// NewConditionDefinitionObservationBuilder creates a new ConditionDefinitionObservationBuilder.
+func NewConditionDefinitionObservationBuilder() *ConditionDefinitionObservationBuilder {
+	return &ConditionDefinitionObservationBuilder{
+		conditionDefinitionObservation: &ConditionDefinitionObservation{},
+	}
+}
+
+// Build returns the constructed ConditionDefinitionObservation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ConditionDefinitionObservationBuilder) Build() ConditionDefinitionObservation {
+	return *b.conditionDefinitionObservation
+}
+
+// SetId sets the Id field.
+func (b *ConditionDefinitionObservationBuilder) SetId(v string) *ConditionDefinitionObservationBuilder {
+	b.conditionDefinitionObservation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ConditionDefinitionObservationBuilder) AddExtension(v Extension) *ConditionDefinitionObservationBuilder {
+	b.conditionDefinitionObservation.Extension = append(b.conditionDefinitionObservation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ConditionDefinitionObservationBuilder) AddModifierExtension(v Extension) *ConditionDefinitionObservationBuilder {
+	b.conditionDefinitionObservation.ModifierExtension = append(b.conditionDefinitionObservation.ModifierExtension, v)
+	return b
+}
+
+// SetCategory sets the Category field.
+func (b *ConditionDefinitionObservationBuilder) SetCategory(v CodeableConcept) *ConditionDefinitionObservationBuilder {
+	b.conditionDefinitionObservation.Category = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *ConditionDefinitionObservationBuilder) SetCode(v CodeableConcept) *ConditionDefinitionObservationBuilder {
+	b.conditionDefinitionObservation.Code = &v
+	return b
+}
+
+// =============================================================================
+// ConditionDefinitionPlan - Fluent Builder
+// =============================================================================
+
+// ConditionDefinitionPlanBuilder provides a fluent API for constructing ConditionDefinitionPlan values.
+type ConditionDefinitionPlanBuilder struct {
+	conditionDefinitionPlan *ConditionDefinitionPlan
+}
+
+// NewConditionDefinitionPlanBuilder creates a new ConditionDefinitionPlanBuilder.
+func NewConditionDefinitionPlanBuilder() *ConditionDefinitionPlanBuilder {
+	return &ConditionDefinitionPlanBuilder{
+		conditionDefinitionPlan: &ConditionDefinitionPlan{},
+	}
+}
+
+// Build returns the constructed ConditionDefinitionPlan.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ConditionDefinitionPlanBuilder) Build() ConditionDefinitionPlan {
+	return *b.conditionDefinitionPlan
+}
+
+// SetId sets the Id field.
+func (b *ConditionDefinitionPlanBuilder) SetId(v string) *ConditionDefinitionPlanBuilder {
+	b.conditionDefinitionPlan.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ConditionDefinitionPlanBuilder) AddExtension(v Extension) *ConditionDefinitionPlanBuilder {
+	b.conditionDefinitionPlan.Extension = append(b.conditionDefinitionPlan.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ConditionDefinitionPlanBuilder) AddModifierExtension(v Extension) *ConditionDefinitionPlanBuilder {
+	b.conditionDefinitionPlan.ModifierExtension = append(b.conditionDefinitionPlan.ModifierExtension, v)
+	return b
+}
+
+// SetRole sets the Role field.
+func (b *ConditionDefinitionPlanBuilder) SetRole(v CodeableConcept) *ConditionDefinitionPlanBuilder {
+	b.conditionDefinitionPlan.Role = &v
+	return b
+}
+
+// SetReference sets the Reference field.
+func (b *ConditionDefinitionPlanBuilder) SetReference(v Reference) *ConditionDefinitionPlanBuilder {
+	b.conditionDefinitionPlan.Reference = &v
+	return b
+}
+
+// =============================================================================
+// ConditionDefinitionPrecondition - Fluent Builder
+// =============================================================================
+
+// ConditionDefinitionPreconditionBuilder provides a fluent API for constructing ConditionDefinitionPrecondition values.
+type ConditionDefinitionPreconditionBuilder struct {
+	conditionDefinitionPrecondition *ConditionDefinitionPrecondition
+}
+
+// NewConditionDefinitionPreconditionBuilder creates a new ConditionDefinitionPreconditionBuilder.
+func NewConditionDefinitionPreconditionBuilder() *ConditionDefinitionPreconditionBuilder {
+	return &ConditionDefinitionPreconditionBuilder{
+		conditionDefinitionPrecondition: &ConditionDefinitionPrecondition{},
+	}
+}
+
+// Build returns the constructed ConditionDefinitionPrecondition.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ConditionDefinitionPreconditionBuilder) Build() ConditionDefinitionPrecondition {
+	return *b.conditionDefinitionPrecondition
+}
+
+// SetId sets the Id field.
+func (b *ConditionDefinitionPreconditionBuilder) SetId(v string) *ConditionDefinitionPreconditionBuilder {
+	b.conditionDefinitionPrecondition.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ConditionDefinitionPreconditionBuilder) AddExtension(v Extension) *ConditionDefinitionPreconditionBuilder {
+	b.conditionDefinitionPrecondition.Extension = append(b.conditionDefinitionPrecondition.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ConditionDefinitionPreconditionBuilder) AddModifierExtension(v Extension) *ConditionDefinitionPreconditionBuilder {
+	b.conditionDefinitionPrecondition.ModifierExtension = append(b.conditionDefinitionPrecondition.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ConditionDefinitionPreconditionBuilder) SetType(v ConditionPreconditionType) *ConditionDefinitionPreconditionBuilder {
+	b.conditionDefinitionPrecondition.Type = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *ConditionDefinitionPreconditionBuilder) SetCode(v CodeableConcept) *ConditionDefinitionPreconditionBuilder {
+	b.conditionDefinitionPrecondition.Code = &v
+	return b
+}
+
+// SetValueCodeableConcept sets Value[x] to its ValueCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ConditionDefinitionPreconditionBuilder) SetValueCodeableConcept(v CodeableConcept) *ConditionDefinitionPreconditionBuilder {
+	b.clearValue()
+	b.conditionDefinitionPrecondition.ValueCodeableConcept = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ConditionDefinitionPreconditionBuilder) SetValueQuantity(v Quantity) *ConditionDefinitionPreconditionBuilder {
+	b.clearValue()
+	b.conditionDefinitionPrecondition.ValueQuantity = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConditionDefinitionPreconditionBuilder) SetTypeExt(v Element) *ConditionDefinitionPreconditionBuilder {
+	b.conditionDefinitionPrecondition.TypeExt = &v
+	return b
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *ConditionDefinitionPreconditionBuilder) clearValue() {
+	b.conditionDefinitionPrecondition.ValueCodeableConcept = nil
+	b.conditionDefinitionPrecondition.ValueQuantity = nil
+}
+
+// =============================================================================
+// ConditionDefinitionQuestionnaire - Fluent Builder
+// =============================================================================
+
+// ConditionDefinitionQuestionnaireBuilder provides a fluent API for constructing ConditionDefinitionQuestionnaire values.
+type ConditionDefinitionQuestionnaireBuilder struct {
+	conditionDefinitionQuestionnaire *ConditionDefinitionQuestionnaire
+}
+
+// NewConditionDefinitionQuestionnaireBuilder creates a new ConditionDefinitionQuestionnaireBuilder.
+func NewConditionDefinitionQuestionnaireBuilder() *ConditionDefinitionQuestionnaireBuilder {
+	return &ConditionDefinitionQuestionnaireBuilder{
+		conditionDefinitionQuestionnaire: &ConditionDefinitionQuestionnaire{},
+	}
+}
+
+// Build returns the constructed ConditionDefinitionQuestionnaire.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ConditionDefinitionQuestionnaireBuilder) Build() ConditionDefinitionQuestionnaire {
+	return *b.conditionDefinitionQuestionnaire
+}
+
+// SetId sets the Id field.
+func (b *ConditionDefinitionQuestionnaireBuilder) SetId(v string) *ConditionDefinitionQuestionnaireBuilder {
+	b.conditionDefinitionQuestionnaire.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ConditionDefinitionQuestionnaireBuilder) AddExtension(v Extension) *ConditionDefinitionQuestionnaireBuilder {
+	b.conditionDefinitionQuestionnaire.Extension = append(b.conditionDefinitionQuestionnaire.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ConditionDefinitionQuestionnaireBuilder) AddModifierExtension(v Extension) *ConditionDefinitionQuestionnaireBuilder {
+	b.conditionDefinitionQuestionnaire.ModifierExtension = append(b.conditionDefinitionQuestionnaire.ModifierExtension, v)
+	return b
+}
+
+// SetPurpose sets the Purpose field.
+func (b *ConditionDefinitionQuestionnaireBuilder) SetPurpose(v ConditionQuestionnairePurpose) *ConditionDefinitionQuestionnaireBuilder {
+	b.conditionDefinitionQuestionnaire.Purpose = &v
+	return b
+}
+
+// SetReference sets the Reference field.
+func (b *ConditionDefinitionQuestionnaireBuilder) SetReference(v Reference) *ConditionDefinitionQuestionnaireBuilder {
+	b.conditionDefinitionQuestionnaire.Reference = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ConditionDefinitionQuestionnaireBuilder) SetPurposeExt(v Element) *ConditionDefinitionQuestionnaireBuilder {
+	b.conditionDefinitionQuestionnaire.PurposeExt = &v
+	return b
 }

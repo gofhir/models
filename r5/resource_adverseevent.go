@@ -1594,10 +1594,576 @@ func (b *AdverseEventBuilder) AddNote(v Annotation) *AdverseEventBuilder {
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AdverseEventBuilder) SetImplicitRulesExt(v Element) *AdverseEventBuilder {
+	b.adverseEvent.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AdverseEventBuilder) SetLanguageExt(v Element) *AdverseEventBuilder {
+	b.adverseEvent.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AdverseEventBuilder) SetStatusExt(v Element) *AdverseEventBuilder {
+	b.adverseEvent.StatusExt = &v
+	return b
+}
+
+// SetActualityExt sets the extensions carried by Actuality, serialized as
+// "_actuality".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AdverseEventBuilder) SetActualityExt(v Element) *AdverseEventBuilder {
+	b.adverseEvent.ActualityExt = &v
+	return b
+}
+
+// SetDetectedExt sets the extensions carried by Detected, serialized as
+// "_detected".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AdverseEventBuilder) SetDetectedExt(v Element) *AdverseEventBuilder {
+	b.adverseEvent.DetectedExt = &v
+	return b
+}
+
+// SetRecordedDateExt sets the extensions carried by RecordedDate, serialized as
+// "_recordedDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AdverseEventBuilder) SetRecordedDateExt(v Element) *AdverseEventBuilder {
+	b.adverseEvent.RecordedDateExt = &v
+	return b
+}
+
+// SetExpectedInResearchStudyExt sets the extensions carried by ExpectedInResearchStudy, serialized as
+// "_expectedInResearchStudy".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *AdverseEventBuilder) SetExpectedInResearchStudyExt(v Element) *AdverseEventBuilder {
+	b.adverseEvent.ExpectedInResearchStudyExt = &v
+	return b
+}
+
 // clearOccurrence unsets every variant of Occurrence[x], including the
 // _field companions of the primitive ones.
 func (b *AdverseEventBuilder) clearOccurrence() {
 	b.adverseEvent.OccurrenceDateTime = nil
 	b.adverseEvent.OccurrencePeriod = nil
 	b.adverseEvent.OccurrenceTiming = nil
+}
+
+// =============================================================================
+// AdverseEventContributingFactor - Fluent Builder
+// =============================================================================
+
+// AdverseEventContributingFactorBuilder provides a fluent API for constructing AdverseEventContributingFactor values.
+type AdverseEventContributingFactorBuilder struct {
+	adverseEventContributingFactor *AdverseEventContributingFactor
+}
+
+// NewAdverseEventContributingFactorBuilder creates a new AdverseEventContributingFactorBuilder.
+func NewAdverseEventContributingFactorBuilder() *AdverseEventContributingFactorBuilder {
+	return &AdverseEventContributingFactorBuilder{
+		adverseEventContributingFactor: &AdverseEventContributingFactor{},
+	}
+}
+
+// Build returns the constructed AdverseEventContributingFactor.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AdverseEventContributingFactorBuilder) Build() AdverseEventContributingFactor {
+	return *b.adverseEventContributingFactor
+}
+
+// SetId sets the Id field.
+func (b *AdverseEventContributingFactorBuilder) SetId(v string) *AdverseEventContributingFactorBuilder {
+	b.adverseEventContributingFactor.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AdverseEventContributingFactorBuilder) AddExtension(v Extension) *AdverseEventContributingFactorBuilder {
+	b.adverseEventContributingFactor.Extension = append(b.adverseEventContributingFactor.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AdverseEventContributingFactorBuilder) AddModifierExtension(v Extension) *AdverseEventContributingFactorBuilder {
+	b.adverseEventContributingFactor.ModifierExtension = append(b.adverseEventContributingFactor.ModifierExtension, v)
+	return b
+}
+
+// SetItemReference sets Item[x] to its ItemReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AdverseEventContributingFactorBuilder) SetItemReference(v Reference) *AdverseEventContributingFactorBuilder {
+	b.clearItem()
+	b.adverseEventContributingFactor.ItemReference = &v
+	return b
+}
+
+// SetItemCodeableConcept sets Item[x] to its ItemCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AdverseEventContributingFactorBuilder) SetItemCodeableConcept(v CodeableConcept) *AdverseEventContributingFactorBuilder {
+	b.clearItem()
+	b.adverseEventContributingFactor.ItemCodeableConcept = &v
+	return b
+}
+
+// clearItem unsets every variant of Item[x], including the
+// _field companions of the primitive ones.
+func (b *AdverseEventContributingFactorBuilder) clearItem() {
+	b.adverseEventContributingFactor.ItemReference = nil
+	b.adverseEventContributingFactor.ItemCodeableConcept = nil
+}
+
+// =============================================================================
+// AdverseEventMitigatingAction - Fluent Builder
+// =============================================================================
+
+// AdverseEventMitigatingActionBuilder provides a fluent API for constructing AdverseEventMitigatingAction values.
+type AdverseEventMitigatingActionBuilder struct {
+	adverseEventMitigatingAction *AdverseEventMitigatingAction
+}
+
+// NewAdverseEventMitigatingActionBuilder creates a new AdverseEventMitigatingActionBuilder.
+func NewAdverseEventMitigatingActionBuilder() *AdverseEventMitigatingActionBuilder {
+	return &AdverseEventMitigatingActionBuilder{
+		adverseEventMitigatingAction: &AdverseEventMitigatingAction{},
+	}
+}
+
+// Build returns the constructed AdverseEventMitigatingAction.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AdverseEventMitigatingActionBuilder) Build() AdverseEventMitigatingAction {
+	return *b.adverseEventMitigatingAction
+}
+
+// SetId sets the Id field.
+func (b *AdverseEventMitigatingActionBuilder) SetId(v string) *AdverseEventMitigatingActionBuilder {
+	b.adverseEventMitigatingAction.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AdverseEventMitigatingActionBuilder) AddExtension(v Extension) *AdverseEventMitigatingActionBuilder {
+	b.adverseEventMitigatingAction.Extension = append(b.adverseEventMitigatingAction.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AdverseEventMitigatingActionBuilder) AddModifierExtension(v Extension) *AdverseEventMitigatingActionBuilder {
+	b.adverseEventMitigatingAction.ModifierExtension = append(b.adverseEventMitigatingAction.ModifierExtension, v)
+	return b
+}
+
+// SetItemReference sets Item[x] to its ItemReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AdverseEventMitigatingActionBuilder) SetItemReference(v Reference) *AdverseEventMitigatingActionBuilder {
+	b.clearItem()
+	b.adverseEventMitigatingAction.ItemReference = &v
+	return b
+}
+
+// SetItemCodeableConcept sets Item[x] to its ItemCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AdverseEventMitigatingActionBuilder) SetItemCodeableConcept(v CodeableConcept) *AdverseEventMitigatingActionBuilder {
+	b.clearItem()
+	b.adverseEventMitigatingAction.ItemCodeableConcept = &v
+	return b
+}
+
+// clearItem unsets every variant of Item[x], including the
+// _field companions of the primitive ones.
+func (b *AdverseEventMitigatingActionBuilder) clearItem() {
+	b.adverseEventMitigatingAction.ItemReference = nil
+	b.adverseEventMitigatingAction.ItemCodeableConcept = nil
+}
+
+// =============================================================================
+// AdverseEventParticipant - Fluent Builder
+// =============================================================================
+
+// AdverseEventParticipantBuilder provides a fluent API for constructing AdverseEventParticipant values.
+type AdverseEventParticipantBuilder struct {
+	adverseEventParticipant *AdverseEventParticipant
+}
+
+// NewAdverseEventParticipantBuilder creates a new AdverseEventParticipantBuilder.
+func NewAdverseEventParticipantBuilder() *AdverseEventParticipantBuilder {
+	return &AdverseEventParticipantBuilder{
+		adverseEventParticipant: &AdverseEventParticipant{},
+	}
+}
+
+// Build returns the constructed AdverseEventParticipant.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AdverseEventParticipantBuilder) Build() AdverseEventParticipant {
+	return *b.adverseEventParticipant
+}
+
+// SetId sets the Id field.
+func (b *AdverseEventParticipantBuilder) SetId(v string) *AdverseEventParticipantBuilder {
+	b.adverseEventParticipant.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AdverseEventParticipantBuilder) AddExtension(v Extension) *AdverseEventParticipantBuilder {
+	b.adverseEventParticipant.Extension = append(b.adverseEventParticipant.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AdverseEventParticipantBuilder) AddModifierExtension(v Extension) *AdverseEventParticipantBuilder {
+	b.adverseEventParticipant.ModifierExtension = append(b.adverseEventParticipant.ModifierExtension, v)
+	return b
+}
+
+// SetFunction sets the Function field.
+func (b *AdverseEventParticipantBuilder) SetFunction(v CodeableConcept) *AdverseEventParticipantBuilder {
+	b.adverseEventParticipant.Function = &v
+	return b
+}
+
+// SetActor sets the Actor field.
+func (b *AdverseEventParticipantBuilder) SetActor(v Reference) *AdverseEventParticipantBuilder {
+	b.adverseEventParticipant.Actor = &v
+	return b
+}
+
+// =============================================================================
+// AdverseEventPreventiveAction - Fluent Builder
+// =============================================================================
+
+// AdverseEventPreventiveActionBuilder provides a fluent API for constructing AdverseEventPreventiveAction values.
+type AdverseEventPreventiveActionBuilder struct {
+	adverseEventPreventiveAction *AdverseEventPreventiveAction
+}
+
+// NewAdverseEventPreventiveActionBuilder creates a new AdverseEventPreventiveActionBuilder.
+func NewAdverseEventPreventiveActionBuilder() *AdverseEventPreventiveActionBuilder {
+	return &AdverseEventPreventiveActionBuilder{
+		adverseEventPreventiveAction: &AdverseEventPreventiveAction{},
+	}
+}
+
+// Build returns the constructed AdverseEventPreventiveAction.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AdverseEventPreventiveActionBuilder) Build() AdverseEventPreventiveAction {
+	return *b.adverseEventPreventiveAction
+}
+
+// SetId sets the Id field.
+func (b *AdverseEventPreventiveActionBuilder) SetId(v string) *AdverseEventPreventiveActionBuilder {
+	b.adverseEventPreventiveAction.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AdverseEventPreventiveActionBuilder) AddExtension(v Extension) *AdverseEventPreventiveActionBuilder {
+	b.adverseEventPreventiveAction.Extension = append(b.adverseEventPreventiveAction.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AdverseEventPreventiveActionBuilder) AddModifierExtension(v Extension) *AdverseEventPreventiveActionBuilder {
+	b.adverseEventPreventiveAction.ModifierExtension = append(b.adverseEventPreventiveAction.ModifierExtension, v)
+	return b
+}
+
+// SetItemReference sets Item[x] to its ItemReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AdverseEventPreventiveActionBuilder) SetItemReference(v Reference) *AdverseEventPreventiveActionBuilder {
+	b.clearItem()
+	b.adverseEventPreventiveAction.ItemReference = &v
+	return b
+}
+
+// SetItemCodeableConcept sets Item[x] to its ItemCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AdverseEventPreventiveActionBuilder) SetItemCodeableConcept(v CodeableConcept) *AdverseEventPreventiveActionBuilder {
+	b.clearItem()
+	b.adverseEventPreventiveAction.ItemCodeableConcept = &v
+	return b
+}
+
+// clearItem unsets every variant of Item[x], including the
+// _field companions of the primitive ones.
+func (b *AdverseEventPreventiveActionBuilder) clearItem() {
+	b.adverseEventPreventiveAction.ItemReference = nil
+	b.adverseEventPreventiveAction.ItemCodeableConcept = nil
+}
+
+// =============================================================================
+// AdverseEventSupportingInfo - Fluent Builder
+// =============================================================================
+
+// AdverseEventSupportingInfoBuilder provides a fluent API for constructing AdverseEventSupportingInfo values.
+type AdverseEventSupportingInfoBuilder struct {
+	adverseEventSupportingInfo *AdverseEventSupportingInfo
+}
+
+// NewAdverseEventSupportingInfoBuilder creates a new AdverseEventSupportingInfoBuilder.
+func NewAdverseEventSupportingInfoBuilder() *AdverseEventSupportingInfoBuilder {
+	return &AdverseEventSupportingInfoBuilder{
+		adverseEventSupportingInfo: &AdverseEventSupportingInfo{},
+	}
+}
+
+// Build returns the constructed AdverseEventSupportingInfo.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AdverseEventSupportingInfoBuilder) Build() AdverseEventSupportingInfo {
+	return *b.adverseEventSupportingInfo
+}
+
+// SetId sets the Id field.
+func (b *AdverseEventSupportingInfoBuilder) SetId(v string) *AdverseEventSupportingInfoBuilder {
+	b.adverseEventSupportingInfo.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AdverseEventSupportingInfoBuilder) AddExtension(v Extension) *AdverseEventSupportingInfoBuilder {
+	b.adverseEventSupportingInfo.Extension = append(b.adverseEventSupportingInfo.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AdverseEventSupportingInfoBuilder) AddModifierExtension(v Extension) *AdverseEventSupportingInfoBuilder {
+	b.adverseEventSupportingInfo.ModifierExtension = append(b.adverseEventSupportingInfo.ModifierExtension, v)
+	return b
+}
+
+// SetItemReference sets Item[x] to its ItemReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AdverseEventSupportingInfoBuilder) SetItemReference(v Reference) *AdverseEventSupportingInfoBuilder {
+	b.clearItem()
+	b.adverseEventSupportingInfo.ItemReference = &v
+	return b
+}
+
+// SetItemCodeableConcept sets Item[x] to its ItemCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AdverseEventSupportingInfoBuilder) SetItemCodeableConcept(v CodeableConcept) *AdverseEventSupportingInfoBuilder {
+	b.clearItem()
+	b.adverseEventSupportingInfo.ItemCodeableConcept = &v
+	return b
+}
+
+// clearItem unsets every variant of Item[x], including the
+// _field companions of the primitive ones.
+func (b *AdverseEventSupportingInfoBuilder) clearItem() {
+	b.adverseEventSupportingInfo.ItemReference = nil
+	b.adverseEventSupportingInfo.ItemCodeableConcept = nil
+}
+
+// =============================================================================
+// AdverseEventSuspectEntity - Fluent Builder
+// =============================================================================
+
+// AdverseEventSuspectEntityBuilder provides a fluent API for constructing AdverseEventSuspectEntity values.
+type AdverseEventSuspectEntityBuilder struct {
+	adverseEventSuspectEntity *AdverseEventSuspectEntity
+}
+
+// NewAdverseEventSuspectEntityBuilder creates a new AdverseEventSuspectEntityBuilder.
+func NewAdverseEventSuspectEntityBuilder() *AdverseEventSuspectEntityBuilder {
+	return &AdverseEventSuspectEntityBuilder{
+		adverseEventSuspectEntity: &AdverseEventSuspectEntity{},
+	}
+}
+
+// Build returns the constructed AdverseEventSuspectEntity.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AdverseEventSuspectEntityBuilder) Build() AdverseEventSuspectEntity {
+	return *b.adverseEventSuspectEntity
+}
+
+// SetId sets the Id field.
+func (b *AdverseEventSuspectEntityBuilder) SetId(v string) *AdverseEventSuspectEntityBuilder {
+	b.adverseEventSuspectEntity.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AdverseEventSuspectEntityBuilder) AddExtension(v Extension) *AdverseEventSuspectEntityBuilder {
+	b.adverseEventSuspectEntity.Extension = append(b.adverseEventSuspectEntity.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AdverseEventSuspectEntityBuilder) AddModifierExtension(v Extension) *AdverseEventSuspectEntityBuilder {
+	b.adverseEventSuspectEntity.ModifierExtension = append(b.adverseEventSuspectEntity.ModifierExtension, v)
+	return b
+}
+
+// SetInstanceCodeableConcept sets Instance[x] to its InstanceCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AdverseEventSuspectEntityBuilder) SetInstanceCodeableConcept(v CodeableConcept) *AdverseEventSuspectEntityBuilder {
+	b.clearInstance()
+	b.adverseEventSuspectEntity.InstanceCodeableConcept = &v
+	return b
+}
+
+// SetInstanceReference sets Instance[x] to its InstanceReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *AdverseEventSuspectEntityBuilder) SetInstanceReference(v Reference) *AdverseEventSuspectEntityBuilder {
+	b.clearInstance()
+	b.adverseEventSuspectEntity.InstanceReference = &v
+	return b
+}
+
+// SetCausality sets the Causality field.
+func (b *AdverseEventSuspectEntityBuilder) SetCausality(v AdverseEventSuspectEntityCausality) *AdverseEventSuspectEntityBuilder {
+	b.adverseEventSuspectEntity.Causality = &v
+	return b
+}
+
+// clearInstance unsets every variant of Instance[x], including the
+// _field companions of the primitive ones.
+func (b *AdverseEventSuspectEntityBuilder) clearInstance() {
+	b.adverseEventSuspectEntity.InstanceCodeableConcept = nil
+	b.adverseEventSuspectEntity.InstanceReference = nil
+}
+
+// =============================================================================
+// AdverseEventSuspectEntityCausality - Fluent Builder
+// =============================================================================
+
+// AdverseEventSuspectEntityCausalityBuilder provides a fluent API for constructing AdverseEventSuspectEntityCausality values.
+type AdverseEventSuspectEntityCausalityBuilder struct {
+	adverseEventSuspectEntityCausality *AdverseEventSuspectEntityCausality
+}
+
+// NewAdverseEventSuspectEntityCausalityBuilder creates a new AdverseEventSuspectEntityCausalityBuilder.
+func NewAdverseEventSuspectEntityCausalityBuilder() *AdverseEventSuspectEntityCausalityBuilder {
+	return &AdverseEventSuspectEntityCausalityBuilder{
+		adverseEventSuspectEntityCausality: &AdverseEventSuspectEntityCausality{},
+	}
+}
+
+// Build returns the constructed AdverseEventSuspectEntityCausality.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AdverseEventSuspectEntityCausalityBuilder) Build() AdverseEventSuspectEntityCausality {
+	return *b.adverseEventSuspectEntityCausality
+}
+
+// SetId sets the Id field.
+func (b *AdverseEventSuspectEntityCausalityBuilder) SetId(v string) *AdverseEventSuspectEntityCausalityBuilder {
+	b.adverseEventSuspectEntityCausality.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *AdverseEventSuspectEntityCausalityBuilder) AddExtension(v Extension) *AdverseEventSuspectEntityCausalityBuilder {
+	b.adverseEventSuspectEntityCausality.Extension = append(b.adverseEventSuspectEntityCausality.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *AdverseEventSuspectEntityCausalityBuilder) AddModifierExtension(v Extension) *AdverseEventSuspectEntityCausalityBuilder {
+	b.adverseEventSuspectEntityCausality.ModifierExtension = append(b.adverseEventSuspectEntityCausality.ModifierExtension, v)
+	return b
+}
+
+// SetAssessmentMethod sets the AssessmentMethod field.
+func (b *AdverseEventSuspectEntityCausalityBuilder) SetAssessmentMethod(v CodeableConcept) *AdverseEventSuspectEntityCausalityBuilder {
+	b.adverseEventSuspectEntityCausality.AssessmentMethod = &v
+	return b
+}
+
+// SetEntityRelatedness sets the EntityRelatedness field.
+func (b *AdverseEventSuspectEntityCausalityBuilder) SetEntityRelatedness(v CodeableConcept) *AdverseEventSuspectEntityCausalityBuilder {
+	b.adverseEventSuspectEntityCausality.EntityRelatedness = &v
+	return b
+}
+
+// SetAuthor sets the Author field.
+func (b *AdverseEventSuspectEntityCausalityBuilder) SetAuthor(v Reference) *AdverseEventSuspectEntityCausalityBuilder {
+	b.adverseEventSuspectEntityCausality.Author = &v
+	return b
 }

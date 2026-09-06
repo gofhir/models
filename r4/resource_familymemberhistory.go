@@ -1116,6 +1116,84 @@ func (b *FamilyMemberHistoryBuilder) AddCondition(v FamilyMemberHistoryCondition
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *FamilyMemberHistoryBuilder) SetImplicitRulesExt(v Element) *FamilyMemberHistoryBuilder {
+	b.familyMemberHistory.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *FamilyMemberHistoryBuilder) SetLanguageExt(v Element) *FamilyMemberHistoryBuilder {
+	b.familyMemberHistory.LanguageExt = &v
+	return b
+}
+
+// AddInstantiatesCanonicalExt appends an extension slot for InstantiatesCanonical.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *FamilyMemberHistoryBuilder) AddInstantiatesCanonicalExt(v *Element) *FamilyMemberHistoryBuilder {
+	b.familyMemberHistory.InstantiatesCanonicalExt = append(b.familyMemberHistory.InstantiatesCanonicalExt, v)
+	return b
+}
+
+// AddInstantiatesUriExt appends an extension slot for InstantiatesUri.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *FamilyMemberHistoryBuilder) AddInstantiatesUriExt(v *Element) *FamilyMemberHistoryBuilder {
+	b.familyMemberHistory.InstantiatesUriExt = append(b.familyMemberHistory.InstantiatesUriExt, v)
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *FamilyMemberHistoryBuilder) SetStatusExt(v Element) *FamilyMemberHistoryBuilder {
+	b.familyMemberHistory.StatusExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *FamilyMemberHistoryBuilder) SetDateExt(v Element) *FamilyMemberHistoryBuilder {
+	b.familyMemberHistory.DateExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *FamilyMemberHistoryBuilder) SetNameExt(v Element) *FamilyMemberHistoryBuilder {
+	b.familyMemberHistory.NameExt = &v
+	return b
+}
+
+// SetEstimatedAgeExt sets the extensions carried by EstimatedAge, serialized as
+// "_estimatedAge".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *FamilyMemberHistoryBuilder) SetEstimatedAgeExt(v Element) *FamilyMemberHistoryBuilder {
+	b.familyMemberHistory.EstimatedAgeExt = &v
+	return b
+}
+
 // clearBorn unsets every variant of Born[x], including the
 // _field companions of the primitive ones.
 func (b *FamilyMemberHistoryBuilder) clearBorn() {
@@ -1145,4 +1223,143 @@ func (b *FamilyMemberHistoryBuilder) clearDeceased() {
 	b.familyMemberHistory.DeceasedDateExt = nil
 	b.familyMemberHistory.DeceasedString = nil
 	b.familyMemberHistory.DeceasedStringExt = nil
+}
+
+// =============================================================================
+// FamilyMemberHistoryCondition - Fluent Builder
+// =============================================================================
+
+// FamilyMemberHistoryConditionBuilder provides a fluent API for constructing FamilyMemberHistoryCondition values.
+type FamilyMemberHistoryConditionBuilder struct {
+	familyMemberHistoryCondition *FamilyMemberHistoryCondition
+}
+
+// NewFamilyMemberHistoryConditionBuilder creates a new FamilyMemberHistoryConditionBuilder.
+func NewFamilyMemberHistoryConditionBuilder() *FamilyMemberHistoryConditionBuilder {
+	return &FamilyMemberHistoryConditionBuilder{
+		familyMemberHistoryCondition: &FamilyMemberHistoryCondition{},
+	}
+}
+
+// Build returns the constructed FamilyMemberHistoryCondition.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *FamilyMemberHistoryConditionBuilder) Build() FamilyMemberHistoryCondition {
+	return *b.familyMemberHistoryCondition
+}
+
+// SetId sets the Id field.
+func (b *FamilyMemberHistoryConditionBuilder) SetId(v string) *FamilyMemberHistoryConditionBuilder {
+	b.familyMemberHistoryCondition.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *FamilyMemberHistoryConditionBuilder) AddExtension(v Extension) *FamilyMemberHistoryConditionBuilder {
+	b.familyMemberHistoryCondition.Extension = append(b.familyMemberHistoryCondition.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *FamilyMemberHistoryConditionBuilder) AddModifierExtension(v Extension) *FamilyMemberHistoryConditionBuilder {
+	b.familyMemberHistoryCondition.ModifierExtension = append(b.familyMemberHistoryCondition.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *FamilyMemberHistoryConditionBuilder) SetCode(v CodeableConcept) *FamilyMemberHistoryConditionBuilder {
+	b.familyMemberHistoryCondition.Code = &v
+	return b
+}
+
+// SetOutcome sets the Outcome field.
+func (b *FamilyMemberHistoryConditionBuilder) SetOutcome(v CodeableConcept) *FamilyMemberHistoryConditionBuilder {
+	b.familyMemberHistoryCondition.Outcome = &v
+	return b
+}
+
+// SetContributedToDeath sets the ContributedToDeath field.
+func (b *FamilyMemberHistoryConditionBuilder) SetContributedToDeath(v bool) *FamilyMemberHistoryConditionBuilder {
+	b.familyMemberHistoryCondition.ContributedToDeath = &v
+	return b
+}
+
+// SetOnsetAge sets Onset[x] to its OnsetAge variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *FamilyMemberHistoryConditionBuilder) SetOnsetAge(v Age) *FamilyMemberHistoryConditionBuilder {
+	b.clearOnset()
+	b.familyMemberHistoryCondition.OnsetAge = &v
+	return b
+}
+
+// SetOnsetRange sets Onset[x] to its OnsetRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *FamilyMemberHistoryConditionBuilder) SetOnsetRange(v Range) *FamilyMemberHistoryConditionBuilder {
+	b.clearOnset()
+	b.familyMemberHistoryCondition.OnsetRange = &v
+	return b
+}
+
+// SetOnsetPeriod sets Onset[x] to its OnsetPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *FamilyMemberHistoryConditionBuilder) SetOnsetPeriod(v Period) *FamilyMemberHistoryConditionBuilder {
+	b.clearOnset()
+	b.familyMemberHistoryCondition.OnsetPeriod = &v
+	return b
+}
+
+// SetOnsetString sets Onset[x] to its OnsetString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *FamilyMemberHistoryConditionBuilder) SetOnsetString(v string) *FamilyMemberHistoryConditionBuilder {
+	b.clearOnset()
+	b.familyMemberHistoryCondition.OnsetString = &v
+	return b
+}
+
+// SetOnsetStringExt sets the OnsetStringExt field.
+func (b *FamilyMemberHistoryConditionBuilder) SetOnsetStringExt(v Element) *FamilyMemberHistoryConditionBuilder {
+	b.familyMemberHistoryCondition.OnsetStringExt = &v
+	return b
+}
+
+// AddNote adds a Note element.
+func (b *FamilyMemberHistoryConditionBuilder) AddNote(v Annotation) *FamilyMemberHistoryConditionBuilder {
+	b.familyMemberHistoryCondition.Note = append(b.familyMemberHistoryCondition.Note, v)
+	return b
+}
+
+// SetContributedToDeathExt sets the extensions carried by ContributedToDeath, serialized as
+// "_contributedToDeath".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *FamilyMemberHistoryConditionBuilder) SetContributedToDeathExt(v Element) *FamilyMemberHistoryConditionBuilder {
+	b.familyMemberHistoryCondition.ContributedToDeathExt = &v
+	return b
+}
+
+// clearOnset unsets every variant of Onset[x], including the
+// _field companions of the primitive ones.
+func (b *FamilyMemberHistoryConditionBuilder) clearOnset() {
+	b.familyMemberHistoryCondition.OnsetAge = nil
+	b.familyMemberHistoryCondition.OnsetRange = nil
+	b.familyMemberHistoryCondition.OnsetPeriod = nil
+	b.familyMemberHistoryCondition.OnsetString = nil
+	b.familyMemberHistoryCondition.OnsetStringExt = nil
 }

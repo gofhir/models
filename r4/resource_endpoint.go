@@ -549,3 +549,71 @@ func (b *EndpointBuilder) AddHeader(v string) *EndpointBuilder {
 	b.endpoint.Header = append(b.endpoint.Header, &v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EndpointBuilder) SetImplicitRulesExt(v Element) *EndpointBuilder {
+	b.endpoint.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EndpointBuilder) SetLanguageExt(v Element) *EndpointBuilder {
+	b.endpoint.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EndpointBuilder) SetStatusExt(v Element) *EndpointBuilder {
+	b.endpoint.StatusExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EndpointBuilder) SetNameExt(v Element) *EndpointBuilder {
+	b.endpoint.NameExt = &v
+	return b
+}
+
+// AddPayloadMimeTypeExt appends an extension slot for PayloadMimeType.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *EndpointBuilder) AddPayloadMimeTypeExt(v *Element) *EndpointBuilder {
+	b.endpoint.PayloadMimeTypeExt = append(b.endpoint.PayloadMimeTypeExt, v)
+	return b
+}
+
+// SetAddressExt sets the extensions carried by Address, serialized as
+// "_address".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *EndpointBuilder) SetAddressExt(v Element) *EndpointBuilder {
+	b.endpoint.AddressExt = &v
+	return b
+}
+
+// AddHeaderExt appends an extension slot for Header.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *EndpointBuilder) AddHeaderExt(v *Element) *EndpointBuilder {
+	b.endpoint.HeaderExt = append(b.endpoint.HeaderExt, v)
+	return b
+}

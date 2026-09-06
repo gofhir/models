@@ -421,3 +421,33 @@ func (b *BasicBuilder) SetAuthor(v Reference) *BasicBuilder {
 	b.basic.Author = &v
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BasicBuilder) SetImplicitRulesExt(v Element) *BasicBuilder {
+	b.basic.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BasicBuilder) SetLanguageExt(v Element) *BasicBuilder {
+	b.basic.LanguageExt = &v
+	return b
+}
+
+// SetCreatedExt sets the extensions carried by Created, serialized as
+// "_created".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *BasicBuilder) SetCreatedExt(v Element) *BasicBuilder {
+	b.basic.CreatedExt = &v
+	return b
+}

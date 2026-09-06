@@ -1964,3 +1964,1073 @@ func (b *RequestOrchestrationBuilder) AddAction(v RequestOrchestrationAction) *R
 	b.requestOrchestration.Action = append(b.requestOrchestration.Action, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationBuilder) SetImplicitRulesExt(v Element) *RequestOrchestrationBuilder {
+	b.requestOrchestration.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationBuilder) SetLanguageExt(v Element) *RequestOrchestrationBuilder {
+	b.requestOrchestration.LanguageExt = &v
+	return b
+}
+
+// AddInstantiatesCanonicalExt appends an extension slot for InstantiatesCanonical.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *RequestOrchestrationBuilder) AddInstantiatesCanonicalExt(v *Element) *RequestOrchestrationBuilder {
+	b.requestOrchestration.InstantiatesCanonicalExt = append(b.requestOrchestration.InstantiatesCanonicalExt, v)
+	return b
+}
+
+// AddInstantiatesUriExt appends an extension slot for InstantiatesUri.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *RequestOrchestrationBuilder) AddInstantiatesUriExt(v *Element) *RequestOrchestrationBuilder {
+	b.requestOrchestration.InstantiatesUriExt = append(b.requestOrchestration.InstantiatesUriExt, v)
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationBuilder) SetStatusExt(v Element) *RequestOrchestrationBuilder {
+	b.requestOrchestration.StatusExt = &v
+	return b
+}
+
+// SetIntentExt sets the extensions carried by Intent, serialized as
+// "_intent".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationBuilder) SetIntentExt(v Element) *RequestOrchestrationBuilder {
+	b.requestOrchestration.IntentExt = &v
+	return b
+}
+
+// SetPriorityExt sets the extensions carried by Priority, serialized as
+// "_priority".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationBuilder) SetPriorityExt(v Element) *RequestOrchestrationBuilder {
+	b.requestOrchestration.PriorityExt = &v
+	return b
+}
+
+// SetAuthoredOnExt sets the extensions carried by AuthoredOn, serialized as
+// "_authoredOn".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationBuilder) SetAuthoredOnExt(v Element) *RequestOrchestrationBuilder {
+	b.requestOrchestration.AuthoredOnExt = &v
+	return b
+}
+
+// =============================================================================
+// RequestOrchestrationAction - Fluent Builder
+// =============================================================================
+
+// RequestOrchestrationActionBuilder provides a fluent API for constructing RequestOrchestrationAction values.
+type RequestOrchestrationActionBuilder struct {
+	requestOrchestrationAction *RequestOrchestrationAction
+}
+
+// NewRequestOrchestrationActionBuilder creates a new RequestOrchestrationActionBuilder.
+func NewRequestOrchestrationActionBuilder() *RequestOrchestrationActionBuilder {
+	return &RequestOrchestrationActionBuilder{
+		requestOrchestrationAction: &RequestOrchestrationAction{},
+	}
+}
+
+// Build returns the constructed RequestOrchestrationAction.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *RequestOrchestrationActionBuilder) Build() RequestOrchestrationAction {
+	return *b.requestOrchestrationAction
+}
+
+// SetId sets the Id field.
+func (b *RequestOrchestrationActionBuilder) SetId(v string) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *RequestOrchestrationActionBuilder) AddExtension(v Extension) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.Extension = append(b.requestOrchestrationAction.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *RequestOrchestrationActionBuilder) AddModifierExtension(v Extension) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.ModifierExtension = append(b.requestOrchestrationAction.ModifierExtension, v)
+	return b
+}
+
+// SetLinkId sets the LinkId field.
+func (b *RequestOrchestrationActionBuilder) SetLinkId(v string) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.LinkId = &v
+	return b
+}
+
+// SetPrefix sets the Prefix field.
+func (b *RequestOrchestrationActionBuilder) SetPrefix(v string) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.Prefix = &v
+	return b
+}
+
+// SetTitle sets the Title field.
+func (b *RequestOrchestrationActionBuilder) SetTitle(v string) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.Title = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *RequestOrchestrationActionBuilder) SetDescription(v string) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.Description = &v
+	return b
+}
+
+// SetTextEquivalent sets the TextEquivalent field.
+func (b *RequestOrchestrationActionBuilder) SetTextEquivalent(v string) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.TextEquivalent = &v
+	return b
+}
+
+// SetPriority sets the Priority field.
+func (b *RequestOrchestrationActionBuilder) SetPriority(v RequestPriority) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.Priority = &v
+	return b
+}
+
+// AddCode adds a Code element.
+func (b *RequestOrchestrationActionBuilder) AddCode(v CodeableConcept) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.Code = append(b.requestOrchestrationAction.Code, v)
+	return b
+}
+
+// AddDocumentation adds a Documentation element.
+func (b *RequestOrchestrationActionBuilder) AddDocumentation(v RelatedArtifact) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.Documentation = append(b.requestOrchestrationAction.Documentation, v)
+	return b
+}
+
+// AddGoal adds a Goal element.
+func (b *RequestOrchestrationActionBuilder) AddGoal(v Reference) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.Goal = append(b.requestOrchestrationAction.Goal, v)
+	return b
+}
+
+// AddCondition adds a Condition element.
+func (b *RequestOrchestrationActionBuilder) AddCondition(v RequestOrchestrationActionCondition) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.Condition = append(b.requestOrchestrationAction.Condition, v)
+	return b
+}
+
+// AddInput adds a Input element.
+func (b *RequestOrchestrationActionBuilder) AddInput(v RequestOrchestrationActionInput) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.Input = append(b.requestOrchestrationAction.Input, v)
+	return b
+}
+
+// AddOutput adds a Output element.
+func (b *RequestOrchestrationActionBuilder) AddOutput(v RequestOrchestrationActionOutput) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.Output = append(b.requestOrchestrationAction.Output, v)
+	return b
+}
+
+// AddRelatedAction adds a RelatedAction element.
+func (b *RequestOrchestrationActionBuilder) AddRelatedAction(v RequestOrchestrationActionRelatedAction) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.RelatedAction = append(b.requestOrchestrationAction.RelatedAction, v)
+	return b
+}
+
+// SetTimingDateTime sets Timing[x] to its TimingDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RequestOrchestrationActionBuilder) SetTimingDateTime(v string) *RequestOrchestrationActionBuilder {
+	b.clearTiming()
+	b.requestOrchestrationAction.TimingDateTime = &v
+	return b
+}
+
+// SetTimingDateTimeExt sets the TimingDateTimeExt field.
+func (b *RequestOrchestrationActionBuilder) SetTimingDateTimeExt(v Element) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.TimingDateTimeExt = &v
+	return b
+}
+
+// SetTimingAge sets Timing[x] to its TimingAge variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RequestOrchestrationActionBuilder) SetTimingAge(v Age) *RequestOrchestrationActionBuilder {
+	b.clearTiming()
+	b.requestOrchestrationAction.TimingAge = &v
+	return b
+}
+
+// SetTimingPeriod sets Timing[x] to its TimingPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RequestOrchestrationActionBuilder) SetTimingPeriod(v Period) *RequestOrchestrationActionBuilder {
+	b.clearTiming()
+	b.requestOrchestrationAction.TimingPeriod = &v
+	return b
+}
+
+// SetTimingDuration sets Timing[x] to its TimingDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RequestOrchestrationActionBuilder) SetTimingDuration(v Duration) *RequestOrchestrationActionBuilder {
+	b.clearTiming()
+	b.requestOrchestrationAction.TimingDuration = &v
+	return b
+}
+
+// SetTimingRange sets Timing[x] to its TimingRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RequestOrchestrationActionBuilder) SetTimingRange(v Range) *RequestOrchestrationActionBuilder {
+	b.clearTiming()
+	b.requestOrchestrationAction.TimingRange = &v
+	return b
+}
+
+// SetTimingTiming sets Timing[x] to its TimingTiming variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RequestOrchestrationActionBuilder) SetTimingTiming(v Timing) *RequestOrchestrationActionBuilder {
+	b.clearTiming()
+	b.requestOrchestrationAction.TimingTiming = &v
+	return b
+}
+
+// SetLocation sets the Location field.
+func (b *RequestOrchestrationActionBuilder) SetLocation(v CodeableReference) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.Location = &v
+	return b
+}
+
+// AddParticipant adds a Participant element.
+func (b *RequestOrchestrationActionBuilder) AddParticipant(v RequestOrchestrationActionParticipant) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.Participant = append(b.requestOrchestrationAction.Participant, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *RequestOrchestrationActionBuilder) SetType(v CodeableConcept) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.Type = &v
+	return b
+}
+
+// SetGroupingBehavior sets the GroupingBehavior field.
+func (b *RequestOrchestrationActionBuilder) SetGroupingBehavior(v ActionGroupingBehavior) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.GroupingBehavior = &v
+	return b
+}
+
+// SetSelectionBehavior sets the SelectionBehavior field.
+func (b *RequestOrchestrationActionBuilder) SetSelectionBehavior(v ActionSelectionBehavior) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.SelectionBehavior = &v
+	return b
+}
+
+// SetRequiredBehavior sets the RequiredBehavior field.
+func (b *RequestOrchestrationActionBuilder) SetRequiredBehavior(v ActionRequiredBehavior) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.RequiredBehavior = &v
+	return b
+}
+
+// SetPrecheckBehavior sets the PrecheckBehavior field.
+func (b *RequestOrchestrationActionBuilder) SetPrecheckBehavior(v ActionPrecheckBehavior) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.PrecheckBehavior = &v
+	return b
+}
+
+// SetCardinalityBehavior sets the CardinalityBehavior field.
+func (b *RequestOrchestrationActionBuilder) SetCardinalityBehavior(v ActionCardinalityBehavior) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.CardinalityBehavior = &v
+	return b
+}
+
+// SetResource sets the Resource field.
+func (b *RequestOrchestrationActionBuilder) SetResource(v Reference) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.Resource = &v
+	return b
+}
+
+// SetDefinitionCanonical sets Definition[x] to its DefinitionCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RequestOrchestrationActionBuilder) SetDefinitionCanonical(v string) *RequestOrchestrationActionBuilder {
+	b.clearDefinition()
+	b.requestOrchestrationAction.DefinitionCanonical = &v
+	return b
+}
+
+// SetDefinitionCanonicalExt sets the DefinitionCanonicalExt field.
+func (b *RequestOrchestrationActionBuilder) SetDefinitionCanonicalExt(v Element) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.DefinitionCanonicalExt = &v
+	return b
+}
+
+// SetDefinitionUri sets Definition[x] to its DefinitionUri variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RequestOrchestrationActionBuilder) SetDefinitionUri(v string) *RequestOrchestrationActionBuilder {
+	b.clearDefinition()
+	b.requestOrchestrationAction.DefinitionUri = &v
+	return b
+}
+
+// SetDefinitionUriExt sets the DefinitionUriExt field.
+func (b *RequestOrchestrationActionBuilder) SetDefinitionUriExt(v Element) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.DefinitionUriExt = &v
+	return b
+}
+
+// SetTransform sets the Transform field.
+func (b *RequestOrchestrationActionBuilder) SetTransform(v string) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.Transform = &v
+	return b
+}
+
+// AddDynamicValue adds a DynamicValue element.
+func (b *RequestOrchestrationActionBuilder) AddDynamicValue(v RequestOrchestrationActionDynamicValue) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.DynamicValue = append(b.requestOrchestrationAction.DynamicValue, v)
+	return b
+}
+
+// AddAction adds a Action element.
+func (b *RequestOrchestrationActionBuilder) AddAction(v RequestOrchestrationAction) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.Action = append(b.requestOrchestrationAction.Action, v)
+	return b
+}
+
+// SetLinkIdExt sets the extensions carried by LinkId, serialized as
+// "_linkId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationActionBuilder) SetLinkIdExt(v Element) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.LinkIdExt = &v
+	return b
+}
+
+// SetPrefixExt sets the extensions carried by Prefix, serialized as
+// "_prefix".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationActionBuilder) SetPrefixExt(v Element) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.PrefixExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationActionBuilder) SetTitleExt(v Element) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.TitleExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationActionBuilder) SetDescriptionExt(v Element) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.DescriptionExt = &v
+	return b
+}
+
+// SetTextEquivalentExt sets the extensions carried by TextEquivalent, serialized as
+// "_textEquivalent".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationActionBuilder) SetTextEquivalentExt(v Element) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.TextEquivalentExt = &v
+	return b
+}
+
+// SetPriorityExt sets the extensions carried by Priority, serialized as
+// "_priority".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationActionBuilder) SetPriorityExt(v Element) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.PriorityExt = &v
+	return b
+}
+
+// SetGroupingBehaviorExt sets the extensions carried by GroupingBehavior, serialized as
+// "_groupingBehavior".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationActionBuilder) SetGroupingBehaviorExt(v Element) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.GroupingBehaviorExt = &v
+	return b
+}
+
+// SetSelectionBehaviorExt sets the extensions carried by SelectionBehavior, serialized as
+// "_selectionBehavior".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationActionBuilder) SetSelectionBehaviorExt(v Element) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.SelectionBehaviorExt = &v
+	return b
+}
+
+// SetRequiredBehaviorExt sets the extensions carried by RequiredBehavior, serialized as
+// "_requiredBehavior".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationActionBuilder) SetRequiredBehaviorExt(v Element) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.RequiredBehaviorExt = &v
+	return b
+}
+
+// SetPrecheckBehaviorExt sets the extensions carried by PrecheckBehavior, serialized as
+// "_precheckBehavior".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationActionBuilder) SetPrecheckBehaviorExt(v Element) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.PrecheckBehaviorExt = &v
+	return b
+}
+
+// SetCardinalityBehaviorExt sets the extensions carried by CardinalityBehavior, serialized as
+// "_cardinalityBehavior".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationActionBuilder) SetCardinalityBehaviorExt(v Element) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.CardinalityBehaviorExt = &v
+	return b
+}
+
+// SetTransformExt sets the extensions carried by Transform, serialized as
+// "_transform".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationActionBuilder) SetTransformExt(v Element) *RequestOrchestrationActionBuilder {
+	b.requestOrchestrationAction.TransformExt = &v
+	return b
+}
+
+// clearTiming unsets every variant of Timing[x], including the
+// _field companions of the primitive ones.
+func (b *RequestOrchestrationActionBuilder) clearTiming() {
+	b.requestOrchestrationAction.TimingDateTime = nil
+	b.requestOrchestrationAction.TimingAge = nil
+	b.requestOrchestrationAction.TimingPeriod = nil
+	b.requestOrchestrationAction.TimingDuration = nil
+	b.requestOrchestrationAction.TimingRange = nil
+	b.requestOrchestrationAction.TimingTiming = nil
+}
+
+// clearDefinition unsets every variant of Definition[x], including the
+// _field companions of the primitive ones.
+func (b *RequestOrchestrationActionBuilder) clearDefinition() {
+	b.requestOrchestrationAction.DefinitionCanonical = nil
+	b.requestOrchestrationAction.DefinitionUri = nil
+	b.requestOrchestrationAction.DefinitionUriExt = nil
+}
+
+// =============================================================================
+// RequestOrchestrationActionCondition - Fluent Builder
+// =============================================================================
+
+// RequestOrchestrationActionConditionBuilder provides a fluent API for constructing RequestOrchestrationActionCondition values.
+type RequestOrchestrationActionConditionBuilder struct {
+	requestOrchestrationActionCondition *RequestOrchestrationActionCondition
+}
+
+// NewRequestOrchestrationActionConditionBuilder creates a new RequestOrchestrationActionConditionBuilder.
+func NewRequestOrchestrationActionConditionBuilder() *RequestOrchestrationActionConditionBuilder {
+	return &RequestOrchestrationActionConditionBuilder{
+		requestOrchestrationActionCondition: &RequestOrchestrationActionCondition{},
+	}
+}
+
+// Build returns the constructed RequestOrchestrationActionCondition.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *RequestOrchestrationActionConditionBuilder) Build() RequestOrchestrationActionCondition {
+	return *b.requestOrchestrationActionCondition
+}
+
+// SetId sets the Id field.
+func (b *RequestOrchestrationActionConditionBuilder) SetId(v string) *RequestOrchestrationActionConditionBuilder {
+	b.requestOrchestrationActionCondition.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *RequestOrchestrationActionConditionBuilder) AddExtension(v Extension) *RequestOrchestrationActionConditionBuilder {
+	b.requestOrchestrationActionCondition.Extension = append(b.requestOrchestrationActionCondition.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *RequestOrchestrationActionConditionBuilder) AddModifierExtension(v Extension) *RequestOrchestrationActionConditionBuilder {
+	b.requestOrchestrationActionCondition.ModifierExtension = append(b.requestOrchestrationActionCondition.ModifierExtension, v)
+	return b
+}
+
+// SetKind sets the Kind field.
+func (b *RequestOrchestrationActionConditionBuilder) SetKind(v ActionConditionKind) *RequestOrchestrationActionConditionBuilder {
+	b.requestOrchestrationActionCondition.Kind = &v
+	return b
+}
+
+// SetExpression sets the Expression field.
+func (b *RequestOrchestrationActionConditionBuilder) SetExpression(v Expression) *RequestOrchestrationActionConditionBuilder {
+	b.requestOrchestrationActionCondition.Expression = &v
+	return b
+}
+
+// SetKindExt sets the extensions carried by Kind, serialized as
+// "_kind".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationActionConditionBuilder) SetKindExt(v Element) *RequestOrchestrationActionConditionBuilder {
+	b.requestOrchestrationActionCondition.KindExt = &v
+	return b
+}
+
+// =============================================================================
+// RequestOrchestrationActionDynamicValue - Fluent Builder
+// =============================================================================
+
+// RequestOrchestrationActionDynamicValueBuilder provides a fluent API for constructing RequestOrchestrationActionDynamicValue values.
+type RequestOrchestrationActionDynamicValueBuilder struct {
+	requestOrchestrationActionDynamicValue *RequestOrchestrationActionDynamicValue
+}
+
+// NewRequestOrchestrationActionDynamicValueBuilder creates a new RequestOrchestrationActionDynamicValueBuilder.
+func NewRequestOrchestrationActionDynamicValueBuilder() *RequestOrchestrationActionDynamicValueBuilder {
+	return &RequestOrchestrationActionDynamicValueBuilder{
+		requestOrchestrationActionDynamicValue: &RequestOrchestrationActionDynamicValue{},
+	}
+}
+
+// Build returns the constructed RequestOrchestrationActionDynamicValue.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *RequestOrchestrationActionDynamicValueBuilder) Build() RequestOrchestrationActionDynamicValue {
+	return *b.requestOrchestrationActionDynamicValue
+}
+
+// SetId sets the Id field.
+func (b *RequestOrchestrationActionDynamicValueBuilder) SetId(v string) *RequestOrchestrationActionDynamicValueBuilder {
+	b.requestOrchestrationActionDynamicValue.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *RequestOrchestrationActionDynamicValueBuilder) AddExtension(v Extension) *RequestOrchestrationActionDynamicValueBuilder {
+	b.requestOrchestrationActionDynamicValue.Extension = append(b.requestOrchestrationActionDynamicValue.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *RequestOrchestrationActionDynamicValueBuilder) AddModifierExtension(v Extension) *RequestOrchestrationActionDynamicValueBuilder {
+	b.requestOrchestrationActionDynamicValue.ModifierExtension = append(b.requestOrchestrationActionDynamicValue.ModifierExtension, v)
+	return b
+}
+
+// SetPath sets the Path field.
+func (b *RequestOrchestrationActionDynamicValueBuilder) SetPath(v string) *RequestOrchestrationActionDynamicValueBuilder {
+	b.requestOrchestrationActionDynamicValue.Path = &v
+	return b
+}
+
+// SetExpression sets the Expression field.
+func (b *RequestOrchestrationActionDynamicValueBuilder) SetExpression(v Expression) *RequestOrchestrationActionDynamicValueBuilder {
+	b.requestOrchestrationActionDynamicValue.Expression = &v
+	return b
+}
+
+// SetPathExt sets the extensions carried by Path, serialized as
+// "_path".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationActionDynamicValueBuilder) SetPathExt(v Element) *RequestOrchestrationActionDynamicValueBuilder {
+	b.requestOrchestrationActionDynamicValue.PathExt = &v
+	return b
+}
+
+// =============================================================================
+// RequestOrchestrationActionInput - Fluent Builder
+// =============================================================================
+
+// RequestOrchestrationActionInputBuilder provides a fluent API for constructing RequestOrchestrationActionInput values.
+type RequestOrchestrationActionInputBuilder struct {
+	requestOrchestrationActionInput *RequestOrchestrationActionInput
+}
+
+// NewRequestOrchestrationActionInputBuilder creates a new RequestOrchestrationActionInputBuilder.
+func NewRequestOrchestrationActionInputBuilder() *RequestOrchestrationActionInputBuilder {
+	return &RequestOrchestrationActionInputBuilder{
+		requestOrchestrationActionInput: &RequestOrchestrationActionInput{},
+	}
+}
+
+// Build returns the constructed RequestOrchestrationActionInput.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *RequestOrchestrationActionInputBuilder) Build() RequestOrchestrationActionInput {
+	return *b.requestOrchestrationActionInput
+}
+
+// SetId sets the Id field.
+func (b *RequestOrchestrationActionInputBuilder) SetId(v string) *RequestOrchestrationActionInputBuilder {
+	b.requestOrchestrationActionInput.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *RequestOrchestrationActionInputBuilder) AddExtension(v Extension) *RequestOrchestrationActionInputBuilder {
+	b.requestOrchestrationActionInput.Extension = append(b.requestOrchestrationActionInput.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *RequestOrchestrationActionInputBuilder) AddModifierExtension(v Extension) *RequestOrchestrationActionInputBuilder {
+	b.requestOrchestrationActionInput.ModifierExtension = append(b.requestOrchestrationActionInput.ModifierExtension, v)
+	return b
+}
+
+// SetTitle sets the Title field.
+func (b *RequestOrchestrationActionInputBuilder) SetTitle(v string) *RequestOrchestrationActionInputBuilder {
+	b.requestOrchestrationActionInput.Title = &v
+	return b
+}
+
+// SetRequirement sets the Requirement field.
+func (b *RequestOrchestrationActionInputBuilder) SetRequirement(v DataRequirement) *RequestOrchestrationActionInputBuilder {
+	b.requestOrchestrationActionInput.Requirement = &v
+	return b
+}
+
+// SetRelatedData sets the RelatedData field.
+func (b *RequestOrchestrationActionInputBuilder) SetRelatedData(v string) *RequestOrchestrationActionInputBuilder {
+	b.requestOrchestrationActionInput.RelatedData = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationActionInputBuilder) SetTitleExt(v Element) *RequestOrchestrationActionInputBuilder {
+	b.requestOrchestrationActionInput.TitleExt = &v
+	return b
+}
+
+// SetRelatedDataExt sets the extensions carried by RelatedData, serialized as
+// "_relatedData".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationActionInputBuilder) SetRelatedDataExt(v Element) *RequestOrchestrationActionInputBuilder {
+	b.requestOrchestrationActionInput.RelatedDataExt = &v
+	return b
+}
+
+// =============================================================================
+// RequestOrchestrationActionOutput - Fluent Builder
+// =============================================================================
+
+// RequestOrchestrationActionOutputBuilder provides a fluent API for constructing RequestOrchestrationActionOutput values.
+type RequestOrchestrationActionOutputBuilder struct {
+	requestOrchestrationActionOutput *RequestOrchestrationActionOutput
+}
+
+// NewRequestOrchestrationActionOutputBuilder creates a new RequestOrchestrationActionOutputBuilder.
+func NewRequestOrchestrationActionOutputBuilder() *RequestOrchestrationActionOutputBuilder {
+	return &RequestOrchestrationActionOutputBuilder{
+		requestOrchestrationActionOutput: &RequestOrchestrationActionOutput{},
+	}
+}
+
+// Build returns the constructed RequestOrchestrationActionOutput.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *RequestOrchestrationActionOutputBuilder) Build() RequestOrchestrationActionOutput {
+	return *b.requestOrchestrationActionOutput
+}
+
+// SetId sets the Id field.
+func (b *RequestOrchestrationActionOutputBuilder) SetId(v string) *RequestOrchestrationActionOutputBuilder {
+	b.requestOrchestrationActionOutput.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *RequestOrchestrationActionOutputBuilder) AddExtension(v Extension) *RequestOrchestrationActionOutputBuilder {
+	b.requestOrchestrationActionOutput.Extension = append(b.requestOrchestrationActionOutput.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *RequestOrchestrationActionOutputBuilder) AddModifierExtension(v Extension) *RequestOrchestrationActionOutputBuilder {
+	b.requestOrchestrationActionOutput.ModifierExtension = append(b.requestOrchestrationActionOutput.ModifierExtension, v)
+	return b
+}
+
+// SetTitle sets the Title field.
+func (b *RequestOrchestrationActionOutputBuilder) SetTitle(v string) *RequestOrchestrationActionOutputBuilder {
+	b.requestOrchestrationActionOutput.Title = &v
+	return b
+}
+
+// SetRequirement sets the Requirement field.
+func (b *RequestOrchestrationActionOutputBuilder) SetRequirement(v DataRequirement) *RequestOrchestrationActionOutputBuilder {
+	b.requestOrchestrationActionOutput.Requirement = &v
+	return b
+}
+
+// SetRelatedData sets the RelatedData field.
+func (b *RequestOrchestrationActionOutputBuilder) SetRelatedData(v string) *RequestOrchestrationActionOutputBuilder {
+	b.requestOrchestrationActionOutput.RelatedData = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationActionOutputBuilder) SetTitleExt(v Element) *RequestOrchestrationActionOutputBuilder {
+	b.requestOrchestrationActionOutput.TitleExt = &v
+	return b
+}
+
+// SetRelatedDataExt sets the extensions carried by RelatedData, serialized as
+// "_relatedData".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationActionOutputBuilder) SetRelatedDataExt(v Element) *RequestOrchestrationActionOutputBuilder {
+	b.requestOrchestrationActionOutput.RelatedDataExt = &v
+	return b
+}
+
+// =============================================================================
+// RequestOrchestrationActionParticipant - Fluent Builder
+// =============================================================================
+
+// RequestOrchestrationActionParticipantBuilder provides a fluent API for constructing RequestOrchestrationActionParticipant values.
+type RequestOrchestrationActionParticipantBuilder struct {
+	requestOrchestrationActionParticipant *RequestOrchestrationActionParticipant
+}
+
+// NewRequestOrchestrationActionParticipantBuilder creates a new RequestOrchestrationActionParticipantBuilder.
+func NewRequestOrchestrationActionParticipantBuilder() *RequestOrchestrationActionParticipantBuilder {
+	return &RequestOrchestrationActionParticipantBuilder{
+		requestOrchestrationActionParticipant: &RequestOrchestrationActionParticipant{},
+	}
+}
+
+// Build returns the constructed RequestOrchestrationActionParticipant.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *RequestOrchestrationActionParticipantBuilder) Build() RequestOrchestrationActionParticipant {
+	return *b.requestOrchestrationActionParticipant
+}
+
+// SetId sets the Id field.
+func (b *RequestOrchestrationActionParticipantBuilder) SetId(v string) *RequestOrchestrationActionParticipantBuilder {
+	b.requestOrchestrationActionParticipant.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *RequestOrchestrationActionParticipantBuilder) AddExtension(v Extension) *RequestOrchestrationActionParticipantBuilder {
+	b.requestOrchestrationActionParticipant.Extension = append(b.requestOrchestrationActionParticipant.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *RequestOrchestrationActionParticipantBuilder) AddModifierExtension(v Extension) *RequestOrchestrationActionParticipantBuilder {
+	b.requestOrchestrationActionParticipant.ModifierExtension = append(b.requestOrchestrationActionParticipant.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *RequestOrchestrationActionParticipantBuilder) SetType(v ActivityParticipantType) *RequestOrchestrationActionParticipantBuilder {
+	b.requestOrchestrationActionParticipant.Type = &v
+	return b
+}
+
+// SetTypeCanonical sets the TypeCanonical field.
+func (b *RequestOrchestrationActionParticipantBuilder) SetTypeCanonical(v string) *RequestOrchestrationActionParticipantBuilder {
+	b.requestOrchestrationActionParticipant.TypeCanonical = &v
+	return b
+}
+
+// SetTypeReference sets the TypeReference field.
+func (b *RequestOrchestrationActionParticipantBuilder) SetTypeReference(v Reference) *RequestOrchestrationActionParticipantBuilder {
+	b.requestOrchestrationActionParticipant.TypeReference = &v
+	return b
+}
+
+// SetRole sets the Role field.
+func (b *RequestOrchestrationActionParticipantBuilder) SetRole(v CodeableConcept) *RequestOrchestrationActionParticipantBuilder {
+	b.requestOrchestrationActionParticipant.Role = &v
+	return b
+}
+
+// SetFunction sets the Function field.
+func (b *RequestOrchestrationActionParticipantBuilder) SetFunction(v CodeableConcept) *RequestOrchestrationActionParticipantBuilder {
+	b.requestOrchestrationActionParticipant.Function = &v
+	return b
+}
+
+// SetActorCanonical sets Actor[x] to its ActorCanonical variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RequestOrchestrationActionParticipantBuilder) SetActorCanonical(v string) *RequestOrchestrationActionParticipantBuilder {
+	b.clearActor()
+	b.requestOrchestrationActionParticipant.ActorCanonical = &v
+	return b
+}
+
+// SetActorCanonicalExt sets the ActorCanonicalExt field.
+func (b *RequestOrchestrationActionParticipantBuilder) SetActorCanonicalExt(v Element) *RequestOrchestrationActionParticipantBuilder {
+	b.requestOrchestrationActionParticipant.ActorCanonicalExt = &v
+	return b
+}
+
+// SetActorReference sets Actor[x] to its ActorReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RequestOrchestrationActionParticipantBuilder) SetActorReference(v Reference) *RequestOrchestrationActionParticipantBuilder {
+	b.clearActor()
+	b.requestOrchestrationActionParticipant.ActorReference = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationActionParticipantBuilder) SetTypeExt(v Element) *RequestOrchestrationActionParticipantBuilder {
+	b.requestOrchestrationActionParticipant.TypeExt = &v
+	return b
+}
+
+// SetTypeCanonicalExt sets the extensions carried by TypeCanonical, serialized as
+// "_typeCanonical".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationActionParticipantBuilder) SetTypeCanonicalExt(v Element) *RequestOrchestrationActionParticipantBuilder {
+	b.requestOrchestrationActionParticipant.TypeCanonicalExt = &v
+	return b
+}
+
+// clearActor unsets every variant of Actor[x], including the
+// _field companions of the primitive ones.
+func (b *RequestOrchestrationActionParticipantBuilder) clearActor() {
+	b.requestOrchestrationActionParticipant.ActorCanonical = nil
+	b.requestOrchestrationActionParticipant.ActorReference = nil
+}
+
+// =============================================================================
+// RequestOrchestrationActionRelatedAction - Fluent Builder
+// =============================================================================
+
+// RequestOrchestrationActionRelatedActionBuilder provides a fluent API for constructing RequestOrchestrationActionRelatedAction values.
+type RequestOrchestrationActionRelatedActionBuilder struct {
+	requestOrchestrationActionRelatedAction *RequestOrchestrationActionRelatedAction
+}
+
+// NewRequestOrchestrationActionRelatedActionBuilder creates a new RequestOrchestrationActionRelatedActionBuilder.
+func NewRequestOrchestrationActionRelatedActionBuilder() *RequestOrchestrationActionRelatedActionBuilder {
+	return &RequestOrchestrationActionRelatedActionBuilder{
+		requestOrchestrationActionRelatedAction: &RequestOrchestrationActionRelatedAction{},
+	}
+}
+
+// Build returns the constructed RequestOrchestrationActionRelatedAction.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *RequestOrchestrationActionRelatedActionBuilder) Build() RequestOrchestrationActionRelatedAction {
+	return *b.requestOrchestrationActionRelatedAction
+}
+
+// SetId sets the Id field.
+func (b *RequestOrchestrationActionRelatedActionBuilder) SetId(v string) *RequestOrchestrationActionRelatedActionBuilder {
+	b.requestOrchestrationActionRelatedAction.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *RequestOrchestrationActionRelatedActionBuilder) AddExtension(v Extension) *RequestOrchestrationActionRelatedActionBuilder {
+	b.requestOrchestrationActionRelatedAction.Extension = append(b.requestOrchestrationActionRelatedAction.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *RequestOrchestrationActionRelatedActionBuilder) AddModifierExtension(v Extension) *RequestOrchestrationActionRelatedActionBuilder {
+	b.requestOrchestrationActionRelatedAction.ModifierExtension = append(b.requestOrchestrationActionRelatedAction.ModifierExtension, v)
+	return b
+}
+
+// SetTargetId sets the TargetId field.
+func (b *RequestOrchestrationActionRelatedActionBuilder) SetTargetId(v string) *RequestOrchestrationActionRelatedActionBuilder {
+	b.requestOrchestrationActionRelatedAction.TargetId = &v
+	return b
+}
+
+// SetRelationship sets the Relationship field.
+func (b *RequestOrchestrationActionRelatedActionBuilder) SetRelationship(v ActionRelationshipType) *RequestOrchestrationActionRelatedActionBuilder {
+	b.requestOrchestrationActionRelatedAction.Relationship = &v
+	return b
+}
+
+// SetEndRelationship sets the EndRelationship field.
+func (b *RequestOrchestrationActionRelatedActionBuilder) SetEndRelationship(v ActionRelationshipType) *RequestOrchestrationActionRelatedActionBuilder {
+	b.requestOrchestrationActionRelatedAction.EndRelationship = &v
+	return b
+}
+
+// SetOffsetDuration sets Offset[x] to its OffsetDuration variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RequestOrchestrationActionRelatedActionBuilder) SetOffsetDuration(v Duration) *RequestOrchestrationActionRelatedActionBuilder {
+	b.clearOffset()
+	b.requestOrchestrationActionRelatedAction.OffsetDuration = &v
+	return b
+}
+
+// SetOffsetRange sets Offset[x] to its OffsetRange variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *RequestOrchestrationActionRelatedActionBuilder) SetOffsetRange(v Range) *RequestOrchestrationActionRelatedActionBuilder {
+	b.clearOffset()
+	b.requestOrchestrationActionRelatedAction.OffsetRange = &v
+	return b
+}
+
+// SetTargetIdExt sets the extensions carried by TargetId, serialized as
+// "_targetId".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationActionRelatedActionBuilder) SetTargetIdExt(v Element) *RequestOrchestrationActionRelatedActionBuilder {
+	b.requestOrchestrationActionRelatedAction.TargetIdExt = &v
+	return b
+}
+
+// SetRelationshipExt sets the extensions carried by Relationship, serialized as
+// "_relationship".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationActionRelatedActionBuilder) SetRelationshipExt(v Element) *RequestOrchestrationActionRelatedActionBuilder {
+	b.requestOrchestrationActionRelatedAction.RelationshipExt = &v
+	return b
+}
+
+// SetEndRelationshipExt sets the extensions carried by EndRelationship, serialized as
+// "_endRelationship".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *RequestOrchestrationActionRelatedActionBuilder) SetEndRelationshipExt(v Element) *RequestOrchestrationActionRelatedActionBuilder {
+	b.requestOrchestrationActionRelatedAction.EndRelationshipExt = &v
+	return b
+}
+
+// clearOffset unsets every variant of Offset[x], including the
+// _field companions of the primitive ones.
+func (b *RequestOrchestrationActionRelatedActionBuilder) clearOffset() {
+	b.requestOrchestrationActionRelatedAction.OffsetDuration = nil
+	b.requestOrchestrationActionRelatedAction.OffsetRange = nil
+}

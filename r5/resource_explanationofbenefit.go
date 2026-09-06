@@ -5842,3 +5842,3126 @@ func (b *ExplanationOfBenefitBuilder) AddBenefitBalance(v ExplanationOfBenefitBe
 	b.explanationOfBenefit.BenefitBalance = append(b.explanationOfBenefit.BenefitBalance, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitBuilder) SetImplicitRulesExt(v Element) *ExplanationOfBenefitBuilder {
+	b.explanationOfBenefit.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitBuilder) SetLanguageExt(v Element) *ExplanationOfBenefitBuilder {
+	b.explanationOfBenefit.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitBuilder) SetStatusExt(v Element) *ExplanationOfBenefitBuilder {
+	b.explanationOfBenefit.StatusExt = &v
+	return b
+}
+
+// SetUseExt sets the extensions carried by Use, serialized as
+// "_use".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitBuilder) SetUseExt(v Element) *ExplanationOfBenefitBuilder {
+	b.explanationOfBenefit.UseExt = &v
+	return b
+}
+
+// SetCreatedExt sets the extensions carried by Created, serialized as
+// "_created".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitBuilder) SetCreatedExt(v Element) *ExplanationOfBenefitBuilder {
+	b.explanationOfBenefit.CreatedExt = &v
+	return b
+}
+
+// SetOutcomeExt sets the extensions carried by Outcome, serialized as
+// "_outcome".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitBuilder) SetOutcomeExt(v Element) *ExplanationOfBenefitBuilder {
+	b.explanationOfBenefit.OutcomeExt = &v
+	return b
+}
+
+// SetDispositionExt sets the extensions carried by Disposition, serialized as
+// "_disposition".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitBuilder) SetDispositionExt(v Element) *ExplanationOfBenefitBuilder {
+	b.explanationOfBenefit.DispositionExt = &v
+	return b
+}
+
+// AddPreAuthRefExt appends an extension slot for PreAuthRef.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ExplanationOfBenefitBuilder) AddPreAuthRefExt(v *Element) *ExplanationOfBenefitBuilder {
+	b.explanationOfBenefit.PreAuthRefExt = append(b.explanationOfBenefit.PreAuthRefExt, v)
+	return b
+}
+
+// SetPrecedenceExt sets the extensions carried by Precedence, serialized as
+// "_precedence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitBuilder) SetPrecedenceExt(v Element) *ExplanationOfBenefitBuilder {
+	b.explanationOfBenefit.PrecedenceExt = &v
+	return b
+}
+
+// =============================================================================
+// ExplanationOfBenefitAccident - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitAccidentBuilder provides a fluent API for constructing ExplanationOfBenefitAccident values.
+type ExplanationOfBenefitAccidentBuilder struct {
+	explanationOfBenefitAccident *ExplanationOfBenefitAccident
+}
+
+// NewExplanationOfBenefitAccidentBuilder creates a new ExplanationOfBenefitAccidentBuilder.
+func NewExplanationOfBenefitAccidentBuilder() *ExplanationOfBenefitAccidentBuilder {
+	return &ExplanationOfBenefitAccidentBuilder{
+		explanationOfBenefitAccident: &ExplanationOfBenefitAccident{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitAccident.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitAccidentBuilder) Build() ExplanationOfBenefitAccident {
+	return *b.explanationOfBenefitAccident
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitAccidentBuilder) SetId(v string) *ExplanationOfBenefitAccidentBuilder {
+	b.explanationOfBenefitAccident.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitAccidentBuilder) AddExtension(v Extension) *ExplanationOfBenefitAccidentBuilder {
+	b.explanationOfBenefitAccident.Extension = append(b.explanationOfBenefitAccident.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitAccidentBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitAccidentBuilder {
+	b.explanationOfBenefitAccident.ModifierExtension = append(b.explanationOfBenefitAccident.ModifierExtension, v)
+	return b
+}
+
+// SetDate sets the Date field.
+func (b *ExplanationOfBenefitAccidentBuilder) SetDate(v string) *ExplanationOfBenefitAccidentBuilder {
+	b.explanationOfBenefitAccident.Date = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ExplanationOfBenefitAccidentBuilder) SetType(v CodeableConcept) *ExplanationOfBenefitAccidentBuilder {
+	b.explanationOfBenefitAccident.Type = &v
+	return b
+}
+
+// SetLocationAddress sets Location[x] to its LocationAddress variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitAccidentBuilder) SetLocationAddress(v Address) *ExplanationOfBenefitAccidentBuilder {
+	b.clearLocation()
+	b.explanationOfBenefitAccident.LocationAddress = &v
+	return b
+}
+
+// SetLocationReference sets Location[x] to its LocationReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitAccidentBuilder) SetLocationReference(v Reference) *ExplanationOfBenefitAccidentBuilder {
+	b.clearLocation()
+	b.explanationOfBenefitAccident.LocationReference = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitAccidentBuilder) SetDateExt(v Element) *ExplanationOfBenefitAccidentBuilder {
+	b.explanationOfBenefitAccident.DateExt = &v
+	return b
+}
+
+// clearLocation unsets every variant of Location[x], including the
+// _field companions of the primitive ones.
+func (b *ExplanationOfBenefitAccidentBuilder) clearLocation() {
+	b.explanationOfBenefitAccident.LocationAddress = nil
+	b.explanationOfBenefitAccident.LocationReference = nil
+}
+
+// =============================================================================
+// ExplanationOfBenefitAddItem - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitAddItemBuilder provides a fluent API for constructing ExplanationOfBenefitAddItem values.
+type ExplanationOfBenefitAddItemBuilder struct {
+	explanationOfBenefitAddItem *ExplanationOfBenefitAddItem
+}
+
+// NewExplanationOfBenefitAddItemBuilder creates a new ExplanationOfBenefitAddItemBuilder.
+func NewExplanationOfBenefitAddItemBuilder() *ExplanationOfBenefitAddItemBuilder {
+	return &ExplanationOfBenefitAddItemBuilder{
+		explanationOfBenefitAddItem: &ExplanationOfBenefitAddItem{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitAddItem.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitAddItemBuilder) Build() ExplanationOfBenefitAddItem {
+	return *b.explanationOfBenefitAddItem
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitAddItemBuilder) SetId(v string) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitAddItemBuilder) AddExtension(v Extension) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.Extension = append(b.explanationOfBenefitAddItem.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitAddItemBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.ModifierExtension = append(b.explanationOfBenefitAddItem.ModifierExtension, v)
+	return b
+}
+
+// AddItemSequence adds a ItemSequence element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ExplanationOfBenefitAddItemBuilder) AddItemSequence(v uint32) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.ItemSequence = append(b.explanationOfBenefitAddItem.ItemSequence, &v)
+	return b
+}
+
+// AddDetailSequence adds a DetailSequence element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ExplanationOfBenefitAddItemBuilder) AddDetailSequence(v uint32) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.DetailSequence = append(b.explanationOfBenefitAddItem.DetailSequence, &v)
+	return b
+}
+
+// AddSubDetailSequence adds a SubDetailSequence element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ExplanationOfBenefitAddItemBuilder) AddSubDetailSequence(v uint32) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.SubDetailSequence = append(b.explanationOfBenefitAddItem.SubDetailSequence, &v)
+	return b
+}
+
+// AddTraceNumber adds a TraceNumber element.
+func (b *ExplanationOfBenefitAddItemBuilder) AddTraceNumber(v Identifier) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.TraceNumber = append(b.explanationOfBenefitAddItem.TraceNumber, v)
+	return b
+}
+
+// AddProvider adds a Provider element.
+func (b *ExplanationOfBenefitAddItemBuilder) AddProvider(v Reference) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.Provider = append(b.explanationOfBenefitAddItem.Provider, v)
+	return b
+}
+
+// SetRevenue sets the Revenue field.
+func (b *ExplanationOfBenefitAddItemBuilder) SetRevenue(v CodeableConcept) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.Revenue = &v
+	return b
+}
+
+// SetProductOrService sets the ProductOrService field.
+func (b *ExplanationOfBenefitAddItemBuilder) SetProductOrService(v CodeableConcept) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.ProductOrService = &v
+	return b
+}
+
+// SetProductOrServiceEnd sets the ProductOrServiceEnd field.
+func (b *ExplanationOfBenefitAddItemBuilder) SetProductOrServiceEnd(v CodeableConcept) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.ProductOrServiceEnd = &v
+	return b
+}
+
+// AddRequest adds a Request element.
+func (b *ExplanationOfBenefitAddItemBuilder) AddRequest(v Reference) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.Request = append(b.explanationOfBenefitAddItem.Request, v)
+	return b
+}
+
+// AddModifier adds a Modifier element.
+func (b *ExplanationOfBenefitAddItemBuilder) AddModifier(v CodeableConcept) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.Modifier = append(b.explanationOfBenefitAddItem.Modifier, v)
+	return b
+}
+
+// AddProgramCode adds a ProgramCode element.
+func (b *ExplanationOfBenefitAddItemBuilder) AddProgramCode(v CodeableConcept) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.ProgramCode = append(b.explanationOfBenefitAddItem.ProgramCode, v)
+	return b
+}
+
+// SetServicedDate sets Serviced[x] to its ServicedDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitAddItemBuilder) SetServicedDate(v string) *ExplanationOfBenefitAddItemBuilder {
+	b.clearServiced()
+	b.explanationOfBenefitAddItem.ServicedDate = &v
+	return b
+}
+
+// SetServicedDateExt sets the ServicedDateExt field.
+func (b *ExplanationOfBenefitAddItemBuilder) SetServicedDateExt(v Element) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.ServicedDateExt = &v
+	return b
+}
+
+// SetServicedPeriod sets Serviced[x] to its ServicedPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitAddItemBuilder) SetServicedPeriod(v Period) *ExplanationOfBenefitAddItemBuilder {
+	b.clearServiced()
+	b.explanationOfBenefitAddItem.ServicedPeriod = &v
+	return b
+}
+
+// SetLocationCodeableConcept sets Location[x] to its LocationCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitAddItemBuilder) SetLocationCodeableConcept(v CodeableConcept) *ExplanationOfBenefitAddItemBuilder {
+	b.clearLocation()
+	b.explanationOfBenefitAddItem.LocationCodeableConcept = &v
+	return b
+}
+
+// SetLocationAddress sets Location[x] to its LocationAddress variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitAddItemBuilder) SetLocationAddress(v Address) *ExplanationOfBenefitAddItemBuilder {
+	b.clearLocation()
+	b.explanationOfBenefitAddItem.LocationAddress = &v
+	return b
+}
+
+// SetLocationReference sets Location[x] to its LocationReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitAddItemBuilder) SetLocationReference(v Reference) *ExplanationOfBenefitAddItemBuilder {
+	b.clearLocation()
+	b.explanationOfBenefitAddItem.LocationReference = &v
+	return b
+}
+
+// SetPatientPaid sets the PatientPaid field.
+func (b *ExplanationOfBenefitAddItemBuilder) SetPatientPaid(v Money) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.PatientPaid = &v
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *ExplanationOfBenefitAddItemBuilder) SetQuantity(v Quantity) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.Quantity = &v
+	return b
+}
+
+// SetUnitPrice sets the UnitPrice field.
+func (b *ExplanationOfBenefitAddItemBuilder) SetUnitPrice(v Money) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.UnitPrice = &v
+	return b
+}
+
+// SetFactor sets the Factor field.
+func (b *ExplanationOfBenefitAddItemBuilder) SetFactor(v Decimal) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.Factor = &v
+	return b
+}
+
+// SetTax sets the Tax field.
+func (b *ExplanationOfBenefitAddItemBuilder) SetTax(v Money) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.Tax = &v
+	return b
+}
+
+// SetNet sets the Net field.
+func (b *ExplanationOfBenefitAddItemBuilder) SetNet(v Money) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.Net = &v
+	return b
+}
+
+// AddBodySite adds a BodySite element.
+func (b *ExplanationOfBenefitAddItemBuilder) AddBodySite(v ExplanationOfBenefitAddItemBodySite) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.BodySite = append(b.explanationOfBenefitAddItem.BodySite, v)
+	return b
+}
+
+// AddNoteNumber adds a NoteNumber element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ExplanationOfBenefitAddItemBuilder) AddNoteNumber(v uint32) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.NoteNumber = append(b.explanationOfBenefitAddItem.NoteNumber, &v)
+	return b
+}
+
+// SetReviewOutcome sets the ReviewOutcome field.
+func (b *ExplanationOfBenefitAddItemBuilder) SetReviewOutcome(v ExplanationOfBenefitItemReviewOutcome) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.ReviewOutcome = &v
+	return b
+}
+
+// AddAdjudication adds a Adjudication element.
+func (b *ExplanationOfBenefitAddItemBuilder) AddAdjudication(v ExplanationOfBenefitItemAdjudication) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.Adjudication = append(b.explanationOfBenefitAddItem.Adjudication, v)
+	return b
+}
+
+// AddDetail adds a Detail element.
+func (b *ExplanationOfBenefitAddItemBuilder) AddDetail(v ExplanationOfBenefitAddItemDetail) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.Detail = append(b.explanationOfBenefitAddItem.Detail, v)
+	return b
+}
+
+// AddItemSequenceExt appends an extension slot for ItemSequence.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ExplanationOfBenefitAddItemBuilder) AddItemSequenceExt(v *Element) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.ItemSequenceExt = append(b.explanationOfBenefitAddItem.ItemSequenceExt, v)
+	return b
+}
+
+// AddDetailSequenceExt appends an extension slot for DetailSequence.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ExplanationOfBenefitAddItemBuilder) AddDetailSequenceExt(v *Element) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.DetailSequenceExt = append(b.explanationOfBenefitAddItem.DetailSequenceExt, v)
+	return b
+}
+
+// AddSubDetailSequenceExt appends an extension slot for SubDetailSequence.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ExplanationOfBenefitAddItemBuilder) AddSubDetailSequenceExt(v *Element) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.SubDetailSequenceExt = append(b.explanationOfBenefitAddItem.SubDetailSequenceExt, v)
+	return b
+}
+
+// SetFactorExt sets the extensions carried by Factor, serialized as
+// "_factor".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitAddItemBuilder) SetFactorExt(v Element) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.FactorExt = &v
+	return b
+}
+
+// AddNoteNumberExt appends an extension slot for NoteNumber.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ExplanationOfBenefitAddItemBuilder) AddNoteNumberExt(v *Element) *ExplanationOfBenefitAddItemBuilder {
+	b.explanationOfBenefitAddItem.NoteNumberExt = append(b.explanationOfBenefitAddItem.NoteNumberExt, v)
+	return b
+}
+
+// clearServiced unsets every variant of Serviced[x], including the
+// _field companions of the primitive ones.
+func (b *ExplanationOfBenefitAddItemBuilder) clearServiced() {
+	b.explanationOfBenefitAddItem.ServicedDate = nil
+	b.explanationOfBenefitAddItem.ServicedPeriod = nil
+}
+
+// clearLocation unsets every variant of Location[x], including the
+// _field companions of the primitive ones.
+func (b *ExplanationOfBenefitAddItemBuilder) clearLocation() {
+	b.explanationOfBenefitAddItem.LocationCodeableConcept = nil
+	b.explanationOfBenefitAddItem.LocationAddress = nil
+	b.explanationOfBenefitAddItem.LocationReference = nil
+}
+
+// =============================================================================
+// ExplanationOfBenefitAddItemBodySite - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitAddItemBodySiteBuilder provides a fluent API for constructing ExplanationOfBenefitAddItemBodySite values.
+type ExplanationOfBenefitAddItemBodySiteBuilder struct {
+	explanationOfBenefitAddItemBodySite *ExplanationOfBenefitAddItemBodySite
+}
+
+// NewExplanationOfBenefitAddItemBodySiteBuilder creates a new ExplanationOfBenefitAddItemBodySiteBuilder.
+func NewExplanationOfBenefitAddItemBodySiteBuilder() *ExplanationOfBenefitAddItemBodySiteBuilder {
+	return &ExplanationOfBenefitAddItemBodySiteBuilder{
+		explanationOfBenefitAddItemBodySite: &ExplanationOfBenefitAddItemBodySite{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitAddItemBodySite.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitAddItemBodySiteBuilder) Build() ExplanationOfBenefitAddItemBodySite {
+	return *b.explanationOfBenefitAddItemBodySite
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitAddItemBodySiteBuilder) SetId(v string) *ExplanationOfBenefitAddItemBodySiteBuilder {
+	b.explanationOfBenefitAddItemBodySite.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitAddItemBodySiteBuilder) AddExtension(v Extension) *ExplanationOfBenefitAddItemBodySiteBuilder {
+	b.explanationOfBenefitAddItemBodySite.Extension = append(b.explanationOfBenefitAddItemBodySite.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitAddItemBodySiteBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitAddItemBodySiteBuilder {
+	b.explanationOfBenefitAddItemBodySite.ModifierExtension = append(b.explanationOfBenefitAddItemBodySite.ModifierExtension, v)
+	return b
+}
+
+// AddSite adds a Site element.
+func (b *ExplanationOfBenefitAddItemBodySiteBuilder) AddSite(v CodeableReference) *ExplanationOfBenefitAddItemBodySiteBuilder {
+	b.explanationOfBenefitAddItemBodySite.Site = append(b.explanationOfBenefitAddItemBodySite.Site, v)
+	return b
+}
+
+// AddSubSite adds a SubSite element.
+func (b *ExplanationOfBenefitAddItemBodySiteBuilder) AddSubSite(v CodeableConcept) *ExplanationOfBenefitAddItemBodySiteBuilder {
+	b.explanationOfBenefitAddItemBodySite.SubSite = append(b.explanationOfBenefitAddItemBodySite.SubSite, v)
+	return b
+}
+
+// =============================================================================
+// ExplanationOfBenefitAddItemDetail - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitAddItemDetailBuilder provides a fluent API for constructing ExplanationOfBenefitAddItemDetail values.
+type ExplanationOfBenefitAddItemDetailBuilder struct {
+	explanationOfBenefitAddItemDetail *ExplanationOfBenefitAddItemDetail
+}
+
+// NewExplanationOfBenefitAddItemDetailBuilder creates a new ExplanationOfBenefitAddItemDetailBuilder.
+func NewExplanationOfBenefitAddItemDetailBuilder() *ExplanationOfBenefitAddItemDetailBuilder {
+	return &ExplanationOfBenefitAddItemDetailBuilder{
+		explanationOfBenefitAddItemDetail: &ExplanationOfBenefitAddItemDetail{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitAddItemDetail.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitAddItemDetailBuilder) Build() ExplanationOfBenefitAddItemDetail {
+	return *b.explanationOfBenefitAddItemDetail
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitAddItemDetailBuilder) SetId(v string) *ExplanationOfBenefitAddItemDetailBuilder {
+	b.explanationOfBenefitAddItemDetail.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitAddItemDetailBuilder) AddExtension(v Extension) *ExplanationOfBenefitAddItemDetailBuilder {
+	b.explanationOfBenefitAddItemDetail.Extension = append(b.explanationOfBenefitAddItemDetail.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitAddItemDetailBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitAddItemDetailBuilder {
+	b.explanationOfBenefitAddItemDetail.ModifierExtension = append(b.explanationOfBenefitAddItemDetail.ModifierExtension, v)
+	return b
+}
+
+// AddTraceNumber adds a TraceNumber element.
+func (b *ExplanationOfBenefitAddItemDetailBuilder) AddTraceNumber(v Identifier) *ExplanationOfBenefitAddItemDetailBuilder {
+	b.explanationOfBenefitAddItemDetail.TraceNumber = append(b.explanationOfBenefitAddItemDetail.TraceNumber, v)
+	return b
+}
+
+// SetRevenue sets the Revenue field.
+func (b *ExplanationOfBenefitAddItemDetailBuilder) SetRevenue(v CodeableConcept) *ExplanationOfBenefitAddItemDetailBuilder {
+	b.explanationOfBenefitAddItemDetail.Revenue = &v
+	return b
+}
+
+// SetProductOrService sets the ProductOrService field.
+func (b *ExplanationOfBenefitAddItemDetailBuilder) SetProductOrService(v CodeableConcept) *ExplanationOfBenefitAddItemDetailBuilder {
+	b.explanationOfBenefitAddItemDetail.ProductOrService = &v
+	return b
+}
+
+// SetProductOrServiceEnd sets the ProductOrServiceEnd field.
+func (b *ExplanationOfBenefitAddItemDetailBuilder) SetProductOrServiceEnd(v CodeableConcept) *ExplanationOfBenefitAddItemDetailBuilder {
+	b.explanationOfBenefitAddItemDetail.ProductOrServiceEnd = &v
+	return b
+}
+
+// AddModifier adds a Modifier element.
+func (b *ExplanationOfBenefitAddItemDetailBuilder) AddModifier(v CodeableConcept) *ExplanationOfBenefitAddItemDetailBuilder {
+	b.explanationOfBenefitAddItemDetail.Modifier = append(b.explanationOfBenefitAddItemDetail.Modifier, v)
+	return b
+}
+
+// SetPatientPaid sets the PatientPaid field.
+func (b *ExplanationOfBenefitAddItemDetailBuilder) SetPatientPaid(v Money) *ExplanationOfBenefitAddItemDetailBuilder {
+	b.explanationOfBenefitAddItemDetail.PatientPaid = &v
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *ExplanationOfBenefitAddItemDetailBuilder) SetQuantity(v Quantity) *ExplanationOfBenefitAddItemDetailBuilder {
+	b.explanationOfBenefitAddItemDetail.Quantity = &v
+	return b
+}
+
+// SetUnitPrice sets the UnitPrice field.
+func (b *ExplanationOfBenefitAddItemDetailBuilder) SetUnitPrice(v Money) *ExplanationOfBenefitAddItemDetailBuilder {
+	b.explanationOfBenefitAddItemDetail.UnitPrice = &v
+	return b
+}
+
+// SetFactor sets the Factor field.
+func (b *ExplanationOfBenefitAddItemDetailBuilder) SetFactor(v Decimal) *ExplanationOfBenefitAddItemDetailBuilder {
+	b.explanationOfBenefitAddItemDetail.Factor = &v
+	return b
+}
+
+// SetTax sets the Tax field.
+func (b *ExplanationOfBenefitAddItemDetailBuilder) SetTax(v Money) *ExplanationOfBenefitAddItemDetailBuilder {
+	b.explanationOfBenefitAddItemDetail.Tax = &v
+	return b
+}
+
+// SetNet sets the Net field.
+func (b *ExplanationOfBenefitAddItemDetailBuilder) SetNet(v Money) *ExplanationOfBenefitAddItemDetailBuilder {
+	b.explanationOfBenefitAddItemDetail.Net = &v
+	return b
+}
+
+// AddNoteNumber adds a NoteNumber element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ExplanationOfBenefitAddItemDetailBuilder) AddNoteNumber(v uint32) *ExplanationOfBenefitAddItemDetailBuilder {
+	b.explanationOfBenefitAddItemDetail.NoteNumber = append(b.explanationOfBenefitAddItemDetail.NoteNumber, &v)
+	return b
+}
+
+// SetReviewOutcome sets the ReviewOutcome field.
+func (b *ExplanationOfBenefitAddItemDetailBuilder) SetReviewOutcome(v ExplanationOfBenefitItemReviewOutcome) *ExplanationOfBenefitAddItemDetailBuilder {
+	b.explanationOfBenefitAddItemDetail.ReviewOutcome = &v
+	return b
+}
+
+// AddAdjudication adds a Adjudication element.
+func (b *ExplanationOfBenefitAddItemDetailBuilder) AddAdjudication(v ExplanationOfBenefitItemAdjudication) *ExplanationOfBenefitAddItemDetailBuilder {
+	b.explanationOfBenefitAddItemDetail.Adjudication = append(b.explanationOfBenefitAddItemDetail.Adjudication, v)
+	return b
+}
+
+// AddSubDetail adds a SubDetail element.
+func (b *ExplanationOfBenefitAddItemDetailBuilder) AddSubDetail(v ExplanationOfBenefitAddItemDetailSubDetail) *ExplanationOfBenefitAddItemDetailBuilder {
+	b.explanationOfBenefitAddItemDetail.SubDetail = append(b.explanationOfBenefitAddItemDetail.SubDetail, v)
+	return b
+}
+
+// SetFactorExt sets the extensions carried by Factor, serialized as
+// "_factor".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitAddItemDetailBuilder) SetFactorExt(v Element) *ExplanationOfBenefitAddItemDetailBuilder {
+	b.explanationOfBenefitAddItemDetail.FactorExt = &v
+	return b
+}
+
+// AddNoteNumberExt appends an extension slot for NoteNumber.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ExplanationOfBenefitAddItemDetailBuilder) AddNoteNumberExt(v *Element) *ExplanationOfBenefitAddItemDetailBuilder {
+	b.explanationOfBenefitAddItemDetail.NoteNumberExt = append(b.explanationOfBenefitAddItemDetail.NoteNumberExt, v)
+	return b
+}
+
+// =============================================================================
+// ExplanationOfBenefitAddItemDetailSubDetail - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitAddItemDetailSubDetailBuilder provides a fluent API for constructing ExplanationOfBenefitAddItemDetailSubDetail values.
+type ExplanationOfBenefitAddItemDetailSubDetailBuilder struct {
+	explanationOfBenefitAddItemDetailSubDetail *ExplanationOfBenefitAddItemDetailSubDetail
+}
+
+// NewExplanationOfBenefitAddItemDetailSubDetailBuilder creates a new ExplanationOfBenefitAddItemDetailSubDetailBuilder.
+func NewExplanationOfBenefitAddItemDetailSubDetailBuilder() *ExplanationOfBenefitAddItemDetailSubDetailBuilder {
+	return &ExplanationOfBenefitAddItemDetailSubDetailBuilder{
+		explanationOfBenefitAddItemDetailSubDetail: &ExplanationOfBenefitAddItemDetailSubDetail{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitAddItemDetailSubDetail.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitAddItemDetailSubDetailBuilder) Build() ExplanationOfBenefitAddItemDetailSubDetail {
+	return *b.explanationOfBenefitAddItemDetailSubDetail
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitAddItemDetailSubDetailBuilder) SetId(v string) *ExplanationOfBenefitAddItemDetailSubDetailBuilder {
+	b.explanationOfBenefitAddItemDetailSubDetail.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitAddItemDetailSubDetailBuilder) AddExtension(v Extension) *ExplanationOfBenefitAddItemDetailSubDetailBuilder {
+	b.explanationOfBenefitAddItemDetailSubDetail.Extension = append(b.explanationOfBenefitAddItemDetailSubDetail.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitAddItemDetailSubDetailBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitAddItemDetailSubDetailBuilder {
+	b.explanationOfBenefitAddItemDetailSubDetail.ModifierExtension = append(b.explanationOfBenefitAddItemDetailSubDetail.ModifierExtension, v)
+	return b
+}
+
+// AddTraceNumber adds a TraceNumber element.
+func (b *ExplanationOfBenefitAddItemDetailSubDetailBuilder) AddTraceNumber(v Identifier) *ExplanationOfBenefitAddItemDetailSubDetailBuilder {
+	b.explanationOfBenefitAddItemDetailSubDetail.TraceNumber = append(b.explanationOfBenefitAddItemDetailSubDetail.TraceNumber, v)
+	return b
+}
+
+// SetRevenue sets the Revenue field.
+func (b *ExplanationOfBenefitAddItemDetailSubDetailBuilder) SetRevenue(v CodeableConcept) *ExplanationOfBenefitAddItemDetailSubDetailBuilder {
+	b.explanationOfBenefitAddItemDetailSubDetail.Revenue = &v
+	return b
+}
+
+// SetProductOrService sets the ProductOrService field.
+func (b *ExplanationOfBenefitAddItemDetailSubDetailBuilder) SetProductOrService(v CodeableConcept) *ExplanationOfBenefitAddItemDetailSubDetailBuilder {
+	b.explanationOfBenefitAddItemDetailSubDetail.ProductOrService = &v
+	return b
+}
+
+// SetProductOrServiceEnd sets the ProductOrServiceEnd field.
+func (b *ExplanationOfBenefitAddItemDetailSubDetailBuilder) SetProductOrServiceEnd(v CodeableConcept) *ExplanationOfBenefitAddItemDetailSubDetailBuilder {
+	b.explanationOfBenefitAddItemDetailSubDetail.ProductOrServiceEnd = &v
+	return b
+}
+
+// AddModifier adds a Modifier element.
+func (b *ExplanationOfBenefitAddItemDetailSubDetailBuilder) AddModifier(v CodeableConcept) *ExplanationOfBenefitAddItemDetailSubDetailBuilder {
+	b.explanationOfBenefitAddItemDetailSubDetail.Modifier = append(b.explanationOfBenefitAddItemDetailSubDetail.Modifier, v)
+	return b
+}
+
+// SetPatientPaid sets the PatientPaid field.
+func (b *ExplanationOfBenefitAddItemDetailSubDetailBuilder) SetPatientPaid(v Money) *ExplanationOfBenefitAddItemDetailSubDetailBuilder {
+	b.explanationOfBenefitAddItemDetailSubDetail.PatientPaid = &v
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *ExplanationOfBenefitAddItemDetailSubDetailBuilder) SetQuantity(v Quantity) *ExplanationOfBenefitAddItemDetailSubDetailBuilder {
+	b.explanationOfBenefitAddItemDetailSubDetail.Quantity = &v
+	return b
+}
+
+// SetUnitPrice sets the UnitPrice field.
+func (b *ExplanationOfBenefitAddItemDetailSubDetailBuilder) SetUnitPrice(v Money) *ExplanationOfBenefitAddItemDetailSubDetailBuilder {
+	b.explanationOfBenefitAddItemDetailSubDetail.UnitPrice = &v
+	return b
+}
+
+// SetFactor sets the Factor field.
+func (b *ExplanationOfBenefitAddItemDetailSubDetailBuilder) SetFactor(v Decimal) *ExplanationOfBenefitAddItemDetailSubDetailBuilder {
+	b.explanationOfBenefitAddItemDetailSubDetail.Factor = &v
+	return b
+}
+
+// SetTax sets the Tax field.
+func (b *ExplanationOfBenefitAddItemDetailSubDetailBuilder) SetTax(v Money) *ExplanationOfBenefitAddItemDetailSubDetailBuilder {
+	b.explanationOfBenefitAddItemDetailSubDetail.Tax = &v
+	return b
+}
+
+// SetNet sets the Net field.
+func (b *ExplanationOfBenefitAddItemDetailSubDetailBuilder) SetNet(v Money) *ExplanationOfBenefitAddItemDetailSubDetailBuilder {
+	b.explanationOfBenefitAddItemDetailSubDetail.Net = &v
+	return b
+}
+
+// AddNoteNumber adds a NoteNumber element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ExplanationOfBenefitAddItemDetailSubDetailBuilder) AddNoteNumber(v uint32) *ExplanationOfBenefitAddItemDetailSubDetailBuilder {
+	b.explanationOfBenefitAddItemDetailSubDetail.NoteNumber = append(b.explanationOfBenefitAddItemDetailSubDetail.NoteNumber, &v)
+	return b
+}
+
+// SetReviewOutcome sets the ReviewOutcome field.
+func (b *ExplanationOfBenefitAddItemDetailSubDetailBuilder) SetReviewOutcome(v ExplanationOfBenefitItemReviewOutcome) *ExplanationOfBenefitAddItemDetailSubDetailBuilder {
+	b.explanationOfBenefitAddItemDetailSubDetail.ReviewOutcome = &v
+	return b
+}
+
+// AddAdjudication adds a Adjudication element.
+func (b *ExplanationOfBenefitAddItemDetailSubDetailBuilder) AddAdjudication(v ExplanationOfBenefitItemAdjudication) *ExplanationOfBenefitAddItemDetailSubDetailBuilder {
+	b.explanationOfBenefitAddItemDetailSubDetail.Adjudication = append(b.explanationOfBenefitAddItemDetailSubDetail.Adjudication, v)
+	return b
+}
+
+// SetFactorExt sets the extensions carried by Factor, serialized as
+// "_factor".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitAddItemDetailSubDetailBuilder) SetFactorExt(v Element) *ExplanationOfBenefitAddItemDetailSubDetailBuilder {
+	b.explanationOfBenefitAddItemDetailSubDetail.FactorExt = &v
+	return b
+}
+
+// AddNoteNumberExt appends an extension slot for NoteNumber.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ExplanationOfBenefitAddItemDetailSubDetailBuilder) AddNoteNumberExt(v *Element) *ExplanationOfBenefitAddItemDetailSubDetailBuilder {
+	b.explanationOfBenefitAddItemDetailSubDetail.NoteNumberExt = append(b.explanationOfBenefitAddItemDetailSubDetail.NoteNumberExt, v)
+	return b
+}
+
+// =============================================================================
+// ExplanationOfBenefitBenefitBalance - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitBenefitBalanceBuilder provides a fluent API for constructing ExplanationOfBenefitBenefitBalance values.
+type ExplanationOfBenefitBenefitBalanceBuilder struct {
+	explanationOfBenefitBenefitBalance *ExplanationOfBenefitBenefitBalance
+}
+
+// NewExplanationOfBenefitBenefitBalanceBuilder creates a new ExplanationOfBenefitBenefitBalanceBuilder.
+func NewExplanationOfBenefitBenefitBalanceBuilder() *ExplanationOfBenefitBenefitBalanceBuilder {
+	return &ExplanationOfBenefitBenefitBalanceBuilder{
+		explanationOfBenefitBenefitBalance: &ExplanationOfBenefitBenefitBalance{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitBenefitBalance.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitBenefitBalanceBuilder) Build() ExplanationOfBenefitBenefitBalance {
+	return *b.explanationOfBenefitBenefitBalance
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitBenefitBalanceBuilder) SetId(v string) *ExplanationOfBenefitBenefitBalanceBuilder {
+	b.explanationOfBenefitBenefitBalance.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitBenefitBalanceBuilder) AddExtension(v Extension) *ExplanationOfBenefitBenefitBalanceBuilder {
+	b.explanationOfBenefitBenefitBalance.Extension = append(b.explanationOfBenefitBenefitBalance.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitBenefitBalanceBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitBenefitBalanceBuilder {
+	b.explanationOfBenefitBenefitBalance.ModifierExtension = append(b.explanationOfBenefitBenefitBalance.ModifierExtension, v)
+	return b
+}
+
+// SetCategory sets the Category field.
+func (b *ExplanationOfBenefitBenefitBalanceBuilder) SetCategory(v CodeableConcept) *ExplanationOfBenefitBenefitBalanceBuilder {
+	b.explanationOfBenefitBenefitBalance.Category = &v
+	return b
+}
+
+// SetExcluded sets the Excluded field.
+func (b *ExplanationOfBenefitBenefitBalanceBuilder) SetExcluded(v bool) *ExplanationOfBenefitBenefitBalanceBuilder {
+	b.explanationOfBenefitBenefitBalance.Excluded = &v
+	return b
+}
+
+// SetName sets the Name field.
+func (b *ExplanationOfBenefitBenefitBalanceBuilder) SetName(v string) *ExplanationOfBenefitBenefitBalanceBuilder {
+	b.explanationOfBenefitBenefitBalance.Name = &v
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *ExplanationOfBenefitBenefitBalanceBuilder) SetDescription(v string) *ExplanationOfBenefitBenefitBalanceBuilder {
+	b.explanationOfBenefitBenefitBalance.Description = &v
+	return b
+}
+
+// SetNetwork sets the Network field.
+func (b *ExplanationOfBenefitBenefitBalanceBuilder) SetNetwork(v CodeableConcept) *ExplanationOfBenefitBenefitBalanceBuilder {
+	b.explanationOfBenefitBenefitBalance.Network = &v
+	return b
+}
+
+// SetUnit sets the Unit field.
+func (b *ExplanationOfBenefitBenefitBalanceBuilder) SetUnit(v CodeableConcept) *ExplanationOfBenefitBenefitBalanceBuilder {
+	b.explanationOfBenefitBenefitBalance.Unit = &v
+	return b
+}
+
+// SetTerm sets the Term field.
+func (b *ExplanationOfBenefitBenefitBalanceBuilder) SetTerm(v CodeableConcept) *ExplanationOfBenefitBenefitBalanceBuilder {
+	b.explanationOfBenefitBenefitBalance.Term = &v
+	return b
+}
+
+// AddFinancial adds a Financial element.
+func (b *ExplanationOfBenefitBenefitBalanceBuilder) AddFinancial(v ExplanationOfBenefitBenefitBalanceFinancial) *ExplanationOfBenefitBenefitBalanceBuilder {
+	b.explanationOfBenefitBenefitBalance.Financial = append(b.explanationOfBenefitBenefitBalance.Financial, v)
+	return b
+}
+
+// SetExcludedExt sets the extensions carried by Excluded, serialized as
+// "_excluded".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitBenefitBalanceBuilder) SetExcludedExt(v Element) *ExplanationOfBenefitBenefitBalanceBuilder {
+	b.explanationOfBenefitBenefitBalance.ExcludedExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitBenefitBalanceBuilder) SetNameExt(v Element) *ExplanationOfBenefitBenefitBalanceBuilder {
+	b.explanationOfBenefitBenefitBalance.NameExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitBenefitBalanceBuilder) SetDescriptionExt(v Element) *ExplanationOfBenefitBenefitBalanceBuilder {
+	b.explanationOfBenefitBenefitBalance.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// ExplanationOfBenefitBenefitBalanceFinancial - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitBenefitBalanceFinancialBuilder provides a fluent API for constructing ExplanationOfBenefitBenefitBalanceFinancial values.
+type ExplanationOfBenefitBenefitBalanceFinancialBuilder struct {
+	explanationOfBenefitBenefitBalanceFinancial *ExplanationOfBenefitBenefitBalanceFinancial
+}
+
+// NewExplanationOfBenefitBenefitBalanceFinancialBuilder creates a new ExplanationOfBenefitBenefitBalanceFinancialBuilder.
+func NewExplanationOfBenefitBenefitBalanceFinancialBuilder() *ExplanationOfBenefitBenefitBalanceFinancialBuilder {
+	return &ExplanationOfBenefitBenefitBalanceFinancialBuilder{
+		explanationOfBenefitBenefitBalanceFinancial: &ExplanationOfBenefitBenefitBalanceFinancial{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitBenefitBalanceFinancial.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitBenefitBalanceFinancialBuilder) Build() ExplanationOfBenefitBenefitBalanceFinancial {
+	return *b.explanationOfBenefitBenefitBalanceFinancial
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitBenefitBalanceFinancialBuilder) SetId(v string) *ExplanationOfBenefitBenefitBalanceFinancialBuilder {
+	b.explanationOfBenefitBenefitBalanceFinancial.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitBenefitBalanceFinancialBuilder) AddExtension(v Extension) *ExplanationOfBenefitBenefitBalanceFinancialBuilder {
+	b.explanationOfBenefitBenefitBalanceFinancial.Extension = append(b.explanationOfBenefitBenefitBalanceFinancial.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitBenefitBalanceFinancialBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitBenefitBalanceFinancialBuilder {
+	b.explanationOfBenefitBenefitBalanceFinancial.ModifierExtension = append(b.explanationOfBenefitBenefitBalanceFinancial.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ExplanationOfBenefitBenefitBalanceFinancialBuilder) SetType(v CodeableConcept) *ExplanationOfBenefitBenefitBalanceFinancialBuilder {
+	b.explanationOfBenefitBenefitBalanceFinancial.Type = &v
+	return b
+}
+
+// SetAllowedUnsignedInt sets Allowed[x] to its AllowedUnsignedInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitBenefitBalanceFinancialBuilder) SetAllowedUnsignedInt(v uint32) *ExplanationOfBenefitBenefitBalanceFinancialBuilder {
+	b.clearAllowed()
+	b.explanationOfBenefitBenefitBalanceFinancial.AllowedUnsignedInt = &v
+	return b
+}
+
+// SetAllowedUnsignedIntExt sets the AllowedUnsignedIntExt field.
+func (b *ExplanationOfBenefitBenefitBalanceFinancialBuilder) SetAllowedUnsignedIntExt(v Element) *ExplanationOfBenefitBenefitBalanceFinancialBuilder {
+	b.explanationOfBenefitBenefitBalanceFinancial.AllowedUnsignedIntExt = &v
+	return b
+}
+
+// SetAllowedString sets Allowed[x] to its AllowedString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitBenefitBalanceFinancialBuilder) SetAllowedString(v string) *ExplanationOfBenefitBenefitBalanceFinancialBuilder {
+	b.clearAllowed()
+	b.explanationOfBenefitBenefitBalanceFinancial.AllowedString = &v
+	return b
+}
+
+// SetAllowedStringExt sets the AllowedStringExt field.
+func (b *ExplanationOfBenefitBenefitBalanceFinancialBuilder) SetAllowedStringExt(v Element) *ExplanationOfBenefitBenefitBalanceFinancialBuilder {
+	b.explanationOfBenefitBenefitBalanceFinancial.AllowedStringExt = &v
+	return b
+}
+
+// SetAllowedMoney sets Allowed[x] to its AllowedMoney variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitBenefitBalanceFinancialBuilder) SetAllowedMoney(v Money) *ExplanationOfBenefitBenefitBalanceFinancialBuilder {
+	b.clearAllowed()
+	b.explanationOfBenefitBenefitBalanceFinancial.AllowedMoney = &v
+	return b
+}
+
+// SetUsedUnsignedInt sets Used[x] to its UsedUnsignedInt variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitBenefitBalanceFinancialBuilder) SetUsedUnsignedInt(v uint32) *ExplanationOfBenefitBenefitBalanceFinancialBuilder {
+	b.clearUsed()
+	b.explanationOfBenefitBenefitBalanceFinancial.UsedUnsignedInt = &v
+	return b
+}
+
+// SetUsedUnsignedIntExt sets the UsedUnsignedIntExt field.
+func (b *ExplanationOfBenefitBenefitBalanceFinancialBuilder) SetUsedUnsignedIntExt(v Element) *ExplanationOfBenefitBenefitBalanceFinancialBuilder {
+	b.explanationOfBenefitBenefitBalanceFinancial.UsedUnsignedIntExt = &v
+	return b
+}
+
+// SetUsedMoney sets Used[x] to its UsedMoney variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitBenefitBalanceFinancialBuilder) SetUsedMoney(v Money) *ExplanationOfBenefitBenefitBalanceFinancialBuilder {
+	b.clearUsed()
+	b.explanationOfBenefitBenefitBalanceFinancial.UsedMoney = &v
+	return b
+}
+
+// clearAllowed unsets every variant of Allowed[x], including the
+// _field companions of the primitive ones.
+func (b *ExplanationOfBenefitBenefitBalanceFinancialBuilder) clearAllowed() {
+	b.explanationOfBenefitBenefitBalanceFinancial.AllowedUnsignedInt = nil
+	b.explanationOfBenefitBenefitBalanceFinancial.AllowedString = nil
+	b.explanationOfBenefitBenefitBalanceFinancial.AllowedStringExt = nil
+	b.explanationOfBenefitBenefitBalanceFinancial.AllowedMoney = nil
+}
+
+// clearUsed unsets every variant of Used[x], including the
+// _field companions of the primitive ones.
+func (b *ExplanationOfBenefitBenefitBalanceFinancialBuilder) clearUsed() {
+	b.explanationOfBenefitBenefitBalanceFinancial.UsedUnsignedInt = nil
+	b.explanationOfBenefitBenefitBalanceFinancial.UsedMoney = nil
+}
+
+// =============================================================================
+// ExplanationOfBenefitCareTeam - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitCareTeamBuilder provides a fluent API for constructing ExplanationOfBenefitCareTeam values.
+type ExplanationOfBenefitCareTeamBuilder struct {
+	explanationOfBenefitCareTeam *ExplanationOfBenefitCareTeam
+}
+
+// NewExplanationOfBenefitCareTeamBuilder creates a new ExplanationOfBenefitCareTeamBuilder.
+func NewExplanationOfBenefitCareTeamBuilder() *ExplanationOfBenefitCareTeamBuilder {
+	return &ExplanationOfBenefitCareTeamBuilder{
+		explanationOfBenefitCareTeam: &ExplanationOfBenefitCareTeam{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitCareTeam.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitCareTeamBuilder) Build() ExplanationOfBenefitCareTeam {
+	return *b.explanationOfBenefitCareTeam
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitCareTeamBuilder) SetId(v string) *ExplanationOfBenefitCareTeamBuilder {
+	b.explanationOfBenefitCareTeam.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitCareTeamBuilder) AddExtension(v Extension) *ExplanationOfBenefitCareTeamBuilder {
+	b.explanationOfBenefitCareTeam.Extension = append(b.explanationOfBenefitCareTeam.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitCareTeamBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitCareTeamBuilder {
+	b.explanationOfBenefitCareTeam.ModifierExtension = append(b.explanationOfBenefitCareTeam.ModifierExtension, v)
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *ExplanationOfBenefitCareTeamBuilder) SetSequence(v uint32) *ExplanationOfBenefitCareTeamBuilder {
+	b.explanationOfBenefitCareTeam.Sequence = &v
+	return b
+}
+
+// SetProvider sets the Provider field.
+func (b *ExplanationOfBenefitCareTeamBuilder) SetProvider(v Reference) *ExplanationOfBenefitCareTeamBuilder {
+	b.explanationOfBenefitCareTeam.Provider = &v
+	return b
+}
+
+// SetResponsible sets the Responsible field.
+func (b *ExplanationOfBenefitCareTeamBuilder) SetResponsible(v bool) *ExplanationOfBenefitCareTeamBuilder {
+	b.explanationOfBenefitCareTeam.Responsible = &v
+	return b
+}
+
+// SetRole sets the Role field.
+func (b *ExplanationOfBenefitCareTeamBuilder) SetRole(v CodeableConcept) *ExplanationOfBenefitCareTeamBuilder {
+	b.explanationOfBenefitCareTeam.Role = &v
+	return b
+}
+
+// SetSpecialty sets the Specialty field.
+func (b *ExplanationOfBenefitCareTeamBuilder) SetSpecialty(v CodeableConcept) *ExplanationOfBenefitCareTeamBuilder {
+	b.explanationOfBenefitCareTeam.Specialty = &v
+	return b
+}
+
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitCareTeamBuilder) SetSequenceExt(v Element) *ExplanationOfBenefitCareTeamBuilder {
+	b.explanationOfBenefitCareTeam.SequenceExt = &v
+	return b
+}
+
+// SetResponsibleExt sets the extensions carried by Responsible, serialized as
+// "_responsible".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitCareTeamBuilder) SetResponsibleExt(v Element) *ExplanationOfBenefitCareTeamBuilder {
+	b.explanationOfBenefitCareTeam.ResponsibleExt = &v
+	return b
+}
+
+// =============================================================================
+// ExplanationOfBenefitDiagnosis - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitDiagnosisBuilder provides a fluent API for constructing ExplanationOfBenefitDiagnosis values.
+type ExplanationOfBenefitDiagnosisBuilder struct {
+	explanationOfBenefitDiagnosis *ExplanationOfBenefitDiagnosis
+}
+
+// NewExplanationOfBenefitDiagnosisBuilder creates a new ExplanationOfBenefitDiagnosisBuilder.
+func NewExplanationOfBenefitDiagnosisBuilder() *ExplanationOfBenefitDiagnosisBuilder {
+	return &ExplanationOfBenefitDiagnosisBuilder{
+		explanationOfBenefitDiagnosis: &ExplanationOfBenefitDiagnosis{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitDiagnosis.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitDiagnosisBuilder) Build() ExplanationOfBenefitDiagnosis {
+	return *b.explanationOfBenefitDiagnosis
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitDiagnosisBuilder) SetId(v string) *ExplanationOfBenefitDiagnosisBuilder {
+	b.explanationOfBenefitDiagnosis.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitDiagnosisBuilder) AddExtension(v Extension) *ExplanationOfBenefitDiagnosisBuilder {
+	b.explanationOfBenefitDiagnosis.Extension = append(b.explanationOfBenefitDiagnosis.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitDiagnosisBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitDiagnosisBuilder {
+	b.explanationOfBenefitDiagnosis.ModifierExtension = append(b.explanationOfBenefitDiagnosis.ModifierExtension, v)
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *ExplanationOfBenefitDiagnosisBuilder) SetSequence(v uint32) *ExplanationOfBenefitDiagnosisBuilder {
+	b.explanationOfBenefitDiagnosis.Sequence = &v
+	return b
+}
+
+// SetDiagnosisCodeableConcept sets Diagnosis[x] to its DiagnosisCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitDiagnosisBuilder) SetDiagnosisCodeableConcept(v CodeableConcept) *ExplanationOfBenefitDiagnosisBuilder {
+	b.clearDiagnosis()
+	b.explanationOfBenefitDiagnosis.DiagnosisCodeableConcept = &v
+	return b
+}
+
+// SetDiagnosisReference sets Diagnosis[x] to its DiagnosisReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitDiagnosisBuilder) SetDiagnosisReference(v Reference) *ExplanationOfBenefitDiagnosisBuilder {
+	b.clearDiagnosis()
+	b.explanationOfBenefitDiagnosis.DiagnosisReference = &v
+	return b
+}
+
+// AddType adds a Type element.
+func (b *ExplanationOfBenefitDiagnosisBuilder) AddType(v CodeableConcept) *ExplanationOfBenefitDiagnosisBuilder {
+	b.explanationOfBenefitDiagnosis.Type = append(b.explanationOfBenefitDiagnosis.Type, v)
+	return b
+}
+
+// SetOnAdmission sets the OnAdmission field.
+func (b *ExplanationOfBenefitDiagnosisBuilder) SetOnAdmission(v CodeableConcept) *ExplanationOfBenefitDiagnosisBuilder {
+	b.explanationOfBenefitDiagnosis.OnAdmission = &v
+	return b
+}
+
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitDiagnosisBuilder) SetSequenceExt(v Element) *ExplanationOfBenefitDiagnosisBuilder {
+	b.explanationOfBenefitDiagnosis.SequenceExt = &v
+	return b
+}
+
+// clearDiagnosis unsets every variant of Diagnosis[x], including the
+// _field companions of the primitive ones.
+func (b *ExplanationOfBenefitDiagnosisBuilder) clearDiagnosis() {
+	b.explanationOfBenefitDiagnosis.DiagnosisCodeableConcept = nil
+	b.explanationOfBenefitDiagnosis.DiagnosisReference = nil
+}
+
+// =============================================================================
+// ExplanationOfBenefitEvent - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitEventBuilder provides a fluent API for constructing ExplanationOfBenefitEvent values.
+type ExplanationOfBenefitEventBuilder struct {
+	explanationOfBenefitEvent *ExplanationOfBenefitEvent
+}
+
+// NewExplanationOfBenefitEventBuilder creates a new ExplanationOfBenefitEventBuilder.
+func NewExplanationOfBenefitEventBuilder() *ExplanationOfBenefitEventBuilder {
+	return &ExplanationOfBenefitEventBuilder{
+		explanationOfBenefitEvent: &ExplanationOfBenefitEvent{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitEvent.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitEventBuilder) Build() ExplanationOfBenefitEvent {
+	return *b.explanationOfBenefitEvent
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitEventBuilder) SetId(v string) *ExplanationOfBenefitEventBuilder {
+	b.explanationOfBenefitEvent.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitEventBuilder) AddExtension(v Extension) *ExplanationOfBenefitEventBuilder {
+	b.explanationOfBenefitEvent.Extension = append(b.explanationOfBenefitEvent.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitEventBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitEventBuilder {
+	b.explanationOfBenefitEvent.ModifierExtension = append(b.explanationOfBenefitEvent.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ExplanationOfBenefitEventBuilder) SetType(v CodeableConcept) *ExplanationOfBenefitEventBuilder {
+	b.explanationOfBenefitEvent.Type = &v
+	return b
+}
+
+// SetWhenDateTime sets When[x] to its WhenDateTime variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitEventBuilder) SetWhenDateTime(v string) *ExplanationOfBenefitEventBuilder {
+	b.clearWhen()
+	b.explanationOfBenefitEvent.WhenDateTime = &v
+	return b
+}
+
+// SetWhenDateTimeExt sets the WhenDateTimeExt field.
+func (b *ExplanationOfBenefitEventBuilder) SetWhenDateTimeExt(v Element) *ExplanationOfBenefitEventBuilder {
+	b.explanationOfBenefitEvent.WhenDateTimeExt = &v
+	return b
+}
+
+// SetWhenPeriod sets When[x] to its WhenPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitEventBuilder) SetWhenPeriod(v Period) *ExplanationOfBenefitEventBuilder {
+	b.clearWhen()
+	b.explanationOfBenefitEvent.WhenPeriod = &v
+	return b
+}
+
+// clearWhen unsets every variant of When[x], including the
+// _field companions of the primitive ones.
+func (b *ExplanationOfBenefitEventBuilder) clearWhen() {
+	b.explanationOfBenefitEvent.WhenDateTime = nil
+	b.explanationOfBenefitEvent.WhenPeriod = nil
+}
+
+// =============================================================================
+// ExplanationOfBenefitInsurance - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitInsuranceBuilder provides a fluent API for constructing ExplanationOfBenefitInsurance values.
+type ExplanationOfBenefitInsuranceBuilder struct {
+	explanationOfBenefitInsurance *ExplanationOfBenefitInsurance
+}
+
+// NewExplanationOfBenefitInsuranceBuilder creates a new ExplanationOfBenefitInsuranceBuilder.
+func NewExplanationOfBenefitInsuranceBuilder() *ExplanationOfBenefitInsuranceBuilder {
+	return &ExplanationOfBenefitInsuranceBuilder{
+		explanationOfBenefitInsurance: &ExplanationOfBenefitInsurance{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitInsurance.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitInsuranceBuilder) Build() ExplanationOfBenefitInsurance {
+	return *b.explanationOfBenefitInsurance
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitInsuranceBuilder) SetId(v string) *ExplanationOfBenefitInsuranceBuilder {
+	b.explanationOfBenefitInsurance.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitInsuranceBuilder) AddExtension(v Extension) *ExplanationOfBenefitInsuranceBuilder {
+	b.explanationOfBenefitInsurance.Extension = append(b.explanationOfBenefitInsurance.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitInsuranceBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitInsuranceBuilder {
+	b.explanationOfBenefitInsurance.ModifierExtension = append(b.explanationOfBenefitInsurance.ModifierExtension, v)
+	return b
+}
+
+// SetFocal sets the Focal field.
+func (b *ExplanationOfBenefitInsuranceBuilder) SetFocal(v bool) *ExplanationOfBenefitInsuranceBuilder {
+	b.explanationOfBenefitInsurance.Focal = &v
+	return b
+}
+
+// SetCoverage sets the Coverage field.
+func (b *ExplanationOfBenefitInsuranceBuilder) SetCoverage(v Reference) *ExplanationOfBenefitInsuranceBuilder {
+	b.explanationOfBenefitInsurance.Coverage = &v
+	return b
+}
+
+// AddPreAuthRef adds a PreAuthRef element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ExplanationOfBenefitInsuranceBuilder) AddPreAuthRef(v string) *ExplanationOfBenefitInsuranceBuilder {
+	b.explanationOfBenefitInsurance.PreAuthRef = append(b.explanationOfBenefitInsurance.PreAuthRef, &v)
+	return b
+}
+
+// SetFocalExt sets the extensions carried by Focal, serialized as
+// "_focal".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitInsuranceBuilder) SetFocalExt(v Element) *ExplanationOfBenefitInsuranceBuilder {
+	b.explanationOfBenefitInsurance.FocalExt = &v
+	return b
+}
+
+// AddPreAuthRefExt appends an extension slot for PreAuthRef.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ExplanationOfBenefitInsuranceBuilder) AddPreAuthRefExt(v *Element) *ExplanationOfBenefitInsuranceBuilder {
+	b.explanationOfBenefitInsurance.PreAuthRefExt = append(b.explanationOfBenefitInsurance.PreAuthRefExt, v)
+	return b
+}
+
+// =============================================================================
+// ExplanationOfBenefitItem - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitItemBuilder provides a fluent API for constructing ExplanationOfBenefitItem values.
+type ExplanationOfBenefitItemBuilder struct {
+	explanationOfBenefitItem *ExplanationOfBenefitItem
+}
+
+// NewExplanationOfBenefitItemBuilder creates a new ExplanationOfBenefitItemBuilder.
+func NewExplanationOfBenefitItemBuilder() *ExplanationOfBenefitItemBuilder {
+	return &ExplanationOfBenefitItemBuilder{
+		explanationOfBenefitItem: &ExplanationOfBenefitItem{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitItem.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitItemBuilder) Build() ExplanationOfBenefitItem {
+	return *b.explanationOfBenefitItem
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitItemBuilder) SetId(v string) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitItemBuilder) AddExtension(v Extension) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.Extension = append(b.explanationOfBenefitItem.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitItemBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.ModifierExtension = append(b.explanationOfBenefitItem.ModifierExtension, v)
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *ExplanationOfBenefitItemBuilder) SetSequence(v uint32) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.Sequence = &v
+	return b
+}
+
+// AddCareTeamSequence adds a CareTeamSequence element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ExplanationOfBenefitItemBuilder) AddCareTeamSequence(v uint32) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.CareTeamSequence = append(b.explanationOfBenefitItem.CareTeamSequence, &v)
+	return b
+}
+
+// AddDiagnosisSequence adds a DiagnosisSequence element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ExplanationOfBenefitItemBuilder) AddDiagnosisSequence(v uint32) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.DiagnosisSequence = append(b.explanationOfBenefitItem.DiagnosisSequence, &v)
+	return b
+}
+
+// AddProcedureSequence adds a ProcedureSequence element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ExplanationOfBenefitItemBuilder) AddProcedureSequence(v uint32) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.ProcedureSequence = append(b.explanationOfBenefitItem.ProcedureSequence, &v)
+	return b
+}
+
+// AddInformationSequence adds a InformationSequence element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ExplanationOfBenefitItemBuilder) AddInformationSequence(v uint32) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.InformationSequence = append(b.explanationOfBenefitItem.InformationSequence, &v)
+	return b
+}
+
+// AddTraceNumber adds a TraceNumber element.
+func (b *ExplanationOfBenefitItemBuilder) AddTraceNumber(v Identifier) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.TraceNumber = append(b.explanationOfBenefitItem.TraceNumber, v)
+	return b
+}
+
+// SetRevenue sets the Revenue field.
+func (b *ExplanationOfBenefitItemBuilder) SetRevenue(v CodeableConcept) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.Revenue = &v
+	return b
+}
+
+// SetCategory sets the Category field.
+func (b *ExplanationOfBenefitItemBuilder) SetCategory(v CodeableConcept) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.Category = &v
+	return b
+}
+
+// SetProductOrService sets the ProductOrService field.
+func (b *ExplanationOfBenefitItemBuilder) SetProductOrService(v CodeableConcept) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.ProductOrService = &v
+	return b
+}
+
+// SetProductOrServiceEnd sets the ProductOrServiceEnd field.
+func (b *ExplanationOfBenefitItemBuilder) SetProductOrServiceEnd(v CodeableConcept) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.ProductOrServiceEnd = &v
+	return b
+}
+
+// AddRequest adds a Request element.
+func (b *ExplanationOfBenefitItemBuilder) AddRequest(v Reference) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.Request = append(b.explanationOfBenefitItem.Request, v)
+	return b
+}
+
+// AddModifier adds a Modifier element.
+func (b *ExplanationOfBenefitItemBuilder) AddModifier(v CodeableConcept) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.Modifier = append(b.explanationOfBenefitItem.Modifier, v)
+	return b
+}
+
+// AddProgramCode adds a ProgramCode element.
+func (b *ExplanationOfBenefitItemBuilder) AddProgramCode(v CodeableConcept) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.ProgramCode = append(b.explanationOfBenefitItem.ProgramCode, v)
+	return b
+}
+
+// SetServicedDate sets Serviced[x] to its ServicedDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitItemBuilder) SetServicedDate(v string) *ExplanationOfBenefitItemBuilder {
+	b.clearServiced()
+	b.explanationOfBenefitItem.ServicedDate = &v
+	return b
+}
+
+// SetServicedDateExt sets the ServicedDateExt field.
+func (b *ExplanationOfBenefitItemBuilder) SetServicedDateExt(v Element) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.ServicedDateExt = &v
+	return b
+}
+
+// SetServicedPeriod sets Serviced[x] to its ServicedPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitItemBuilder) SetServicedPeriod(v Period) *ExplanationOfBenefitItemBuilder {
+	b.clearServiced()
+	b.explanationOfBenefitItem.ServicedPeriod = &v
+	return b
+}
+
+// SetLocationCodeableConcept sets Location[x] to its LocationCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitItemBuilder) SetLocationCodeableConcept(v CodeableConcept) *ExplanationOfBenefitItemBuilder {
+	b.clearLocation()
+	b.explanationOfBenefitItem.LocationCodeableConcept = &v
+	return b
+}
+
+// SetLocationAddress sets Location[x] to its LocationAddress variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitItemBuilder) SetLocationAddress(v Address) *ExplanationOfBenefitItemBuilder {
+	b.clearLocation()
+	b.explanationOfBenefitItem.LocationAddress = &v
+	return b
+}
+
+// SetLocationReference sets Location[x] to its LocationReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitItemBuilder) SetLocationReference(v Reference) *ExplanationOfBenefitItemBuilder {
+	b.clearLocation()
+	b.explanationOfBenefitItem.LocationReference = &v
+	return b
+}
+
+// SetPatientPaid sets the PatientPaid field.
+func (b *ExplanationOfBenefitItemBuilder) SetPatientPaid(v Money) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.PatientPaid = &v
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *ExplanationOfBenefitItemBuilder) SetQuantity(v Quantity) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.Quantity = &v
+	return b
+}
+
+// SetUnitPrice sets the UnitPrice field.
+func (b *ExplanationOfBenefitItemBuilder) SetUnitPrice(v Money) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.UnitPrice = &v
+	return b
+}
+
+// SetFactor sets the Factor field.
+func (b *ExplanationOfBenefitItemBuilder) SetFactor(v Decimal) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.Factor = &v
+	return b
+}
+
+// SetTax sets the Tax field.
+func (b *ExplanationOfBenefitItemBuilder) SetTax(v Money) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.Tax = &v
+	return b
+}
+
+// SetNet sets the Net field.
+func (b *ExplanationOfBenefitItemBuilder) SetNet(v Money) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.Net = &v
+	return b
+}
+
+// AddUdi adds a Udi element.
+func (b *ExplanationOfBenefitItemBuilder) AddUdi(v Reference) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.Udi = append(b.explanationOfBenefitItem.Udi, v)
+	return b
+}
+
+// AddBodySite adds a BodySite element.
+func (b *ExplanationOfBenefitItemBuilder) AddBodySite(v ExplanationOfBenefitItemBodySite) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.BodySite = append(b.explanationOfBenefitItem.BodySite, v)
+	return b
+}
+
+// AddEncounter adds a Encounter element.
+func (b *ExplanationOfBenefitItemBuilder) AddEncounter(v Reference) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.Encounter = append(b.explanationOfBenefitItem.Encounter, v)
+	return b
+}
+
+// AddNoteNumber adds a NoteNumber element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ExplanationOfBenefitItemBuilder) AddNoteNumber(v uint32) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.NoteNumber = append(b.explanationOfBenefitItem.NoteNumber, &v)
+	return b
+}
+
+// SetReviewOutcome sets the ReviewOutcome field.
+func (b *ExplanationOfBenefitItemBuilder) SetReviewOutcome(v ExplanationOfBenefitItemReviewOutcome) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.ReviewOutcome = &v
+	return b
+}
+
+// AddAdjudication adds a Adjudication element.
+func (b *ExplanationOfBenefitItemBuilder) AddAdjudication(v ExplanationOfBenefitItemAdjudication) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.Adjudication = append(b.explanationOfBenefitItem.Adjudication, v)
+	return b
+}
+
+// AddDetail adds a Detail element.
+func (b *ExplanationOfBenefitItemBuilder) AddDetail(v ExplanationOfBenefitItemDetail) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.Detail = append(b.explanationOfBenefitItem.Detail, v)
+	return b
+}
+
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitItemBuilder) SetSequenceExt(v Element) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.SequenceExt = &v
+	return b
+}
+
+// AddCareTeamSequenceExt appends an extension slot for CareTeamSequence.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ExplanationOfBenefitItemBuilder) AddCareTeamSequenceExt(v *Element) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.CareTeamSequenceExt = append(b.explanationOfBenefitItem.CareTeamSequenceExt, v)
+	return b
+}
+
+// AddDiagnosisSequenceExt appends an extension slot for DiagnosisSequence.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ExplanationOfBenefitItemBuilder) AddDiagnosisSequenceExt(v *Element) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.DiagnosisSequenceExt = append(b.explanationOfBenefitItem.DiagnosisSequenceExt, v)
+	return b
+}
+
+// AddProcedureSequenceExt appends an extension slot for ProcedureSequence.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ExplanationOfBenefitItemBuilder) AddProcedureSequenceExt(v *Element) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.ProcedureSequenceExt = append(b.explanationOfBenefitItem.ProcedureSequenceExt, v)
+	return b
+}
+
+// AddInformationSequenceExt appends an extension slot for InformationSequence.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ExplanationOfBenefitItemBuilder) AddInformationSequenceExt(v *Element) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.InformationSequenceExt = append(b.explanationOfBenefitItem.InformationSequenceExt, v)
+	return b
+}
+
+// SetFactorExt sets the extensions carried by Factor, serialized as
+// "_factor".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitItemBuilder) SetFactorExt(v Element) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.FactorExt = &v
+	return b
+}
+
+// AddNoteNumberExt appends an extension slot for NoteNumber.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ExplanationOfBenefitItemBuilder) AddNoteNumberExt(v *Element) *ExplanationOfBenefitItemBuilder {
+	b.explanationOfBenefitItem.NoteNumberExt = append(b.explanationOfBenefitItem.NoteNumberExt, v)
+	return b
+}
+
+// clearServiced unsets every variant of Serviced[x], including the
+// _field companions of the primitive ones.
+func (b *ExplanationOfBenefitItemBuilder) clearServiced() {
+	b.explanationOfBenefitItem.ServicedDate = nil
+	b.explanationOfBenefitItem.ServicedPeriod = nil
+}
+
+// clearLocation unsets every variant of Location[x], including the
+// _field companions of the primitive ones.
+func (b *ExplanationOfBenefitItemBuilder) clearLocation() {
+	b.explanationOfBenefitItem.LocationCodeableConcept = nil
+	b.explanationOfBenefitItem.LocationAddress = nil
+	b.explanationOfBenefitItem.LocationReference = nil
+}
+
+// =============================================================================
+// ExplanationOfBenefitItemAdjudication - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitItemAdjudicationBuilder provides a fluent API for constructing ExplanationOfBenefitItemAdjudication values.
+type ExplanationOfBenefitItemAdjudicationBuilder struct {
+	explanationOfBenefitItemAdjudication *ExplanationOfBenefitItemAdjudication
+}
+
+// NewExplanationOfBenefitItemAdjudicationBuilder creates a new ExplanationOfBenefitItemAdjudicationBuilder.
+func NewExplanationOfBenefitItemAdjudicationBuilder() *ExplanationOfBenefitItemAdjudicationBuilder {
+	return &ExplanationOfBenefitItemAdjudicationBuilder{
+		explanationOfBenefitItemAdjudication: &ExplanationOfBenefitItemAdjudication{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitItemAdjudication.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitItemAdjudicationBuilder) Build() ExplanationOfBenefitItemAdjudication {
+	return *b.explanationOfBenefitItemAdjudication
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitItemAdjudicationBuilder) SetId(v string) *ExplanationOfBenefitItemAdjudicationBuilder {
+	b.explanationOfBenefitItemAdjudication.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitItemAdjudicationBuilder) AddExtension(v Extension) *ExplanationOfBenefitItemAdjudicationBuilder {
+	b.explanationOfBenefitItemAdjudication.Extension = append(b.explanationOfBenefitItemAdjudication.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitItemAdjudicationBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitItemAdjudicationBuilder {
+	b.explanationOfBenefitItemAdjudication.ModifierExtension = append(b.explanationOfBenefitItemAdjudication.ModifierExtension, v)
+	return b
+}
+
+// SetCategory sets the Category field.
+func (b *ExplanationOfBenefitItemAdjudicationBuilder) SetCategory(v CodeableConcept) *ExplanationOfBenefitItemAdjudicationBuilder {
+	b.explanationOfBenefitItemAdjudication.Category = &v
+	return b
+}
+
+// SetReason sets the Reason field.
+func (b *ExplanationOfBenefitItemAdjudicationBuilder) SetReason(v CodeableConcept) *ExplanationOfBenefitItemAdjudicationBuilder {
+	b.explanationOfBenefitItemAdjudication.Reason = &v
+	return b
+}
+
+// SetAmount sets the Amount field.
+func (b *ExplanationOfBenefitItemAdjudicationBuilder) SetAmount(v Money) *ExplanationOfBenefitItemAdjudicationBuilder {
+	b.explanationOfBenefitItemAdjudication.Amount = &v
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *ExplanationOfBenefitItemAdjudicationBuilder) SetQuantity(v Quantity) *ExplanationOfBenefitItemAdjudicationBuilder {
+	b.explanationOfBenefitItemAdjudication.Quantity = &v
+	return b
+}
+
+// =============================================================================
+// ExplanationOfBenefitItemBodySite - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitItemBodySiteBuilder provides a fluent API for constructing ExplanationOfBenefitItemBodySite values.
+type ExplanationOfBenefitItemBodySiteBuilder struct {
+	explanationOfBenefitItemBodySite *ExplanationOfBenefitItemBodySite
+}
+
+// NewExplanationOfBenefitItemBodySiteBuilder creates a new ExplanationOfBenefitItemBodySiteBuilder.
+func NewExplanationOfBenefitItemBodySiteBuilder() *ExplanationOfBenefitItemBodySiteBuilder {
+	return &ExplanationOfBenefitItemBodySiteBuilder{
+		explanationOfBenefitItemBodySite: &ExplanationOfBenefitItemBodySite{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitItemBodySite.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitItemBodySiteBuilder) Build() ExplanationOfBenefitItemBodySite {
+	return *b.explanationOfBenefitItemBodySite
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitItemBodySiteBuilder) SetId(v string) *ExplanationOfBenefitItemBodySiteBuilder {
+	b.explanationOfBenefitItemBodySite.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitItemBodySiteBuilder) AddExtension(v Extension) *ExplanationOfBenefitItemBodySiteBuilder {
+	b.explanationOfBenefitItemBodySite.Extension = append(b.explanationOfBenefitItemBodySite.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitItemBodySiteBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitItemBodySiteBuilder {
+	b.explanationOfBenefitItemBodySite.ModifierExtension = append(b.explanationOfBenefitItemBodySite.ModifierExtension, v)
+	return b
+}
+
+// AddSite adds a Site element.
+func (b *ExplanationOfBenefitItemBodySiteBuilder) AddSite(v CodeableReference) *ExplanationOfBenefitItemBodySiteBuilder {
+	b.explanationOfBenefitItemBodySite.Site = append(b.explanationOfBenefitItemBodySite.Site, v)
+	return b
+}
+
+// AddSubSite adds a SubSite element.
+func (b *ExplanationOfBenefitItemBodySiteBuilder) AddSubSite(v CodeableConcept) *ExplanationOfBenefitItemBodySiteBuilder {
+	b.explanationOfBenefitItemBodySite.SubSite = append(b.explanationOfBenefitItemBodySite.SubSite, v)
+	return b
+}
+
+// =============================================================================
+// ExplanationOfBenefitItemDetail - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitItemDetailBuilder provides a fluent API for constructing ExplanationOfBenefitItemDetail values.
+type ExplanationOfBenefitItemDetailBuilder struct {
+	explanationOfBenefitItemDetail *ExplanationOfBenefitItemDetail
+}
+
+// NewExplanationOfBenefitItemDetailBuilder creates a new ExplanationOfBenefitItemDetailBuilder.
+func NewExplanationOfBenefitItemDetailBuilder() *ExplanationOfBenefitItemDetailBuilder {
+	return &ExplanationOfBenefitItemDetailBuilder{
+		explanationOfBenefitItemDetail: &ExplanationOfBenefitItemDetail{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitItemDetail.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitItemDetailBuilder) Build() ExplanationOfBenefitItemDetail {
+	return *b.explanationOfBenefitItemDetail
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitItemDetailBuilder) SetId(v string) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitItemDetailBuilder) AddExtension(v Extension) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.Extension = append(b.explanationOfBenefitItemDetail.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitItemDetailBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.ModifierExtension = append(b.explanationOfBenefitItemDetail.ModifierExtension, v)
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *ExplanationOfBenefitItemDetailBuilder) SetSequence(v uint32) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.Sequence = &v
+	return b
+}
+
+// AddTraceNumber adds a TraceNumber element.
+func (b *ExplanationOfBenefitItemDetailBuilder) AddTraceNumber(v Identifier) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.TraceNumber = append(b.explanationOfBenefitItemDetail.TraceNumber, v)
+	return b
+}
+
+// SetRevenue sets the Revenue field.
+func (b *ExplanationOfBenefitItemDetailBuilder) SetRevenue(v CodeableConcept) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.Revenue = &v
+	return b
+}
+
+// SetCategory sets the Category field.
+func (b *ExplanationOfBenefitItemDetailBuilder) SetCategory(v CodeableConcept) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.Category = &v
+	return b
+}
+
+// SetProductOrService sets the ProductOrService field.
+func (b *ExplanationOfBenefitItemDetailBuilder) SetProductOrService(v CodeableConcept) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.ProductOrService = &v
+	return b
+}
+
+// SetProductOrServiceEnd sets the ProductOrServiceEnd field.
+func (b *ExplanationOfBenefitItemDetailBuilder) SetProductOrServiceEnd(v CodeableConcept) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.ProductOrServiceEnd = &v
+	return b
+}
+
+// AddModifier adds a Modifier element.
+func (b *ExplanationOfBenefitItemDetailBuilder) AddModifier(v CodeableConcept) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.Modifier = append(b.explanationOfBenefitItemDetail.Modifier, v)
+	return b
+}
+
+// AddProgramCode adds a ProgramCode element.
+func (b *ExplanationOfBenefitItemDetailBuilder) AddProgramCode(v CodeableConcept) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.ProgramCode = append(b.explanationOfBenefitItemDetail.ProgramCode, v)
+	return b
+}
+
+// SetPatientPaid sets the PatientPaid field.
+func (b *ExplanationOfBenefitItemDetailBuilder) SetPatientPaid(v Money) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.PatientPaid = &v
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *ExplanationOfBenefitItemDetailBuilder) SetQuantity(v Quantity) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.Quantity = &v
+	return b
+}
+
+// SetUnitPrice sets the UnitPrice field.
+func (b *ExplanationOfBenefitItemDetailBuilder) SetUnitPrice(v Money) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.UnitPrice = &v
+	return b
+}
+
+// SetFactor sets the Factor field.
+func (b *ExplanationOfBenefitItemDetailBuilder) SetFactor(v Decimal) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.Factor = &v
+	return b
+}
+
+// SetTax sets the Tax field.
+func (b *ExplanationOfBenefitItemDetailBuilder) SetTax(v Money) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.Tax = &v
+	return b
+}
+
+// SetNet sets the Net field.
+func (b *ExplanationOfBenefitItemDetailBuilder) SetNet(v Money) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.Net = &v
+	return b
+}
+
+// AddUdi adds a Udi element.
+func (b *ExplanationOfBenefitItemDetailBuilder) AddUdi(v Reference) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.Udi = append(b.explanationOfBenefitItemDetail.Udi, v)
+	return b
+}
+
+// AddNoteNumber adds a NoteNumber element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ExplanationOfBenefitItemDetailBuilder) AddNoteNumber(v uint32) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.NoteNumber = append(b.explanationOfBenefitItemDetail.NoteNumber, &v)
+	return b
+}
+
+// SetReviewOutcome sets the ReviewOutcome field.
+func (b *ExplanationOfBenefitItemDetailBuilder) SetReviewOutcome(v ExplanationOfBenefitItemReviewOutcome) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.ReviewOutcome = &v
+	return b
+}
+
+// AddAdjudication adds a Adjudication element.
+func (b *ExplanationOfBenefitItemDetailBuilder) AddAdjudication(v ExplanationOfBenefitItemAdjudication) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.Adjudication = append(b.explanationOfBenefitItemDetail.Adjudication, v)
+	return b
+}
+
+// AddSubDetail adds a SubDetail element.
+func (b *ExplanationOfBenefitItemDetailBuilder) AddSubDetail(v ExplanationOfBenefitItemDetailSubDetail) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.SubDetail = append(b.explanationOfBenefitItemDetail.SubDetail, v)
+	return b
+}
+
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitItemDetailBuilder) SetSequenceExt(v Element) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.SequenceExt = &v
+	return b
+}
+
+// SetFactorExt sets the extensions carried by Factor, serialized as
+// "_factor".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitItemDetailBuilder) SetFactorExt(v Element) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.FactorExt = &v
+	return b
+}
+
+// AddNoteNumberExt appends an extension slot for NoteNumber.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ExplanationOfBenefitItemDetailBuilder) AddNoteNumberExt(v *Element) *ExplanationOfBenefitItemDetailBuilder {
+	b.explanationOfBenefitItemDetail.NoteNumberExt = append(b.explanationOfBenefitItemDetail.NoteNumberExt, v)
+	return b
+}
+
+// =============================================================================
+// ExplanationOfBenefitItemDetailSubDetail - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitItemDetailSubDetailBuilder provides a fluent API for constructing ExplanationOfBenefitItemDetailSubDetail values.
+type ExplanationOfBenefitItemDetailSubDetailBuilder struct {
+	explanationOfBenefitItemDetailSubDetail *ExplanationOfBenefitItemDetailSubDetail
+}
+
+// NewExplanationOfBenefitItemDetailSubDetailBuilder creates a new ExplanationOfBenefitItemDetailSubDetailBuilder.
+func NewExplanationOfBenefitItemDetailSubDetailBuilder() *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	return &ExplanationOfBenefitItemDetailSubDetailBuilder{
+		explanationOfBenefitItemDetailSubDetail: &ExplanationOfBenefitItemDetailSubDetail{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitItemDetailSubDetail.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) Build() ExplanationOfBenefitItemDetailSubDetail {
+	return *b.explanationOfBenefitItemDetailSubDetail
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) SetId(v string) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) AddExtension(v Extension) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.Extension = append(b.explanationOfBenefitItemDetailSubDetail.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.ModifierExtension = append(b.explanationOfBenefitItemDetailSubDetail.ModifierExtension, v)
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) SetSequence(v uint32) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.Sequence = &v
+	return b
+}
+
+// AddTraceNumber adds a TraceNumber element.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) AddTraceNumber(v Identifier) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.TraceNumber = append(b.explanationOfBenefitItemDetailSubDetail.TraceNumber, v)
+	return b
+}
+
+// SetRevenue sets the Revenue field.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) SetRevenue(v CodeableConcept) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.Revenue = &v
+	return b
+}
+
+// SetCategory sets the Category field.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) SetCategory(v CodeableConcept) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.Category = &v
+	return b
+}
+
+// SetProductOrService sets the ProductOrService field.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) SetProductOrService(v CodeableConcept) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.ProductOrService = &v
+	return b
+}
+
+// SetProductOrServiceEnd sets the ProductOrServiceEnd field.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) SetProductOrServiceEnd(v CodeableConcept) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.ProductOrServiceEnd = &v
+	return b
+}
+
+// AddModifier adds a Modifier element.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) AddModifier(v CodeableConcept) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.Modifier = append(b.explanationOfBenefitItemDetailSubDetail.Modifier, v)
+	return b
+}
+
+// AddProgramCode adds a ProgramCode element.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) AddProgramCode(v CodeableConcept) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.ProgramCode = append(b.explanationOfBenefitItemDetailSubDetail.ProgramCode, v)
+	return b
+}
+
+// SetPatientPaid sets the PatientPaid field.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) SetPatientPaid(v Money) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.PatientPaid = &v
+	return b
+}
+
+// SetQuantity sets the Quantity field.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) SetQuantity(v Quantity) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.Quantity = &v
+	return b
+}
+
+// SetUnitPrice sets the UnitPrice field.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) SetUnitPrice(v Money) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.UnitPrice = &v
+	return b
+}
+
+// SetFactor sets the Factor field.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) SetFactor(v Decimal) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.Factor = &v
+	return b
+}
+
+// SetTax sets the Tax field.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) SetTax(v Money) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.Tax = &v
+	return b
+}
+
+// SetNet sets the Net field.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) SetNet(v Money) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.Net = &v
+	return b
+}
+
+// AddUdi adds a Udi element.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) AddUdi(v Reference) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.Udi = append(b.explanationOfBenefitItemDetailSubDetail.Udi, v)
+	return b
+}
+
+// AddNoteNumber adds a NoteNumber element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) AddNoteNumber(v uint32) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.NoteNumber = append(b.explanationOfBenefitItemDetailSubDetail.NoteNumber, &v)
+	return b
+}
+
+// SetReviewOutcome sets the ReviewOutcome field.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) SetReviewOutcome(v ExplanationOfBenefitItemReviewOutcome) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.ReviewOutcome = &v
+	return b
+}
+
+// AddAdjudication adds a Adjudication element.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) AddAdjudication(v ExplanationOfBenefitItemAdjudication) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.Adjudication = append(b.explanationOfBenefitItemDetailSubDetail.Adjudication, v)
+	return b
+}
+
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) SetSequenceExt(v Element) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.SequenceExt = &v
+	return b
+}
+
+// SetFactorExt sets the extensions carried by Factor, serialized as
+// "_factor".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) SetFactorExt(v Element) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.FactorExt = &v
+	return b
+}
+
+// AddNoteNumberExt appends an extension slot for NoteNumber.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) AddNoteNumberExt(v *Element) *ExplanationOfBenefitItemDetailSubDetailBuilder {
+	b.explanationOfBenefitItemDetailSubDetail.NoteNumberExt = append(b.explanationOfBenefitItemDetailSubDetail.NoteNumberExt, v)
+	return b
+}
+
+// =============================================================================
+// ExplanationOfBenefitItemReviewOutcome - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitItemReviewOutcomeBuilder provides a fluent API for constructing ExplanationOfBenefitItemReviewOutcome values.
+type ExplanationOfBenefitItemReviewOutcomeBuilder struct {
+	explanationOfBenefitItemReviewOutcome *ExplanationOfBenefitItemReviewOutcome
+}
+
+// NewExplanationOfBenefitItemReviewOutcomeBuilder creates a new ExplanationOfBenefitItemReviewOutcomeBuilder.
+func NewExplanationOfBenefitItemReviewOutcomeBuilder() *ExplanationOfBenefitItemReviewOutcomeBuilder {
+	return &ExplanationOfBenefitItemReviewOutcomeBuilder{
+		explanationOfBenefitItemReviewOutcome: &ExplanationOfBenefitItemReviewOutcome{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitItemReviewOutcome.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitItemReviewOutcomeBuilder) Build() ExplanationOfBenefitItemReviewOutcome {
+	return *b.explanationOfBenefitItemReviewOutcome
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitItemReviewOutcomeBuilder) SetId(v string) *ExplanationOfBenefitItemReviewOutcomeBuilder {
+	b.explanationOfBenefitItemReviewOutcome.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitItemReviewOutcomeBuilder) AddExtension(v Extension) *ExplanationOfBenefitItemReviewOutcomeBuilder {
+	b.explanationOfBenefitItemReviewOutcome.Extension = append(b.explanationOfBenefitItemReviewOutcome.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitItemReviewOutcomeBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitItemReviewOutcomeBuilder {
+	b.explanationOfBenefitItemReviewOutcome.ModifierExtension = append(b.explanationOfBenefitItemReviewOutcome.ModifierExtension, v)
+	return b
+}
+
+// SetDecision sets the Decision field.
+func (b *ExplanationOfBenefitItemReviewOutcomeBuilder) SetDecision(v CodeableConcept) *ExplanationOfBenefitItemReviewOutcomeBuilder {
+	b.explanationOfBenefitItemReviewOutcome.Decision = &v
+	return b
+}
+
+// AddReason adds a Reason element.
+func (b *ExplanationOfBenefitItemReviewOutcomeBuilder) AddReason(v CodeableConcept) *ExplanationOfBenefitItemReviewOutcomeBuilder {
+	b.explanationOfBenefitItemReviewOutcome.Reason = append(b.explanationOfBenefitItemReviewOutcome.Reason, v)
+	return b
+}
+
+// SetPreAuthRef sets the PreAuthRef field.
+func (b *ExplanationOfBenefitItemReviewOutcomeBuilder) SetPreAuthRef(v string) *ExplanationOfBenefitItemReviewOutcomeBuilder {
+	b.explanationOfBenefitItemReviewOutcome.PreAuthRef = &v
+	return b
+}
+
+// SetPreAuthPeriod sets the PreAuthPeriod field.
+func (b *ExplanationOfBenefitItemReviewOutcomeBuilder) SetPreAuthPeriod(v Period) *ExplanationOfBenefitItemReviewOutcomeBuilder {
+	b.explanationOfBenefitItemReviewOutcome.PreAuthPeriod = &v
+	return b
+}
+
+// SetPreAuthRefExt sets the extensions carried by PreAuthRef, serialized as
+// "_preAuthRef".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitItemReviewOutcomeBuilder) SetPreAuthRefExt(v Element) *ExplanationOfBenefitItemReviewOutcomeBuilder {
+	b.explanationOfBenefitItemReviewOutcome.PreAuthRefExt = &v
+	return b
+}
+
+// =============================================================================
+// ExplanationOfBenefitPayee - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitPayeeBuilder provides a fluent API for constructing ExplanationOfBenefitPayee values.
+type ExplanationOfBenefitPayeeBuilder struct {
+	explanationOfBenefitPayee *ExplanationOfBenefitPayee
+}
+
+// NewExplanationOfBenefitPayeeBuilder creates a new ExplanationOfBenefitPayeeBuilder.
+func NewExplanationOfBenefitPayeeBuilder() *ExplanationOfBenefitPayeeBuilder {
+	return &ExplanationOfBenefitPayeeBuilder{
+		explanationOfBenefitPayee: &ExplanationOfBenefitPayee{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitPayee.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitPayeeBuilder) Build() ExplanationOfBenefitPayee {
+	return *b.explanationOfBenefitPayee
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitPayeeBuilder) SetId(v string) *ExplanationOfBenefitPayeeBuilder {
+	b.explanationOfBenefitPayee.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitPayeeBuilder) AddExtension(v Extension) *ExplanationOfBenefitPayeeBuilder {
+	b.explanationOfBenefitPayee.Extension = append(b.explanationOfBenefitPayee.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitPayeeBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitPayeeBuilder {
+	b.explanationOfBenefitPayee.ModifierExtension = append(b.explanationOfBenefitPayee.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ExplanationOfBenefitPayeeBuilder) SetType(v CodeableConcept) *ExplanationOfBenefitPayeeBuilder {
+	b.explanationOfBenefitPayee.Type = &v
+	return b
+}
+
+// SetParty sets the Party field.
+func (b *ExplanationOfBenefitPayeeBuilder) SetParty(v Reference) *ExplanationOfBenefitPayeeBuilder {
+	b.explanationOfBenefitPayee.Party = &v
+	return b
+}
+
+// =============================================================================
+// ExplanationOfBenefitPayment - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitPaymentBuilder provides a fluent API for constructing ExplanationOfBenefitPayment values.
+type ExplanationOfBenefitPaymentBuilder struct {
+	explanationOfBenefitPayment *ExplanationOfBenefitPayment
+}
+
+// NewExplanationOfBenefitPaymentBuilder creates a new ExplanationOfBenefitPaymentBuilder.
+func NewExplanationOfBenefitPaymentBuilder() *ExplanationOfBenefitPaymentBuilder {
+	return &ExplanationOfBenefitPaymentBuilder{
+		explanationOfBenefitPayment: &ExplanationOfBenefitPayment{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitPayment.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitPaymentBuilder) Build() ExplanationOfBenefitPayment {
+	return *b.explanationOfBenefitPayment
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitPaymentBuilder) SetId(v string) *ExplanationOfBenefitPaymentBuilder {
+	b.explanationOfBenefitPayment.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitPaymentBuilder) AddExtension(v Extension) *ExplanationOfBenefitPaymentBuilder {
+	b.explanationOfBenefitPayment.Extension = append(b.explanationOfBenefitPayment.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitPaymentBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitPaymentBuilder {
+	b.explanationOfBenefitPayment.ModifierExtension = append(b.explanationOfBenefitPayment.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ExplanationOfBenefitPaymentBuilder) SetType(v CodeableConcept) *ExplanationOfBenefitPaymentBuilder {
+	b.explanationOfBenefitPayment.Type = &v
+	return b
+}
+
+// SetAdjustment sets the Adjustment field.
+func (b *ExplanationOfBenefitPaymentBuilder) SetAdjustment(v Money) *ExplanationOfBenefitPaymentBuilder {
+	b.explanationOfBenefitPayment.Adjustment = &v
+	return b
+}
+
+// SetAdjustmentReason sets the AdjustmentReason field.
+func (b *ExplanationOfBenefitPaymentBuilder) SetAdjustmentReason(v CodeableConcept) *ExplanationOfBenefitPaymentBuilder {
+	b.explanationOfBenefitPayment.AdjustmentReason = &v
+	return b
+}
+
+// SetDate sets the Date field.
+func (b *ExplanationOfBenefitPaymentBuilder) SetDate(v string) *ExplanationOfBenefitPaymentBuilder {
+	b.explanationOfBenefitPayment.Date = &v
+	return b
+}
+
+// SetAmount sets the Amount field.
+func (b *ExplanationOfBenefitPaymentBuilder) SetAmount(v Money) *ExplanationOfBenefitPaymentBuilder {
+	b.explanationOfBenefitPayment.Amount = &v
+	return b
+}
+
+// SetIdentifier sets the Identifier field.
+func (b *ExplanationOfBenefitPaymentBuilder) SetIdentifier(v Identifier) *ExplanationOfBenefitPaymentBuilder {
+	b.explanationOfBenefitPayment.Identifier = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitPaymentBuilder) SetDateExt(v Element) *ExplanationOfBenefitPaymentBuilder {
+	b.explanationOfBenefitPayment.DateExt = &v
+	return b
+}
+
+// =============================================================================
+// ExplanationOfBenefitProcedure - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitProcedureBuilder provides a fluent API for constructing ExplanationOfBenefitProcedure values.
+type ExplanationOfBenefitProcedureBuilder struct {
+	explanationOfBenefitProcedure *ExplanationOfBenefitProcedure
+}
+
+// NewExplanationOfBenefitProcedureBuilder creates a new ExplanationOfBenefitProcedureBuilder.
+func NewExplanationOfBenefitProcedureBuilder() *ExplanationOfBenefitProcedureBuilder {
+	return &ExplanationOfBenefitProcedureBuilder{
+		explanationOfBenefitProcedure: &ExplanationOfBenefitProcedure{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitProcedure.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitProcedureBuilder) Build() ExplanationOfBenefitProcedure {
+	return *b.explanationOfBenefitProcedure
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitProcedureBuilder) SetId(v string) *ExplanationOfBenefitProcedureBuilder {
+	b.explanationOfBenefitProcedure.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitProcedureBuilder) AddExtension(v Extension) *ExplanationOfBenefitProcedureBuilder {
+	b.explanationOfBenefitProcedure.Extension = append(b.explanationOfBenefitProcedure.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitProcedureBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitProcedureBuilder {
+	b.explanationOfBenefitProcedure.ModifierExtension = append(b.explanationOfBenefitProcedure.ModifierExtension, v)
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *ExplanationOfBenefitProcedureBuilder) SetSequence(v uint32) *ExplanationOfBenefitProcedureBuilder {
+	b.explanationOfBenefitProcedure.Sequence = &v
+	return b
+}
+
+// AddType adds a Type element.
+func (b *ExplanationOfBenefitProcedureBuilder) AddType(v CodeableConcept) *ExplanationOfBenefitProcedureBuilder {
+	b.explanationOfBenefitProcedure.Type = append(b.explanationOfBenefitProcedure.Type, v)
+	return b
+}
+
+// SetDate sets the Date field.
+func (b *ExplanationOfBenefitProcedureBuilder) SetDate(v string) *ExplanationOfBenefitProcedureBuilder {
+	b.explanationOfBenefitProcedure.Date = &v
+	return b
+}
+
+// SetProcedureCodeableConcept sets Procedure[x] to its ProcedureCodeableConcept variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitProcedureBuilder) SetProcedureCodeableConcept(v CodeableConcept) *ExplanationOfBenefitProcedureBuilder {
+	b.clearProcedure()
+	b.explanationOfBenefitProcedure.ProcedureCodeableConcept = &v
+	return b
+}
+
+// SetProcedureReference sets Procedure[x] to its ProcedureReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitProcedureBuilder) SetProcedureReference(v Reference) *ExplanationOfBenefitProcedureBuilder {
+	b.clearProcedure()
+	b.explanationOfBenefitProcedure.ProcedureReference = &v
+	return b
+}
+
+// AddUdi adds a Udi element.
+func (b *ExplanationOfBenefitProcedureBuilder) AddUdi(v Reference) *ExplanationOfBenefitProcedureBuilder {
+	b.explanationOfBenefitProcedure.Udi = append(b.explanationOfBenefitProcedure.Udi, v)
+	return b
+}
+
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitProcedureBuilder) SetSequenceExt(v Element) *ExplanationOfBenefitProcedureBuilder {
+	b.explanationOfBenefitProcedure.SequenceExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitProcedureBuilder) SetDateExt(v Element) *ExplanationOfBenefitProcedureBuilder {
+	b.explanationOfBenefitProcedure.DateExt = &v
+	return b
+}
+
+// clearProcedure unsets every variant of Procedure[x], including the
+// _field companions of the primitive ones.
+func (b *ExplanationOfBenefitProcedureBuilder) clearProcedure() {
+	b.explanationOfBenefitProcedure.ProcedureCodeableConcept = nil
+	b.explanationOfBenefitProcedure.ProcedureReference = nil
+}
+
+// =============================================================================
+// ExplanationOfBenefitProcessNote - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitProcessNoteBuilder provides a fluent API for constructing ExplanationOfBenefitProcessNote values.
+type ExplanationOfBenefitProcessNoteBuilder struct {
+	explanationOfBenefitProcessNote *ExplanationOfBenefitProcessNote
+}
+
+// NewExplanationOfBenefitProcessNoteBuilder creates a new ExplanationOfBenefitProcessNoteBuilder.
+func NewExplanationOfBenefitProcessNoteBuilder() *ExplanationOfBenefitProcessNoteBuilder {
+	return &ExplanationOfBenefitProcessNoteBuilder{
+		explanationOfBenefitProcessNote: &ExplanationOfBenefitProcessNote{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitProcessNote.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitProcessNoteBuilder) Build() ExplanationOfBenefitProcessNote {
+	return *b.explanationOfBenefitProcessNote
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitProcessNoteBuilder) SetId(v string) *ExplanationOfBenefitProcessNoteBuilder {
+	b.explanationOfBenefitProcessNote.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitProcessNoteBuilder) AddExtension(v Extension) *ExplanationOfBenefitProcessNoteBuilder {
+	b.explanationOfBenefitProcessNote.Extension = append(b.explanationOfBenefitProcessNote.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitProcessNoteBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitProcessNoteBuilder {
+	b.explanationOfBenefitProcessNote.ModifierExtension = append(b.explanationOfBenefitProcessNote.ModifierExtension, v)
+	return b
+}
+
+// SetNumber sets the Number field.
+func (b *ExplanationOfBenefitProcessNoteBuilder) SetNumber(v uint32) *ExplanationOfBenefitProcessNoteBuilder {
+	b.explanationOfBenefitProcessNote.Number = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *ExplanationOfBenefitProcessNoteBuilder) SetType(v CodeableConcept) *ExplanationOfBenefitProcessNoteBuilder {
+	b.explanationOfBenefitProcessNote.Type = &v
+	return b
+}
+
+// SetText sets the Text field.
+func (b *ExplanationOfBenefitProcessNoteBuilder) SetText(v string) *ExplanationOfBenefitProcessNoteBuilder {
+	b.explanationOfBenefitProcessNote.Text = &v
+	return b
+}
+
+// SetLanguage sets the Language field.
+func (b *ExplanationOfBenefitProcessNoteBuilder) SetLanguage(v CodeableConcept) *ExplanationOfBenefitProcessNoteBuilder {
+	b.explanationOfBenefitProcessNote.Language = &v
+	return b
+}
+
+// SetNumberExt sets the extensions carried by Number, serialized as
+// "_number".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitProcessNoteBuilder) SetNumberExt(v Element) *ExplanationOfBenefitProcessNoteBuilder {
+	b.explanationOfBenefitProcessNote.NumberExt = &v
+	return b
+}
+
+// SetTextExt sets the extensions carried by Text, serialized as
+// "_text".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitProcessNoteBuilder) SetTextExt(v Element) *ExplanationOfBenefitProcessNoteBuilder {
+	b.explanationOfBenefitProcessNote.TextExt = &v
+	return b
+}
+
+// =============================================================================
+// ExplanationOfBenefitRelated - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitRelatedBuilder provides a fluent API for constructing ExplanationOfBenefitRelated values.
+type ExplanationOfBenefitRelatedBuilder struct {
+	explanationOfBenefitRelated *ExplanationOfBenefitRelated
+}
+
+// NewExplanationOfBenefitRelatedBuilder creates a new ExplanationOfBenefitRelatedBuilder.
+func NewExplanationOfBenefitRelatedBuilder() *ExplanationOfBenefitRelatedBuilder {
+	return &ExplanationOfBenefitRelatedBuilder{
+		explanationOfBenefitRelated: &ExplanationOfBenefitRelated{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitRelated.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitRelatedBuilder) Build() ExplanationOfBenefitRelated {
+	return *b.explanationOfBenefitRelated
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitRelatedBuilder) SetId(v string) *ExplanationOfBenefitRelatedBuilder {
+	b.explanationOfBenefitRelated.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitRelatedBuilder) AddExtension(v Extension) *ExplanationOfBenefitRelatedBuilder {
+	b.explanationOfBenefitRelated.Extension = append(b.explanationOfBenefitRelated.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitRelatedBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitRelatedBuilder {
+	b.explanationOfBenefitRelated.ModifierExtension = append(b.explanationOfBenefitRelated.ModifierExtension, v)
+	return b
+}
+
+// SetClaim sets the Claim field.
+func (b *ExplanationOfBenefitRelatedBuilder) SetClaim(v Reference) *ExplanationOfBenefitRelatedBuilder {
+	b.explanationOfBenefitRelated.Claim = &v
+	return b
+}
+
+// SetRelationship sets the Relationship field.
+func (b *ExplanationOfBenefitRelatedBuilder) SetRelationship(v CodeableConcept) *ExplanationOfBenefitRelatedBuilder {
+	b.explanationOfBenefitRelated.Relationship = &v
+	return b
+}
+
+// SetReference sets the Reference field.
+func (b *ExplanationOfBenefitRelatedBuilder) SetReference(v Identifier) *ExplanationOfBenefitRelatedBuilder {
+	b.explanationOfBenefitRelated.Reference = &v
+	return b
+}
+
+// =============================================================================
+// ExplanationOfBenefitSupportingInfo - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitSupportingInfoBuilder provides a fluent API for constructing ExplanationOfBenefitSupportingInfo values.
+type ExplanationOfBenefitSupportingInfoBuilder struct {
+	explanationOfBenefitSupportingInfo *ExplanationOfBenefitSupportingInfo
+}
+
+// NewExplanationOfBenefitSupportingInfoBuilder creates a new ExplanationOfBenefitSupportingInfoBuilder.
+func NewExplanationOfBenefitSupportingInfoBuilder() *ExplanationOfBenefitSupportingInfoBuilder {
+	return &ExplanationOfBenefitSupportingInfoBuilder{
+		explanationOfBenefitSupportingInfo: &ExplanationOfBenefitSupportingInfo{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitSupportingInfo.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitSupportingInfoBuilder) Build() ExplanationOfBenefitSupportingInfo {
+	return *b.explanationOfBenefitSupportingInfo
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitSupportingInfoBuilder) SetId(v string) *ExplanationOfBenefitSupportingInfoBuilder {
+	b.explanationOfBenefitSupportingInfo.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitSupportingInfoBuilder) AddExtension(v Extension) *ExplanationOfBenefitSupportingInfoBuilder {
+	b.explanationOfBenefitSupportingInfo.Extension = append(b.explanationOfBenefitSupportingInfo.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitSupportingInfoBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitSupportingInfoBuilder {
+	b.explanationOfBenefitSupportingInfo.ModifierExtension = append(b.explanationOfBenefitSupportingInfo.ModifierExtension, v)
+	return b
+}
+
+// SetSequence sets the Sequence field.
+func (b *ExplanationOfBenefitSupportingInfoBuilder) SetSequence(v uint32) *ExplanationOfBenefitSupportingInfoBuilder {
+	b.explanationOfBenefitSupportingInfo.Sequence = &v
+	return b
+}
+
+// SetCategory sets the Category field.
+func (b *ExplanationOfBenefitSupportingInfoBuilder) SetCategory(v CodeableConcept) *ExplanationOfBenefitSupportingInfoBuilder {
+	b.explanationOfBenefitSupportingInfo.Category = &v
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *ExplanationOfBenefitSupportingInfoBuilder) SetCode(v CodeableConcept) *ExplanationOfBenefitSupportingInfoBuilder {
+	b.explanationOfBenefitSupportingInfo.Code = &v
+	return b
+}
+
+// SetTimingDate sets Timing[x] to its TimingDate variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitSupportingInfoBuilder) SetTimingDate(v string) *ExplanationOfBenefitSupportingInfoBuilder {
+	b.clearTiming()
+	b.explanationOfBenefitSupportingInfo.TimingDate = &v
+	return b
+}
+
+// SetTimingDateExt sets the TimingDateExt field.
+func (b *ExplanationOfBenefitSupportingInfoBuilder) SetTimingDateExt(v Element) *ExplanationOfBenefitSupportingInfoBuilder {
+	b.explanationOfBenefitSupportingInfo.TimingDateExt = &v
+	return b
+}
+
+// SetTimingPeriod sets Timing[x] to its TimingPeriod variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitSupportingInfoBuilder) SetTimingPeriod(v Period) *ExplanationOfBenefitSupportingInfoBuilder {
+	b.clearTiming()
+	b.explanationOfBenefitSupportingInfo.TimingPeriod = &v
+	return b
+}
+
+// SetValueBoolean sets Value[x] to its ValueBoolean variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitSupportingInfoBuilder) SetValueBoolean(v bool) *ExplanationOfBenefitSupportingInfoBuilder {
+	b.clearValue()
+	b.explanationOfBenefitSupportingInfo.ValueBoolean = &v
+	return b
+}
+
+// SetValueBooleanExt sets the ValueBooleanExt field.
+func (b *ExplanationOfBenefitSupportingInfoBuilder) SetValueBooleanExt(v Element) *ExplanationOfBenefitSupportingInfoBuilder {
+	b.explanationOfBenefitSupportingInfo.ValueBooleanExt = &v
+	return b
+}
+
+// SetValueString sets Value[x] to its ValueString variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitSupportingInfoBuilder) SetValueString(v string) *ExplanationOfBenefitSupportingInfoBuilder {
+	b.clearValue()
+	b.explanationOfBenefitSupportingInfo.ValueString = &v
+	return b
+}
+
+// SetValueStringExt sets the ValueStringExt field.
+func (b *ExplanationOfBenefitSupportingInfoBuilder) SetValueStringExt(v Element) *ExplanationOfBenefitSupportingInfoBuilder {
+	b.explanationOfBenefitSupportingInfo.ValueStringExt = &v
+	return b
+}
+
+// SetValueQuantity sets Value[x] to its ValueQuantity variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitSupportingInfoBuilder) SetValueQuantity(v Quantity) *ExplanationOfBenefitSupportingInfoBuilder {
+	b.clearValue()
+	b.explanationOfBenefitSupportingInfo.ValueQuantity = &v
+	return b
+}
+
+// SetValueAttachment sets Value[x] to its ValueAttachment variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitSupportingInfoBuilder) SetValueAttachment(v Attachment) *ExplanationOfBenefitSupportingInfoBuilder {
+	b.clearValue()
+	b.explanationOfBenefitSupportingInfo.ValueAttachment = &v
+	return b
+}
+
+// SetValueReference sets Value[x] to its ValueReference variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitSupportingInfoBuilder) SetValueReference(v Reference) *ExplanationOfBenefitSupportingInfoBuilder {
+	b.clearValue()
+	b.explanationOfBenefitSupportingInfo.ValueReference = &v
+	return b
+}
+
+// SetValueIdentifier sets Value[x] to its ValueIdentifier variant.
+//
+// A choice element holds exactly one variant, so the others are cleared. Without
+// that, a chain of setters produced a document with several of them present at
+// once, which no FHIR server will accept and which nothing here reported.
+func (b *ExplanationOfBenefitSupportingInfoBuilder) SetValueIdentifier(v Identifier) *ExplanationOfBenefitSupportingInfoBuilder {
+	b.clearValue()
+	b.explanationOfBenefitSupportingInfo.ValueIdentifier = &v
+	return b
+}
+
+// SetReason sets the Reason field.
+func (b *ExplanationOfBenefitSupportingInfoBuilder) SetReason(v Coding) *ExplanationOfBenefitSupportingInfoBuilder {
+	b.explanationOfBenefitSupportingInfo.Reason = &v
+	return b
+}
+
+// SetSequenceExt sets the extensions carried by Sequence, serialized as
+// "_sequence".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *ExplanationOfBenefitSupportingInfoBuilder) SetSequenceExt(v Element) *ExplanationOfBenefitSupportingInfoBuilder {
+	b.explanationOfBenefitSupportingInfo.SequenceExt = &v
+	return b
+}
+
+// clearTiming unsets every variant of Timing[x], including the
+// _field companions of the primitive ones.
+func (b *ExplanationOfBenefitSupportingInfoBuilder) clearTiming() {
+	b.explanationOfBenefitSupportingInfo.TimingDate = nil
+	b.explanationOfBenefitSupportingInfo.TimingPeriod = nil
+}
+
+// clearValue unsets every variant of Value[x], including the
+// _field companions of the primitive ones.
+func (b *ExplanationOfBenefitSupportingInfoBuilder) clearValue() {
+	b.explanationOfBenefitSupportingInfo.ValueBoolean = nil
+	b.explanationOfBenefitSupportingInfo.ValueString = nil
+	b.explanationOfBenefitSupportingInfo.ValueStringExt = nil
+	b.explanationOfBenefitSupportingInfo.ValueQuantity = nil
+	b.explanationOfBenefitSupportingInfo.ValueAttachment = nil
+	b.explanationOfBenefitSupportingInfo.ValueReference = nil
+	b.explanationOfBenefitSupportingInfo.ValueIdentifier = nil
+}
+
+// =============================================================================
+// ExplanationOfBenefitTotal - Fluent Builder
+// =============================================================================
+
+// ExplanationOfBenefitTotalBuilder provides a fluent API for constructing ExplanationOfBenefitTotal values.
+type ExplanationOfBenefitTotalBuilder struct {
+	explanationOfBenefitTotal *ExplanationOfBenefitTotal
+}
+
+// NewExplanationOfBenefitTotalBuilder creates a new ExplanationOfBenefitTotalBuilder.
+func NewExplanationOfBenefitTotalBuilder() *ExplanationOfBenefitTotalBuilder {
+	return &ExplanationOfBenefitTotalBuilder{
+		explanationOfBenefitTotal: &ExplanationOfBenefitTotal{},
+	}
+}
+
+// Build returns the constructed ExplanationOfBenefitTotal.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExplanationOfBenefitTotalBuilder) Build() ExplanationOfBenefitTotal {
+	return *b.explanationOfBenefitTotal
+}
+
+// SetId sets the Id field.
+func (b *ExplanationOfBenefitTotalBuilder) SetId(v string) *ExplanationOfBenefitTotalBuilder {
+	b.explanationOfBenefitTotal.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *ExplanationOfBenefitTotalBuilder) AddExtension(v Extension) *ExplanationOfBenefitTotalBuilder {
+	b.explanationOfBenefitTotal.Extension = append(b.explanationOfBenefitTotal.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *ExplanationOfBenefitTotalBuilder) AddModifierExtension(v Extension) *ExplanationOfBenefitTotalBuilder {
+	b.explanationOfBenefitTotal.ModifierExtension = append(b.explanationOfBenefitTotal.ModifierExtension, v)
+	return b
+}
+
+// SetCategory sets the Category field.
+func (b *ExplanationOfBenefitTotalBuilder) SetCategory(v CodeableConcept) *ExplanationOfBenefitTotalBuilder {
+	b.explanationOfBenefitTotal.Category = &v
+	return b
+}
+
+// SetAmount sets the Amount field.
+func (b *ExplanationOfBenefitTotalBuilder) SetAmount(v Money) *ExplanationOfBenefitTotalBuilder {
+	b.explanationOfBenefitTotal.Amount = &v
+	return b
+}

@@ -92,6 +92,13 @@ type PropertyBuilderData struct {
 	// variants on ElementDefinition.defaultValue[x], clearing inline in every
 	// setter would be quadratic in generated lines.
 	ChoiceLead bool
+	// HasExtension marks a primitive that carries a _field companion. The
+	// companion is emitted by the struct template from this flag rather than
+	// existing as a property, so without it the builder could not see it and a
+	// caller had to leave the chain to set one.
+	HasExtension bool
+	// JSONName is the wire name, used to describe the companion in its doc.
+	JSONName string
 }
 
 // ResourceConsolidatedData holds data for the consolidated resource template
@@ -101,6 +108,10 @@ type ResourceConsolidatedData struct {
 	Resource  *analyzer.AnalyzedType
 	Backbones []*analyzer.AnalyzedType
 	Builder   ResourceBuilderData
+	// BackboneBuilders mirrors Backbones. A backbone is where most of a resource's
+	// data actually lives — Patient.contact, Bundle.entry, Observation.component —
+	// so without these the fluent chain stopped one level in.
+	BackboneBuilders []ResourceBuilderData
 }
 
 // DatatypesConsolidatedData holds data for the consolidated datatypes template
@@ -109,12 +120,12 @@ type DatatypesConsolidatedData struct {
 	TemplateData
 	Types     []*analyzer.AnalyzedType
 	Backbones []*analyzer.AnalyzedType
-	// Builders covers Types only. Datatypes are what a caller writes by hand —
-	// CodeableConcept appears 165,085 times in 1,200 published R4 examples,
-	// Reference 62,690 — and until now the fluent chain stopped at the first one.
-	// Backbones are left out deliberately: 578 types in r4 and 733 in r5, roughly
-	// 120,000 generated lines across the three versions against 21,000 for these.
-	Builders []ResourceBuilderData
+	// Builders covers Types, BackboneBuilders the backbones defined inside them.
+	// Every type a caller can hold gets one: an API that stops partway through
+	// forces a struct literal for the rest, which is what the pointer-heavy field
+	// types make awkward in the first place.
+	Builders         []ResourceBuilderData
+	BackboneBuilders []ResourceBuilderData
 }
 
 // sharedTemplates are parsed alongside every template, so a block used by more
@@ -517,6 +528,8 @@ func buildResourceBuilderData(t *analyzer.AnalyzedType) ResourceBuilderData {
 			IsPointer: prop.IsPointer,
 			IsChoice:  prop.IsChoice,
 		}
+		propData.HasExtension = prop.HasExtension && !prop.IsChoice
+		propData.JSONName = prop.JSONName
 
 		if prop.IsChoice && prop.ChoiceBaseName != "" {
 			propData.ChoiceBase = strings.ToUpper(prop.ChoiceBaseName[:1]) + prop.ChoiceBaseName[1:]
@@ -829,6 +842,9 @@ func (c *CodeGen) generateResourcesConsolidated() error {
 			Backbones: backbones,
 			Builder:   buildResourceBuilderData(t),
 		}
+		for _, bb := range backbones {
+			data.BackboneBuilders = append(data.BackboneBuilders, buildDatatypeBuilderData(bb))
+		}
 
 		filename := fmt.Sprintf("resource_%s.go", strings.ToLower(t.Name))
 		path := filepath.Join(c.config.OutputDir, filename)
@@ -885,6 +901,9 @@ func (c *CodeGen) generateDatatypesConsolidated() error {
 	}
 	for _, t := range allTypes {
 		data.Builders = append(data.Builders, buildDatatypeBuilderData(t))
+	}
+	for _, t := range allBackbones {
+		data.BackboneBuilders = append(data.BackboneBuilders, buildDatatypeBuilderData(t))
 	}
 
 	path := filepath.Join(c.config.OutputDir, "datatypes.go")

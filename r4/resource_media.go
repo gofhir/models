@@ -787,6 +787,96 @@ func (b *MediaBuilder) AddNote(v Annotation) *MediaBuilder {
 	return b
 }
 
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MediaBuilder) SetImplicitRulesExt(v Element) *MediaBuilder {
+	b.media.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MediaBuilder) SetLanguageExt(v Element) *MediaBuilder {
+	b.media.LanguageExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MediaBuilder) SetStatusExt(v Element) *MediaBuilder {
+	b.media.StatusExt = &v
+	return b
+}
+
+// SetIssuedExt sets the extensions carried by Issued, serialized as
+// "_issued".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MediaBuilder) SetIssuedExt(v Element) *MediaBuilder {
+	b.media.IssuedExt = &v
+	return b
+}
+
+// SetDeviceNameExt sets the extensions carried by DeviceName, serialized as
+// "_deviceName".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MediaBuilder) SetDeviceNameExt(v Element) *MediaBuilder {
+	b.media.DeviceNameExt = &v
+	return b
+}
+
+// SetHeightExt sets the extensions carried by Height, serialized as
+// "_height".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MediaBuilder) SetHeightExt(v Element) *MediaBuilder {
+	b.media.HeightExt = &v
+	return b
+}
+
+// SetWidthExt sets the extensions carried by Width, serialized as
+// "_width".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MediaBuilder) SetWidthExt(v Element) *MediaBuilder {
+	b.media.WidthExt = &v
+	return b
+}
+
+// SetFramesExt sets the extensions carried by Frames, serialized as
+// "_frames".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MediaBuilder) SetFramesExt(v Element) *MediaBuilder {
+	b.media.FramesExt = &v
+	return b
+}
+
+// SetDurationExt sets the extensions carried by Duration, serialized as
+// "_duration".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *MediaBuilder) SetDurationExt(v Element) *MediaBuilder {
+	b.media.DurationExt = &v
+	return b
+}
+
 // clearCreated unsets every variant of Created[x], including the
 // _field companions of the primitive ones.
 func (b *MediaBuilder) clearCreated() {

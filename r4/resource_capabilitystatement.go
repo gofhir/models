@@ -2639,3 +2639,1564 @@ func (b *CapabilityStatementBuilder) AddDocument(v CapabilityStatementDocument) 
 	b.capabilityStatement.Document = append(b.capabilityStatement.Document, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementBuilder) SetImplicitRulesExt(v Element) *CapabilityStatementBuilder {
+	b.capabilityStatement.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementBuilder) SetLanguageExt(v Element) *CapabilityStatementBuilder {
+	b.capabilityStatement.LanguageExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementBuilder) SetUrlExt(v Element) *CapabilityStatementBuilder {
+	b.capabilityStatement.UrlExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementBuilder) SetVersionExt(v Element) *CapabilityStatementBuilder {
+	b.capabilityStatement.VersionExt = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementBuilder) SetNameExt(v Element) *CapabilityStatementBuilder {
+	b.capabilityStatement.NameExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementBuilder) SetTitleExt(v Element) *CapabilityStatementBuilder {
+	b.capabilityStatement.TitleExt = &v
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementBuilder) SetStatusExt(v Element) *CapabilityStatementBuilder {
+	b.capabilityStatement.StatusExt = &v
+	return b
+}
+
+// SetExperimentalExt sets the extensions carried by Experimental, serialized as
+// "_experimental".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementBuilder) SetExperimentalExt(v Element) *CapabilityStatementBuilder {
+	b.capabilityStatement.ExperimentalExt = &v
+	return b
+}
+
+// SetDateExt sets the extensions carried by Date, serialized as
+// "_date".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementBuilder) SetDateExt(v Element) *CapabilityStatementBuilder {
+	b.capabilityStatement.DateExt = &v
+	return b
+}
+
+// SetPublisherExt sets the extensions carried by Publisher, serialized as
+// "_publisher".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementBuilder) SetPublisherExt(v Element) *CapabilityStatementBuilder {
+	b.capabilityStatement.PublisherExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementBuilder) SetDescriptionExt(v Element) *CapabilityStatementBuilder {
+	b.capabilityStatement.DescriptionExt = &v
+	return b
+}
+
+// SetPurposeExt sets the extensions carried by Purpose, serialized as
+// "_purpose".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementBuilder) SetPurposeExt(v Element) *CapabilityStatementBuilder {
+	b.capabilityStatement.PurposeExt = &v
+	return b
+}
+
+// SetCopyrightExt sets the extensions carried by Copyright, serialized as
+// "_copyright".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementBuilder) SetCopyrightExt(v Element) *CapabilityStatementBuilder {
+	b.capabilityStatement.CopyrightExt = &v
+	return b
+}
+
+// SetKindExt sets the extensions carried by Kind, serialized as
+// "_kind".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementBuilder) SetKindExt(v Element) *CapabilityStatementBuilder {
+	b.capabilityStatement.KindExt = &v
+	return b
+}
+
+// AddInstantiatesExt appends an extension slot for Instantiates.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *CapabilityStatementBuilder) AddInstantiatesExt(v *Element) *CapabilityStatementBuilder {
+	b.capabilityStatement.InstantiatesExt = append(b.capabilityStatement.InstantiatesExt, v)
+	return b
+}
+
+// AddImportsExt appends an extension slot for Imports.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *CapabilityStatementBuilder) AddImportsExt(v *Element) *CapabilityStatementBuilder {
+	b.capabilityStatement.ImportsExt = append(b.capabilityStatement.ImportsExt, v)
+	return b
+}
+
+// SetFhirVersionExt sets the extensions carried by FhirVersion, serialized as
+// "_fhirVersion".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementBuilder) SetFhirVersionExt(v Element) *CapabilityStatementBuilder {
+	b.capabilityStatement.FhirVersionExt = &v
+	return b
+}
+
+// AddFormatExt appends an extension slot for Format.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *CapabilityStatementBuilder) AddFormatExt(v *Element) *CapabilityStatementBuilder {
+	b.capabilityStatement.FormatExt = append(b.capabilityStatement.FormatExt, v)
+	return b
+}
+
+// AddPatchFormatExt appends an extension slot for PatchFormat.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *CapabilityStatementBuilder) AddPatchFormatExt(v *Element) *CapabilityStatementBuilder {
+	b.capabilityStatement.PatchFormatExt = append(b.capabilityStatement.PatchFormatExt, v)
+	return b
+}
+
+// AddImplementationGuideExt appends an extension slot for ImplementationGuide.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *CapabilityStatementBuilder) AddImplementationGuideExt(v *Element) *CapabilityStatementBuilder {
+	b.capabilityStatement.ImplementationGuideExt = append(b.capabilityStatement.ImplementationGuideExt, v)
+	return b
+}
+
+// =============================================================================
+// CapabilityStatementDocument - Fluent Builder
+// =============================================================================
+
+// CapabilityStatementDocumentBuilder provides a fluent API for constructing CapabilityStatementDocument values.
+type CapabilityStatementDocumentBuilder struct {
+	capabilityStatementDocument *CapabilityStatementDocument
+}
+
+// NewCapabilityStatementDocumentBuilder creates a new CapabilityStatementDocumentBuilder.
+func NewCapabilityStatementDocumentBuilder() *CapabilityStatementDocumentBuilder {
+	return &CapabilityStatementDocumentBuilder{
+		capabilityStatementDocument: &CapabilityStatementDocument{},
+	}
+}
+
+// Build returns the constructed CapabilityStatementDocument.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CapabilityStatementDocumentBuilder) Build() CapabilityStatementDocument {
+	return *b.capabilityStatementDocument
+}
+
+// SetId sets the Id field.
+func (b *CapabilityStatementDocumentBuilder) SetId(v string) *CapabilityStatementDocumentBuilder {
+	b.capabilityStatementDocument.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CapabilityStatementDocumentBuilder) AddExtension(v Extension) *CapabilityStatementDocumentBuilder {
+	b.capabilityStatementDocument.Extension = append(b.capabilityStatementDocument.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CapabilityStatementDocumentBuilder) AddModifierExtension(v Extension) *CapabilityStatementDocumentBuilder {
+	b.capabilityStatementDocument.ModifierExtension = append(b.capabilityStatementDocument.ModifierExtension, v)
+	return b
+}
+
+// SetMode sets the Mode field.
+func (b *CapabilityStatementDocumentBuilder) SetMode(v DocumentMode) *CapabilityStatementDocumentBuilder {
+	b.capabilityStatementDocument.Mode = &v
+	return b
+}
+
+// SetDocumentation sets the Documentation field.
+func (b *CapabilityStatementDocumentBuilder) SetDocumentation(v string) *CapabilityStatementDocumentBuilder {
+	b.capabilityStatementDocument.Documentation = &v
+	return b
+}
+
+// SetProfile sets the Profile field.
+func (b *CapabilityStatementDocumentBuilder) SetProfile(v string) *CapabilityStatementDocumentBuilder {
+	b.capabilityStatementDocument.Profile = &v
+	return b
+}
+
+// SetModeExt sets the extensions carried by Mode, serialized as
+// "_mode".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementDocumentBuilder) SetModeExt(v Element) *CapabilityStatementDocumentBuilder {
+	b.capabilityStatementDocument.ModeExt = &v
+	return b
+}
+
+// SetDocumentationExt sets the extensions carried by Documentation, serialized as
+// "_documentation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementDocumentBuilder) SetDocumentationExt(v Element) *CapabilityStatementDocumentBuilder {
+	b.capabilityStatementDocument.DocumentationExt = &v
+	return b
+}
+
+// SetProfileExt sets the extensions carried by Profile, serialized as
+// "_profile".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementDocumentBuilder) SetProfileExt(v Element) *CapabilityStatementDocumentBuilder {
+	b.capabilityStatementDocument.ProfileExt = &v
+	return b
+}
+
+// =============================================================================
+// CapabilityStatementImplementation - Fluent Builder
+// =============================================================================
+
+// CapabilityStatementImplementationBuilder provides a fluent API for constructing CapabilityStatementImplementation values.
+type CapabilityStatementImplementationBuilder struct {
+	capabilityStatementImplementation *CapabilityStatementImplementation
+}
+
+// NewCapabilityStatementImplementationBuilder creates a new CapabilityStatementImplementationBuilder.
+func NewCapabilityStatementImplementationBuilder() *CapabilityStatementImplementationBuilder {
+	return &CapabilityStatementImplementationBuilder{
+		capabilityStatementImplementation: &CapabilityStatementImplementation{},
+	}
+}
+
+// Build returns the constructed CapabilityStatementImplementation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CapabilityStatementImplementationBuilder) Build() CapabilityStatementImplementation {
+	return *b.capabilityStatementImplementation
+}
+
+// SetId sets the Id field.
+func (b *CapabilityStatementImplementationBuilder) SetId(v string) *CapabilityStatementImplementationBuilder {
+	b.capabilityStatementImplementation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CapabilityStatementImplementationBuilder) AddExtension(v Extension) *CapabilityStatementImplementationBuilder {
+	b.capabilityStatementImplementation.Extension = append(b.capabilityStatementImplementation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CapabilityStatementImplementationBuilder) AddModifierExtension(v Extension) *CapabilityStatementImplementationBuilder {
+	b.capabilityStatementImplementation.ModifierExtension = append(b.capabilityStatementImplementation.ModifierExtension, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *CapabilityStatementImplementationBuilder) SetDescription(v string) *CapabilityStatementImplementationBuilder {
+	b.capabilityStatementImplementation.Description = &v
+	return b
+}
+
+// SetUrl sets the Url field.
+func (b *CapabilityStatementImplementationBuilder) SetUrl(v string) *CapabilityStatementImplementationBuilder {
+	b.capabilityStatementImplementation.Url = &v
+	return b
+}
+
+// SetCustodian sets the Custodian field.
+func (b *CapabilityStatementImplementationBuilder) SetCustodian(v Reference) *CapabilityStatementImplementationBuilder {
+	b.capabilityStatementImplementation.Custodian = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementImplementationBuilder) SetDescriptionExt(v Element) *CapabilityStatementImplementationBuilder {
+	b.capabilityStatementImplementation.DescriptionExt = &v
+	return b
+}
+
+// SetUrlExt sets the extensions carried by Url, serialized as
+// "_url".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementImplementationBuilder) SetUrlExt(v Element) *CapabilityStatementImplementationBuilder {
+	b.capabilityStatementImplementation.UrlExt = &v
+	return b
+}
+
+// =============================================================================
+// CapabilityStatementMessaging - Fluent Builder
+// =============================================================================
+
+// CapabilityStatementMessagingBuilder provides a fluent API for constructing CapabilityStatementMessaging values.
+type CapabilityStatementMessagingBuilder struct {
+	capabilityStatementMessaging *CapabilityStatementMessaging
+}
+
+// NewCapabilityStatementMessagingBuilder creates a new CapabilityStatementMessagingBuilder.
+func NewCapabilityStatementMessagingBuilder() *CapabilityStatementMessagingBuilder {
+	return &CapabilityStatementMessagingBuilder{
+		capabilityStatementMessaging: &CapabilityStatementMessaging{},
+	}
+}
+
+// Build returns the constructed CapabilityStatementMessaging.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CapabilityStatementMessagingBuilder) Build() CapabilityStatementMessaging {
+	return *b.capabilityStatementMessaging
+}
+
+// SetId sets the Id field.
+func (b *CapabilityStatementMessagingBuilder) SetId(v string) *CapabilityStatementMessagingBuilder {
+	b.capabilityStatementMessaging.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CapabilityStatementMessagingBuilder) AddExtension(v Extension) *CapabilityStatementMessagingBuilder {
+	b.capabilityStatementMessaging.Extension = append(b.capabilityStatementMessaging.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CapabilityStatementMessagingBuilder) AddModifierExtension(v Extension) *CapabilityStatementMessagingBuilder {
+	b.capabilityStatementMessaging.ModifierExtension = append(b.capabilityStatementMessaging.ModifierExtension, v)
+	return b
+}
+
+// AddEndpoint adds a Endpoint element.
+func (b *CapabilityStatementMessagingBuilder) AddEndpoint(v CapabilityStatementMessagingEndpoint) *CapabilityStatementMessagingBuilder {
+	b.capabilityStatementMessaging.Endpoint = append(b.capabilityStatementMessaging.Endpoint, v)
+	return b
+}
+
+// SetReliableCache sets the ReliableCache field.
+func (b *CapabilityStatementMessagingBuilder) SetReliableCache(v uint32) *CapabilityStatementMessagingBuilder {
+	b.capabilityStatementMessaging.ReliableCache = &v
+	return b
+}
+
+// SetDocumentation sets the Documentation field.
+func (b *CapabilityStatementMessagingBuilder) SetDocumentation(v string) *CapabilityStatementMessagingBuilder {
+	b.capabilityStatementMessaging.Documentation = &v
+	return b
+}
+
+// AddSupportedMessage adds a SupportedMessage element.
+func (b *CapabilityStatementMessagingBuilder) AddSupportedMessage(v CapabilityStatementMessagingSupportedMessage) *CapabilityStatementMessagingBuilder {
+	b.capabilityStatementMessaging.SupportedMessage = append(b.capabilityStatementMessaging.SupportedMessage, v)
+	return b
+}
+
+// SetReliableCacheExt sets the extensions carried by ReliableCache, serialized as
+// "_reliableCache".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementMessagingBuilder) SetReliableCacheExt(v Element) *CapabilityStatementMessagingBuilder {
+	b.capabilityStatementMessaging.ReliableCacheExt = &v
+	return b
+}
+
+// SetDocumentationExt sets the extensions carried by Documentation, serialized as
+// "_documentation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementMessagingBuilder) SetDocumentationExt(v Element) *CapabilityStatementMessagingBuilder {
+	b.capabilityStatementMessaging.DocumentationExt = &v
+	return b
+}
+
+// =============================================================================
+// CapabilityStatementMessagingEndpoint - Fluent Builder
+// =============================================================================
+
+// CapabilityStatementMessagingEndpointBuilder provides a fluent API for constructing CapabilityStatementMessagingEndpoint values.
+type CapabilityStatementMessagingEndpointBuilder struct {
+	capabilityStatementMessagingEndpoint *CapabilityStatementMessagingEndpoint
+}
+
+// NewCapabilityStatementMessagingEndpointBuilder creates a new CapabilityStatementMessagingEndpointBuilder.
+func NewCapabilityStatementMessagingEndpointBuilder() *CapabilityStatementMessagingEndpointBuilder {
+	return &CapabilityStatementMessagingEndpointBuilder{
+		capabilityStatementMessagingEndpoint: &CapabilityStatementMessagingEndpoint{},
+	}
+}
+
+// Build returns the constructed CapabilityStatementMessagingEndpoint.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CapabilityStatementMessagingEndpointBuilder) Build() CapabilityStatementMessagingEndpoint {
+	return *b.capabilityStatementMessagingEndpoint
+}
+
+// SetId sets the Id field.
+func (b *CapabilityStatementMessagingEndpointBuilder) SetId(v string) *CapabilityStatementMessagingEndpointBuilder {
+	b.capabilityStatementMessagingEndpoint.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CapabilityStatementMessagingEndpointBuilder) AddExtension(v Extension) *CapabilityStatementMessagingEndpointBuilder {
+	b.capabilityStatementMessagingEndpoint.Extension = append(b.capabilityStatementMessagingEndpoint.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CapabilityStatementMessagingEndpointBuilder) AddModifierExtension(v Extension) *CapabilityStatementMessagingEndpointBuilder {
+	b.capabilityStatementMessagingEndpoint.ModifierExtension = append(b.capabilityStatementMessagingEndpoint.ModifierExtension, v)
+	return b
+}
+
+// SetProtocol sets the Protocol field.
+func (b *CapabilityStatementMessagingEndpointBuilder) SetProtocol(v Coding) *CapabilityStatementMessagingEndpointBuilder {
+	b.capabilityStatementMessagingEndpoint.Protocol = &v
+	return b
+}
+
+// SetAddress sets the Address field.
+func (b *CapabilityStatementMessagingEndpointBuilder) SetAddress(v string) *CapabilityStatementMessagingEndpointBuilder {
+	b.capabilityStatementMessagingEndpoint.Address = &v
+	return b
+}
+
+// SetAddressExt sets the extensions carried by Address, serialized as
+// "_address".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementMessagingEndpointBuilder) SetAddressExt(v Element) *CapabilityStatementMessagingEndpointBuilder {
+	b.capabilityStatementMessagingEndpoint.AddressExt = &v
+	return b
+}
+
+// =============================================================================
+// CapabilityStatementMessagingSupportedMessage - Fluent Builder
+// =============================================================================
+
+// CapabilityStatementMessagingSupportedMessageBuilder provides a fluent API for constructing CapabilityStatementMessagingSupportedMessage values.
+type CapabilityStatementMessagingSupportedMessageBuilder struct {
+	capabilityStatementMessagingSupportedMessage *CapabilityStatementMessagingSupportedMessage
+}
+
+// NewCapabilityStatementMessagingSupportedMessageBuilder creates a new CapabilityStatementMessagingSupportedMessageBuilder.
+func NewCapabilityStatementMessagingSupportedMessageBuilder() *CapabilityStatementMessagingSupportedMessageBuilder {
+	return &CapabilityStatementMessagingSupportedMessageBuilder{
+		capabilityStatementMessagingSupportedMessage: &CapabilityStatementMessagingSupportedMessage{},
+	}
+}
+
+// Build returns the constructed CapabilityStatementMessagingSupportedMessage.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CapabilityStatementMessagingSupportedMessageBuilder) Build() CapabilityStatementMessagingSupportedMessage {
+	return *b.capabilityStatementMessagingSupportedMessage
+}
+
+// SetId sets the Id field.
+func (b *CapabilityStatementMessagingSupportedMessageBuilder) SetId(v string) *CapabilityStatementMessagingSupportedMessageBuilder {
+	b.capabilityStatementMessagingSupportedMessage.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CapabilityStatementMessagingSupportedMessageBuilder) AddExtension(v Extension) *CapabilityStatementMessagingSupportedMessageBuilder {
+	b.capabilityStatementMessagingSupportedMessage.Extension = append(b.capabilityStatementMessagingSupportedMessage.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CapabilityStatementMessagingSupportedMessageBuilder) AddModifierExtension(v Extension) *CapabilityStatementMessagingSupportedMessageBuilder {
+	b.capabilityStatementMessagingSupportedMessage.ModifierExtension = append(b.capabilityStatementMessagingSupportedMessage.ModifierExtension, v)
+	return b
+}
+
+// SetMode sets the Mode field.
+func (b *CapabilityStatementMessagingSupportedMessageBuilder) SetMode(v EventCapabilityMode) *CapabilityStatementMessagingSupportedMessageBuilder {
+	b.capabilityStatementMessagingSupportedMessage.Mode = &v
+	return b
+}
+
+// SetDefinition sets the Definition field.
+func (b *CapabilityStatementMessagingSupportedMessageBuilder) SetDefinition(v string) *CapabilityStatementMessagingSupportedMessageBuilder {
+	b.capabilityStatementMessagingSupportedMessage.Definition = &v
+	return b
+}
+
+// SetModeExt sets the extensions carried by Mode, serialized as
+// "_mode".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementMessagingSupportedMessageBuilder) SetModeExt(v Element) *CapabilityStatementMessagingSupportedMessageBuilder {
+	b.capabilityStatementMessagingSupportedMessage.ModeExt = &v
+	return b
+}
+
+// SetDefinitionExt sets the extensions carried by Definition, serialized as
+// "_definition".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementMessagingSupportedMessageBuilder) SetDefinitionExt(v Element) *CapabilityStatementMessagingSupportedMessageBuilder {
+	b.capabilityStatementMessagingSupportedMessage.DefinitionExt = &v
+	return b
+}
+
+// =============================================================================
+// CapabilityStatementRest - Fluent Builder
+// =============================================================================
+
+// CapabilityStatementRestBuilder provides a fluent API for constructing CapabilityStatementRest values.
+type CapabilityStatementRestBuilder struct {
+	capabilityStatementRest *CapabilityStatementRest
+}
+
+// NewCapabilityStatementRestBuilder creates a new CapabilityStatementRestBuilder.
+func NewCapabilityStatementRestBuilder() *CapabilityStatementRestBuilder {
+	return &CapabilityStatementRestBuilder{
+		capabilityStatementRest: &CapabilityStatementRest{},
+	}
+}
+
+// Build returns the constructed CapabilityStatementRest.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CapabilityStatementRestBuilder) Build() CapabilityStatementRest {
+	return *b.capabilityStatementRest
+}
+
+// SetId sets the Id field.
+func (b *CapabilityStatementRestBuilder) SetId(v string) *CapabilityStatementRestBuilder {
+	b.capabilityStatementRest.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CapabilityStatementRestBuilder) AddExtension(v Extension) *CapabilityStatementRestBuilder {
+	b.capabilityStatementRest.Extension = append(b.capabilityStatementRest.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CapabilityStatementRestBuilder) AddModifierExtension(v Extension) *CapabilityStatementRestBuilder {
+	b.capabilityStatementRest.ModifierExtension = append(b.capabilityStatementRest.ModifierExtension, v)
+	return b
+}
+
+// SetMode sets the Mode field.
+func (b *CapabilityStatementRestBuilder) SetMode(v RestfulCapabilityMode) *CapabilityStatementRestBuilder {
+	b.capabilityStatementRest.Mode = &v
+	return b
+}
+
+// SetDocumentation sets the Documentation field.
+func (b *CapabilityStatementRestBuilder) SetDocumentation(v string) *CapabilityStatementRestBuilder {
+	b.capabilityStatementRest.Documentation = &v
+	return b
+}
+
+// SetSecurity sets the Security field.
+func (b *CapabilityStatementRestBuilder) SetSecurity(v CapabilityStatementRestSecurity) *CapabilityStatementRestBuilder {
+	b.capabilityStatementRest.Security = &v
+	return b
+}
+
+// AddResource adds a Resource element.
+func (b *CapabilityStatementRestBuilder) AddResource(v CapabilityStatementRestResource) *CapabilityStatementRestBuilder {
+	b.capabilityStatementRest.Resource = append(b.capabilityStatementRest.Resource, v)
+	return b
+}
+
+// AddInteraction adds a Interaction element.
+func (b *CapabilityStatementRestBuilder) AddInteraction(v CapabilityStatementRestInteraction) *CapabilityStatementRestBuilder {
+	b.capabilityStatementRest.Interaction = append(b.capabilityStatementRest.Interaction, v)
+	return b
+}
+
+// AddSearchParam adds a SearchParam element.
+func (b *CapabilityStatementRestBuilder) AddSearchParam(v CapabilityStatementRestResourceSearchParam) *CapabilityStatementRestBuilder {
+	b.capabilityStatementRest.SearchParam = append(b.capabilityStatementRest.SearchParam, v)
+	return b
+}
+
+// AddOperation adds a Operation element.
+func (b *CapabilityStatementRestBuilder) AddOperation(v CapabilityStatementRestResourceOperation) *CapabilityStatementRestBuilder {
+	b.capabilityStatementRest.Operation = append(b.capabilityStatementRest.Operation, v)
+	return b
+}
+
+// AddCompartment adds a Compartment element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *CapabilityStatementRestBuilder) AddCompartment(v string) *CapabilityStatementRestBuilder {
+	b.capabilityStatementRest.Compartment = append(b.capabilityStatementRest.Compartment, &v)
+	return b
+}
+
+// SetModeExt sets the extensions carried by Mode, serialized as
+// "_mode".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestBuilder) SetModeExt(v Element) *CapabilityStatementRestBuilder {
+	b.capabilityStatementRest.ModeExt = &v
+	return b
+}
+
+// SetDocumentationExt sets the extensions carried by Documentation, serialized as
+// "_documentation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestBuilder) SetDocumentationExt(v Element) *CapabilityStatementRestBuilder {
+	b.capabilityStatementRest.DocumentationExt = &v
+	return b
+}
+
+// AddCompartmentExt appends an extension slot for Compartment.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *CapabilityStatementRestBuilder) AddCompartmentExt(v *Element) *CapabilityStatementRestBuilder {
+	b.capabilityStatementRest.CompartmentExt = append(b.capabilityStatementRest.CompartmentExt, v)
+	return b
+}
+
+// =============================================================================
+// CapabilityStatementRestInteraction - Fluent Builder
+// =============================================================================
+
+// CapabilityStatementRestInteractionBuilder provides a fluent API for constructing CapabilityStatementRestInteraction values.
+type CapabilityStatementRestInteractionBuilder struct {
+	capabilityStatementRestInteraction *CapabilityStatementRestInteraction
+}
+
+// NewCapabilityStatementRestInteractionBuilder creates a new CapabilityStatementRestInteractionBuilder.
+func NewCapabilityStatementRestInteractionBuilder() *CapabilityStatementRestInteractionBuilder {
+	return &CapabilityStatementRestInteractionBuilder{
+		capabilityStatementRestInteraction: &CapabilityStatementRestInteraction{},
+	}
+}
+
+// Build returns the constructed CapabilityStatementRestInteraction.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CapabilityStatementRestInteractionBuilder) Build() CapabilityStatementRestInteraction {
+	return *b.capabilityStatementRestInteraction
+}
+
+// SetId sets the Id field.
+func (b *CapabilityStatementRestInteractionBuilder) SetId(v string) *CapabilityStatementRestInteractionBuilder {
+	b.capabilityStatementRestInteraction.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CapabilityStatementRestInteractionBuilder) AddExtension(v Extension) *CapabilityStatementRestInteractionBuilder {
+	b.capabilityStatementRestInteraction.Extension = append(b.capabilityStatementRestInteraction.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CapabilityStatementRestInteractionBuilder) AddModifierExtension(v Extension) *CapabilityStatementRestInteractionBuilder {
+	b.capabilityStatementRestInteraction.ModifierExtension = append(b.capabilityStatementRestInteraction.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *CapabilityStatementRestInteractionBuilder) SetCode(v SystemRestfulInteraction) *CapabilityStatementRestInteractionBuilder {
+	b.capabilityStatementRestInteraction.Code = &v
+	return b
+}
+
+// SetDocumentation sets the Documentation field.
+func (b *CapabilityStatementRestInteractionBuilder) SetDocumentation(v string) *CapabilityStatementRestInteractionBuilder {
+	b.capabilityStatementRestInteraction.Documentation = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestInteractionBuilder) SetCodeExt(v Element) *CapabilityStatementRestInteractionBuilder {
+	b.capabilityStatementRestInteraction.CodeExt = &v
+	return b
+}
+
+// SetDocumentationExt sets the extensions carried by Documentation, serialized as
+// "_documentation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestInteractionBuilder) SetDocumentationExt(v Element) *CapabilityStatementRestInteractionBuilder {
+	b.capabilityStatementRestInteraction.DocumentationExt = &v
+	return b
+}
+
+// =============================================================================
+// CapabilityStatementRestResource - Fluent Builder
+// =============================================================================
+
+// CapabilityStatementRestResourceBuilder provides a fluent API for constructing CapabilityStatementRestResource values.
+type CapabilityStatementRestResourceBuilder struct {
+	capabilityStatementRestResource *CapabilityStatementRestResource
+}
+
+// NewCapabilityStatementRestResourceBuilder creates a new CapabilityStatementRestResourceBuilder.
+func NewCapabilityStatementRestResourceBuilder() *CapabilityStatementRestResourceBuilder {
+	return &CapabilityStatementRestResourceBuilder{
+		capabilityStatementRestResource: &CapabilityStatementRestResource{},
+	}
+}
+
+// Build returns the constructed CapabilityStatementRestResource.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CapabilityStatementRestResourceBuilder) Build() CapabilityStatementRestResource {
+	return *b.capabilityStatementRestResource
+}
+
+// SetId sets the Id field.
+func (b *CapabilityStatementRestResourceBuilder) SetId(v string) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CapabilityStatementRestResourceBuilder) AddExtension(v Extension) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.Extension = append(b.capabilityStatementRestResource.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CapabilityStatementRestResourceBuilder) AddModifierExtension(v Extension) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.ModifierExtension = append(b.capabilityStatementRestResource.ModifierExtension, v)
+	return b
+}
+
+// SetType sets the Type field.
+func (b *CapabilityStatementRestResourceBuilder) SetType(v string) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.Type = &v
+	return b
+}
+
+// SetProfile sets the Profile field.
+func (b *CapabilityStatementRestResourceBuilder) SetProfile(v string) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.Profile = &v
+	return b
+}
+
+// AddSupportedProfile adds a SupportedProfile element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *CapabilityStatementRestResourceBuilder) AddSupportedProfile(v string) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.SupportedProfile = append(b.capabilityStatementRestResource.SupportedProfile, &v)
+	return b
+}
+
+// SetDocumentation sets the Documentation field.
+func (b *CapabilityStatementRestResourceBuilder) SetDocumentation(v string) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.Documentation = &v
+	return b
+}
+
+// AddInteraction adds a Interaction element.
+func (b *CapabilityStatementRestResourceBuilder) AddInteraction(v CapabilityStatementRestResourceInteraction) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.Interaction = append(b.capabilityStatementRestResource.Interaction, v)
+	return b
+}
+
+// SetVersioning sets the Versioning field.
+func (b *CapabilityStatementRestResourceBuilder) SetVersioning(v ResourceVersionPolicy) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.Versioning = &v
+	return b
+}
+
+// SetReadHistory sets the ReadHistory field.
+func (b *CapabilityStatementRestResourceBuilder) SetReadHistory(v bool) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.ReadHistory = &v
+	return b
+}
+
+// SetUpdateCreate sets the UpdateCreate field.
+func (b *CapabilityStatementRestResourceBuilder) SetUpdateCreate(v bool) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.UpdateCreate = &v
+	return b
+}
+
+// SetConditionalCreate sets the ConditionalCreate field.
+func (b *CapabilityStatementRestResourceBuilder) SetConditionalCreate(v bool) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.ConditionalCreate = &v
+	return b
+}
+
+// SetConditionalRead sets the ConditionalRead field.
+func (b *CapabilityStatementRestResourceBuilder) SetConditionalRead(v ConditionalReadStatus) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.ConditionalRead = &v
+	return b
+}
+
+// SetConditionalUpdate sets the ConditionalUpdate field.
+func (b *CapabilityStatementRestResourceBuilder) SetConditionalUpdate(v bool) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.ConditionalUpdate = &v
+	return b
+}
+
+// SetConditionalDelete sets the ConditionalDelete field.
+func (b *CapabilityStatementRestResourceBuilder) SetConditionalDelete(v ConditionalDeleteStatus) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.ConditionalDelete = &v
+	return b
+}
+
+// AddReferencePolicy adds a ReferencePolicy element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *CapabilityStatementRestResourceBuilder) AddReferencePolicy(v ReferenceHandlingPolicy) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.ReferencePolicy = append(b.capabilityStatementRestResource.ReferencePolicy, &v)
+	return b
+}
+
+// AddSearchInclude adds a SearchInclude element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *CapabilityStatementRestResourceBuilder) AddSearchInclude(v string) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.SearchInclude = append(b.capabilityStatementRestResource.SearchInclude, &v)
+	return b
+}
+
+// AddSearchRevInclude adds a SearchRevInclude element.
+//
+// Takes a plain value: the field is a slice of pointers so that an absent slot
+// can be expressed, but a builder call is always adding a value. For a slot that
+// is deliberately absent, build the slice directly and leave that entry nil.
+func (b *CapabilityStatementRestResourceBuilder) AddSearchRevInclude(v string) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.SearchRevInclude = append(b.capabilityStatementRestResource.SearchRevInclude, &v)
+	return b
+}
+
+// AddSearchParam adds a SearchParam element.
+func (b *CapabilityStatementRestResourceBuilder) AddSearchParam(v CapabilityStatementRestResourceSearchParam) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.SearchParam = append(b.capabilityStatementRestResource.SearchParam, v)
+	return b
+}
+
+// AddOperation adds a Operation element.
+func (b *CapabilityStatementRestResourceBuilder) AddOperation(v CapabilityStatementRestResourceOperation) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.Operation = append(b.capabilityStatementRestResource.Operation, v)
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestResourceBuilder) SetTypeExt(v Element) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.TypeExt = &v
+	return b
+}
+
+// SetProfileExt sets the extensions carried by Profile, serialized as
+// "_profile".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestResourceBuilder) SetProfileExt(v Element) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.ProfileExt = &v
+	return b
+}
+
+// AddSupportedProfileExt appends an extension slot for SupportedProfile.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *CapabilityStatementRestResourceBuilder) AddSupportedProfileExt(v *Element) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.SupportedProfileExt = append(b.capabilityStatementRestResource.SupportedProfileExt, v)
+	return b
+}
+
+// SetDocumentationExt sets the extensions carried by Documentation, serialized as
+// "_documentation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestResourceBuilder) SetDocumentationExt(v Element) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.DocumentationExt = &v
+	return b
+}
+
+// SetVersioningExt sets the extensions carried by Versioning, serialized as
+// "_versioning".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestResourceBuilder) SetVersioningExt(v Element) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.VersioningExt = &v
+	return b
+}
+
+// SetReadHistoryExt sets the extensions carried by ReadHistory, serialized as
+// "_readHistory".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestResourceBuilder) SetReadHistoryExt(v Element) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.ReadHistoryExt = &v
+	return b
+}
+
+// SetUpdateCreateExt sets the extensions carried by UpdateCreate, serialized as
+// "_updateCreate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestResourceBuilder) SetUpdateCreateExt(v Element) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.UpdateCreateExt = &v
+	return b
+}
+
+// SetConditionalCreateExt sets the extensions carried by ConditionalCreate, serialized as
+// "_conditionalCreate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestResourceBuilder) SetConditionalCreateExt(v Element) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.ConditionalCreateExt = &v
+	return b
+}
+
+// SetConditionalReadExt sets the extensions carried by ConditionalRead, serialized as
+// "_conditionalRead".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestResourceBuilder) SetConditionalReadExt(v Element) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.ConditionalReadExt = &v
+	return b
+}
+
+// SetConditionalUpdateExt sets the extensions carried by ConditionalUpdate, serialized as
+// "_conditionalUpdate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestResourceBuilder) SetConditionalUpdateExt(v Element) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.ConditionalUpdateExt = &v
+	return b
+}
+
+// SetConditionalDeleteExt sets the extensions carried by ConditionalDelete, serialized as
+// "_conditionalDelete".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestResourceBuilder) SetConditionalDeleteExt(v Element) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.ConditionalDeleteExt = &v
+	return b
+}
+
+// AddReferencePolicyExt appends an extension slot for ReferencePolicy.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *CapabilityStatementRestResourceBuilder) AddReferencePolicyExt(v *Element) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.ReferencePolicyExt = append(b.capabilityStatementRestResource.ReferencePolicyExt, v)
+	return b
+}
+
+// AddSearchIncludeExt appends an extension slot for SearchInclude.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *CapabilityStatementRestResourceBuilder) AddSearchIncludeExt(v *Element) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.SearchIncludeExt = append(b.capabilityStatementRestResource.SearchIncludeExt, v)
+	return b
+}
+
+// AddSearchRevIncludeExt appends an extension slot for SearchRevInclude.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *CapabilityStatementRestResourceBuilder) AddSearchRevIncludeExt(v *Element) *CapabilityStatementRestResourceBuilder {
+	b.capabilityStatementRestResource.SearchRevIncludeExt = append(b.capabilityStatementRestResource.SearchRevIncludeExt, v)
+	return b
+}
+
+// =============================================================================
+// CapabilityStatementRestResourceInteraction - Fluent Builder
+// =============================================================================
+
+// CapabilityStatementRestResourceInteractionBuilder provides a fluent API for constructing CapabilityStatementRestResourceInteraction values.
+type CapabilityStatementRestResourceInteractionBuilder struct {
+	capabilityStatementRestResourceInteraction *CapabilityStatementRestResourceInteraction
+}
+
+// NewCapabilityStatementRestResourceInteractionBuilder creates a new CapabilityStatementRestResourceInteractionBuilder.
+func NewCapabilityStatementRestResourceInteractionBuilder() *CapabilityStatementRestResourceInteractionBuilder {
+	return &CapabilityStatementRestResourceInteractionBuilder{
+		capabilityStatementRestResourceInteraction: &CapabilityStatementRestResourceInteraction{},
+	}
+}
+
+// Build returns the constructed CapabilityStatementRestResourceInteraction.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CapabilityStatementRestResourceInteractionBuilder) Build() CapabilityStatementRestResourceInteraction {
+	return *b.capabilityStatementRestResourceInteraction
+}
+
+// SetId sets the Id field.
+func (b *CapabilityStatementRestResourceInteractionBuilder) SetId(v string) *CapabilityStatementRestResourceInteractionBuilder {
+	b.capabilityStatementRestResourceInteraction.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CapabilityStatementRestResourceInteractionBuilder) AddExtension(v Extension) *CapabilityStatementRestResourceInteractionBuilder {
+	b.capabilityStatementRestResourceInteraction.Extension = append(b.capabilityStatementRestResourceInteraction.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CapabilityStatementRestResourceInteractionBuilder) AddModifierExtension(v Extension) *CapabilityStatementRestResourceInteractionBuilder {
+	b.capabilityStatementRestResourceInteraction.ModifierExtension = append(b.capabilityStatementRestResourceInteraction.ModifierExtension, v)
+	return b
+}
+
+// SetCode sets the Code field.
+func (b *CapabilityStatementRestResourceInteractionBuilder) SetCode(v TypeRestfulInteraction) *CapabilityStatementRestResourceInteractionBuilder {
+	b.capabilityStatementRestResourceInteraction.Code = &v
+	return b
+}
+
+// SetDocumentation sets the Documentation field.
+func (b *CapabilityStatementRestResourceInteractionBuilder) SetDocumentation(v string) *CapabilityStatementRestResourceInteractionBuilder {
+	b.capabilityStatementRestResourceInteraction.Documentation = &v
+	return b
+}
+
+// SetCodeExt sets the extensions carried by Code, serialized as
+// "_code".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestResourceInteractionBuilder) SetCodeExt(v Element) *CapabilityStatementRestResourceInteractionBuilder {
+	b.capabilityStatementRestResourceInteraction.CodeExt = &v
+	return b
+}
+
+// SetDocumentationExt sets the extensions carried by Documentation, serialized as
+// "_documentation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestResourceInteractionBuilder) SetDocumentationExt(v Element) *CapabilityStatementRestResourceInteractionBuilder {
+	b.capabilityStatementRestResourceInteraction.DocumentationExt = &v
+	return b
+}
+
+// =============================================================================
+// CapabilityStatementRestResourceOperation - Fluent Builder
+// =============================================================================
+
+// CapabilityStatementRestResourceOperationBuilder provides a fluent API for constructing CapabilityStatementRestResourceOperation values.
+type CapabilityStatementRestResourceOperationBuilder struct {
+	capabilityStatementRestResourceOperation *CapabilityStatementRestResourceOperation
+}
+
+// NewCapabilityStatementRestResourceOperationBuilder creates a new CapabilityStatementRestResourceOperationBuilder.
+func NewCapabilityStatementRestResourceOperationBuilder() *CapabilityStatementRestResourceOperationBuilder {
+	return &CapabilityStatementRestResourceOperationBuilder{
+		capabilityStatementRestResourceOperation: &CapabilityStatementRestResourceOperation{},
+	}
+}
+
+// Build returns the constructed CapabilityStatementRestResourceOperation.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CapabilityStatementRestResourceOperationBuilder) Build() CapabilityStatementRestResourceOperation {
+	return *b.capabilityStatementRestResourceOperation
+}
+
+// SetId sets the Id field.
+func (b *CapabilityStatementRestResourceOperationBuilder) SetId(v string) *CapabilityStatementRestResourceOperationBuilder {
+	b.capabilityStatementRestResourceOperation.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CapabilityStatementRestResourceOperationBuilder) AddExtension(v Extension) *CapabilityStatementRestResourceOperationBuilder {
+	b.capabilityStatementRestResourceOperation.Extension = append(b.capabilityStatementRestResourceOperation.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CapabilityStatementRestResourceOperationBuilder) AddModifierExtension(v Extension) *CapabilityStatementRestResourceOperationBuilder {
+	b.capabilityStatementRestResourceOperation.ModifierExtension = append(b.capabilityStatementRestResourceOperation.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *CapabilityStatementRestResourceOperationBuilder) SetName(v string) *CapabilityStatementRestResourceOperationBuilder {
+	b.capabilityStatementRestResourceOperation.Name = &v
+	return b
+}
+
+// SetDefinition sets the Definition field.
+func (b *CapabilityStatementRestResourceOperationBuilder) SetDefinition(v string) *CapabilityStatementRestResourceOperationBuilder {
+	b.capabilityStatementRestResourceOperation.Definition = &v
+	return b
+}
+
+// SetDocumentation sets the Documentation field.
+func (b *CapabilityStatementRestResourceOperationBuilder) SetDocumentation(v string) *CapabilityStatementRestResourceOperationBuilder {
+	b.capabilityStatementRestResourceOperation.Documentation = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestResourceOperationBuilder) SetNameExt(v Element) *CapabilityStatementRestResourceOperationBuilder {
+	b.capabilityStatementRestResourceOperation.NameExt = &v
+	return b
+}
+
+// SetDefinitionExt sets the extensions carried by Definition, serialized as
+// "_definition".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestResourceOperationBuilder) SetDefinitionExt(v Element) *CapabilityStatementRestResourceOperationBuilder {
+	b.capabilityStatementRestResourceOperation.DefinitionExt = &v
+	return b
+}
+
+// SetDocumentationExt sets the extensions carried by Documentation, serialized as
+// "_documentation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestResourceOperationBuilder) SetDocumentationExt(v Element) *CapabilityStatementRestResourceOperationBuilder {
+	b.capabilityStatementRestResourceOperation.DocumentationExt = &v
+	return b
+}
+
+// =============================================================================
+// CapabilityStatementRestResourceSearchParam - Fluent Builder
+// =============================================================================
+
+// CapabilityStatementRestResourceSearchParamBuilder provides a fluent API for constructing CapabilityStatementRestResourceSearchParam values.
+type CapabilityStatementRestResourceSearchParamBuilder struct {
+	capabilityStatementRestResourceSearchParam *CapabilityStatementRestResourceSearchParam
+}
+
+// NewCapabilityStatementRestResourceSearchParamBuilder creates a new CapabilityStatementRestResourceSearchParamBuilder.
+func NewCapabilityStatementRestResourceSearchParamBuilder() *CapabilityStatementRestResourceSearchParamBuilder {
+	return &CapabilityStatementRestResourceSearchParamBuilder{
+		capabilityStatementRestResourceSearchParam: &CapabilityStatementRestResourceSearchParam{},
+	}
+}
+
+// Build returns the constructed CapabilityStatementRestResourceSearchParam.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CapabilityStatementRestResourceSearchParamBuilder) Build() CapabilityStatementRestResourceSearchParam {
+	return *b.capabilityStatementRestResourceSearchParam
+}
+
+// SetId sets the Id field.
+func (b *CapabilityStatementRestResourceSearchParamBuilder) SetId(v string) *CapabilityStatementRestResourceSearchParamBuilder {
+	b.capabilityStatementRestResourceSearchParam.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CapabilityStatementRestResourceSearchParamBuilder) AddExtension(v Extension) *CapabilityStatementRestResourceSearchParamBuilder {
+	b.capabilityStatementRestResourceSearchParam.Extension = append(b.capabilityStatementRestResourceSearchParam.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CapabilityStatementRestResourceSearchParamBuilder) AddModifierExtension(v Extension) *CapabilityStatementRestResourceSearchParamBuilder {
+	b.capabilityStatementRestResourceSearchParam.ModifierExtension = append(b.capabilityStatementRestResourceSearchParam.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *CapabilityStatementRestResourceSearchParamBuilder) SetName(v string) *CapabilityStatementRestResourceSearchParamBuilder {
+	b.capabilityStatementRestResourceSearchParam.Name = &v
+	return b
+}
+
+// SetDefinition sets the Definition field.
+func (b *CapabilityStatementRestResourceSearchParamBuilder) SetDefinition(v string) *CapabilityStatementRestResourceSearchParamBuilder {
+	b.capabilityStatementRestResourceSearchParam.Definition = &v
+	return b
+}
+
+// SetType sets the Type field.
+func (b *CapabilityStatementRestResourceSearchParamBuilder) SetType(v SearchParamType) *CapabilityStatementRestResourceSearchParamBuilder {
+	b.capabilityStatementRestResourceSearchParam.Type = &v
+	return b
+}
+
+// SetDocumentation sets the Documentation field.
+func (b *CapabilityStatementRestResourceSearchParamBuilder) SetDocumentation(v string) *CapabilityStatementRestResourceSearchParamBuilder {
+	b.capabilityStatementRestResourceSearchParam.Documentation = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestResourceSearchParamBuilder) SetNameExt(v Element) *CapabilityStatementRestResourceSearchParamBuilder {
+	b.capabilityStatementRestResourceSearchParam.NameExt = &v
+	return b
+}
+
+// SetDefinitionExt sets the extensions carried by Definition, serialized as
+// "_definition".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestResourceSearchParamBuilder) SetDefinitionExt(v Element) *CapabilityStatementRestResourceSearchParamBuilder {
+	b.capabilityStatementRestResourceSearchParam.DefinitionExt = &v
+	return b
+}
+
+// SetTypeExt sets the extensions carried by Type, serialized as
+// "_type".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestResourceSearchParamBuilder) SetTypeExt(v Element) *CapabilityStatementRestResourceSearchParamBuilder {
+	b.capabilityStatementRestResourceSearchParam.TypeExt = &v
+	return b
+}
+
+// SetDocumentationExt sets the extensions carried by Documentation, serialized as
+// "_documentation".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestResourceSearchParamBuilder) SetDocumentationExt(v Element) *CapabilityStatementRestResourceSearchParamBuilder {
+	b.capabilityStatementRestResourceSearchParam.DocumentationExt = &v
+	return b
+}
+
+// =============================================================================
+// CapabilityStatementRestSecurity - Fluent Builder
+// =============================================================================
+
+// CapabilityStatementRestSecurityBuilder provides a fluent API for constructing CapabilityStatementRestSecurity values.
+type CapabilityStatementRestSecurityBuilder struct {
+	capabilityStatementRestSecurity *CapabilityStatementRestSecurity
+}
+
+// NewCapabilityStatementRestSecurityBuilder creates a new CapabilityStatementRestSecurityBuilder.
+func NewCapabilityStatementRestSecurityBuilder() *CapabilityStatementRestSecurityBuilder {
+	return &CapabilityStatementRestSecurityBuilder{
+		capabilityStatementRestSecurity: &CapabilityStatementRestSecurity{},
+	}
+}
+
+// Build returns the constructed CapabilityStatementRestSecurity.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CapabilityStatementRestSecurityBuilder) Build() CapabilityStatementRestSecurity {
+	return *b.capabilityStatementRestSecurity
+}
+
+// SetId sets the Id field.
+func (b *CapabilityStatementRestSecurityBuilder) SetId(v string) *CapabilityStatementRestSecurityBuilder {
+	b.capabilityStatementRestSecurity.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CapabilityStatementRestSecurityBuilder) AddExtension(v Extension) *CapabilityStatementRestSecurityBuilder {
+	b.capabilityStatementRestSecurity.Extension = append(b.capabilityStatementRestSecurity.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CapabilityStatementRestSecurityBuilder) AddModifierExtension(v Extension) *CapabilityStatementRestSecurityBuilder {
+	b.capabilityStatementRestSecurity.ModifierExtension = append(b.capabilityStatementRestSecurity.ModifierExtension, v)
+	return b
+}
+
+// SetCors sets the Cors field.
+func (b *CapabilityStatementRestSecurityBuilder) SetCors(v bool) *CapabilityStatementRestSecurityBuilder {
+	b.capabilityStatementRestSecurity.Cors = &v
+	return b
+}
+
+// AddService adds a Service element.
+func (b *CapabilityStatementRestSecurityBuilder) AddService(v CodeableConcept) *CapabilityStatementRestSecurityBuilder {
+	b.capabilityStatementRestSecurity.Service = append(b.capabilityStatementRestSecurity.Service, v)
+	return b
+}
+
+// SetDescription sets the Description field.
+func (b *CapabilityStatementRestSecurityBuilder) SetDescription(v string) *CapabilityStatementRestSecurityBuilder {
+	b.capabilityStatementRestSecurity.Description = &v
+	return b
+}
+
+// SetCorsExt sets the extensions carried by Cors, serialized as
+// "_cors".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestSecurityBuilder) SetCorsExt(v Element) *CapabilityStatementRestSecurityBuilder {
+	b.capabilityStatementRestSecurity.CorsExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementRestSecurityBuilder) SetDescriptionExt(v Element) *CapabilityStatementRestSecurityBuilder {
+	b.capabilityStatementRestSecurity.DescriptionExt = &v
+	return b
+}
+
+// =============================================================================
+// CapabilityStatementSoftware - Fluent Builder
+// =============================================================================
+
+// CapabilityStatementSoftwareBuilder provides a fluent API for constructing CapabilityStatementSoftware values.
+type CapabilityStatementSoftwareBuilder struct {
+	capabilityStatementSoftware *CapabilityStatementSoftware
+}
+
+// NewCapabilityStatementSoftwareBuilder creates a new CapabilityStatementSoftwareBuilder.
+func NewCapabilityStatementSoftwareBuilder() *CapabilityStatementSoftwareBuilder {
+	return &CapabilityStatementSoftwareBuilder{
+		capabilityStatementSoftware: &CapabilityStatementSoftware{},
+	}
+}
+
+// Build returns the constructed CapabilityStatementSoftware.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CapabilityStatementSoftwareBuilder) Build() CapabilityStatementSoftware {
+	return *b.capabilityStatementSoftware
+}
+
+// SetId sets the Id field.
+func (b *CapabilityStatementSoftwareBuilder) SetId(v string) *CapabilityStatementSoftwareBuilder {
+	b.capabilityStatementSoftware.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CapabilityStatementSoftwareBuilder) AddExtension(v Extension) *CapabilityStatementSoftwareBuilder {
+	b.capabilityStatementSoftware.Extension = append(b.capabilityStatementSoftware.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CapabilityStatementSoftwareBuilder) AddModifierExtension(v Extension) *CapabilityStatementSoftwareBuilder {
+	b.capabilityStatementSoftware.ModifierExtension = append(b.capabilityStatementSoftware.ModifierExtension, v)
+	return b
+}
+
+// SetName sets the Name field.
+func (b *CapabilityStatementSoftwareBuilder) SetName(v string) *CapabilityStatementSoftwareBuilder {
+	b.capabilityStatementSoftware.Name = &v
+	return b
+}
+
+// SetVersion sets the Version field.
+func (b *CapabilityStatementSoftwareBuilder) SetVersion(v string) *CapabilityStatementSoftwareBuilder {
+	b.capabilityStatementSoftware.Version = &v
+	return b
+}
+
+// SetReleaseDate sets the ReleaseDate field.
+func (b *CapabilityStatementSoftwareBuilder) SetReleaseDate(v string) *CapabilityStatementSoftwareBuilder {
+	b.capabilityStatementSoftware.ReleaseDate = &v
+	return b
+}
+
+// SetNameExt sets the extensions carried by Name, serialized as
+// "_name".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementSoftwareBuilder) SetNameExt(v Element) *CapabilityStatementSoftwareBuilder {
+	b.capabilityStatementSoftware.NameExt = &v
+	return b
+}
+
+// SetVersionExt sets the extensions carried by Version, serialized as
+// "_version".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementSoftwareBuilder) SetVersionExt(v Element) *CapabilityStatementSoftwareBuilder {
+	b.capabilityStatementSoftware.VersionExt = &v
+	return b
+}
+
+// SetReleaseDateExt sets the extensions carried by ReleaseDate, serialized as
+// "_releaseDate".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CapabilityStatementSoftwareBuilder) SetReleaseDateExt(v Element) *CapabilityStatementSoftwareBuilder {
+	b.capabilityStatementSoftware.ReleaseDateExt = &v
+	return b
+}

@@ -895,3 +895,154 @@ func (b *CarePlanBuilder) AddNote(v Annotation) *CarePlanBuilder {
 	b.carePlan.Note = append(b.carePlan.Note, v)
 	return b
 }
+
+// SetImplicitRulesExt sets the extensions carried by ImplicitRules, serialized as
+// "_implicitRules".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CarePlanBuilder) SetImplicitRulesExt(v Element) *CarePlanBuilder {
+	b.carePlan.ImplicitRulesExt = &v
+	return b
+}
+
+// SetLanguageExt sets the extensions carried by Language, serialized as
+// "_language".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CarePlanBuilder) SetLanguageExt(v Element) *CarePlanBuilder {
+	b.carePlan.LanguageExt = &v
+	return b
+}
+
+// AddInstantiatesCanonicalExt appends an extension slot for InstantiatesCanonical.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *CarePlanBuilder) AddInstantiatesCanonicalExt(v *Element) *CarePlanBuilder {
+	b.carePlan.InstantiatesCanonicalExt = append(b.carePlan.InstantiatesCanonicalExt, v)
+	return b
+}
+
+// AddInstantiatesUriExt appends an extension slot for InstantiatesUri.
+//
+// The value and extension slices are parallel by position, so a slot must be
+// appended for every element — including the ones with no extension, as nil.
+func (b *CarePlanBuilder) AddInstantiatesUriExt(v *Element) *CarePlanBuilder {
+	b.carePlan.InstantiatesUriExt = append(b.carePlan.InstantiatesUriExt, v)
+	return b
+}
+
+// SetStatusExt sets the extensions carried by Status, serialized as
+// "_status".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CarePlanBuilder) SetStatusExt(v Element) *CarePlanBuilder {
+	b.carePlan.StatusExt = &v
+	return b
+}
+
+// SetIntentExt sets the extensions carried by Intent, serialized as
+// "_intent".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CarePlanBuilder) SetIntentExt(v Element) *CarePlanBuilder {
+	b.carePlan.IntentExt = &v
+	return b
+}
+
+// SetTitleExt sets the extensions carried by Title, serialized as
+// "_title".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CarePlanBuilder) SetTitleExt(v Element) *CarePlanBuilder {
+	b.carePlan.TitleExt = &v
+	return b
+}
+
+// SetDescriptionExt sets the extensions carried by Description, serialized as
+// "_description".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CarePlanBuilder) SetDescriptionExt(v Element) *CarePlanBuilder {
+	b.carePlan.DescriptionExt = &v
+	return b
+}
+
+// SetCreatedExt sets the extensions carried by Created, serialized as
+// "_created".
+//
+// This is how a primitive expresses an extension: a data-absent-reason on a
+// birthDate lives here, not on the value.
+func (b *CarePlanBuilder) SetCreatedExt(v Element) *CarePlanBuilder {
+	b.carePlan.CreatedExt = &v
+	return b
+}
+
+// =============================================================================
+// CarePlanActivity - Fluent Builder
+// =============================================================================
+
+// CarePlanActivityBuilder provides a fluent API for constructing CarePlanActivity values.
+type CarePlanActivityBuilder struct {
+	carePlanActivity *CarePlanActivity
+}
+
+// NewCarePlanActivityBuilder creates a new CarePlanActivityBuilder.
+func NewCarePlanActivityBuilder() *CarePlanActivityBuilder {
+	return &CarePlanActivityBuilder{
+		carePlanActivity: &CarePlanActivity{},
+	}
+}
+
+// Build returns the constructed CarePlanActivity.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CarePlanActivityBuilder) Build() CarePlanActivity {
+	return *b.carePlanActivity
+}
+
+// SetId sets the Id field.
+func (b *CarePlanActivityBuilder) SetId(v string) *CarePlanActivityBuilder {
+	b.carePlanActivity.Id = &v
+	return b
+}
+
+// AddExtension adds a Extension element.
+func (b *CarePlanActivityBuilder) AddExtension(v Extension) *CarePlanActivityBuilder {
+	b.carePlanActivity.Extension = append(b.carePlanActivity.Extension, v)
+	return b
+}
+
+// AddModifierExtension adds a ModifierExtension element.
+func (b *CarePlanActivityBuilder) AddModifierExtension(v Extension) *CarePlanActivityBuilder {
+	b.carePlanActivity.ModifierExtension = append(b.carePlanActivity.ModifierExtension, v)
+	return b
+}
+
+// AddPerformedActivity adds a PerformedActivity element.
+func (b *CarePlanActivityBuilder) AddPerformedActivity(v CodeableReference) *CarePlanActivityBuilder {
+	b.carePlanActivity.PerformedActivity = append(b.carePlanActivity.PerformedActivity, v)
+	return b
+}
+
+// AddProgress adds a Progress element.
+func (b *CarePlanActivityBuilder) AddProgress(v Annotation) *CarePlanActivityBuilder {
+	b.carePlanActivity.Progress = append(b.carePlanActivity.Progress, v)
+	return b
+}
+
+// SetPlannedActivityReference sets the PlannedActivityReference field.
+func (b *CarePlanActivityBuilder) SetPlannedActivityReference(v Reference) *CarePlanActivityBuilder {
+	b.carePlanActivity.PlannedActivityReference = &v
+	return b
+}
