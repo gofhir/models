@@ -660,14 +660,9 @@ func UnmarshalResourceXML(data []byte) (Resource, error) {
 			return nil, fmt.Errorf("failed to find root element: %w", err)
 		}
 		if start, ok := tok.(xml.StartElement); ok {
-			// Unlike the JSON path, an unrecognized type is refused here rather
-			// than preserved as an UnknownResource. Keeping one would mean
-			// capturing the element's raw XML and re-emitting it, and re-emitting
-			// parsed XML re-injects namespace declarations — the defect that took
-			// the narrative rewrite to get right. Doing that carelessly would
-			// produce documents that differ from what arrived, which is worse than
-			// refusing them. Until it is done properly, XML and JSON disagree here
-			// and this comment is the record of that.
+			if !IsKnownResourceType(start.Name.Local) {
+				return xmlDecodeUnknownResource(d, start)
+			}
 			resource, err := NewResource(start.Name.Local)
 			if err != nil {
 				return nil, fmt.Errorf("unknown resource type %q: %w", start.Name.Local, err)
@@ -908,7 +903,11 @@ func xmlDecodeWrappedResource(d *xml.Decoder, start xml.StartElement) (Resource,
 		}
 		switch t := tok.(type) {
 		case xml.StartElement:
-			if found == nil && IsKnownResourceType(t.Name.Local) {
+			// The first child element is the resource, whether or not this version
+			// defines its type: an unrecognized one is captured rather than
+			// skipped, or a Bundle from a newer server would come back with an
+			// entry holding nothing and no error to say why.
+			if found == nil && looksLikeResourceElement(t) {
 				res, err := xmlDecodeInlineResource(d, t)
 				if err != nil {
 					return nil, err
@@ -930,8 +929,29 @@ func xmlDecodeWrappedResource(d *xml.Decoder, start xml.StartElement) (Resource,
 	}
 }
 
+// looksLikeResourceElement reports whether an element name can be a resource type.
+//
+// Inside a resource wrapper the only child is the resource itself, so the test is
+// on the shape of the name rather than on the registry: FHIR resource types are
+// upper camel case, and every other element that could appear there — id,
+// extension, modifierExtension — is lower camel case. Checking the registry
+// instead would skip exactly the types this needs to catch.
+func looksLikeResourceElement(start xml.StartElement) bool {
+	name := start.Name.Local
+	if name == "" {
+		return false
+	}
+	c := name[0]
+	return c >= 'A' && c <= 'Z'
+}
+
 // xmlDecodeInlineResource decodes a resource element where the element name IS the resource type.
 func xmlDecodeInlineResource(d *xml.Decoder, start xml.StartElement) (Resource, error) {
+	if !IsKnownResourceType(start.Name.Local) {
+		// Kept rather than refused, the same as the JSON path. See
+		// UnknownResource.
+		return xmlDecodeUnknownResource(d, start)
+	}
 	resource, err := NewResource(start.Name.Local)
 	if err != nil {
 		return nil, fmt.Errorf("unknown resource type %q: %w", start.Name.Local, err)
@@ -947,6 +967,75 @@ func xmlDecodeInlineResource(d *xml.Decoder, start xml.StartElement) (Resource, 
 		return nil, err
 	}
 	return resource, nil
+}
+
+// MarshalXML writes an unknown resource back as it was captured.
+//
+// The content is re-emitted through ",innerxml", which passes it along rather than
+// re-parsing and re-serializing it — so no member is lost or reordered, whether or
+// not this version has a field for it.
+//
+// It is not byte-for-byte, unlike the JSON side. The capture rebuilds the element
+// from the decoder's token stream, and a token stream has no notion of how an
+// empty element was spelled: <self/> comes back as <self></self>. The two are the
+// same element in XML, and preserving the spelling would mean holding on to the
+// original bytes, which the decoder does not hand out on every path this runs on.
+func (u UnknownResource) MarshalXML(e *xml.Encoder, _ xml.StartElement) error {
+	if u.RawXML == "" {
+		if len(u.Raw) > 0 {
+			return fmt.Errorf("%s was read from JSON and cannot be written as XML: "+
+				"converting it would mean knowing its structure, which is what makes it unknown", u.Type)
+		}
+		return fmt.Errorf("UnknownResource has no content to write")
+	}
+
+	var element struct {
+		XMLName xml.Name
+		Attr    []xml.Attr `xml:",any,attr"`
+		Inner   string     `xml:",innerxml"`
+	}
+	if err := xml.Unmarshal([]byte(u.RawXML), &element); err != nil {
+		return fmt.Errorf("captured %s is not well-formed XML: %w", u.Type, err)
+	}
+
+	// A prefix declaration arrives split as Space="xmlns", Local=prefix, and has
+	// to be rejoined or the verbatim inner markup that uses it goes undeclared.
+	for i, attr := range element.Attr {
+		if attr.Name.Space == "xmlns" {
+			element.Attr[i].Name = xml.Name{Local: "xmlns:" + attr.Name.Local}
+		} else if attr.Name.Local == "xmlns" {
+			element.Attr[i].Name = xml.Name{Local: "xmlns"}
+		}
+	}
+
+	// The attributes travel on the struct's ",any,attr" field. Passing them on the
+	// StartElement as well emits each one twice — a document with xmlns declared
+	// two times, which is not well-formed.
+	return e.EncodeElement(element, xml.StartElement{Name: xml.Name{Local: u.Type}})
+}
+
+// xmlDecodeUnknownResource captures a resource whose type this version does not
+// define, so the element survives the round trip instead of failing the document.
+//
+// The element is rebuilt token by token — the same approach xmlDecodeRawXHTML uses
+// for narrative, which is why the helper is shared despite its name. Rebuilding
+// preserves every member and its content but not the spelling of an empty element:
+// <self/> is captured as <self></self>, which is the same element. What that cannot carry is a
+// namespace prefix declared on an ancestor: the captured text keeps the prefix but
+// not the declaration, so re-emitting it outside the original document would
+// produce something unresolvable. Inside a FHIR document that does not arise,
+// because everything sits in the one namespace declared on the root, and the
+// element is written back into that same document.
+func xmlDecodeUnknownResource(d *xml.Decoder, start xml.StartElement) (Resource, error) {
+	raw, err := xmlDecodeRawXHTML(d, start)
+	if err != nil {
+		return nil, fmt.Errorf("capturing unknown resource %q: %w", start.Name.Local, err)
+	}
+	u := &UnknownResource{Type: start.Name.Local}
+	if raw != nil {
+		u.RawXML = *raw
+	}
+	return u, nil
 }
 
 // xmlDecodeRawXHTML reads a raw XHTML element (e.g., <div xmlns="...">...</div>)

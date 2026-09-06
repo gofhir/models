@@ -243,11 +243,17 @@ func TestBundle_XML_Roundtrip(t *testing.T) {
 }
 
 func TestUnmarshalResourceXML_UnknownType(t *testing.T) {
-	xmlData := []byte(`<?xml version="1.0" encoding="UTF-8"?><UnknownResource xmlns="http://hl7.org/fhir"><id value="test"/></UnknownResource>`)
+	// A type this version does not define is preserved rather than refused, the
+	// same as on the JSON path — a Bundle from a newer server has to stay
+	// readable. See conformance/xml_unknown_test.go.
+	xmlData := []byte(`<?xml version="1.0" encoding="UTF-8"?><Nonesuch xmlns="http://hl7.org/fhir"><id value="test"/></Nonesuch>`)
 
-	_, err := UnmarshalResourceXML(xmlData)
-	require.Error(t, err)
-	assert.Contains(t, err.Error(), "UnknownResource")
+	res, err := UnmarshalResourceXML(xmlData)
+	require.NoError(t, err)
+	u, ok := res.(*UnknownResource)
+	require.True(t, ok)
+	assert.Equal(t, "Nonesuch", u.Type)
+	assert.Contains(t, u.RawXML, `value="test"`)
 }
 
 // TestBundle_UnmarshalXML_UnwrappedEntryResource covers the shape this library
