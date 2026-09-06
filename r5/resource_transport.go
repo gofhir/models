@@ -203,14 +203,14 @@ func (r *Transport) GetExtensionByURL(url string) *Extension {
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *Transport) GetExtensionsByURL(url string) []Extension {
+func (r *Transport) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *Transport) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *Transport) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtension returns the resource's modifier extensions.
@@ -864,14 +864,14 @@ func (r *TransportInput) GetExtensionByURL(url string) *Extension {
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *TransportInput) GetExtensionsByURL(url string) []Extension {
+func (r *TransportInput) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *TransportInput) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *TransportInput) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given
@@ -1702,14 +1702,14 @@ func (r *TransportOutput) GetExtensionByURL(url string) *Extension {
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *TransportOutput) GetExtensionsByURL(url string) []Extension {
+func (r *TransportOutput) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *TransportOutput) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *TransportOutput) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given
@@ -2398,14 +2398,14 @@ func (r *TransportRestriction) GetExtensionByURL(url string) *Extension {
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *TransportRestriction) GetExtensionsByURL(url string) []Extension {
+func (r *TransportRestriction) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *TransportRestriction) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *TransportRestriction) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given

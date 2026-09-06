@@ -265,14 +265,14 @@ func (r *Measure) GetExtensionByURL(url string) *Extension {
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *Measure) GetExtensionsByURL(url string) []Extension {
+func (r *Measure) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *Measure) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *Measure) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtension returns the resource's modifier extensions.
@@ -964,14 +964,14 @@ func (r *MeasureGroup) GetExtensionByURL(url string) *Extension {
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *MeasureGroup) GetExtensionsByURL(url string) []Extension {
+func (r *MeasureGroup) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *MeasureGroup) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *MeasureGroup) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given
@@ -1237,14 +1237,14 @@ func (r *MeasureGroupPopulation) GetExtensionByURL(url string) *Extension {
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *MeasureGroupPopulation) GetExtensionsByURL(url string) []Extension {
+func (r *MeasureGroupPopulation) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *MeasureGroupPopulation) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *MeasureGroupPopulation) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given
@@ -1430,14 +1430,14 @@ func (r *MeasureGroupStratifier) GetExtensionByURL(url string) *Extension {
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *MeasureGroupStratifier) GetExtensionsByURL(url string) []Extension {
+func (r *MeasureGroupStratifier) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *MeasureGroupStratifier) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *MeasureGroupStratifier) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given
@@ -1611,14 +1611,14 @@ func (r *MeasureGroupStratifierComponent) GetExtensionByURL(url string) *Extensi
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *MeasureGroupStratifierComponent) GetExtensionsByURL(url string) []Extension {
+func (r *MeasureGroupStratifierComponent) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *MeasureGroupStratifierComponent) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *MeasureGroupStratifierComponent) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given
@@ -1781,14 +1781,14 @@ func (r *MeasureSupplementalData) GetExtensionByURL(url string) *Extension {
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *MeasureSupplementalData) GetExtensionsByURL(url string) []Extension {
+func (r *MeasureSupplementalData) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *MeasureSupplementalData) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *MeasureSupplementalData) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given
@@ -1943,14 +1943,14 @@ func (r *MeasureTerm) GetExtensionByURL(url string) *Extension {
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *MeasureTerm) GetExtensionsByURL(url string) []Extension {
+func (r *MeasureTerm) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *MeasureTerm) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *MeasureTerm) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given

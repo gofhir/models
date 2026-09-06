@@ -135,14 +135,14 @@ func (r *SpecimenDefinition) GetExtensionByURL(url string) *Extension {
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *SpecimenDefinition) GetExtensionsByURL(url string) []Extension {
+func (r *SpecimenDefinition) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *SpecimenDefinition) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *SpecimenDefinition) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtension returns the resource's modifier extensions.
@@ -390,14 +390,14 @@ func (r *SpecimenDefinitionTypeTested) GetExtensionByURL(url string) *Extension 
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *SpecimenDefinitionTypeTested) GetExtensionsByURL(url string) []Extension {
+func (r *SpecimenDefinitionTypeTested) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *SpecimenDefinitionTypeTested) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *SpecimenDefinitionTypeTested) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given
@@ -602,14 +602,14 @@ func (r *SpecimenDefinitionTypeTestedContainer) GetExtensionByURL(url string) *E
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *SpecimenDefinitionTypeTestedContainer) GetExtensionsByURL(url string) []Extension {
+func (r *SpecimenDefinitionTypeTestedContainer) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *SpecimenDefinitionTypeTestedContainer) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *SpecimenDefinitionTypeTestedContainer) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given
@@ -805,14 +805,14 @@ func (r *SpecimenDefinitionTypeTestedContainerAdditive) GetExtensionByURL(url st
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *SpecimenDefinitionTypeTestedContainerAdditive) GetExtensionsByURL(url string) []Extension {
+func (r *SpecimenDefinitionTypeTestedContainerAdditive) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *SpecimenDefinitionTypeTestedContainerAdditive) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *SpecimenDefinitionTypeTestedContainerAdditive) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given
@@ -940,14 +940,14 @@ func (r *SpecimenDefinitionTypeTestedHandling) GetExtensionByURL(url string) *Ex
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *SpecimenDefinitionTypeTestedHandling) GetExtensionsByURL(url string) []Extension {
+func (r *SpecimenDefinitionTypeTestedHandling) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *SpecimenDefinitionTypeTestedHandling) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *SpecimenDefinitionTypeTestedHandling) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given

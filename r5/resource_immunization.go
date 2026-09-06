@@ -193,14 +193,14 @@ func (r *Immunization) GetExtensionByURL(url string) *Extension {
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *Immunization) GetExtensionsByURL(url string) []Extension {
+func (r *Immunization) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *Immunization) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *Immunization) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtension returns the resource's modifier extensions.
@@ -677,14 +677,14 @@ func (r *ImmunizationPerformer) GetExtensionByURL(url string) *Extension {
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *ImmunizationPerformer) GetExtensionsByURL(url string) []Extension {
+func (r *ImmunizationPerformer) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *ImmunizationPerformer) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ImmunizationPerformer) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given
@@ -806,14 +806,14 @@ func (r *ImmunizationProgramEligibility) GetExtensionByURL(url string) *Extensio
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *ImmunizationProgramEligibility) GetExtensionsByURL(url string) []Extension {
+func (r *ImmunizationProgramEligibility) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *ImmunizationProgramEligibility) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ImmunizationProgramEligibility) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given
@@ -947,14 +947,14 @@ func (r *ImmunizationProtocolApplied) GetExtensionByURL(url string) *Extension {
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *ImmunizationProtocolApplied) GetExtensionsByURL(url string) []Extension {
+func (r *ImmunizationProtocolApplied) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *ImmunizationProtocolApplied) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ImmunizationProtocolApplied) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given
@@ -1112,14 +1112,14 @@ func (r *ImmunizationReaction) GetExtensionByURL(url string) *Extension {
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *ImmunizationReaction) GetExtensionsByURL(url string) []Extension {
+func (r *ImmunizationReaction) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *ImmunizationReaction) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *ImmunizationReaction) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given

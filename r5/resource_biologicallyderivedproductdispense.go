@@ -161,14 +161,14 @@ func (r *BiologicallyDerivedProductDispense) GetExtensionByURL(url string) *Exte
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *BiologicallyDerivedProductDispense) GetExtensionsByURL(url string) []Extension {
+func (r *BiologicallyDerivedProductDispense) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *BiologicallyDerivedProductDispense) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *BiologicallyDerivedProductDispense) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtension returns the resource's modifier extensions.
@@ -505,14 +505,14 @@ func (r *BiologicallyDerivedProductDispensePerformer) GetExtensionByURL(url stri
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *BiologicallyDerivedProductDispensePerformer) GetExtensionsByURL(url string) []Extension {
+func (r *BiologicallyDerivedProductDispensePerformer) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *BiologicallyDerivedProductDispensePerformer) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *BiologicallyDerivedProductDispensePerformer) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given

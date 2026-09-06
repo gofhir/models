@@ -135,14 +135,14 @@ func (r *MedicinalProductPharmaceutical) GetExtensionByURL(url string) *Extensio
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *MedicinalProductPharmaceutical) GetExtensionsByURL(url string) []Extension {
+func (r *MedicinalProductPharmaceutical) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *MedicinalProductPharmaceutical) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *MedicinalProductPharmaceutical) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtension returns the resource's modifier extensions.
@@ -384,14 +384,14 @@ func (r *MedicinalProductPharmaceuticalCharacteristics) GetExtensionByURL(url st
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *MedicinalProductPharmaceuticalCharacteristics) GetExtensionsByURL(url string) []Extension {
+func (r *MedicinalProductPharmaceuticalCharacteristics) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *MedicinalProductPharmaceuticalCharacteristics) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *MedicinalProductPharmaceuticalCharacteristics) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given
@@ -523,14 +523,14 @@ func (r *MedicinalProductPharmaceuticalRouteOfAdministration) GetExtensionByURL(
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *MedicinalProductPharmaceuticalRouteOfAdministration) GetExtensionsByURL(url string) []Extension {
+func (r *MedicinalProductPharmaceuticalRouteOfAdministration) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *MedicinalProductPharmaceuticalRouteOfAdministration) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *MedicinalProductPharmaceuticalRouteOfAdministration) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given
@@ -707,14 +707,14 @@ func (r *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies) GetEx
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies) GetExtensionsByURL(url string) []Extension {
+func (r *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpecies) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given
@@ -840,14 +840,14 @@ func (r *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdra
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod) GetExtensionsByURL(url string) []Extension {
+func (r *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *MedicinalProductPharmaceuticalRouteOfAdministrationTargetSpeciesWithdrawalPeriod) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given

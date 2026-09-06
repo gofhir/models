@@ -205,14 +205,14 @@ func (r *RiskEvidenceSynthesis) GetExtensionByURL(url string) *Extension {
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *RiskEvidenceSynthesis) GetExtensionsByURL(url string) []Extension {
+func (r *RiskEvidenceSynthesis) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *RiskEvidenceSynthesis) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *RiskEvidenceSynthesis) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtension returns the resource's modifier extensions.
@@ -709,14 +709,14 @@ func (r *RiskEvidenceSynthesisCertainty) GetExtensionByURL(url string) *Extensio
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *RiskEvidenceSynthesisCertainty) GetExtensionsByURL(url string) []Extension {
+func (r *RiskEvidenceSynthesisCertainty) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *RiskEvidenceSynthesisCertainty) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *RiskEvidenceSynthesisCertainty) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given
@@ -851,14 +851,14 @@ func (r *RiskEvidenceSynthesisCertaintyCertaintySubcomponent) GetExtensionByURL(
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *RiskEvidenceSynthesisCertaintyCertaintySubcomponent) GetExtensionsByURL(url string) []Extension {
+func (r *RiskEvidenceSynthesisCertaintyCertaintySubcomponent) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *RiskEvidenceSynthesisCertaintyCertaintySubcomponent) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *RiskEvidenceSynthesisCertaintyCertaintySubcomponent) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given
@@ -1009,14 +1009,14 @@ func (r *RiskEvidenceSynthesisRiskEstimate) GetExtensionByURL(url string) *Exten
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *RiskEvidenceSynthesisRiskEstimate) GetExtensionsByURL(url string) []Extension {
+func (r *RiskEvidenceSynthesisRiskEstimate) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *RiskEvidenceSynthesisRiskEstimate) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *RiskEvidenceSynthesisRiskEstimate) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given
@@ -1199,14 +1199,14 @@ func (r *RiskEvidenceSynthesisRiskEstimatePrecisionEstimate) GetExtensionByURL(u
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *RiskEvidenceSynthesisRiskEstimatePrecisionEstimate) GetExtensionsByURL(url string) []Extension {
+func (r *RiskEvidenceSynthesisRiskEstimatePrecisionEstimate) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *RiskEvidenceSynthesisRiskEstimatePrecisionEstimate) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *RiskEvidenceSynthesisRiskEstimatePrecisionEstimate) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given
@@ -1355,14 +1355,14 @@ func (r *RiskEvidenceSynthesisSampleSize) GetExtensionByURL(url string) *Extensi
 
 // GetExtensionsByURL returns every extension with the given URL. A URL may repeat
 // where the extension's cardinality allows it.
-func (r *RiskEvidenceSynthesisSampleSize) GetExtensionsByURL(url string) []Extension {
+func (r *RiskEvidenceSynthesisSampleSize) GetExtensionsByURL(url string) []*Extension {
 	return ExtensionsByURL(r.Extension, url)
 }
 
-// HasExtensionURL reports whether any extension carries the given URL, which is
-// the whole meaning of the extensions that have no value.
-func (r *RiskEvidenceSynthesisSampleSize) HasExtensionURL(url string) bool {
-	return HasExtensionURL(r.Extension, url)
+// HasExtensionByURL reports whether any extension carries the given URL, which
+// is the whole meaning of the extensions that have no value.
+func (r *RiskEvidenceSynthesisSampleSize) HasExtensionByURL(url string) bool {
+	return HasExtensionByURL(r.Extension, url)
 }
 
 // GetModifierExtensionByURL returns the first modifier extension with the given

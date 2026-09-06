@@ -43,8 +43,8 @@ func TestExtensionLookupByURL(t *testing.T) {
 	if p.GetExtensionByURL(absentURL) != nil {
 		t.Error("a URL that is not present returned something")
 	}
-	if !p.HasExtensionURL(ethnicityURL) || p.HasExtensionURL(absentURL) {
-		t.Error("HasExtensionURL disagrees with GetExtensionByURL")
+	if !p.HasExtensionByURL(ethnicityURL) || p.HasExtensionByURL(absentURL) {
+		t.Error("HasExtensionByURL disagrees with GetExtensionByURL")
 	}
 }
 
@@ -65,6 +65,15 @@ func TestExtensionLookupReturnsEveryMatch(t *testing.T) {
 	}
 	if len(p.GetExtensionsByURL(absentURL)) != 0 {
 		t.Error("a URL that is not present returned matches")
+	}
+
+	// Pointers, like the singular. Values would make the plural silently
+	// read-only: a loop assigning through the results would compile, run and
+	// change nothing.
+	all[1].ValueString = r4.Ptr("edited")
+	if again := p.GetExtensionsByURL(raceURL); again[1].ValueString == nil ||
+		*again[1].ValueString != "edited" {
+		t.Error("writing through a result of the plural did not reach the resource")
 	}
 }
 
@@ -171,8 +180,8 @@ func TestExtensionHelpersWorkOnABareSlice(t *testing.T) {
 	if got := r4.ExtensionsByURL(exts, raceURL); len(got) != 2 {
 		t.Errorf("ExtensionsByURL returned %d, want 2", len(got))
 	}
-	if !r4.HasExtensionURL(exts, raceURL) || r4.HasExtensionURL(exts, absentURL) {
-		t.Error("HasExtensionURL")
+	if !r4.HasExtensionByURL(exts, raceURL) || r4.HasExtensionByURL(exts, absentURL) {
+		t.Error("HasExtensionByURL")
 	}
 	if r4.ExtensionByURL(nil, raceURL) != nil {
 		t.Error("a nil slice should find nothing rather than panic")
