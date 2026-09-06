@@ -15,7 +15,7 @@ The library is designed around three core principles:
 
 1. **Type safety** -- Every FHIR field maps to a strongly typed Go struct field with proper pointer semantics for optional values.
 2. **Two construction patterns** -- Choose between struct literals and fluent builders depending on your coding style.
-3. **JSON serialization** -- JSON marshaling follows the FHIR specification for decimal precision and the `_field` representation of extensions on primitives, with known gaps documented in [JSON Marshaling](../serialization/json-marshaling/). XML is experimental: the narrative is not currently preserved, so use JSON where fidelity matters.
+3. **JSON serialization** -- JSON marshaling follows the FHIR specification for decimal precision and the `_field` representation of extensions on primitives, and round-trips the published corpus 8757/8757; the residual failures are documented in [JSON Marshaling](../serialization/json-marshaling/). XML round-trips 3653/3653, narrative included.
 
 ## Guides
 

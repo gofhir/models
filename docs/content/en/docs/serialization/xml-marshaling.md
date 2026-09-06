@@ -24,7 +24,7 @@ Two things are still worth knowing:
 | Limitation | Consequence |
 |---|---|
 | The namespace is not validated on input | A document in any namespace parses as FHIR |
-| Extensions on primitives inside backbone elements | Not representable, so they are dropped — this affects JSON too |
+| Extensions on primitives inside backbone elements | Preserved. These were dropped until the companion fields were generated for backbones; the corpus now round-trips 3653/3653 |
 
 {{< /callout >}}
 

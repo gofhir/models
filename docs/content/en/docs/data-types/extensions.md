@@ -5,7 +5,7 @@ description: "FHIR extensibility model with Extension and Element types, includi
 weight: 5
 ---
 
-FHIR's extensibility framework allows resources to carry additional data beyond what the base specification defines. The `gofhir/models` library supports extensions through the `Extension` struct (for adding data to resources and complex types) and the `Element` struct (for extending primitive values). One known gap: extensions on primitives **inside backbone elements** are not representable and are silently dropped. At resource and datatype level the companion field is generated, so they survive; every extension loss measured across the corpora is a backbone element. See [JSON Marshaling](../../serialization/json-marshaling/) for the full breakdown.
+FHIR's extensibility framework allows resources to carry additional data beyond what the base specification defines. The `gofhir/models` library supports extensions through the `Extension` struct (for adding data to resources and complex types) and the `Element` struct (for extending primitive values). Extensions on primitives are preserved at every level — resource, datatype and backbone element alike. Backbone elements used to be the exception, which accounted for every extension loss measured across the corpora; that was fixed and the corpus now round-trips 8757/8757 in JSON and 3653/3653 in XML.
 
 ## The Extension Struct
 
@@ -310,25 +310,72 @@ In JSON, this serializes as:
 
 ## Reading Extensions
 
-When processing incoming FHIR data, check for extensions by examining the `Extension` slice:
+Extensions are found by URL — the order of the slice carries no meaning — and every
+type that can hold extensions has the lookup built in:
 
 ```go
-func findExtension(extensions []r4.Extension, url string) *r4.Extension {
-    for i := range extensions {
-        if extensions[i].Url == url {
-            return &extensions[i]
-        }
-    }
-    return nil
-}
-
-// Usage
-ext := findExtension(patient.Extension, "http://example.org/fhir/StructureDefinition/favorite-color")
-if ext != nil && ext.ValueString != nil {
-    fmt.Println("Favorite color:", *ext.ValueString)
+race := patient.GetExtensionByURL("http://hl7.org/fhir/us/core/StructureDefinition/us-core-race")
+if race != nil && race.ValueString != nil {
+    fmt.Println("Race:", *race.ValueString)
 }
 ```
 
+Three methods, because one answer is not always the right one:
+
+| Method | Returns |
+|---|---|
+| `GetExtensionByURL(url)` | the first match as `*Extension`, or `nil` |
+| `GetExtensionsByURL(url)` | **every** match as `[]*Extension` |
+| `HasExtensionByURL(url)` | whether any is present |
+
+`GetExtensionsByURL` matters because a URL repeats where the extension's cardinality
+allows it, so taking only the first would drop data. `HasExtensionByURL` matters
+because some extensions are flags with no value at all — their presence is the whole
+meaning.
+
+Both lookups return **pointers into the resource**, so writing through a result edits
+the resource rather than a copy:
+
+```go
+if ext := patient.GetExtensionByURL(url); ext != nil {
+    ext.ValueString = r4.Ptr("updated")   // patient is updated
+}
+```
+
+### Every level, including inside another extension
+
+The methods are generated on every type that has an `extension` field — resources,
+datatypes, backbone elements, and `Extension` itself. That last one is how a complex
+extension is walked, since it holds sub-extensions rather than a value:
+
+```go
+ethnicity := patient.GetExtensionByURL(ethnicityURL)
+ombCode := ethnicity.GetExtensionByURL("ombCategory")
+
+// datatypes and backbones too
+given := patient.Name[0].GetExtensionByURL(url)
+phone := patient.Contact[0].GetExtensionByURL(url)
+```
+
+Modifier extensions have their own lookup, `GetModifierExtensionByURL`, deliberately
+kept separate: a modifier extension changes the meaning of the element it is on, so a
+reader that does not recognize one must not process the element at all.
+
+### On a bare slice
+
+The same three exist as functions, for a `[]Extension` that did not come from a
+generated type:
+
+```go
+r4.ExtensionByURL(exts, url)
+r4.ExtensionsByURL(exts, url)
+r4.HasExtensionByURL(exts, url)
+```
+
 {{< callout type="info" >}}
-The `Extension.Url` field is a required `string` (not a pointer), because every extension must have a URL that identifies its definition. This is the only non-pointer field in the extension struct besides `Id`.
+`Extension.Url` is a `*string`, so an extension with no URL at all is representable —
+which is why a hand-written search loop needs a nil check before dereferencing it. The
+built-in lookups do that; a loop that forgets panics on the first extension without a
+URL.
 {{< /callout >}}
+

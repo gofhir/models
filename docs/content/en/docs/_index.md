@@ -19,7 +19,7 @@ Welcome to the **gofhir/models** documentation. This library provides auto-gener
 - **All FHIR versions** -- R4 (4.0.1), R4B (4.3.0), and R5 (5.0.0) with every resource, backbone element, data type, and code system.
 - **Two construction patterns** -- Choose between direct struct literals and fluent builder chains depending on your use case.
 - **JSON serialization** -- HTML-safe marshaling that preserves FHIR narrative XHTML content, with automatic `resourceType` injection.
-- **XML serialization** -- `MarshalXML` and `UnmarshalXML` on every type. Experimental: the narrative is not yet preserved, so JSON is the supported format. See [XML Marshaling](serialization/xml-marshaling/).
+- **XML serialization** -- `MarshalXML` and `UnmarshalXML` on every type. The narrative and extensions on primitives are preserved, and the published corpus round-trips 3653/3653. See [XML Marshaling](serialization/xml-marshaling/).
 - **Polymorphic deserialization** -- `UnmarshalResource(data)` automatically detects `resourceType` and returns the correct Go struct.
 - **Precision-preserving decimals** -- A custom `Decimal` type stores the exact textual representation (e.g., `"1.50"` keeps the trailing zero).
 - **FHIRPath model metadata** -- Runtime type information for FHIRPath engines, including choice type paths, type hierarchies, and reference targets.
