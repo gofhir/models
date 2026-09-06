@@ -371,7 +371,7 @@ func (b *ParametersParameter) UnmarshalJSON(data []byte) error {
 	if err := json.Unmarshal(data, aux); err != nil {
 		// The alias is an implementation detail of the recursion guard; a caller
 		// reading the error should not be told about a field that does not exist.
-		return unwrapAliasError(err, "ParametersParameter")
+		return unwrapAliasError(err, "Parameters.parameter")
 	}
 
 	// Unmarshal the resource field using the dispatcher

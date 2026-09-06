@@ -29,8 +29,14 @@ func TestDecodeErrorsDoNotMentionTheAlias(t *testing.T) {
 	if strings.Contains(err.Error(), "Alias") {
 		t.Errorf("the error names an internal type: %v", err)
 	}
-	if !strings.Contains(err.Error(), "ParametersParameter.name") {
-		t.Errorf("the error does not say which field failed: %v", err)
+	// The FHIR path, not the Go type name: Parameters.parameter.name is what a
+	// reader of the specification recognizes, and what
+	// OperationOutcome.issue.expression is expressed in.
+	if !strings.Contains(err.Error(), "Parameters.parameter.name") {
+		t.Errorf("the error does not give the FHIR path of the field: %v", err)
+	}
+	if strings.Contains(err.Error(), "ParametersParameter") {
+		t.Errorf("the error gives the Go type name rather than the FHIR path: %v", err)
 	}
 	// And not the mangled form that deleting the alias alone would leave.
 	if strings.Contains(err.Error(), "field .name") {
