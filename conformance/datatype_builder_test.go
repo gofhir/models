@@ -22,7 +22,7 @@ import (
 func TestTheFluentChainReachesTheDatatypes(t *testing.T) {
 	p := r4.NewPatientBuilder().
 		SetId("p1").
-		AddName(*r4.NewHumanNameBuilder().
+		AddName(r4.NewHumanNameBuilder().
 			SetFamily("Smith").
 			AddGiven("John").
 			Build()).
@@ -44,7 +44,7 @@ func TestDatatypeBuilderCoversTheOnesActuallyUsed(t *testing.T) {
 	// caller writes by hand.
 	cc := r4.NewCodeableConceptBuilder().
 		SetText("Diabetes").
-		AddCoding(*r4.NewCodingBuilder().
+		AddCoding(r4.NewCodingBuilder().
 			SetSystem("http://snomed.info/sct").
 			SetCode("73211009").
 			Build()).
@@ -95,7 +95,7 @@ func TestBuilderForATypeNamedAfterAKeyword(t *testing.T) {
 	// field did not compile. Every resource name happens to be safe; this is the
 	// only datatype that is not, in all three versions.
 	rg := r4.NewRangeBuilder().
-		SetLow(*r4.NewQuantityBuilder().SetValue(*r4.MustDecimal("1")).Build()).
+		SetLow(r4.NewQuantityBuilder().SetValue(*r4.MustDecimal("1")).Build()).
 		Build()
 
 	out, err := json.Marshal(rg)
@@ -120,4 +120,49 @@ func TestDatatypeBuildersInEveryVersion(t *testing.T) {
 			t.Error("family did not set")
 		}
 	})
+}
+
+// TestDatatypeBuildReturnsAValue pins the shape of the API, which is the thing
+// that cannot be changed later without breaking callers.
+//
+// Build returns T for a datatype and *T for a resource. Every consumer of a
+// datatype takes a value — Patient.Name is []HumanName, and a pointer field like
+// Range.Low is set through SetLow(Quantity), which takes the address itself — so
+// returning a pointer forced a dereference at every call site to undo a pointer
+// nobody asked for. Resources stay pointers: they are handled as such and they
+// implement the Resource interface on the pointer receiver.
+func TestDatatypeBuildReturnsAValue(t *testing.T) {
+	// The parameter types are the assertion: this call compiles only if Build
+	// returns a HumanName value and a *Patient pointer. Stated as a signature
+	// rather than as typed declarations, which staticcheck reads as redundant.
+	assertReturnTypes := func(r4.HumanName, *r4.Patient) {}
+	assertReturnTypes(r4.NewHumanNameBuilder().Build(), r4.NewPatientBuilder().Build())
+
+	name := r4.NewHumanNameBuilder().SetFamily("Smith").Build()
+	if name.Family == nil || *name.Family != "Smith" {
+		t.Error("family did not survive Build")
+	}
+	p := r4.NewPatientBuilder().SetId("p1").Build()
+	if p.Id == nil || *p.Id != "p1" {
+		t.Error("id did not survive Build")
+	}
+
+	// The point of it: no dereference anywhere.
+	built := r4.NewPatientBuilder().
+		AddName(r4.NewHumanNameBuilder().SetFamily("Smith").Build()).
+		Build()
+	if len(built.Name) != 1 || built.Name[0].Family == nil {
+		t.Error("the chain did not carry the name through")
+	}
+
+	// And a copy: mutating what Build returned must not reach the builder.
+	b := r4.NewHumanNameBuilder().SetFamily("Original")
+	first := b.Build()
+	first.Family = r4.Ptr("Mutated")
+	if first.Family == nil || *first.Family != "Mutated" {
+		t.Fatal("the copy was not writable")
+	}
+	if second := b.Build(); second.Family == nil || *second.Family != "Original" {
+		t.Errorf("mutating a built value reached back into the builder: %v", second.Family)
+	}
 }

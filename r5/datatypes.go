@@ -2538,8 +2538,14 @@ func NewElementBuilder() *ElementBuilder {
 }
 
 // Build returns the constructed Element.
-func (b *ElementBuilder) Build() *Element {
-	return b.element
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ElementBuilder) Build() Element {
+	return *b.element
 }
 
 // SetId sets the Id field.
@@ -2571,8 +2577,14 @@ func NewBackboneElementBuilder() *BackboneElementBuilder {
 }
 
 // Build returns the constructed BackboneElement.
-func (b *BackboneElementBuilder) Build() *BackboneElement {
-	return b.backboneElement
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *BackboneElementBuilder) Build() BackboneElement {
+	return *b.backboneElement
 }
 
 // SetId sets the Id field.
@@ -2610,8 +2622,14 @@ func NewAddressBuilder() *AddressBuilder {
 }
 
 // Build returns the constructed Address.
-func (b *AddressBuilder) Build() *Address {
-	return b.address
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AddressBuilder) Build() Address {
+	return *b.address
 }
 
 // SetId sets the Id field.
@@ -2707,8 +2725,14 @@ func NewAgeBuilder() *AgeBuilder {
 }
 
 // Build returns the constructed Age.
-func (b *AgeBuilder) Build() *Age {
-	return b.age
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AgeBuilder) Build() Age {
+	return *b.age
 }
 
 // SetId sets the Id field.
@@ -2770,8 +2794,14 @@ func NewAnnotationBuilder() *AnnotationBuilder {
 }
 
 // Build returns the constructed Annotation.
-func (b *AnnotationBuilder) Build() *Annotation {
-	return b.annotation
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AnnotationBuilder) Build() Annotation {
+	return *b.annotation
 }
 
 // SetId sets the Id field.
@@ -2851,8 +2881,14 @@ func NewAttachmentBuilder() *AttachmentBuilder {
 }
 
 // Build returns the constructed Attachment.
-func (b *AttachmentBuilder) Build() *Attachment {
-	return b.attachment
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AttachmentBuilder) Build() Attachment {
+	return *b.attachment
 }
 
 // SetId sets the Id field.
@@ -2962,8 +2998,14 @@ func NewAvailabilityBuilder() *AvailabilityBuilder {
 }
 
 // Build returns the constructed Availability.
-func (b *AvailabilityBuilder) Build() *Availability {
-	return b.availability
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *AvailabilityBuilder) Build() Availability {
+	return *b.availability
 }
 
 // SetId sets the Id field.
@@ -3007,8 +3049,14 @@ func NewCodeableConceptBuilder() *CodeableConceptBuilder {
 }
 
 // Build returns the constructed CodeableConcept.
-func (b *CodeableConceptBuilder) Build() *CodeableConcept {
-	return b.codeableConcept
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CodeableConceptBuilder) Build() CodeableConcept {
+	return *b.codeableConcept
 }
 
 // SetId sets the Id field.
@@ -3052,8 +3100,14 @@ func NewCodeableReferenceBuilder() *CodeableReferenceBuilder {
 }
 
 // Build returns the constructed CodeableReference.
-func (b *CodeableReferenceBuilder) Build() *CodeableReference {
-	return b.codeableReference
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CodeableReferenceBuilder) Build() CodeableReference {
+	return *b.codeableReference
 }
 
 // SetId sets the Id field.
@@ -3097,8 +3151,14 @@ func NewCodingBuilder() *CodingBuilder {
 }
 
 // Build returns the constructed Coding.
-func (b *CodingBuilder) Build() *Coding {
-	return b.coding
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CodingBuilder) Build() Coding {
+	return *b.coding
 }
 
 // SetId sets the Id field.
@@ -3160,8 +3220,14 @@ func NewContactDetailBuilder() *ContactDetailBuilder {
 }
 
 // Build returns the constructed ContactDetail.
-func (b *ContactDetailBuilder) Build() *ContactDetail {
-	return b.contactDetail
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ContactDetailBuilder) Build() ContactDetail {
+	return *b.contactDetail
 }
 
 // SetId sets the Id field.
@@ -3205,8 +3271,14 @@ func NewContactPointBuilder() *ContactPointBuilder {
 }
 
 // Build returns the constructed ContactPoint.
-func (b *ContactPointBuilder) Build() *ContactPoint {
-	return b.contactPoint
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ContactPointBuilder) Build() ContactPoint {
+	return *b.contactPoint
 }
 
 // SetId sets the Id field.
@@ -3268,8 +3340,14 @@ func NewContributorBuilder() *ContributorBuilder {
 }
 
 // Build returns the constructed Contributor.
-func (b *ContributorBuilder) Build() *Contributor {
-	return b.contributor
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ContributorBuilder) Build() Contributor {
+	return *b.contributor
 }
 
 // SetId sets the Id field.
@@ -3319,8 +3397,14 @@ func NewCountBuilder() *CountBuilder {
 }
 
 // Build returns the constructed Count.
-func (b *CountBuilder) Build() *Count {
-	return b.count
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *CountBuilder) Build() Count {
+	return *b.count
 }
 
 // SetId sets the Id field.
@@ -3382,8 +3466,14 @@ func NewDataRequirementBuilder() *DataRequirementBuilder {
 }
 
 // Build returns the constructed DataRequirement.
-func (b *DataRequirementBuilder) Build() *DataRequirement {
-	return b.dataRequirement
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DataRequirementBuilder) Build() DataRequirement {
+	return *b.dataRequirement
 }
 
 // SetId sets the Id field.
@@ -3500,8 +3590,14 @@ func NewDistanceBuilder() *DistanceBuilder {
 }
 
 // Build returns the constructed Distance.
-func (b *DistanceBuilder) Build() *Distance {
-	return b.distance
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DistanceBuilder) Build() Distance {
+	return *b.distance
 }
 
 // SetId sets the Id field.
@@ -3563,8 +3659,14 @@ func NewDosageBuilder() *DosageBuilder {
 }
 
 // Build returns the constructed Dosage.
-func (b *DosageBuilder) Build() *Dosage {
-	return b.dosage
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DosageBuilder) Build() Dosage {
+	return *b.dosage
 }
 
 // SetId sets the Id field.
@@ -3686,8 +3788,14 @@ func NewDurationBuilder() *DurationBuilder {
 }
 
 // Build returns the constructed Duration.
-func (b *DurationBuilder) Build() *Duration {
-	return b.duration
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *DurationBuilder) Build() Duration {
+	return *b.duration
 }
 
 // SetId sets the Id field.
@@ -3749,8 +3857,14 @@ func NewElementDefinitionBuilder() *ElementDefinitionBuilder {
 }
 
 // Build returns the constructed ElementDefinition.
-func (b *ElementDefinitionBuilder) Build() *ElementDefinition {
-	return b.elementDefinition
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ElementDefinitionBuilder) Build() ElementDefinition {
+	return *b.elementDefinition
 }
 
 // SetId sets the Id field.
@@ -6740,8 +6854,14 @@ func NewExpressionBuilder() *ExpressionBuilder {
 }
 
 // Build returns the constructed Expression.
-func (b *ExpressionBuilder) Build() *Expression {
-	return b.expression
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExpressionBuilder) Build() Expression {
+	return *b.expression
 }
 
 // SetId sets the Id field.
@@ -6803,8 +6923,14 @@ func NewExtendedContactDetailBuilder() *ExtendedContactDetailBuilder {
 }
 
 // Build returns the constructed ExtendedContactDetail.
-func (b *ExtendedContactDetailBuilder) Build() *ExtendedContactDetail {
-	return b.extendedContactDetail
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExtendedContactDetailBuilder) Build() ExtendedContactDetail {
+	return *b.extendedContactDetail
 }
 
 // SetId sets the Id field.
@@ -6872,8 +6998,14 @@ func NewExtensionBuilder() *ExtensionBuilder {
 }
 
 // Build returns the constructed Extension.
-func (b *ExtensionBuilder) Build() *Extension {
-	return b.extension
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ExtensionBuilder) Build() Extension {
+	return *b.extension
 }
 
 // SetId sets the Id field.
@@ -7703,8 +7835,14 @@ func NewHumanNameBuilder() *HumanNameBuilder {
 }
 
 // Build returns the constructed HumanName.
-func (b *HumanNameBuilder) Build() *HumanName {
-	return b.humanName
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *HumanNameBuilder) Build() HumanName {
+	return *b.humanName
 }
 
 // SetId sets the Id field.
@@ -7790,8 +7928,14 @@ func NewIdentifierBuilder() *IdentifierBuilder {
 }
 
 // Build returns the constructed Identifier.
-func (b *IdentifierBuilder) Build() *Identifier {
-	return b.identifier
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *IdentifierBuilder) Build() Identifier {
+	return *b.identifier
 }
 
 // SetId sets the Id field.
@@ -7859,8 +8003,14 @@ func NewMarketingStatusBuilder() *MarketingStatusBuilder {
 }
 
 // Build returns the constructed MarketingStatus.
-func (b *MarketingStatusBuilder) Build() *MarketingStatus {
-	return b.marketingStatus
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MarketingStatusBuilder) Build() MarketingStatus {
+	return *b.marketingStatus
 }
 
 // SetId sets the Id field.
@@ -7928,8 +8078,14 @@ func NewMetaBuilder() *MetaBuilder {
 }
 
 // Build returns the constructed Meta.
-func (b *MetaBuilder) Build() *Meta {
-	return b.meta
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MetaBuilder) Build() Meta {
+	return *b.meta
 }
 
 // SetId sets the Id field.
@@ -8001,8 +8157,14 @@ func NewMonetaryComponentBuilder() *MonetaryComponentBuilder {
 }
 
 // Build returns the constructed MonetaryComponent.
-func (b *MonetaryComponentBuilder) Build() *MonetaryComponent {
-	return b.monetaryComponent
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MonetaryComponentBuilder) Build() MonetaryComponent {
+	return *b.monetaryComponent
 }
 
 // SetId sets the Id field.
@@ -8058,8 +8220,14 @@ func NewMoneyBuilder() *MoneyBuilder {
 }
 
 // Build returns the constructed Money.
-func (b *MoneyBuilder) Build() *Money {
-	return b.money
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MoneyBuilder) Build() Money {
+	return *b.money
 }
 
 // SetId sets the Id field.
@@ -8103,8 +8271,14 @@ func NewNarrativeBuilder() *NarrativeBuilder {
 }
 
 // Build returns the constructed Narrative.
-func (b *NarrativeBuilder) Build() *Narrative {
-	return b.narrative
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *NarrativeBuilder) Build() Narrative {
+	return *b.narrative
 }
 
 // SetId sets the Id field.
@@ -8148,8 +8322,14 @@ func NewParameterDefinitionBuilder() *ParameterDefinitionBuilder {
 }
 
 // Build returns the constructed ParameterDefinition.
-func (b *ParameterDefinitionBuilder) Build() *ParameterDefinition {
-	return b.parameterDefinition
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ParameterDefinitionBuilder) Build() ParameterDefinition {
+	return *b.parameterDefinition
 }
 
 // SetId sets the Id field.
@@ -8223,8 +8403,14 @@ func NewPeriodBuilder() *PeriodBuilder {
 }
 
 // Build returns the constructed Period.
-func (b *PeriodBuilder) Build() *Period {
-	return b.period
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *PeriodBuilder) Build() Period {
+	return *b.period
 }
 
 // SetId sets the Id field.
@@ -8268,8 +8454,14 @@ func NewProductShelfLifeBuilder() *ProductShelfLifeBuilder {
 }
 
 // Build returns the constructed ProductShelfLife.
-func (b *ProductShelfLifeBuilder) Build() *ProductShelfLife {
-	return b.productShelfLife
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ProductShelfLifeBuilder) Build() ProductShelfLife {
+	return *b.productShelfLife
 }
 
 // SetId sets the Id field.
@@ -8355,8 +8547,14 @@ func NewQuantityBuilder() *QuantityBuilder {
 }
 
 // Build returns the constructed Quantity.
-func (b *QuantityBuilder) Build() *Quantity {
-	return b.quantity
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *QuantityBuilder) Build() Quantity {
+	return *b.quantity
 }
 
 // SetId sets the Id field.
@@ -8418,8 +8616,14 @@ func NewRangeBuilder() *RangeBuilder {
 }
 
 // Build returns the constructed Range.
-func (b *RangeBuilder) Build() *Range {
-	return b.rangeValue
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *RangeBuilder) Build() Range {
+	return *b.rangeValue
 }
 
 // SetId sets the Id field.
@@ -8463,8 +8667,14 @@ func NewRatioBuilder() *RatioBuilder {
 }
 
 // Build returns the constructed Ratio.
-func (b *RatioBuilder) Build() *Ratio {
-	return b.ratio
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *RatioBuilder) Build() Ratio {
+	return *b.ratio
 }
 
 // SetId sets the Id field.
@@ -8508,8 +8718,14 @@ func NewRatioRangeBuilder() *RatioRangeBuilder {
 }
 
 // Build returns the constructed RatioRange.
-func (b *RatioRangeBuilder) Build() *RatioRange {
-	return b.ratioRange
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *RatioRangeBuilder) Build() RatioRange {
+	return *b.ratioRange
 }
 
 // SetId sets the Id field.
@@ -8559,8 +8775,14 @@ func NewReferenceBuilder() *ReferenceBuilder {
 }
 
 // Build returns the constructed Reference.
-func (b *ReferenceBuilder) Build() *Reference {
-	return b.reference
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *ReferenceBuilder) Build() Reference {
+	return *b.reference
 }
 
 // SetId sets the Id field.
@@ -8616,8 +8838,14 @@ func NewRelatedArtifactBuilder() *RelatedArtifactBuilder {
 }
 
 // Build returns the constructed RelatedArtifact.
-func (b *RelatedArtifactBuilder) Build() *RelatedArtifact {
-	return b.relatedArtifact
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *RelatedArtifactBuilder) Build() RelatedArtifact {
+	return *b.relatedArtifact
 }
 
 // SetId sets the Id field.
@@ -8709,8 +8937,14 @@ func NewSampledDataBuilder() *SampledDataBuilder {
 }
 
 // Build returns the constructed SampledData.
-func (b *SampledDataBuilder) Build() *SampledData {
-	return b.sampledData
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SampledDataBuilder) Build() SampledData {
+	return *b.sampledData
 }
 
 // SetId sets the Id field.
@@ -8802,8 +9036,14 @@ func NewSignatureBuilder() *SignatureBuilder {
 }
 
 // Build returns the constructed Signature.
-func (b *SignatureBuilder) Build() *Signature {
-	return b.signature
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SignatureBuilder) Build() Signature {
+	return *b.signature
 }
 
 // SetId sets the Id field.
@@ -8877,8 +9117,14 @@ func NewTimingBuilder() *TimingBuilder {
 }
 
 // Build returns the constructed Timing.
-func (b *TimingBuilder) Build() *Timing {
-	return b.timing
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TimingBuilder) Build() Timing {
+	return *b.timing
 }
 
 // SetId sets the Id field.
@@ -8938,8 +9184,14 @@ func NewTriggerDefinitionBuilder() *TriggerDefinitionBuilder {
 }
 
 // Build returns the constructed TriggerDefinition.
-func (b *TriggerDefinitionBuilder) Build() *TriggerDefinition {
-	return b.triggerDefinition
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *TriggerDefinitionBuilder) Build() TriggerDefinition {
+	return *b.triggerDefinition
 }
 
 // SetId sets the Id field.
@@ -9074,8 +9326,14 @@ func NewUsageContextBuilder() *UsageContextBuilder {
 }
 
 // Build returns the constructed UsageContext.
-func (b *UsageContextBuilder) Build() *UsageContext {
-	return b.usageContext
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *UsageContextBuilder) Build() UsageContext {
+	return *b.usageContext
 }
 
 // SetId sets the Id field.
@@ -9166,8 +9424,14 @@ func NewVirtualServiceDetailBuilder() *VirtualServiceDetailBuilder {
 }
 
 // Build returns the constructed VirtualServiceDetail.
-func (b *VirtualServiceDetailBuilder) Build() *VirtualServiceDetail {
-	return b.virtualServiceDetail
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *VirtualServiceDetailBuilder) Build() VirtualServiceDetail {
+	return *b.virtualServiceDetail
 }
 
 // SetId sets the Id field.
@@ -9293,8 +9557,14 @@ func NewMoneyQuantityBuilder() *MoneyQuantityBuilder {
 }
 
 // Build returns the constructed MoneyQuantity.
-func (b *MoneyQuantityBuilder) Build() *MoneyQuantity {
-	return b.moneyQuantity
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *MoneyQuantityBuilder) Build() MoneyQuantity {
+	return *b.moneyQuantity
 }
 
 // SetId sets the Id field.
@@ -9356,8 +9626,14 @@ func NewSimpleQuantityBuilder() *SimpleQuantityBuilder {
 }
 
 // Build returns the constructed SimpleQuantity.
-func (b *SimpleQuantityBuilder) Build() *SimpleQuantity {
-	return b.simpleQuantity
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *SimpleQuantityBuilder) Build() SimpleQuantity {
+	return *b.simpleQuantity
 }
 
 // SetId sets the Id field.

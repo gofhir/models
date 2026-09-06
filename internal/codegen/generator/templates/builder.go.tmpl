@@ -24,10 +24,23 @@ func New{{$r.Name}}Builder() *{{$r.Name}}Builder {
 	}
 }
 
-// Build returns the constructed {{$r.Name}}{{if $r.IsResource}} resource{{end}}.
+{{if $r.IsResource -}}
+// Build returns the constructed {{$r.Name}} resource.
 func (b *{{$r.Name}}Builder) Build() *{{$r.Name}} {
 	return b.{{$r.LowerName}}
 }
+{{- else -}}
+// Build returns the constructed {{$r.Name}}.
+//
+// A value, not a pointer: every consumer of a datatype takes one. Patient.Name is
+// []HumanName so AddName wants a HumanName, and a pointer field like Range.Low is
+// set through SetLow(Quantity), which takes the address itself. Returning *T meant
+// writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
+// site, to undo a pointer nobody asked for.
+func (b *{{$r.Name}}Builder) Build() {{$r.Name}} {
+	return *b.{{$r.LowerName}}
+}
+{{- end}}
 
 {{range $r.Properties}}
 {{- if not (eq .GoType "*interface{}")}}
