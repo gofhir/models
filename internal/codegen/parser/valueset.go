@@ -68,6 +68,10 @@ type ParsedValueSet struct {
 type ParsedCode struct {
 	Code    string // The actual code value
 	Display string // Human-readable display
+	// System is the CodeSystem the code belongs to. A code on its own is not a
+	// coding — "male" means nothing without saying which vocabulary it is from —
+	// so this is what lets a generated enum produce a usable Coding.
+	System string
 }
 
 // ValueSetRegistry holds parsed value sets indexed by URL.
@@ -158,14 +162,16 @@ func (r *ValueSetRegistry) parseValueSet(vs *ValueSet) *ParsedValueSet {
 		// If concepts are explicitly listed
 		if len(include.Concept) > 0 {
 			for _, c := range include.Concept {
-				parsed.Codes = append(parsed.Codes, ParsedCode(c))
+				parsed.Codes = append(parsed.Codes, ParsedCode{
+					Code: c.Code, Display: c.Display, System: include.System,
+				})
 			}
 			continue
 		}
 
 		// Otherwise, try to resolve from CodeSystem
 		if cs, ok := r.codeSystems[include.System]; ok {
-			codes := r.flattenConcepts(cs.Concept)
+			codes := r.flattenConcepts(cs.Concept, cs.URL)
 			parsed.Codes = append(parsed.Codes, codes...)
 		}
 	}
@@ -174,16 +180,17 @@ func (r *ValueSetRegistry) parseValueSet(vs *ValueSet) *ParsedValueSet {
 }
 
 // flattenConcepts recursively flattens nested concepts.
-func (r *ValueSetRegistry) flattenConcepts(concepts []CodeSystemConcept) []ParsedCode {
+func (r *ValueSetRegistry) flattenConcepts(concepts []CodeSystemConcept, system string) []ParsedCode {
 	codes := make([]ParsedCode, 0, len(concepts))
 	for _, c := range concepts {
 		codes = append(codes, ParsedCode{
 			Code:    c.Code,
 			Display: c.Display,
+			System:  system,
 		})
 		// Recursively add nested concepts
 		if len(c.Concept) > 0 {
-			codes = append(codes, r.flattenConcepts(c.Concept)...)
+			codes = append(codes, r.flattenConcepts(c.Concept, system)...)
 		}
 	}
 	return codes
