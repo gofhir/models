@@ -1500,11 +1500,20 @@ func (b *ResearchElementDefinitionBuilder) SetDescriptionExt(v Element) *Researc
 	return b
 }
 
-// AddCommentExt appends an extension slot for Comment.
+// AddCommentExt attaches extensions to the Comment element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddComment twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ResearchElementDefinitionBuilder) AddCommentExt(v *Element) *ResearchElementDefinitionBuilder {
+	for len(b.researchElementDefinition.CommentExt) < len(b.researchElementDefinition.Comment)-1 {
+		b.researchElementDefinition.CommentExt = append(b.researchElementDefinition.CommentExt, nil)
+	}
 	b.researchElementDefinition.CommentExt = append(b.researchElementDefinition.CommentExt, v)
 	return b
 }
@@ -1559,11 +1568,20 @@ func (b *ResearchElementDefinitionBuilder) SetLastReviewDateExt(v Element) *Rese
 	return b
 }
 
-// AddLibraryExt appends an extension slot for Library.
+// AddLibraryExt attaches extensions to the Library element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddLibrary twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ResearchElementDefinitionBuilder) AddLibraryExt(v *Element) *ResearchElementDefinitionBuilder {
+	for len(b.researchElementDefinition.LibraryExt) < len(b.researchElementDefinition.Library)-1 {
+		b.researchElementDefinition.LibraryExt = append(b.researchElementDefinition.LibraryExt, nil)
+	}
 	b.researchElementDefinition.LibraryExt = append(b.researchElementDefinition.LibraryExt, v)
 	return b
 }

@@ -2278,11 +2278,20 @@ func (b *ImplementationGuideBuilder) SetLicenseExt(v Element) *ImplementationGui
 	return b
 }
 
-// AddFhirVersionExt appends an extension slot for FhirVersion.
+// AddFhirVersionExt attaches extensions to the FhirVersion element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddFhirVersion twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ImplementationGuideBuilder) AddFhirVersionExt(v *Element) *ImplementationGuideBuilder {
+	for len(b.implementationGuide.FhirVersionExt) < len(b.implementationGuide.FhirVersion)-1 {
+		b.implementationGuide.FhirVersionExt = append(b.implementationGuide.FhirVersionExt, nil)
+	}
 	b.implementationGuide.FhirVersionExt = append(b.implementationGuide.FhirVersionExt, v)
 	return b
 }
@@ -2747,11 +2756,20 @@ func (b *ImplementationGuideDefinitionResourceBuilder) SetGroupingId(v string) *
 	return b
 }
 
-// AddFhirVersionExt appends an extension slot for FhirVersion.
+// AddFhirVersionExt attaches extensions to the FhirVersion element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddFhirVersion twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ImplementationGuideDefinitionResourceBuilder) AddFhirVersionExt(v *Element) *ImplementationGuideDefinitionResourceBuilder {
+	for len(b.implementationGuideDefinitionResource.FhirVersionExt) < len(b.implementationGuideDefinitionResource.FhirVersion)-1 {
+		b.implementationGuideDefinitionResource.FhirVersionExt = append(b.implementationGuideDefinitionResource.FhirVersionExt, nil)
+	}
 	b.implementationGuideDefinitionResource.FhirVersionExt = append(b.implementationGuideDefinitionResource.FhirVersionExt, v)
 	return b
 }
@@ -3150,20 +3168,38 @@ func (b *ImplementationGuideManifestBuilder) SetRenderingExt(v Element) *Impleme
 	return b
 }
 
-// AddImageExt appends an extension slot for Image.
+// AddImageExt attaches extensions to the Image element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddImage twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ImplementationGuideManifestBuilder) AddImageExt(v *Element) *ImplementationGuideManifestBuilder {
+	for len(b.implementationGuideManifest.ImageExt) < len(b.implementationGuideManifest.Image)-1 {
+		b.implementationGuideManifest.ImageExt = append(b.implementationGuideManifest.ImageExt, nil)
+	}
 	b.implementationGuideManifest.ImageExt = append(b.implementationGuideManifest.ImageExt, v)
 	return b
 }
 
-// AddOtherExt appends an extension slot for Other.
+// AddOtherExt attaches extensions to the Other element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddOther twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ImplementationGuideManifestBuilder) AddOtherExt(v *Element) *ImplementationGuideManifestBuilder {
+	for len(b.implementationGuideManifest.OtherExt) < len(b.implementationGuideManifest.Other)-1 {
+		b.implementationGuideManifest.OtherExt = append(b.implementationGuideManifest.OtherExt, nil)
+	}
 	b.implementationGuideManifest.OtherExt = append(b.implementationGuideManifest.OtherExt, v)
 	return b
 }
@@ -3255,11 +3291,20 @@ func (b *ImplementationGuideManifestPageBuilder) SetTitleExt(v Element) *Impleme
 	return b
 }
 
-// AddAnchorExt appends an extension slot for Anchor.
+// AddAnchorExt attaches extensions to the Anchor element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddAnchor twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ImplementationGuideManifestPageBuilder) AddAnchorExt(v *Element) *ImplementationGuideManifestPageBuilder {
+	for len(b.implementationGuideManifestPage.AnchorExt) < len(b.implementationGuideManifestPage.Anchor)-1 {
+		b.implementationGuideManifestPage.AnchorExt = append(b.implementationGuideManifestPage.AnchorExt, nil)
+	}
 	b.implementationGuideManifestPage.AnchorExt = append(b.implementationGuideManifestPage.AnchorExt, v)
 	return b
 }

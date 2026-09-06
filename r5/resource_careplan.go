@@ -916,20 +916,38 @@ func (b *CarePlanBuilder) SetLanguageExt(v Element) *CarePlanBuilder {
 	return b
 }
 
-// AddInstantiatesCanonicalExt appends an extension slot for InstantiatesCanonical.
+// AddInstantiatesCanonicalExt attaches extensions to the InstantiatesCanonical element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesCanonical twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *CarePlanBuilder) AddInstantiatesCanonicalExt(v *Element) *CarePlanBuilder {
+	for len(b.carePlan.InstantiatesCanonicalExt) < len(b.carePlan.InstantiatesCanonical)-1 {
+		b.carePlan.InstantiatesCanonicalExt = append(b.carePlan.InstantiatesCanonicalExt, nil)
+	}
 	b.carePlan.InstantiatesCanonicalExt = append(b.carePlan.InstantiatesCanonicalExt, v)
 	return b
 }
 
-// AddInstantiatesUriExt appends an extension slot for InstantiatesUri.
+// AddInstantiatesUriExt attaches extensions to the InstantiatesUri element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesUri twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *CarePlanBuilder) AddInstantiatesUriExt(v *Element) *CarePlanBuilder {
+	for len(b.carePlan.InstantiatesUriExt) < len(b.carePlan.InstantiatesUri)-1 {
+		b.carePlan.InstantiatesUriExt = append(b.carePlan.InstantiatesUriExt, nil)
+	}
 	b.carePlan.InstantiatesUriExt = append(b.carePlan.InstantiatesUriExt, v)
 	return b
 }

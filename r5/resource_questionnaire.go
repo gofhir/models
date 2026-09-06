@@ -1884,11 +1884,20 @@ func (b *QuestionnaireBuilder) SetTitleExt(v Element) *QuestionnaireBuilder {
 	return b
 }
 
-// AddDerivedFromExt appends an extension slot for DerivedFrom.
+// AddDerivedFromExt attaches extensions to the DerivedFrom element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDerivedFrom twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *QuestionnaireBuilder) AddDerivedFromExt(v *Element) *QuestionnaireBuilder {
+	for len(b.questionnaire.DerivedFromExt) < len(b.questionnaire.DerivedFrom)-1 {
+		b.questionnaire.DerivedFromExt = append(b.questionnaire.DerivedFromExt, nil)
+	}
 	b.questionnaire.DerivedFromExt = append(b.questionnaire.DerivedFromExt, v)
 	return b
 }
@@ -1913,11 +1922,20 @@ func (b *QuestionnaireBuilder) SetExperimentalExt(v Element) *QuestionnaireBuild
 	return b
 }
 
-// AddSubjectTypeExt appends an extension slot for SubjectType.
+// AddSubjectTypeExt attaches extensions to the SubjectType element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddSubjectType twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *QuestionnaireBuilder) AddSubjectTypeExt(v *Element) *QuestionnaireBuilder {
+	for len(b.questionnaire.SubjectTypeExt) < len(b.questionnaire.SubjectType)-1 {
+		b.questionnaire.SubjectTypeExt = append(b.questionnaire.SubjectTypeExt, nil)
+	}
 	b.questionnaire.SubjectTypeExt = append(b.questionnaire.SubjectTypeExt, v)
 	return b
 }

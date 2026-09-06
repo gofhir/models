@@ -2562,11 +2562,20 @@ func (b *CodeSystemFilterBuilder) SetDescriptionExt(v Element) *CodeSystemFilter
 	return b
 }
 
-// AddOperatorExt appends an extension slot for Operator.
+// AddOperatorExt attaches extensions to the Operator element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddOperator twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *CodeSystemFilterBuilder) AddOperatorExt(v *Element) *CodeSystemFilterBuilder {
+	for len(b.codeSystemFilter.OperatorExt) < len(b.codeSystemFilter.Operator)-1 {
+		b.codeSystemFilter.OperatorExt = append(b.codeSystemFilter.OperatorExt, nil)
+	}
 	b.codeSystemFilter.OperatorExt = append(b.codeSystemFilter.OperatorExt, v)
 	return b
 }

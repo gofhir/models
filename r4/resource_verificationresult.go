@@ -1092,11 +1092,20 @@ func (b *VerificationResultBuilder) SetLanguageExt(v Element) *VerificationResul
 	return b
 }
 
-// AddTargetLocationExt appends an extension slot for TargetLocation.
+// AddTargetLocationExt attaches extensions to the TargetLocation element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddTargetLocation twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *VerificationResultBuilder) AddTargetLocationExt(v *Element) *VerificationResultBuilder {
+	for len(b.verificationResult.TargetLocationExt) < len(b.verificationResult.TargetLocation)-1 {
+		b.verificationResult.TargetLocationExt = append(b.verificationResult.TargetLocationExt, nil)
+	}
 	b.verificationResult.TargetLocationExt = append(b.verificationResult.TargetLocationExt, v)
 	return b
 }

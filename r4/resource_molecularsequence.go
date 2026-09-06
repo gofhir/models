@@ -2394,65 +2394,128 @@ func (b *MolecularSequenceQualityRocBuilder) AddFMeasure(v Decimal) *MolecularSe
 	return b
 }
 
-// AddScoreExt appends an extension slot for Score.
+// AddScoreExt attaches extensions to the Score element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddScore twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *MolecularSequenceQualityRocBuilder) AddScoreExt(v *Element) *MolecularSequenceQualityRocBuilder {
+	for len(b.molecularSequenceQualityRoc.ScoreExt) < len(b.molecularSequenceQualityRoc.Score)-1 {
+		b.molecularSequenceQualityRoc.ScoreExt = append(b.molecularSequenceQualityRoc.ScoreExt, nil)
+	}
 	b.molecularSequenceQualityRoc.ScoreExt = append(b.molecularSequenceQualityRoc.ScoreExt, v)
 	return b
 }
 
-// AddNumTPExt appends an extension slot for NumTP.
+// AddNumTPExt attaches extensions to the NumTP element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddNumTP twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *MolecularSequenceQualityRocBuilder) AddNumTPExt(v *Element) *MolecularSequenceQualityRocBuilder {
+	for len(b.molecularSequenceQualityRoc.NumTPExt) < len(b.molecularSequenceQualityRoc.NumTP)-1 {
+		b.molecularSequenceQualityRoc.NumTPExt = append(b.molecularSequenceQualityRoc.NumTPExt, nil)
+	}
 	b.molecularSequenceQualityRoc.NumTPExt = append(b.molecularSequenceQualityRoc.NumTPExt, v)
 	return b
 }
 
-// AddNumFPExt appends an extension slot for NumFP.
+// AddNumFPExt attaches extensions to the NumFP element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddNumFP twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *MolecularSequenceQualityRocBuilder) AddNumFPExt(v *Element) *MolecularSequenceQualityRocBuilder {
+	for len(b.molecularSequenceQualityRoc.NumFPExt) < len(b.molecularSequenceQualityRoc.NumFP)-1 {
+		b.molecularSequenceQualityRoc.NumFPExt = append(b.molecularSequenceQualityRoc.NumFPExt, nil)
+	}
 	b.molecularSequenceQualityRoc.NumFPExt = append(b.molecularSequenceQualityRoc.NumFPExt, v)
 	return b
 }
 
-// AddNumFNExt appends an extension slot for NumFN.
+// AddNumFNExt attaches extensions to the NumFN element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddNumFN twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *MolecularSequenceQualityRocBuilder) AddNumFNExt(v *Element) *MolecularSequenceQualityRocBuilder {
+	for len(b.molecularSequenceQualityRoc.NumFNExt) < len(b.molecularSequenceQualityRoc.NumFN)-1 {
+		b.molecularSequenceQualityRoc.NumFNExt = append(b.molecularSequenceQualityRoc.NumFNExt, nil)
+	}
 	b.molecularSequenceQualityRoc.NumFNExt = append(b.molecularSequenceQualityRoc.NumFNExt, v)
 	return b
 }
 
-// AddPrecisionExt appends an extension slot for Precision.
+// AddPrecisionExt attaches extensions to the Precision element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddPrecision twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *MolecularSequenceQualityRocBuilder) AddPrecisionExt(v *Element) *MolecularSequenceQualityRocBuilder {
+	for len(b.molecularSequenceQualityRoc.PrecisionExt) < len(b.molecularSequenceQualityRoc.Precision)-1 {
+		b.molecularSequenceQualityRoc.PrecisionExt = append(b.molecularSequenceQualityRoc.PrecisionExt, nil)
+	}
 	b.molecularSequenceQualityRoc.PrecisionExt = append(b.molecularSequenceQualityRoc.PrecisionExt, v)
 	return b
 }
 
-// AddSensitivityExt appends an extension slot for Sensitivity.
+// AddSensitivityExt attaches extensions to the Sensitivity element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddSensitivity twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *MolecularSequenceQualityRocBuilder) AddSensitivityExt(v *Element) *MolecularSequenceQualityRocBuilder {
+	for len(b.molecularSequenceQualityRoc.SensitivityExt) < len(b.molecularSequenceQualityRoc.Sensitivity)-1 {
+		b.molecularSequenceQualityRoc.SensitivityExt = append(b.molecularSequenceQualityRoc.SensitivityExt, nil)
+	}
 	b.molecularSequenceQualityRoc.SensitivityExt = append(b.molecularSequenceQualityRoc.SensitivityExt, v)
 	return b
 }
 
-// AddFMeasureExt appends an extension slot for FMeasure.
+// AddFMeasureExt attaches extensions to the FMeasure element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddFMeasure twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *MolecularSequenceQualityRocBuilder) AddFMeasureExt(v *Element) *MolecularSequenceQualityRocBuilder {
+	for len(b.molecularSequenceQualityRoc.FMeasureExt) < len(b.molecularSequenceQualityRoc.FMeasure)-1 {
+		b.molecularSequenceQualityRoc.FMeasureExt = append(b.molecularSequenceQualityRoc.FMeasureExt, nil)
+	}
 	b.molecularSequenceQualityRoc.FMeasureExt = append(b.molecularSequenceQualityRoc.FMeasureExt, v)
 	return b
 }

@@ -1384,20 +1384,38 @@ func (b *SubstanceSourceMaterialBuilder) SetOrganismNameExt(v Element) *Substanc
 	return b
 }
 
-// AddParentSubstanceNameExt appends an extension slot for ParentSubstanceName.
+// AddParentSubstanceNameExt attaches extensions to the ParentSubstanceName element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddParentSubstanceName twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *SubstanceSourceMaterialBuilder) AddParentSubstanceNameExt(v *Element) *SubstanceSourceMaterialBuilder {
+	for len(b.substanceSourceMaterial.ParentSubstanceNameExt) < len(b.substanceSourceMaterial.ParentSubstanceName)-1 {
+		b.substanceSourceMaterial.ParentSubstanceNameExt = append(b.substanceSourceMaterial.ParentSubstanceNameExt, nil)
+	}
 	b.substanceSourceMaterial.ParentSubstanceNameExt = append(b.substanceSourceMaterial.ParentSubstanceNameExt, v)
 	return b
 }
 
-// AddGeographicalLocationExt appends an extension slot for GeographicalLocation.
+// AddGeographicalLocationExt attaches extensions to the GeographicalLocation element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddGeographicalLocation twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *SubstanceSourceMaterialBuilder) AddGeographicalLocationExt(v *Element) *SubstanceSourceMaterialBuilder {
+	for len(b.substanceSourceMaterial.GeographicalLocationExt) < len(b.substanceSourceMaterial.GeographicalLocation)-1 {
+		b.substanceSourceMaterial.GeographicalLocationExt = append(b.substanceSourceMaterial.GeographicalLocationExt, nil)
+	}
 	b.substanceSourceMaterial.GeographicalLocationExt = append(b.substanceSourceMaterial.GeographicalLocationExt, v)
 	return b
 }

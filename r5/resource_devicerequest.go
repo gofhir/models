@@ -1062,20 +1062,38 @@ func (b *DeviceRequestBuilder) SetLanguageExt(v Element) *DeviceRequestBuilder {
 	return b
 }
 
-// AddInstantiatesCanonicalExt appends an extension slot for InstantiatesCanonical.
+// AddInstantiatesCanonicalExt attaches extensions to the InstantiatesCanonical element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesCanonical twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *DeviceRequestBuilder) AddInstantiatesCanonicalExt(v *Element) *DeviceRequestBuilder {
+	for len(b.deviceRequest.InstantiatesCanonicalExt) < len(b.deviceRequest.InstantiatesCanonical)-1 {
+		b.deviceRequest.InstantiatesCanonicalExt = append(b.deviceRequest.InstantiatesCanonicalExt, nil)
+	}
 	b.deviceRequest.InstantiatesCanonicalExt = append(b.deviceRequest.InstantiatesCanonicalExt, v)
 	return b
 }
 
-// AddInstantiatesUriExt appends an extension slot for InstantiatesUri.
+// AddInstantiatesUriExt attaches extensions to the InstantiatesUri element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesUri twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *DeviceRequestBuilder) AddInstantiatesUriExt(v *Element) *DeviceRequestBuilder {
+	for len(b.deviceRequest.InstantiatesUriExt) < len(b.deviceRequest.InstantiatesUri)-1 {
+		b.deviceRequest.InstantiatesUriExt = append(b.deviceRequest.InstantiatesUriExt, nil)
+	}
 	b.deviceRequest.InstantiatesUriExt = append(b.deviceRequest.InstantiatesUriExt, v)
 	return b
 }

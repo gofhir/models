@@ -771,11 +771,20 @@ func (b *SubscriptionChannelBuilder) SetPayloadExt(v Element) *SubscriptionChann
 	return b
 }
 
-// AddHeaderExt appends an extension slot for Header.
+// AddHeaderExt attaches extensions to the Header element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddHeader twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *SubscriptionChannelBuilder) AddHeaderExt(v *Element) *SubscriptionChannelBuilder {
+	for len(b.subscriptionChannel.HeaderExt) < len(b.subscriptionChannel.Header)-1 {
+		b.subscriptionChannel.HeaderExt = append(b.subscriptionChannel.HeaderExt, nil)
+	}
 	b.subscriptionChannel.HeaderExt = append(b.subscriptionChannel.HeaderExt, v)
 	return b
 }

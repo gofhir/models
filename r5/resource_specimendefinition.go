@@ -1651,20 +1651,38 @@ func (b *SpecimenDefinitionBuilder) SetTitleExt(v Element) *SpecimenDefinitionBu
 	return b
 }
 
-// AddDerivedFromCanonicalExt appends an extension slot for DerivedFromCanonical.
+// AddDerivedFromCanonicalExt attaches extensions to the DerivedFromCanonical element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDerivedFromCanonical twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *SpecimenDefinitionBuilder) AddDerivedFromCanonicalExt(v *Element) *SpecimenDefinitionBuilder {
+	for len(b.specimenDefinition.DerivedFromCanonicalExt) < len(b.specimenDefinition.DerivedFromCanonical)-1 {
+		b.specimenDefinition.DerivedFromCanonicalExt = append(b.specimenDefinition.DerivedFromCanonicalExt, nil)
+	}
 	b.specimenDefinition.DerivedFromCanonicalExt = append(b.specimenDefinition.DerivedFromCanonicalExt, v)
 	return b
 }
 
-// AddDerivedFromUriExt appends an extension slot for DerivedFromUri.
+// AddDerivedFromUriExt attaches extensions to the DerivedFromUri element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDerivedFromUri twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *SpecimenDefinitionBuilder) AddDerivedFromUriExt(v *Element) *SpecimenDefinitionBuilder {
+	for len(b.specimenDefinition.DerivedFromUriExt) < len(b.specimenDefinition.DerivedFromUri)-1 {
+		b.specimenDefinition.DerivedFromUriExt = append(b.specimenDefinition.DerivedFromUriExt, nil)
+	}
 	b.specimenDefinition.DerivedFromUriExt = append(b.specimenDefinition.DerivedFromUriExt, v)
 	return b
 }

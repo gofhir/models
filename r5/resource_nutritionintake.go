@@ -1187,20 +1187,38 @@ func (b *NutritionIntakeBuilder) SetLanguageExt(v Element) *NutritionIntakeBuild
 	return b
 }
 
-// AddInstantiatesCanonicalExt appends an extension slot for InstantiatesCanonical.
+// AddInstantiatesCanonicalExt attaches extensions to the InstantiatesCanonical element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesCanonical twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *NutritionIntakeBuilder) AddInstantiatesCanonicalExt(v *Element) *NutritionIntakeBuilder {
+	for len(b.nutritionIntake.InstantiatesCanonicalExt) < len(b.nutritionIntake.InstantiatesCanonical)-1 {
+		b.nutritionIntake.InstantiatesCanonicalExt = append(b.nutritionIntake.InstantiatesCanonicalExt, nil)
+	}
 	b.nutritionIntake.InstantiatesCanonicalExt = append(b.nutritionIntake.InstantiatesCanonicalExt, v)
 	return b
 }
 
-// AddInstantiatesUriExt appends an extension slot for InstantiatesUri.
+// AddInstantiatesUriExt attaches extensions to the InstantiatesUri element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesUri twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *NutritionIntakeBuilder) AddInstantiatesUriExt(v *Element) *NutritionIntakeBuilder {
+	for len(b.nutritionIntake.InstantiatesUriExt) < len(b.nutritionIntake.InstantiatesUri)-1 {
+		b.nutritionIntake.InstantiatesUriExt = append(b.nutritionIntake.InstantiatesUriExt, nil)
+	}
 	b.nutritionIntake.InstantiatesUriExt = append(b.nutritionIntake.InstantiatesUriExt, v)
 	return b
 }

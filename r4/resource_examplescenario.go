@@ -1885,11 +1885,20 @@ func (b *ExampleScenarioBuilder) SetPurposeExt(v Element) *ExampleScenarioBuilde
 	return b
 }
 
-// AddWorkflowExt appends an extension slot for Workflow.
+// AddWorkflowExt attaches extensions to the Workflow element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddWorkflow twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ExampleScenarioBuilder) AddWorkflowExt(v *Element) *ExampleScenarioBuilder {
+	for len(b.exampleScenario.WorkflowExt) < len(b.exampleScenario.Workflow)-1 {
+		b.exampleScenario.WorkflowExt = append(b.exampleScenario.WorkflowExt, nil)
+	}
 	b.exampleScenario.WorkflowExt = append(b.exampleScenario.WorkflowExt, v)
 	return b
 }

@@ -1029,11 +1029,20 @@ func (b *AllergyIntoleranceBuilder) SetLanguageExt(v Element) *AllergyIntoleranc
 	return b
 }
 
-// AddCategoryExt appends an extension slot for Category.
+// AddCategoryExt attaches extensions to the Category element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddCategory twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *AllergyIntoleranceBuilder) AddCategoryExt(v *Element) *AllergyIntoleranceBuilder {
+	for len(b.allergyIntolerance.CategoryExt) < len(b.allergyIntolerance.Category)-1 {
+		b.allergyIntolerance.CategoryExt = append(b.allergyIntolerance.CategoryExt, nil)
+	}
 	b.allergyIntolerance.CategoryExt = append(b.allergyIntolerance.CategoryExt, v)
 	return b
 }

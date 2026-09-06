@@ -3621,11 +3621,20 @@ func (b *TestScriptBuilder) SetCopyrightLabelExt(v Element) *TestScriptBuilder {
 	return b
 }
 
-// AddProfileExt appends an extension slot for Profile.
+// AddProfileExt attaches extensions to the Profile element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddProfile twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *TestScriptBuilder) AddProfileExt(v *Element) *TestScriptBuilder {
+	for len(b.testScript.ProfileExt) < len(b.testScript.Profile)-1 {
+		b.testScript.ProfileExt = append(b.testScript.ProfileExt, nil)
+	}
 	b.testScript.ProfileExt = append(b.testScript.ProfileExt, v)
 	return b
 }
@@ -3985,11 +3994,20 @@ func (b *TestScriptMetadataCapabilityBuilder) SetDescriptionExt(v Element) *Test
 	return b
 }
 
-// AddOriginExt appends an extension slot for Origin.
+// AddOriginExt attaches extensions to the Origin element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddOrigin twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *TestScriptMetadataCapabilityBuilder) AddOriginExt(v *Element) *TestScriptMetadataCapabilityBuilder {
+	for len(b.testScriptMetadataCapability.OriginExt) < len(b.testScriptMetadataCapability.Origin)-1 {
+		b.testScriptMetadataCapability.OriginExt = append(b.testScriptMetadataCapability.OriginExt, nil)
+	}
 	b.testScriptMetadataCapability.OriginExt = append(b.testScriptMetadataCapability.OriginExt, v)
 	return b
 }
@@ -4004,11 +4022,20 @@ func (b *TestScriptMetadataCapabilityBuilder) SetDestinationExt(v Element) *Test
 	return b
 }
 
-// AddLinkExt appends an extension slot for Link.
+// AddLinkExt attaches extensions to the Link element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddLink twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *TestScriptMetadataCapabilityBuilder) AddLinkExt(v *Element) *TestScriptMetadataCapabilityBuilder {
+	for len(b.testScriptMetadataCapability.LinkExt) < len(b.testScriptMetadataCapability.Link)-1 {
+		b.testScriptMetadataCapability.LinkExt = append(b.testScriptMetadataCapability.LinkExt, nil)
+	}
 	b.testScriptMetadataCapability.LinkExt = append(b.testScriptMetadataCapability.LinkExt, v)
 	return b
 }

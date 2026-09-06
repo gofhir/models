@@ -1440,11 +1440,20 @@ func (b *StructureDefinitionBuilder) SetAbstractExt(v Element) *StructureDefinit
 	return b
 }
 
-// AddContextInvariantExt appends an extension slot for ContextInvariant.
+// AddContextInvariantExt attaches extensions to the ContextInvariant element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddContextInvariant twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *StructureDefinitionBuilder) AddContextInvariantExt(v *Element) *StructureDefinitionBuilder {
+	for len(b.structureDefinition.ContextInvariantExt) < len(b.structureDefinition.ContextInvariant)-1 {
+		b.structureDefinition.ContextInvariantExt = append(b.structureDefinition.ContextInvariantExt, nil)
+	}
 	b.structureDefinition.ContextInvariantExt = append(b.structureDefinition.ContextInvariantExt, v)
 	return b
 }

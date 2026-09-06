@@ -1522,29 +1522,56 @@ func (b *NutritionOrderBuilder) SetLanguageExt(v Element) *NutritionOrderBuilder
 	return b
 }
 
-// AddInstantiatesCanonicalExt appends an extension slot for InstantiatesCanonical.
+// AddInstantiatesCanonicalExt attaches extensions to the InstantiatesCanonical element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesCanonical twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *NutritionOrderBuilder) AddInstantiatesCanonicalExt(v *Element) *NutritionOrderBuilder {
+	for len(b.nutritionOrder.InstantiatesCanonicalExt) < len(b.nutritionOrder.InstantiatesCanonical)-1 {
+		b.nutritionOrder.InstantiatesCanonicalExt = append(b.nutritionOrder.InstantiatesCanonicalExt, nil)
+	}
 	b.nutritionOrder.InstantiatesCanonicalExt = append(b.nutritionOrder.InstantiatesCanonicalExt, v)
 	return b
 }
 
-// AddInstantiatesUriExt appends an extension slot for InstantiatesUri.
+// AddInstantiatesUriExt attaches extensions to the InstantiatesUri element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesUri twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *NutritionOrderBuilder) AddInstantiatesUriExt(v *Element) *NutritionOrderBuilder {
+	for len(b.nutritionOrder.InstantiatesUriExt) < len(b.nutritionOrder.InstantiatesUri)-1 {
+		b.nutritionOrder.InstantiatesUriExt = append(b.nutritionOrder.InstantiatesUriExt, nil)
+	}
 	b.nutritionOrder.InstantiatesUriExt = append(b.nutritionOrder.InstantiatesUriExt, v)
 	return b
 }
 
-// AddInstantiatesExt appends an extension slot for Instantiates.
+// AddInstantiatesExt attaches extensions to the Instantiates element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiates twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *NutritionOrderBuilder) AddInstantiatesExt(v *Element) *NutritionOrderBuilder {
+	for len(b.nutritionOrder.InstantiatesExt) < len(b.nutritionOrder.Instantiates)-1 {
+		b.nutritionOrder.InstantiatesExt = append(b.nutritionOrder.InstantiatesExt, nil)
+	}
 	b.nutritionOrder.InstantiatesExt = append(b.nutritionOrder.InstantiatesExt, v)
 	return b
 }

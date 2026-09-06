@@ -625,11 +625,20 @@ func (b *SubstanceProteinBuilder) SetNumberOfSubunitsExt(v Element) *SubstancePr
 	return b
 }
 
-// AddDisulfideLinkageExt appends an extension slot for DisulfideLinkage.
+// AddDisulfideLinkageExt attaches extensions to the DisulfideLinkage element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDisulfideLinkage twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *SubstanceProteinBuilder) AddDisulfideLinkageExt(v *Element) *SubstanceProteinBuilder {
+	for len(b.substanceProtein.DisulfideLinkageExt) < len(b.substanceProtein.DisulfideLinkage)-1 {
+		b.substanceProtein.DisulfideLinkageExt = append(b.substanceProtein.DisulfideLinkageExt, nil)
+	}
 	b.substanceProtein.DisulfideLinkageExt = append(b.substanceProtein.DisulfideLinkageExt, v)
 	return b
 }

@@ -3826,29 +3826,56 @@ func (b *ClaimResponseAddItemBuilder) AddDetail(v ClaimResponseAddItemDetail) *C
 	return b
 }
 
-// AddItemSequenceExt appends an extension slot for ItemSequence.
+// AddItemSequenceExt attaches extensions to the ItemSequence element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddItemSequence twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ClaimResponseAddItemBuilder) AddItemSequenceExt(v *Element) *ClaimResponseAddItemBuilder {
+	for len(b.claimResponseAddItem.ItemSequenceExt) < len(b.claimResponseAddItem.ItemSequence)-1 {
+		b.claimResponseAddItem.ItemSequenceExt = append(b.claimResponseAddItem.ItemSequenceExt, nil)
+	}
 	b.claimResponseAddItem.ItemSequenceExt = append(b.claimResponseAddItem.ItemSequenceExt, v)
 	return b
 }
 
-// AddDetailSequenceExt appends an extension slot for DetailSequence.
+// AddDetailSequenceExt attaches extensions to the DetailSequence element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDetailSequence twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ClaimResponseAddItemBuilder) AddDetailSequenceExt(v *Element) *ClaimResponseAddItemBuilder {
+	for len(b.claimResponseAddItem.DetailSequenceExt) < len(b.claimResponseAddItem.DetailSequence)-1 {
+		b.claimResponseAddItem.DetailSequenceExt = append(b.claimResponseAddItem.DetailSequenceExt, nil)
+	}
 	b.claimResponseAddItem.DetailSequenceExt = append(b.claimResponseAddItem.DetailSequenceExt, v)
 	return b
 }
 
-// AddSubdetailSequenceExt appends an extension slot for SubdetailSequence.
+// AddSubdetailSequenceExt attaches extensions to the SubdetailSequence element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddSubdetailSequence twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ClaimResponseAddItemBuilder) AddSubdetailSequenceExt(v *Element) *ClaimResponseAddItemBuilder {
+	for len(b.claimResponseAddItem.SubdetailSequenceExt) < len(b.claimResponseAddItem.SubdetailSequence)-1 {
+		b.claimResponseAddItem.SubdetailSequenceExt = append(b.claimResponseAddItem.SubdetailSequenceExt, nil)
+	}
 	b.claimResponseAddItem.SubdetailSequenceExt = append(b.claimResponseAddItem.SubdetailSequenceExt, v)
 	return b
 }
@@ -3863,11 +3890,20 @@ func (b *ClaimResponseAddItemBuilder) SetFactorExt(v Element) *ClaimResponseAddI
 	return b
 }
 
-// AddNoteNumberExt appends an extension slot for NoteNumber.
+// AddNoteNumberExt attaches extensions to the NoteNumber element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddNoteNumber twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ClaimResponseAddItemBuilder) AddNoteNumberExt(v *Element) *ClaimResponseAddItemBuilder {
+	for len(b.claimResponseAddItem.NoteNumberExt) < len(b.claimResponseAddItem.NoteNumber)-1 {
+		b.claimResponseAddItem.NoteNumberExt = append(b.claimResponseAddItem.NoteNumberExt, nil)
+	}
 	b.claimResponseAddItem.NoteNumberExt = append(b.claimResponseAddItem.NoteNumberExt, v)
 	return b
 }
@@ -4087,11 +4123,20 @@ func (b *ClaimResponseAddItemDetailBuilder) SetFactorExt(v Element) *ClaimRespon
 	return b
 }
 
-// AddNoteNumberExt appends an extension slot for NoteNumber.
+// AddNoteNumberExt attaches extensions to the NoteNumber element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddNoteNumber twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ClaimResponseAddItemDetailBuilder) AddNoteNumberExt(v *Element) *ClaimResponseAddItemDetailBuilder {
+	for len(b.claimResponseAddItemDetail.NoteNumberExt) < len(b.claimResponseAddItemDetail.NoteNumber)-1 {
+		b.claimResponseAddItemDetail.NoteNumberExt = append(b.claimResponseAddItemDetail.NoteNumberExt, nil)
+	}
 	b.claimResponseAddItemDetail.NoteNumberExt = append(b.claimResponseAddItemDetail.NoteNumberExt, v)
 	return b
 }
@@ -4233,11 +4278,20 @@ func (b *ClaimResponseAddItemDetailSubDetailBuilder) SetFactorExt(v Element) *Cl
 	return b
 }
 
-// AddNoteNumberExt appends an extension slot for NoteNumber.
+// AddNoteNumberExt attaches extensions to the NoteNumber element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddNoteNumber twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ClaimResponseAddItemDetailSubDetailBuilder) AddNoteNumberExt(v *Element) *ClaimResponseAddItemDetailSubDetailBuilder {
+	for len(b.claimResponseAddItemDetailSubDetail.NoteNumberExt) < len(b.claimResponseAddItemDetailSubDetail.NoteNumber)-1 {
+		b.claimResponseAddItemDetailSubDetail.NoteNumberExt = append(b.claimResponseAddItemDetailSubDetail.NoteNumberExt, nil)
+	}
 	b.claimResponseAddItemDetailSubDetail.NoteNumberExt = append(b.claimResponseAddItemDetailSubDetail.NoteNumberExt, v)
 	return b
 }
@@ -4351,11 +4405,20 @@ func (b *ClaimResponseErrorBuilder) SetSubDetailSequenceExt(v Element) *ClaimRes
 	return b
 }
 
-// AddExpressionExt appends an extension slot for Expression.
+// AddExpressionExt attaches extensions to the Expression element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddExpression twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ClaimResponseErrorBuilder) AddExpressionExt(v *Element) *ClaimResponseErrorBuilder {
+	for len(b.claimResponseError.ExpressionExt) < len(b.claimResponseError.Expression)-1 {
+		b.claimResponseError.ExpressionExt = append(b.claimResponseError.ExpressionExt, nil)
+	}
 	b.claimResponseError.ExpressionExt = append(b.claimResponseError.ExpressionExt, v)
 	return b
 }
@@ -4646,11 +4709,20 @@ func (b *ClaimResponseItemBuilder) SetItemSequenceExt(v Element) *ClaimResponseI
 	return b
 }
 
-// AddNoteNumberExt appends an extension slot for NoteNumber.
+// AddNoteNumberExt attaches extensions to the NoteNumber element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddNoteNumber twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ClaimResponseItemBuilder) AddNoteNumberExt(v *Element) *ClaimResponseItemBuilder {
+	for len(b.claimResponseItem.NoteNumberExt) < len(b.claimResponseItem.NoteNumber)-1 {
+		b.claimResponseItem.NoteNumberExt = append(b.claimResponseItem.NoteNumberExt, nil)
+	}
 	b.claimResponseItem.NoteNumberExt = append(b.claimResponseItem.NoteNumberExt, v)
 	return b
 }
@@ -4819,11 +4891,20 @@ func (b *ClaimResponseItemDetailBuilder) SetDetailSequenceExt(v Element) *ClaimR
 	return b
 }
 
-// AddNoteNumberExt appends an extension slot for NoteNumber.
+// AddNoteNumberExt attaches extensions to the NoteNumber element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddNoteNumber twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ClaimResponseItemDetailBuilder) AddNoteNumberExt(v *Element) *ClaimResponseItemDetailBuilder {
+	for len(b.claimResponseItemDetail.NoteNumberExt) < len(b.claimResponseItemDetail.NoteNumber)-1 {
+		b.claimResponseItemDetail.NoteNumberExt = append(b.claimResponseItemDetail.NoteNumberExt, nil)
+	}
 	b.claimResponseItemDetail.NoteNumberExt = append(b.claimResponseItemDetail.NoteNumberExt, v)
 	return b
 }
@@ -4917,11 +4998,20 @@ func (b *ClaimResponseItemDetailSubDetailBuilder) SetSubDetailSequenceExt(v Elem
 	return b
 }
 
-// AddNoteNumberExt appends an extension slot for NoteNumber.
+// AddNoteNumberExt attaches extensions to the NoteNumber element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddNoteNumber twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ClaimResponseItemDetailSubDetailBuilder) AddNoteNumberExt(v *Element) *ClaimResponseItemDetailSubDetailBuilder {
+	for len(b.claimResponseItemDetailSubDetail.NoteNumberExt) < len(b.claimResponseItemDetailSubDetail.NoteNumber)-1 {
+		b.claimResponseItemDetailSubDetail.NoteNumberExt = append(b.claimResponseItemDetailSubDetail.NoteNumberExt, nil)
+	}
 	b.claimResponseItemDetailSubDetail.NoteNumberExt = append(b.claimResponseItemDetailSubDetail.NoteNumberExt, v)
 	return b
 }

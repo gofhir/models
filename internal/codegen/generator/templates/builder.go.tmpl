@@ -131,11 +131,20 @@ func (b *{{$r.Name}}Builder) Set{{.Name}}(v {{.GoType}}) *{{$r.Name}}Builder {
 {{- if .HasExtension}}
 {{- if .IsArray}}
 
-// Add{{.Name}}Ext appends an extension slot for {{.Name}}.
+// Add{{.Name}}Ext attaches extensions to the {{.Name}} element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after Add{{.Name}} twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *{{$r.Name}}Builder) Add{{.Name}}Ext(v *Element) *{{$r.Name}}Builder {
+	for len(b.{{$r.LowerName}}.{{.Name}}Ext) < len(b.{{$r.LowerName}}.{{.Name}})-1 {
+		b.{{$r.LowerName}}.{{.Name}}Ext = append(b.{{$r.LowerName}}.{{.Name}}Ext, nil)
+	}
 	b.{{$r.LowerName}}.{{.Name}}Ext = append(b.{{$r.LowerName}}.{{.Name}}Ext, v)
 	return b
 }

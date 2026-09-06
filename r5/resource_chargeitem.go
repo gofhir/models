@@ -1017,20 +1017,38 @@ func (b *ChargeItemBuilder) SetLanguageExt(v Element) *ChargeItemBuilder {
 	return b
 }
 
-// AddDefinitionUriExt appends an extension slot for DefinitionUri.
+// AddDefinitionUriExt attaches extensions to the DefinitionUri element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDefinitionUri twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ChargeItemBuilder) AddDefinitionUriExt(v *Element) *ChargeItemBuilder {
+	for len(b.chargeItem.DefinitionUriExt) < len(b.chargeItem.DefinitionUri)-1 {
+		b.chargeItem.DefinitionUriExt = append(b.chargeItem.DefinitionUriExt, nil)
+	}
 	b.chargeItem.DefinitionUriExt = append(b.chargeItem.DefinitionUriExt, v)
 	return b
 }
 
-// AddDefinitionCanonicalExt appends an extension slot for DefinitionCanonical.
+// AddDefinitionCanonicalExt attaches extensions to the DefinitionCanonical element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDefinitionCanonical twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ChargeItemBuilder) AddDefinitionCanonicalExt(v *Element) *ChargeItemBuilder {
+	for len(b.chargeItem.DefinitionCanonicalExt) < len(b.chargeItem.DefinitionCanonical)-1 {
+		b.chargeItem.DefinitionCanonicalExt = append(b.chargeItem.DefinitionCanonicalExt, nil)
+	}
 	b.chargeItem.DefinitionCanonicalExt = append(b.chargeItem.DefinitionCanonicalExt, v)
 	return b
 }

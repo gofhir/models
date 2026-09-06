@@ -953,11 +953,20 @@ func (b *LocationBuilder) SetNameExt(v Element) *LocationBuilder {
 	return b
 }
 
-// AddAliasExt appends an extension slot for Alias.
+// AddAliasExt attaches extensions to the Alias element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddAlias twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *LocationBuilder) AddAliasExt(v *Element) *LocationBuilder {
+	for len(b.location.AliasExt) < len(b.location.Alias)-1 {
+		b.location.AliasExt = append(b.location.AliasExt, nil)
+	}
 	b.location.AliasExt = append(b.location.AliasExt, v)
 	return b
 }
@@ -1065,11 +1074,20 @@ func (b *LocationHoursOfOperationBuilder) SetClosingTime(v string) *LocationHour
 	return b
 }
 
-// AddDaysOfWeekExt appends an extension slot for DaysOfWeek.
+// AddDaysOfWeekExt attaches extensions to the DaysOfWeek element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDaysOfWeek twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *LocationHoursOfOperationBuilder) AddDaysOfWeekExt(v *Element) *LocationHoursOfOperationBuilder {
+	for len(b.locationHoursOfOperation.DaysOfWeekExt) < len(b.locationHoursOfOperation.DaysOfWeek)-1 {
+		b.locationHoursOfOperation.DaysOfWeekExt = append(b.locationHoursOfOperation.DaysOfWeekExt, nil)
+	}
 	b.locationHoursOfOperation.DaysOfWeekExt = append(b.locationHoursOfOperation.DaysOfWeekExt, v)
 	return b
 }

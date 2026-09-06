@@ -1985,20 +1985,38 @@ func (b *RequestOrchestrationBuilder) SetLanguageExt(v Element) *RequestOrchestr
 	return b
 }
 
-// AddInstantiatesCanonicalExt appends an extension slot for InstantiatesCanonical.
+// AddInstantiatesCanonicalExt attaches extensions to the InstantiatesCanonical element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesCanonical twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *RequestOrchestrationBuilder) AddInstantiatesCanonicalExt(v *Element) *RequestOrchestrationBuilder {
+	for len(b.requestOrchestration.InstantiatesCanonicalExt) < len(b.requestOrchestration.InstantiatesCanonical)-1 {
+		b.requestOrchestration.InstantiatesCanonicalExt = append(b.requestOrchestration.InstantiatesCanonicalExt, nil)
+	}
 	b.requestOrchestration.InstantiatesCanonicalExt = append(b.requestOrchestration.InstantiatesCanonicalExt, v)
 	return b
 }
 
-// AddInstantiatesUriExt appends an extension slot for InstantiatesUri.
+// AddInstantiatesUriExt attaches extensions to the InstantiatesUri element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesUri twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *RequestOrchestrationBuilder) AddInstantiatesUriExt(v *Element) *RequestOrchestrationBuilder {
+	for len(b.requestOrchestration.InstantiatesUriExt) < len(b.requestOrchestration.InstantiatesUri)-1 {
+		b.requestOrchestration.InstantiatesUriExt = append(b.requestOrchestration.InstantiatesUriExt, nil)
+	}
 	b.requestOrchestration.InstantiatesUriExt = append(b.requestOrchestration.InstantiatesUriExt, v)
 	return b
 }

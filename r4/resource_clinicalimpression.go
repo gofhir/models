@@ -1022,11 +1022,20 @@ func (b *ClinicalImpressionBuilder) SetDateExt(v Element) *ClinicalImpressionBui
 	return b
 }
 
-// AddProtocolExt appends an extension slot for Protocol.
+// AddProtocolExt attaches extensions to the Protocol element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddProtocol twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ClinicalImpressionBuilder) AddProtocolExt(v *Element) *ClinicalImpressionBuilder {
+	for len(b.clinicalImpression.ProtocolExt) < len(b.clinicalImpression.Protocol)-1 {
+		b.clinicalImpression.ProtocolExt = append(b.clinicalImpression.ProtocolExt, nil)
+	}
 	b.clinicalImpression.ProtocolExt = append(b.clinicalImpression.ProtocolExt, v)
 	return b
 }

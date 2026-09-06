@@ -1314,11 +1314,20 @@ func (b *ImagingSelectionInstanceBuilder) SetNumberExt(v Element) *ImagingSelect
 	return b
 }
 
-// AddSubsetExt appends an extension slot for Subset.
+// AddSubsetExt attaches extensions to the Subset element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddSubset twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ImagingSelectionInstanceBuilder) AddSubsetExt(v *Element) *ImagingSelectionInstanceBuilder {
+	for len(b.imagingSelectionInstance.SubsetExt) < len(b.imagingSelectionInstance.Subset)-1 {
+		b.imagingSelectionInstance.SubsetExt = append(b.imagingSelectionInstance.SubsetExt, nil)
+	}
 	b.imagingSelectionInstance.SubsetExt = append(b.imagingSelectionInstance.SubsetExt, v)
 	return b
 }
@@ -1394,11 +1403,20 @@ func (b *ImagingSelectionInstanceImageRegion2DBuilder) SetRegionTypeExt(v Elemen
 	return b
 }
 
-// AddCoordinateExt appends an extension slot for Coordinate.
+// AddCoordinateExt attaches extensions to the Coordinate element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddCoordinate twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ImagingSelectionInstanceImageRegion2DBuilder) AddCoordinateExt(v *Element) *ImagingSelectionInstanceImageRegion2DBuilder {
+	for len(b.imagingSelectionInstanceImageRegion2D.CoordinateExt) < len(b.imagingSelectionInstanceImageRegion2D.Coordinate)-1 {
+		b.imagingSelectionInstanceImageRegion2D.CoordinateExt = append(b.imagingSelectionInstanceImageRegion2D.CoordinateExt, nil)
+	}
 	b.imagingSelectionInstanceImageRegion2D.CoordinateExt = append(b.imagingSelectionInstanceImageRegion2D.CoordinateExt, v)
 	return b
 }
@@ -1474,11 +1492,20 @@ func (b *ImagingSelectionInstanceImageRegion3DBuilder) SetRegionTypeExt(v Elemen
 	return b
 }
 
-// AddCoordinateExt appends an extension slot for Coordinate.
+// AddCoordinateExt attaches extensions to the Coordinate element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddCoordinate twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ImagingSelectionInstanceImageRegion3DBuilder) AddCoordinateExt(v *Element) *ImagingSelectionInstanceImageRegion3DBuilder {
+	for len(b.imagingSelectionInstanceImageRegion3D.CoordinateExt) < len(b.imagingSelectionInstanceImageRegion3D.Coordinate)-1 {
+		b.imagingSelectionInstanceImageRegion3D.CoordinateExt = append(b.imagingSelectionInstanceImageRegion3D.CoordinateExt, nil)
+	}
 	b.imagingSelectionInstanceImageRegion3D.CoordinateExt = append(b.imagingSelectionInstanceImageRegion3D.CoordinateExt, v)
 	return b
 }

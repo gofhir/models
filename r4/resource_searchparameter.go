@@ -1102,11 +1102,20 @@ func (b *SearchParameterBuilder) SetCodeExt(v Element) *SearchParameterBuilder {
 	return b
 }
 
-// AddBaseExt appends an extension slot for Base.
+// AddBaseExt attaches extensions to the Base element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddBase twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *SearchParameterBuilder) AddBaseExt(v *Element) *SearchParameterBuilder {
+	for len(b.searchParameter.BaseExt) < len(b.searchParameter.Base)-1 {
+		b.searchParameter.BaseExt = append(b.searchParameter.BaseExt, nil)
+	}
 	b.searchParameter.BaseExt = append(b.searchParameter.BaseExt, v)
 	return b
 }
@@ -1151,11 +1160,20 @@ func (b *SearchParameterBuilder) SetXpathUsageExt(v Element) *SearchParameterBui
 	return b
 }
 
-// AddTargetExt appends an extension slot for Target.
+// AddTargetExt attaches extensions to the Target element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddTarget twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *SearchParameterBuilder) AddTargetExt(v *Element) *SearchParameterBuilder {
+	for len(b.searchParameter.TargetExt) < len(b.searchParameter.Target)-1 {
+		b.searchParameter.TargetExt = append(b.searchParameter.TargetExt, nil)
+	}
 	b.searchParameter.TargetExt = append(b.searchParameter.TargetExt, v)
 	return b
 }
@@ -1180,29 +1198,56 @@ func (b *SearchParameterBuilder) SetMultipleAndExt(v Element) *SearchParameterBu
 	return b
 }
 
-// AddComparatorExt appends an extension slot for Comparator.
+// AddComparatorExt attaches extensions to the Comparator element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddComparator twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *SearchParameterBuilder) AddComparatorExt(v *Element) *SearchParameterBuilder {
+	for len(b.searchParameter.ComparatorExt) < len(b.searchParameter.Comparator)-1 {
+		b.searchParameter.ComparatorExt = append(b.searchParameter.ComparatorExt, nil)
+	}
 	b.searchParameter.ComparatorExt = append(b.searchParameter.ComparatorExt, v)
 	return b
 }
 
-// AddModifierExt appends an extension slot for Modifier.
+// AddModifierExt attaches extensions to the Modifier element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddModifier twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *SearchParameterBuilder) AddModifierExt(v *Element) *SearchParameterBuilder {
+	for len(b.searchParameter.ModifierExt) < len(b.searchParameter.Modifier)-1 {
+		b.searchParameter.ModifierExt = append(b.searchParameter.ModifierExt, nil)
+	}
 	b.searchParameter.ModifierExt = append(b.searchParameter.ModifierExt, v)
 	return b
 }
 
-// AddChainExt appends an extension slot for Chain.
+// AddChainExt attaches extensions to the Chain element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddChain twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *SearchParameterBuilder) AddChainExt(v *Element) *SearchParameterBuilder {
+	for len(b.searchParameter.ChainExt) < len(b.searchParameter.Chain)-1 {
+		b.searchParameter.ChainExt = append(b.searchParameter.ChainExt, nil)
+	}
 	b.searchParameter.ChainExt = append(b.searchParameter.ChainExt, v)
 	return b
 }

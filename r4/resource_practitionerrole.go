@@ -945,11 +945,20 @@ func (b *PractitionerRoleAvailableTimeBuilder) SetAvailableEndTime(v string) *Pr
 	return b
 }
 
-// AddDaysOfWeekExt appends an extension slot for DaysOfWeek.
+// AddDaysOfWeekExt attaches extensions to the DaysOfWeek element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDaysOfWeek twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *PractitionerRoleAvailableTimeBuilder) AddDaysOfWeekExt(v *Element) *PractitionerRoleAvailableTimeBuilder {
+	for len(b.practitionerRoleAvailableTime.DaysOfWeekExt) < len(b.practitionerRoleAvailableTime.DaysOfWeek)-1 {
+		b.practitionerRoleAvailableTime.DaysOfWeekExt = append(b.practitionerRoleAvailableTime.DaysOfWeekExt, nil)
+	}
 	b.practitionerRoleAvailableTime.DaysOfWeekExt = append(b.practitionerRoleAvailableTime.DaysOfWeekExt, v)
 	return b
 }

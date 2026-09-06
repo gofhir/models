@@ -1475,20 +1475,38 @@ func (b *MedicationRequestBuilder) SetAuthoredOnExt(v Element) *MedicationReques
 	return b
 }
 
-// AddInstantiatesCanonicalExt appends an extension slot for InstantiatesCanonical.
+// AddInstantiatesCanonicalExt attaches extensions to the InstantiatesCanonical element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesCanonical twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *MedicationRequestBuilder) AddInstantiatesCanonicalExt(v *Element) *MedicationRequestBuilder {
+	for len(b.medicationRequest.InstantiatesCanonicalExt) < len(b.medicationRequest.InstantiatesCanonical)-1 {
+		b.medicationRequest.InstantiatesCanonicalExt = append(b.medicationRequest.InstantiatesCanonicalExt, nil)
+	}
 	b.medicationRequest.InstantiatesCanonicalExt = append(b.medicationRequest.InstantiatesCanonicalExt, v)
 	return b
 }
 
-// AddInstantiatesUriExt appends an extension slot for InstantiatesUri.
+// AddInstantiatesUriExt attaches extensions to the InstantiatesUri element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesUri twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *MedicationRequestBuilder) AddInstantiatesUriExt(v *Element) *MedicationRequestBuilder {
+	for len(b.medicationRequest.InstantiatesUriExt) < len(b.medicationRequest.InstantiatesUri)-1 {
+		b.medicationRequest.InstantiatesUriExt = append(b.medicationRequest.InstantiatesUriExt, nil)
+	}
 	b.medicationRequest.InstantiatesUriExt = append(b.medicationRequest.InstantiatesUriExt, v)
 	return b
 }

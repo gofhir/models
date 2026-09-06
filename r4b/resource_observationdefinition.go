@@ -916,11 +916,20 @@ func (b *ObservationDefinitionBuilder) SetLanguageExt(v Element) *ObservationDef
 	return b
 }
 
-// AddPermittedDataTypeExt appends an extension slot for PermittedDataType.
+// AddPermittedDataTypeExt attaches extensions to the PermittedDataType element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddPermittedDataType twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ObservationDefinitionBuilder) AddPermittedDataTypeExt(v *Element) *ObservationDefinitionBuilder {
+	for len(b.observationDefinition.PermittedDataTypeExt) < len(b.observationDefinition.PermittedDataType)-1 {
+		b.observationDefinition.PermittedDataTypeExt = append(b.observationDefinition.PermittedDataTypeExt, nil)
+	}
 	b.observationDefinition.PermittedDataTypeExt = append(b.observationDefinition.PermittedDataTypeExt, v)
 	return b
 }

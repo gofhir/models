@@ -1969,11 +1969,20 @@ func (b *ActivityDefinitionBuilder) SetLastReviewDateExt(v Element) *ActivityDef
 	return b
 }
 
-// AddLibraryExt appends an extension slot for Library.
+// AddLibraryExt attaches extensions to the Library element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddLibrary twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ActivityDefinitionBuilder) AddLibraryExt(v *Element) *ActivityDefinitionBuilder {
+	for len(b.activityDefinition.LibraryExt) < len(b.activityDefinition.Library)-1 {
+		b.activityDefinition.LibraryExt = append(b.activityDefinition.LibraryExt, nil)
+	}
 	b.activityDefinition.LibraryExt = append(b.activityDefinition.LibraryExt, v)
 	return b
 }
@@ -2028,29 +2037,56 @@ func (b *ActivityDefinitionBuilder) SetDoNotPerformExt(v Element) *ActivityDefin
 	return b
 }
 
-// AddSpecimenRequirementExt appends an extension slot for SpecimenRequirement.
+// AddSpecimenRequirementExt attaches extensions to the SpecimenRequirement element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddSpecimenRequirement twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ActivityDefinitionBuilder) AddSpecimenRequirementExt(v *Element) *ActivityDefinitionBuilder {
+	for len(b.activityDefinition.SpecimenRequirementExt) < len(b.activityDefinition.SpecimenRequirement)-1 {
+		b.activityDefinition.SpecimenRequirementExt = append(b.activityDefinition.SpecimenRequirementExt, nil)
+	}
 	b.activityDefinition.SpecimenRequirementExt = append(b.activityDefinition.SpecimenRequirementExt, v)
 	return b
 }
 
-// AddObservationRequirementExt appends an extension slot for ObservationRequirement.
+// AddObservationRequirementExt attaches extensions to the ObservationRequirement element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddObservationRequirement twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ActivityDefinitionBuilder) AddObservationRequirementExt(v *Element) *ActivityDefinitionBuilder {
+	for len(b.activityDefinition.ObservationRequirementExt) < len(b.activityDefinition.ObservationRequirement)-1 {
+		b.activityDefinition.ObservationRequirementExt = append(b.activityDefinition.ObservationRequirementExt, nil)
+	}
 	b.activityDefinition.ObservationRequirementExt = append(b.activityDefinition.ObservationRequirementExt, v)
 	return b
 }
 
-// AddObservationResultRequirementExt appends an extension slot for ObservationResultRequirement.
+// AddObservationResultRequirementExt attaches extensions to the ObservationResultRequirement element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddObservationResultRequirement twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ActivityDefinitionBuilder) AddObservationResultRequirementExt(v *Element) *ActivityDefinitionBuilder {
+	for len(b.activityDefinition.ObservationResultRequirementExt) < len(b.activityDefinition.ObservationResultRequirement)-1 {
+		b.activityDefinition.ObservationResultRequirementExt = append(b.activityDefinition.ObservationResultRequirementExt, nil)
+	}
 	b.activityDefinition.ObservationResultRequirementExt = append(b.activityDefinition.ObservationResultRequirementExt, v)
 	return b
 }

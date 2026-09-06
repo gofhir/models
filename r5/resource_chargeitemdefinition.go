@@ -1167,29 +1167,56 @@ func (b *ChargeItemDefinitionBuilder) SetTitleExt(v Element) *ChargeItemDefiniti
 	return b
 }
 
-// AddDerivedFromUriExt appends an extension slot for DerivedFromUri.
+// AddDerivedFromUriExt attaches extensions to the DerivedFromUri element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDerivedFromUri twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ChargeItemDefinitionBuilder) AddDerivedFromUriExt(v *Element) *ChargeItemDefinitionBuilder {
+	for len(b.chargeItemDefinition.DerivedFromUriExt) < len(b.chargeItemDefinition.DerivedFromUri)-1 {
+		b.chargeItemDefinition.DerivedFromUriExt = append(b.chargeItemDefinition.DerivedFromUriExt, nil)
+	}
 	b.chargeItemDefinition.DerivedFromUriExt = append(b.chargeItemDefinition.DerivedFromUriExt, v)
 	return b
 }
 
-// AddPartOfExt appends an extension slot for PartOf.
+// AddPartOfExt attaches extensions to the PartOf element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddPartOf twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ChargeItemDefinitionBuilder) AddPartOfExt(v *Element) *ChargeItemDefinitionBuilder {
+	for len(b.chargeItemDefinition.PartOfExt) < len(b.chargeItemDefinition.PartOf)-1 {
+		b.chargeItemDefinition.PartOfExt = append(b.chargeItemDefinition.PartOfExt, nil)
+	}
 	b.chargeItemDefinition.PartOfExt = append(b.chargeItemDefinition.PartOfExt, v)
 	return b
 }
 
-// AddReplacesExt appends an extension slot for Replaces.
+// AddReplacesExt attaches extensions to the Replaces element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddReplaces twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ChargeItemDefinitionBuilder) AddReplacesExt(v *Element) *ChargeItemDefinitionBuilder {
+	for len(b.chargeItemDefinition.ReplacesExt) < len(b.chargeItemDefinition.Replaces)-1 {
+		b.chargeItemDefinition.ReplacesExt = append(b.chargeItemDefinition.ReplacesExt, nil)
+	}
 	b.chargeItemDefinition.ReplacesExt = append(b.chargeItemDefinition.ReplacesExt, v)
 	return b
 }

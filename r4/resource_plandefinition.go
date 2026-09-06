@@ -2423,11 +2423,20 @@ func (b *PlanDefinitionBuilder) SetLastReviewDateExt(v Element) *PlanDefinitionB
 	return b
 }
 
-// AddLibraryExt appends an extension slot for Library.
+// AddLibraryExt attaches extensions to the Library element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddLibrary twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *PlanDefinitionBuilder) AddLibraryExt(v *Element) *PlanDefinitionBuilder {
+	for len(b.planDefinition.LibraryExt) < len(b.planDefinition.Library)-1 {
+		b.planDefinition.LibraryExt = append(b.planDefinition.LibraryExt, nil)
+	}
 	b.planDefinition.LibraryExt = append(b.planDefinition.LibraryExt, v)
 	return b
 }
@@ -2810,11 +2819,20 @@ func (b *PlanDefinitionActionBuilder) SetPriorityExt(v Element) *PlanDefinitionA
 	return b
 }
 
-// AddGoalIdExt appends an extension slot for GoalId.
+// AddGoalIdExt attaches extensions to the GoalId element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddGoalId twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *PlanDefinitionActionBuilder) AddGoalIdExt(v *Element) *PlanDefinitionActionBuilder {
+	for len(b.planDefinitionAction.GoalIdExt) < len(b.planDefinitionAction.GoalId)-1 {
+		b.planDefinitionAction.GoalIdExt = append(b.planDefinitionAction.GoalIdExt, nil)
+	}
 	b.planDefinitionAction.GoalIdExt = append(b.planDefinitionAction.GoalIdExt, v)
 	return b
 }

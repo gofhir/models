@@ -2450,11 +2450,20 @@ func (b *MeasureBuilder) SetLastReviewDateExt(v Element) *MeasureBuilder {
 	return b
 }
 
-// AddLibraryExt appends an extension slot for Library.
+// AddLibraryExt attaches extensions to the Library element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddLibrary twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *MeasureBuilder) AddLibraryExt(v *Element) *MeasureBuilder {
+	for len(b.measure.LibraryExt) < len(b.measure.Library)-1 {
+		b.measure.LibraryExt = append(b.measure.LibraryExt, nil)
+	}
 	b.measure.LibraryExt = append(b.measure.LibraryExt, v)
 	return b
 }
@@ -2716,11 +2725,20 @@ func (b *MeasureGroupBuilder) SetRateAggregationExt(v Element) *MeasureGroupBuil
 	return b
 }
 
-// AddLibraryExt appends an extension slot for Library.
+// AddLibraryExt attaches extensions to the Library element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddLibrary twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *MeasureGroupBuilder) AddLibraryExt(v *Element) *MeasureGroupBuilder {
+	for len(b.measureGroup.LibraryExt) < len(b.measureGroup.Library)-1 {
+		b.measureGroup.LibraryExt = append(b.measureGroup.LibraryExt, nil)
+	}
 	b.measureGroup.LibraryExt = append(b.measureGroup.LibraryExt, v)
 	return b
 }

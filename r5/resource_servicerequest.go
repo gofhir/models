@@ -1529,20 +1529,38 @@ func (b *ServiceRequestBuilder) SetLanguageExt(v Element) *ServiceRequestBuilder
 	return b
 }
 
-// AddInstantiatesCanonicalExt appends an extension slot for InstantiatesCanonical.
+// AddInstantiatesCanonicalExt attaches extensions to the InstantiatesCanonical element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesCanonical twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ServiceRequestBuilder) AddInstantiatesCanonicalExt(v *Element) *ServiceRequestBuilder {
+	for len(b.serviceRequest.InstantiatesCanonicalExt) < len(b.serviceRequest.InstantiatesCanonical)-1 {
+		b.serviceRequest.InstantiatesCanonicalExt = append(b.serviceRequest.InstantiatesCanonicalExt, nil)
+	}
 	b.serviceRequest.InstantiatesCanonicalExt = append(b.serviceRequest.InstantiatesCanonicalExt, v)
 	return b
 }
 
-// AddInstantiatesUriExt appends an extension slot for InstantiatesUri.
+// AddInstantiatesUriExt attaches extensions to the InstantiatesUri element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesUri twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ServiceRequestBuilder) AddInstantiatesUriExt(v *Element) *ServiceRequestBuilder {
+	for len(b.serviceRequest.InstantiatesUriExt) < len(b.serviceRequest.InstantiatesUri)-1 {
+		b.serviceRequest.InstantiatesUriExt = append(b.serviceRequest.InstantiatesUriExt, nil)
+	}
 	b.serviceRequest.InstantiatesUriExt = append(b.serviceRequest.InstantiatesUriExt, v)
 	return b
 }

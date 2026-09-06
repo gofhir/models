@@ -1507,11 +1507,20 @@ func (b *AuditEventAgentBuilder) SetRequestorExt(v Element) *AuditEventAgentBuil
 	return b
 }
 
-// AddPolicyExt appends an extension slot for Policy.
+// AddPolicyExt attaches extensions to the Policy element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddPolicy twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *AuditEventAgentBuilder) AddPolicyExt(v *Element) *AuditEventAgentBuilder {
+	for len(b.auditEventAgent.PolicyExt) < len(b.auditEventAgent.Policy)-1 {
+		b.auditEventAgent.PolicyExt = append(b.auditEventAgent.PolicyExt, nil)
+	}
 	b.auditEventAgent.PolicyExt = append(b.auditEventAgent.PolicyExt, v)
 	return b
 }

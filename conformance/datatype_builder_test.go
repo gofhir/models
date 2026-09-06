@@ -272,3 +272,43 @@ func TestTheChainNeverBreaks(t *testing.T) {
 		t.Error("birthDate has no value; only its extension was set")
 	}
 }
+
+// TestExtensionSlotsLineUpWithTheirValues covers a defect that produced a wrong
+// document without any error.
+//
+// The value and extension slices of a repeating primitive are parallel by
+// position. AddGivenExt used to append blindly, so after adding two given names
+// the extension landed at index 0 and belonged to the first name rather than the
+// second — the obvious reading of the code being wrong, silently.
+func TestExtensionSlotsLineUpWithTheirValues(t *testing.T) {
+	ext := r4.NewElementBuilder().
+		AddExtension(r4.NewExtensionBuilder().SetUrl("http://x").SetValueCode("c").Build()).
+		Build()
+
+	n := r4.NewHumanNameBuilder().
+		AddGiven("A").
+		AddGiven("B").
+		AddGivenExt(&ext).
+		Build()
+
+	if len(n.Given) != 2 {
+		t.Fatalf("got %d given, want 2", len(n.Given))
+	}
+	if len(n.GivenExt) != 2 {
+		t.Fatalf("got %d extension slots for 2 values; they are parallel by position", len(n.GivenExt))
+	}
+	if n.GivenExt[0] != nil {
+		t.Error("the first name has no extension, so its slot must be nil")
+	}
+	if n.GivenExt[1] == nil {
+		t.Fatal("the extension did not land on the name it was added after")
+	}
+
+	out, err := json.Marshal(n)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	if !strings.Contains(string(out), `"_given":[null,{`) {
+		t.Errorf("the wire form does not line up: %s", out)
+	}
+}

@@ -2581,11 +2581,20 @@ func (b *MedicationKnowledgeBuilder) SetStatusExt(v Element) *MedicationKnowledg
 	return b
 }
 
-// AddSynonymExt appends an extension slot for Synonym.
+// AddSynonymExt attaches extensions to the Synonym element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddSynonym twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *MedicationKnowledgeBuilder) AddSynonymExt(v *Element) *MedicationKnowledgeBuilder {
+	for len(b.medicationKnowledge.SynonymExt) < len(b.medicationKnowledge.Synonym)-1 {
+		b.medicationKnowledge.SynonymExt = append(b.medicationKnowledge.SynonymExt, nil)
+	}
 	b.medicationKnowledge.SynonymExt = append(b.medicationKnowledge.SynonymExt, v)
 	return b
 }
@@ -2820,11 +2829,20 @@ func (b *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilde
 	return b
 }
 
-// AddValueExt appends an extension slot for Value.
+// AddValueExt attaches extensions to the Value element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddValue twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder) AddValueExt(v *Element) *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder {
+	for len(b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.ValueExt) < len(b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.Value)-1 {
+		b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.ValueExt = append(b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.ValueExt, nil)
+	}
 	b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.ValueExt = append(b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.ValueExt, v)
 	return b
 }

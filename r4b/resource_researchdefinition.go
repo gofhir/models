@@ -1159,11 +1159,20 @@ func (b *ResearchDefinitionBuilder) SetDescriptionExt(v Element) *ResearchDefini
 	return b
 }
 
-// AddCommentExt appends an extension slot for Comment.
+// AddCommentExt attaches extensions to the Comment element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddComment twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ResearchDefinitionBuilder) AddCommentExt(v *Element) *ResearchDefinitionBuilder {
+	for len(b.researchDefinition.CommentExt) < len(b.researchDefinition.Comment)-1 {
+		b.researchDefinition.CommentExt = append(b.researchDefinition.CommentExt, nil)
+	}
 	b.researchDefinition.CommentExt = append(b.researchDefinition.CommentExt, v)
 	return b
 }
@@ -1218,11 +1227,20 @@ func (b *ResearchDefinitionBuilder) SetLastReviewDateExt(v Element) *ResearchDef
 	return b
 }
 
-// AddLibraryExt appends an extension slot for Library.
+// AddLibraryExt attaches extensions to the Library element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddLibrary twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ResearchDefinitionBuilder) AddLibraryExt(v *Element) *ResearchDefinitionBuilder {
+	for len(b.researchDefinition.LibraryExt) < len(b.researchDefinition.Library)-1 {
+		b.researchDefinition.LibraryExt = append(b.researchDefinition.LibraryExt, nil)
+	}
 	b.researchDefinition.LibraryExt = append(b.researchDefinition.LibraryExt, v)
 	return b
 }

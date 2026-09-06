@@ -729,11 +729,20 @@ func (b *EndpointBuilder) SetAddressExt(v Element) *EndpointBuilder {
 	return b
 }
 
-// AddHeaderExt appends an extension slot for Header.
+// AddHeaderExt attaches extensions to the Header element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddHeader twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *EndpointBuilder) AddHeaderExt(v *Element) *EndpointBuilder {
+	for len(b.endpoint.HeaderExt) < len(b.endpoint.Header)-1 {
+		b.endpoint.HeaderExt = append(b.endpoint.HeaderExt, nil)
+	}
 	b.endpoint.HeaderExt = append(b.endpoint.HeaderExt, v)
 	return b
 }
@@ -799,11 +808,20 @@ func (b *EndpointPayloadBuilder) AddMimeType(v string) *EndpointPayloadBuilder {
 	return b
 }
 
-// AddMimeTypeExt appends an extension slot for MimeType.
+// AddMimeTypeExt attaches extensions to the MimeType element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddMimeType twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *EndpointPayloadBuilder) AddMimeTypeExt(v *Element) *EndpointPayloadBuilder {
+	for len(b.endpointPayload.MimeTypeExt) < len(b.endpointPayload.MimeType)-1 {
+		b.endpointPayload.MimeTypeExt = append(b.endpointPayload.MimeTypeExt, nil)
+	}
 	b.endpointPayload.MimeTypeExt = append(b.endpointPayload.MimeTypeExt, v)
 	return b
 }

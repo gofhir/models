@@ -2305,11 +2305,20 @@ func (b *StructureMapBuilder) SetCopyrightLabelExt(v Element) *StructureMapBuild
 	return b
 }
 
-// AddImportExt appends an extension slot for Import.
+// AddImportExt attaches extensions to the Import element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddImport twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *StructureMapBuilder) AddImportExt(v *Element) *StructureMapBuilder {
+	for len(b.structureMap.ImportExt) < len(b.structureMap.Import)-1 {
+		b.structureMap.ImportExt = append(b.structureMap.ImportExt, nil)
+	}
 	b.structureMap.ImportExt = append(b.structureMap.ImportExt, v)
 	return b
 }
@@ -3138,11 +3147,20 @@ func (b *StructureMapGroupRuleTargetBuilder) SetVariableExt(v Element) *Structur
 	return b
 }
 
-// AddListModeExt appends an extension slot for ListMode.
+// AddListModeExt attaches extensions to the ListMode element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddListMode twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *StructureMapGroupRuleTargetBuilder) AddListModeExt(v *Element) *StructureMapGroupRuleTargetBuilder {
+	for len(b.structureMapGroupRuleTarget.ListModeExt) < len(b.structureMapGroupRuleTarget.ListMode)-1 {
+		b.structureMapGroupRuleTarget.ListModeExt = append(b.structureMapGroupRuleTarget.ListModeExt, nil)
+	}
 	b.structureMapGroupRuleTarget.ListModeExt = append(b.structureMapGroupRuleTarget.ListModeExt, v)
 	return b
 }

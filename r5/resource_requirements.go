@@ -1150,29 +1150,56 @@ func (b *RequirementsBuilder) SetCopyrightLabelExt(v Element) *RequirementsBuild
 	return b
 }
 
-// AddDerivedFromExt appends an extension slot for DerivedFrom.
+// AddDerivedFromExt attaches extensions to the DerivedFrom element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDerivedFrom twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *RequirementsBuilder) AddDerivedFromExt(v *Element) *RequirementsBuilder {
+	for len(b.requirements.DerivedFromExt) < len(b.requirements.DerivedFrom)-1 {
+		b.requirements.DerivedFromExt = append(b.requirements.DerivedFromExt, nil)
+	}
 	b.requirements.DerivedFromExt = append(b.requirements.DerivedFromExt, v)
 	return b
 }
 
-// AddReferenceExt appends an extension slot for Reference.
+// AddReferenceExt attaches extensions to the Reference element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddReference twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *RequirementsBuilder) AddReferenceExt(v *Element) *RequirementsBuilder {
+	for len(b.requirements.ReferenceExt) < len(b.requirements.Reference)-1 {
+		b.requirements.ReferenceExt = append(b.requirements.ReferenceExt, nil)
+	}
 	b.requirements.ReferenceExt = append(b.requirements.ReferenceExt, v)
 	return b
 }
 
-// AddActorExt appends an extension slot for Actor.
+// AddActorExt attaches extensions to the Actor element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddActor twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *RequirementsBuilder) AddActorExt(v *Element) *RequirementsBuilder {
+	for len(b.requirements.ActorExt) < len(b.requirements.Actor)-1 {
+		b.requirements.ActorExt = append(b.requirements.ActorExt, nil)
+	}
 	b.requirements.ActorExt = append(b.requirements.ActorExt, v)
 	return b
 }
@@ -1321,11 +1348,20 @@ func (b *RequirementsStatementBuilder) SetLabelExt(v Element) *RequirementsState
 	return b
 }
 
-// AddConformanceExt appends an extension slot for Conformance.
+// AddConformanceExt attaches extensions to the Conformance element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddConformance twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *RequirementsStatementBuilder) AddConformanceExt(v *Element) *RequirementsStatementBuilder {
+	for len(b.requirementsStatement.ConformanceExt) < len(b.requirementsStatement.Conformance)-1 {
+		b.requirementsStatement.ConformanceExt = append(b.requirementsStatement.ConformanceExt, nil)
+	}
 	b.requirementsStatement.ConformanceExt = append(b.requirementsStatement.ConformanceExt, v)
 	return b
 }
@@ -1370,20 +1406,38 @@ func (b *RequirementsStatementBuilder) SetParentExt(v Element) *RequirementsStat
 	return b
 }
 
-// AddSatisfiedByExt appends an extension slot for SatisfiedBy.
+// AddSatisfiedByExt attaches extensions to the SatisfiedBy element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddSatisfiedBy twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *RequirementsStatementBuilder) AddSatisfiedByExt(v *Element) *RequirementsStatementBuilder {
+	for len(b.requirementsStatement.SatisfiedByExt) < len(b.requirementsStatement.SatisfiedBy)-1 {
+		b.requirementsStatement.SatisfiedByExt = append(b.requirementsStatement.SatisfiedByExt, nil)
+	}
 	b.requirementsStatement.SatisfiedByExt = append(b.requirementsStatement.SatisfiedByExt, v)
 	return b
 }
 
-// AddReferenceExt appends an extension slot for Reference.
+// AddReferenceExt attaches extensions to the Reference element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddReference twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *RequirementsStatementBuilder) AddReferenceExt(v *Element) *RequirementsStatementBuilder {
+	for len(b.requirementsStatement.ReferenceExt) < len(b.requirementsStatement.Reference)-1 {
+		b.requirementsStatement.ReferenceExt = append(b.requirementsStatement.ReferenceExt, nil)
+	}
 	b.requirementsStatement.ReferenceExt = append(b.requirementsStatement.ReferenceExt, v)
 	return b
 }

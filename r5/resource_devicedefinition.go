@@ -2890,11 +2890,20 @@ func (b *DeviceDefinitionBuilder) SetModelNumberExt(v Element) *DeviceDefinition
 	return b
 }
 
-// AddProductionIdentifierInUDIExt appends an extension slot for ProductionIdentifierInUDI.
+// AddProductionIdentifierInUDIExt attaches extensions to the ProductionIdentifierInUDI element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddProductionIdentifierInUDI twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *DeviceDefinitionBuilder) AddProductionIdentifierInUDIExt(v *Element) *DeviceDefinitionBuilder {
+	for len(b.deviceDefinition.ProductionIdentifierInUDIExt) < len(b.deviceDefinition.ProductionIdentifierInUDI)-1 {
+		b.deviceDefinition.ProductionIdentifierInUDIExt = append(b.deviceDefinition.ProductionIdentifierInUDIExt, nil)
+	}
 	b.deviceDefinition.ProductionIdentifierInUDIExt = append(b.deviceDefinition.ProductionIdentifierInUDIExt, v)
 	return b
 }
@@ -3098,11 +3107,20 @@ func (b *DeviceDefinitionConformsToBuilder) AddSource(v RelatedArtifact) *Device
 	return b
 }
 
-// AddVersionExt appends an extension slot for Version.
+// AddVersionExt attaches extensions to the Version element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddVersion twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *DeviceDefinitionConformsToBuilder) AddVersionExt(v *Element) *DeviceDefinitionConformsToBuilder {
+	for len(b.deviceDefinitionConformsTo.VersionExt) < len(b.deviceDefinitionConformsTo.Version)-1 {
+		b.deviceDefinitionConformsTo.VersionExt = append(b.deviceDefinitionConformsTo.VersionExt, nil)
+	}
 	b.deviceDefinitionConformsTo.VersionExt = append(b.deviceDefinitionConformsTo.VersionExt, v)
 	return b
 }

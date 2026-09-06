@@ -2480,20 +2480,38 @@ func (b *TerminologyCapabilitiesCodeSystemVersionBuilder) SetCompositionalExt(v 
 	return b
 }
 
-// AddLanguageExt appends an extension slot for Language.
+// AddLanguageExt attaches extensions to the Language element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddLanguage twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *TerminologyCapabilitiesCodeSystemVersionBuilder) AddLanguageExt(v *Element) *TerminologyCapabilitiesCodeSystemVersionBuilder {
+	for len(b.terminologyCapabilitiesCodeSystemVersion.LanguageExt) < len(b.terminologyCapabilitiesCodeSystemVersion.Language)-1 {
+		b.terminologyCapabilitiesCodeSystemVersion.LanguageExt = append(b.terminologyCapabilitiesCodeSystemVersion.LanguageExt, nil)
+	}
 	b.terminologyCapabilitiesCodeSystemVersion.LanguageExt = append(b.terminologyCapabilitiesCodeSystemVersion.LanguageExt, v)
 	return b
 }
 
-// AddPropertyExt appends an extension slot for Property.
+// AddPropertyExt attaches extensions to the Property element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddProperty twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *TerminologyCapabilitiesCodeSystemVersionBuilder) AddPropertyExt(v *Element) *TerminologyCapabilitiesCodeSystemVersionBuilder {
+	for len(b.terminologyCapabilitiesCodeSystemVersion.PropertyExt) < len(b.terminologyCapabilitiesCodeSystemVersion.Property)-1 {
+		b.terminologyCapabilitiesCodeSystemVersion.PropertyExt = append(b.terminologyCapabilitiesCodeSystemVersion.PropertyExt, nil)
+	}
 	b.terminologyCapabilitiesCodeSystemVersion.PropertyExt = append(b.terminologyCapabilitiesCodeSystemVersion.PropertyExt, v)
 	return b
 }
@@ -2569,11 +2587,20 @@ func (b *TerminologyCapabilitiesCodeSystemVersionFilterBuilder) SetCodeExt(v Ele
 	return b
 }
 
-// AddOpExt appends an extension slot for Op.
+// AddOpExt attaches extensions to the Op element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddOp twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *TerminologyCapabilitiesCodeSystemVersionFilterBuilder) AddOpExt(v *Element) *TerminologyCapabilitiesCodeSystemVersionFilterBuilder {
+	for len(b.terminologyCapabilitiesCodeSystemVersionFilter.OpExt) < len(b.terminologyCapabilitiesCodeSystemVersionFilter.Op)-1 {
+		b.terminologyCapabilitiesCodeSystemVersionFilter.OpExt = append(b.terminologyCapabilitiesCodeSystemVersionFilter.OpExt, nil)
+	}
 	b.terminologyCapabilitiesCodeSystemVersionFilter.OpExt = append(b.terminologyCapabilitiesCodeSystemVersionFilter.OpExt, v)
 	return b
 }

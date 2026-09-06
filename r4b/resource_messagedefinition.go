@@ -1148,11 +1148,20 @@ func (b *MessageDefinitionBuilder) SetTitleExt(v Element) *MessageDefinitionBuil
 	return b
 }
 
-// AddReplacesExt appends an extension slot for Replaces.
+// AddReplacesExt attaches extensions to the Replaces element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddReplaces twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *MessageDefinitionBuilder) AddReplacesExt(v *Element) *MessageDefinitionBuilder {
+	for len(b.messageDefinition.ReplacesExt) < len(b.messageDefinition.Replaces)-1 {
+		b.messageDefinition.ReplacesExt = append(b.messageDefinition.ReplacesExt, nil)
+	}
 	b.messageDefinition.ReplacesExt = append(b.messageDefinition.ReplacesExt, v)
 	return b
 }
@@ -1237,11 +1246,20 @@ func (b *MessageDefinitionBuilder) SetBaseExt(v Element) *MessageDefinitionBuild
 	return b
 }
 
-// AddParentExt appends an extension slot for Parent.
+// AddParentExt attaches extensions to the Parent element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddParent twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *MessageDefinitionBuilder) AddParentExt(v *Element) *MessageDefinitionBuilder {
+	for len(b.messageDefinition.ParentExt) < len(b.messageDefinition.Parent)-1 {
+		b.messageDefinition.ParentExt = append(b.messageDefinition.ParentExt, nil)
+	}
 	b.messageDefinition.ParentExt = append(b.messageDefinition.ParentExt, v)
 	return b
 }
@@ -1266,11 +1284,20 @@ func (b *MessageDefinitionBuilder) SetResponseRequiredExt(v Element) *MessageDef
 	return b
 }
 
-// AddGraphExt appends an extension slot for Graph.
+// AddGraphExt attaches extensions to the Graph element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddGraph twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *MessageDefinitionBuilder) AddGraphExt(v *Element) *MessageDefinitionBuilder {
+	for len(b.messageDefinition.GraphExt) < len(b.messageDefinition.Graph)-1 {
+		b.messageDefinition.GraphExt = append(b.messageDefinition.GraphExt, nil)
+	}
 	b.messageDefinition.GraphExt = append(b.messageDefinition.GraphExt, v)
 	return b
 }

@@ -967,11 +967,20 @@ func (b *ActorDefinitionBuilder) SetDocumentationExt(v Element) *ActorDefinition
 	return b
 }
 
-// AddReferenceExt appends an extension slot for Reference.
+// AddReferenceExt attaches extensions to the Reference element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddReference twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ActorDefinitionBuilder) AddReferenceExt(v *Element) *ActorDefinitionBuilder {
+	for len(b.actorDefinition.ReferenceExt) < len(b.actorDefinition.Reference)-1 {
+		b.actorDefinition.ReferenceExt = append(b.actorDefinition.ReferenceExt, nil)
+	}
 	b.actorDefinition.ReferenceExt = append(b.actorDefinition.ReferenceExt, v)
 	return b
 }
@@ -986,11 +995,20 @@ func (b *ActorDefinitionBuilder) SetCapabilitiesExt(v Element) *ActorDefinitionB
 	return b
 }
 
-// AddDerivedFromExt appends an extension slot for DerivedFrom.
+// AddDerivedFromExt attaches extensions to the DerivedFrom element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDerivedFrom twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ActorDefinitionBuilder) AddDerivedFromExt(v *Element) *ActorDefinitionBuilder {
+	for len(b.actorDefinition.DerivedFromExt) < len(b.actorDefinition.DerivedFrom)-1 {
+		b.actorDefinition.DerivedFromExt = append(b.actorDefinition.DerivedFromExt, nil)
+	}
 	b.actorDefinition.DerivedFromExt = append(b.actorDefinition.DerivedFromExt, v)
 	return b
 }

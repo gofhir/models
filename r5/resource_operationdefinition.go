@@ -1725,11 +1725,20 @@ func (b *OperationDefinitionBuilder) SetBaseExt(v Element) *OperationDefinitionB
 	return b
 }
 
-// AddResourceExt appends an extension slot for Resource.
+// AddResourceExt attaches extensions to the Resource element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddResource twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *OperationDefinitionBuilder) AddResourceExt(v *Element) *OperationDefinitionBuilder {
+	for len(b.operationDefinition.ResourceExt) < len(b.operationDefinition.Resource)-1 {
+		b.operationDefinition.ResourceExt = append(b.operationDefinition.ResourceExt, nil)
+	}
 	b.operationDefinition.ResourceExt = append(b.operationDefinition.ResourceExt, v)
 	return b
 }
@@ -1852,11 +1861,20 @@ func (b *OperationDefinitionOverloadBuilder) SetComment(v string) *OperationDefi
 	return b
 }
 
-// AddParameterNameExt appends an extension slot for ParameterName.
+// AddParameterNameExt attaches extensions to the ParameterName element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddParameterName twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *OperationDefinitionOverloadBuilder) AddParameterNameExt(v *Element) *OperationDefinitionOverloadBuilder {
+	for len(b.operationDefinitionOverload.ParameterNameExt) < len(b.operationDefinitionOverload.ParameterName)-1 {
+		b.operationDefinitionOverload.ParameterNameExt = append(b.operationDefinitionOverload.ParameterNameExt, nil)
+	}
 	b.operationDefinitionOverload.ParameterNameExt = append(b.operationDefinitionOverload.ParameterNameExt, v)
 	return b
 }
@@ -2026,11 +2044,20 @@ func (b *OperationDefinitionParameterBuilder) SetUseExt(v Element) *OperationDef
 	return b
 }
 
-// AddScopeExt appends an extension slot for Scope.
+// AddScopeExt attaches extensions to the Scope element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddScope twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *OperationDefinitionParameterBuilder) AddScopeExt(v *Element) *OperationDefinitionParameterBuilder {
+	for len(b.operationDefinitionParameter.ScopeExt) < len(b.operationDefinitionParameter.Scope)-1 {
+		b.operationDefinitionParameter.ScopeExt = append(b.operationDefinitionParameter.ScopeExt, nil)
+	}
 	b.operationDefinitionParameter.ScopeExt = append(b.operationDefinitionParameter.ScopeExt, v)
 	return b
 }
@@ -2075,20 +2102,38 @@ func (b *OperationDefinitionParameterBuilder) SetTypeExt(v Element) *OperationDe
 	return b
 }
 
-// AddAllowedTypeExt appends an extension slot for AllowedType.
+// AddAllowedTypeExt attaches extensions to the AllowedType element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddAllowedType twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *OperationDefinitionParameterBuilder) AddAllowedTypeExt(v *Element) *OperationDefinitionParameterBuilder {
+	for len(b.operationDefinitionParameter.AllowedTypeExt) < len(b.operationDefinitionParameter.AllowedType)-1 {
+		b.operationDefinitionParameter.AllowedTypeExt = append(b.operationDefinitionParameter.AllowedTypeExt, nil)
+	}
 	b.operationDefinitionParameter.AllowedTypeExt = append(b.operationDefinitionParameter.AllowedTypeExt, v)
 	return b
 }
 
-// AddTargetProfileExt appends an extension slot for TargetProfile.
+// AddTargetProfileExt attaches extensions to the TargetProfile element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddTargetProfile twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *OperationDefinitionParameterBuilder) AddTargetProfileExt(v *Element) *OperationDefinitionParameterBuilder {
+	for len(b.operationDefinitionParameter.TargetProfileExt) < len(b.operationDefinitionParameter.TargetProfile)-1 {
+		b.operationDefinitionParameter.TargetProfileExt = append(b.operationDefinitionParameter.TargetProfileExt, nil)
+	}
 	b.operationDefinitionParameter.TargetProfileExt = append(b.operationDefinitionParameter.TargetProfileExt, v)
 	return b
 }

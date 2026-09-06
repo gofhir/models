@@ -693,11 +693,20 @@ func (b *OrganizationBuilder) SetNameExt(v Element) *OrganizationBuilder {
 	return b
 }
 
-// AddAliasExt appends an extension slot for Alias.
+// AddAliasExt attaches extensions to the Alias element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddAlias twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *OrganizationBuilder) AddAliasExt(v *Element) *OrganizationBuilder {
+	for len(b.organization.AliasExt) < len(b.organization.Alias)-1 {
+		b.organization.AliasExt = append(b.organization.AliasExt, nil)
+	}
 	b.organization.AliasExt = append(b.organization.AliasExt, v)
 	return b
 }

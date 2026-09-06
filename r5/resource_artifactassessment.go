@@ -1094,11 +1094,20 @@ func (b *ArtifactAssessmentContentBuilder) SetSummaryExt(v Element) *ArtifactAss
 	return b
 }
 
-// AddPathExt appends an extension slot for Path.
+// AddPathExt attaches extensions to the Path element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddPath twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ArtifactAssessmentContentBuilder) AddPathExt(v *Element) *ArtifactAssessmentContentBuilder {
+	for len(b.artifactAssessmentContent.PathExt) < len(b.artifactAssessmentContent.Path)-1 {
+		b.artifactAssessmentContent.PathExt = append(b.artifactAssessmentContent.PathExt, nil)
+	}
 	b.artifactAssessmentContent.PathExt = append(b.artifactAssessmentContent.PathExt, v)
 	return b
 }

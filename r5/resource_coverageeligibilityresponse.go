@@ -1495,11 +1495,20 @@ func (b *CoverageEligibilityResponseBuilder) SetStatusExt(v Element) *CoverageEl
 	return b
 }
 
-// AddPurposeExt appends an extension slot for Purpose.
+// AddPurposeExt attaches extensions to the Purpose element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddPurpose twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *CoverageEligibilityResponseBuilder) AddPurposeExt(v *Element) *CoverageEligibilityResponseBuilder {
+	for len(b.coverageEligibilityResponse.PurposeExt) < len(b.coverageEligibilityResponse.Purpose)-1 {
+		b.coverageEligibilityResponse.PurposeExt = append(b.coverageEligibilityResponse.PurposeExt, nil)
+	}
 	b.coverageEligibilityResponse.PurposeExt = append(b.coverageEligibilityResponse.PurposeExt, v)
 	return b
 }
@@ -1612,11 +1621,20 @@ func (b *CoverageEligibilityResponseErrorBuilder) AddExpression(v string) *Cover
 	return b
 }
 
-// AddExpressionExt appends an extension slot for Expression.
+// AddExpressionExt attaches extensions to the Expression element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddExpression twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *CoverageEligibilityResponseErrorBuilder) AddExpressionExt(v *Element) *CoverageEligibilityResponseErrorBuilder {
+	for len(b.coverageEligibilityResponseError.ExpressionExt) < len(b.coverageEligibilityResponseError.Expression)-1 {
+		b.coverageEligibilityResponseError.ExpressionExt = append(b.coverageEligibilityResponseError.ExpressionExt, nil)
+	}
 	b.coverageEligibilityResponseError.ExpressionExt = append(b.coverageEligibilityResponseError.ExpressionExt, v)
 	return b
 }

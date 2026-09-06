@@ -1625,11 +1625,20 @@ func (b *ConditionDefinitionBuilder) SetHasStageExt(v Element) *ConditionDefinit
 	return b
 }
 
-// AddDefinitionExt appends an extension slot for Definition.
+// AddDefinitionExt attaches extensions to the Definition element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddDefinition twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *ConditionDefinitionBuilder) AddDefinitionExt(v *Element) *ConditionDefinitionBuilder {
+	for len(b.conditionDefinition.DefinitionExt) < len(b.conditionDefinition.Definition)-1 {
+		b.conditionDefinition.DefinitionExt = append(b.conditionDefinition.DefinitionExt, nil)
+	}
 	b.conditionDefinition.DefinitionExt = append(b.conditionDefinition.DefinitionExt, v)
 	return b
 }

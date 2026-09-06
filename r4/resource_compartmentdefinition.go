@@ -930,11 +930,20 @@ func (b *CompartmentDefinitionResourceBuilder) SetCodeExt(v Element) *Compartmen
 	return b
 }
 
-// AddParamExt appends an extension slot for Param.
+// AddParamExt attaches extensions to the Param element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddParam twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *CompartmentDefinitionResourceBuilder) AddParamExt(v *Element) *CompartmentDefinitionResourceBuilder {
+	for len(b.compartmentDefinitionResource.ParamExt) < len(b.compartmentDefinitionResource.Param)-1 {
+		b.compartmentDefinitionResource.ParamExt = append(b.compartmentDefinitionResource.ParamExt, nil)
+	}
 	b.compartmentDefinitionResource.ParamExt = append(b.compartmentDefinitionResource.ParamExt, v)
 	return b
 }

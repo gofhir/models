@@ -1214,11 +1214,20 @@ func (b *CoverageEligibilityRequestBuilder) SetStatusExt(v Element) *CoverageEli
 	return b
 }
 
-// AddPurposeExt appends an extension slot for Purpose.
+// AddPurposeExt attaches extensions to the Purpose element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddPurpose twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *CoverageEligibilityRequestBuilder) AddPurposeExt(v *Element) *CoverageEligibilityRequestBuilder {
+	for len(b.coverageEligibilityRequest.PurposeExt) < len(b.coverageEligibilityRequest.Purpose)-1 {
+		b.coverageEligibilityRequest.PurposeExt = append(b.coverageEligibilityRequest.PurposeExt, nil)
+	}
 	b.coverageEligibilityRequest.PurposeExt = append(b.coverageEligibilityRequest.PurposeExt, v)
 	return b
 }
@@ -1432,11 +1441,20 @@ func (b *CoverageEligibilityRequestItemBuilder) AddDetail(v Reference) *Coverage
 	return b
 }
 
-// AddSupportingInfoSequenceExt appends an extension slot for SupportingInfoSequence.
+// AddSupportingInfoSequenceExt attaches extensions to the SupportingInfoSequence element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddSupportingInfoSequence twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *CoverageEligibilityRequestItemBuilder) AddSupportingInfoSequenceExt(v *Element) *CoverageEligibilityRequestItemBuilder {
+	for len(b.coverageEligibilityRequestItem.SupportingInfoSequenceExt) < len(b.coverageEligibilityRequestItem.SupportingInfoSequence)-1 {
+		b.coverageEligibilityRequestItem.SupportingInfoSequenceExt = append(b.coverageEligibilityRequestItem.SupportingInfoSequenceExt, nil)
+	}
 	b.coverageEligibilityRequestItem.SupportingInfoSequenceExt = append(b.coverageEligibilityRequestItem.SupportingInfoSequenceExt, v)
 	return b
 }

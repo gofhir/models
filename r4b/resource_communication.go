@@ -916,20 +916,38 @@ func (b *CommunicationBuilder) SetLanguageExt(v Element) *CommunicationBuilder {
 	return b
 }
 
-// AddInstantiatesCanonicalExt appends an extension slot for InstantiatesCanonical.
+// AddInstantiatesCanonicalExt attaches extensions to the InstantiatesCanonical element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesCanonical twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *CommunicationBuilder) AddInstantiatesCanonicalExt(v *Element) *CommunicationBuilder {
+	for len(b.communication.InstantiatesCanonicalExt) < len(b.communication.InstantiatesCanonical)-1 {
+		b.communication.InstantiatesCanonicalExt = append(b.communication.InstantiatesCanonicalExt, nil)
+	}
 	b.communication.InstantiatesCanonicalExt = append(b.communication.InstantiatesCanonicalExt, v)
 	return b
 }
 
-// AddInstantiatesUriExt appends an extension slot for InstantiatesUri.
+// AddInstantiatesUriExt attaches extensions to the InstantiatesUri element added most
+// recently.
 //
-// The value and extension slices are parallel by position, so a slot must be
-// appended for every element — including the ones with no extension, as nil.
+// The two slices are parallel by position, so any earlier element that has no
+// extension is filled in as nil first. Appending blindly instead would put the
+// extension at the wrong index: after AddInstantiatesUri twice, a bare append lands at
+// position 0 and silently belongs to the first element rather than the second.
+//
+// A nil value is meaningful and can be passed deliberately: it is a position that
+// has no extension.
 func (b *CommunicationBuilder) AddInstantiatesUriExt(v *Element) *CommunicationBuilder {
+	for len(b.communication.InstantiatesUriExt) < len(b.communication.InstantiatesUri)-1 {
+		b.communication.InstantiatesUriExt = append(b.communication.InstantiatesUriExt, nil)
+	}
 	b.communication.InstantiatesUriExt = append(b.communication.InstantiatesUriExt, v)
 	return b
 }
