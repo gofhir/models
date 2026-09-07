@@ -582,13 +582,7 @@ func (r *DeviceDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ProductionIdentifierInUDI = append(r.ProductionIdentifierInUDI, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ProductionIdentifierInUDIExt) < len(r.ProductionIdentifierInUDI)-1 {
-						r.ProductionIdentifierInUDIExt = append(r.ProductionIdentifierInUDIExt, nil)
-					}
-					r.ProductionIdentifierInUDIExt = append(r.ProductionIdentifierInUDIExt, ext)
-				}
+				r.ProductionIdentifierInUDIExt = appendExtSlot(r.ProductionIdentifierInUDIExt, ext, len(r.ProductionIdentifierInUDI))
 			case "guideline":
 				var v DeviceDefinitionGuideline
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -613,6 +607,7 @@ func (r *DeviceDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 			}
 		case xml.EndElement:
+			r.ProductionIdentifierInUDIExt = alignExtSlots(r.ProductionIdentifierInUDIExt, len(r.ProductionIdentifierInUDI))
 			return nil
 		}
 	}
@@ -1041,13 +1036,7 @@ func (r *DeviceDefinitionConformsTo) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Version = append(r.Version, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.VersionExt) < len(r.Version)-1 {
-						r.VersionExt = append(r.VersionExt, nil)
-					}
-					r.VersionExt = append(r.VersionExt, ext)
-				}
+				r.VersionExt = appendExtSlot(r.VersionExt, ext, len(r.Version))
 			case "source":
 				var v RelatedArtifact
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1060,6 +1049,7 @@ func (r *DeviceDefinitionConformsTo) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 			}
 		case xml.EndElement:
+			r.VersionExt = alignExtSlots(r.VersionExt, len(r.Version))
 			return nil
 		}
 	}

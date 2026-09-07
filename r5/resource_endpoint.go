@@ -419,19 +419,14 @@ func (r *Endpoint) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Header = append(r.Header, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.HeaderExt) < len(r.Header)-1 {
-						r.HeaderExt = append(r.HeaderExt, nil)
-					}
-					r.HeaderExt = append(r.HeaderExt, ext)
-				}
+				r.HeaderExt = appendExtSlot(r.HeaderExt, ext, len(r.Header))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.HeaderExt = alignExtSlots(r.HeaderExt, len(r.Header))
 			return nil
 		}
 	}
@@ -556,19 +551,14 @@ func (r *EndpointPayload) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.MimeType = append(r.MimeType, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.MimeTypeExt) < len(r.MimeType)-1 {
-						r.MimeTypeExt = append(r.MimeTypeExt, nil)
-					}
-					r.MimeTypeExt = append(r.MimeTypeExt, ext)
-				}
+				r.MimeTypeExt = appendExtSlot(r.MimeTypeExt, ext, len(r.MimeType))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.MimeTypeExt = alignExtSlots(r.MimeTypeExt, len(r.MimeType))
 			return nil
 		}
 	}

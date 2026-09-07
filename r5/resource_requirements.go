@@ -540,13 +540,7 @@ func (r *Requirements) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFrom = append(r.DerivedFrom, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DerivedFromExt) < len(r.DerivedFrom)-1 {
-						r.DerivedFromExt = append(r.DerivedFromExt, nil)
-					}
-					r.DerivedFromExt = append(r.DerivedFromExt, ext)
-				}
+				r.DerivedFromExt = appendExtSlot(r.DerivedFromExt, ext, len(r.DerivedFrom))
 			case "reference":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -554,13 +548,7 @@ func (r *Requirements) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Reference = append(r.Reference, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ReferenceExt) < len(r.Reference)-1 {
-						r.ReferenceExt = append(r.ReferenceExt, nil)
-					}
-					r.ReferenceExt = append(r.ReferenceExt, ext)
-				}
+				r.ReferenceExt = appendExtSlot(r.ReferenceExt, ext, len(r.Reference))
 			case "actor":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -568,13 +556,7 @@ func (r *Requirements) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Actor = append(r.Actor, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ActorExt) < len(r.Actor)-1 {
-						r.ActorExt = append(r.ActorExt, nil)
-					}
-					r.ActorExt = append(r.ActorExt, ext)
-				}
+				r.ActorExt = appendExtSlot(r.ActorExt, ext, len(r.Actor))
 			case "statement":
 				var v RequirementsStatement
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -587,6 +569,9 @@ func (r *Requirements) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 			}
 		case xml.EndElement:
+			r.DerivedFromExt = alignExtSlots(r.DerivedFromExt, len(r.DerivedFrom))
+			r.ReferenceExt = alignExtSlots(r.ReferenceExt, len(r.Reference))
+			r.ActorExt = alignExtSlots(r.ActorExt, len(r.Actor))
 			return nil
 		}
 	}
@@ -775,13 +760,7 @@ func (r *RequirementsStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Conformance = append(r.Conformance, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ConformanceExt) < len(r.Conformance)-1 {
-						r.ConformanceExt = append(r.ConformanceExt, nil)
-					}
-					r.ConformanceExt = append(r.ConformanceExt, ext)
-				}
+				r.ConformanceExt = appendExtSlot(r.ConformanceExt, ext, len(r.Conformance))
 			case "conditionality":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -817,13 +796,7 @@ func (r *RequirementsStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SatisfiedBy = append(r.SatisfiedBy, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.SatisfiedByExt) < len(r.SatisfiedBy)-1 {
-						r.SatisfiedByExt = append(r.SatisfiedByExt, nil)
-					}
-					r.SatisfiedByExt = append(r.SatisfiedByExt, ext)
-				}
+				r.SatisfiedByExt = appendExtSlot(r.SatisfiedByExt, ext, len(r.SatisfiedBy))
 			case "reference":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -831,13 +804,7 @@ func (r *RequirementsStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Reference = append(r.Reference, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ReferenceExt) < len(r.Reference)-1 {
-						r.ReferenceExt = append(r.ReferenceExt, nil)
-					}
-					r.ReferenceExt = append(r.ReferenceExt, ext)
-				}
+				r.ReferenceExt = appendExtSlot(r.ReferenceExt, ext, len(r.Reference))
 			case "source":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -850,6 +817,9 @@ func (r *RequirementsStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 			}
 		case xml.EndElement:
+			r.ConformanceExt = alignExtSlots(r.ConformanceExt, len(r.Conformance))
+			r.SatisfiedByExt = alignExtSlots(r.SatisfiedByExt, len(r.SatisfiedBy))
+			r.ReferenceExt = alignExtSlots(r.ReferenceExt, len(r.Reference))
 			return nil
 		}
 	}

@@ -450,13 +450,7 @@ func (r *OperationOutcomeIssue) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Location = append(r.Location, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.LocationExt) < len(r.Location)-1 {
-						r.LocationExt = append(r.LocationExt, nil)
-					}
-					r.LocationExt = append(r.LocationExt, ext)
-				}
+				r.LocationExt = appendExtSlot(r.LocationExt, ext, len(r.Location))
 			case "expression":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -464,19 +458,15 @@ func (r *OperationOutcomeIssue) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Expression = append(r.Expression, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ExpressionExt) < len(r.Expression)-1 {
-						r.ExpressionExt = append(r.ExpressionExt, nil)
-					}
-					r.ExpressionExt = append(r.ExpressionExt, ext)
-				}
+				r.ExpressionExt = appendExtSlot(r.ExpressionExt, ext, len(r.Expression))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.LocationExt = alignExtSlots(r.LocationExt, len(r.Location))
+			r.ExpressionExt = alignExtSlots(r.ExpressionExt, len(r.Expression))
 			return nil
 		}
 	}

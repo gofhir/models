@@ -1086,13 +1086,7 @@ func (r *TerminologyCapabilitiesCodeSystemVersion) UnmarshalXML(d *xml.Decoder, 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Language = append(r.Language, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.LanguageExt) < len(r.Language)-1 {
-						r.LanguageExt = append(r.LanguageExt, nil)
-					}
-					r.LanguageExt = append(r.LanguageExt, ext)
-				}
+				r.LanguageExt = appendExtSlot(r.LanguageExt, ext, len(r.Language))
 			case "filter":
 				var v TerminologyCapabilitiesCodeSystemVersionFilter
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1106,19 +1100,15 @@ func (r *TerminologyCapabilitiesCodeSystemVersion) UnmarshalXML(d *xml.Decoder, 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Property = append(r.Property, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.PropertyExt) < len(r.Property)-1 {
-						r.PropertyExt = append(r.PropertyExt, nil)
-					}
-					r.PropertyExt = append(r.PropertyExt, ext)
-				}
+				r.PropertyExt = appendExtSlot(r.PropertyExt, ext, len(r.Property))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.LanguageExt = alignExtSlots(r.LanguageExt, len(r.Language))
+			r.PropertyExt = alignExtSlots(r.PropertyExt, len(r.Property))
 			return nil
 		}
 	}
@@ -1244,19 +1234,14 @@ func (r *TerminologyCapabilitiesCodeSystemVersionFilter) UnmarshalXML(d *xml.Dec
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Op = append(r.Op, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.OpExt) < len(r.Op)-1 {
-						r.OpExt = append(r.OpExt, nil)
-					}
-					r.OpExt = append(r.OpExt, ext)
-				}
+				r.OpExt = appendExtSlot(r.OpExt, ext, len(r.Op))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.OpExt = alignExtSlots(r.OpExt, len(r.Op))
 			return nil
 		}
 	}

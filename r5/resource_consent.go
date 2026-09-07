@@ -1313,19 +1313,14 @@ func (r *ConsentVerification) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.VerificationDate = append(r.VerificationDate, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.VerificationDateExt) < len(r.VerificationDate)-1 {
-						r.VerificationDateExt = append(r.VerificationDateExt, nil)
-					}
-					r.VerificationDateExt = append(r.VerificationDateExt, ext)
-				}
+				r.VerificationDateExt = appendExtSlot(r.VerificationDateExt, ext, len(r.VerificationDate))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.VerificationDateExt = alignExtSlots(r.VerificationDateExt, len(r.VerificationDate))
 			return nil
 		}
 	}

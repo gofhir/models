@@ -450,13 +450,7 @@ func (r *MedicationKnowledge) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Synonym = append(r.Synonym, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.SynonymExt) < len(r.Synonym)-1 {
-						r.SynonymExt = append(r.SynonymExt, nil)
-					}
-					r.SynonymExt = append(r.SynonymExt, ext)
-				}
+				r.SynonymExt = appendExtSlot(r.SynonymExt, ext, len(r.Synonym))
 			case "relatedMedicationKnowledge":
 				var v MedicationKnowledgeRelatedMedicationKnowledge
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -560,6 +554,7 @@ func (r *MedicationKnowledge) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 			}
 		case xml.EndElement:
+			r.SynonymExt = alignExtSlots(r.SynonymExt, len(r.Synonym))
 			return nil
 		}
 	}
@@ -981,19 +976,14 @@ func (r *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics) Unma
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Value = append(r.Value, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ValueExt) < len(r.Value)-1 {
-						r.ValueExt = append(r.ValueExt, nil)
-					}
-					r.ValueExt = append(r.ValueExt, ext)
-				}
+				r.ValueExt = appendExtSlot(r.ValueExt, ext, len(r.Value))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.ValueExt = alignExtSlots(r.ValueExt, len(r.Value))
 			return nil
 		}
 	}

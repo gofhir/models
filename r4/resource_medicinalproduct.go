@@ -441,13 +441,7 @@ func (r *MedicinalProduct) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SpecialMeasures = append(r.SpecialMeasures, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.SpecialMeasuresExt) < len(r.SpecialMeasures)-1 {
-						r.SpecialMeasuresExt = append(r.SpecialMeasuresExt, nil)
-					}
-					r.SpecialMeasuresExt = append(r.SpecialMeasuresExt, ext)
-				}
+				r.SpecialMeasuresExt = appendExtSlot(r.SpecialMeasuresExt, ext, len(r.SpecialMeasures))
 			case "paediatricUseIndicator":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -532,6 +526,7 @@ func (r *MedicinalProduct) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 			}
 		case xml.EndElement:
+			r.SpecialMeasuresExt = alignExtSlots(r.SpecialMeasuresExt, len(r.SpecialMeasures))
 			return nil
 		}
 	}

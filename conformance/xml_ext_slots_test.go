@@ -9,8 +9,16 @@ package conformance
 // against JSON; the spurious slot only shows when a document read as one is
 // written as the other, which nothing exercised. It surfaced from building the
 // same Patient nine different ways and finding that one of the nine disagreed.
+//
+// The first fix suppressed the empty slots but stopped the array at the last
+// extension, which left it shorter than the value array — a shape that appears
+// nowhere in the published corpus, where all 57 such arrays match their value
+// array and HL7 pads up to fourteen trailing nulls to keep them matching. So a
+// resource still serialized differently depending on the format it arrived in.
+// TestTheFormatADocumentArrivedInDoesNotShow is what closes that.
 
 import (
+	"bytes"
 	"encoding/json"
 	"strings"
 	"testing"
@@ -48,8 +56,13 @@ func TestXMLDoesNotInventExtensionSlots(t *testing.T) {
 
 func TestXMLKeepsExtensionSlotsInPosition(t *testing.T) {
 	// The companion slice is parallel by position, so an extension on the second
-	// value needs a nil in front of it. Suppressing the empty slots must not cost
-	// that alignment.
+	// of three values needs a nil in front of it and a nil behind it. Suppressing
+	// the slots for elements that have no extension must not cost that alignment:
+	// once any extension is present, the array runs the full length.
+	//
+	// That is what HL7 publishes. All 57 "_field" arrays in the corpus match their
+	// value array exactly, and R5's search-parameters.json pads fourteen trailing
+	// nulls to keep one aligned.
 	const doc = `<?xml version="1.0"?><Patient xmlns="http://hl7.org/fhir"><name>` +
 		`<given value="A"/>` +
 		`<given value="B"><extension url="http://x"><valueCode value="c"/></extension></given>` +
@@ -60,17 +73,19 @@ func TestXMLKeepsExtensionSlotsInPosition(t *testing.T) {
 	if err != nil {
 		t.Fatalf("unmarshal: %v", err)
 	}
-	p := res.(*r4.Patient)
+	p, ok := res.(*r4.Patient)
+	if !ok {
+		t.Fatalf("got %T", res)
+	}
 
 	if len(p.Name[0].Given) != 3 {
 		t.Fatalf("got %d given, want 3", len(p.Name[0].Given))
 	}
-	// Two slots, not three: the trailing value has no extension and needs none.
-	if len(p.Name[0].GivenExt) != 2 {
-		t.Fatalf("got %d slots, want 2", len(p.Name[0].GivenExt))
+	if len(p.Name[0].GivenExt) != 3 {
+		t.Fatalf("got %d slots for 3 values, want 3", len(p.Name[0].GivenExt))
 	}
-	if p.Name[0].GivenExt[0] != nil {
-		t.Error("the first value has no extension, so its slot must be nil")
+	if p.Name[0].GivenExt[0] != nil || p.Name[0].GivenExt[2] != nil {
+		t.Error("only the middle value carried an extension")
 	}
 	if p.Name[0].GivenExt[1] == nil {
 		t.Fatal("the extension did not land on the value that carried it")
@@ -80,8 +95,45 @@ func TestXMLKeepsExtensionSlotsInPosition(t *testing.T) {
 	if err != nil {
 		t.Fatalf("marshal: %v", err)
 	}
-	if !strings.Contains(string(out), `"_given":[null,{`) {
+	if !strings.Contains(string(out), `"_given":[null,{"extension":[{"url":"http://x","valueCode":"c"}]},null]`) {
 		t.Errorf("the wire form does not line up: %s", out)
+	}
+}
+
+func TestTheFormatADocumentArrivedInDoesNotShow(t *testing.T) {
+	// The first fix suppressed the phantom slot but left the arrays ragged, so a
+	// resource still serialized differently depending on the format it came in
+	// through — the same defect, one case narrower. This is the check that closes
+	// it: read as JSON and read as XML have to produce the same JSON.
+	const src = `{"resourceType":"Patient","name":[{"given":["A","B","C"],` +
+		`"_given":[null,{"extension":[{"url":"http://x","valueCode":"c"}]},null]}]}`
+
+	var fromJSON r4.Patient
+	if err := json.Unmarshal([]byte(src), &fromJSON); err != nil {
+		t.Fatalf("json: %v", err)
+	}
+	viaJSON, err := json.Marshal(&fromJSON)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	if string(viaJSON) != src {
+		t.Errorf("the JSON route is not stable:\n  got  %s\n  want %s", viaJSON, src)
+	}
+
+	asXML, err := r4.MarshalResourceXML(&fromJSON)
+	if err != nil {
+		t.Fatalf("to xml: %v", err)
+	}
+	res, err := r4.UnmarshalResourceXML(asXML)
+	if err != nil {
+		t.Fatalf("from xml: %v", err)
+	}
+	viaXML, err := json.Marshal(res)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	if !bytes.Equal(viaXML, viaJSON) {
+		t.Errorf("the two routes disagree:\n  json %s\n  xml  %s", viaJSON, viaXML)
 	}
 }
 

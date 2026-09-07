@@ -453,13 +453,7 @@ func (r *Questionnaire) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFrom = append(r.DerivedFrom, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DerivedFromExt) < len(r.DerivedFrom)-1 {
-						r.DerivedFromExt = append(r.DerivedFromExt, nil)
-					}
-					r.DerivedFromExt = append(r.DerivedFromExt, ext)
-				}
+				r.DerivedFromExt = appendExtSlot(r.DerivedFromExt, ext, len(r.DerivedFrom))
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[PublicationStatus](d, t)
 				if err != nil {
@@ -481,13 +475,7 @@ func (r *Questionnaire) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SubjectType = append(r.SubjectType, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.SubjectTypeExt) < len(r.SubjectType)-1 {
-						r.SubjectTypeExt = append(r.SubjectTypeExt, nil)
-					}
-					r.SubjectTypeExt = append(r.SubjectTypeExt, ext)
-				}
+				r.SubjectTypeExt = appendExtSlot(r.SubjectTypeExt, ext, len(r.SubjectType))
 			case "date":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -579,6 +567,8 @@ func (r *Questionnaire) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 			}
 		case xml.EndElement:
+			r.DerivedFromExt = alignExtSlots(r.DerivedFromExt, len(r.DerivedFrom))
+			r.SubjectTypeExt = alignExtSlots(r.SubjectTypeExt, len(r.SubjectType))
 			return nil
 		}
 	}

@@ -489,19 +489,14 @@ func (r *ExampleScenario) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Workflow = append(r.Workflow, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.WorkflowExt) < len(r.Workflow)-1 {
-						r.WorkflowExt = append(r.WorkflowExt, nil)
-					}
-					r.WorkflowExt = append(r.WorkflowExt, ext)
-				}
+				r.WorkflowExt = appendExtSlot(r.WorkflowExt, ext, len(r.Workflow))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.WorkflowExt = alignExtSlots(r.WorkflowExt, len(r.Workflow))
 			return nil
 		}
 	}

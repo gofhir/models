@@ -19396,13 +19396,7 @@ func (r *Address) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Line = append(r.Line, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.LineExt) < len(r.Line)-1 {
-						r.LineExt = append(r.LineExt, nil)
-					}
-					r.LineExt = append(r.LineExt, ext)
-				}
+				r.LineExt = appendExtSlot(r.LineExt, ext, len(r.Line))
 			case "city":
 				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
@@ -19450,6 +19444,7 @@ func (r *Address) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error {
 				}
 			}
 		case xml.EndElement:
+			r.LineExt = alignExtSlots(r.LineExt, len(r.Line))
 			return nil
 		}
 	}
@@ -20193,13 +20188,7 @@ func (r *DataRequirement) UnmarshalXML(dec *xml.Decoder, start xml.StartElement)
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Profile = append(r.Profile, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ProfileExt) < len(r.Profile)-1 {
-						r.ProfileExt = append(r.ProfileExt, nil)
-					}
-					r.ProfileExt = append(r.ProfileExt, ext)
-				}
+				r.ProfileExt = appendExtSlot(r.ProfileExt, ext, len(r.Profile))
 			case "subjectCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -20219,13 +20208,7 @@ func (r *DataRequirement) UnmarshalXML(dec *xml.Decoder, start xml.StartElement)
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.MustSupport = append(r.MustSupport, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.MustSupportExt) < len(r.MustSupport)-1 {
-						r.MustSupportExt = append(r.MustSupportExt, nil)
-					}
-					r.MustSupportExt = append(r.MustSupportExt, ext)
-				}
+				r.MustSupportExt = appendExtSlot(r.MustSupportExt, ext, len(r.MustSupport))
 			case "codeFilter":
 				var v DataRequirementCodeFilter
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -20263,6 +20246,8 @@ func (r *DataRequirement) UnmarshalXML(dec *xml.Decoder, start xml.StartElement)
 				}
 			}
 		case xml.EndElement:
+			r.ProfileExt = alignExtSlots(r.ProfileExt, len(r.Profile))
+			r.MustSupportExt = alignExtSlots(r.MustSupportExt, len(r.MustSupport))
 			return nil
 		}
 	}
@@ -20577,13 +20562,7 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Representation = append(r.Representation, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.RepresentationExt) < len(r.Representation)-1 {
-						r.RepresentationExt = append(r.RepresentationExt, nil)
-					}
-					r.RepresentationExt = append(r.RepresentationExt, ext)
-				}
+				r.RepresentationExt = appendExtSlot(r.RepresentationExt, ext, len(r.Representation))
 			case "sliceName":
 				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
@@ -20652,13 +20631,7 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Alias = append(r.Alias, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.AliasExt) < len(r.Alias)-1 {
-						r.AliasExt = append(r.AliasExt, nil)
-					}
-					r.AliasExt = append(r.AliasExt, ext)
-				}
+				r.AliasExt = appendExtSlot(r.AliasExt, ext, len(r.Alias))
 			case "min":
 				v, ext, err := xmlDecodePrimitiveUint32(dec, t)
 				if err != nil {
@@ -21896,13 +21869,7 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Condition = append(r.Condition, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ConditionExt) < len(r.Condition)-1 {
-						r.ConditionExt = append(r.ConditionExt, nil)
-					}
-					r.ConditionExt = append(r.ConditionExt, ext)
-				}
+				r.ConditionExt = appendExtSlot(r.ConditionExt, ext, len(r.Condition))
 			case "constraint":
 				var v ElementDefinitionConstraint
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -21923,13 +21890,7 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ValueAlternatives = append(r.ValueAlternatives, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ValueAlternativesExt) < len(r.ValueAlternatives)-1 {
-						r.ValueAlternativesExt = append(r.ValueAlternativesExt, nil)
-					}
-					r.ValueAlternativesExt = append(r.ValueAlternativesExt, ext)
-				}
+				r.ValueAlternativesExt = appendExtSlot(r.ValueAlternativesExt, ext, len(r.ValueAlternatives))
 			case "mustSupport":
 				v, ext, err := xmlDecodePrimitiveBool(dec, t)
 				if err != nil {
@@ -21976,6 +21937,10 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				}
 			}
 		case xml.EndElement:
+			r.RepresentationExt = alignExtSlots(r.RepresentationExt, len(r.Representation))
+			r.AliasExt = alignExtSlots(r.AliasExt, len(r.Alias))
+			r.ConditionExt = alignExtSlots(r.ConditionExt, len(r.Condition))
+			r.ValueAlternativesExt = alignExtSlots(r.ValueAlternativesExt, len(r.ValueAlternatives))
 			return nil
 		}
 	}
@@ -22553,13 +22518,7 @@ func (r *HumanName) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Given = append(r.Given, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.GivenExt) < len(r.Given)-1 {
-						r.GivenExt = append(r.GivenExt, nil)
-					}
-					r.GivenExt = append(r.GivenExt, ext)
-				}
+				r.GivenExt = appendExtSlot(r.GivenExt, ext, len(r.Given))
 			case "prefix":
 				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
@@ -22567,13 +22526,7 @@ func (r *HumanName) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Prefix = append(r.Prefix, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.PrefixExt) < len(r.Prefix)-1 {
-						r.PrefixExt = append(r.PrefixExt, nil)
-					}
-					r.PrefixExt = append(r.PrefixExt, ext)
-				}
+				r.PrefixExt = appendExtSlot(r.PrefixExt, ext, len(r.Prefix))
 			case "suffix":
 				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
@@ -22581,13 +22534,7 @@ func (r *HumanName) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Suffix = append(r.Suffix, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.SuffixExt) < len(r.Suffix)-1 {
-						r.SuffixExt = append(r.SuffixExt, nil)
-					}
-					r.SuffixExt = append(r.SuffixExt, ext)
-				}
+				r.SuffixExt = appendExtSlot(r.SuffixExt, ext, len(r.Suffix))
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -22600,6 +22547,9 @@ func (r *HumanName) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error
 				}
 			}
 		case xml.EndElement:
+			r.GivenExt = alignExtSlots(r.GivenExt, len(r.Given))
+			r.PrefixExt = alignExtSlots(r.PrefixExt, len(r.Prefix))
+			r.SuffixExt = alignExtSlots(r.SuffixExt, len(r.Suffix))
 			return nil
 		}
 	}
@@ -22800,13 +22750,7 @@ func (r *Meta) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Profile = append(r.Profile, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ProfileExt) < len(r.Profile)-1 {
-						r.ProfileExt = append(r.ProfileExt, nil)
-					}
-					r.ProfileExt = append(r.ProfileExt, ext)
-				}
+				r.ProfileExt = appendExtSlot(r.ProfileExt, ext, len(r.Profile))
 			case "security":
 				var v Coding
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -22825,6 +22769,7 @@ func (r *Meta) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error {
 				}
 			}
 		case xml.EndElement:
+			r.ProfileExt = alignExtSlots(r.ProfileExt, len(r.Profile))
 			return nil
 		}
 	}
@@ -23775,13 +23720,7 @@ func (r *Timing) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Event = append(r.Event, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.EventExt) < len(r.Event)-1 {
-						r.EventExt = append(r.EventExt, nil)
-					}
-					r.EventExt = append(r.EventExt, ext)
-				}
+				r.EventExt = appendExtSlot(r.EventExt, ext, len(r.Event))
 			case "repeat":
 				var v TimingRepeat
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -23800,6 +23739,7 @@ func (r *Timing) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error {
 				}
 			}
 		case xml.EndElement:
+			r.EventExt = alignExtSlots(r.EventExt, len(r.Event))
 			return nil
 		}
 	}
@@ -24030,13 +23970,7 @@ func (r *VirtualServiceDetail) UnmarshalXML(dec *xml.Decoder, start xml.StartEle
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.AdditionalInfo = append(r.AdditionalInfo, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.AdditionalInfoExt) < len(r.AdditionalInfo)-1 {
-						r.AdditionalInfoExt = append(r.AdditionalInfoExt, nil)
-					}
-					r.AdditionalInfoExt = append(r.AdditionalInfoExt, ext)
-				}
+				r.AdditionalInfoExt = appendExtSlot(r.AdditionalInfoExt, ext, len(r.AdditionalInfo))
 			case "maxParticipants":
 				v, ext, err := xmlDecodePrimitiveUint32(dec, t)
 				if err != nil {
@@ -24057,6 +23991,7 @@ func (r *VirtualServiceDetail) UnmarshalXML(dec *xml.Decoder, start xml.StartEle
 				}
 			}
 		case xml.EndElement:
+			r.AdditionalInfoExt = alignExtSlots(r.AdditionalInfoExt, len(r.AdditionalInfo))
 			return nil
 		}
 	}
@@ -24234,13 +24169,7 @@ func (r *AvailabilityAvailableTime) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DaysOfWeek = append(r.DaysOfWeek, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DaysOfWeekExt) < len(r.DaysOfWeek)-1 {
-						r.DaysOfWeekExt = append(r.DaysOfWeekExt, nil)
-					}
-					r.DaysOfWeekExt = append(r.DaysOfWeekExt, ext)
-				}
+				r.DaysOfWeekExt = appendExtSlot(r.DaysOfWeekExt, ext, len(r.DaysOfWeek))
 			case "allDay":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -24268,6 +24197,7 @@ func (r *AvailabilityAvailableTime) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 			}
 		case xml.EndElement:
+			r.DaysOfWeekExt = alignExtSlots(r.DaysOfWeekExt, len(r.DaysOfWeek))
 			return nil
 		}
 	}
@@ -25507,13 +25437,7 @@ func (r *ElementDefinitionType) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Profile = append(r.Profile, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ProfileExt) < len(r.Profile)-1 {
-						r.ProfileExt = append(r.ProfileExt, nil)
-					}
-					r.ProfileExt = append(r.ProfileExt, ext)
-				}
+				r.ProfileExt = appendExtSlot(r.ProfileExt, ext, len(r.Profile))
 			case "targetProfile":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -25521,13 +25445,7 @@ func (r *ElementDefinitionType) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.TargetProfile = append(r.TargetProfile, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.TargetProfileExt) < len(r.TargetProfile)-1 {
-						r.TargetProfileExt = append(r.TargetProfileExt, nil)
-					}
-					r.TargetProfileExt = append(r.TargetProfileExt, ext)
-				}
+				r.TargetProfileExt = appendExtSlot(r.TargetProfileExt, ext, len(r.TargetProfile))
 			case "aggregation":
 				v, ext, err := xmlDecodePrimitiveCode[AggregationMode](d, t)
 				if err != nil {
@@ -25535,13 +25453,7 @@ func (r *ElementDefinitionType) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Aggregation = append(r.Aggregation, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.AggregationExt) < len(r.Aggregation)-1 {
-						r.AggregationExt = append(r.AggregationExt, nil)
-					}
-					r.AggregationExt = append(r.AggregationExt, ext)
-				}
+				r.AggregationExt = appendExtSlot(r.AggregationExt, ext, len(r.Aggregation))
 			case "versioning":
 				v, ext, err := xmlDecodePrimitiveCode[ReferenceVersionRules](d, t)
 				if err != nil {
@@ -25555,6 +25467,9 @@ func (r *ElementDefinitionType) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 			}
 		case xml.EndElement:
+			r.ProfileExt = alignExtSlots(r.ProfileExt, len(r.Profile))
+			r.TargetProfileExt = alignExtSlots(r.TargetProfileExt, len(r.TargetProfile))
+			r.AggregationExt = alignExtSlots(r.AggregationExt, len(r.Aggregation))
 			return nil
 		}
 	}
@@ -25678,13 +25593,7 @@ func (r *TimingRepeat) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DayOfWeek = append(r.DayOfWeek, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DayOfWeekExt) < len(r.DayOfWeek)-1 {
-						r.DayOfWeekExt = append(r.DayOfWeekExt, nil)
-					}
-					r.DayOfWeekExt = append(r.DayOfWeekExt, ext)
-				}
+				r.DayOfWeekExt = appendExtSlot(r.DayOfWeekExt, ext, len(r.DayOfWeek))
 			case "timeOfDay":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -25692,13 +25601,7 @@ func (r *TimingRepeat) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.TimeOfDay = append(r.TimeOfDay, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.TimeOfDayExt) < len(r.TimeOfDay)-1 {
-						r.TimeOfDayExt = append(r.TimeOfDayExt, nil)
-					}
-					r.TimeOfDayExt = append(r.TimeOfDayExt, ext)
-				}
+				r.TimeOfDayExt = appendExtSlot(r.TimeOfDayExt, ext, len(r.TimeOfDay))
 			case "when":
 				v, ext, err := xmlDecodePrimitiveCode[EventTiming](d, t)
 				if err != nil {
@@ -25706,13 +25609,7 @@ func (r *TimingRepeat) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.When = append(r.When, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.WhenExt) < len(r.When)-1 {
-						r.WhenExt = append(r.WhenExt, nil)
-					}
-					r.WhenExt = append(r.WhenExt, ext)
-				}
+				r.WhenExt = appendExtSlot(r.WhenExt, ext, len(r.When))
 			case "offset":
 				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
@@ -25726,6 +25623,9 @@ func (r *TimingRepeat) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 			}
 		case xml.EndElement:
+			r.DayOfWeekExt = alignExtSlots(r.DayOfWeekExt, len(r.DayOfWeek))
+			r.TimeOfDayExt = alignExtSlots(r.TimeOfDayExt, len(r.TimeOfDay))
+			r.WhenExt = alignExtSlots(r.WhenExt, len(r.When))
 			return nil
 		}
 	}

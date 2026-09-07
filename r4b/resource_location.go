@@ -410,13 +410,7 @@ func (r *Location) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Alias = append(r.Alias, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.AliasExt) < len(r.Alias)-1 {
-						r.AliasExt = append(r.AliasExt, nil)
-					}
-					r.AliasExt = append(r.AliasExt, ext)
-				}
+				r.AliasExt = appendExtSlot(r.AliasExt, ext, len(r.Alias))
 			case "description":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -498,6 +492,7 @@ func (r *Location) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 			}
 		case xml.EndElement:
+			r.AliasExt = alignExtSlots(r.AliasExt, len(r.Alias))
 			return nil
 		}
 	}
@@ -630,13 +625,7 @@ func (r *LocationHoursOfOperation) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DaysOfWeek = append(r.DaysOfWeek, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DaysOfWeekExt) < len(r.DaysOfWeek)-1 {
-						r.DaysOfWeekExt = append(r.DaysOfWeekExt, nil)
-					}
-					r.DaysOfWeekExt = append(r.DaysOfWeekExt, ext)
-				}
+				r.DaysOfWeekExt = appendExtSlot(r.DaysOfWeekExt, ext, len(r.DaysOfWeek))
 			case "allDay":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -664,6 +653,7 @@ func (r *LocationHoursOfOperation) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 			}
 		case xml.EndElement:
+			r.DaysOfWeekExt = alignExtSlots(r.DaysOfWeekExt, len(r.DaysOfWeek))
 			return nil
 		}
 	}

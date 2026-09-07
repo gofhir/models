@@ -672,13 +672,7 @@ func (r *ObservationDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFromCanonical = append(r.DerivedFromCanonical, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DerivedFromCanonicalExt) < len(r.DerivedFromCanonical)-1 {
-						r.DerivedFromCanonicalExt = append(r.DerivedFromCanonicalExt, nil)
-					}
-					r.DerivedFromCanonicalExt = append(r.DerivedFromCanonicalExt, ext)
-				}
+				r.DerivedFromCanonicalExt = appendExtSlot(r.DerivedFromCanonicalExt, ext, len(r.DerivedFromCanonical))
 			case "derivedFromUri":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -686,13 +680,7 @@ func (r *ObservationDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFromUri = append(r.DerivedFromUri, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DerivedFromUriExt) < len(r.DerivedFromUri)-1 {
-						r.DerivedFromUriExt = append(r.DerivedFromUriExt, nil)
-					}
-					r.DerivedFromUriExt = append(r.DerivedFromUriExt, ext)
-				}
+				r.DerivedFromUriExt = appendExtSlot(r.DerivedFromUriExt, ext, len(r.DerivedFromUri))
 			case "subject":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -724,13 +712,7 @@ func (r *ObservationDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.PermittedDataType = append(r.PermittedDataType, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.PermittedDataTypeExt) < len(r.PermittedDataType)-1 {
-						r.PermittedDataTypeExt = append(r.PermittedDataTypeExt, nil)
-					}
-					r.PermittedDataTypeExt = append(r.PermittedDataTypeExt, ext)
-				}
+				r.PermittedDataTypeExt = appendExtSlot(r.PermittedDataTypeExt, ext, len(r.PermittedDataType))
 			case "multipleResultsAllowed":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -799,6 +781,9 @@ func (r *ObservationDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 			}
 		case xml.EndElement:
+			r.DerivedFromCanonicalExt = alignExtSlots(r.DerivedFromCanonicalExt, len(r.DerivedFromCanonical))
+			r.DerivedFromUriExt = alignExtSlots(r.DerivedFromUriExt, len(r.DerivedFromUri))
+			r.PermittedDataTypeExt = alignExtSlots(r.PermittedDataTypeExt, len(r.PermittedDataType))
 			return nil
 		}
 	}
@@ -937,13 +922,7 @@ func (r *ObservationDefinitionComponent) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.PermittedDataType = append(r.PermittedDataType, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.PermittedDataTypeExt) < len(r.PermittedDataType)-1 {
-						r.PermittedDataTypeExt = append(r.PermittedDataTypeExt, nil)
-					}
-					r.PermittedDataTypeExt = append(r.PermittedDataTypeExt, ext)
-				}
+				r.PermittedDataTypeExt = appendExtSlot(r.PermittedDataTypeExt, ext, len(r.PermittedDataType))
 			case "permittedUnit":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -962,6 +941,7 @@ func (r *ObservationDefinitionComponent) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 			}
 		case xml.EndElement:
+			r.PermittedDataTypeExt = alignExtSlots(r.PermittedDataTypeExt, len(r.PermittedDataType))
 			return nil
 		}
 	}

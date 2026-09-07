@@ -589,13 +589,7 @@ func (r *CompartmentDefinitionResource) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Param = append(r.Param, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ParamExt) < len(r.Param)-1 {
-						r.ParamExt = append(r.ParamExt, nil)
-					}
-					r.ParamExt = append(r.ParamExt, ext)
-				}
+				r.ParamExt = appendExtSlot(r.ParamExt, ext, len(r.Param))
 			case "documentation":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -609,6 +603,7 @@ func (r *CompartmentDefinitionResource) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 			}
 		case xml.EndElement:
+			r.ParamExt = alignExtSlots(r.ParamExt, len(r.Param))
 			return nil
 		}
 	}

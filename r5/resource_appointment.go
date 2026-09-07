@@ -1059,13 +1059,7 @@ func (r *AppointmentRecurrenceTemplate) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.OccurrenceDate = append(r.OccurrenceDate, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.OccurrenceDateExt) < len(r.OccurrenceDate)-1 {
-						r.OccurrenceDateExt = append(r.OccurrenceDateExt, nil)
-					}
-					r.OccurrenceDateExt = append(r.OccurrenceDateExt, ext)
-				}
+				r.OccurrenceDateExt = appendExtSlot(r.OccurrenceDateExt, ext, len(r.OccurrenceDate))
 			case "weeklyTemplate":
 				var v AppointmentRecurrenceTemplateWeeklyTemplate
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1091,13 +1085,7 @@ func (r *AppointmentRecurrenceTemplate) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ExcludingDate = append(r.ExcludingDate, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ExcludingDateExt) < len(r.ExcludingDate)-1 {
-						r.ExcludingDateExt = append(r.ExcludingDateExt, nil)
-					}
-					r.ExcludingDateExt = append(r.ExcludingDateExt, ext)
-				}
+				r.ExcludingDateExt = appendExtSlot(r.ExcludingDateExt, ext, len(r.ExcludingDate))
 			case "excludingRecurrenceId":
 				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
@@ -1105,19 +1093,16 @@ func (r *AppointmentRecurrenceTemplate) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ExcludingRecurrenceId = append(r.ExcludingRecurrenceId, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ExcludingRecurrenceIdExt) < len(r.ExcludingRecurrenceId)-1 {
-						r.ExcludingRecurrenceIdExt = append(r.ExcludingRecurrenceIdExt, nil)
-					}
-					r.ExcludingRecurrenceIdExt = append(r.ExcludingRecurrenceIdExt, ext)
-				}
+				r.ExcludingRecurrenceIdExt = appendExtSlot(r.ExcludingRecurrenceIdExt, ext, len(r.ExcludingRecurrenceId))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.OccurrenceDateExt = alignExtSlots(r.OccurrenceDateExt, len(r.OccurrenceDate))
+			r.ExcludingDateExt = alignExtSlots(r.ExcludingDateExt, len(r.ExcludingDate))
+			r.ExcludingRecurrenceIdExt = alignExtSlots(r.ExcludingRecurrenceIdExt, len(r.ExcludingRecurrenceId))
 			return nil
 		}
 	}

@@ -638,13 +638,7 @@ func (r *OperationDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Resource = append(r.Resource, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ResourceExt) < len(r.Resource)-1 {
-						r.ResourceExt = append(r.ResourceExt, nil)
-					}
-					r.ResourceExt = append(r.ResourceExt, ext)
-				}
+				r.ResourceExt = appendExtSlot(r.ResourceExt, ext, len(r.Resource))
 			case "system":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -698,6 +692,7 @@ func (r *OperationDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 			}
 		case xml.EndElement:
+			r.ResourceExt = alignExtSlots(r.ResourceExt, len(r.Resource))
 			return nil
 		}
 	}
@@ -816,13 +811,7 @@ func (r *OperationDefinitionOverload) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ParameterName = append(r.ParameterName, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ParameterNameExt) < len(r.ParameterName)-1 {
-						r.ParameterNameExt = append(r.ParameterNameExt, nil)
-					}
-					r.ParameterNameExt = append(r.ParameterNameExt, ext)
-				}
+				r.ParameterNameExt = appendExtSlot(r.ParameterNameExt, ext, len(r.ParameterName))
 			case "comment":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -836,6 +825,7 @@ func (r *OperationDefinitionOverload) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 			}
 		case xml.EndElement:
+			r.ParameterNameExt = alignExtSlots(r.ParameterNameExt, len(r.ParameterName))
 			return nil
 		}
 	}
@@ -1045,13 +1035,7 @@ func (r *OperationDefinitionParameter) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Scope = append(r.Scope, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ScopeExt) < len(r.Scope)-1 {
-						r.ScopeExt = append(r.ScopeExt, nil)
-					}
-					r.ScopeExt = append(r.ScopeExt, ext)
-				}
+				r.ScopeExt = appendExtSlot(r.ScopeExt, ext, len(r.Scope))
 			case "min":
 				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
@@ -1087,13 +1071,7 @@ func (r *OperationDefinitionParameter) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.AllowedType = append(r.AllowedType, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.AllowedTypeExt) < len(r.AllowedType)-1 {
-						r.AllowedTypeExt = append(r.AllowedTypeExt, nil)
-					}
-					r.AllowedTypeExt = append(r.AllowedTypeExt, ext)
-				}
+				r.AllowedTypeExt = appendExtSlot(r.AllowedTypeExt, ext, len(r.AllowedType))
 			case "targetProfile":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1101,13 +1079,7 @@ func (r *OperationDefinitionParameter) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.TargetProfile = append(r.TargetProfile, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.TargetProfileExt) < len(r.TargetProfile)-1 {
-						r.TargetProfileExt = append(r.TargetProfileExt, nil)
-					}
-					r.TargetProfileExt = append(r.TargetProfileExt, ext)
-				}
+				r.TargetProfileExt = appendExtSlot(r.TargetProfileExt, ext, len(r.TargetProfile))
 			case "searchType":
 				v, ext, err := xmlDecodePrimitiveCode[SearchParamType](d, t)
 				if err != nil {
@@ -1139,6 +1111,9 @@ func (r *OperationDefinitionParameter) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 			}
 		case xml.EndElement:
+			r.ScopeExt = alignExtSlots(r.ScopeExt, len(r.Scope))
+			r.AllowedTypeExt = alignExtSlots(r.AllowedTypeExt, len(r.AllowedType))
+			r.TargetProfileExt = alignExtSlots(r.TargetProfileExt, len(r.TargetProfile))
 			return nil
 		}
 	}

@@ -561,13 +561,7 @@ func (r *ActorDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Reference = append(r.Reference, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ReferenceExt) < len(r.Reference)-1 {
-						r.ReferenceExt = append(r.ReferenceExt, nil)
-					}
-					r.ReferenceExt = append(r.ReferenceExt, ext)
-				}
+				r.ReferenceExt = appendExtSlot(r.ReferenceExt, ext, len(r.Reference))
 			case "capabilities":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -582,19 +576,15 @@ func (r *ActorDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFrom = append(r.DerivedFrom, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DerivedFromExt) < len(r.DerivedFrom)-1 {
-						r.DerivedFromExt = append(r.DerivedFromExt, nil)
-					}
-					r.DerivedFromExt = append(r.DerivedFromExt, ext)
-				}
+				r.DerivedFromExt = appendExtSlot(r.DerivedFromExt, ext, len(r.DerivedFrom))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.ReferenceExt = alignExtSlots(r.ReferenceExt, len(r.Reference))
+			r.DerivedFromExt = alignExtSlots(r.DerivedFromExt, len(r.DerivedFrom))
 			return nil
 		}
 	}

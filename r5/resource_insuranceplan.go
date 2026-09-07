@@ -389,13 +389,7 @@ func (r *InsurancePlan) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Alias = append(r.Alias, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.AliasExt) < len(r.Alias)-1 {
-						r.AliasExt = append(r.AliasExt, nil)
-					}
-					r.AliasExt = append(r.AliasExt, ext)
-				}
+				r.AliasExt = appendExtSlot(r.AliasExt, ext, len(r.Alias))
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -456,6 +450,7 @@ func (r *InsurancePlan) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 			}
 		case xml.EndElement:
+			r.AliasExt = alignExtSlots(r.AliasExt, len(r.Alias))
 			return nil
 		}
 	}

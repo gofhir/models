@@ -742,13 +742,7 @@ func (r *Measure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Library = append(r.Library, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.LibraryExt) < len(r.Library)-1 {
-						r.LibraryExt = append(r.LibraryExt, nil)
-					}
-					r.LibraryExt = append(r.LibraryExt, ext)
-				}
+				r.LibraryExt = appendExtSlot(r.LibraryExt, ext, len(r.Library))
 			case "disclaimer":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -815,13 +809,7 @@ func (r *Measure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Definition = append(r.Definition, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DefinitionExt) < len(r.Definition)-1 {
-						r.DefinitionExt = append(r.DefinitionExt, nil)
-					}
-					r.DefinitionExt = append(r.DefinitionExt, ext)
-				}
+				r.DefinitionExt = appendExtSlot(r.DefinitionExt, ext, len(r.Definition))
 			case "guidance":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -847,6 +835,8 @@ func (r *Measure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 			}
 		case xml.EndElement:
+			r.LibraryExt = alignExtSlots(r.LibraryExt, len(r.Library))
+			r.DefinitionExt = alignExtSlots(r.DefinitionExt, len(r.Definition))
 			return nil
 		}
 	}

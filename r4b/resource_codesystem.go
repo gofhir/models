@@ -1309,13 +1309,7 @@ func (r *CodeSystemFilter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Operator = append(r.Operator, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.OperatorExt) < len(r.Operator)-1 {
-						r.OperatorExt = append(r.OperatorExt, nil)
-					}
-					r.OperatorExt = append(r.OperatorExt, ext)
-				}
+				r.OperatorExt = appendExtSlot(r.OperatorExt, ext, len(r.Operator))
 			case "value":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1329,6 +1323,7 @@ func (r *CodeSystemFilter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 			}
 		case xml.EndElement:
+			r.OperatorExt = alignExtSlots(r.OperatorExt, len(r.Operator))
 			return nil
 		}
 	}

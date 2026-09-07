@@ -513,19 +513,14 @@ func (r *SubscriptionChannel) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Header = append(r.Header, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.HeaderExt) < len(r.Header)-1 {
-						r.HeaderExt = append(r.HeaderExt, nil)
-					}
-					r.HeaderExt = append(r.HeaderExt, ext)
-				}
+				r.HeaderExt = appendExtSlot(r.HeaderExt, ext, len(r.Header))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.HeaderExt = alignExtSlots(r.HeaderExt, len(r.Header))
 			return nil
 		}
 	}

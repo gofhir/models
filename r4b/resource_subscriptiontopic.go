@@ -446,13 +446,7 @@ func (r *SubscriptionTopic) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFrom = append(r.DerivedFrom, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DerivedFromExt) < len(r.DerivedFrom)-1 {
-						r.DerivedFromExt = append(r.DerivedFromExt, nil)
-					}
-					r.DerivedFromExt = append(r.DerivedFromExt, ext)
-				}
+				r.DerivedFromExt = appendExtSlot(r.DerivedFromExt, ext, len(r.DerivedFrom))
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[PublicationStatus](d, t)
 				if err != nil {
@@ -570,6 +564,7 @@ func (r *SubscriptionTopic) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 			}
 		case xml.EndElement:
+			r.DerivedFromExt = alignExtSlots(r.DerivedFromExt, len(r.DerivedFrom))
 			return nil
 		}
 	}
@@ -737,19 +732,14 @@ func (r *SubscriptionTopicCanFilterBy) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Modifier = append(r.Modifier, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ModifierExt) < len(r.Modifier)-1 {
-						r.ModifierExt = append(r.ModifierExt, nil)
-					}
-					r.ModifierExt = append(r.ModifierExt, ext)
-				}
+				r.ModifierExt = appendExtSlot(r.ModifierExt, ext, len(r.Modifier))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.ModifierExt = alignExtSlots(r.ModifierExt, len(r.Modifier))
 			return nil
 		}
 	}
@@ -1026,13 +1016,7 @@ func (r *SubscriptionTopicNotificationShape) UnmarshalXML(d *xml.Decoder, start 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Include = append(r.Include, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.IncludeExt) < len(r.Include)-1 {
-						r.IncludeExt = append(r.IncludeExt, nil)
-					}
-					r.IncludeExt = append(r.IncludeExt, ext)
-				}
+				r.IncludeExt = appendExtSlot(r.IncludeExt, ext, len(r.Include))
 			case "revInclude":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1040,19 +1024,15 @@ func (r *SubscriptionTopicNotificationShape) UnmarshalXML(d *xml.Decoder, start 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.RevInclude = append(r.RevInclude, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.RevIncludeExt) < len(r.RevInclude)-1 {
-						r.RevIncludeExt = append(r.RevIncludeExt, nil)
-					}
-					r.RevIncludeExt = append(r.RevIncludeExt, ext)
-				}
+				r.RevIncludeExt = appendExtSlot(r.RevIncludeExt, ext, len(r.RevInclude))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.IncludeExt = alignExtSlots(r.IncludeExt, len(r.Include))
+			r.RevIncludeExt = alignExtSlots(r.RevIncludeExt, len(r.RevInclude))
 			return nil
 		}
 	}
@@ -1206,13 +1186,7 @@ func (r *SubscriptionTopicResourceTrigger) UnmarshalXML(d *xml.Decoder, start xm
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SupportedInteraction = append(r.SupportedInteraction, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.SupportedInteractionExt) < len(r.SupportedInteraction)-1 {
-						r.SupportedInteractionExt = append(r.SupportedInteractionExt, nil)
-					}
-					r.SupportedInteractionExt = append(r.SupportedInteractionExt, ext)
-				}
+				r.SupportedInteractionExt = appendExtSlot(r.SupportedInteractionExt, ext, len(r.SupportedInteraction))
 			case "queryCriteria":
 				var v SubscriptionTopicResourceTriggerQueryCriteria
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1232,6 +1206,7 @@ func (r *SubscriptionTopicResourceTrigger) UnmarshalXML(d *xml.Decoder, start xm
 				}
 			}
 		case xml.EndElement:
+			r.SupportedInteractionExt = alignExtSlots(r.SupportedInteractionExt, len(r.SupportedInteraction))
 			return nil
 		}
 	}

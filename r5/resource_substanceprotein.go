@@ -306,13 +306,7 @@ func (r *SubstanceProtein) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DisulfideLinkage = append(r.DisulfideLinkage, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DisulfideLinkageExt) < len(r.DisulfideLinkage)-1 {
-						r.DisulfideLinkageExt = append(r.DisulfideLinkageExt, nil)
-					}
-					r.DisulfideLinkageExt = append(r.DisulfideLinkageExt, ext)
-				}
+				r.DisulfideLinkageExt = appendExtSlot(r.DisulfideLinkageExt, ext, len(r.DisulfideLinkage))
 			case "subunit":
 				var v SubstanceProteinSubunit
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -325,6 +319,7 @@ func (r *SubstanceProtein) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 			}
 		case xml.EndElement:
+			r.DisulfideLinkageExt = alignExtSlots(r.DisulfideLinkageExt, len(r.DisulfideLinkage))
 			return nil
 		}
 	}

@@ -594,13 +594,7 @@ func (r *StructureDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ContextInvariant = append(r.ContextInvariant, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ContextInvariantExt) < len(r.ContextInvariant)-1 {
-						r.ContextInvariantExt = append(r.ContextInvariantExt, nil)
-					}
-					r.ContextInvariantExt = append(r.ContextInvariantExt, ext)
-				}
+				r.ContextInvariantExt = appendExtSlot(r.ContextInvariantExt, ext, len(r.ContextInvariant))
 			case "type":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -640,6 +634,7 @@ func (r *StructureDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 			}
 		case xml.EndElement:
+			r.ContextInvariantExt = alignExtSlots(r.ContextInvariantExt, len(r.ContextInvariant))
 			return nil
 		}
 	}

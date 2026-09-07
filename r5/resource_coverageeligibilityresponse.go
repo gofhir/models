@@ -397,13 +397,7 @@ func (r *CoverageEligibilityResponse) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Purpose = append(r.Purpose, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.PurposeExt) < len(r.Purpose)-1 {
-						r.PurposeExt = append(r.PurposeExt, nil)
-					}
-					r.PurposeExt = append(r.PurposeExt, ext)
-				}
+				r.PurposeExt = appendExtSlot(r.PurposeExt, ext, len(r.Purpose))
 			case "patient":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -499,6 +493,7 @@ func (r *CoverageEligibilityResponse) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 			}
 		case xml.EndElement:
+			r.PurposeExt = alignExtSlots(r.PurposeExt, len(r.Purpose))
 			return nil
 		}
 	}
@@ -623,19 +618,14 @@ func (r *CoverageEligibilityResponseError) UnmarshalXML(d *xml.Decoder, start xm
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Expression = append(r.Expression, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ExpressionExt) < len(r.Expression)-1 {
-						r.ExpressionExt = append(r.ExpressionExt, nil)
-					}
-					r.ExpressionExt = append(r.ExpressionExt, ext)
-				}
+				r.ExpressionExt = appendExtSlot(r.ExpressionExt, ext, len(r.Expression))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.ExpressionExt = alignExtSlots(r.ExpressionExt, len(r.Expression))
 			return nil
 		}
 	}

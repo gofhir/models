@@ -453,13 +453,7 @@ func (r *ChargeItemDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFromUri = append(r.DerivedFromUri, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DerivedFromUriExt) < len(r.DerivedFromUri)-1 {
-						r.DerivedFromUriExt = append(r.DerivedFromUriExt, nil)
-					}
-					r.DerivedFromUriExt = append(r.DerivedFromUriExt, ext)
-				}
+				r.DerivedFromUriExt = appendExtSlot(r.DerivedFromUriExt, ext, len(r.DerivedFromUri))
 			case "partOf":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -467,13 +461,7 @@ func (r *ChargeItemDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.PartOf = append(r.PartOf, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.PartOfExt) < len(r.PartOf)-1 {
-						r.PartOfExt = append(r.PartOfExt, nil)
-					}
-					r.PartOfExt = append(r.PartOfExt, ext)
-				}
+				r.PartOfExt = appendExtSlot(r.PartOfExt, ext, len(r.PartOf))
 			case "replaces":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -481,13 +469,7 @@ func (r *ChargeItemDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Replaces = append(r.Replaces, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ReplacesExt) < len(r.Replaces)-1 {
-						r.ReplacesExt = append(r.ReplacesExt, nil)
-					}
-					r.ReplacesExt = append(r.ReplacesExt, ext)
-				}
+				r.ReplacesExt = appendExtSlot(r.ReplacesExt, ext, len(r.Replaces))
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[PublicationStatus](d, t)
 				if err != nil {
@@ -598,6 +580,9 @@ func (r *ChargeItemDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 			}
 		case xml.EndElement:
+			r.DerivedFromUriExt = alignExtSlots(r.DerivedFromUriExt, len(r.DerivedFromUri))
+			r.PartOfExt = alignExtSlots(r.PartOfExt, len(r.PartOf))
+			r.ReplacesExt = alignExtSlots(r.ReplacesExt, len(r.Replaces))
 			return nil
 		}
 	}

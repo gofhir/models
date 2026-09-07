@@ -498,13 +498,7 @@ func (r *StructureMap) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Import = append(r.Import, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ImportExt) < len(r.Import)-1 {
-						r.ImportExt = append(r.ImportExt, nil)
-					}
-					r.ImportExt = append(r.ImportExt, ext)
-				}
+				r.ImportExt = appendExtSlot(r.ImportExt, ext, len(r.Import))
 			case "group":
 				var v StructureMapGroup
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -517,6 +511,7 @@ func (r *StructureMap) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 			}
 		case xml.EndElement:
+			r.ImportExt = alignExtSlots(r.ImportExt, len(r.Import))
 			return nil
 		}
 	}
@@ -1169,19 +1164,14 @@ func (r *StructureMapGroupRuleDependent) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Variable = append(r.Variable, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.VariableExt) < len(r.Variable)-1 {
-						r.VariableExt = append(r.VariableExt, nil)
-					}
-					r.VariableExt = append(r.VariableExt, ext)
-				}
+				r.VariableExt = appendExtSlot(r.VariableExt, ext, len(r.Variable))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.VariableExt = alignExtSlots(r.VariableExt, len(r.Variable))
 			return nil
 		}
 	}
@@ -2282,13 +2272,7 @@ func (r *StructureMapGroupRuleTarget) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ListMode = append(r.ListMode, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ListModeExt) < len(r.ListMode)-1 {
-						r.ListModeExt = append(r.ListModeExt, nil)
-					}
-					r.ListModeExt = append(r.ListModeExt, ext)
-				}
+				r.ListModeExt = appendExtSlot(r.ListModeExt, ext, len(r.ListMode))
 			case "listRuleId":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -2315,6 +2299,7 @@ func (r *StructureMapGroupRuleTarget) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 			}
 		case xml.EndElement:
+			r.ListModeExt = alignExtSlots(r.ListModeExt, len(r.ListMode))
 			return nil
 		}
 	}

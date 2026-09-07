@@ -874,13 +874,7 @@ func (r *ActivityDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Library = append(r.Library, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.LibraryExt) < len(r.Library)-1 {
-						r.LibraryExt = append(r.LibraryExt, nil)
-					}
-					r.LibraryExt = append(r.LibraryExt, ext)
-				}
+				r.LibraryExt = appendExtSlot(r.LibraryExt, ext, len(r.Library))
 			case "kind":
 				v, ext, err := xmlDecodePrimitiveCode[ActivityDefinitionKind](d, t)
 				if err != nil {
@@ -1008,13 +1002,7 @@ func (r *ActivityDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SpecimenRequirement = append(r.SpecimenRequirement, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.SpecimenRequirementExt) < len(r.SpecimenRequirement)-1 {
-						r.SpecimenRequirementExt = append(r.SpecimenRequirementExt, nil)
-					}
-					r.SpecimenRequirementExt = append(r.SpecimenRequirementExt, ext)
-				}
+				r.SpecimenRequirementExt = appendExtSlot(r.SpecimenRequirementExt, ext, len(r.SpecimenRequirement))
 			case "observationRequirement":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1022,13 +1010,7 @@ func (r *ActivityDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ObservationRequirement = append(r.ObservationRequirement, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ObservationRequirementExt) < len(r.ObservationRequirement)-1 {
-						r.ObservationRequirementExt = append(r.ObservationRequirementExt, nil)
-					}
-					r.ObservationRequirementExt = append(r.ObservationRequirementExt, ext)
-				}
+				r.ObservationRequirementExt = appendExtSlot(r.ObservationRequirementExt, ext, len(r.ObservationRequirement))
 			case "observationResultRequirement":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1036,13 +1018,7 @@ func (r *ActivityDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ObservationResultRequirement = append(r.ObservationResultRequirement, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ObservationResultRequirementExt) < len(r.ObservationResultRequirement)-1 {
-						r.ObservationResultRequirementExt = append(r.ObservationResultRequirementExt, nil)
-					}
-					r.ObservationResultRequirementExt = append(r.ObservationResultRequirementExt, ext)
-				}
+				r.ObservationResultRequirementExt = appendExtSlot(r.ObservationResultRequirementExt, ext, len(r.ObservationResultRequirement))
 			case "transform":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1062,6 +1038,10 @@ func (r *ActivityDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 			}
 		case xml.EndElement:
+			r.LibraryExt = alignExtSlots(r.LibraryExt, len(r.Library))
+			r.SpecimenRequirementExt = alignExtSlots(r.SpecimenRequirementExt, len(r.SpecimenRequirement))
+			r.ObservationRequirementExt = alignExtSlots(r.ObservationRequirementExt, len(r.ObservationRequirement))
+			r.ObservationResultRequirementExt = alignExtSlots(r.ObservationResultRequirementExt, len(r.ObservationResultRequirement))
 			return nil
 		}
 	}

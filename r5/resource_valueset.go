@@ -848,19 +848,14 @@ func (r *ValueSetCompose) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Property = append(r.Property, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.PropertyExt) < len(r.Property)-1 {
-						r.PropertyExt = append(r.PropertyExt, nil)
-					}
-					r.PropertyExt = append(r.PropertyExt, ext)
-				}
+				r.PropertyExt = appendExtSlot(r.PropertyExt, ext, len(r.Property))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.PropertyExt = alignExtSlots(r.PropertyExt, len(r.Property))
 			return nil
 		}
 	}
@@ -1033,13 +1028,7 @@ func (r *ValueSetComposeInclude) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ValueSet = append(r.ValueSet, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ValueSetExt) < len(r.ValueSet)-1 {
-						r.ValueSetExt = append(r.ValueSetExt, nil)
-					}
-					r.ValueSetExt = append(r.ValueSetExt, ext)
-				}
+				r.ValueSetExt = appendExtSlot(r.ValueSetExt, ext, len(r.ValueSet))
 			case "copyright":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1053,6 +1042,7 @@ func (r *ValueSetComposeInclude) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 			}
 		case xml.EndElement:
+			r.ValueSetExt = alignExtSlots(r.ValueSetExt, len(r.ValueSet))
 			return nil
 		}
 	}

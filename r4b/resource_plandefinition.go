@@ -692,13 +692,7 @@ func (r *PlanDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Library = append(r.Library, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.LibraryExt) < len(r.Library)-1 {
-						r.LibraryExt = append(r.LibraryExt, nil)
-					}
-					r.LibraryExt = append(r.LibraryExt, ext)
-				}
+				r.LibraryExt = appendExtSlot(r.LibraryExt, ext, len(r.Library))
 			case "goal":
 				var v PlanDefinitionGoal
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -717,6 +711,7 @@ func (r *PlanDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 			}
 		case xml.EndElement:
+			r.LibraryExt = alignExtSlots(r.LibraryExt, len(r.Library))
 			return nil
 		}
 	}
@@ -1119,13 +1114,7 @@ func (r *PlanDefinitionAction) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.GoalId = append(r.GoalId, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.GoalIdExt) < len(r.GoalId)-1 {
-						r.GoalIdExt = append(r.GoalIdExt, nil)
-					}
-					r.GoalIdExt = append(r.GoalIdExt, ext)
-				}
+				r.GoalIdExt = appendExtSlot(r.GoalIdExt, ext, len(r.GoalId))
 			case "subjectCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1298,6 +1287,7 @@ func (r *PlanDefinitionAction) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 			}
 		case xml.EndElement:
+			r.GoalIdExt = alignExtSlots(r.GoalIdExt, len(r.GoalId))
 			return nil
 		}
 	}

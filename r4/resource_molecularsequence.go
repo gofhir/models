@@ -938,13 +938,7 @@ func (r *MolecularSequenceQualityRoc) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Score = append(r.Score, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ScoreExt) < len(r.Score)-1 {
-						r.ScoreExt = append(r.ScoreExt, nil)
-					}
-					r.ScoreExt = append(r.ScoreExt, ext)
-				}
+				r.ScoreExt = appendExtSlot(r.ScoreExt, ext, len(r.Score))
 			case "numTP":
 				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
@@ -952,13 +946,7 @@ func (r *MolecularSequenceQualityRoc) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.NumTP = append(r.NumTP, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.NumTPExt) < len(r.NumTP)-1 {
-						r.NumTPExt = append(r.NumTPExt, nil)
-					}
-					r.NumTPExt = append(r.NumTPExt, ext)
-				}
+				r.NumTPExt = appendExtSlot(r.NumTPExt, ext, len(r.NumTP))
 			case "numFP":
 				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
@@ -966,13 +954,7 @@ func (r *MolecularSequenceQualityRoc) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.NumFP = append(r.NumFP, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.NumFPExt) < len(r.NumFP)-1 {
-						r.NumFPExt = append(r.NumFPExt, nil)
-					}
-					r.NumFPExt = append(r.NumFPExt, ext)
-				}
+				r.NumFPExt = appendExtSlot(r.NumFPExt, ext, len(r.NumFP))
 			case "numFN":
 				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
@@ -980,13 +962,7 @@ func (r *MolecularSequenceQualityRoc) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.NumFN = append(r.NumFN, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.NumFNExt) < len(r.NumFN)-1 {
-						r.NumFNExt = append(r.NumFNExt, nil)
-					}
-					r.NumFNExt = append(r.NumFNExt, ext)
-				}
+				r.NumFNExt = appendExtSlot(r.NumFNExt, ext, len(r.NumFN))
 			case "precision":
 				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
@@ -994,13 +970,7 @@ func (r *MolecularSequenceQualityRoc) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Precision = append(r.Precision, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.PrecisionExt) < len(r.Precision)-1 {
-						r.PrecisionExt = append(r.PrecisionExt, nil)
-					}
-					r.PrecisionExt = append(r.PrecisionExt, ext)
-				}
+				r.PrecisionExt = appendExtSlot(r.PrecisionExt, ext, len(r.Precision))
 			case "sensitivity":
 				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
@@ -1008,13 +978,7 @@ func (r *MolecularSequenceQualityRoc) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Sensitivity = append(r.Sensitivity, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.SensitivityExt) < len(r.Sensitivity)-1 {
-						r.SensitivityExt = append(r.SensitivityExt, nil)
-					}
-					r.SensitivityExt = append(r.SensitivityExt, ext)
-				}
+				r.SensitivityExt = appendExtSlot(r.SensitivityExt, ext, len(r.Sensitivity))
 			case "fMeasure":
 				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
@@ -1022,19 +986,20 @@ func (r *MolecularSequenceQualityRoc) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.FMeasure = append(r.FMeasure, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.FMeasureExt) < len(r.FMeasure)-1 {
-						r.FMeasureExt = append(r.FMeasureExt, nil)
-					}
-					r.FMeasureExt = append(r.FMeasureExt, ext)
-				}
+				r.FMeasureExt = appendExtSlot(r.FMeasureExt, ext, len(r.FMeasure))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.ScoreExt = alignExtSlots(r.ScoreExt, len(r.Score))
+			r.NumTPExt = alignExtSlots(r.NumTPExt, len(r.NumTP))
+			r.NumFPExt = alignExtSlots(r.NumFPExt, len(r.NumFP))
+			r.NumFNExt = alignExtSlots(r.NumFNExt, len(r.NumFN))
+			r.PrecisionExt = alignExtSlots(r.PrecisionExt, len(r.Precision))
+			r.SensitivityExt = alignExtSlots(r.SensitivityExt, len(r.Sensitivity))
+			r.FMeasureExt = alignExtSlots(r.FMeasureExt, len(r.FMeasure))
 			return nil
 		}
 	}

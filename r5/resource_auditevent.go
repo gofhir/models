@@ -668,13 +668,7 @@ func (r *AuditEventAgent) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Policy = append(r.Policy, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.PolicyExt) < len(r.Policy)-1 {
-						r.PolicyExt = append(r.PolicyExt, nil)
-					}
-					r.PolicyExt = append(r.PolicyExt, ext)
-				}
+				r.PolicyExt = appendExtSlot(r.PolicyExt, ext, len(r.Policy))
 			case "networkReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -707,6 +701,7 @@ func (r *AuditEventAgent) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 			}
 		case xml.EndElement:
+			r.PolicyExt = alignExtSlots(r.PolicyExt, len(r.Policy))
 			return nil
 		}
 	}

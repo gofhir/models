@@ -872,13 +872,7 @@ func (r *ClaimResponseAddItem) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ItemSequence = append(r.ItemSequence, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ItemSequenceExt) < len(r.ItemSequence)-1 {
-						r.ItemSequenceExt = append(r.ItemSequenceExt, nil)
-					}
-					r.ItemSequenceExt = append(r.ItemSequenceExt, ext)
-				}
+				r.ItemSequenceExt = appendExtSlot(r.ItemSequenceExt, ext, len(r.ItemSequence))
 			case "detailSequence":
 				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
@@ -886,13 +880,7 @@ func (r *ClaimResponseAddItem) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DetailSequence = append(r.DetailSequence, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DetailSequenceExt) < len(r.DetailSequence)-1 {
-						r.DetailSequenceExt = append(r.DetailSequenceExt, nil)
-					}
-					r.DetailSequenceExt = append(r.DetailSequenceExt, ext)
-				}
+				r.DetailSequenceExt = appendExtSlot(r.DetailSequenceExt, ext, len(r.DetailSequence))
 			case "subdetailSequence":
 				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
@@ -900,13 +888,7 @@ func (r *ClaimResponseAddItem) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SubdetailSequence = append(r.SubdetailSequence, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.SubdetailSequenceExt) < len(r.SubdetailSequence)-1 {
-						r.SubdetailSequenceExt = append(r.SubdetailSequenceExt, nil)
-					}
-					r.SubdetailSequenceExt = append(r.SubdetailSequenceExt, ext)
-				}
+				r.SubdetailSequenceExt = appendExtSlot(r.SubdetailSequenceExt, ext, len(r.SubdetailSequence))
 			case "provider":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1006,13 +988,7 @@ func (r *ClaimResponseAddItem) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.NoteNumber = append(r.NoteNumber, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.NoteNumberExt) < len(r.NoteNumber)-1 {
-						r.NoteNumberExt = append(r.NoteNumberExt, nil)
-					}
-					r.NoteNumberExt = append(r.NoteNumberExt, ext)
-				}
+				r.NoteNumberExt = appendExtSlot(r.NoteNumberExt, ext, len(r.NoteNumber))
 			case "adjudication":
 				var v ClaimResponseItemAdjudication
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1031,6 +1007,10 @@ func (r *ClaimResponseAddItem) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 			}
 		case xml.EndElement:
+			r.ItemSequenceExt = alignExtSlots(r.ItemSequenceExt, len(r.ItemSequence))
+			r.DetailSequenceExt = alignExtSlots(r.DetailSequenceExt, len(r.DetailSequence))
+			r.SubdetailSequenceExt = alignExtSlots(r.SubdetailSequenceExt, len(r.SubdetailSequence))
+			r.NoteNumberExt = alignExtSlots(r.NoteNumberExt, len(r.NoteNumber))
 			return nil
 		}
 	}
@@ -1235,13 +1215,7 @@ func (r *ClaimResponseAddItemDetail) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.NoteNumber = append(r.NoteNumber, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.NoteNumberExt) < len(r.NoteNumber)-1 {
-						r.NoteNumberExt = append(r.NoteNumberExt, nil)
-					}
-					r.NoteNumberExt = append(r.NoteNumberExt, ext)
-				}
+				r.NoteNumberExt = appendExtSlot(r.NoteNumberExt, ext, len(r.NoteNumber))
 			case "adjudication":
 				var v ClaimResponseItemAdjudication
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1260,6 +1234,7 @@ func (r *ClaimResponseAddItemDetail) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 			}
 		case xml.EndElement:
+			r.NoteNumberExt = alignExtSlots(r.NoteNumberExt, len(r.NoteNumber))
 			return nil
 		}
 	}
@@ -1457,13 +1432,7 @@ func (r *ClaimResponseAddItemDetailSubDetail) UnmarshalXML(d *xml.Decoder, start
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.NoteNumber = append(r.NoteNumber, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.NoteNumberExt) < len(r.NoteNumber)-1 {
-						r.NoteNumberExt = append(r.NoteNumberExt, nil)
-					}
-					r.NoteNumberExt = append(r.NoteNumberExt, ext)
-				}
+				r.NoteNumberExt = appendExtSlot(r.NoteNumberExt, ext, len(r.NoteNumber))
 			case "adjudication":
 				var v ClaimResponseItemAdjudication
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1476,6 +1445,7 @@ func (r *ClaimResponseAddItemDetailSubDetail) UnmarshalXML(d *xml.Decoder, start
 				}
 			}
 		case xml.EndElement:
+			r.NoteNumberExt = alignExtSlots(r.NoteNumberExt, len(r.NoteNumber))
 			return nil
 		}
 	}
@@ -1944,13 +1914,7 @@ func (r *ClaimResponseItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.NoteNumber = append(r.NoteNumber, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.NoteNumberExt) < len(r.NoteNumber)-1 {
-						r.NoteNumberExt = append(r.NoteNumberExt, nil)
-					}
-					r.NoteNumberExt = append(r.NoteNumberExt, ext)
-				}
+				r.NoteNumberExt = appendExtSlot(r.NoteNumberExt, ext, len(r.NoteNumber))
 			case "adjudication":
 				var v ClaimResponseItemAdjudication
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1969,6 +1933,7 @@ func (r *ClaimResponseItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 			}
 		case xml.EndElement:
+			r.NoteNumberExt = alignExtSlots(r.NoteNumberExt, len(r.NoteNumber))
 			return nil
 		}
 	}
@@ -2264,13 +2229,7 @@ func (r *ClaimResponseItemDetail) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.NoteNumber = append(r.NoteNumber, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.NoteNumberExt) < len(r.NoteNumber)-1 {
-						r.NoteNumberExt = append(r.NoteNumberExt, nil)
-					}
-					r.NoteNumberExt = append(r.NoteNumberExt, ext)
-				}
+				r.NoteNumberExt = appendExtSlot(r.NoteNumberExt, ext, len(r.NoteNumber))
 			case "adjudication":
 				var v ClaimResponseItemAdjudication
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2289,6 +2248,7 @@ func (r *ClaimResponseItemDetail) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 			}
 		case xml.EndElement:
+			r.NoteNumberExt = alignExtSlots(r.NoteNumberExt, len(r.NoteNumber))
 			return nil
 		}
 	}
@@ -2421,13 +2381,7 @@ func (r *ClaimResponseItemDetailSubDetail) UnmarshalXML(d *xml.Decoder, start xm
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.NoteNumber = append(r.NoteNumber, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.NoteNumberExt) < len(r.NoteNumber)-1 {
-						r.NoteNumberExt = append(r.NoteNumberExt, nil)
-					}
-					r.NoteNumberExt = append(r.NoteNumberExt, ext)
-				}
+				r.NoteNumberExt = appendExtSlot(r.NoteNumberExt, ext, len(r.NoteNumber))
 			case "adjudication":
 				var v ClaimResponseItemAdjudication
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2440,6 +2394,7 @@ func (r *ClaimResponseItemDetailSubDetail) UnmarshalXML(d *xml.Decoder, start xm
 				}
 			}
 		case xml.EndElement:
+			r.NoteNumberExt = alignExtSlots(r.NoteNumberExt, len(r.NoteNumber))
 			return nil
 		}
 	}

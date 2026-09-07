@@ -392,13 +392,7 @@ func (r *Endpoint) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.PayloadMimeType = append(r.PayloadMimeType, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.PayloadMimeTypeExt) < len(r.PayloadMimeType)-1 {
-						r.PayloadMimeTypeExt = append(r.PayloadMimeTypeExt, nil)
-					}
-					r.PayloadMimeTypeExt = append(r.PayloadMimeTypeExt, ext)
-				}
+				r.PayloadMimeTypeExt = appendExtSlot(r.PayloadMimeTypeExt, ext, len(r.PayloadMimeType))
 			case "address":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -413,19 +407,15 @@ func (r *Endpoint) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Header = append(r.Header, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.HeaderExt) < len(r.Header)-1 {
-						r.HeaderExt = append(r.HeaderExt, nil)
-					}
-					r.HeaderExt = append(r.HeaderExt, ext)
-				}
+				r.HeaderExt = appendExtSlot(r.HeaderExt, ext, len(r.Header))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.PayloadMimeTypeExt = alignExtSlots(r.PayloadMimeTypeExt, len(r.PayloadMimeType))
+			r.HeaderExt = alignExtSlots(r.HeaderExt, len(r.Header))
 			return nil
 		}
 	}

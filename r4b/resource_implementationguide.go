@@ -507,13 +507,7 @@ func (r *ImplementationGuide) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.FhirVersion = append(r.FhirVersion, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.FhirVersionExt) < len(r.FhirVersion)-1 {
-						r.FhirVersionExt = append(r.FhirVersionExt, nil)
-					}
-					r.FhirVersionExt = append(r.FhirVersionExt, ext)
-				}
+				r.FhirVersionExt = appendExtSlot(r.FhirVersionExt, ext, len(r.FhirVersion))
 			case "dependsOn":
 				var v ImplementationGuideDependsOn
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -544,6 +538,7 @@ func (r *ImplementationGuide) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 			}
 		case xml.EndElement:
+			r.FhirVersionExt = alignExtSlots(r.FhirVersionExt, len(r.FhirVersion))
 			return nil
 		}
 	}
@@ -1304,13 +1299,7 @@ func (r *ImplementationGuideDefinitionResource) UnmarshalXML(d *xml.Decoder, sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.FhirVersion = append(r.FhirVersion, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.FhirVersionExt) < len(r.FhirVersion)-1 {
-						r.FhirVersionExt = append(r.FhirVersionExt, nil)
-					}
-					r.FhirVersionExt = append(r.FhirVersionExt, ext)
-				}
+				r.FhirVersionExt = appendExtSlot(r.FhirVersionExt, ext, len(r.FhirVersion))
 			case "name":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1352,6 +1341,7 @@ func (r *ImplementationGuideDefinitionResource) UnmarshalXML(d *xml.Decoder, sta
 				}
 			}
 		case xml.EndElement:
+			r.FhirVersionExt = alignExtSlots(r.FhirVersionExt, len(r.FhirVersion))
 			return nil
 		}
 	}
@@ -1931,13 +1921,7 @@ func (r *ImplementationGuideManifest) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Image = append(r.Image, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ImageExt) < len(r.Image)-1 {
-						r.ImageExt = append(r.ImageExt, nil)
-					}
-					r.ImageExt = append(r.ImageExt, ext)
-				}
+				r.ImageExt = appendExtSlot(r.ImageExt, ext, len(r.Image))
 			case "other":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1945,19 +1929,15 @@ func (r *ImplementationGuideManifest) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Other = append(r.Other, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.OtherExt) < len(r.Other)-1 {
-						r.OtherExt = append(r.OtherExt, nil)
-					}
-					r.OtherExt = append(r.OtherExt, ext)
-				}
+				r.OtherExt = appendExtSlot(r.OtherExt, ext, len(r.Other))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.ImageExt = alignExtSlots(r.ImageExt, len(r.Image))
+			r.OtherExt = alignExtSlots(r.OtherExt, len(r.Other))
 			return nil
 		}
 	}
@@ -2097,19 +2077,14 @@ func (r *ImplementationGuideManifestPage) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Anchor = append(r.Anchor, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.AnchorExt) < len(r.Anchor)-1 {
-						r.AnchorExt = append(r.AnchorExt, nil)
-					}
-					r.AnchorExt = append(r.AnchorExt, ext)
-				}
+				r.AnchorExt = appendExtSlot(r.AnchorExt, ext, len(r.Anchor))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.AnchorExt = alignExtSlots(r.AnchorExt, len(r.Anchor))
 			return nil
 		}
 	}

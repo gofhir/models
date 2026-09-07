@@ -1507,13 +1507,7 @@ func (r *ClaimInsurance) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.PreAuthRef = append(r.PreAuthRef, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.PreAuthRefExt) < len(r.PreAuthRef)-1 {
-						r.PreAuthRefExt = append(r.PreAuthRefExt, nil)
-					}
-					r.PreAuthRefExt = append(r.PreAuthRefExt, ext)
-				}
+				r.PreAuthRefExt = appendExtSlot(r.PreAuthRefExt, ext, len(r.PreAuthRef))
 			case "claimResponse":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1526,6 +1520,7 @@ func (r *ClaimInsurance) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 			}
 		case xml.EndElement:
+			r.PreAuthRefExt = alignExtSlots(r.PreAuthRefExt, len(r.PreAuthRef))
 			return nil
 		}
 	}
@@ -1839,13 +1834,7 @@ func (r *ClaimItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.CareTeamSequence = append(r.CareTeamSequence, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.CareTeamSequenceExt) < len(r.CareTeamSequence)-1 {
-						r.CareTeamSequenceExt = append(r.CareTeamSequenceExt, nil)
-					}
-					r.CareTeamSequenceExt = append(r.CareTeamSequenceExt, ext)
-				}
+				r.CareTeamSequenceExt = appendExtSlot(r.CareTeamSequenceExt, ext, len(r.CareTeamSequence))
 			case "diagnosisSequence":
 				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
@@ -1853,13 +1842,7 @@ func (r *ClaimItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DiagnosisSequence = append(r.DiagnosisSequence, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DiagnosisSequenceExt) < len(r.DiagnosisSequence)-1 {
-						r.DiagnosisSequenceExt = append(r.DiagnosisSequenceExt, nil)
-					}
-					r.DiagnosisSequenceExt = append(r.DiagnosisSequenceExt, ext)
-				}
+				r.DiagnosisSequenceExt = appendExtSlot(r.DiagnosisSequenceExt, ext, len(r.DiagnosisSequence))
 			case "procedureSequence":
 				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
@@ -1867,13 +1850,7 @@ func (r *ClaimItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ProcedureSequence = append(r.ProcedureSequence, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ProcedureSequenceExt) < len(r.ProcedureSequence)-1 {
-						r.ProcedureSequenceExt = append(r.ProcedureSequenceExt, nil)
-					}
-					r.ProcedureSequenceExt = append(r.ProcedureSequenceExt, ext)
-				}
+				r.ProcedureSequenceExt = appendExtSlot(r.ProcedureSequenceExt, ext, len(r.ProcedureSequence))
 			case "informationSequence":
 				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
@@ -1881,13 +1858,7 @@ func (r *ClaimItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.InformationSequence = append(r.InformationSequence, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.InformationSequenceExt) < len(r.InformationSequence)-1 {
-						r.InformationSequenceExt = append(r.InformationSequenceExt, nil)
-					}
-					r.InformationSequenceExt = append(r.InformationSequenceExt, ext)
-				}
+				r.InformationSequenceExt = appendExtSlot(r.InformationSequenceExt, ext, len(r.InformationSequence))
 			case "revenue":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2028,6 +1999,10 @@ func (r *ClaimItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 			}
 		case xml.EndElement:
+			r.CareTeamSequenceExt = alignExtSlots(r.CareTeamSequenceExt, len(r.CareTeamSequence))
+			r.DiagnosisSequenceExt = alignExtSlots(r.DiagnosisSequenceExt, len(r.DiagnosisSequence))
+			r.ProcedureSequenceExt = alignExtSlots(r.ProcedureSequenceExt, len(r.ProcedureSequence))
+			r.InformationSequenceExt = alignExtSlots(r.InformationSequenceExt, len(r.InformationSequence))
 			return nil
 		}
 	}

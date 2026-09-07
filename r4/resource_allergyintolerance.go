@@ -430,13 +430,7 @@ func (r *AllergyIntolerance) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Category = append(r.Category, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.CategoryExt) < len(r.Category)-1 {
-						r.CategoryExt = append(r.CategoryExt, nil)
-					}
-					r.CategoryExt = append(r.CategoryExt, ext)
-				}
+				r.CategoryExt = appendExtSlot(r.CategoryExt, ext, len(r.Category))
 			case "criticality":
 				v, ext, err := xmlDecodePrimitiveCode[AllergyIntoleranceCriticality](d, t)
 				if err != nil {
@@ -538,6 +532,7 @@ func (r *AllergyIntolerance) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 			}
 		case xml.EndElement:
+			r.CategoryExt = alignExtSlots(r.CategoryExt, len(r.Category))
 			return nil
 		}
 	}

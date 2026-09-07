@@ -668,13 +668,7 @@ func (r *ArtifactAssessmentContent) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Path = append(r.Path, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.PathExt) < len(r.Path)-1 {
-						r.PathExt = append(r.PathExt, nil)
-					}
-					r.PathExt = append(r.PathExt, ext)
-				}
+				r.PathExt = appendExtSlot(r.PathExt, ext, len(r.Path))
 			case "relatedArtifact":
 				var v RelatedArtifact
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -700,6 +694,7 @@ func (r *ArtifactAssessmentContent) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 			}
 		case xml.EndElement:
+			r.PathExt = alignExtSlots(r.PathExt, len(r.Path))
 			return nil
 		}
 	}

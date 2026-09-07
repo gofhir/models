@@ -474,13 +474,7 @@ func (r *MessageDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Replaces = append(r.Replaces, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ReplacesExt) < len(r.Replaces)-1 {
-						r.ReplacesExt = append(r.ReplacesExt, nil)
-					}
-					r.ReplacesExt = append(r.ReplacesExt, ext)
-				}
+				r.ReplacesExt = appendExtSlot(r.ReplacesExt, ext, len(r.Replaces))
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[PublicationStatus](d, t)
 				if err != nil {
@@ -562,13 +556,7 @@ func (r *MessageDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Parent = append(r.Parent, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ParentExt) < len(r.Parent)-1 {
-						r.ParentExt = append(r.ParentExt, nil)
-					}
-					r.ParentExt = append(r.ParentExt, ext)
-				}
+				r.ParentExt = appendExtSlot(r.ParentExt, ext, len(r.Parent))
 			case "eventCoding":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -615,19 +603,16 @@ func (r *MessageDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Graph = append(r.Graph, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.GraphExt) < len(r.Graph)-1 {
-						r.GraphExt = append(r.GraphExt, nil)
-					}
-					r.GraphExt = append(r.GraphExt, ext)
-				}
+				r.GraphExt = appendExtSlot(r.GraphExt, ext, len(r.Graph))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.ReplacesExt = alignExtSlots(r.ReplacesExt, len(r.Replaces))
+			r.ParentExt = alignExtSlots(r.ParentExt, len(r.Parent))
+			r.GraphExt = alignExtSlots(r.GraphExt, len(r.Graph))
 			return nil
 		}
 	}

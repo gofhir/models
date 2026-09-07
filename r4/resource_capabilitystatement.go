@@ -549,13 +549,7 @@ func (r *CapabilityStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Instantiates = append(r.Instantiates, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.InstantiatesExt) < len(r.Instantiates)-1 {
-						r.InstantiatesExt = append(r.InstantiatesExt, nil)
-					}
-					r.InstantiatesExt = append(r.InstantiatesExt, ext)
-				}
+				r.InstantiatesExt = appendExtSlot(r.InstantiatesExt, ext, len(r.Instantiates))
 			case "imports":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -563,13 +557,7 @@ func (r *CapabilityStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Imports = append(r.Imports, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ImportsExt) < len(r.Imports)-1 {
-						r.ImportsExt = append(r.ImportsExt, nil)
-					}
-					r.ImportsExt = append(r.ImportsExt, ext)
-				}
+				r.ImportsExt = appendExtSlot(r.ImportsExt, ext, len(r.Imports))
 			case "software":
 				var v CapabilityStatementSoftware
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -596,13 +584,7 @@ func (r *CapabilityStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Format = append(r.Format, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.FormatExt) < len(r.Format)-1 {
-						r.FormatExt = append(r.FormatExt, nil)
-					}
-					r.FormatExt = append(r.FormatExt, ext)
-				}
+				r.FormatExt = appendExtSlot(r.FormatExt, ext, len(r.Format))
 			case "patchFormat":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -610,13 +592,7 @@ func (r *CapabilityStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.PatchFormat = append(r.PatchFormat, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.PatchFormatExt) < len(r.PatchFormat)-1 {
-						r.PatchFormatExt = append(r.PatchFormatExt, nil)
-					}
-					r.PatchFormatExt = append(r.PatchFormatExt, ext)
-				}
+				r.PatchFormatExt = appendExtSlot(r.PatchFormatExt, ext, len(r.PatchFormat))
 			case "implementationGuide":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -624,13 +600,7 @@ func (r *CapabilityStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ImplementationGuide = append(r.ImplementationGuide, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ImplementationGuideExt) < len(r.ImplementationGuide)-1 {
-						r.ImplementationGuideExt = append(r.ImplementationGuideExt, nil)
-					}
-					r.ImplementationGuideExt = append(r.ImplementationGuideExt, ext)
-				}
+				r.ImplementationGuideExt = appendExtSlot(r.ImplementationGuideExt, ext, len(r.ImplementationGuide))
 			case "rest":
 				var v CapabilityStatementRest
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -655,6 +625,11 @@ func (r *CapabilityStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 			}
 		case xml.EndElement:
+			r.InstantiatesExt = alignExtSlots(r.InstantiatesExt, len(r.Instantiates))
+			r.ImportsExt = alignExtSlots(r.ImportsExt, len(r.Imports))
+			r.FormatExt = alignExtSlots(r.FormatExt, len(r.Format))
+			r.PatchFormatExt = alignExtSlots(r.PatchFormatExt, len(r.PatchFormat))
+			r.ImplementationGuideExt = alignExtSlots(r.ImplementationGuideExt, len(r.ImplementationGuide))
 			return nil
 		}
 	}
@@ -1566,19 +1541,14 @@ func (r *CapabilityStatementRest) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Compartment = append(r.Compartment, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.CompartmentExt) < len(r.Compartment)-1 {
-						r.CompartmentExt = append(r.CompartmentExt, nil)
-					}
-					r.CompartmentExt = append(r.CompartmentExt, ext)
-				}
+				r.CompartmentExt = appendExtSlot(r.CompartmentExt, ext, len(r.Compartment))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.CompartmentExt = alignExtSlots(r.CompartmentExt, len(r.Compartment))
 			return nil
 		}
 	}
@@ -1947,13 +1917,7 @@ func (r *CapabilityStatementRestResource) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SupportedProfile = append(r.SupportedProfile, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.SupportedProfileExt) < len(r.SupportedProfile)-1 {
-						r.SupportedProfileExt = append(r.SupportedProfileExt, nil)
-					}
-					r.SupportedProfileExt = append(r.SupportedProfileExt, ext)
-				}
+				r.SupportedProfileExt = appendExtSlot(r.SupportedProfileExt, ext, len(r.SupportedProfile))
 			case "documentation":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -2023,13 +1987,7 @@ func (r *CapabilityStatementRestResource) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ReferencePolicy = append(r.ReferencePolicy, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ReferencePolicyExt) < len(r.ReferencePolicy)-1 {
-						r.ReferencePolicyExt = append(r.ReferencePolicyExt, nil)
-					}
-					r.ReferencePolicyExt = append(r.ReferencePolicyExt, ext)
-				}
+				r.ReferencePolicyExt = appendExtSlot(r.ReferencePolicyExt, ext, len(r.ReferencePolicy))
 			case "searchInclude":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -2037,13 +1995,7 @@ func (r *CapabilityStatementRestResource) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SearchInclude = append(r.SearchInclude, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.SearchIncludeExt) < len(r.SearchInclude)-1 {
-						r.SearchIncludeExt = append(r.SearchIncludeExt, nil)
-					}
-					r.SearchIncludeExt = append(r.SearchIncludeExt, ext)
-				}
+				r.SearchIncludeExt = appendExtSlot(r.SearchIncludeExt, ext, len(r.SearchInclude))
 			case "searchRevInclude":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -2051,13 +2003,7 @@ func (r *CapabilityStatementRestResource) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SearchRevInclude = append(r.SearchRevInclude, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.SearchRevIncludeExt) < len(r.SearchRevInclude)-1 {
-						r.SearchRevIncludeExt = append(r.SearchRevIncludeExt, nil)
-					}
-					r.SearchRevIncludeExt = append(r.SearchRevIncludeExt, ext)
-				}
+				r.SearchRevIncludeExt = appendExtSlot(r.SearchRevIncludeExt, ext, len(r.SearchRevInclude))
 			case "searchParam":
 				var v CapabilityStatementRestResourceSearchParam
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2076,6 +2022,10 @@ func (r *CapabilityStatementRestResource) UnmarshalXML(d *xml.Decoder, start xml
 				}
 			}
 		case xml.EndElement:
+			r.SupportedProfileExt = alignExtSlots(r.SupportedProfileExt, len(r.SupportedProfile))
+			r.ReferencePolicyExt = alignExtSlots(r.ReferencePolicyExt, len(r.ReferencePolicy))
+			r.SearchIncludeExt = alignExtSlots(r.SearchIncludeExt, len(r.SearchInclude))
+			r.SearchRevIncludeExt = alignExtSlots(r.SearchRevIncludeExt, len(r.SearchRevInclude))
 			return nil
 		}
 	}

@@ -441,18 +441,7 @@ func (r *{{.Name}}) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error
 				// nil is meaningful here: it is a positional slot with no value.
 				r.{{.Name}} = append(r.{{.Name}}, v)
 {{- if and .HasExtension (not .IsChoice)}}
-{{- /* Only grow the companion slice when there is an extension to put in it.
-	Appending unconditionally gave every plain element a nil slot, which JSON
-	then wrote out as "_field":[null] — a member the document never had. The
-	rationale lives here rather than in the output, where it would repeat once
-	per array primitive across every generated file. */}}
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.{{.Name}}Ext) < len(r.{{.Name}})-1 {
-						r.{{.Name}}Ext = append(r.{{.Name}}Ext, nil)
-					}
-					r.{{.Name}}Ext = append(r.{{.Name}}Ext, ext)
-				}
+				r.{{.Name}}Ext = appendExtSlot(r.{{.Name}}Ext, ext, len(r.{{.Name}}))
 {{- else}}
 				_ = ext
 {{- end}}
@@ -499,6 +488,11 @@ func (r *{{.Name}}) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error
 {{- end}}
 			}
 		case xml.EndElement:
+{{- range .Properties}}
+{{- if and .IsPrimitive .IsArray .HasExtension (not .IsChoice)}}
+			r.{{.Name}}Ext = alignExtSlots(r.{{.Name}}Ext, len(r.{{.Name}}))
+{{- end}}
+{{- end}}
 			return nil
 		}
 	}
@@ -562,18 +556,7 @@ func (r *{{.Name}}) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				// nil is meaningful here: it is a positional slot with no value.
 				r.{{.Name}} = append(r.{{.Name}}, v)
 {{- if and .HasExtension (not .IsChoice)}}
-{{- /* Only grow the companion slice when there is an extension to put in it.
-	Appending unconditionally gave every plain element a nil slot, which JSON
-	then wrote out as "_field":[null] — a member the document never had. The
-	rationale lives here rather than in the output, where it would repeat once
-	per array primitive across every generated file. */}}
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.{{.Name}}Ext) < len(r.{{.Name}})-1 {
-						r.{{.Name}}Ext = append(r.{{.Name}}Ext, nil)
-					}
-					r.{{.Name}}Ext = append(r.{{.Name}}Ext, ext)
-				}
+				r.{{.Name}}Ext = appendExtSlot(r.{{.Name}}Ext, ext, len(r.{{.Name}}))
 {{- else}}
 				_ = ext
 {{- end}}
@@ -629,6 +612,11 @@ func (r *{{.Name}}) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 {{- end}}
 			}
 		case xml.EndElement:
+{{- range .Properties}}
+{{- if and .IsPrimitive .IsArray .HasExtension (not .IsChoice)}}
+			r.{{.Name}}Ext = alignExtSlots(r.{{.Name}}Ext, len(r.{{.Name}}))
+{{- end}}
+{{- end}}
 			return nil
 		}
 	}
