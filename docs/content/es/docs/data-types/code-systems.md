@@ -217,7 +217,10 @@ Cuando escribes `r4.AdministrativeGender`, tu IDE sugerirá todos los valores v�
 
 ### Código Auto-documentado
 
-Las constantes de los enums incluyen un comentario con el nombre de visualización del ValueSet de FHIR:
+Las constantes de los enums llevan el nombre de visualización del ValueSet de FHIR
+como comentario, y el mismo texto está disponible en tiempo de ejecución — ver
+[Lo que cada código sabe de sí mismo](#lo-que-cada-código-sabe-de-sí-mismo) más
+abajo.
 
 ```go
 // AdministrativeGenderMale - Male
@@ -225,6 +228,80 @@ AdministrativeGenderMale AdministrativeGender = "male"
 // AdministrativeGenderFemale - Female
 AdministrativeGenderFemale AdministrativeGender = "female"
 ```
+
+## Lo que cada código sabe de sí mismo
+
+Un código por sí solo no es un coding: `"male"` no dice nada hasta que dices de qué
+vocabulario viene. Todo enum generado lleva los datos que la especificación da para
+cada uno de sus códigos:
+
+```go
+g := r4.AdministrativeGenderMale
+
+g.Display()   // "Male"
+g.System()    // "http://hl7.org/fhir/administrative-gender"
+g.Coding()    // Coding{System: ..., Code: "male", Display: "Male"}
+```
+
+`Coding()` es lo que necesita un `CodeableConcept`, y construirlo a mano es donde
+la URL del system se suele copiar mal:
+
+```go
+cc := r4.NewCodeableConceptBuilder().
+    AddCoding(r4.AdministrativeGenderMale.Coding()).
+    Build()
+
+// {"coding":[{"system":"http://hl7.org/fhir/administrative-gender","code":"male","display":"Male"}]}
+```
+
+### Listar los valores
+
+`<Tipo>Values()` devuelve todos los códigos que el tipo admite, en el orden de la
+especificación — para poblar un formulario o comprobar que un `switch` los cubre
+todos:
+
+```go
+for _, g := range r4.AdministrativeGenderValues() {
+    fmt.Printf("%s\t%s\n", g, g.Display())
+}
+// male    Male
+// female  Female
+// other   Other
+// unknown Unknown
+```
+
+### Un código que no está en el ValueSet
+
+El tipo es un string, así que se le puede asignar cualquier cosa, incluido un valor
+que llegó por la red y nadie comprobó. Deserializar no lo rechaza:
+
+```go
+json.Unmarshal([]byte(`{"resourceType":"Patient","gender":"not-a-gender"}`), &p)
+// sin error
+```
+
+`Display()` recurre al propio código en lugar de a una cadena vacía, así que el
+resultado sigue pudiendo mostrarse a una persona, y `System()` devuelve `""` en
+lugar de afirmar un vocabulario que no se sostiene.
+
+Para saber si un código es uno de los que define la especificación, consulta la
+tabla directamente:
+
+```go
+if _, definido := r4.AdministrativeGenderTable[*p.Gender]; !definido {
+    // el código está fuera del ValueSet
+}
+```
+
+{{< callout type="info" >}}
+Esta librería deliberadamente no responde si eso hace que el **documento** sea
+inválido. Los enums se generan solo para bindings `required` —un binding
+`extensible` o `preferred` deja el campo como `*string`, precisamente porque allí
+un código de fuera del ValueSet es válido—, pero la conformidad es una pregunta
+para [`gofhir/validator`](https://github.com/gofhir/validator), que trabaja sobre
+el documento crudo. Una comprobación de pertenencia aquí se parecería demasiado a
+una validación terminológica como para no confundirse con ella.
+{{< /callout >}}
 
 ## Trabajo con Valores de Cadena
 
