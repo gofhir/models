@@ -369,7 +369,13 @@ func (r *VerificationResult) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.TargetLocation = append(r.TargetLocation, v)
-				r.TargetLocationExt = append(r.TargetLocationExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.TargetLocationExt) < len(r.TargetLocation)-1 {
+						r.TargetLocationExt = append(r.TargetLocationExt, nil)
+					}
+					r.TargetLocationExt = append(r.TargetLocationExt, ext)
+				}
 			case "need":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

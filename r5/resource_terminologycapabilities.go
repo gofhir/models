@@ -1086,7 +1086,13 @@ func (r *TerminologyCapabilitiesCodeSystemVersion) UnmarshalXML(d *xml.Decoder, 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Language = append(r.Language, v)
-				r.LanguageExt = append(r.LanguageExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.LanguageExt) < len(r.Language)-1 {
+						r.LanguageExt = append(r.LanguageExt, nil)
+					}
+					r.LanguageExt = append(r.LanguageExt, ext)
+				}
 			case "filter":
 				var v TerminologyCapabilitiesCodeSystemVersionFilter
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1100,7 +1106,13 @@ func (r *TerminologyCapabilitiesCodeSystemVersion) UnmarshalXML(d *xml.Decoder, 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Property = append(r.Property, v)
-				r.PropertyExt = append(r.PropertyExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.PropertyExt) < len(r.Property)-1 {
+						r.PropertyExt = append(r.PropertyExt, nil)
+					}
+					r.PropertyExt = append(r.PropertyExt, ext)
+				}
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1232,7 +1244,13 @@ func (r *TerminologyCapabilitiesCodeSystemVersionFilter) UnmarshalXML(d *xml.Dec
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Op = append(r.Op, v)
-				r.OpExt = append(r.OpExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.OpExt) < len(r.Op)-1 {
+						r.OpExt = append(r.OpExt, nil)
+					}
+					r.OpExt = append(r.OpExt, ext)
+				}
 			default:
 				if err := d.Skip(); err != nil {
 					return err

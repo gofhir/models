@@ -327,7 +327,13 @@ func (r *Permission) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Date = append(r.Date, v)
-				r.DateExt = append(r.DateExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.DateExt) < len(r.Date)-1 {
+						r.DateExt = append(r.DateExt, nil)
+					}
+					r.DateExt = append(r.DateExt, ext)
+				}
 			case "validity":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

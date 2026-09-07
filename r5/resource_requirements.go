@@ -540,7 +540,13 @@ func (r *Requirements) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFrom = append(r.DerivedFrom, v)
-				r.DerivedFromExt = append(r.DerivedFromExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.DerivedFromExt) < len(r.DerivedFrom)-1 {
+						r.DerivedFromExt = append(r.DerivedFromExt, nil)
+					}
+					r.DerivedFromExt = append(r.DerivedFromExt, ext)
+				}
 			case "reference":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -548,7 +554,13 @@ func (r *Requirements) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Reference = append(r.Reference, v)
-				r.ReferenceExt = append(r.ReferenceExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ReferenceExt) < len(r.Reference)-1 {
+						r.ReferenceExt = append(r.ReferenceExt, nil)
+					}
+					r.ReferenceExt = append(r.ReferenceExt, ext)
+				}
 			case "actor":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -556,7 +568,13 @@ func (r *Requirements) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Actor = append(r.Actor, v)
-				r.ActorExt = append(r.ActorExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ActorExt) < len(r.Actor)-1 {
+						r.ActorExt = append(r.ActorExt, nil)
+					}
+					r.ActorExt = append(r.ActorExt, ext)
+				}
 			case "statement":
 				var v RequirementsStatement
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -757,7 +775,13 @@ func (r *RequirementsStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Conformance = append(r.Conformance, v)
-				r.ConformanceExt = append(r.ConformanceExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ConformanceExt) < len(r.Conformance)-1 {
+						r.ConformanceExt = append(r.ConformanceExt, nil)
+					}
+					r.ConformanceExt = append(r.ConformanceExt, ext)
+				}
 			case "conditionality":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -793,7 +817,13 @@ func (r *RequirementsStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SatisfiedBy = append(r.SatisfiedBy, v)
-				r.SatisfiedByExt = append(r.SatisfiedByExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.SatisfiedByExt) < len(r.SatisfiedBy)-1 {
+						r.SatisfiedByExt = append(r.SatisfiedByExt, nil)
+					}
+					r.SatisfiedByExt = append(r.SatisfiedByExt, ext)
+				}
 			case "reference":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -801,7 +831,13 @@ func (r *RequirementsStatement) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Reference = append(r.Reference, v)
-				r.ReferenceExt = append(r.ReferenceExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ReferenceExt) < len(r.Reference)-1 {
+						r.ReferenceExt = append(r.ReferenceExt, nil)
+					}
+					r.ReferenceExt = append(r.ReferenceExt, ext)
+				}
 			case "source":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

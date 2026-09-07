@@ -419,7 +419,13 @@ func (r *Endpoint) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Header = append(r.Header, v)
-				r.HeaderExt = append(r.HeaderExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.HeaderExt) < len(r.Header)-1 {
+						r.HeaderExt = append(r.HeaderExt, nil)
+					}
+					r.HeaderExt = append(r.HeaderExt, ext)
+				}
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -550,7 +556,13 @@ func (r *EndpointPayload) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.MimeType = append(r.MimeType, v)
-				r.MimeTypeExt = append(r.MimeTypeExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.MimeTypeExt) < len(r.MimeType)-1 {
+						r.MimeTypeExt = append(r.MimeTypeExt, nil)
+					}
+					r.MimeTypeExt = append(r.MimeTypeExt, ext)
+				}
 			default:
 				if err := d.Skip(); err != nil {
 					return err

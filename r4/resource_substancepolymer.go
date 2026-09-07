@@ -325,7 +325,13 @@ func (r *SubstancePolymer) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Modification = append(r.Modification, v)
-				r.ModificationExt = append(r.ModificationExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ModificationExt) < len(r.Modification)-1 {
+						r.ModificationExt = append(r.ModificationExt, nil)
+					}
+					r.ModificationExt = append(r.ModificationExt, ext)
+				}
 			case "monomerSet":
 				var v SubstancePolymerMonomerSet
 				if err := v.UnmarshalXML(d, t); err != nil {

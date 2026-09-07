@@ -508,7 +508,13 @@ func (r *MessageDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Replaces = append(r.Replaces, v)
-				r.ReplacesExt = append(r.ReplacesExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ReplacesExt) < len(r.Replaces)-1 {
+						r.ReplacesExt = append(r.ReplacesExt, nil)
+					}
+					r.ReplacesExt = append(r.ReplacesExt, ext)
+				}
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[PublicationStatus](d, t)
 				if err != nil {
@@ -597,7 +603,13 @@ func (r *MessageDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Parent = append(r.Parent, v)
-				r.ParentExt = append(r.ParentExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ParentExt) < len(r.Parent)-1 {
+						r.ParentExt = append(r.ParentExt, nil)
+					}
+					r.ParentExt = append(r.ParentExt, ext)
+				}
 			case "eventCoding":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {

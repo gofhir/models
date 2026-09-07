@@ -819,7 +819,13 @@ func (r *ActivityDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Library = append(r.Library, v)
-				r.LibraryExt = append(r.LibraryExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.LibraryExt) < len(r.Library)-1 {
+						r.LibraryExt = append(r.LibraryExt, nil)
+					}
+					r.LibraryExt = append(r.LibraryExt, ext)
+				}
 			case "kind":
 				v, ext, err := xmlDecodePrimitiveCode[ActivityDefinitionKind](d, t)
 				if err != nil {

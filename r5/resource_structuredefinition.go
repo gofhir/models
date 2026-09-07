@@ -635,7 +635,13 @@ func (r *StructureDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ContextInvariant = append(r.ContextInvariant, v)
-				r.ContextInvariantExt = append(r.ContextInvariantExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ContextInvariantExt) < len(r.ContextInvariant)-1 {
+						r.ContextInvariantExt = append(r.ContextInvariantExt, nil)
+					}
+					r.ContextInvariantExt = append(r.ContextInvariantExt, ext)
+				}
 			case "type":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

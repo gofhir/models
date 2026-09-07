@@ -627,7 +627,13 @@ func (r *ConditionDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Definition = append(r.Definition, v)
-				r.DefinitionExt = append(r.DefinitionExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.DefinitionExt) < len(r.Definition)-1 {
+						r.DefinitionExt = append(r.DefinitionExt, nil)
+					}
+					r.DefinitionExt = append(r.DefinitionExt, ext)
+				}
 			case "observation":
 				var v ConditionDefinitionObservation
 				if err := v.UnmarshalXML(d, t); err != nil {

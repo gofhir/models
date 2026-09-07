@@ -575,7 +575,13 @@ func (r *ImplementationGuide) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.FhirVersion = append(r.FhirVersion, v)
-				r.FhirVersionExt = append(r.FhirVersionExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.FhirVersionExt) < len(r.FhirVersion)-1 {
+						r.FhirVersionExt = append(r.FhirVersionExt, nil)
+					}
+					r.FhirVersionExt = append(r.FhirVersionExt, ext)
+				}
 			case "dependsOn":
 				var v ImplementationGuideDependsOn
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1394,7 +1400,13 @@ func (r *ImplementationGuideDefinitionResource) UnmarshalXML(d *xml.Decoder, sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.FhirVersion = append(r.FhirVersion, v)
-				r.FhirVersionExt = append(r.FhirVersionExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.FhirVersionExt) < len(r.FhirVersion)-1 {
+						r.FhirVersionExt = append(r.FhirVersionExt, nil)
+					}
+					r.FhirVersionExt = append(r.FhirVersionExt, ext)
+				}
 			case "name":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1423,7 +1435,13 @@ func (r *ImplementationGuideDefinitionResource) UnmarshalXML(d *xml.Decoder, sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Profile = append(r.Profile, v)
-				r.ProfileExt = append(r.ProfileExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ProfileExt) < len(r.Profile)-1 {
+						r.ProfileExt = append(r.ProfileExt, nil)
+					}
+					r.ProfileExt = append(r.ProfileExt, ext)
+				}
 			case "groupingId":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -2030,7 +2048,13 @@ func (r *ImplementationGuideManifest) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Image = append(r.Image, v)
-				r.ImageExt = append(r.ImageExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ImageExt) < len(r.Image)-1 {
+						r.ImageExt = append(r.ImageExt, nil)
+					}
+					r.ImageExt = append(r.ImageExt, ext)
+				}
 			case "other":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -2038,7 +2062,13 @@ func (r *ImplementationGuideManifest) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Other = append(r.Other, v)
-				r.OtherExt = append(r.OtherExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.OtherExt) < len(r.Other)-1 {
+						r.OtherExt = append(r.OtherExt, nil)
+					}
+					r.OtherExt = append(r.OtherExt, ext)
+				}
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2184,7 +2214,13 @@ func (r *ImplementationGuideManifestPage) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Anchor = append(r.Anchor, v)
-				r.AnchorExt = append(r.AnchorExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.AnchorExt) < len(r.Anchor)-1 {
+						r.AnchorExt = append(r.AnchorExt, nil)
+					}
+					r.AnchorExt = append(r.AnchorExt, ext)
+				}
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2336,7 +2372,13 @@ func (r *ImplementationGuideManifestResource) UnmarshalXML(d *xml.Decoder, start
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Profile = append(r.Profile, v)
-				r.ProfileExt = append(r.ProfileExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ProfileExt) < len(r.Profile)-1 {
+						r.ProfileExt = append(r.ProfileExt, nil)
+					}
+					r.ProfileExt = append(r.ProfileExt, ext)
+				}
 			case "relativePath":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

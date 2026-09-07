@@ -542,7 +542,13 @@ func (r *SearchParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Base = append(r.Base, v)
-				r.BaseExt = append(r.BaseExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.BaseExt) < len(r.Base)-1 {
+						r.BaseExt = append(r.BaseExt, nil)
+					}
+					r.BaseExt = append(r.BaseExt, ext)
+				}
 			case "type":
 				v, ext, err := xmlDecodePrimitiveCode[SearchParamType](d, t)
 				if err != nil {
@@ -578,7 +584,13 @@ func (r *SearchParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Target = append(r.Target, v)
-				r.TargetExt = append(r.TargetExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.TargetExt) < len(r.Target)-1 {
+						r.TargetExt = append(r.TargetExt, nil)
+					}
+					r.TargetExt = append(r.TargetExt, ext)
+				}
 			case "multipleOr":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -600,7 +612,13 @@ func (r *SearchParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Comparator = append(r.Comparator, v)
-				r.ComparatorExt = append(r.ComparatorExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ComparatorExt) < len(r.Comparator)-1 {
+						r.ComparatorExt = append(r.ComparatorExt, nil)
+					}
+					r.ComparatorExt = append(r.ComparatorExt, ext)
+				}
 			case "modifier":
 				v, ext, err := xmlDecodePrimitiveCode[SearchModifierCode](d, t)
 				if err != nil {
@@ -608,7 +626,13 @@ func (r *SearchParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Modifier = append(r.Modifier, v)
-				r.ModifierExt = append(r.ModifierExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ModifierExt) < len(r.Modifier)-1 {
+						r.ModifierExt = append(r.ModifierExt, nil)
+					}
+					r.ModifierExt = append(r.ModifierExt, ext)
+				}
 			case "chain":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -616,7 +640,13 @@ func (r *SearchParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Chain = append(r.Chain, v)
-				r.ChainExt = append(r.ChainExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ChainExt) < len(r.Chain)-1 {
+						r.ChainExt = append(r.ChainExt, nil)
+					}
+					r.ChainExt = append(r.ChainExt, ext)
+				}
 			case "component":
 				var v SearchParameterComponent
 				if err := v.UnmarshalXML(d, t); err != nil {

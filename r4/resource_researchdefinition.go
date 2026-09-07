@@ -611,7 +611,13 @@ func (r *ResearchDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Comment = append(r.Comment, v)
-				r.CommentExt = append(r.CommentExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.CommentExt) < len(r.Comment)-1 {
+						r.CommentExt = append(r.CommentExt, nil)
+					}
+					r.CommentExt = append(r.CommentExt, ext)
+				}
 			case "useContext":
 				var v UsageContext
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -708,7 +714,13 @@ func (r *ResearchDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Library = append(r.Library, v)
-				r.LibraryExt = append(r.LibraryExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.LibraryExt) < len(r.Library)-1 {
+						r.LibraryExt = append(r.LibraryExt, nil)
+					}
+					r.LibraryExt = append(r.LibraryExt, ext)
+				}
 			case "population":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

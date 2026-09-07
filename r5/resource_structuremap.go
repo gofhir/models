@@ -546,7 +546,13 @@ func (r *StructureMap) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Import = append(r.Import, v)
-				r.ImportExt = append(r.ImportExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ImportExt) < len(r.Import)-1 {
+						r.ImportExt = append(r.ImportExt, nil)
+					}
+					r.ImportExt = append(r.ImportExt, ext)
+				}
 			case "const":
 				var v StructureMapConst
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1784,7 +1790,13 @@ func (r *StructureMapGroupRuleTarget) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ListMode = append(r.ListMode, v)
-				r.ListModeExt = append(r.ListModeExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ListModeExt) < len(r.ListMode)-1 {
+						r.ListModeExt = append(r.ListModeExt, nil)
+					}
+					r.ListModeExt = append(r.ListModeExt, ext)
+				}
 			case "listRuleId":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

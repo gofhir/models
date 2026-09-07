@@ -418,7 +418,13 @@ func (r *MedicationAdministration) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Instantiates = append(r.Instantiates, v)
-				r.InstantiatesExt = append(r.InstantiatesExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.InstantiatesExt) < len(r.Instantiates)-1 {
+						r.InstantiatesExt = append(r.InstantiatesExt, nil)
+					}
+					r.InstantiatesExt = append(r.InstantiatesExt, ext)
+				}
 			case "partOf":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

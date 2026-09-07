@@ -417,7 +417,13 @@ func (r *Location) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Alias = append(r.Alias, v)
-				r.AliasExt = append(r.AliasExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.AliasExt) < len(r.Alias)-1 {
+						r.AliasExt = append(r.AliasExt, nil)
+					}
+					r.AliasExt = append(r.AliasExt, ext)
+				}
 			case "description":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

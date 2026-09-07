@@ -474,7 +474,13 @@ func (r *ChargeItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DefinitionUri = append(r.DefinitionUri, v)
-				r.DefinitionUriExt = append(r.DefinitionUriExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.DefinitionUriExt) < len(r.DefinitionUri)-1 {
+						r.DefinitionUriExt = append(r.DefinitionUriExt, nil)
+					}
+					r.DefinitionUriExt = append(r.DefinitionUriExt, ext)
+				}
 			case "definitionCanonical":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -482,7 +488,13 @@ func (r *ChargeItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DefinitionCanonical = append(r.DefinitionCanonical, v)
-				r.DefinitionCanonicalExt = append(r.DefinitionCanonicalExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.DefinitionCanonicalExt) < len(r.DefinitionCanonical)-1 {
+						r.DefinitionCanonicalExt = append(r.DefinitionCanonicalExt, nil)
+					}
+					r.DefinitionCanonicalExt = append(r.DefinitionCanonicalExt, ext)
+				}
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[ChargeItemStatus](d, t)
 				if err != nil {

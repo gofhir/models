@@ -450,7 +450,13 @@ func (r *MedicationKnowledge) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Synonym = append(r.Synonym, v)
-				r.SynonymExt = append(r.SynonymExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.SynonymExt) < len(r.Synonym)-1 {
+						r.SynonymExt = append(r.SynonymExt, nil)
+					}
+					r.SynonymExt = append(r.SynonymExt, ext)
+				}
 			case "relatedMedicationKnowledge":
 				var v MedicationKnowledgeRelatedMedicationKnowledge
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -975,7 +981,13 @@ func (r *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics) Unma
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Value = append(r.Value, v)
-				r.ValueExt = append(r.ValueExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ValueExt) < len(r.Value)-1 {
+						r.ValueExt = append(r.ValueExt, nil)
+					}
+					r.ValueExt = append(r.ValueExt, ext)
+				}
 			default:
 				if err := d.Skip(); err != nil {
 					return err

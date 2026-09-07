@@ -361,7 +361,13 @@ func (r *Organization) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Alias = append(r.Alias, v)
-				r.AliasExt = append(r.AliasExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.AliasExt) < len(r.Alias)-1 {
+						r.AliasExt = append(r.AliasExt, nil)
+					}
+					r.AliasExt = append(r.AliasExt, ext)
+				}
 			case "telecom":
 				var v ContactPoint
 				if err := v.UnmarshalXML(d, t); err != nil {

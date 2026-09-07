@@ -432,7 +432,13 @@ func (r *NutritionOrder) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
-				r.InstantiatesCanonicalExt = append(r.InstantiatesCanonicalExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.InstantiatesCanonicalExt) < len(r.InstantiatesCanonical)-1 {
+						r.InstantiatesCanonicalExt = append(r.InstantiatesCanonicalExt, nil)
+					}
+					r.InstantiatesCanonicalExt = append(r.InstantiatesCanonicalExt, ext)
+				}
 			case "instantiatesUri":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -440,7 +446,13 @@ func (r *NutritionOrder) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.InstantiatesUri = append(r.InstantiatesUri, v)
-				r.InstantiatesUriExt = append(r.InstantiatesUriExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.InstantiatesUriExt) < len(r.InstantiatesUri)-1 {
+						r.InstantiatesUriExt = append(r.InstantiatesUriExt, nil)
+					}
+					r.InstantiatesUriExt = append(r.InstantiatesUriExt, ext)
+				}
 			case "instantiates":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -448,7 +460,13 @@ func (r *NutritionOrder) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Instantiates = append(r.Instantiates, v)
-				r.InstantiatesExt = append(r.InstantiatesExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.InstantiatesExt) < len(r.Instantiates)-1 {
+						r.InstantiatesExt = append(r.InstantiatesExt, nil)
+					}
+					r.InstantiatesExt = append(r.InstantiatesExt, ext)
+				}
 			case "basedOn":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
