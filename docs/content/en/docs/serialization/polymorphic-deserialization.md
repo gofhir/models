@@ -123,6 +123,70 @@ for _, t := range types {
 }
 ```
 
+## A type this version does not define
+
+A server one version ahead is the ordinary case, not an edge case: an R5 server
+answering an R4 client will put resources like `InventoryItem` in a searchset
+Bundle. Such a resource is **preserved**, not refused, so one unrecognised entry
+does not destroy everything around it:
+
+```go
+var bundle r4.Bundle
+err := json.Unmarshal(data, &bundle)   // no error
+
+for _, entry := range bundle.Entry {
+    switch res := entry.Resource.(type) {
+    case *r4.Patient:
+        // ...
+    case *r4.UnknownResource:
+        log.Printf("cannot interpret %s", res.Type)
+    }
+}
+```
+
+The document is kept byte for byte, so writing the Bundle back preserves the
+resource complete — including the members this version has no field for. Before,
+they were lost along with everything else.
+
+```go
+u := entry.Resource.(*r4.UnknownResource)
+u.Type          // "InventoryItem"
+u.Raw           // the original JSON
+u.GetId()       // the id, which means the same in every FHIR version
+```
+
+Only `id` and `meta` are interpreted. They are what the `Resource` interface
+exposes and they mean the same thing in every version, so reading them assumes
+nothing about a type the library does not model.
+
+### What is still an error
+
+**A missing `resourceType`.** Unknown is not the same as absent: a document with
+no type is not a resource in any version.
+
+**`NewResource("Nonesuch")`.** That asks for an instance of a named type, and
+handing back an empty shell would answer a question nobody asked. The fallback
+belongs on the path that is decoding someone else's document.
+
+### It cannot cross formats
+
+Only one of `Raw` and `RawXML` is ever set, depending on how the resource
+arrived. Converting between the two would mean knowing which members are
+attributes, which are elements and which are primitives carrying a `value`
+attribute — which is exactly what makes the type unknown. Asking for the other
+format returns an error saying so rather than guessing:
+
+```
+InventoryItem was read from XML and cannot be written as JSON: converting it
+would require knowing its structure, which is what makes it unknown
+```
+
+XML behaves the same way otherwise: `UnmarshalResourceXML` captures the element
+and writes it back. That capture is semantic rather than byte-for-byte — it is
+rebuilt from the decoder's token stream, which has no record of how an empty
+element was spelled, so `<self/>` comes back as `<self></self>`. The two are the
+same element in XML, and every member and its content survives.
+
 ## Type Assertion Patterns
 
 Since `UnmarshalResource` returns the `Resource` interface, you need type assertions to access resource-specific fields. Here are common patterns:

@@ -59,7 +59,28 @@ patient := r4.NewPatientBuilder().
     Build()
 ```
 
-Note that the data type structs passed to `Add` methods still use pointers for optional fields. The builder eliminates pointer boilerplate for primitive resource fields (string, bool, code types), but complex data type structs retain their standard Go representation.
+Data types have builders of their own, so the chain does not have to stop there:
+
+```go
+patient := r4.NewPatientBuilder().
+    SetId("patient-789").
+    SetGender(r4.AdministrativeGenderFemale).
+    SetBirthDate("1985-06-20").
+    AddName(r4.NewHumanNameBuilder().
+        SetUse(r4.NameUseOfficial).
+        SetFamily("Garcia").
+        AddGiven("Maria").
+        Build()).
+    Build()
+```
+
+`Build()` on a data type returns a **value**, not a pointer, because that is what
+every consumer takes: `Patient.Name` is `[]HumanName`, and even a pointer field
+like `Range.Low` is set through `SetLow(Quantity)`, which takes the address
+itself. So no dereference is needed at the call site.
+
+Resources are the other way round — `Build()` returns `*Patient` — since they are
+handled as pointers and satisfy the `Resource` interface on the pointer receiver.
 
 ## Adding Multiple Elements
 
@@ -162,10 +183,88 @@ Every builder follows the same naming convention:
 | Method Pattern | Purpose | Example |
 |----------------|---------|---------|
 | `Set<Field>(v)` | Set a singular field | `SetId("123")`, `SetActive(true)` |
-| `Add<Field>(v)` | Append to a repeating field | `AddName(humanName)`, `AddIdentifier(id)` |
-| `Build()` | Return the constructed resource | `Build()` |
+| `Add<Field>(v)` | Append to a repeating field | `AddName(humanName)` |
+| `Set<Field>Ext(v)` | Set the extensions on a primitive | `SetBirthDateExt(element)` |
+| `Add<Field>Ext(v)` | Append an extension slot to a repeating primitive | `AddGivenExt(&element)` |
+| `Build()` | Return the constructed value | `Build()` |
 
-The `Set` methods accept unwrapped values (e.g., `string` instead of `*string`) and handle pointer creation internally. The `Add` methods accept the data type struct directly and append it to the corresponding slice.
+The `Set` methods accept unwrapped values (`string` rather than `*string`) and
+create the pointer internally.
+
+### Every type has one
+
+Builders are generated for resources, data types **and** backbone elements — 663
+in R4, 681 in R4B, 834 in R5. A backbone is where most of a resource's data
+actually lives, so stopping at the resource level would mean dropping into a
+struct literal for `Patient.contact`, `Bundle.entry` or `Observation.component`:
+
+```go
+patient := r4.NewPatientBuilder().
+    AddContact(r4.NewPatientContactBuilder().
+        SetName(r4.NewHumanNameBuilder().SetFamily("Doe").Build()).
+        AddTelecom(r4.NewContactPointBuilder().
+            SetSystem(r4.ContactPointSystemPhone).
+            SetValue("555-0100").
+            Build()).
+        Build()).
+    Build()
+```
+
+### Extensions on primitives
+
+A primitive carries its extensions in a companion field — `BirthDateExt` for
+`birthDate`, serialized as `_birthDate`. That is the only way FHIR expresses an
+extension on a primitive value, and the builder reaches it:
+
+```go
+patient := r4.NewPatientBuilder().
+    SetBirthDateExt(r4.NewElementBuilder().
+        AddExtension(r4.NewExtensionBuilder().
+            SetUrl("http://hl7.org/fhir/StructureDefinition/data-absent-reason").
+            SetValueCode("asked-declined").
+            Build()).
+        Build()).
+    Build()
+
+// {"resourceType":"Patient","_birthDate":{"extension":[{"url":"...","valueCode":"asked-declined"}]}}
+```
+
+Note there is no `birthDate` value in that output: the extension says *why* the
+date is absent, which is the whole point.
+
+For a **repeating** primitive the two slices are parallel by position, so
+`Add<Field>Ext` attaches to the element added most recently and fills any earlier
+gap with nil:
+
+```go
+name := r4.NewHumanNameBuilder().
+    AddGiven("A").
+    AddGiven("B").
+    AddGivenExt(&ext).      // belongs to "B"
+    Build()
+
+// {"given":["A","B"],"_given":[null,{...}]}
+```
+
+Passing `nil` is meaningful there — it is a position with no extension.
+
+### Choice fields are exclusive
+
+A choice element holds exactly one variant, so setting one clears the others,
+including the `_field` companion of a primitive variant:
+
+```go
+obs := r4.NewObservationBuilder().
+    SetValueString("a").
+    SetValueBoolean(true).      // clears valueString
+    Build()
+
+// {"resourceType":"Observation","valueBoolean":true}
+```
+
+Without that, a chain of setters produced a document with several variants
+present, which no FHIR server accepts. A struct literal can still do it — the
+guard is in the builder.
 
 ## When to Use the Builder
 

@@ -217,7 +217,9 @@ When you type `r4.AdministrativeGender`, your IDE will suggest all valid values,
 
 ### Self-Documenting Code
 
-Enum constants include a comment with the display name from the FHIR ValueSet:
+Enum constants carry the display name from the FHIR ValueSet as a comment, and the
+same text is available at run time — see [What each code knows about
+itself](#what-each-code-knows-about-itself) below.
 
 ```go
 // AdministrativeGenderMale - Male
@@ -225,6 +227,79 @@ AdministrativeGenderMale AdministrativeGender = "male"
 // AdministrativeGenderFemale - Female
 AdministrativeGenderFemale AdministrativeGender = "female"
 ```
+
+## What each code knows about itself
+
+A code on its own is not a coding: `"male"` says nothing until you say which
+vocabulary it comes from. Every generated enum carries the specification's own
+data for each of its codes:
+
+```go
+g := r4.AdministrativeGenderMale
+
+g.Display()   // "Male"
+g.System()    // "http://hl7.org/fhir/administrative-gender"
+g.Coding()    // Coding{System: ..., Code: "male", Display: "Male"}
+```
+
+`Coding()` is what a `CodeableConcept` needs, and building it by hand is where the
+system URL usually gets copied wrong:
+
+```go
+cc := r4.NewCodeableConceptBuilder().
+    AddCoding(r4.AdministrativeGenderMale.Coding()).
+    Build()
+
+// {"coding":[{"system":"http://hl7.org/fhir/administrative-gender","code":"male","display":"Male"}]}
+```
+
+### Listing the values
+
+`<Type>Values()` returns every code the type allows, in specification order — for
+populating a form, or checking that a `switch` covers everything:
+
+```go
+for _, g := range r4.AdministrativeGenderValues() {
+    fmt.Printf("%s\t%s\n", g, g.Display())
+}
+// male    Male
+// female  Female
+// other   Other
+// unknown Unknown
+```
+
+### A code that is not in the ValueSet
+
+The type is a string, so anything can be assigned to it — including a value that
+came off the wire and was never checked. Decoding does not reject it:
+
+```go
+json.Unmarshal([]byte(`{"resourceType":"Patient","gender":"not-a-gender"}`), &p)
+// no error
+```
+
+`Display()` falls back to the code itself rather than an empty string, so the
+result can still go in front of a person, and `System()` returns `""` rather than
+claiming a vocabulary that does not hold.
+
+To find out whether a code is one the specification defines, consult the table
+directly:
+
+```go
+if _, defined := r4.AdministrativeGenderTable[*p.Gender]; !defined {
+    // the code is outside the ValueSet
+}
+```
+
+{{< callout type="info" >}}
+This library deliberately does not answer whether that makes the **document**
+invalid. Enums are generated only for `required` bindings — an `extensible` or
+`preferred` binding leaves the field as `*string`, precisely because a code from
+outside the ValueSet is valid there — but conformance is a question for
+[`gofhir/validator`](https://github.com/gofhir/validator), which works on the raw
+document. A membership test here would be close enough to a terminology check to
+be mistaken for one.
+{{< /callout >}}
 
 ## Working with String Values
 

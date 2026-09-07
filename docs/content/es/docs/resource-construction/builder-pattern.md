@@ -59,7 +59,28 @@ patient := r4.NewPatientBuilder().
     Build()
 ```
 
-Ten en cuenta que los structs de tipos de datos pasados a los métodos `Add` aún usan punteros para campos opcionales. El builder elimina el código repetitivo de punteros para campos primitivos del recurso (string, bool, tipos code), pero los structs de tipos de datos complejos conservan su representación estándar de Go.
+Los tipos de datos tienen sus propios builders, así que la cadena no se corta ahí:
+
+```go
+patient := r4.NewPatientBuilder().
+    SetId("patient-789").
+    SetGender(r4.AdministrativeGenderFemale).
+    SetBirthDate("1985-06-20").
+    AddName(r4.NewHumanNameBuilder().
+        SetUse(r4.NameUseOfficial).
+        SetFamily("Garcia").
+        AddGiven("Maria").
+        Build()).
+    Build()
+```
+
+`Build()` en un tipo de datos devuelve un **valor**, no un puntero, porque es lo
+que toma todo consumidor: `Patient.Name` es `[]HumanName`, e incluso un campo
+puntero como `Range.Low` se asigna con `SetLow(Quantity)`, que toma la dirección
+por su cuenta. Así no hace falta desreferenciar en la llamada.
+
+Los recursos van al contrario —`Build()` devuelve `*Patient`— porque se manejan
+como punteros y satisfacen la interfaz `Resource` con receptor puntero.
 
 ## Agregar Múltiples Elementos
 
@@ -161,11 +182,89 @@ Cada builder sigue la misma convención de nombres:
 
 | Patrón de Método | Propósito | Ejemplo |
 |----------------|---------|---------|
-| `Set<Field>(v)` | Establecer un campo singular | `SetId("123")`, `SetActive(true)` |
-| `Add<Field>(v)` | Agregar a un campo repetitivo | `AddName(humanName)`, `AddIdentifier(id)` |
-| `Build()` | Devolver el recurso construido | `Build()` |
+| `Set<Campo>(v)` | Establecer un campo singular | `SetId("123")`, `SetActive(true)` |
+| `Add<Campo>(v)` | Agregar a un campo repetitivo | `AddName(humanName)` |
+| `Set<Campo>Ext(v)` | Establecer las extensiones de un primitivo | `SetBirthDateExt(element)` |
+| `Add<Campo>Ext(v)` | Agregar una ranura de extensión a un primitivo repetido | `AddGivenExt(&element)` |
+| `Build()` | Devolver el valor construido | `Build()` |
 
-Los métodos `Set` aceptan valores sin envolver (por ejemplo, `string` en lugar de `*string`) y manejan la creación de punteros internamente. Los métodos `Add` aceptan el struct del tipo de dato directamente y lo agregan al slice correspondiente.
+Los métodos `Set` aceptan valores sin envolver (`string` en lugar de `*string`) y
+crean el puntero internamente.
+
+### Todo tipo tiene el suyo
+
+Los builders se generan para recursos, tipos de datos **y** backbone elements:
+663 en R4, 681 en R4B, 834 en R5. Un backbone es donde vive la mayor parte de los
+datos de un recurso, así que detenerse en el nivel del recurso obligaría a usar un
+literal para `Patient.contact`, `Bundle.entry` u `Observation.component`:
+
+```go
+patient := r4.NewPatientBuilder().
+    AddContact(r4.NewPatientContactBuilder().
+        SetName(r4.NewHumanNameBuilder().SetFamily("Doe").Build()).
+        AddTelecom(r4.NewContactPointBuilder().
+            SetSystem(r4.ContactPointSystemPhone).
+            SetValue("555-0100").
+            Build()).
+        Build()).
+    Build()
+```
+
+### Extensiones sobre primitivos
+
+Un primitivo lleva sus extensiones en un campo compañero —`BirthDateExt` para
+`birthDate`, serializado como `_birthDate`—. Es la única forma en que FHIR expresa
+una extensión sobre un valor primitivo, y el builder llega hasta ahí:
+
+```go
+patient := r4.NewPatientBuilder().
+    SetBirthDateExt(r4.NewElementBuilder().
+        AddExtension(r4.NewExtensionBuilder().
+            SetUrl("http://hl7.org/fhir/StructureDefinition/data-absent-reason").
+            SetValueCode("asked-declined").
+            Build()).
+        Build()).
+    Build()
+
+// {"resourceType":"Patient","_birthDate":{"extension":[{"url":"...","valueCode":"asked-declined"}]}}
+```
+
+Fíjate en que no hay valor de `birthDate` en esa salida: la extensión dice *por
+qué* falta la fecha, que es justo el propósito.
+
+En un primitivo **repetido** los dos slices son paralelos por posición, así que
+`Add<Campo>Ext` se asocia al elemento añadido más recientemente y rellena con nil
+cualquier hueco anterior:
+
+```go
+name := r4.NewHumanNameBuilder().
+    AddGiven("A").
+    AddGiven("B").
+    AddGivenExt(&ext).      // pertenece a "B"
+    Build()
+
+// {"given":["A","B"],"_given":[null,{...}]}
+```
+
+Pasar `nil` ahí es significativo: es una posición sin extensión.
+
+### Los campos choice son exclusivos
+
+Un elemento choice contiene exactamente una variante, así que establecer una
+limpia las demás, incluido el campo compañero `_field` de una variante primitiva:
+
+```go
+obs := r4.NewObservationBuilder().
+    SetValueString("a").
+    SetValueBoolean(true).      // limpia valueString
+    Build()
+
+// {"resourceType":"Observation","valueBoolean":true}
+```
+
+Sin eso, una cadena de setters producía un documento con varias variantes
+presentes, que ningún servidor FHIR acepta. Un literal de struct todavía puede
+hacerlo: la guarda está en el builder.
 
 ## Cuándo Usar el Builder
 
