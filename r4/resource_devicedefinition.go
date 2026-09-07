@@ -476,7 +476,13 @@ func (r *DeviceDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Version = append(r.Version, v)
-				r.VersionExt = append(r.VersionExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.VersionExt) < len(r.Version)-1 {
+						r.VersionExt = append(r.VersionExt, nil)
+					}
+					r.VersionExt = append(r.VersionExt, ext)
+				}
 			case "safety":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

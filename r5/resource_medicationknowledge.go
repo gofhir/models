@@ -436,7 +436,13 @@ func (r *MedicationKnowledge) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Name = append(r.Name, v)
-				r.NameExt = append(r.NameExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.NameExt) < len(r.Name)-1 {
+						r.NameExt = append(r.NameExt, nil)
+					}
+					r.NameExt = append(r.NameExt, ext)
+				}
 			case "relatedMedicationKnowledge":
 				var v MedicationKnowledgeRelatedMedicationKnowledge
 				if err := v.UnmarshalXML(d, t); err != nil {

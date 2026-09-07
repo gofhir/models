@@ -374,7 +374,13 @@ func (r *ObservationDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.PermittedDataType = append(r.PermittedDataType, v)
-				r.PermittedDataTypeExt = append(r.PermittedDataTypeExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.PermittedDataTypeExt) < len(r.PermittedDataType)-1 {
+						r.PermittedDataTypeExt = append(r.PermittedDataTypeExt, nil)
+					}
+					r.PermittedDataTypeExt = append(r.PermittedDataTypeExt, ext)
+				}
 			case "multipleResultsAllowed":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {

@@ -714,7 +714,13 @@ func (r *HealthcareServiceAvailableTime) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DaysOfWeek = append(r.DaysOfWeek, v)
-				r.DaysOfWeekExt = append(r.DaysOfWeekExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.DaysOfWeekExt) < len(r.DaysOfWeek)-1 {
+						r.DaysOfWeekExt = append(r.DaysOfWeekExt, nil)
+					}
+					r.DaysOfWeekExt = append(r.DaysOfWeekExt, ext)
+				}
 			case "allDay":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {

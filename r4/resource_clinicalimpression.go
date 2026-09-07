@@ -500,7 +500,13 @@ func (r *ClinicalImpression) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Protocol = append(r.Protocol, v)
-				r.ProtocolExt = append(r.ProtocolExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ProtocolExt) < len(r.Protocol)-1 {
+						r.ProtocolExt = append(r.ProtocolExt, nil)
+					}
+					r.ProtocolExt = append(r.ProtocolExt, ext)
+				}
 			case "summary":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

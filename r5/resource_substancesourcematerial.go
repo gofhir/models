@@ -393,7 +393,13 @@ func (r *SubstanceSourceMaterial) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ParentSubstanceName = append(r.ParentSubstanceName, v)
-				r.ParentSubstanceNameExt = append(r.ParentSubstanceNameExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ParentSubstanceNameExt) < len(r.ParentSubstanceName)-1 {
+						r.ParentSubstanceNameExt = append(r.ParentSubstanceNameExt, nil)
+					}
+					r.ParentSubstanceNameExt = append(r.ParentSubstanceNameExt, ext)
+				}
 			case "countryOfOrigin":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -407,7 +413,13 @@ func (r *SubstanceSourceMaterial) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.GeographicalLocation = append(r.GeographicalLocation, v)
-				r.GeographicalLocationExt = append(r.GeographicalLocationExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.GeographicalLocationExt) < len(r.GeographicalLocation)-1 {
+						r.GeographicalLocationExt = append(r.GeographicalLocationExt, nil)
+					}
+					r.GeographicalLocationExt = append(r.GeographicalLocationExt, ext)
+				}
 			case "developmentStage":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

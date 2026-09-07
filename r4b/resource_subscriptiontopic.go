@@ -446,7 +446,13 @@ func (r *SubscriptionTopic) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFrom = append(r.DerivedFrom, v)
-				r.DerivedFromExt = append(r.DerivedFromExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.DerivedFromExt) < len(r.DerivedFrom)-1 {
+						r.DerivedFromExt = append(r.DerivedFromExt, nil)
+					}
+					r.DerivedFromExt = append(r.DerivedFromExt, ext)
+				}
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[PublicationStatus](d, t)
 				if err != nil {
@@ -731,7 +737,13 @@ func (r *SubscriptionTopicCanFilterBy) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Modifier = append(r.Modifier, v)
-				r.ModifierExt = append(r.ModifierExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ModifierExt) < len(r.Modifier)-1 {
+						r.ModifierExt = append(r.ModifierExt, nil)
+					}
+					r.ModifierExt = append(r.ModifierExt, ext)
+				}
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1014,7 +1026,13 @@ func (r *SubscriptionTopicNotificationShape) UnmarshalXML(d *xml.Decoder, start 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Include = append(r.Include, v)
-				r.IncludeExt = append(r.IncludeExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.IncludeExt) < len(r.Include)-1 {
+						r.IncludeExt = append(r.IncludeExt, nil)
+					}
+					r.IncludeExt = append(r.IncludeExt, ext)
+				}
 			case "revInclude":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1022,7 +1040,13 @@ func (r *SubscriptionTopicNotificationShape) UnmarshalXML(d *xml.Decoder, start 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.RevInclude = append(r.RevInclude, v)
-				r.RevIncludeExt = append(r.RevIncludeExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.RevIncludeExt) < len(r.RevInclude)-1 {
+						r.RevIncludeExt = append(r.RevIncludeExt, nil)
+					}
+					r.RevIncludeExt = append(r.RevIncludeExt, ext)
+				}
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1182,7 +1206,13 @@ func (r *SubscriptionTopicResourceTrigger) UnmarshalXML(d *xml.Decoder, start xm
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SupportedInteraction = append(r.SupportedInteraction, v)
-				r.SupportedInteractionExt = append(r.SupportedInteractionExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.SupportedInteractionExt) < len(r.SupportedInteraction)-1 {
+						r.SupportedInteractionExt = append(r.SupportedInteractionExt, nil)
+					}
+					r.SupportedInteractionExt = append(r.SupportedInteractionExt, ext)
+				}
 			case "queryCriteria":
 				var v SubscriptionTopicResourceTriggerQueryCriteria
 				if err := v.UnmarshalXML(d, t); err != nil {

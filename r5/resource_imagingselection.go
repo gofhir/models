@@ -657,7 +657,13 @@ func (r *ImagingSelectionInstance) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Subset = append(r.Subset, v)
-				r.SubsetExt = append(r.SubsetExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.SubsetExt) < len(r.Subset)-1 {
+						r.SubsetExt = append(r.SubsetExt, nil)
+					}
+					r.SubsetExt = append(r.SubsetExt, ext)
+				}
 			case "imageRegion2D":
 				var v ImagingSelectionInstanceImageRegion2D
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -801,7 +807,13 @@ func (r *ImagingSelectionInstanceImageRegion2D) UnmarshalXML(d *xml.Decoder, sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Coordinate = append(r.Coordinate, v)
-				r.CoordinateExt = append(r.CoordinateExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.CoordinateExt) < len(r.Coordinate)-1 {
+						r.CoordinateExt = append(r.CoordinateExt, nil)
+					}
+					r.CoordinateExt = append(r.CoordinateExt, ext)
+				}
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -933,7 +945,13 @@ func (r *ImagingSelectionInstanceImageRegion3D) UnmarshalXML(d *xml.Decoder, sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Coordinate = append(r.Coordinate, v)
-				r.CoordinateExt = append(r.CoordinateExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.CoordinateExt) < len(r.Coordinate)-1 {
+						r.CoordinateExt = append(r.CoordinateExt, nil)
+					}
+					r.CoordinateExt = append(r.CoordinateExt, ext)
+				}
 			default:
 				if err := d.Skip(); err != nil {
 					return err

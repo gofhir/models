@@ -832,7 +832,13 @@ func (r *ValueSetComposeInclude) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ValueSet = append(r.ValueSet, v)
-				r.ValueSetExt = append(r.ValueSetExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ValueSetExt) < len(r.ValueSet)-1 {
+						r.ValueSetExt = append(r.ValueSetExt, nil)
+					}
+					r.ValueSetExt = append(r.ValueSetExt, ext)
+				}
 			default:
 				if err := d.Skip(); err != nil {
 					return err

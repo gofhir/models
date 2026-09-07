@@ -1059,7 +1059,13 @@ func (r *AppointmentRecurrenceTemplate) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.OccurrenceDate = append(r.OccurrenceDate, v)
-				r.OccurrenceDateExt = append(r.OccurrenceDateExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.OccurrenceDateExt) < len(r.OccurrenceDate)-1 {
+						r.OccurrenceDateExt = append(r.OccurrenceDateExt, nil)
+					}
+					r.OccurrenceDateExt = append(r.OccurrenceDateExt, ext)
+				}
 			case "weeklyTemplate":
 				var v AppointmentRecurrenceTemplateWeeklyTemplate
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1085,7 +1091,13 @@ func (r *AppointmentRecurrenceTemplate) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ExcludingDate = append(r.ExcludingDate, v)
-				r.ExcludingDateExt = append(r.ExcludingDateExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ExcludingDateExt) < len(r.ExcludingDate)-1 {
+						r.ExcludingDateExt = append(r.ExcludingDateExt, nil)
+					}
+					r.ExcludingDateExt = append(r.ExcludingDateExt, ext)
+				}
 			case "excludingRecurrenceId":
 				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
@@ -1093,7 +1105,13 @@ func (r *AppointmentRecurrenceTemplate) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ExcludingRecurrenceId = append(r.ExcludingRecurrenceId, v)
-				r.ExcludingRecurrenceIdExt = append(r.ExcludingRecurrenceIdExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ExcludingRecurrenceIdExt) < len(r.ExcludingRecurrenceId)-1 {
+						r.ExcludingRecurrenceIdExt = append(r.ExcludingRecurrenceIdExt, nil)
+					}
+					r.ExcludingRecurrenceIdExt = append(r.ExcludingRecurrenceIdExt, ext)
+				}
 			default:
 				if err := d.Skip(); err != nil {
 					return err

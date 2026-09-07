@@ -396,7 +396,13 @@ func (r *CoverageEligibilityRequest) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Purpose = append(r.Purpose, v)
-				r.PurposeExt = append(r.PurposeExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.PurposeExt) < len(r.Purpose)-1 {
+						r.PurposeExt = append(r.PurposeExt, nil)
+					}
+					r.PurposeExt = append(r.PurposeExt, ext)
+				}
 			case "patient":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -938,7 +944,13 @@ func (r *CoverageEligibilityRequestItem) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SupportingInfoSequence = append(r.SupportingInfoSequence, v)
-				r.SupportingInfoSequenceExt = append(r.SupportingInfoSequenceExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.SupportingInfoSequenceExt) < len(r.SupportingInfoSequence)-1 {
+						r.SupportingInfoSequenceExt = append(r.SupportingInfoSequenceExt, nil)
+					}
+					r.SupportingInfoSequenceExt = append(r.SupportingInfoSequenceExt, ext)
+				}
 			case "category":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

@@ -612,7 +612,13 @@ func (r *TestScript) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Profile = append(r.Profile, v)
-				r.ProfileExt = append(r.ProfileExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ProfileExt) < len(r.Profile)-1 {
+						r.ProfileExt = append(r.ProfileExt, nil)
+					}
+					r.ProfileExt = append(r.ProfileExt, ext)
+				}
 			case "variable":
 				var v TestScriptVariable
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1234,7 +1240,13 @@ func (r *TestScriptMetadataCapability) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Origin = append(r.Origin, v)
-				r.OriginExt = append(r.OriginExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.OriginExt) < len(r.Origin)-1 {
+						r.OriginExt = append(r.OriginExt, nil)
+					}
+					r.OriginExt = append(r.OriginExt, ext)
+				}
 			case "destination":
 				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
@@ -1249,7 +1261,13 @@ func (r *TestScriptMetadataCapability) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Link = append(r.Link, v)
-				r.LinkExt = append(r.LinkExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.LinkExt) < len(r.Link)-1 {
+						r.LinkExt = append(r.LinkExt, nil)
+					}
+					r.LinkExt = append(r.LinkExt, ext)
+				}
 			case "capabilities":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

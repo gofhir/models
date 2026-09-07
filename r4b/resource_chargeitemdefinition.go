@@ -453,7 +453,13 @@ func (r *ChargeItemDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFromUri = append(r.DerivedFromUri, v)
-				r.DerivedFromUriExt = append(r.DerivedFromUriExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.DerivedFromUriExt) < len(r.DerivedFromUri)-1 {
+						r.DerivedFromUriExt = append(r.DerivedFromUriExt, nil)
+					}
+					r.DerivedFromUriExt = append(r.DerivedFromUriExt, ext)
+				}
 			case "partOf":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -461,7 +467,13 @@ func (r *ChargeItemDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.PartOf = append(r.PartOf, v)
-				r.PartOfExt = append(r.PartOfExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.PartOfExt) < len(r.PartOf)-1 {
+						r.PartOfExt = append(r.PartOfExt, nil)
+					}
+					r.PartOfExt = append(r.PartOfExt, ext)
+				}
 			case "replaces":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -469,7 +481,13 @@ func (r *ChargeItemDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Replaces = append(r.Replaces, v)
-				r.ReplacesExt = append(r.ReplacesExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ReplacesExt) < len(r.Replaces)-1 {
+						r.ReplacesExt = append(r.ReplacesExt, nil)
+					}
+					r.ReplacesExt = append(r.ReplacesExt, ext)
+				}
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[PublicationStatus](d, t)
 				if err != nil {

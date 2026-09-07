@@ -522,7 +522,13 @@ func (r *SpecimenDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFromCanonical = append(r.DerivedFromCanonical, v)
-				r.DerivedFromCanonicalExt = append(r.DerivedFromCanonicalExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.DerivedFromCanonicalExt) < len(r.DerivedFromCanonical)-1 {
+						r.DerivedFromCanonicalExt = append(r.DerivedFromCanonicalExt, nil)
+					}
+					r.DerivedFromCanonicalExt = append(r.DerivedFromCanonicalExt, ext)
+				}
 			case "derivedFromUri":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -530,7 +536,13 @@ func (r *SpecimenDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFromUri = append(r.DerivedFromUri, v)
-				r.DerivedFromUriExt = append(r.DerivedFromUriExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.DerivedFromUriExt) < len(r.DerivedFromUri)-1 {
+						r.DerivedFromUriExt = append(r.DerivedFromUriExt, nil)
+					}
+					r.DerivedFromUriExt = append(r.DerivedFromUriExt, ext)
+				}
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[PublicationStatus](d, t)
 				if err != nil {

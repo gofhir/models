@@ -498,7 +498,13 @@ func (r *StructureMap) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Import = append(r.Import, v)
-				r.ImportExt = append(r.ImportExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ImportExt) < len(r.Import)-1 {
+						r.ImportExt = append(r.ImportExt, nil)
+					}
+					r.ImportExt = append(r.ImportExt, ext)
+				}
 			case "group":
 				var v StructureMapGroup
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1163,7 +1169,13 @@ func (r *StructureMapGroupRuleDependent) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Variable = append(r.Variable, v)
-				r.VariableExt = append(r.VariableExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.VariableExt) < len(r.Variable)-1 {
+						r.VariableExt = append(r.VariableExt, nil)
+					}
+					r.VariableExt = append(r.VariableExt, ext)
+				}
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -2270,7 +2282,13 @@ func (r *StructureMapGroupRuleTarget) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ListMode = append(r.ListMode, v)
-				r.ListModeExt = append(r.ListModeExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ListModeExt) < len(r.ListMode)-1 {
+						r.ListModeExt = append(r.ListModeExt, nil)
+					}
+					r.ListModeExt = append(r.ListModeExt, ext)
+				}
 			case "listRuleId":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

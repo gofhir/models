@@ -570,7 +570,13 @@ func (r *OperationDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Resource = append(r.Resource, v)
-				r.ResourceExt = append(r.ResourceExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ResourceExt) < len(r.Resource)-1 {
+						r.ResourceExt = append(r.ResourceExt, nil)
+					}
+					r.ResourceExt = append(r.ResourceExt, ext)
+				}
 			case "system":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -742,7 +748,13 @@ func (r *OperationDefinitionOverload) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ParameterName = append(r.ParameterName, v)
-				r.ParameterNameExt = append(r.ParameterNameExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.ParameterNameExt) < len(r.ParameterName)-1 {
+						r.ParameterNameExt = append(r.ParameterNameExt, nil)
+					}
+					r.ParameterNameExt = append(r.ParameterNameExt, ext)
+				}
 			case "comment":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -979,7 +991,13 @@ func (r *OperationDefinitionParameter) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.TargetProfile = append(r.TargetProfile, v)
-				r.TargetProfileExt = append(r.TargetProfileExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.TargetProfileExt) < len(r.TargetProfile)-1 {
+						r.TargetProfileExt = append(r.TargetProfileExt, nil)
+					}
+					r.TargetProfileExt = append(r.TargetProfileExt, ext)
+				}
 			case "searchType":
 				v, ext, err := xmlDecodePrimitiveCode[SearchParamType](d, t)
 				if err != nil {

@@ -389,7 +389,13 @@ func (r *Provenance) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Policy = append(r.Policy, v)
-				r.PolicyExt = append(r.PolicyExt, ext)
+				// The slots are parallel by position: fill the gap, then append.
+				if ext != nil {
+					for len(r.PolicyExt) < len(r.Policy)-1 {
+						r.PolicyExt = append(r.PolicyExt, nil)
+					}
+					r.PolicyExt = append(r.PolicyExt, ext)
+				}
 			case "location":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
