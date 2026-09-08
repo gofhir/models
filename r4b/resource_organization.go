@@ -579,6 +579,7 @@ func NewOrganizationBuilder() *OrganizationBuilder {
 
 // Build returns the constructed Organization resource.
 func (b *OrganizationBuilder) Build() *Organization {
+	b.organization.AliasExt = alignExtSlots(b.organization.AliasExt, len(b.organization.Alias))
 	return b.organization
 }
 

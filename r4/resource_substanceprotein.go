@@ -557,6 +557,7 @@ func NewSubstanceProteinBuilder() *SubstanceProteinBuilder {
 
 // Build returns the constructed SubstanceProtein resource.
 func (b *SubstanceProteinBuilder) Build() *SubstanceProtein {
+	b.substanceProtein.DisulfideLinkageExt = alignExtSlots(b.substanceProtein.DisulfideLinkageExt, len(b.substanceProtein.DisulfideLinkage))
 	return b.substanceProtein
 }
 

@@ -1026,6 +1026,8 @@ func NewProcedureBuilder() *ProcedureBuilder {
 
 // Build returns the constructed Procedure resource.
 func (b *ProcedureBuilder) Build() *Procedure {
+	b.procedure.InstantiatesCanonicalExt = alignExtSlots(b.procedure.InstantiatesCanonicalExt, len(b.procedure.InstantiatesCanonical))
+	b.procedure.InstantiatesUriExt = alignExtSlots(b.procedure.InstantiatesUriExt, len(b.procedure.InstantiatesUri))
 	return b.procedure
 }
 

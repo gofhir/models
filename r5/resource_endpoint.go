@@ -584,6 +584,7 @@ func NewEndpointBuilder() *EndpointBuilder {
 
 // Build returns the constructed Endpoint resource.
 func (b *EndpointBuilder) Build() *Endpoint {
+	b.endpoint.HeaderExt = alignExtSlots(b.endpoint.HeaderExt, len(b.endpoint.Header))
 	return b.endpoint
 }
 
@@ -828,6 +829,7 @@ func NewEndpointPayloadBuilder() *EndpointPayloadBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *EndpointPayloadBuilder) Build() EndpointPayload {
+	b.endpointPayload.MimeTypeExt = alignExtSlots(b.endpointPayload.MimeTypeExt, len(b.endpointPayload.MimeType))
 	return *b.endpointPayload
 }
 

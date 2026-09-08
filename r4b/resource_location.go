@@ -824,6 +824,7 @@ func NewLocationBuilder() *LocationBuilder {
 
 // Build returns the constructed Location resource.
 func (b *LocationBuilder) Build() *Location {
+	b.location.AliasExt = alignExtSlots(b.location.AliasExt, len(b.location.Alias))
 	return b.location
 }
 
@@ -1108,6 +1109,7 @@ func NewLocationHoursOfOperationBuilder() *LocationHoursOfOperationBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *LocationHoursOfOperationBuilder) Build() LocationHoursOfOperation {
+	b.locationHoursOfOperation.DaysOfWeekExt = alignExtSlots(b.locationHoursOfOperation.DaysOfWeekExt, len(b.locationHoursOfOperation.DaysOfWeek))
 	return *b.locationHoursOfOperation
 }
 

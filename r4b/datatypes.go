@@ -3532,6 +3532,7 @@ func NewAddressBuilder() *AddressBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *AddressBuilder) Build() Address {
+	b.address.LineExt = alignExtSlots(b.address.LineExt, len(b.address.Line))
 	return *b.address
 }
 
@@ -4723,6 +4724,8 @@ func NewDataRequirementBuilder() *DataRequirementBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *DataRequirementBuilder) Build() DataRequirement {
+	b.dataRequirement.ProfileExt = alignExtSlots(b.dataRequirement.ProfileExt, len(b.dataRequirement.Profile))
+	b.dataRequirement.MustSupportExt = alignExtSlots(b.dataRequirement.MustSupportExt, len(b.dataRequirement.MustSupport))
 	return *b.dataRequirement
 }
 
@@ -5317,6 +5320,9 @@ func NewElementDefinitionBuilder() *ElementDefinitionBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ElementDefinitionBuilder) Build() ElementDefinition {
+	b.elementDefinition.RepresentationExt = alignExtSlots(b.elementDefinition.RepresentationExt, len(b.elementDefinition.Representation))
+	b.elementDefinition.AliasExt = alignExtSlots(b.elementDefinition.AliasExt, len(b.elementDefinition.Alias))
+	b.elementDefinition.ConditionExt = alignExtSlots(b.elementDefinition.ConditionExt, len(b.elementDefinition.Condition))
 	return *b.elementDefinition
 }
 
@@ -9278,6 +9284,9 @@ func NewHumanNameBuilder() *HumanNameBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *HumanNameBuilder) Build() HumanName {
+	b.humanName.GivenExt = alignExtSlots(b.humanName.GivenExt, len(b.humanName.Given))
+	b.humanName.PrefixExt = alignExtSlots(b.humanName.PrefixExt, len(b.humanName.Prefix))
+	b.humanName.SuffixExt = alignExtSlots(b.humanName.SuffixExt, len(b.humanName.Suffix))
 	return *b.humanName
 }
 
@@ -9645,6 +9654,7 @@ func NewMetaBuilder() *MetaBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *MetaBuilder) Build() Meta {
+	b.meta.ProfileExt = alignExtSlots(b.meta.ProfileExt, len(b.meta.Profile))
 	return *b.meta
 }
 
@@ -10228,6 +10238,8 @@ func NewProdCharacteristicBuilder() *ProdCharacteristicBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ProdCharacteristicBuilder) Build() ProdCharacteristic {
+	b.prodCharacteristic.ColorExt = alignExtSlots(b.prodCharacteristic.ColorExt, len(b.prodCharacteristic.Color))
+	b.prodCharacteristic.ImprintExt = alignExtSlots(b.prodCharacteristic.ImprintExt, len(b.prodCharacteristic.Imprint))
 	return *b.prodCharacteristic
 }
 
@@ -11236,6 +11248,7 @@ func NewTimingBuilder() *TimingBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *TimingBuilder) Build() Timing {
+	b.timing.EventExt = alignExtSlots(b.timing.EventExt, len(b.timing.Event))
 	return *b.timing
 }
 
@@ -13600,6 +13613,9 @@ func NewElementDefinitionTypeBuilder() *ElementDefinitionTypeBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ElementDefinitionTypeBuilder) Build() ElementDefinitionType {
+	b.elementDefinitionType.ProfileExt = alignExtSlots(b.elementDefinitionType.ProfileExt, len(b.elementDefinitionType.Profile))
+	b.elementDefinitionType.TargetProfileExt = alignExtSlots(b.elementDefinitionType.TargetProfileExt, len(b.elementDefinitionType.TargetProfile))
+	b.elementDefinitionType.AggregationExt = alignExtSlots(b.elementDefinitionType.AggregationExt, len(b.elementDefinitionType.Aggregation))
 	return *b.elementDefinitionType
 }
 
@@ -13755,6 +13771,9 @@ func NewTimingRepeatBuilder() *TimingRepeatBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *TimingRepeatBuilder) Build() TimingRepeat {
+	b.timingRepeat.DayOfWeekExt = alignExtSlots(b.timingRepeat.DayOfWeekExt, len(b.timingRepeat.DayOfWeek))
+	b.timingRepeat.TimeOfDayExt = alignExtSlots(b.timingRepeat.TimeOfDayExt, len(b.timingRepeat.TimeOfDay))
+	b.timingRepeat.WhenExt = alignExtSlots(b.timingRepeat.WhenExt, len(b.timingRepeat.When))
 	return *b.timingRepeat
 }
 

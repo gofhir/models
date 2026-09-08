@@ -2104,6 +2104,9 @@ func NewAppointmentRecurrenceTemplateBuilder() *AppointmentRecurrenceTemplateBui
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *AppointmentRecurrenceTemplateBuilder) Build() AppointmentRecurrenceTemplate {
+	b.appointmentRecurrenceTemplate.OccurrenceDateExt = alignExtSlots(b.appointmentRecurrenceTemplate.OccurrenceDateExt, len(b.appointmentRecurrenceTemplate.OccurrenceDate))
+	b.appointmentRecurrenceTemplate.ExcludingDateExt = alignExtSlots(b.appointmentRecurrenceTemplate.ExcludingDateExt, len(b.appointmentRecurrenceTemplate.ExcludingDate))
+	b.appointmentRecurrenceTemplate.ExcludingRecurrenceIdExt = alignExtSlots(b.appointmentRecurrenceTemplate.ExcludingRecurrenceIdExt, len(b.appointmentRecurrenceTemplate.ExcludingRecurrenceId))
 	return *b.appointmentRecurrenceTemplate
 }
 

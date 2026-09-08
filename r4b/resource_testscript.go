@@ -3898,6 +3898,8 @@ func NewTestScriptMetadataCapabilityBuilder() *TestScriptMetadataCapabilityBuild
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *TestScriptMetadataCapabilityBuilder) Build() TestScriptMetadataCapability {
+	b.testScriptMetadataCapability.OriginExt = alignExtSlots(b.testScriptMetadataCapability.OriginExt, len(b.testScriptMetadataCapability.Origin))
+	b.testScriptMetadataCapability.LinkExt = alignExtSlots(b.testScriptMetadataCapability.LinkExt, len(b.testScriptMetadataCapability.Link))
 	return *b.testScriptMetadataCapability
 }
 

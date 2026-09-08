@@ -1510,6 +1510,9 @@ func NewNutritionOrderBuilder() *NutritionOrderBuilder {
 
 // Build returns the constructed NutritionOrder resource.
 func (b *NutritionOrderBuilder) Build() *NutritionOrder {
+	b.nutritionOrder.InstantiatesCanonicalExt = alignExtSlots(b.nutritionOrder.InstantiatesCanonicalExt, len(b.nutritionOrder.InstantiatesCanonical))
+	b.nutritionOrder.InstantiatesUriExt = alignExtSlots(b.nutritionOrder.InstantiatesUriExt, len(b.nutritionOrder.InstantiatesUri))
+	b.nutritionOrder.InstantiatesExt = alignExtSlots(b.nutritionOrder.InstantiatesExt, len(b.nutritionOrder.Instantiates))
 	return b.nutritionOrder
 }
 

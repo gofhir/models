@@ -4031,6 +4031,10 @@ func NewClaimResponseAddItemBuilder() *ClaimResponseAddItemBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ClaimResponseAddItemBuilder) Build() ClaimResponseAddItem {
+	b.claimResponseAddItem.ItemSequenceExt = alignExtSlots(b.claimResponseAddItem.ItemSequenceExt, len(b.claimResponseAddItem.ItemSequence))
+	b.claimResponseAddItem.DetailSequenceExt = alignExtSlots(b.claimResponseAddItem.DetailSequenceExt, len(b.claimResponseAddItem.DetailSequence))
+	b.claimResponseAddItem.SubdetailSequenceExt = alignExtSlots(b.claimResponseAddItem.SubdetailSequenceExt, len(b.claimResponseAddItem.SubdetailSequence))
+	b.claimResponseAddItem.NoteNumberExt = alignExtSlots(b.claimResponseAddItem.NoteNumberExt, len(b.claimResponseAddItem.NoteNumber))
 	return *b.claimResponseAddItem
 }
 
@@ -4433,6 +4437,7 @@ func NewClaimResponseAddItemDetailBuilder() *ClaimResponseAddItemDetailBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ClaimResponseAddItemDetailBuilder) Build() ClaimResponseAddItemDetail {
+	b.claimResponseAddItemDetail.NoteNumberExt = alignExtSlots(b.claimResponseAddItemDetail.NoteNumberExt, len(b.claimResponseAddItemDetail.NoteNumber))
 	return *b.claimResponseAddItemDetail
 }
 
@@ -4594,6 +4599,7 @@ func NewClaimResponseAddItemDetailSubDetailBuilder() *ClaimResponseAddItemDetail
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ClaimResponseAddItemDetailSubDetailBuilder) Build() ClaimResponseAddItemDetailSubDetail {
+	b.claimResponseAddItemDetailSubDetail.NoteNumberExt = alignExtSlots(b.claimResponseAddItemDetailSubDetail.NoteNumberExt, len(b.claimResponseAddItemDetailSubDetail.NoteNumber))
 	return *b.claimResponseAddItemDetailSubDetail
 }
 
@@ -4749,6 +4755,7 @@ func NewClaimResponseErrorBuilder() *ClaimResponseErrorBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ClaimResponseErrorBuilder) Build() ClaimResponseError {
+	b.claimResponseError.ExpressionExt = alignExtSlots(b.claimResponseError.ExpressionExt, len(b.claimResponseError.Expression))
 	return *b.claimResponseError
 }
 
@@ -5067,6 +5074,7 @@ func NewClaimResponseItemBuilder() *ClaimResponseItemBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ClaimResponseItemBuilder) Build() ClaimResponseItem {
+	b.claimResponseItem.NoteNumberExt = alignExtSlots(b.claimResponseItem.NoteNumberExt, len(b.claimResponseItem.NoteNumber))
 	return *b.claimResponseItem
 }
 
@@ -5249,6 +5257,7 @@ func NewClaimResponseItemDetailBuilder() *ClaimResponseItemDetailBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ClaimResponseItemDetailBuilder) Build() ClaimResponseItemDetail {
+	b.claimResponseItemDetail.NoteNumberExt = alignExtSlots(b.claimResponseItemDetail.NoteNumberExt, len(b.claimResponseItemDetail.NoteNumber))
 	return *b.claimResponseItemDetail
 }
 
@@ -5362,6 +5371,7 @@ func NewClaimResponseItemDetailSubDetailBuilder() *ClaimResponseItemDetailSubDet
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ClaimResponseItemDetailSubDetailBuilder) Build() ClaimResponseItemDetailSubDetail {
+	b.claimResponseItemDetailSubDetail.NoteNumberExt = alignExtSlots(b.claimResponseItemDetailSubDetail.NoteNumberExt, len(b.claimResponseItemDetailSubDetail.NoteNumber))
 	return *b.claimResponseItemDetailSubDetail
 }
 

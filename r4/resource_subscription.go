@@ -748,6 +748,7 @@ func NewSubscriptionChannelBuilder() *SubscriptionChannelBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *SubscriptionChannelBuilder) Build() SubscriptionChannel {
+	b.subscriptionChannel.HeaderExt = alignExtSlots(b.subscriptionChannel.HeaderExt, len(b.subscriptionChannel.Header))
 	return *b.subscriptionChannel
 }
 

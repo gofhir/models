@@ -928,6 +928,9 @@ func NewMessageDefinitionBuilder() *MessageDefinitionBuilder {
 
 // Build returns the constructed MessageDefinition resource.
 func (b *MessageDefinitionBuilder) Build() *MessageDefinition {
+	b.messageDefinition.ReplacesExt = alignExtSlots(b.messageDefinition.ReplacesExt, len(b.messageDefinition.Replaces))
+	b.messageDefinition.ParentExt = alignExtSlots(b.messageDefinition.ParentExt, len(b.messageDefinition.Parent))
+	b.messageDefinition.GraphExt = alignExtSlots(b.messageDefinition.GraphExt, len(b.messageDefinition.Graph))
 	return b.messageDefinition
 }
 

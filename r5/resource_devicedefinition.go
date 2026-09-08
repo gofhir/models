@@ -3061,6 +3061,7 @@ func NewDeviceDefinitionBuilder() *DeviceDefinitionBuilder {
 
 // Build returns the constructed DeviceDefinition resource.
 func (b *DeviceDefinitionBuilder) Build() *DeviceDefinition {
+	b.deviceDefinition.ProductionIdentifierInUDIExt = alignExtSlots(b.deviceDefinition.ProductionIdentifierInUDIExt, len(b.deviceDefinition.ProductionIdentifierInUDI))
 	return b.deviceDefinition
 }
 
@@ -3505,6 +3506,7 @@ func NewDeviceDefinitionConformsToBuilder() *DeviceDefinitionConformsToBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *DeviceDefinitionConformsToBuilder) Build() DeviceDefinitionConformsTo {
+	b.deviceDefinitionConformsTo.VersionExt = alignExtSlots(b.deviceDefinitionConformsTo.VersionExt, len(b.deviceDefinitionConformsTo.Version))
 	return *b.deviceDefinitionConformsTo
 }
 

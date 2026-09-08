@@ -1369,6 +1369,7 @@ func NewConditionDefinitionBuilder() *ConditionDefinitionBuilder {
 
 // Build returns the constructed ConditionDefinition resource.
 func (b *ConditionDefinitionBuilder) Build() *ConditionDefinition {
+	b.conditionDefinition.DefinitionExt = alignExtSlots(b.conditionDefinition.DefinitionExt, len(b.conditionDefinition.Definition))
 	return b.conditionDefinition
 }
 

@@ -1233,6 +1233,9 @@ func NewObservationDefinitionBuilder() *ObservationDefinitionBuilder {
 
 // Build returns the constructed ObservationDefinition resource.
 func (b *ObservationDefinitionBuilder) Build() *ObservationDefinition {
+	b.observationDefinition.DerivedFromCanonicalExt = alignExtSlots(b.observationDefinition.DerivedFromCanonicalExt, len(b.observationDefinition.DerivedFromCanonical))
+	b.observationDefinition.DerivedFromUriExt = alignExtSlots(b.observationDefinition.DerivedFromUriExt, len(b.observationDefinition.DerivedFromUri))
+	b.observationDefinition.PermittedDataTypeExt = alignExtSlots(b.observationDefinition.PermittedDataTypeExt, len(b.observationDefinition.PermittedDataType))
 	return b.observationDefinition
 }
 
@@ -1820,6 +1823,7 @@ func NewObservationDefinitionComponentBuilder() *ObservationDefinitionComponentB
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ObservationDefinitionComponentBuilder) Build() ObservationDefinitionComponent {
+	b.observationDefinitionComponent.PermittedDataTypeExt = alignExtSlots(b.observationDefinitionComponent.PermittedDataTypeExt, len(b.observationDefinitionComponent.PermittedDataType))
 	return *b.observationDefinitionComponent
 }
 

@@ -610,6 +610,8 @@ func NewActorDefinitionBuilder() *ActorDefinitionBuilder {
 
 // Build returns the constructed ActorDefinition resource.
 func (b *ActorDefinitionBuilder) Build() *ActorDefinition {
+	b.actorDefinition.ReferenceExt = alignExtSlots(b.actorDefinition.ReferenceExt, len(b.actorDefinition.Reference))
+	b.actorDefinition.DerivedFromExt = alignExtSlots(b.actorDefinition.DerivedFromExt, len(b.actorDefinition.DerivedFrom))
 	return b.actorDefinition
 }
 

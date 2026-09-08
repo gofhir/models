@@ -1996,6 +1996,8 @@ func NewRequestOrchestrationBuilder() *RequestOrchestrationBuilder {
 
 // Build returns the constructed RequestOrchestration resource.
 func (b *RequestOrchestrationBuilder) Build() *RequestOrchestration {
+	b.requestOrchestration.InstantiatesCanonicalExt = alignExtSlots(b.requestOrchestration.InstantiatesCanonicalExt, len(b.requestOrchestration.InstantiatesCanonical))
+	b.requestOrchestration.InstantiatesUriExt = alignExtSlots(b.requestOrchestration.InstantiatesUriExt, len(b.requestOrchestration.InstantiatesUri))
 	return b.requestOrchestration
 }
 

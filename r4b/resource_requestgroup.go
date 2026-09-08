@@ -1246,6 +1246,8 @@ func NewRequestGroupBuilder() *RequestGroupBuilder {
 
 // Build returns the constructed RequestGroup resource.
 func (b *RequestGroupBuilder) Build() *RequestGroup {
+	b.requestGroup.InstantiatesCanonicalExt = alignExtSlots(b.requestGroup.InstantiatesCanonicalExt, len(b.requestGroup.InstantiatesCanonical))
+	b.requestGroup.InstantiatesUriExt = alignExtSlots(b.requestGroup.InstantiatesUriExt, len(b.requestGroup.InstantiatesUri))
 	return b.requestGroup
 }
 

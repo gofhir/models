@@ -1417,6 +1417,7 @@ func NewDeviceDefinitionBuilder() *DeviceDefinitionBuilder {
 
 // Build returns the constructed DeviceDefinition resource.
 func (b *DeviceDefinitionBuilder) Build() *DeviceDefinition {
+	b.deviceDefinition.VersionExt = alignExtSlots(b.deviceDefinition.VersionExt, len(b.deviceDefinition.Version))
 	return b.deviceDefinition
 }
 

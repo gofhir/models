@@ -608,6 +608,8 @@ func NewOperationOutcomeIssueBuilder() *OperationOutcomeIssueBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *OperationOutcomeIssueBuilder) Build() OperationOutcomeIssue {
+	b.operationOutcomeIssue.LocationExt = alignExtSlots(b.operationOutcomeIssue.LocationExt, len(b.operationOutcomeIssue.Location))
+	b.operationOutcomeIssue.ExpressionExt = alignExtSlots(b.operationOutcomeIssue.ExpressionExt, len(b.operationOutcomeIssue.Expression))
 	return *b.operationOutcomeIssue
 }
 

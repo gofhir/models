@@ -797,6 +797,8 @@ func NewServiceRequestBuilder() *ServiceRequestBuilder {
 
 // Build returns the constructed ServiceRequest resource.
 func (b *ServiceRequestBuilder) Build() *ServiceRequest {
+	b.serviceRequest.InstantiatesCanonicalExt = alignExtSlots(b.serviceRequest.InstantiatesCanonicalExt, len(b.serviceRequest.InstantiatesCanonical))
+	b.serviceRequest.InstantiatesUriExt = alignExtSlots(b.serviceRequest.InstantiatesUriExt, len(b.serviceRequest.InstantiatesUri))
 	return b.serviceRequest
 }
 

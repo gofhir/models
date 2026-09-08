@@ -2547,6 +2547,13 @@ func NewMolecularSequenceQualityRocBuilder() *MolecularSequenceQualityRocBuilder
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *MolecularSequenceQualityRocBuilder) Build() MolecularSequenceQualityRoc {
+	b.molecularSequenceQualityRoc.ScoreExt = alignExtSlots(b.molecularSequenceQualityRoc.ScoreExt, len(b.molecularSequenceQualityRoc.Score))
+	b.molecularSequenceQualityRoc.NumTPExt = alignExtSlots(b.molecularSequenceQualityRoc.NumTPExt, len(b.molecularSequenceQualityRoc.NumTP))
+	b.molecularSequenceQualityRoc.NumFPExt = alignExtSlots(b.molecularSequenceQualityRoc.NumFPExt, len(b.molecularSequenceQualityRoc.NumFP))
+	b.molecularSequenceQualityRoc.NumFNExt = alignExtSlots(b.molecularSequenceQualityRoc.NumFNExt, len(b.molecularSequenceQualityRoc.NumFN))
+	b.molecularSequenceQualityRoc.PrecisionExt = alignExtSlots(b.molecularSequenceQualityRoc.PrecisionExt, len(b.molecularSequenceQualityRoc.Precision))
+	b.molecularSequenceQualityRoc.SensitivityExt = alignExtSlots(b.molecularSequenceQualityRoc.SensitivityExt, len(b.molecularSequenceQualityRoc.Sensitivity))
+	b.molecularSequenceQualityRoc.FMeasureExt = alignExtSlots(b.molecularSequenceQualityRoc.FMeasureExt, len(b.molecularSequenceQualityRoc.FMeasure))
 	return *b.molecularSequenceQualityRoc
 }
 

@@ -1038,6 +1038,8 @@ func NewNutritionIntakeBuilder() *NutritionIntakeBuilder {
 
 // Build returns the constructed NutritionIntake resource.
 func (b *NutritionIntakeBuilder) Build() *NutritionIntake {
+	b.nutritionIntake.InstantiatesCanonicalExt = alignExtSlots(b.nutritionIntake.InstantiatesCanonicalExt, len(b.nutritionIntake.InstantiatesCanonical))
+	b.nutritionIntake.InstantiatesUriExt = alignExtSlots(b.nutritionIntake.InstantiatesUriExt, len(b.nutritionIntake.InstantiatesUri))
 	return b.nutritionIntake
 }
 

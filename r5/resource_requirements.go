@@ -845,6 +845,9 @@ func NewRequirementsBuilder() *RequirementsBuilder {
 
 // Build returns the constructed Requirements resource.
 func (b *RequirementsBuilder) Build() *Requirements {
+	b.requirements.DerivedFromExt = alignExtSlots(b.requirements.DerivedFromExt, len(b.requirements.DerivedFrom))
+	b.requirements.ReferenceExt = alignExtSlots(b.requirements.ReferenceExt, len(b.requirements.Reference))
+	b.requirements.ActorExt = alignExtSlots(b.requirements.ActorExt, len(b.requirements.Actor))
 	return b.requirements
 }
 
@@ -1296,6 +1299,9 @@ func NewRequirementsStatementBuilder() *RequirementsStatementBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *RequirementsStatementBuilder) Build() RequirementsStatement {
+	b.requirementsStatement.ConformanceExt = alignExtSlots(b.requirementsStatement.ConformanceExt, len(b.requirementsStatement.Conformance))
+	b.requirementsStatement.SatisfiedByExt = alignExtSlots(b.requirementsStatement.SatisfiedByExt, len(b.requirementsStatement.SatisfiedBy))
+	b.requirementsStatement.ReferenceExt = alignExtSlots(b.requirementsStatement.ReferenceExt, len(b.requirementsStatement.Reference))
 	return *b.requirementsStatement
 }
 

@@ -830,6 +830,7 @@ func NewObservationDefinitionBuilder() *ObservationDefinitionBuilder {
 
 // Build returns the constructed ObservationDefinition resource.
 func (b *ObservationDefinitionBuilder) Build() *ObservationDefinition {
+	b.observationDefinition.PermittedDataTypeExt = alignExtSlots(b.observationDefinition.PermittedDataTypeExt, len(b.observationDefinition.PermittedDataType))
 	return b.observationDefinition
 }
 

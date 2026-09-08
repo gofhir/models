@@ -1549,6 +1549,7 @@ func NewClinicalUseDefinitionBuilder() *ClinicalUseDefinitionBuilder {
 
 // Build returns the constructed ClinicalUseDefinition resource.
 func (b *ClinicalUseDefinitionBuilder) Build() *ClinicalUseDefinition {
+	b.clinicalUseDefinition.LibraryExt = alignExtSlots(b.clinicalUseDefinition.LibraryExt, len(b.clinicalUseDefinition.Library))
 	return b.clinicalUseDefinition
 }
 

@@ -870,6 +870,7 @@ func NewAllergyIntoleranceBuilder() *AllergyIntoleranceBuilder {
 
 // Build returns the constructed AllergyIntolerance resource.
 func (b *AllergyIntoleranceBuilder) Build() *AllergyIntolerance {
+	b.allergyIntolerance.CategoryExt = alignExtSlots(b.allergyIntolerance.CategoryExt, len(b.allergyIntolerance.Category))
 	return b.allergyIntolerance
 }
 

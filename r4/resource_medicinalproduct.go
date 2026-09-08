@@ -1357,6 +1357,7 @@ func NewMedicinalProductBuilder() *MedicinalProductBuilder {
 
 // Build returns the constructed MedicinalProduct resource.
 func (b *MedicinalProductBuilder) Build() *MedicinalProduct {
+	b.medicinalProduct.SpecialMeasuresExt = alignExtSlots(b.medicinalProduct.SpecialMeasuresExt, len(b.medicinalProduct.SpecialMeasures))
 	return b.medicinalProduct
 }
 

@@ -1263,6 +1263,7 @@ func NewActivityDefinitionBuilder() *ActivityDefinitionBuilder {
 
 // Build returns the constructed ActivityDefinition resource.
 func (b *ActivityDefinitionBuilder) Build() *ActivityDefinition {
+	b.activityDefinition.LibraryExt = alignExtSlots(b.activityDefinition.LibraryExt, len(b.activityDefinition.Library))
 	return b.activityDefinition
 }
 

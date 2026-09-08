@@ -774,6 +774,7 @@ func NewProvenanceBuilder() *ProvenanceBuilder {
 
 // Build returns the constructed Provenance resource.
 func (b *ProvenanceBuilder) Build() *Provenance {
+	b.provenance.PolicyExt = alignExtSlots(b.provenance.PolicyExt, len(b.provenance.Policy))
 	return b.provenance
 }
 

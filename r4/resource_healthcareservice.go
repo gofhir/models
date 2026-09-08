@@ -1342,6 +1342,7 @@ func NewHealthcareServiceAvailableTimeBuilder() *HealthcareServiceAvailableTimeB
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *HealthcareServiceAvailableTimeBuilder) Build() HealthcareServiceAvailableTime {
+	b.healthcareServiceAvailableTime.DaysOfWeekExt = alignExtSlots(b.healthcareServiceAvailableTime.DaysOfWeekExt, len(b.healthcareServiceAvailableTime.DaysOfWeek))
 	return *b.healthcareServiceAvailableTime
 }
 

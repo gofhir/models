@@ -2859,6 +2859,12 @@ func NewCapabilityStatementBuilder() *CapabilityStatementBuilder {
 
 // Build returns the constructed CapabilityStatement resource.
 func (b *CapabilityStatementBuilder) Build() *CapabilityStatement {
+	b.capabilityStatement.InstantiatesExt = alignExtSlots(b.capabilityStatement.InstantiatesExt, len(b.capabilityStatement.Instantiates))
+	b.capabilityStatement.ImportsExt = alignExtSlots(b.capabilityStatement.ImportsExt, len(b.capabilityStatement.Imports))
+	b.capabilityStatement.FormatExt = alignExtSlots(b.capabilityStatement.FormatExt, len(b.capabilityStatement.Format))
+	b.capabilityStatement.PatchFormatExt = alignExtSlots(b.capabilityStatement.PatchFormatExt, len(b.capabilityStatement.PatchFormat))
+	b.capabilityStatement.AcceptLanguageExt = alignExtSlots(b.capabilityStatement.AcceptLanguageExt, len(b.capabilityStatement.AcceptLanguage))
+	b.capabilityStatement.ImplementationGuideExt = alignExtSlots(b.capabilityStatement.ImplementationGuideExt, len(b.capabilityStatement.ImplementationGuide))
 	return b.capabilityStatement
 }
 
@@ -3859,6 +3865,7 @@ func NewCapabilityStatementRestBuilder() *CapabilityStatementRestBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *CapabilityStatementRestBuilder) Build() CapabilityStatementRest {
+	b.capabilityStatementRest.CompartmentExt = alignExtSlots(b.capabilityStatementRest.CompartmentExt, len(b.capabilityStatementRest.Compartment))
 	return *b.capabilityStatementRest
 }
 
@@ -4071,6 +4078,10 @@ func NewCapabilityStatementRestResourceBuilder() *CapabilityStatementRestResourc
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *CapabilityStatementRestResourceBuilder) Build() CapabilityStatementRestResource {
+	b.capabilityStatementRestResource.SupportedProfileExt = alignExtSlots(b.capabilityStatementRestResource.SupportedProfileExt, len(b.capabilityStatementRestResource.SupportedProfile))
+	b.capabilityStatementRestResource.ReferencePolicyExt = alignExtSlots(b.capabilityStatementRestResource.ReferencePolicyExt, len(b.capabilityStatementRestResource.ReferencePolicy))
+	b.capabilityStatementRestResource.SearchIncludeExt = alignExtSlots(b.capabilityStatementRestResource.SearchIncludeExt, len(b.capabilityStatementRestResource.SearchInclude))
+	b.capabilityStatementRestResource.SearchRevIncludeExt = alignExtSlots(b.capabilityStatementRestResource.SearchRevIncludeExt, len(b.capabilityStatementRestResource.SearchRevInclude))
 	return *b.capabilityStatementRestResource
 }
 

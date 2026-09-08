@@ -836,6 +836,8 @@ func NewDeviceRequestBuilder() *DeviceRequestBuilder {
 
 // Build returns the constructed DeviceRequest resource.
 func (b *DeviceRequestBuilder) Build() *DeviceRequest {
+	b.deviceRequest.InstantiatesCanonicalExt = alignExtSlots(b.deviceRequest.InstantiatesCanonicalExt, len(b.deviceRequest.InstantiatesCanonical))
+	b.deviceRequest.InstantiatesUriExt = alignExtSlots(b.deviceRequest.InstantiatesUriExt, len(b.deviceRequest.InstantiatesUri))
 	return b.deviceRequest
 }
 

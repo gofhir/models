@@ -1389,6 +1389,8 @@ func NewSubstanceSourceMaterialBuilder() *SubstanceSourceMaterialBuilder {
 
 // Build returns the constructed SubstanceSourceMaterial resource.
 func (b *SubstanceSourceMaterialBuilder) Build() *SubstanceSourceMaterial {
+	b.substanceSourceMaterial.ParentSubstanceNameExt = alignExtSlots(b.substanceSourceMaterial.ParentSubstanceNameExt, len(b.substanceSourceMaterial.ParentSubstanceName))
+	b.substanceSourceMaterial.GeographicalLocationExt = alignExtSlots(b.substanceSourceMaterial.GeographicalLocationExt, len(b.substanceSourceMaterial.GeographicalLocation))
 	return b.substanceSourceMaterial
 }
 

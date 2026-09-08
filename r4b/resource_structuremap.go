@@ -2657,6 +2657,7 @@ func NewStructureMapBuilder() *StructureMapBuilder {
 
 // Build returns the constructed StructureMap resource.
 func (b *StructureMapBuilder) Build() *StructureMap {
+	b.structureMap.ImportExt = alignExtSlots(b.structureMap.ImportExt, len(b.structureMap.Import))
 	return b.structureMap
 }
 
@@ -3338,6 +3339,7 @@ func NewStructureMapGroupRuleDependentBuilder() *StructureMapGroupRuleDependentB
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *StructureMapGroupRuleDependentBuilder) Build() StructureMapGroupRuleDependent {
+	b.structureMapGroupRuleDependent.VariableExt = alignExtSlots(b.structureMapGroupRuleDependent.VariableExt, len(b.structureMapGroupRuleDependent.Variable))
 	return *b.structureMapGroupRuleDependent
 }
 
@@ -4369,6 +4371,7 @@ func NewStructureMapGroupRuleTargetBuilder() *StructureMapGroupRuleTargetBuilder
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *StructureMapGroupRuleTargetBuilder) Build() StructureMapGroupRuleTarget {
+	b.structureMapGroupRuleTarget.ListModeExt = alignExtSlots(b.structureMapGroupRuleTarget.ListModeExt, len(b.structureMapGroupRuleTarget.ListMode))
 	return *b.structureMapGroupRuleTarget
 }
 

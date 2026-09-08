@@ -978,6 +978,7 @@ func NewPractitionerRoleAvailableTimeBuilder() *PractitionerRoleAvailableTimeBui
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *PractitionerRoleAvailableTimeBuilder) Build() PractitionerRoleAvailableTime {
+	b.practitionerRoleAvailableTime.DaysOfWeekExt = alignExtSlots(b.practitionerRoleAvailableTime.DaysOfWeekExt, len(b.practitionerRoleAvailableTime.DaysOfWeek))
 	return *b.practitionerRoleAvailableTime
 }
 

@@ -441,6 +441,8 @@ func NewEndpointBuilder() *EndpointBuilder {
 
 // Build returns the constructed Endpoint resource.
 func (b *EndpointBuilder) Build() *Endpoint {
+	b.endpoint.PayloadMimeTypeExt = alignExtSlots(b.endpoint.PayloadMimeTypeExt, len(b.endpoint.PayloadMimeType))
+	b.endpoint.HeaderExt = alignExtSlots(b.endpoint.HeaderExt, len(b.endpoint.Header))
 	return b.endpoint
 }
 

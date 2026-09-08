@@ -1841,6 +1841,7 @@ func NewExampleScenarioBuilder() *ExampleScenarioBuilder {
 
 // Build returns the constructed ExampleScenario resource.
 func (b *ExampleScenarioBuilder) Build() *ExampleScenario {
+	b.exampleScenario.WorkflowExt = alignExtSlots(b.exampleScenario.WorkflowExt, len(b.exampleScenario.Workflow))
 	return b.exampleScenario
 }
 

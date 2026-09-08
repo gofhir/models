@@ -766,6 +766,8 @@ func NewResearchDefinitionBuilder() *ResearchDefinitionBuilder {
 
 // Build returns the constructed ResearchDefinition resource.
 func (b *ResearchDefinitionBuilder) Build() *ResearchDefinition {
+	b.researchDefinition.CommentExt = alignExtSlots(b.researchDefinition.CommentExt, len(b.researchDefinition.Comment))
+	b.researchDefinition.LibraryExt = alignExtSlots(b.researchDefinition.LibraryExt, len(b.researchDefinition.Library))
 	return b.researchDefinition
 }
 

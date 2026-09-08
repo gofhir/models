@@ -188,6 +188,99 @@ func TestTheSamePatientEveryWayAgrees(t *testing.T) {
 	}
 }
 
+func TestTheBuilderAlignsSlotsOnBuild(t *testing.T) {
+	// The third route to a ragged array, and the one the existing builder test did
+	// not reach: it attaches the extension to the last value added, where the
+	// array is full length anyway. Attach it to the first of three and nothing
+	// pads the tail — Add{Field}Ext fills gaps in front of a slot, but cannot know
+	// no further values are coming. Build() is where that is known.
+	ext := r4.NewElementBuilder().
+		AddExtension(r4.NewExtensionBuilder().SetUrl("http://x").SetValueCode("c").Build()).
+		Build()
+
+	n := r4.NewHumanNameBuilder().
+		AddGiven("A").
+		AddGivenExt(&ext).
+		AddGiven("B").
+		AddGiven("C").
+		Build()
+
+	if len(n.GivenExt) != len(n.Given) {
+		t.Fatalf("%d slots for %d values", len(n.GivenExt), len(n.Given))
+	}
+	out, err := json.Marshal(n)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	const want = `{"given":["A","B","C"],"_given":[{"extension":[{"url":"http://x","valueCode":"c"}]},null,null]}`
+	if string(out) != want {
+		t.Errorf("the wire form does not line up:\n  got  %s\n  want %s", out, want)
+	}
+
+	// And a builder that attaches no extension at all still emits no "_given".
+	plain, err := json.Marshal(r4.NewHumanNameBuilder().AddGiven("A").AddGiven("B").Build())
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	if strings.Contains(string(plain), "_given") {
+		t.Errorf("a member nobody asked for: %s", plain)
+	}
+}
+
+func TestARaggedArrayOnInputSurvivesJSONButIsAlignedThroughXML(t *testing.T) {
+	// Records a boundary rather than guarding an invariant.
+	//
+	// A document whose "_given" is shorter than its "given" comes back unchanged
+	// through JSON and aligned through XML. Nothing in the published corpus has
+	// that shape — all 57 such arrays match their value array — but a careless
+	// producer can emit one, so it is worth stating which way each path goes and
+	// why they differ.
+	//
+	// On the JSON path the array length is stated by the document, and round-trip
+	// fidelity is this library's contract: it gives back what it was given rather
+	// than correcting it. On the XML path there is no such statement to preserve —
+	// XML has no way to say "this array is two long" — so the length is
+	// reconstructed, and reconstruction has to pick a convention. It picks the one
+	// HL7 publishes.
+	//
+	// If this ever needs to change, the fix is to align on the JSON path too, and
+	// it will cost byte-for-byte JSON round-tripping for documents of this shape.
+	const ragged = `{"resourceType":"Patient","name":[{"given":["A","B","C"],` +
+		`"_given":[null,{"extension":[{"url":"http://x","valueCode":"c"}]}]}]}`
+
+	var p r4.Patient
+	if err := json.Unmarshal([]byte(ragged), &p); err != nil {
+		t.Fatalf("json: %v", err)
+	}
+	viaJSON, err := json.Marshal(&p)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	if string(viaJSON) != ragged {
+		t.Errorf("the JSON path corrected a document instead of returning it:\n  got  %s\n  want %s",
+			viaJSON, ragged)
+	}
+
+	asXML, err := r4.MarshalResourceXML(&p)
+	if err != nil {
+		t.Fatalf("to xml: %v", err)
+	}
+	res, err := r4.UnmarshalResourceXML(asXML)
+	if err != nil {
+		t.Fatalf("from xml: %v", err)
+	}
+	viaXML, err := json.Marshal(res)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	const aligned = `{"resourceType":"Patient","name":[{"given":["A","B","C"],` +
+		`"_given":[null,{"extension":[{"url":"http://x","valueCode":"c"}]},null]}]}`
+	if string(viaXML) != aligned {
+		t.Errorf("the XML path did not reconstruct to the published convention:\n  got  %s\n  want %s",
+			viaXML, aligned)
+	}
+}
+
 func TestNoSpuriousSlotsInEveryVersion(t *testing.T) {
 	const doc = `<?xml version="1.0"?><Patient xmlns="http://hl7.org/fhir"><name>` +
 		`<given value="A"/></name></Patient>`

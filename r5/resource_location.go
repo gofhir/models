@@ -675,6 +675,7 @@ func NewLocationBuilder() *LocationBuilder {
 
 // Build returns the constructed Location resource.
 func (b *LocationBuilder) Build() *Location {
+	b.location.AliasExt = alignExtSlots(b.location.AliasExt, len(b.location.Alias))
 	return b.location
 }
 

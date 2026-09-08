@@ -1026,6 +1026,7 @@ func NewVerificationResultBuilder() *VerificationResultBuilder {
 
 // Build returns the constructed VerificationResult resource.
 func (b *VerificationResultBuilder) Build() *VerificationResult {
+	b.verificationResult.TargetLocationExt = alignExtSlots(b.verificationResult.TargetLocationExt, len(b.verificationResult.TargetLocation))
 	return b.verificationResult
 }
 

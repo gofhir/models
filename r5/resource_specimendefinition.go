@@ -1446,6 +1446,8 @@ func NewSpecimenDefinitionBuilder() *SpecimenDefinitionBuilder {
 
 // Build returns the constructed SpecimenDefinition resource.
 func (b *SpecimenDefinitionBuilder) Build() *SpecimenDefinition {
+	b.specimenDefinition.DerivedFromCanonicalExt = alignExtSlots(b.specimenDefinition.DerivedFromCanonicalExt, len(b.specimenDefinition.DerivedFromCanonical))
+	b.specimenDefinition.DerivedFromUriExt = alignExtSlots(b.specimenDefinition.DerivedFromUriExt, len(b.specimenDefinition.DerivedFromUri))
 	return b.specimenDefinition
 }
 

@@ -328,6 +328,7 @@ func NewProbeBuilder() *ProbeBuilder {
 
 // Build returns the constructed Probe resource.
 func (b *ProbeBuilder) Build() *Probe {
+	b.probe.AliasExt = alignExtSlots(b.probe.AliasExt, len(b.probe.Alias))
 	return b.probe
 }
 

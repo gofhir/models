@@ -1253,6 +1253,7 @@ func NewSubstancePolymerBuilder() *SubstancePolymerBuilder {
 
 // Build returns the constructed SubstancePolymer resource.
 func (b *SubstancePolymerBuilder) Build() *SubstancePolymer {
+	b.substancePolymer.ModificationExt = alignExtSlots(b.substancePolymer.ModificationExt, len(b.substancePolymer.Modification))
 	return b.substancePolymer
 }
 

@@ -26,7 +26,18 @@ func New{{$r.Name}}Builder() *{{$r.Name}}Builder {
 
 {{if $r.IsResource -}}
 // Build returns the constructed {{$r.Name}} resource.
+{{- /* Build aligns each companion extension slice to its value slice.
+	Add<Field>Ext fills gaps in front of a slot but cannot know that no further
+	values are coming, and FHIR keeps the two arrays the same length: attach an
+	extension to the first of three values and nothing would pad the tail.
+	alignExtSlots carries the rationale; repeating it in every Build() would add
+	four lines to each of the 2178 builders. */}}
 func (b *{{$r.Name}}Builder) Build() *{{$r.Name}} {
+{{- range $r.Properties}}
+{{- if and .HasExtension .IsArray}}
+	b.{{$r.LowerName}}.{{.Name}}Ext = alignExtSlots(b.{{$r.LowerName}}.{{.Name}}Ext, len(b.{{$r.LowerName}}.{{.Name}}))
+{{- end}}
+{{- end}}
 	return b.{{$r.LowerName}}
 }
 {{- else -}}
@@ -37,7 +48,18 @@ func (b *{{$r.Name}}Builder) Build() *{{$r.Name}} {
 // set through SetLow(Quantity), which takes the address itself. Returning *T meant
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
+{{- /* Build aligns each companion extension slice to its value slice.
+	Add<Field>Ext fills gaps in front of a slot but cannot know that no further
+	values are coming, and FHIR keeps the two arrays the same length: attach an
+	extension to the first of three values and nothing would pad the tail.
+	alignExtSlots carries the rationale; repeating it in every Build() would add
+	four lines to each of the 2178 builders. */}}
 func (b *{{$r.Name}}Builder) Build() {{$r.Name}} {
+{{- range $r.Properties}}
+{{- if and .HasExtension .IsArray}}
+	b.{{$r.LowerName}}.{{.Name}}Ext = alignExtSlots(b.{{$r.LowerName}}.{{.Name}}Ext, len(b.{{$r.LowerName}}.{{.Name}}))
+{{- end}}
+{{- end}}
 	return *b.{{$r.LowerName}}
 }
 {{- end}}

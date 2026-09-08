@@ -2382,6 +2382,7 @@ func NewImplementationGuideBuilder() *ImplementationGuideBuilder {
 
 // Build returns the constructed ImplementationGuide resource.
 func (b *ImplementationGuideBuilder) Build() *ImplementationGuide {
+	b.implementationGuide.FhirVersionExt = alignExtSlots(b.implementationGuide.FhirVersionExt, len(b.implementationGuide.FhirVersion))
 	return b.implementationGuide
 }
 
@@ -3206,6 +3207,8 @@ func NewImplementationGuideDefinitionResourceBuilder() *ImplementationGuideDefin
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ImplementationGuideDefinitionResourceBuilder) Build() ImplementationGuideDefinitionResource {
+	b.implementationGuideDefinitionResource.FhirVersionExt = alignExtSlots(b.implementationGuideDefinitionResource.FhirVersionExt, len(b.implementationGuideDefinitionResource.FhirVersion))
+	b.implementationGuideDefinitionResource.ProfileExt = alignExtSlots(b.implementationGuideDefinitionResource.ProfileExt, len(b.implementationGuideDefinitionResource.Profile))
 	return *b.implementationGuideDefinitionResource
 }
 
@@ -3656,6 +3659,8 @@ func NewImplementationGuideManifestBuilder() *ImplementationGuideManifestBuilder
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ImplementationGuideManifestBuilder) Build() ImplementationGuideManifest {
+	b.implementationGuideManifest.ImageExt = alignExtSlots(b.implementationGuideManifest.ImageExt, len(b.implementationGuideManifest.Image))
+	b.implementationGuideManifest.OtherExt = alignExtSlots(b.implementationGuideManifest.OtherExt, len(b.implementationGuideManifest.Other))
 	return *b.implementationGuideManifest
 }
 
@@ -3785,6 +3790,7 @@ func NewImplementationGuideManifestPageBuilder() *ImplementationGuideManifestPag
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ImplementationGuideManifestPageBuilder) Build() ImplementationGuideManifestPage {
+	b.implementationGuideManifestPage.AnchorExt = alignExtSlots(b.implementationGuideManifestPage.AnchorExt, len(b.implementationGuideManifestPage.Anchor))
 	return *b.implementationGuideManifestPage
 }
 
@@ -3890,6 +3896,7 @@ func NewImplementationGuideManifestResourceBuilder() *ImplementationGuideManifes
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ImplementationGuideManifestResourceBuilder) Build() ImplementationGuideManifestResource {
+	b.implementationGuideManifestResource.ProfileExt = alignExtSlots(b.implementationGuideManifestResource.ProfileExt, len(b.implementationGuideManifestResource.Profile))
 	return *b.implementationGuideManifestResource
 }
 

@@ -6147,6 +6147,7 @@ func NewExplanationOfBenefitBuilder() *ExplanationOfBenefitBuilder {
 
 // Build returns the constructed ExplanationOfBenefit resource.
 func (b *ExplanationOfBenefitBuilder) Build() *ExplanationOfBenefit {
+	b.explanationOfBenefit.PreAuthRefExt = alignExtSlots(b.explanationOfBenefit.PreAuthRefExt, len(b.explanationOfBenefit.PreAuthRef))
 	return b.explanationOfBenefit
 }
 
@@ -6729,6 +6730,10 @@ func NewExplanationOfBenefitAddItemBuilder() *ExplanationOfBenefitAddItemBuilder
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ExplanationOfBenefitAddItemBuilder) Build() ExplanationOfBenefitAddItem {
+	b.explanationOfBenefitAddItem.ItemSequenceExt = alignExtSlots(b.explanationOfBenefitAddItem.ItemSequenceExt, len(b.explanationOfBenefitAddItem.ItemSequence))
+	b.explanationOfBenefitAddItem.DetailSequenceExt = alignExtSlots(b.explanationOfBenefitAddItem.DetailSequenceExt, len(b.explanationOfBenefitAddItem.DetailSequence))
+	b.explanationOfBenefitAddItem.SubDetailSequenceExt = alignExtSlots(b.explanationOfBenefitAddItem.SubDetailSequenceExt, len(b.explanationOfBenefitAddItem.SubDetailSequence))
+	b.explanationOfBenefitAddItem.NoteNumberExt = alignExtSlots(b.explanationOfBenefitAddItem.NoteNumberExt, len(b.explanationOfBenefitAddItem.NoteNumber))
 	return *b.explanationOfBenefitAddItem
 }
 
@@ -7137,6 +7142,7 @@ func NewExplanationOfBenefitAddItemDetailBuilder() *ExplanationOfBenefitAddItemD
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ExplanationOfBenefitAddItemDetailBuilder) Build() ExplanationOfBenefitAddItemDetail {
+	b.explanationOfBenefitAddItemDetail.NoteNumberExt = alignExtSlots(b.explanationOfBenefitAddItemDetail.NoteNumberExt, len(b.explanationOfBenefitAddItemDetail.NoteNumber))
 	return *b.explanationOfBenefitAddItemDetail
 }
 
@@ -7304,6 +7310,7 @@ func NewExplanationOfBenefitAddItemDetailSubDetailBuilder() *ExplanationOfBenefi
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ExplanationOfBenefitAddItemDetailSubDetailBuilder) Build() ExplanationOfBenefitAddItemDetailSubDetail {
+	b.explanationOfBenefitAddItemDetailSubDetail.NoteNumberExt = alignExtSlots(b.explanationOfBenefitAddItemDetailSubDetail.NoteNumberExt, len(b.explanationOfBenefitAddItemDetailSubDetail.NoteNumber))
 	return *b.explanationOfBenefitAddItemDetailSubDetail
 }
 
@@ -8011,6 +8018,7 @@ func NewExplanationOfBenefitInsuranceBuilder() *ExplanationOfBenefitInsuranceBui
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ExplanationOfBenefitInsuranceBuilder) Build() ExplanationOfBenefitInsurance {
+	b.explanationOfBenefitInsurance.PreAuthRefExt = alignExtSlots(b.explanationOfBenefitInsurance.PreAuthRefExt, len(b.explanationOfBenefitInsurance.PreAuthRef))
 	return *b.explanationOfBenefitInsurance
 }
 
@@ -8106,6 +8114,11 @@ func NewExplanationOfBenefitItemBuilder() *ExplanationOfBenefitItemBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ExplanationOfBenefitItemBuilder) Build() ExplanationOfBenefitItem {
+	b.explanationOfBenefitItem.CareTeamSequenceExt = alignExtSlots(b.explanationOfBenefitItem.CareTeamSequenceExt, len(b.explanationOfBenefitItem.CareTeamSequence))
+	b.explanationOfBenefitItem.DiagnosisSequenceExt = alignExtSlots(b.explanationOfBenefitItem.DiagnosisSequenceExt, len(b.explanationOfBenefitItem.DiagnosisSequence))
+	b.explanationOfBenefitItem.ProcedureSequenceExt = alignExtSlots(b.explanationOfBenefitItem.ProcedureSequenceExt, len(b.explanationOfBenefitItem.ProcedureSequence))
+	b.explanationOfBenefitItem.InformationSequenceExt = alignExtSlots(b.explanationOfBenefitItem.InformationSequenceExt, len(b.explanationOfBenefitItem.InformationSequence))
+	b.explanationOfBenefitItem.NoteNumberExt = alignExtSlots(b.explanationOfBenefitItem.NoteNumberExt, len(b.explanationOfBenefitItem.NoteNumber))
 	return *b.explanationOfBenefitItem
 }
 
@@ -8639,6 +8652,7 @@ func NewExplanationOfBenefitItemDetailBuilder() *ExplanationOfBenefitItemDetailB
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ExplanationOfBenefitItemDetailBuilder) Build() ExplanationOfBenefitItemDetail {
+	b.explanationOfBenefitItemDetail.NoteNumberExt = alignExtSlots(b.explanationOfBenefitItemDetail.NoteNumberExt, len(b.explanationOfBenefitItemDetail.NoteNumber))
 	return *b.explanationOfBenefitItemDetail
 }
 
@@ -8840,6 +8854,7 @@ func NewExplanationOfBenefitItemDetailSubDetailBuilder() *ExplanationOfBenefitIt
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) Build() ExplanationOfBenefitItemDetailSubDetail {
+	b.explanationOfBenefitItemDetailSubDetail.NoteNumberExt = alignExtSlots(b.explanationOfBenefitItemDetailSubDetail.NoteNumberExt, len(b.explanationOfBenefitItemDetailSubDetail.NoteNumber))
 	return *b.explanationOfBenefitItemDetailSubDetail
 }
 

@@ -1616,6 +1616,8 @@ func NewMeasureBuilder() *MeasureBuilder {
 
 // Build returns the constructed Measure resource.
 func (b *MeasureBuilder) Build() *Measure {
+	b.measure.LibraryExt = alignExtSlots(b.measure.LibraryExt, len(b.measure.Library))
+	b.measure.DefinitionExt = alignExtSlots(b.measure.DefinitionExt, len(b.measure.Definition))
 	return b.measure
 }
 

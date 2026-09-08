@@ -727,6 +727,8 @@ func NewCommunicationBuilder() *CommunicationBuilder {
 
 // Build returns the constructed Communication resource.
 func (b *CommunicationBuilder) Build() *Communication {
+	b.communication.InstantiatesCanonicalExt = alignExtSlots(b.communication.InstantiatesCanonicalExt, len(b.communication.InstantiatesCanonical))
+	b.communication.InstantiatesUriExt = alignExtSlots(b.communication.InstantiatesUriExt, len(b.communication.InstantiatesUri))
 	return b.communication
 }
 

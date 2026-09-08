@@ -1045,6 +1045,7 @@ func NewArtifactAssessmentContentBuilder() *ArtifactAssessmentContentBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ArtifactAssessmentContentBuilder) Build() ArtifactAssessmentContent {
+	b.artifactAssessmentContent.PathExt = alignExtSlots(b.artifactAssessmentContent.PathExt, len(b.artifactAssessmentContent.Path))
 	return *b.artifactAssessmentContent
 }
 

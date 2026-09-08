@@ -1210,6 +1210,8 @@ func NewMedicationRequestBuilder() *MedicationRequestBuilder {
 
 // Build returns the constructed MedicationRequest resource.
 func (b *MedicationRequestBuilder) Build() *MedicationRequest {
+	b.medicationRequest.InstantiatesCanonicalExt = alignExtSlots(b.medicationRequest.InstantiatesCanonicalExt, len(b.medicationRequest.InstantiatesCanonical))
+	b.medicationRequest.InstantiatesUriExt = alignExtSlots(b.medicationRequest.InstantiatesUriExt, len(b.medicationRequest.InstantiatesUri))
 	return b.medicationRequest
 }
 

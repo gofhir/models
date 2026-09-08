@@ -806,6 +806,8 @@ func NewChargeItemBuilder() *ChargeItemBuilder {
 
 // Build returns the constructed ChargeItem resource.
 func (b *ChargeItemBuilder) Build() *ChargeItem {
+	b.chargeItem.DefinitionUriExt = alignExtSlots(b.chargeItem.DefinitionUriExt, len(b.chargeItem.DefinitionUri))
+	b.chargeItem.DefinitionCanonicalExt = alignExtSlots(b.chargeItem.DefinitionCanonicalExt, len(b.chargeItem.DefinitionCanonical))
 	return b.chargeItem
 }
 

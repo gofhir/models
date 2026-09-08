@@ -1438,6 +1438,7 @@ func NewCoverageEligibilityResponseBuilder() *CoverageEligibilityResponseBuilder
 
 // Build returns the constructed CoverageEligibilityResponse resource.
 func (b *CoverageEligibilityResponseBuilder) Build() *CoverageEligibilityResponse {
+	b.coverageEligibilityResponse.PurposeExt = alignExtSlots(b.coverageEligibilityResponse.PurposeExt, len(b.coverageEligibilityResponse.Purpose))
 	return b.coverageEligibilityResponse
 }
 
@@ -1745,6 +1746,7 @@ func NewCoverageEligibilityResponseErrorBuilder() *CoverageEligibilityResponseEr
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *CoverageEligibilityResponseErrorBuilder) Build() CoverageEligibilityResponseError {
+	b.coverageEligibilityResponseError.ExpressionExt = alignExtSlots(b.coverageEligibilityResponseError.ExpressionExt, len(b.coverageEligibilityResponseError.Expression))
 	return *b.coverageEligibilityResponseError
 }
 

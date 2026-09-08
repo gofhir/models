@@ -2796,6 +2796,7 @@ func NewMedicationKnowledgeBuilder() *MedicationKnowledgeBuilder {
 
 // Build returns the constructed MedicationKnowledge resource.
 func (b *MedicationKnowledgeBuilder) Build() *MedicationKnowledge {
+	b.medicationKnowledge.SynonymExt = alignExtSlots(b.medicationKnowledge.SynonymExt, len(b.medicationKnowledge.Synonym))
 	return b.medicationKnowledge
 }
 
@@ -3223,6 +3224,7 @@ func NewMedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder) Build() MedicationKnowledgeAdministrationGuidelinesPatientCharacteristics {
+	b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.ValueExt = alignExtSlots(b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.ValueExt, len(b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.Value))
 	return *b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics
 }
 

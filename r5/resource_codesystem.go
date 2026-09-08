@@ -2653,6 +2653,7 @@ func NewCodeSystemFilterBuilder() *CodeSystemFilterBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *CodeSystemFilterBuilder) Build() CodeSystemFilter {
+	b.codeSystemFilter.OperatorExt = alignExtSlots(b.codeSystemFilter.OperatorExt, len(b.codeSystemFilter.Operator))
 	return *b.codeSystemFilter
 }
 

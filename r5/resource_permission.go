@@ -1097,6 +1097,7 @@ func NewPermissionBuilder() *PermissionBuilder {
 
 // Build returns the constructed Permission resource.
 func (b *PermissionBuilder) Build() *Permission {
+	b.permission.DateExt = alignExtSlots(b.permission.DateExt, len(b.permission.Date))
 	return b.permission
 }
 

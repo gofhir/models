@@ -4198,6 +4198,7 @@ func NewClaimInsuranceBuilder() *ClaimInsuranceBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ClaimInsuranceBuilder) Build() ClaimInsurance {
+	b.claimInsurance.PreAuthRefExt = alignExtSlots(b.claimInsurance.PreAuthRefExt, len(b.claimInsurance.PreAuthRef))
 	return *b.claimInsurance
 }
 
@@ -4337,6 +4338,10 @@ func NewClaimItemBuilder() *ClaimItemBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ClaimItemBuilder) Build() ClaimItem {
+	b.claimItem.CareTeamSequenceExt = alignExtSlots(b.claimItem.CareTeamSequenceExt, len(b.claimItem.CareTeamSequence))
+	b.claimItem.DiagnosisSequenceExt = alignExtSlots(b.claimItem.DiagnosisSequenceExt, len(b.claimItem.DiagnosisSequence))
+	b.claimItem.ProcedureSequenceExt = alignExtSlots(b.claimItem.ProcedureSequenceExt, len(b.claimItem.ProcedureSequence))
+	b.claimItem.InformationSequenceExt = alignExtSlots(b.claimItem.InformationSequenceExt, len(b.claimItem.InformationSequence))
 	return *b.claimItem
 }
 

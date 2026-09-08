@@ -2677,6 +2677,8 @@ func NewTerminologyCapabilitiesCodeSystemVersionBuilder() *TerminologyCapabiliti
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *TerminologyCapabilitiesCodeSystemVersionBuilder) Build() TerminologyCapabilitiesCodeSystemVersion {
+	b.terminologyCapabilitiesCodeSystemVersion.LanguageExt = alignExtSlots(b.terminologyCapabilitiesCodeSystemVersion.LanguageExt, len(b.terminologyCapabilitiesCodeSystemVersion.Language))
+	b.terminologyCapabilitiesCodeSystemVersion.PropertyExt = alignExtSlots(b.terminologyCapabilitiesCodeSystemVersion.PropertyExt, len(b.terminologyCapabilitiesCodeSystemVersion.Property))
 	return *b.terminologyCapabilitiesCodeSystemVersion
 }
 
@@ -2832,6 +2834,7 @@ func NewTerminologyCapabilitiesCodeSystemVersionFilterBuilder() *TerminologyCapa
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *TerminologyCapabilitiesCodeSystemVersionFilterBuilder) Build() TerminologyCapabilitiesCodeSystemVersionFilter {
+	b.terminologyCapabilitiesCodeSystemVersionFilter.OpExt = alignExtSlots(b.terminologyCapabilitiesCodeSystemVersionFilter.OpExt, len(b.terminologyCapabilitiesCodeSystemVersionFilter.Op))
 	return *b.terminologyCapabilitiesCodeSystemVersionFilter
 }
 

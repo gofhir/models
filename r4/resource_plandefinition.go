@@ -2194,6 +2194,7 @@ func NewPlanDefinitionBuilder() *PlanDefinitionBuilder {
 
 // Build returns the constructed PlanDefinition resource.
 func (b *PlanDefinitionBuilder) Build() *PlanDefinition {
+	b.planDefinition.LibraryExt = alignExtSlots(b.planDefinition.LibraryExt, len(b.planDefinition.Library))
 	return b.planDefinition
 }
 
@@ -2685,6 +2686,7 @@ func NewPlanDefinitionActionBuilder() *PlanDefinitionActionBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *PlanDefinitionActionBuilder) Build() PlanDefinitionAction {
+	b.planDefinitionAction.GoalIdExt = alignExtSlots(b.planDefinitionAction.GoalIdExt, len(b.planDefinitionAction.GoalId))
 	return *b.planDefinitionAction
 }
 

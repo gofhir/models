@@ -741,6 +741,8 @@ func NewCarePlanBuilder() *CarePlanBuilder {
 
 // Build returns the constructed CarePlan resource.
 func (b *CarePlanBuilder) Build() *CarePlan {
+	b.carePlan.InstantiatesCanonicalExt = alignExtSlots(b.carePlan.InstantiatesCanonicalExt, len(b.carePlan.InstantiatesCanonical))
+	b.carePlan.InstantiatesUriExt = alignExtSlots(b.carePlan.InstantiatesUriExt, len(b.carePlan.InstantiatesUri))
 	return b.carePlan
 }
 

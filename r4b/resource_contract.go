@@ -3848,6 +3848,7 @@ func NewContractBuilder() *ContractBuilder {
 
 // Build returns the constructed Contract resource.
 func (b *ContractBuilder) Build() *Contract {
+	b.contract.AliasExt = alignExtSlots(b.contract.AliasExt, len(b.contract.Alias))
 	return b.contract
 }
 
@@ -4860,6 +4861,13 @@ func NewContractTermActionBuilder() *ContractTermActionBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ContractTermActionBuilder) Build() ContractTermAction {
+	b.contractTermAction.LinkIdExt = alignExtSlots(b.contractTermAction.LinkIdExt, len(b.contractTermAction.LinkId))
+	b.contractTermAction.ContextLinkIdExt = alignExtSlots(b.contractTermAction.ContextLinkIdExt, len(b.contractTermAction.ContextLinkId))
+	b.contractTermAction.RequesterLinkIdExt = alignExtSlots(b.contractTermAction.RequesterLinkIdExt, len(b.contractTermAction.RequesterLinkId))
+	b.contractTermAction.PerformerLinkIdExt = alignExtSlots(b.contractTermAction.PerformerLinkIdExt, len(b.contractTermAction.PerformerLinkId))
+	b.contractTermAction.ReasonExt = alignExtSlots(b.contractTermAction.ReasonExt, len(b.contractTermAction.Reason))
+	b.contractTermAction.ReasonLinkIdExt = alignExtSlots(b.contractTermAction.ReasonLinkIdExt, len(b.contractTermAction.ReasonLinkId))
+	b.contractTermAction.SecurityLabelNumberExt = alignExtSlots(b.contractTermAction.SecurityLabelNumberExt, len(b.contractTermAction.SecurityLabelNumber))
 	return *b.contractTermAction
 }
 
@@ -5293,6 +5301,8 @@ func NewContractTermAssetBuilder() *ContractTermAssetBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ContractTermAssetBuilder) Build() ContractTermAsset {
+	b.contractTermAsset.LinkIdExt = alignExtSlots(b.contractTermAsset.LinkIdExt, len(b.contractTermAsset.LinkId))
+	b.contractTermAsset.SecurityLabelNumberExt = alignExtSlots(b.contractTermAsset.SecurityLabelNumberExt, len(b.contractTermAsset.SecurityLabelNumber))
 	return *b.contractTermAsset
 }
 
@@ -5565,6 +5575,8 @@ func NewContractTermAssetValuedItemBuilder() *ContractTermAssetValuedItemBuilder
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ContractTermAssetValuedItemBuilder) Build() ContractTermAssetValuedItem {
+	b.contractTermAssetValuedItem.LinkIdExt = alignExtSlots(b.contractTermAssetValuedItem.LinkIdExt, len(b.contractTermAssetValuedItem.LinkId))
+	b.contractTermAssetValuedItem.SecurityLabelNumberExt = alignExtSlots(b.contractTermAssetValuedItem.SecurityLabelNumberExt, len(b.contractTermAssetValuedItem.SecurityLabelNumber))
 	return *b.contractTermAssetValuedItem
 }
 
@@ -5811,6 +5823,8 @@ func NewContractTermOfferBuilder() *ContractTermOfferBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ContractTermOfferBuilder) Build() ContractTermOffer {
+	b.contractTermOffer.LinkIdExt = alignExtSlots(b.contractTermOffer.LinkIdExt, len(b.contractTermOffer.LinkId))
+	b.contractTermOffer.SecurityLabelNumberExt = alignExtSlots(b.contractTermOffer.SecurityLabelNumberExt, len(b.contractTermOffer.SecurityLabelNumber))
 	return *b.contractTermOffer
 }
 
@@ -6276,6 +6290,7 @@ func NewContractTermSecurityLabelBuilder() *ContractTermSecurityLabelBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ContractTermSecurityLabelBuilder) Build() ContractTermSecurityLabel {
+	b.contractTermSecurityLabel.NumberExt = alignExtSlots(b.contractTermSecurityLabel.NumberExt, len(b.contractTermSecurityLabel.Number))
 	return *b.contractTermSecurityLabel
 }
 

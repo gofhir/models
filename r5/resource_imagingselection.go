@@ -1369,6 +1369,7 @@ func NewImagingSelectionInstanceBuilder() *ImagingSelectionInstanceBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ImagingSelectionInstanceBuilder) Build() ImagingSelectionInstance {
+	b.imagingSelectionInstance.SubsetExt = alignExtSlots(b.imagingSelectionInstance.SubsetExt, len(b.imagingSelectionInstance.Subset))
 	return *b.imagingSelectionInstance
 }
 
@@ -1492,6 +1493,7 @@ func NewImagingSelectionInstanceImageRegion2DBuilder() *ImagingSelectionInstance
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ImagingSelectionInstanceImageRegion2DBuilder) Build() ImagingSelectionInstanceImageRegion2D {
+	b.imagingSelectionInstanceImageRegion2D.CoordinateExt = alignExtSlots(b.imagingSelectionInstanceImageRegion2D.CoordinateExt, len(b.imagingSelectionInstanceImageRegion2D.Coordinate))
 	return *b.imagingSelectionInstanceImageRegion2D
 }
 
@@ -1581,6 +1583,7 @@ func NewImagingSelectionInstanceImageRegion3DBuilder() *ImagingSelectionInstance
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ImagingSelectionInstanceImageRegion3DBuilder) Build() ImagingSelectionInstanceImageRegion3D {
+	b.imagingSelectionInstanceImageRegion3D.CoordinateExt = alignExtSlots(b.imagingSelectionInstanceImageRegion3D.CoordinateExt, len(b.imagingSelectionInstanceImageRegion3D.Coordinate))
 	return *b.imagingSelectionInstanceImageRegion3D
 }
 

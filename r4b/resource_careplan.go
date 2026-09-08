@@ -1141,6 +1141,8 @@ func NewCarePlanBuilder() *CarePlanBuilder {
 
 // Build returns the constructed CarePlan resource.
 func (b *CarePlanBuilder) Build() *CarePlan {
+	b.carePlan.InstantiatesCanonicalExt = alignExtSlots(b.carePlan.InstantiatesCanonicalExt, len(b.carePlan.InstantiatesCanonical))
+	b.carePlan.InstantiatesUriExt = alignExtSlots(b.carePlan.InstantiatesUriExt, len(b.carePlan.InstantiatesUri))
 	return b.carePlan
 }
 
@@ -1558,6 +1560,8 @@ func NewCarePlanActivityDetailBuilder() *CarePlanActivityDetailBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *CarePlanActivityDetailBuilder) Build() CarePlanActivityDetail {
+	b.carePlanActivityDetail.InstantiatesCanonicalExt = alignExtSlots(b.carePlanActivityDetail.InstantiatesCanonicalExt, len(b.carePlanActivityDetail.InstantiatesCanonical))
+	b.carePlanActivityDetail.InstantiatesUriExt = alignExtSlots(b.carePlanActivityDetail.InstantiatesUriExt, len(b.carePlanActivityDetail.InstantiatesUri))
 	return *b.carePlanActivityDetail
 }
 

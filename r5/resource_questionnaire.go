@@ -1719,6 +1719,8 @@ func NewQuestionnaireBuilder() *QuestionnaireBuilder {
 
 // Build returns the constructed Questionnaire resource.
 func (b *QuestionnaireBuilder) Build() *Questionnaire {
+	b.questionnaire.DerivedFromExt = alignExtSlots(b.questionnaire.DerivedFromExt, len(b.questionnaire.DerivedFrom))
+	b.questionnaire.SubjectTypeExt = alignExtSlots(b.questionnaire.SubjectTypeExt, len(b.questionnaire.SubjectType))
 	return b.questionnaire
 }
 

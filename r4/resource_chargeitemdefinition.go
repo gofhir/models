@@ -1039,6 +1039,9 @@ func NewChargeItemDefinitionBuilder() *ChargeItemDefinitionBuilder {
 
 // Build returns the constructed ChargeItemDefinition resource.
 func (b *ChargeItemDefinitionBuilder) Build() *ChargeItemDefinition {
+	b.chargeItemDefinition.DerivedFromUriExt = alignExtSlots(b.chargeItemDefinition.DerivedFromUriExt, len(b.chargeItemDefinition.DerivedFromUri))
+	b.chargeItemDefinition.PartOfExt = alignExtSlots(b.chargeItemDefinition.PartOfExt, len(b.chargeItemDefinition.PartOf))
+	b.chargeItemDefinition.ReplacesExt = alignExtSlots(b.chargeItemDefinition.ReplacesExt, len(b.chargeItemDefinition.Replaces))
 	return b.chargeItemDefinition
 }
 

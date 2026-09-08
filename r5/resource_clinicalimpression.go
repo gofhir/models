@@ -687,6 +687,7 @@ func NewClinicalImpressionBuilder() *ClinicalImpressionBuilder {
 
 // Build returns the constructed ClinicalImpression resource.
 func (b *ClinicalImpressionBuilder) Build() *ClinicalImpression {
+	b.clinicalImpression.ProtocolExt = alignExtSlots(b.clinicalImpression.ProtocolExt, len(b.clinicalImpression.Protocol))
 	return b.clinicalImpression
 }
 

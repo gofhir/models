@@ -2069,6 +2069,7 @@ func NewMeasureBuilder() *MeasureBuilder {
 
 // Build returns the constructed Measure resource.
 func (b *MeasureBuilder) Build() *Measure {
+	b.measure.LibraryExt = alignExtSlots(b.measure.LibraryExt, len(b.measure.Library))
 	return b.measure
 }
 
@@ -2753,6 +2754,7 @@ func NewMeasureGroupBuilder() *MeasureGroupBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *MeasureGroupBuilder) Build() MeasureGroup {
+	b.measureGroup.LibraryExt = alignExtSlots(b.measureGroup.LibraryExt, len(b.measureGroup.Library))
 	return *b.measureGroup
 }
 

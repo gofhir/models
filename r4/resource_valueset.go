@@ -2338,6 +2338,7 @@ func NewValueSetComposeIncludeBuilder() *ValueSetComposeIncludeBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ValueSetComposeIncludeBuilder) Build() ValueSetComposeInclude {
+	b.valueSetComposeInclude.ValueSetExt = alignExtSlots(b.valueSetComposeInclude.ValueSetExt, len(b.valueSetComposeInclude.ValueSet))
 	return *b.valueSetComposeInclude
 }
 

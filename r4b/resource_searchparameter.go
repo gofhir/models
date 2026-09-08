@@ -790,6 +790,11 @@ func NewSearchParameterBuilder() *SearchParameterBuilder {
 
 // Build returns the constructed SearchParameter resource.
 func (b *SearchParameterBuilder) Build() *SearchParameter {
+	b.searchParameter.BaseExt = alignExtSlots(b.searchParameter.BaseExt, len(b.searchParameter.Base))
+	b.searchParameter.TargetExt = alignExtSlots(b.searchParameter.TargetExt, len(b.searchParameter.Target))
+	b.searchParameter.ComparatorExt = alignExtSlots(b.searchParameter.ComparatorExt, len(b.searchParameter.Comparator))
+	b.searchParameter.ModifierExt = alignExtSlots(b.searchParameter.ModifierExt, len(b.searchParameter.Modifier))
+	b.searchParameter.ChainExt = alignExtSlots(b.searchParameter.ChainExt, len(b.searchParameter.Chain))
 	return b.searchParameter
 }
 

@@ -1699,6 +1699,7 @@ func NewAuditEventAgentBuilder() *AuditEventAgentBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *AuditEventAgentBuilder) Build() AuditEventAgent {
+	b.auditEventAgent.PolicyExt = alignExtSlots(b.auditEventAgent.PolicyExt, len(b.auditEventAgent.Policy))
 	return *b.auditEventAgent
 }
 

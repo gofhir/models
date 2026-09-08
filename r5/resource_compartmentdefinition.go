@@ -1053,6 +1053,7 @@ func NewCompartmentDefinitionResourceBuilder() *CompartmentDefinitionResourceBui
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *CompartmentDefinitionResourceBuilder) Build() CompartmentDefinitionResource {
+	b.compartmentDefinitionResource.ParamExt = alignExtSlots(b.compartmentDefinitionResource.ParamExt, len(b.compartmentDefinitionResource.Param))
 	return *b.compartmentDefinitionResource
 }
 

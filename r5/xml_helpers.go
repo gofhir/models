@@ -338,8 +338,9 @@ func appendExtSlot(exts []*Element, ext *Element, values int) []*Element {
 	return append(exts, ext)
 }
 
-// alignExtSlots pads the companion slice out to the value count, once decoding
-// of the enclosing element has finished.
+// alignExtSlots pads the companion slice out to the value count, once nothing
+// further will be added to either: the end of an element while decoding, or
+// Build() on a builder.
 //
 // FHIR's JSON form keeps the two arrays the same length: every one of the 57
 // "_field" arrays in the published corpus matches its value array exactly, and

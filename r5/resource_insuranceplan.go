@@ -1641,6 +1641,7 @@ func NewInsurancePlanBuilder() *InsurancePlanBuilder {
 
 // Build returns the constructed InsurancePlan resource.
 func (b *InsurancePlanBuilder) Build() *InsurancePlan {
+	b.insurancePlan.AliasExt = alignExtSlots(b.insurancePlan.AliasExt, len(b.insurancePlan.Alias))
 	return b.insurancePlan
 }
 

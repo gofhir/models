@@ -1143,6 +1143,7 @@ func NewCoverageEligibilityRequestBuilder() *CoverageEligibilityRequestBuilder {
 
 // Build returns the constructed CoverageEligibilityRequest resource.
 func (b *CoverageEligibilityRequestBuilder) Build() *CoverageEligibilityRequest {
+	b.coverageEligibilityRequest.PurposeExt = alignExtSlots(b.coverageEligibilityRequest.PurposeExt, len(b.coverageEligibilityRequest.Purpose))
 	return b.coverageEligibilityRequest
 }
 
@@ -1491,6 +1492,7 @@ func NewCoverageEligibilityRequestItemBuilder() *CoverageEligibilityRequestItemB
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *CoverageEligibilityRequestItemBuilder) Build() CoverageEligibilityRequestItem {
+	b.coverageEligibilityRequestItem.SupportingInfoSequenceExt = alignExtSlots(b.coverageEligibilityRequestItem.SupportingInfoSequenceExt, len(b.coverageEligibilityRequestItem.SupportingInfoSequence))
 	return *b.coverageEligibilityRequestItem
 }
 

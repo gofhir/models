@@ -1401,6 +1401,7 @@ func NewOperationDefinitionBuilder() *OperationDefinitionBuilder {
 
 // Build returns the constructed OperationDefinition resource.
 func (b *OperationDefinitionBuilder) Build() *OperationDefinition {
+	b.operationDefinition.ResourceExt = alignExtSlots(b.operationDefinition.ResourceExt, len(b.operationDefinition.Resource))
 	return b.operationDefinition
 }
 
@@ -1962,6 +1963,7 @@ func NewOperationDefinitionOverloadBuilder() *OperationDefinitionOverloadBuilder
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *OperationDefinitionOverloadBuilder) Build() OperationDefinitionOverload {
+	b.operationDefinitionOverload.ParameterNameExt = alignExtSlots(b.operationDefinitionOverload.ParameterNameExt, len(b.operationDefinitionOverload.ParameterName))
 	return *b.operationDefinitionOverload
 }
 
@@ -2051,6 +2053,9 @@ func NewOperationDefinitionParameterBuilder() *OperationDefinitionParameterBuild
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *OperationDefinitionParameterBuilder) Build() OperationDefinitionParameter {
+	b.operationDefinitionParameter.ScopeExt = alignExtSlots(b.operationDefinitionParameter.ScopeExt, len(b.operationDefinitionParameter.Scope))
+	b.operationDefinitionParameter.AllowedTypeExt = alignExtSlots(b.operationDefinitionParameter.AllowedTypeExt, len(b.operationDefinitionParameter.AllowedType))
+	b.operationDefinitionParameter.TargetProfileExt = alignExtSlots(b.operationDefinitionParameter.TargetProfileExt, len(b.operationDefinitionParameter.TargetProfile))
 	return *b.operationDefinitionParameter
 }
 

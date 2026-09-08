@@ -1367,6 +1367,10 @@ func NewActivityDefinitionBuilder() *ActivityDefinitionBuilder {
 
 // Build returns the constructed ActivityDefinition resource.
 func (b *ActivityDefinitionBuilder) Build() *ActivityDefinition {
+	b.activityDefinition.LibraryExt = alignExtSlots(b.activityDefinition.LibraryExt, len(b.activityDefinition.Library))
+	b.activityDefinition.SpecimenRequirementExt = alignExtSlots(b.activityDefinition.SpecimenRequirementExt, len(b.activityDefinition.SpecimenRequirement))
+	b.activityDefinition.ObservationRequirementExt = alignExtSlots(b.activityDefinition.ObservationRequirementExt, len(b.activityDefinition.ObservationRequirement))
+	b.activityDefinition.ObservationResultRequirementExt = alignExtSlots(b.activityDefinition.ObservationResultRequirementExt, len(b.activityDefinition.ObservationResultRequirement))
 	return b.activityDefinition
 }
 

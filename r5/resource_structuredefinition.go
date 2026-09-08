@@ -1223,6 +1223,7 @@ func NewStructureDefinitionBuilder() *StructureDefinitionBuilder {
 
 // Build returns the constructed StructureDefinition resource.
 func (b *StructureDefinitionBuilder) Build() *StructureDefinition {
+	b.structureDefinition.ContextInvariantExt = alignExtSlots(b.structureDefinition.ContextInvariantExt, len(b.structureDefinition.ContextInvariant))
 	return b.structureDefinition
 }
 

@@ -1476,6 +1476,7 @@ func NewSubscriptionTopicBuilder() *SubscriptionTopicBuilder {
 
 // Build returns the constructed SubscriptionTopic resource.
 func (b *SubscriptionTopicBuilder) Build() *SubscriptionTopic {
+	b.subscriptionTopic.DerivedFromExt = alignExtSlots(b.subscriptionTopic.DerivedFromExt, len(b.subscriptionTopic.DerivedFrom))
 	return b.subscriptionTopic
 }
 
@@ -1927,6 +1928,8 @@ func NewSubscriptionTopicCanFilterByBuilder() *SubscriptionTopicCanFilterByBuild
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *SubscriptionTopicCanFilterByBuilder) Build() SubscriptionTopicCanFilterBy {
+	b.subscriptionTopicCanFilterBy.ComparatorExt = alignExtSlots(b.subscriptionTopicCanFilterBy.ComparatorExt, len(b.subscriptionTopicCanFilterBy.Comparator))
+	b.subscriptionTopicCanFilterBy.ModifierExt = alignExtSlots(b.subscriptionTopicCanFilterBy.ModifierExt, len(b.subscriptionTopicCanFilterBy.Modifier))
 	return *b.subscriptionTopicCanFilterBy
 }
 
@@ -2175,6 +2178,8 @@ func NewSubscriptionTopicNotificationShapeBuilder() *SubscriptionTopicNotificati
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *SubscriptionTopicNotificationShapeBuilder) Build() SubscriptionTopicNotificationShape {
+	b.subscriptionTopicNotificationShape.IncludeExt = alignExtSlots(b.subscriptionTopicNotificationShape.IncludeExt, len(b.subscriptionTopicNotificationShape.Include))
+	b.subscriptionTopicNotificationShape.RevIncludeExt = alignExtSlots(b.subscriptionTopicNotificationShape.RevIncludeExt, len(b.subscriptionTopicNotificationShape.RevInclude))
 	return *b.subscriptionTopicNotificationShape
 }
 
@@ -2292,6 +2297,7 @@ func NewSubscriptionTopicResourceTriggerBuilder() *SubscriptionTopicResourceTrig
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *SubscriptionTopicResourceTriggerBuilder) Build() SubscriptionTopicResourceTrigger {
+	b.subscriptionTopicResourceTrigger.SupportedInteractionExt = alignExtSlots(b.subscriptionTopicResourceTrigger.SupportedInteractionExt, len(b.subscriptionTopicResourceTrigger.SupportedInteraction))
 	return *b.subscriptionTopicResourceTrigger
 }
 

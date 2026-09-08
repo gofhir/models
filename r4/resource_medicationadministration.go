@@ -891,6 +891,7 @@ func NewMedicationAdministrationBuilder() *MedicationAdministrationBuilder {
 
 // Build returns the constructed MedicationAdministration resource.
 func (b *MedicationAdministrationBuilder) Build() *MedicationAdministration {
+	b.medicationAdministration.InstantiatesExt = alignExtSlots(b.medicationAdministration.InstantiatesExt, len(b.medicationAdministration.Instantiates))
 	return b.medicationAdministration
 }
 

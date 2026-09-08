@@ -3209,6 +3209,7 @@ func NewMedicationKnowledgeBuilder() *MedicationKnowledgeBuilder {
 
 // Build returns the constructed MedicationKnowledge resource.
 func (b *MedicationKnowledgeBuilder) Build() *MedicationKnowledge {
+	b.medicationKnowledge.NameExt = alignExtSlots(b.medicationKnowledge.NameExt, len(b.medicationKnowledge.Name))
 	return b.medicationKnowledge
 }
 

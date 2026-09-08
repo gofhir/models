@@ -1139,6 +1139,8 @@ func NewResearchElementDefinitionBuilder() *ResearchElementDefinitionBuilder {
 
 // Build returns the constructed ResearchElementDefinition resource.
 func (b *ResearchElementDefinitionBuilder) Build() *ResearchElementDefinition {
+	b.researchElementDefinition.CommentExt = alignExtSlots(b.researchElementDefinition.CommentExt, len(b.researchElementDefinition.Comment))
+	b.researchElementDefinition.LibraryExt = alignExtSlots(b.researchElementDefinition.LibraryExt, len(b.researchElementDefinition.Library))
 	return b.researchElementDefinition
 }
 

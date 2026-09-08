@@ -852,6 +852,8 @@ func NewFamilyMemberHistoryBuilder() *FamilyMemberHistoryBuilder {
 
 // Build returns the constructed FamilyMemberHistory resource.
 func (b *FamilyMemberHistoryBuilder) Build() *FamilyMemberHistory {
+	b.familyMemberHistory.InstantiatesCanonicalExt = alignExtSlots(b.familyMemberHistory.InstantiatesCanonicalExt, len(b.familyMemberHistory.InstantiatesCanonical))
+	b.familyMemberHistory.InstantiatesUriExt = alignExtSlots(b.familyMemberHistory.InstantiatesUriExt, len(b.familyMemberHistory.InstantiatesUri))
 	return b.familyMemberHistory
 }
 

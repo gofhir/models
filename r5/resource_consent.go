@@ -1902,6 +1902,7 @@ func NewConsentVerificationBuilder() *ConsentVerificationBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ConsentVerificationBuilder) Build() ConsentVerification {
+	b.consentVerification.VerificationDateExt = alignExtSlots(b.consentVerification.VerificationDateExt, len(b.consentVerification.VerificationDate))
 	return *b.consentVerification
 }
 

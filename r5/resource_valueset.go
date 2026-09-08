@@ -3339,6 +3339,7 @@ func NewValueSetComposeBuilder() *ValueSetComposeBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ValueSetComposeBuilder) Build() ValueSetCompose {
+	b.valueSetCompose.PropertyExt = alignExtSlots(b.valueSetCompose.PropertyExt, len(b.valueSetCompose.Property))
 	return *b.valueSetCompose
 }
 
@@ -3456,6 +3457,7 @@ func NewValueSetComposeIncludeBuilder() *ValueSetComposeIncludeBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ValueSetComposeIncludeBuilder) Build() ValueSetComposeInclude {
+	b.valueSetComposeInclude.ValueSetExt = alignExtSlots(b.valueSetComposeInclude.ValueSetExt, len(b.valueSetComposeInclude.ValueSet))
 	return *b.valueSetComposeInclude
 }
 

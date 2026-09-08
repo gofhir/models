@@ -1266,6 +1266,7 @@ func NewCoverageEligibilityResponseBuilder() *CoverageEligibilityResponseBuilder
 
 // Build returns the constructed CoverageEligibilityResponse resource.
 func (b *CoverageEligibilityResponseBuilder) Build() *CoverageEligibilityResponse {
+	b.coverageEligibilityResponse.PurposeExt = alignExtSlots(b.coverageEligibilityResponse.PurposeExt, len(b.coverageEligibilityResponse.Purpose))
 	return b.coverageEligibilityResponse
 }
 
