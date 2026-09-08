@@ -1215,56 +1215,68 @@ func (b *RequirementsBuilder) SetCopyrightLabelExt(v Element) *RequirementsBuild
 }
 
 // AddDerivedFromExt attaches extensions to the DerivedFrom element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddDerivedFrom twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *RequirementsBuilder) AddDerivedFromExt(v *Element) *RequirementsBuilder {
-	for len(b.requirements.DerivedFromExt) < len(b.requirements.DerivedFrom)-1 {
+	i := len(b.requirements.DerivedFrom) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.requirements.DerivedFromExt) <= i {
 		b.requirements.DerivedFromExt = append(b.requirements.DerivedFromExt, nil)
 	}
-	b.requirements.DerivedFromExt = append(b.requirements.DerivedFromExt, v)
+	b.requirements.DerivedFromExt[i] = v
 	return b
 }
 
 // AddReferenceExt attaches extensions to the Reference element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddReference twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *RequirementsBuilder) AddReferenceExt(v *Element) *RequirementsBuilder {
-	for len(b.requirements.ReferenceExt) < len(b.requirements.Reference)-1 {
+	i := len(b.requirements.Reference) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.requirements.ReferenceExt) <= i {
 		b.requirements.ReferenceExt = append(b.requirements.ReferenceExt, nil)
 	}
-	b.requirements.ReferenceExt = append(b.requirements.ReferenceExt, v)
+	b.requirements.ReferenceExt[i] = v
 	return b
 }
 
 // AddActorExt attaches extensions to the Actor element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddActor twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *RequirementsBuilder) AddActorExt(v *Element) *RequirementsBuilder {
-	for len(b.requirements.ActorExt) < len(b.requirements.Actor)-1 {
+	i := len(b.requirements.Actor) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.requirements.ActorExt) <= i {
 		b.requirements.ActorExt = append(b.requirements.ActorExt, nil)
 	}
-	b.requirements.ActorExt = append(b.requirements.ActorExt, v)
+	b.requirements.ActorExt[i] = v
 	return b
 }
 
@@ -1416,20 +1428,24 @@ func (b *RequirementsStatementBuilder) SetLabelExt(v Element) *RequirementsState
 }
 
 // AddConformanceExt attaches extensions to the Conformance element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddConformance twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *RequirementsStatementBuilder) AddConformanceExt(v *Element) *RequirementsStatementBuilder {
-	for len(b.requirementsStatement.ConformanceExt) < len(b.requirementsStatement.Conformance)-1 {
+	i := len(b.requirementsStatement.Conformance) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.requirementsStatement.ConformanceExt) <= i {
 		b.requirementsStatement.ConformanceExt = append(b.requirementsStatement.ConformanceExt, nil)
 	}
-	b.requirementsStatement.ConformanceExt = append(b.requirementsStatement.ConformanceExt, v)
+	b.requirementsStatement.ConformanceExt[i] = v
 	return b
 }
 
@@ -1474,37 +1490,45 @@ func (b *RequirementsStatementBuilder) SetParentExt(v Element) *RequirementsStat
 }
 
 // AddSatisfiedByExt attaches extensions to the SatisfiedBy element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddSatisfiedBy twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *RequirementsStatementBuilder) AddSatisfiedByExt(v *Element) *RequirementsStatementBuilder {
-	for len(b.requirementsStatement.SatisfiedByExt) < len(b.requirementsStatement.SatisfiedBy)-1 {
+	i := len(b.requirementsStatement.SatisfiedBy) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.requirementsStatement.SatisfiedByExt) <= i {
 		b.requirementsStatement.SatisfiedByExt = append(b.requirementsStatement.SatisfiedByExt, nil)
 	}
-	b.requirementsStatement.SatisfiedByExt = append(b.requirementsStatement.SatisfiedByExt, v)
+	b.requirementsStatement.SatisfiedByExt[i] = v
 	return b
 }
 
 // AddReferenceExt attaches extensions to the Reference element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddReference twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *RequirementsStatementBuilder) AddReferenceExt(v *Element) *RequirementsStatementBuilder {
-	for len(b.requirementsStatement.ReferenceExt) < len(b.requirementsStatement.Reference)-1 {
+	i := len(b.requirementsStatement.Reference) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.requirementsStatement.ReferenceExt) <= i {
 		b.requirementsStatement.ReferenceExt = append(b.requirementsStatement.ReferenceExt, nil)
 	}
-	b.requirementsStatement.ReferenceExt = append(b.requirementsStatement.ReferenceExt, v)
+	b.requirementsStatement.ReferenceExt[i] = v
 	return b
 }

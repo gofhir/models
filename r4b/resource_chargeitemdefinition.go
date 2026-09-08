@@ -1309,56 +1309,68 @@ func (b *ChargeItemDefinitionBuilder) SetTitleExt(v Element) *ChargeItemDefiniti
 }
 
 // AddDerivedFromUriExt attaches extensions to the DerivedFromUri element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddDerivedFromUri twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ChargeItemDefinitionBuilder) AddDerivedFromUriExt(v *Element) *ChargeItemDefinitionBuilder {
-	for len(b.chargeItemDefinition.DerivedFromUriExt) < len(b.chargeItemDefinition.DerivedFromUri)-1 {
+	i := len(b.chargeItemDefinition.DerivedFromUri) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.chargeItemDefinition.DerivedFromUriExt) <= i {
 		b.chargeItemDefinition.DerivedFromUriExt = append(b.chargeItemDefinition.DerivedFromUriExt, nil)
 	}
-	b.chargeItemDefinition.DerivedFromUriExt = append(b.chargeItemDefinition.DerivedFromUriExt, v)
+	b.chargeItemDefinition.DerivedFromUriExt[i] = v
 	return b
 }
 
 // AddPartOfExt attaches extensions to the PartOf element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddPartOf twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ChargeItemDefinitionBuilder) AddPartOfExt(v *Element) *ChargeItemDefinitionBuilder {
-	for len(b.chargeItemDefinition.PartOfExt) < len(b.chargeItemDefinition.PartOf)-1 {
+	i := len(b.chargeItemDefinition.PartOf) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.chargeItemDefinition.PartOfExt) <= i {
 		b.chargeItemDefinition.PartOfExt = append(b.chargeItemDefinition.PartOfExt, nil)
 	}
-	b.chargeItemDefinition.PartOfExt = append(b.chargeItemDefinition.PartOfExt, v)
+	b.chargeItemDefinition.PartOfExt[i] = v
 	return b
 }
 
 // AddReplacesExt attaches extensions to the Replaces element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddReplaces twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ChargeItemDefinitionBuilder) AddReplacesExt(v *Element) *ChargeItemDefinitionBuilder {
-	for len(b.chargeItemDefinition.ReplacesExt) < len(b.chargeItemDefinition.Replaces)-1 {
+	i := len(b.chargeItemDefinition.Replaces) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.chargeItemDefinition.ReplacesExt) <= i {
 		b.chargeItemDefinition.ReplacesExt = append(b.chargeItemDefinition.ReplacesExt, nil)
 	}
-	b.chargeItemDefinition.ReplacesExt = append(b.chargeItemDefinition.ReplacesExt, v)
+	b.chargeItemDefinition.ReplacesExt[i] = v
 	return b
 }
 

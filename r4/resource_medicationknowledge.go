@@ -3030,20 +3030,24 @@ func (b *MedicationKnowledgeBuilder) SetStatusExt(v Element) *MedicationKnowledg
 }
 
 // AddSynonymExt attaches extensions to the Synonym element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddSynonym twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *MedicationKnowledgeBuilder) AddSynonymExt(v *Element) *MedicationKnowledgeBuilder {
-	for len(b.medicationKnowledge.SynonymExt) < len(b.medicationKnowledge.Synonym)-1 {
+	i := len(b.medicationKnowledge.Synonym) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.medicationKnowledge.SynonymExt) <= i {
 		b.medicationKnowledge.SynonymExt = append(b.medicationKnowledge.SynonymExt, nil)
 	}
-	b.medicationKnowledge.SynonymExt = append(b.medicationKnowledge.SynonymExt, v)
+	b.medicationKnowledge.SynonymExt[i] = v
 	return b
 }
 
@@ -3279,20 +3283,24 @@ func (b *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilde
 }
 
 // AddValueExt attaches extensions to the Value element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddValue twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder) AddValueExt(v *Element) *MedicationKnowledgeAdministrationGuidelinesPatientCharacteristicsBuilder {
-	for len(b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.ValueExt) < len(b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.Value)-1 {
+	i := len(b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.Value) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.ValueExt) <= i {
 		b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.ValueExt = append(b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.ValueExt, nil)
 	}
-	b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.ValueExt = append(b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.ValueExt, v)
+	b.medicationKnowledgeAdministrationGuidelinesPatientCharacteristics.ValueExt[i] = v
 	return b
 }
 

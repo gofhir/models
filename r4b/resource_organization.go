@@ -751,20 +751,24 @@ func (b *OrganizationBuilder) SetNameExt(v Element) *OrganizationBuilder {
 }
 
 // AddAliasExt attaches extensions to the Alias element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddAlias twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *OrganizationBuilder) AddAliasExt(v *Element) *OrganizationBuilder {
-	for len(b.organization.AliasExt) < len(b.organization.Alias)-1 {
+	i := len(b.organization.Alias) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.organization.AliasExt) <= i {
 		b.organization.AliasExt = append(b.organization.AliasExt, nil)
 	}
-	b.organization.AliasExt = append(b.organization.AliasExt, v)
+	b.organization.AliasExt[i] = v
 	return b
 }
 

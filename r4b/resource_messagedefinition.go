@@ -1236,20 +1236,24 @@ func (b *MessageDefinitionBuilder) SetTitleExt(v Element) *MessageDefinitionBuil
 }
 
 // AddReplacesExt attaches extensions to the Replaces element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddReplaces twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *MessageDefinitionBuilder) AddReplacesExt(v *Element) *MessageDefinitionBuilder {
-	for len(b.messageDefinition.ReplacesExt) < len(b.messageDefinition.Replaces)-1 {
+	i := len(b.messageDefinition.Replaces) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.messageDefinition.ReplacesExt) <= i {
 		b.messageDefinition.ReplacesExt = append(b.messageDefinition.ReplacesExt, nil)
 	}
-	b.messageDefinition.ReplacesExt = append(b.messageDefinition.ReplacesExt, v)
+	b.messageDefinition.ReplacesExt[i] = v
 	return b
 }
 
@@ -1334,20 +1338,24 @@ func (b *MessageDefinitionBuilder) SetBaseExt(v Element) *MessageDefinitionBuild
 }
 
 // AddParentExt attaches extensions to the Parent element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddParent twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *MessageDefinitionBuilder) AddParentExt(v *Element) *MessageDefinitionBuilder {
-	for len(b.messageDefinition.ParentExt) < len(b.messageDefinition.Parent)-1 {
+	i := len(b.messageDefinition.Parent) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.messageDefinition.ParentExt) <= i {
 		b.messageDefinition.ParentExt = append(b.messageDefinition.ParentExt, nil)
 	}
-	b.messageDefinition.ParentExt = append(b.messageDefinition.ParentExt, v)
+	b.messageDefinition.ParentExt[i] = v
 	return b
 }
 
@@ -1372,20 +1380,24 @@ func (b *MessageDefinitionBuilder) SetResponseRequiredExt(v Element) *MessageDef
 }
 
 // AddGraphExt attaches extensions to the Graph element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddGraph twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *MessageDefinitionBuilder) AddGraphExt(v *Element) *MessageDefinitionBuilder {
-	for len(b.messageDefinition.GraphExt) < len(b.messageDefinition.Graph)-1 {
+	i := len(b.messageDefinition.Graph) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.messageDefinition.GraphExt) <= i {
 		b.messageDefinition.GraphExt = append(b.messageDefinition.GraphExt, nil)
 	}
-	b.messageDefinition.GraphExt = append(b.messageDefinition.GraphExt, v)
+	b.messageDefinition.GraphExt[i] = v
 	return b
 }
 

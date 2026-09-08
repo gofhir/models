@@ -153,21 +153,31 @@ func (b *{{$r.Name}}Builder) Set{{.Name}}(v {{.GoType}}) *{{$r.Name}}Builder {
 {{- if .HasExtension}}
 {{- if .IsArray}}
 
+{{- /* The slot is assigned, not appended. Appending put the extension at the
+	wrong index — after Add<Field> twice, a bare append lands at position 0 and
+	silently belongs to the first element. It also stopped composing once Build
+	began padding the slice out to the value count: an append then landed past
+	the end and left the array longer than its values. Assigning by position
+	makes the two operations independent of call order. */}}
 // Add{{.Name}}Ext attaches extensions to the {{.Name}} element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after Add{{.Name}} twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *{{$r.Name}}Builder) Add{{.Name}}Ext(v *Element) *{{$r.Name}}Builder {
-	for len(b.{{$r.LowerName}}.{{.Name}}Ext) < len(b.{{$r.LowerName}}.{{.Name}})-1 {
+	i := len(b.{{$r.LowerName}}.{{.Name}}) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.{{$r.LowerName}}.{{.Name}}Ext) <= i {
 		b.{{$r.LowerName}}.{{.Name}}Ext = append(b.{{$r.LowerName}}.{{.Name}}Ext, nil)
 	}
-	b.{{$r.LowerName}}.{{.Name}}Ext = append(b.{{$r.LowerName}}.{{.Name}}Ext, v)
+	b.{{$r.LowerName}}.{{.Name}}Ext[i] = v
 	return b
 }
 {{- else}}

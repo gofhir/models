@@ -3308,38 +3308,46 @@ func (b *CapabilityStatementBuilder) SetKindExt(v Element) *CapabilityStatementB
 }
 
 // AddInstantiatesExt attaches extensions to the Instantiates element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddInstantiates twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *CapabilityStatementBuilder) AddInstantiatesExt(v *Element) *CapabilityStatementBuilder {
-	for len(b.capabilityStatement.InstantiatesExt) < len(b.capabilityStatement.Instantiates)-1 {
+	i := len(b.capabilityStatement.Instantiates) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.capabilityStatement.InstantiatesExt) <= i {
 		b.capabilityStatement.InstantiatesExt = append(b.capabilityStatement.InstantiatesExt, nil)
 	}
-	b.capabilityStatement.InstantiatesExt = append(b.capabilityStatement.InstantiatesExt, v)
+	b.capabilityStatement.InstantiatesExt[i] = v
 	return b
 }
 
 // AddImportsExt attaches extensions to the Imports element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddImports twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *CapabilityStatementBuilder) AddImportsExt(v *Element) *CapabilityStatementBuilder {
-	for len(b.capabilityStatement.ImportsExt) < len(b.capabilityStatement.Imports)-1 {
+	i := len(b.capabilityStatement.Imports) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.capabilityStatement.ImportsExt) <= i {
 		b.capabilityStatement.ImportsExt = append(b.capabilityStatement.ImportsExt, nil)
 	}
-	b.capabilityStatement.ImportsExt = append(b.capabilityStatement.ImportsExt, v)
+	b.capabilityStatement.ImportsExt[i] = v
 	return b
 }
 
@@ -3354,74 +3362,90 @@ func (b *CapabilityStatementBuilder) SetFhirVersionExt(v Element) *CapabilitySta
 }
 
 // AddFormatExt attaches extensions to the Format element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddFormat twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *CapabilityStatementBuilder) AddFormatExt(v *Element) *CapabilityStatementBuilder {
-	for len(b.capabilityStatement.FormatExt) < len(b.capabilityStatement.Format)-1 {
+	i := len(b.capabilityStatement.Format) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.capabilityStatement.FormatExt) <= i {
 		b.capabilityStatement.FormatExt = append(b.capabilityStatement.FormatExt, nil)
 	}
-	b.capabilityStatement.FormatExt = append(b.capabilityStatement.FormatExt, v)
+	b.capabilityStatement.FormatExt[i] = v
 	return b
 }
 
 // AddPatchFormatExt attaches extensions to the PatchFormat element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddPatchFormat twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *CapabilityStatementBuilder) AddPatchFormatExt(v *Element) *CapabilityStatementBuilder {
-	for len(b.capabilityStatement.PatchFormatExt) < len(b.capabilityStatement.PatchFormat)-1 {
+	i := len(b.capabilityStatement.PatchFormat) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.capabilityStatement.PatchFormatExt) <= i {
 		b.capabilityStatement.PatchFormatExt = append(b.capabilityStatement.PatchFormatExt, nil)
 	}
-	b.capabilityStatement.PatchFormatExt = append(b.capabilityStatement.PatchFormatExt, v)
+	b.capabilityStatement.PatchFormatExt[i] = v
 	return b
 }
 
 // AddAcceptLanguageExt attaches extensions to the AcceptLanguage element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddAcceptLanguage twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *CapabilityStatementBuilder) AddAcceptLanguageExt(v *Element) *CapabilityStatementBuilder {
-	for len(b.capabilityStatement.AcceptLanguageExt) < len(b.capabilityStatement.AcceptLanguage)-1 {
+	i := len(b.capabilityStatement.AcceptLanguage) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.capabilityStatement.AcceptLanguageExt) <= i {
 		b.capabilityStatement.AcceptLanguageExt = append(b.capabilityStatement.AcceptLanguageExt, nil)
 	}
-	b.capabilityStatement.AcceptLanguageExt = append(b.capabilityStatement.AcceptLanguageExt, v)
+	b.capabilityStatement.AcceptLanguageExt[i] = v
 	return b
 }
 
 // AddImplementationGuideExt attaches extensions to the ImplementationGuide element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddImplementationGuide twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *CapabilityStatementBuilder) AddImplementationGuideExt(v *Element) *CapabilityStatementBuilder {
-	for len(b.capabilityStatement.ImplementationGuideExt) < len(b.capabilityStatement.ImplementationGuide)-1 {
+	i := len(b.capabilityStatement.ImplementationGuide) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.capabilityStatement.ImplementationGuideExt) <= i {
 		b.capabilityStatement.ImplementationGuideExt = append(b.capabilityStatement.ImplementationGuideExt, nil)
 	}
-	b.capabilityStatement.ImplementationGuideExt = append(b.capabilityStatement.ImplementationGuideExt, v)
+	b.capabilityStatement.ImplementationGuideExt[i] = v
 	return b
 }
 
@@ -3960,20 +3984,24 @@ func (b *CapabilityStatementRestBuilder) SetDocumentationExt(v Element) *Capabil
 }
 
 // AddCompartmentExt attaches extensions to the Compartment element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddCompartment twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *CapabilityStatementRestBuilder) AddCompartmentExt(v *Element) *CapabilityStatementRestBuilder {
-	for len(b.capabilityStatementRest.CompartmentExt) < len(b.capabilityStatementRest.Compartment)-1 {
+	i := len(b.capabilityStatementRest.Compartment) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.capabilityStatementRest.CompartmentExt) <= i {
 		b.capabilityStatementRest.CompartmentExt = append(b.capabilityStatementRest.CompartmentExt, nil)
 	}
-	b.capabilityStatementRest.CompartmentExt = append(b.capabilityStatementRest.CompartmentExt, v)
+	b.capabilityStatementRest.CompartmentExt[i] = v
 	return b
 }
 
@@ -4248,20 +4276,24 @@ func (b *CapabilityStatementRestResourceBuilder) SetProfileExt(v Element) *Capab
 }
 
 // AddSupportedProfileExt attaches extensions to the SupportedProfile element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddSupportedProfile twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *CapabilityStatementRestResourceBuilder) AddSupportedProfileExt(v *Element) *CapabilityStatementRestResourceBuilder {
-	for len(b.capabilityStatementRestResource.SupportedProfileExt) < len(b.capabilityStatementRestResource.SupportedProfile)-1 {
+	i := len(b.capabilityStatementRestResource.SupportedProfile) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.capabilityStatementRestResource.SupportedProfileExt) <= i {
 		b.capabilityStatementRestResource.SupportedProfileExt = append(b.capabilityStatementRestResource.SupportedProfileExt, nil)
 	}
-	b.capabilityStatementRestResource.SupportedProfileExt = append(b.capabilityStatementRestResource.SupportedProfileExt, v)
+	b.capabilityStatementRestResource.SupportedProfileExt[i] = v
 	return b
 }
 
@@ -4356,56 +4388,68 @@ func (b *CapabilityStatementRestResourceBuilder) SetConditionalDeleteExt(v Eleme
 }
 
 // AddReferencePolicyExt attaches extensions to the ReferencePolicy element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddReferencePolicy twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *CapabilityStatementRestResourceBuilder) AddReferencePolicyExt(v *Element) *CapabilityStatementRestResourceBuilder {
-	for len(b.capabilityStatementRestResource.ReferencePolicyExt) < len(b.capabilityStatementRestResource.ReferencePolicy)-1 {
+	i := len(b.capabilityStatementRestResource.ReferencePolicy) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.capabilityStatementRestResource.ReferencePolicyExt) <= i {
 		b.capabilityStatementRestResource.ReferencePolicyExt = append(b.capabilityStatementRestResource.ReferencePolicyExt, nil)
 	}
-	b.capabilityStatementRestResource.ReferencePolicyExt = append(b.capabilityStatementRestResource.ReferencePolicyExt, v)
+	b.capabilityStatementRestResource.ReferencePolicyExt[i] = v
 	return b
 }
 
 // AddSearchIncludeExt attaches extensions to the SearchInclude element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddSearchInclude twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *CapabilityStatementRestResourceBuilder) AddSearchIncludeExt(v *Element) *CapabilityStatementRestResourceBuilder {
-	for len(b.capabilityStatementRestResource.SearchIncludeExt) < len(b.capabilityStatementRestResource.SearchInclude)-1 {
+	i := len(b.capabilityStatementRestResource.SearchInclude) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.capabilityStatementRestResource.SearchIncludeExt) <= i {
 		b.capabilityStatementRestResource.SearchIncludeExt = append(b.capabilityStatementRestResource.SearchIncludeExt, nil)
 	}
-	b.capabilityStatementRestResource.SearchIncludeExt = append(b.capabilityStatementRestResource.SearchIncludeExt, v)
+	b.capabilityStatementRestResource.SearchIncludeExt[i] = v
 	return b
 }
 
 // AddSearchRevIncludeExt attaches extensions to the SearchRevInclude element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddSearchRevInclude twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *CapabilityStatementRestResourceBuilder) AddSearchRevIncludeExt(v *Element) *CapabilityStatementRestResourceBuilder {
-	for len(b.capabilityStatementRestResource.SearchRevIncludeExt) < len(b.capabilityStatementRestResource.SearchRevInclude)-1 {
+	i := len(b.capabilityStatementRestResource.SearchRevInclude) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.capabilityStatementRestResource.SearchRevIncludeExt) <= i {
 		b.capabilityStatementRestResource.SearchRevIncludeExt = append(b.capabilityStatementRestResource.SearchRevIncludeExt, nil)
 	}
-	b.capabilityStatementRestResource.SearchRevIncludeExt = append(b.capabilityStatementRestResource.SearchRevIncludeExt, v)
+	b.capabilityStatementRestResource.SearchRevIncludeExt[i] = v
 	return b
 }
 

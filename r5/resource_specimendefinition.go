@@ -1789,38 +1789,46 @@ func (b *SpecimenDefinitionBuilder) SetTitleExt(v Element) *SpecimenDefinitionBu
 }
 
 // AddDerivedFromCanonicalExt attaches extensions to the DerivedFromCanonical element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddDerivedFromCanonical twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *SpecimenDefinitionBuilder) AddDerivedFromCanonicalExt(v *Element) *SpecimenDefinitionBuilder {
-	for len(b.specimenDefinition.DerivedFromCanonicalExt) < len(b.specimenDefinition.DerivedFromCanonical)-1 {
+	i := len(b.specimenDefinition.DerivedFromCanonical) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.specimenDefinition.DerivedFromCanonicalExt) <= i {
 		b.specimenDefinition.DerivedFromCanonicalExt = append(b.specimenDefinition.DerivedFromCanonicalExt, nil)
 	}
-	b.specimenDefinition.DerivedFromCanonicalExt = append(b.specimenDefinition.DerivedFromCanonicalExt, v)
+	b.specimenDefinition.DerivedFromCanonicalExt[i] = v
 	return b
 }
 
 // AddDerivedFromUriExt attaches extensions to the DerivedFromUri element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddDerivedFromUri twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *SpecimenDefinitionBuilder) AddDerivedFromUriExt(v *Element) *SpecimenDefinitionBuilder {
-	for len(b.specimenDefinition.DerivedFromUriExt) < len(b.specimenDefinition.DerivedFromUri)-1 {
+	i := len(b.specimenDefinition.DerivedFromUri) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.specimenDefinition.DerivedFromUriExt) <= i {
 		b.specimenDefinition.DerivedFromUriExt = append(b.specimenDefinition.DerivedFromUriExt, nil)
 	}
-	b.specimenDefinition.DerivedFromUriExt = append(b.specimenDefinition.DerivedFromUriExt, v)
+	b.specimenDefinition.DerivedFromUriExt[i] = v
 	return b
 }
 

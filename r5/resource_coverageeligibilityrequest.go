@@ -1513,20 +1513,24 @@ func (b *CoverageEligibilityRequestBuilder) SetStatusExt(v Element) *CoverageEli
 }
 
 // AddPurposeExt attaches extensions to the Purpose element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddPurpose twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *CoverageEligibilityRequestBuilder) AddPurposeExt(v *Element) *CoverageEligibilityRequestBuilder {
-	for len(b.coverageEligibilityRequest.PurposeExt) < len(b.coverageEligibilityRequest.Purpose)-1 {
+	i := len(b.coverageEligibilityRequest.Purpose) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.coverageEligibilityRequest.PurposeExt) <= i {
 		b.coverageEligibilityRequest.PurposeExt = append(b.coverageEligibilityRequest.PurposeExt, nil)
 	}
-	b.coverageEligibilityRequest.PurposeExt = append(b.coverageEligibilityRequest.PurposeExt, v)
+	b.coverageEligibilityRequest.PurposeExt[i] = v
 	return b
 }
 
@@ -1827,20 +1831,24 @@ func (b *CoverageEligibilityRequestItemBuilder) AddDetail(v Reference) *Coverage
 }
 
 // AddSupportingInfoSequenceExt attaches extensions to the SupportingInfoSequence element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddSupportingInfoSequence twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *CoverageEligibilityRequestItemBuilder) AddSupportingInfoSequenceExt(v *Element) *CoverageEligibilityRequestItemBuilder {
-	for len(b.coverageEligibilityRequestItem.SupportingInfoSequenceExt) < len(b.coverageEligibilityRequestItem.SupportingInfoSequence)-1 {
+	i := len(b.coverageEligibilityRequestItem.SupportingInfoSequence) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.coverageEligibilityRequestItem.SupportingInfoSequenceExt) <= i {
 		b.coverageEligibilityRequestItem.SupportingInfoSequenceExt = append(b.coverageEligibilityRequestItem.SupportingInfoSequenceExt, nil)
 	}
-	b.coverageEligibilityRequestItem.SupportingInfoSequenceExt = append(b.coverageEligibilityRequestItem.SupportingInfoSequenceExt, v)
+	b.coverageEligibilityRequestItem.SupportingInfoSequenceExt[i] = v
 	return b
 }
 

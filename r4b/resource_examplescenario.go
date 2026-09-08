@@ -2125,20 +2125,24 @@ func (b *ExampleScenarioBuilder) SetPurposeExt(v Element) *ExampleScenarioBuilde
 }
 
 // AddWorkflowExt attaches extensions to the Workflow element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddWorkflow twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ExampleScenarioBuilder) AddWorkflowExt(v *Element) *ExampleScenarioBuilder {
-	for len(b.exampleScenario.WorkflowExt) < len(b.exampleScenario.Workflow)-1 {
+	i := len(b.exampleScenario.Workflow) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.exampleScenario.WorkflowExt) <= i {
 		b.exampleScenario.WorkflowExt = append(b.exampleScenario.WorkflowExt, nil)
 	}
-	b.exampleScenario.WorkflowExt = append(b.exampleScenario.WorkflowExt, v)
+	b.exampleScenario.WorkflowExt[i] = v
 	return b
 }
 

@@ -945,20 +945,24 @@ func (b *ClinicalImpressionBuilder) SetDateExt(v Element) *ClinicalImpressionBui
 }
 
 // AddProtocolExt attaches extensions to the Protocol element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddProtocol twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ClinicalImpressionBuilder) AddProtocolExt(v *Element) *ClinicalImpressionBuilder {
-	for len(b.clinicalImpression.ProtocolExt) < len(b.clinicalImpression.Protocol)-1 {
+	i := len(b.clinicalImpression.Protocol) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.clinicalImpression.ProtocolExt) <= i {
 		b.clinicalImpression.ProtocolExt = append(b.clinicalImpression.ProtocolExt, nil)
 	}
-	b.clinicalImpression.ProtocolExt = append(b.clinicalImpression.ProtocolExt, v)
+	b.clinicalImpression.ProtocolExt[i] = v
 	return b
 }
 

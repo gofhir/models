@@ -2600,20 +2600,24 @@ func (b *ImplementationGuideBuilder) SetLicenseExt(v Element) *ImplementationGui
 }
 
 // AddFhirVersionExt attaches extensions to the FhirVersion element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddFhirVersion twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ImplementationGuideBuilder) AddFhirVersionExt(v *Element) *ImplementationGuideBuilder {
-	for len(b.implementationGuide.FhirVersionExt) < len(b.implementationGuide.FhirVersion)-1 {
+	i := len(b.implementationGuide.FhirVersion) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.implementationGuide.FhirVersionExt) <= i {
 		b.implementationGuide.FhirVersionExt = append(b.implementationGuide.FhirVersionExt, nil)
 	}
-	b.implementationGuide.FhirVersionExt = append(b.implementationGuide.FhirVersionExt, v)
+	b.implementationGuide.FhirVersionExt[i] = v
 	return b
 }
 
@@ -3079,20 +3083,24 @@ func (b *ImplementationGuideDefinitionResourceBuilder) SetGroupingId(v string) *
 }
 
 // AddFhirVersionExt attaches extensions to the FhirVersion element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddFhirVersion twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ImplementationGuideDefinitionResourceBuilder) AddFhirVersionExt(v *Element) *ImplementationGuideDefinitionResourceBuilder {
-	for len(b.implementationGuideDefinitionResource.FhirVersionExt) < len(b.implementationGuideDefinitionResource.FhirVersion)-1 {
+	i := len(b.implementationGuideDefinitionResource.FhirVersion) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.implementationGuideDefinitionResource.FhirVersionExt) <= i {
 		b.implementationGuideDefinitionResource.FhirVersionExt = append(b.implementationGuideDefinitionResource.FhirVersionExt, nil)
 	}
-	b.implementationGuideDefinitionResource.FhirVersionExt = append(b.implementationGuideDefinitionResource.FhirVersionExt, v)
+	b.implementationGuideDefinitionResource.FhirVersionExt[i] = v
 	return b
 }
 
@@ -3493,38 +3501,46 @@ func (b *ImplementationGuideManifestBuilder) SetRenderingExt(v Element) *Impleme
 }
 
 // AddImageExt attaches extensions to the Image element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddImage twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ImplementationGuideManifestBuilder) AddImageExt(v *Element) *ImplementationGuideManifestBuilder {
-	for len(b.implementationGuideManifest.ImageExt) < len(b.implementationGuideManifest.Image)-1 {
+	i := len(b.implementationGuideManifest.Image) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.implementationGuideManifest.ImageExt) <= i {
 		b.implementationGuideManifest.ImageExt = append(b.implementationGuideManifest.ImageExt, nil)
 	}
-	b.implementationGuideManifest.ImageExt = append(b.implementationGuideManifest.ImageExt, v)
+	b.implementationGuideManifest.ImageExt[i] = v
 	return b
 }
 
 // AddOtherExt attaches extensions to the Other element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddOther twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ImplementationGuideManifestBuilder) AddOtherExt(v *Element) *ImplementationGuideManifestBuilder {
-	for len(b.implementationGuideManifest.OtherExt) < len(b.implementationGuideManifest.Other)-1 {
+	i := len(b.implementationGuideManifest.Other) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.implementationGuideManifest.OtherExt) <= i {
 		b.implementationGuideManifest.OtherExt = append(b.implementationGuideManifest.OtherExt, nil)
 	}
-	b.implementationGuideManifest.OtherExt = append(b.implementationGuideManifest.OtherExt, v)
+	b.implementationGuideManifest.OtherExt[i] = v
 	return b
 }
 
@@ -3617,20 +3633,24 @@ func (b *ImplementationGuideManifestPageBuilder) SetTitleExt(v Element) *Impleme
 }
 
 // AddAnchorExt attaches extensions to the Anchor element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddAnchor twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ImplementationGuideManifestPageBuilder) AddAnchorExt(v *Element) *ImplementationGuideManifestPageBuilder {
-	for len(b.implementationGuideManifestPage.AnchorExt) < len(b.implementationGuideManifestPage.Anchor)-1 {
+	i := len(b.implementationGuideManifestPage.Anchor) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.implementationGuideManifestPage.AnchorExt) <= i {
 		b.implementationGuideManifestPage.AnchorExt = append(b.implementationGuideManifestPage.AnchorExt, nil)
 	}
-	b.implementationGuideManifestPage.AnchorExt = append(b.implementationGuideManifestPage.AnchorExt, v)
+	b.implementationGuideManifestPage.AnchorExt[i] = v
 	return b
 }
 

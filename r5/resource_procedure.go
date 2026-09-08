@@ -1385,38 +1385,46 @@ func (b *ProcedureBuilder) SetLanguageExt(v Element) *ProcedureBuilder {
 }
 
 // AddInstantiatesCanonicalExt attaches extensions to the InstantiatesCanonical element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddInstantiatesCanonical twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ProcedureBuilder) AddInstantiatesCanonicalExt(v *Element) *ProcedureBuilder {
-	for len(b.procedure.InstantiatesCanonicalExt) < len(b.procedure.InstantiatesCanonical)-1 {
+	i := len(b.procedure.InstantiatesCanonical) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.procedure.InstantiatesCanonicalExt) <= i {
 		b.procedure.InstantiatesCanonicalExt = append(b.procedure.InstantiatesCanonicalExt, nil)
 	}
-	b.procedure.InstantiatesCanonicalExt = append(b.procedure.InstantiatesCanonicalExt, v)
+	b.procedure.InstantiatesCanonicalExt[i] = v
 	return b
 }
 
 // AddInstantiatesUriExt attaches extensions to the InstantiatesUri element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddInstantiatesUri twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ProcedureBuilder) AddInstantiatesUriExt(v *Element) *ProcedureBuilder {
-	for len(b.procedure.InstantiatesUriExt) < len(b.procedure.InstantiatesUri)-1 {
+	i := len(b.procedure.InstantiatesUri) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.procedure.InstantiatesUriExt) <= i {
 		b.procedure.InstantiatesUriExt = append(b.procedure.InstantiatesUriExt, nil)
 	}
-	b.procedure.InstantiatesUriExt = append(b.procedure.InstantiatesUriExt, v)
+	b.procedure.InstantiatesUriExt[i] = v
 	return b
 }
 

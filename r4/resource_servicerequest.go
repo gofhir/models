@@ -1174,38 +1174,46 @@ func (b *ServiceRequestBuilder) SetLanguageExt(v Element) *ServiceRequestBuilder
 }
 
 // AddInstantiatesCanonicalExt attaches extensions to the InstantiatesCanonical element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddInstantiatesCanonical twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ServiceRequestBuilder) AddInstantiatesCanonicalExt(v *Element) *ServiceRequestBuilder {
-	for len(b.serviceRequest.InstantiatesCanonicalExt) < len(b.serviceRequest.InstantiatesCanonical)-1 {
+	i := len(b.serviceRequest.InstantiatesCanonical) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.serviceRequest.InstantiatesCanonicalExt) <= i {
 		b.serviceRequest.InstantiatesCanonicalExt = append(b.serviceRequest.InstantiatesCanonicalExt, nil)
 	}
-	b.serviceRequest.InstantiatesCanonicalExt = append(b.serviceRequest.InstantiatesCanonicalExt, v)
+	b.serviceRequest.InstantiatesCanonicalExt[i] = v
 	return b
 }
 
 // AddInstantiatesUriExt attaches extensions to the InstantiatesUri element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddInstantiatesUri twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ServiceRequestBuilder) AddInstantiatesUriExt(v *Element) *ServiceRequestBuilder {
-	for len(b.serviceRequest.InstantiatesUriExt) < len(b.serviceRequest.InstantiatesUri)-1 {
+	i := len(b.serviceRequest.InstantiatesUri) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.serviceRequest.InstantiatesUriExt) <= i {
 		b.serviceRequest.InstantiatesUriExt = append(b.serviceRequest.InstantiatesUriExt, nil)
 	}
-	b.serviceRequest.InstantiatesUriExt = append(b.serviceRequest.InstantiatesUriExt, v)
+	b.serviceRequest.InstantiatesUriExt[i] = v
 	return b
 }
 

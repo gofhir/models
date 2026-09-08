@@ -1029,20 +1029,24 @@ func (b *PractitionerRoleAvailableTimeBuilder) SetAvailableEndTime(v string) *Pr
 }
 
 // AddDaysOfWeekExt attaches extensions to the DaysOfWeek element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddDaysOfWeek twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *PractitionerRoleAvailableTimeBuilder) AddDaysOfWeekExt(v *Element) *PractitionerRoleAvailableTimeBuilder {
-	for len(b.practitionerRoleAvailableTime.DaysOfWeekExt) < len(b.practitionerRoleAvailableTime.DaysOfWeek)-1 {
+	i := len(b.practitionerRoleAvailableTime.DaysOfWeek) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.practitionerRoleAvailableTime.DaysOfWeekExt) <= i {
 		b.practitionerRoleAvailableTime.DaysOfWeekExt = append(b.practitionerRoleAvailableTime.DaysOfWeekExt, nil)
 	}
-	b.practitionerRoleAvailableTime.DaysOfWeekExt = append(b.practitionerRoleAvailableTime.DaysOfWeekExt, v)
+	b.practitionerRoleAvailableTime.DaysOfWeekExt[i] = v
 	return b
 }
 

@@ -1193,20 +1193,24 @@ func (b *ResearchDefinitionBuilder) SetDescriptionExt(v Element) *ResearchDefini
 }
 
 // AddCommentExt attaches extensions to the Comment element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddComment twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ResearchDefinitionBuilder) AddCommentExt(v *Element) *ResearchDefinitionBuilder {
-	for len(b.researchDefinition.CommentExt) < len(b.researchDefinition.Comment)-1 {
+	i := len(b.researchDefinition.Comment) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.researchDefinition.CommentExt) <= i {
 		b.researchDefinition.CommentExt = append(b.researchDefinition.CommentExt, nil)
 	}
-	b.researchDefinition.CommentExt = append(b.researchDefinition.CommentExt, v)
+	b.researchDefinition.CommentExt[i] = v
 	return b
 }
 
@@ -1261,20 +1265,24 @@ func (b *ResearchDefinitionBuilder) SetLastReviewDateExt(v Element) *ResearchDef
 }
 
 // AddLibraryExt attaches extensions to the Library element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddLibrary twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ResearchDefinitionBuilder) AddLibraryExt(v *Element) *ResearchDefinitionBuilder {
-	for len(b.researchDefinition.LibraryExt) < len(b.researchDefinition.Library)-1 {
+	i := len(b.researchDefinition.Library) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.researchDefinition.LibraryExt) <= i {
 		b.researchDefinition.LibraryExt = append(b.researchDefinition.LibraryExt, nil)
 	}
-	b.researchDefinition.LibraryExt = append(b.researchDefinition.LibraryExt, v)
+	b.researchDefinition.LibraryExt[i] = v
 	return b
 }
 

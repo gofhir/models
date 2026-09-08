@@ -1780,20 +1780,24 @@ func (b *SubscriptionTopicBuilder) SetTitleExt(v Element) *SubscriptionTopicBuil
 }
 
 // AddDerivedFromExt attaches extensions to the DerivedFrom element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddDerivedFrom twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *SubscriptionTopicBuilder) AddDerivedFromExt(v *Element) *SubscriptionTopicBuilder {
-	for len(b.subscriptionTopic.DerivedFromExt) < len(b.subscriptionTopic.DerivedFrom)-1 {
+	i := len(b.subscriptionTopic.DerivedFrom) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.subscriptionTopic.DerivedFromExt) <= i {
 		b.subscriptionTopic.DerivedFromExt = append(b.subscriptionTopic.DerivedFromExt, nil)
 	}
-	b.subscriptionTopic.DerivedFromExt = append(b.subscriptionTopic.DerivedFromExt, v)
+	b.subscriptionTopic.DerivedFromExt[i] = v
 	return b
 }
 
@@ -2036,38 +2040,46 @@ func (b *SubscriptionTopicCanFilterByBuilder) SetFilterDefinitionExt(v Element) 
 }
 
 // AddComparatorExt attaches extensions to the Comparator element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddComparator twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *SubscriptionTopicCanFilterByBuilder) AddComparatorExt(v *Element) *SubscriptionTopicCanFilterByBuilder {
-	for len(b.subscriptionTopicCanFilterBy.ComparatorExt) < len(b.subscriptionTopicCanFilterBy.Comparator)-1 {
+	i := len(b.subscriptionTopicCanFilterBy.Comparator) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.subscriptionTopicCanFilterBy.ComparatorExt) <= i {
 		b.subscriptionTopicCanFilterBy.ComparatorExt = append(b.subscriptionTopicCanFilterBy.ComparatorExt, nil)
 	}
-	b.subscriptionTopicCanFilterBy.ComparatorExt = append(b.subscriptionTopicCanFilterBy.ComparatorExt, v)
+	b.subscriptionTopicCanFilterBy.ComparatorExt[i] = v
 	return b
 }
 
 // AddModifierExt attaches extensions to the Modifier element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddModifier twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *SubscriptionTopicCanFilterByBuilder) AddModifierExt(v *Element) *SubscriptionTopicCanFilterByBuilder {
-	for len(b.subscriptionTopicCanFilterBy.ModifierExt) < len(b.subscriptionTopicCanFilterBy.Modifier)-1 {
+	i := len(b.subscriptionTopicCanFilterBy.Modifier) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.subscriptionTopicCanFilterBy.ModifierExt) <= i {
 		b.subscriptionTopicCanFilterBy.ModifierExt = append(b.subscriptionTopicCanFilterBy.ModifierExt, nil)
 	}
-	b.subscriptionTopicCanFilterBy.ModifierExt = append(b.subscriptionTopicCanFilterBy.ModifierExt, v)
+	b.subscriptionTopicCanFilterBy.ModifierExt[i] = v
 	return b
 }
 
@@ -2238,38 +2250,46 @@ func (b *SubscriptionTopicNotificationShapeBuilder) SetResourceExt(v Element) *S
 }
 
 // AddIncludeExt attaches extensions to the Include element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddInclude twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *SubscriptionTopicNotificationShapeBuilder) AddIncludeExt(v *Element) *SubscriptionTopicNotificationShapeBuilder {
-	for len(b.subscriptionTopicNotificationShape.IncludeExt) < len(b.subscriptionTopicNotificationShape.Include)-1 {
+	i := len(b.subscriptionTopicNotificationShape.Include) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.subscriptionTopicNotificationShape.IncludeExt) <= i {
 		b.subscriptionTopicNotificationShape.IncludeExt = append(b.subscriptionTopicNotificationShape.IncludeExt, nil)
 	}
-	b.subscriptionTopicNotificationShape.IncludeExt = append(b.subscriptionTopicNotificationShape.IncludeExt, v)
+	b.subscriptionTopicNotificationShape.IncludeExt[i] = v
 	return b
 }
 
 // AddRevIncludeExt attaches extensions to the RevInclude element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddRevInclude twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *SubscriptionTopicNotificationShapeBuilder) AddRevIncludeExt(v *Element) *SubscriptionTopicNotificationShapeBuilder {
-	for len(b.subscriptionTopicNotificationShape.RevIncludeExt) < len(b.subscriptionTopicNotificationShape.RevInclude)-1 {
+	i := len(b.subscriptionTopicNotificationShape.RevInclude) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.subscriptionTopicNotificationShape.RevIncludeExt) <= i {
 		b.subscriptionTopicNotificationShape.RevIncludeExt = append(b.subscriptionTopicNotificationShape.RevIncludeExt, nil)
 	}
-	b.subscriptionTopicNotificationShape.RevIncludeExt = append(b.subscriptionTopicNotificationShape.RevIncludeExt, v)
+	b.subscriptionTopicNotificationShape.RevIncludeExt[i] = v
 	return b
 }
 
@@ -2374,20 +2394,24 @@ func (b *SubscriptionTopicResourceTriggerBuilder) SetResourceExt(v Element) *Sub
 }
 
 // AddSupportedInteractionExt attaches extensions to the SupportedInteraction element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddSupportedInteraction twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *SubscriptionTopicResourceTriggerBuilder) AddSupportedInteractionExt(v *Element) *SubscriptionTopicResourceTriggerBuilder {
-	for len(b.subscriptionTopicResourceTrigger.SupportedInteractionExt) < len(b.subscriptionTopicResourceTrigger.SupportedInteraction)-1 {
+	i := len(b.subscriptionTopicResourceTrigger.SupportedInteraction) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.subscriptionTopicResourceTrigger.SupportedInteractionExt) <= i {
 		b.subscriptionTopicResourceTrigger.SupportedInteractionExt = append(b.subscriptionTopicResourceTrigger.SupportedInteractionExt, nil)
 	}
-	b.subscriptionTopicResourceTrigger.SupportedInteractionExt = append(b.subscriptionTopicResourceTrigger.SupportedInteractionExt, v)
+	b.subscriptionTopicResourceTrigger.SupportedInteractionExt[i] = v
 	return b
 }
 

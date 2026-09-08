@@ -3339,20 +3339,24 @@ func (b *DeviceDefinitionBuilder) SetModelNumberExt(v Element) *DeviceDefinition
 }
 
 // AddProductionIdentifierInUDIExt attaches extensions to the ProductionIdentifierInUDI element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddProductionIdentifierInUDI twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *DeviceDefinitionBuilder) AddProductionIdentifierInUDIExt(v *Element) *DeviceDefinitionBuilder {
-	for len(b.deviceDefinition.ProductionIdentifierInUDIExt) < len(b.deviceDefinition.ProductionIdentifierInUDI)-1 {
+	i := len(b.deviceDefinition.ProductionIdentifierInUDI) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.deviceDefinition.ProductionIdentifierInUDIExt) <= i {
 		b.deviceDefinition.ProductionIdentifierInUDIExt = append(b.deviceDefinition.ProductionIdentifierInUDIExt, nil)
 	}
-	b.deviceDefinition.ProductionIdentifierInUDIExt = append(b.deviceDefinition.ProductionIdentifierInUDIExt, v)
+	b.deviceDefinition.ProductionIdentifierInUDIExt[i] = v
 	return b
 }
 
@@ -3557,20 +3561,24 @@ func (b *DeviceDefinitionConformsToBuilder) AddSource(v RelatedArtifact) *Device
 }
 
 // AddVersionExt attaches extensions to the Version element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddVersion twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *DeviceDefinitionConformsToBuilder) AddVersionExt(v *Element) *DeviceDefinitionConformsToBuilder {
-	for len(b.deviceDefinitionConformsTo.VersionExt) < len(b.deviceDefinitionConformsTo.Version)-1 {
+	i := len(b.deviceDefinitionConformsTo.Version) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.deviceDefinitionConformsTo.VersionExt) <= i {
 		b.deviceDefinitionConformsTo.VersionExt = append(b.deviceDefinitionConformsTo.VersionExt, nil)
 	}
-	b.deviceDefinitionConformsTo.VersionExt = append(b.deviceDefinitionConformsTo.VersionExt, v)
+	b.deviceDefinitionConformsTo.VersionExt[i] = v
 	return b
 }
 

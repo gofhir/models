@@ -227,6 +227,52 @@ func TestTheBuilderAlignsSlotsOnBuild(t *testing.T) {
 	}
 }
 
+func TestAddExtLandsOnTheLastValueWhateverElseHappened(t *testing.T) {
+	// Add<Field>Ext writes to the slot of the last value added rather than
+	// appending, so the position is what decides where the extension goes.
+	//
+	// Appending was fine as long as nothing else touched the slice, but Build now
+	// pads it out to the value count — and after that, a bare append lands past
+	// the end and leaves the array longer than its values. Writing to the slot is
+	// what makes the two operations compose.
+	mk := func() *r4.Element {
+		e := r4.NewElementBuilder().
+			AddExtension(r4.NewExtensionBuilder().SetUrl("http://x").SetValueCode("c").Build()).
+			Build()
+		return &e
+	}
+
+	b := r4.NewHumanNameBuilder().AddGiven("A").AddGivenExt(mk()).AddGiven("B")
+	if n := b.Build(); len(n.GivenExt) != 2 {
+		t.Fatalf("after Build: %d slots for %d values", len(n.GivenExt), len(n.Given))
+	}
+
+	// The extension now belongs to "B", the last value added, and the array does
+	// not grow past it.
+	b.AddGivenExt(mk())
+	n := b.Build()
+	if len(n.GivenExt) != len(n.Given) {
+		t.Fatalf("%d slots for %d values", len(n.GivenExt), len(n.Given))
+	}
+	if n.GivenExt[1] == nil {
+		t.Error("the extension did not land on the last value added")
+	}
+
+	// And with no value at all, the extension stands on its own — a repeating
+	// primitive whose value is absent carries its reason in the extension.
+	only := r4.NewHumanNameBuilder().AddGivenExt(mk()).Build()
+	if len(only.GivenExt) != 1 || only.GivenExt[0] == nil {
+		t.Errorf("got %d slots, want the extension alone at slot 0", len(only.GivenExt))
+	}
+	out, err := json.Marshal(only)
+	if err != nil {
+		t.Fatalf("marshal: %v", err)
+	}
+	if strings.Contains(string(out), `"given"`) {
+		t.Errorf("there is no value to write: %s", out)
+	}
+}
+
 func TestARaggedArrayOnInputSurvivesJSONButIsAlignedThroughXML(t *testing.T) {
 	// Records a boundary rather than guarding an invariant.
 	//

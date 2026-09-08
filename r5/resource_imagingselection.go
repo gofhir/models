@@ -1452,20 +1452,24 @@ func (b *ImagingSelectionInstanceBuilder) SetNumberExt(v Element) *ImagingSelect
 }
 
 // AddSubsetExt attaches extensions to the Subset element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddSubset twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ImagingSelectionInstanceBuilder) AddSubsetExt(v *Element) *ImagingSelectionInstanceBuilder {
-	for len(b.imagingSelectionInstance.SubsetExt) < len(b.imagingSelectionInstance.Subset)-1 {
+	i := len(b.imagingSelectionInstance.Subset) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.imagingSelectionInstance.SubsetExt) <= i {
 		b.imagingSelectionInstance.SubsetExt = append(b.imagingSelectionInstance.SubsetExt, nil)
 	}
-	b.imagingSelectionInstance.SubsetExt = append(b.imagingSelectionInstance.SubsetExt, v)
+	b.imagingSelectionInstance.SubsetExt[i] = v
 	return b
 }
 
@@ -1542,20 +1546,24 @@ func (b *ImagingSelectionInstanceImageRegion2DBuilder) SetRegionTypeExt(v Elemen
 }
 
 // AddCoordinateExt attaches extensions to the Coordinate element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddCoordinate twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ImagingSelectionInstanceImageRegion2DBuilder) AddCoordinateExt(v *Element) *ImagingSelectionInstanceImageRegion2DBuilder {
-	for len(b.imagingSelectionInstanceImageRegion2D.CoordinateExt) < len(b.imagingSelectionInstanceImageRegion2D.Coordinate)-1 {
+	i := len(b.imagingSelectionInstanceImageRegion2D.Coordinate) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.imagingSelectionInstanceImageRegion2D.CoordinateExt) <= i {
 		b.imagingSelectionInstanceImageRegion2D.CoordinateExt = append(b.imagingSelectionInstanceImageRegion2D.CoordinateExt, nil)
 	}
-	b.imagingSelectionInstanceImageRegion2D.CoordinateExt = append(b.imagingSelectionInstanceImageRegion2D.CoordinateExt, v)
+	b.imagingSelectionInstanceImageRegion2D.CoordinateExt[i] = v
 	return b
 }
 
@@ -1632,20 +1640,24 @@ func (b *ImagingSelectionInstanceImageRegion3DBuilder) SetRegionTypeExt(v Elemen
 }
 
 // AddCoordinateExt attaches extensions to the Coordinate element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddCoordinate twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ImagingSelectionInstanceImageRegion3DBuilder) AddCoordinateExt(v *Element) *ImagingSelectionInstanceImageRegion3DBuilder {
-	for len(b.imagingSelectionInstanceImageRegion3D.CoordinateExt) < len(b.imagingSelectionInstanceImageRegion3D.Coordinate)-1 {
+	i := len(b.imagingSelectionInstanceImageRegion3D.Coordinate) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.imagingSelectionInstanceImageRegion3D.CoordinateExt) <= i {
 		b.imagingSelectionInstanceImageRegion3D.CoordinateExt = append(b.imagingSelectionInstanceImageRegion3D.CoordinateExt, nil)
 	}
-	b.imagingSelectionInstanceImageRegion3D.CoordinateExt = append(b.imagingSelectionInstanceImageRegion3D.CoordinateExt, v)
+	b.imagingSelectionInstanceImageRegion3D.CoordinateExt[i] = v
 	return b
 }
 

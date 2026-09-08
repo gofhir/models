@@ -2401,56 +2401,68 @@ func (b *NutritionOrderBuilder) SetLanguageExt(v Element) *NutritionOrderBuilder
 }
 
 // AddInstantiatesCanonicalExt attaches extensions to the InstantiatesCanonical element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddInstantiatesCanonical twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *NutritionOrderBuilder) AddInstantiatesCanonicalExt(v *Element) *NutritionOrderBuilder {
-	for len(b.nutritionOrder.InstantiatesCanonicalExt) < len(b.nutritionOrder.InstantiatesCanonical)-1 {
+	i := len(b.nutritionOrder.InstantiatesCanonical) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.nutritionOrder.InstantiatesCanonicalExt) <= i {
 		b.nutritionOrder.InstantiatesCanonicalExt = append(b.nutritionOrder.InstantiatesCanonicalExt, nil)
 	}
-	b.nutritionOrder.InstantiatesCanonicalExt = append(b.nutritionOrder.InstantiatesCanonicalExt, v)
+	b.nutritionOrder.InstantiatesCanonicalExt[i] = v
 	return b
 }
 
 // AddInstantiatesUriExt attaches extensions to the InstantiatesUri element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddInstantiatesUri twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *NutritionOrderBuilder) AddInstantiatesUriExt(v *Element) *NutritionOrderBuilder {
-	for len(b.nutritionOrder.InstantiatesUriExt) < len(b.nutritionOrder.InstantiatesUri)-1 {
+	i := len(b.nutritionOrder.InstantiatesUri) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.nutritionOrder.InstantiatesUriExt) <= i {
 		b.nutritionOrder.InstantiatesUriExt = append(b.nutritionOrder.InstantiatesUriExt, nil)
 	}
-	b.nutritionOrder.InstantiatesUriExt = append(b.nutritionOrder.InstantiatesUriExt, v)
+	b.nutritionOrder.InstantiatesUriExt[i] = v
 	return b
 }
 
 // AddInstantiatesExt attaches extensions to the Instantiates element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddInstantiates twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *NutritionOrderBuilder) AddInstantiatesExt(v *Element) *NutritionOrderBuilder {
-	for len(b.nutritionOrder.InstantiatesExt) < len(b.nutritionOrder.Instantiates)-1 {
+	i := len(b.nutritionOrder.Instantiates) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.nutritionOrder.InstantiatesExt) <= i {
 		b.nutritionOrder.InstantiatesExt = append(b.nutritionOrder.InstantiatesExt, nil)
 	}
-	b.nutritionOrder.InstantiatesExt = append(b.nutritionOrder.InstantiatesExt, v)
+	b.nutritionOrder.InstantiatesExt[i] = v
 	return b
 }
 

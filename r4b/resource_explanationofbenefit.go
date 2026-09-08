@@ -5485,20 +5485,24 @@ func (b *ExplanationOfBenefitBuilder) SetDispositionExt(v Element) *ExplanationO
 }
 
 // AddPreAuthRefExt attaches extensions to the PreAuthRef element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddPreAuthRef twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ExplanationOfBenefitBuilder) AddPreAuthRefExt(v *Element) *ExplanationOfBenefitBuilder {
-	for len(b.explanationOfBenefit.PreAuthRefExt) < len(b.explanationOfBenefit.PreAuthRef)-1 {
+	i := len(b.explanationOfBenefit.PreAuthRef) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.explanationOfBenefit.PreAuthRefExt) <= i {
 		b.explanationOfBenefit.PreAuthRefExt = append(b.explanationOfBenefit.PreAuthRefExt, nil)
 	}
-	b.explanationOfBenefit.PreAuthRefExt = append(b.explanationOfBenefit.PreAuthRefExt, v)
+	b.explanationOfBenefit.PreAuthRefExt[i] = v
 	return b
 }
 
@@ -5831,56 +5835,68 @@ func (b *ExplanationOfBenefitAddItemBuilder) AddDetail(v ExplanationOfBenefitAdd
 }
 
 // AddItemSequenceExt attaches extensions to the ItemSequence element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddItemSequence twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ExplanationOfBenefitAddItemBuilder) AddItemSequenceExt(v *Element) *ExplanationOfBenefitAddItemBuilder {
-	for len(b.explanationOfBenefitAddItem.ItemSequenceExt) < len(b.explanationOfBenefitAddItem.ItemSequence)-1 {
+	i := len(b.explanationOfBenefitAddItem.ItemSequence) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.explanationOfBenefitAddItem.ItemSequenceExt) <= i {
 		b.explanationOfBenefitAddItem.ItemSequenceExt = append(b.explanationOfBenefitAddItem.ItemSequenceExt, nil)
 	}
-	b.explanationOfBenefitAddItem.ItemSequenceExt = append(b.explanationOfBenefitAddItem.ItemSequenceExt, v)
+	b.explanationOfBenefitAddItem.ItemSequenceExt[i] = v
 	return b
 }
 
 // AddDetailSequenceExt attaches extensions to the DetailSequence element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddDetailSequence twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ExplanationOfBenefitAddItemBuilder) AddDetailSequenceExt(v *Element) *ExplanationOfBenefitAddItemBuilder {
-	for len(b.explanationOfBenefitAddItem.DetailSequenceExt) < len(b.explanationOfBenefitAddItem.DetailSequence)-1 {
+	i := len(b.explanationOfBenefitAddItem.DetailSequence) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.explanationOfBenefitAddItem.DetailSequenceExt) <= i {
 		b.explanationOfBenefitAddItem.DetailSequenceExt = append(b.explanationOfBenefitAddItem.DetailSequenceExt, nil)
 	}
-	b.explanationOfBenefitAddItem.DetailSequenceExt = append(b.explanationOfBenefitAddItem.DetailSequenceExt, v)
+	b.explanationOfBenefitAddItem.DetailSequenceExt[i] = v
 	return b
 }
 
 // AddSubDetailSequenceExt attaches extensions to the SubDetailSequence element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddSubDetailSequence twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ExplanationOfBenefitAddItemBuilder) AddSubDetailSequenceExt(v *Element) *ExplanationOfBenefitAddItemBuilder {
-	for len(b.explanationOfBenefitAddItem.SubDetailSequenceExt) < len(b.explanationOfBenefitAddItem.SubDetailSequence)-1 {
+	i := len(b.explanationOfBenefitAddItem.SubDetailSequence) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.explanationOfBenefitAddItem.SubDetailSequenceExt) <= i {
 		b.explanationOfBenefitAddItem.SubDetailSequenceExt = append(b.explanationOfBenefitAddItem.SubDetailSequenceExt, nil)
 	}
-	b.explanationOfBenefitAddItem.SubDetailSequenceExt = append(b.explanationOfBenefitAddItem.SubDetailSequenceExt, v)
+	b.explanationOfBenefitAddItem.SubDetailSequenceExt[i] = v
 	return b
 }
 
@@ -5895,20 +5911,24 @@ func (b *ExplanationOfBenefitAddItemBuilder) SetFactorExt(v Element) *Explanatio
 }
 
 // AddNoteNumberExt attaches extensions to the NoteNumber element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddNoteNumber twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ExplanationOfBenefitAddItemBuilder) AddNoteNumberExt(v *Element) *ExplanationOfBenefitAddItemBuilder {
-	for len(b.explanationOfBenefitAddItem.NoteNumberExt) < len(b.explanationOfBenefitAddItem.NoteNumber)-1 {
+	i := len(b.explanationOfBenefitAddItem.NoteNumber) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.explanationOfBenefitAddItem.NoteNumberExt) <= i {
 		b.explanationOfBenefitAddItem.NoteNumberExt = append(b.explanationOfBenefitAddItem.NoteNumberExt, nil)
 	}
-	b.explanationOfBenefitAddItem.NoteNumberExt = append(b.explanationOfBenefitAddItem.NoteNumberExt, v)
+	b.explanationOfBenefitAddItem.NoteNumberExt[i] = v
 	return b
 }
 
@@ -6042,20 +6062,24 @@ func (b *ExplanationOfBenefitAddItemDetailBuilder) SetFactorExt(v Element) *Expl
 }
 
 // AddNoteNumberExt attaches extensions to the NoteNumber element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddNoteNumber twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ExplanationOfBenefitAddItemDetailBuilder) AddNoteNumberExt(v *Element) *ExplanationOfBenefitAddItemDetailBuilder {
-	for len(b.explanationOfBenefitAddItemDetail.NoteNumberExt) < len(b.explanationOfBenefitAddItemDetail.NoteNumber)-1 {
+	i := len(b.explanationOfBenefitAddItemDetail.NoteNumber) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.explanationOfBenefitAddItemDetail.NoteNumberExt) <= i {
 		b.explanationOfBenefitAddItemDetail.NoteNumberExt = append(b.explanationOfBenefitAddItemDetail.NoteNumberExt, nil)
 	}
-	b.explanationOfBenefitAddItemDetail.NoteNumberExt = append(b.explanationOfBenefitAddItemDetail.NoteNumberExt, v)
+	b.explanationOfBenefitAddItemDetail.NoteNumberExt[i] = v
 	return b
 }
 
@@ -6168,20 +6192,24 @@ func (b *ExplanationOfBenefitAddItemDetailSubDetailBuilder) SetFactorExt(v Eleme
 }
 
 // AddNoteNumberExt attaches extensions to the NoteNumber element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddNoteNumber twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ExplanationOfBenefitAddItemDetailSubDetailBuilder) AddNoteNumberExt(v *Element) *ExplanationOfBenefitAddItemDetailSubDetailBuilder {
-	for len(b.explanationOfBenefitAddItemDetailSubDetail.NoteNumberExt) < len(b.explanationOfBenefitAddItemDetailSubDetail.NoteNumber)-1 {
+	i := len(b.explanationOfBenefitAddItemDetailSubDetail.NoteNumber) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.explanationOfBenefitAddItemDetailSubDetail.NoteNumberExt) <= i {
 		b.explanationOfBenefitAddItemDetailSubDetail.NoteNumberExt = append(b.explanationOfBenefitAddItemDetailSubDetail.NoteNumberExt, nil)
 	}
-	b.explanationOfBenefitAddItemDetailSubDetail.NoteNumberExt = append(b.explanationOfBenefitAddItemDetailSubDetail.NoteNumberExt, v)
+	b.explanationOfBenefitAddItemDetailSubDetail.NoteNumberExt[i] = v
 	return b
 }
 
@@ -6730,20 +6758,24 @@ func (b *ExplanationOfBenefitInsuranceBuilder) SetFocalExt(v Element) *Explanati
 }
 
 // AddPreAuthRefExt attaches extensions to the PreAuthRef element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddPreAuthRef twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ExplanationOfBenefitInsuranceBuilder) AddPreAuthRefExt(v *Element) *ExplanationOfBenefitInsuranceBuilder {
-	for len(b.explanationOfBenefitInsurance.PreAuthRefExt) < len(b.explanationOfBenefitInsurance.PreAuthRef)-1 {
+	i := len(b.explanationOfBenefitInsurance.PreAuthRef) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.explanationOfBenefitInsurance.PreAuthRefExt) <= i {
 		b.explanationOfBenefitInsurance.PreAuthRefExt = append(b.explanationOfBenefitInsurance.PreAuthRefExt, nil)
 	}
-	b.explanationOfBenefitInsurance.PreAuthRefExt = append(b.explanationOfBenefitInsurance.PreAuthRefExt, v)
+	b.explanationOfBenefitInsurance.PreAuthRefExt[i] = v
 	return b
 }
 
@@ -7015,74 +7047,90 @@ func (b *ExplanationOfBenefitItemBuilder) SetSequenceExt(v Element) *Explanation
 }
 
 // AddCareTeamSequenceExt attaches extensions to the CareTeamSequence element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddCareTeamSequence twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ExplanationOfBenefitItemBuilder) AddCareTeamSequenceExt(v *Element) *ExplanationOfBenefitItemBuilder {
-	for len(b.explanationOfBenefitItem.CareTeamSequenceExt) < len(b.explanationOfBenefitItem.CareTeamSequence)-1 {
+	i := len(b.explanationOfBenefitItem.CareTeamSequence) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.explanationOfBenefitItem.CareTeamSequenceExt) <= i {
 		b.explanationOfBenefitItem.CareTeamSequenceExt = append(b.explanationOfBenefitItem.CareTeamSequenceExt, nil)
 	}
-	b.explanationOfBenefitItem.CareTeamSequenceExt = append(b.explanationOfBenefitItem.CareTeamSequenceExt, v)
+	b.explanationOfBenefitItem.CareTeamSequenceExt[i] = v
 	return b
 }
 
 // AddDiagnosisSequenceExt attaches extensions to the DiagnosisSequence element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddDiagnosisSequence twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ExplanationOfBenefitItemBuilder) AddDiagnosisSequenceExt(v *Element) *ExplanationOfBenefitItemBuilder {
-	for len(b.explanationOfBenefitItem.DiagnosisSequenceExt) < len(b.explanationOfBenefitItem.DiagnosisSequence)-1 {
+	i := len(b.explanationOfBenefitItem.DiagnosisSequence) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.explanationOfBenefitItem.DiagnosisSequenceExt) <= i {
 		b.explanationOfBenefitItem.DiagnosisSequenceExt = append(b.explanationOfBenefitItem.DiagnosisSequenceExt, nil)
 	}
-	b.explanationOfBenefitItem.DiagnosisSequenceExt = append(b.explanationOfBenefitItem.DiagnosisSequenceExt, v)
+	b.explanationOfBenefitItem.DiagnosisSequenceExt[i] = v
 	return b
 }
 
 // AddProcedureSequenceExt attaches extensions to the ProcedureSequence element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddProcedureSequence twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ExplanationOfBenefitItemBuilder) AddProcedureSequenceExt(v *Element) *ExplanationOfBenefitItemBuilder {
-	for len(b.explanationOfBenefitItem.ProcedureSequenceExt) < len(b.explanationOfBenefitItem.ProcedureSequence)-1 {
+	i := len(b.explanationOfBenefitItem.ProcedureSequence) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.explanationOfBenefitItem.ProcedureSequenceExt) <= i {
 		b.explanationOfBenefitItem.ProcedureSequenceExt = append(b.explanationOfBenefitItem.ProcedureSequenceExt, nil)
 	}
-	b.explanationOfBenefitItem.ProcedureSequenceExt = append(b.explanationOfBenefitItem.ProcedureSequenceExt, v)
+	b.explanationOfBenefitItem.ProcedureSequenceExt[i] = v
 	return b
 }
 
 // AddInformationSequenceExt attaches extensions to the InformationSequence element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddInformationSequence twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ExplanationOfBenefitItemBuilder) AddInformationSequenceExt(v *Element) *ExplanationOfBenefitItemBuilder {
-	for len(b.explanationOfBenefitItem.InformationSequenceExt) < len(b.explanationOfBenefitItem.InformationSequence)-1 {
+	i := len(b.explanationOfBenefitItem.InformationSequence) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.explanationOfBenefitItem.InformationSequenceExt) <= i {
 		b.explanationOfBenefitItem.InformationSequenceExt = append(b.explanationOfBenefitItem.InformationSequenceExt, nil)
 	}
-	b.explanationOfBenefitItem.InformationSequenceExt = append(b.explanationOfBenefitItem.InformationSequenceExt, v)
+	b.explanationOfBenefitItem.InformationSequenceExt[i] = v
 	return b
 }
 
@@ -7097,20 +7145,24 @@ func (b *ExplanationOfBenefitItemBuilder) SetFactorExt(v Element) *ExplanationOf
 }
 
 // AddNoteNumberExt attaches extensions to the NoteNumber element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddNoteNumber twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ExplanationOfBenefitItemBuilder) AddNoteNumberExt(v *Element) *ExplanationOfBenefitItemBuilder {
-	for len(b.explanationOfBenefitItem.NoteNumberExt) < len(b.explanationOfBenefitItem.NoteNumber)-1 {
+	i := len(b.explanationOfBenefitItem.NoteNumber) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.explanationOfBenefitItem.NoteNumberExt) <= i {
 		b.explanationOfBenefitItem.NoteNumberExt = append(b.explanationOfBenefitItem.NoteNumberExt, nil)
 	}
-	b.explanationOfBenefitItem.NoteNumberExt = append(b.explanationOfBenefitItem.NoteNumberExt, v)
+	b.explanationOfBenefitItem.NoteNumberExt[i] = v
 	return b
 }
 
@@ -7363,20 +7415,24 @@ func (b *ExplanationOfBenefitItemDetailBuilder) SetFactorExt(v Element) *Explana
 }
 
 // AddNoteNumberExt attaches extensions to the NoteNumber element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddNoteNumber twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ExplanationOfBenefitItemDetailBuilder) AddNoteNumberExt(v *Element) *ExplanationOfBenefitItemDetailBuilder {
-	for len(b.explanationOfBenefitItemDetail.NoteNumberExt) < len(b.explanationOfBenefitItemDetail.NoteNumber)-1 {
+	i := len(b.explanationOfBenefitItemDetail.NoteNumber) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.explanationOfBenefitItemDetail.NoteNumberExt) <= i {
 		b.explanationOfBenefitItemDetail.NoteNumberExt = append(b.explanationOfBenefitItemDetail.NoteNumberExt, nil)
 	}
-	b.explanationOfBenefitItemDetail.NoteNumberExt = append(b.explanationOfBenefitItemDetail.NoteNumberExt, v)
+	b.explanationOfBenefitItemDetail.NoteNumberExt[i] = v
 	return b
 }
 
@@ -7529,20 +7585,24 @@ func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) SetFactorExt(v Element)
 }
 
 // AddNoteNumberExt attaches extensions to the NoteNumber element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddNoteNumber twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ExplanationOfBenefitItemDetailSubDetailBuilder) AddNoteNumberExt(v *Element) *ExplanationOfBenefitItemDetailSubDetailBuilder {
-	for len(b.explanationOfBenefitItemDetailSubDetail.NoteNumberExt) < len(b.explanationOfBenefitItemDetailSubDetail.NoteNumber)-1 {
+	i := len(b.explanationOfBenefitItemDetailSubDetail.NoteNumber) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.explanationOfBenefitItemDetailSubDetail.NoteNumberExt) <= i {
 		b.explanationOfBenefitItemDetailSubDetail.NoteNumberExt = append(b.explanationOfBenefitItemDetailSubDetail.NoteNumberExt, nil)
 	}
-	b.explanationOfBenefitItemDetailSubDetail.NoteNumberExt = append(b.explanationOfBenefitItemDetailSubDetail.NoteNumberExt, v)
+	b.explanationOfBenefitItemDetailSubDetail.NoteNumberExt[i] = v
 	return b
 }
 

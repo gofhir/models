@@ -2221,56 +2221,68 @@ func (b *AppointmentRecurrenceTemplateBuilder) SetOccurrenceCountExt(v Element) 
 }
 
 // AddOccurrenceDateExt attaches extensions to the OccurrenceDate element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddOccurrenceDate twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *AppointmentRecurrenceTemplateBuilder) AddOccurrenceDateExt(v *Element) *AppointmentRecurrenceTemplateBuilder {
-	for len(b.appointmentRecurrenceTemplate.OccurrenceDateExt) < len(b.appointmentRecurrenceTemplate.OccurrenceDate)-1 {
+	i := len(b.appointmentRecurrenceTemplate.OccurrenceDate) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.appointmentRecurrenceTemplate.OccurrenceDateExt) <= i {
 		b.appointmentRecurrenceTemplate.OccurrenceDateExt = append(b.appointmentRecurrenceTemplate.OccurrenceDateExt, nil)
 	}
-	b.appointmentRecurrenceTemplate.OccurrenceDateExt = append(b.appointmentRecurrenceTemplate.OccurrenceDateExt, v)
+	b.appointmentRecurrenceTemplate.OccurrenceDateExt[i] = v
 	return b
 }
 
 // AddExcludingDateExt attaches extensions to the ExcludingDate element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddExcludingDate twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *AppointmentRecurrenceTemplateBuilder) AddExcludingDateExt(v *Element) *AppointmentRecurrenceTemplateBuilder {
-	for len(b.appointmentRecurrenceTemplate.ExcludingDateExt) < len(b.appointmentRecurrenceTemplate.ExcludingDate)-1 {
+	i := len(b.appointmentRecurrenceTemplate.ExcludingDate) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.appointmentRecurrenceTemplate.ExcludingDateExt) <= i {
 		b.appointmentRecurrenceTemplate.ExcludingDateExt = append(b.appointmentRecurrenceTemplate.ExcludingDateExt, nil)
 	}
-	b.appointmentRecurrenceTemplate.ExcludingDateExt = append(b.appointmentRecurrenceTemplate.ExcludingDateExt, v)
+	b.appointmentRecurrenceTemplate.ExcludingDateExt[i] = v
 	return b
 }
 
 // AddExcludingRecurrenceIdExt attaches extensions to the ExcludingRecurrenceId element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddExcludingRecurrenceId twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *AppointmentRecurrenceTemplateBuilder) AddExcludingRecurrenceIdExt(v *Element) *AppointmentRecurrenceTemplateBuilder {
-	for len(b.appointmentRecurrenceTemplate.ExcludingRecurrenceIdExt) < len(b.appointmentRecurrenceTemplate.ExcludingRecurrenceId)-1 {
+	i := len(b.appointmentRecurrenceTemplate.ExcludingRecurrenceId) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.appointmentRecurrenceTemplate.ExcludingRecurrenceIdExt) <= i {
 		b.appointmentRecurrenceTemplate.ExcludingRecurrenceIdExt = append(b.appointmentRecurrenceTemplate.ExcludingRecurrenceIdExt, nil)
 	}
-	b.appointmentRecurrenceTemplate.ExcludingRecurrenceIdExt = append(b.appointmentRecurrenceTemplate.ExcludingRecurrenceIdExt, v)
+	b.appointmentRecurrenceTemplate.ExcludingRecurrenceIdExt[i] = v
 	return b
 }
 

@@ -2683,20 +2683,24 @@ func (b *PlanDefinitionBuilder) SetLastReviewDateExt(v Element) *PlanDefinitionB
 }
 
 // AddLibraryExt attaches extensions to the Library element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddLibrary twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *PlanDefinitionBuilder) AddLibraryExt(v *Element) *PlanDefinitionBuilder {
-	for len(b.planDefinition.LibraryExt) < len(b.planDefinition.Library)-1 {
+	i := len(b.planDefinition.Library) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.planDefinition.LibraryExt) <= i {
 		b.planDefinition.LibraryExt = append(b.planDefinition.LibraryExt, nil)
 	}
-	b.planDefinition.LibraryExt = append(b.planDefinition.LibraryExt, v)
+	b.planDefinition.LibraryExt[i] = v
 	return b
 }
 
@@ -3099,20 +3103,24 @@ func (b *PlanDefinitionActionBuilder) SetPriorityExt(v Element) *PlanDefinitionA
 }
 
 // AddGoalIdExt attaches extensions to the GoalId element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddGoalId twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *PlanDefinitionActionBuilder) AddGoalIdExt(v *Element) *PlanDefinitionActionBuilder {
-	for len(b.planDefinitionAction.GoalIdExt) < len(b.planDefinitionAction.GoalId)-1 {
+	i := len(b.planDefinitionAction.GoalId) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.planDefinitionAction.GoalIdExt) <= i {
 		b.planDefinitionAction.GoalIdExt = append(b.planDefinitionAction.GoalIdExt, nil)
 	}
-	b.planDefinitionAction.GoalIdExt = append(b.planDefinitionAction.GoalIdExt, v)
+	b.planDefinitionAction.GoalIdExt[i] = v
 	return b
 }
 

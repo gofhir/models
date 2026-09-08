@@ -1719,56 +1719,68 @@ func (b *ObservationDefinitionBuilder) SetLastReviewDateExt(v Element) *Observat
 }
 
 // AddDerivedFromCanonicalExt attaches extensions to the DerivedFromCanonical element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddDerivedFromCanonical twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ObservationDefinitionBuilder) AddDerivedFromCanonicalExt(v *Element) *ObservationDefinitionBuilder {
-	for len(b.observationDefinition.DerivedFromCanonicalExt) < len(b.observationDefinition.DerivedFromCanonical)-1 {
+	i := len(b.observationDefinition.DerivedFromCanonical) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.observationDefinition.DerivedFromCanonicalExt) <= i {
 		b.observationDefinition.DerivedFromCanonicalExt = append(b.observationDefinition.DerivedFromCanonicalExt, nil)
 	}
-	b.observationDefinition.DerivedFromCanonicalExt = append(b.observationDefinition.DerivedFromCanonicalExt, v)
+	b.observationDefinition.DerivedFromCanonicalExt[i] = v
 	return b
 }
 
 // AddDerivedFromUriExt attaches extensions to the DerivedFromUri element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddDerivedFromUri twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ObservationDefinitionBuilder) AddDerivedFromUriExt(v *Element) *ObservationDefinitionBuilder {
-	for len(b.observationDefinition.DerivedFromUriExt) < len(b.observationDefinition.DerivedFromUri)-1 {
+	i := len(b.observationDefinition.DerivedFromUri) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.observationDefinition.DerivedFromUriExt) <= i {
 		b.observationDefinition.DerivedFromUriExt = append(b.observationDefinition.DerivedFromUriExt, nil)
 	}
-	b.observationDefinition.DerivedFromUriExt = append(b.observationDefinition.DerivedFromUriExt, v)
+	b.observationDefinition.DerivedFromUriExt[i] = v
 	return b
 }
 
 // AddPermittedDataTypeExt attaches extensions to the PermittedDataType element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddPermittedDataType twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ObservationDefinitionBuilder) AddPermittedDataTypeExt(v *Element) *ObservationDefinitionBuilder {
-	for len(b.observationDefinition.PermittedDataTypeExt) < len(b.observationDefinition.PermittedDataType)-1 {
+	i := len(b.observationDefinition.PermittedDataType) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.observationDefinition.PermittedDataTypeExt) <= i {
 		b.observationDefinition.PermittedDataTypeExt = append(b.observationDefinition.PermittedDataTypeExt, nil)
 	}
-	b.observationDefinition.PermittedDataTypeExt = append(b.observationDefinition.PermittedDataTypeExt, v)
+	b.observationDefinition.PermittedDataTypeExt[i] = v
 	return b
 }
 
@@ -1874,20 +1886,24 @@ func (b *ObservationDefinitionComponentBuilder) AddQualifiedValue(v ObservationD
 }
 
 // AddPermittedDataTypeExt attaches extensions to the PermittedDataType element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddPermittedDataType twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ObservationDefinitionComponentBuilder) AddPermittedDataTypeExt(v *Element) *ObservationDefinitionComponentBuilder {
-	for len(b.observationDefinitionComponent.PermittedDataTypeExt) < len(b.observationDefinitionComponent.PermittedDataType)-1 {
+	i := len(b.observationDefinitionComponent.PermittedDataType) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.observationDefinitionComponent.PermittedDataTypeExt) <= i {
 		b.observationDefinitionComponent.PermittedDataTypeExt = append(b.observationDefinitionComponent.PermittedDataTypeExt, nil)
 	}
-	b.observationDefinitionComponent.PermittedDataTypeExt = append(b.observationDefinitionComponent.PermittedDataTypeExt, v)
+	b.observationDefinitionComponent.PermittedDataTypeExt[i] = v
 	return b
 }
 
