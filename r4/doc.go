@@ -29,8 +29,10 @@
 //
 // # Serialization
 //
-// Use [Marshal] rather than encoding/json directly: the standard encoder escapes
-// <, > and &, which corrupts the XHTML that FHIR requires in Narrative.Div.
+// Use [Marshal] rather than encoding/json directly: the standard encoder rewrites
+// <, > and & as \u003c, \u003e and \u0026, which turns a narrative's XHTML into a
+// wall of escapes. Nothing is lost — they decode back to the same string — but the
+// bytes stop matching the documents HL7 publishes.
 //
 //	data, err := r4.Marshal(patient)
 //
