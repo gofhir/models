@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.7.1](https://github.com/gofhir/models/compare/r4b/v2.7.0...r4b/v2.7.1) (2026-09-08)
+
+
+### Bug Fixes
+
+* **xml:** keep the _field array the same length as its value array ([#73](https://github.com/gofhir/models/issues/73)) ([f395fbc](https://github.com/gofhir/models/commit/f395fbc0f61c37012c46be409a2f3d3822ed7e8a))
+* **xml:** stop inventing extension slots for plain repeated primitives ([#71](https://github.com/gofhir/models/issues/71)) ([34803b0](https://github.com/gofhir/models/commit/34803b070f6c98518f56f8fb21d48d8818a9ad0b))
+
 ## [2.7.0](https://github.com/gofhir/models/compare/r4b/v2.6.0...r4b/v2.7.0) (2026-09-06)
 
 
