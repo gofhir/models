@@ -24,7 +24,8 @@
 //	family := r4.Val(r4.First(patient.Name)).Family
 //
 // Resources can also be built with the generated fluent builders
-// (New<Resource>Builder) or functional options (New<Resource>).
+// (New<Resource>Builder), which reach every element including the _field
+// companions that carry extensions on primitives.
 //
 // # Serialization
 //
@@ -38,10 +39,9 @@
 // resources and Bundle entries. [MarshalResourceXML] and [UnmarshalResourceXML]
 // are the XML equivalents.
 //
-// XML support is experimental. Narrative.Div is currently emitted inside a
-// spurious wrapper element and is dropped when the document is read back, so a
-// resource carrying a narrative does not survive an XML round-trip. Use JSON
-// where fidelity matters.
+// Both formats round-trip every example HL7 publishes. The one thing XML does not
+// preserve is how an empty element was spelled: encoding/xml re-emits <br/> as
+// <br></br>, which is the same element to any reader but not the same bytes.
 //
 // # What this package does not do
 //
