@@ -508,13 +508,7 @@ func (r *MessageDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Replaces = append(r.Replaces, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ReplacesExt) < len(r.Replaces)-1 {
-						r.ReplacesExt = append(r.ReplacesExt, nil)
-					}
-					r.ReplacesExt = append(r.ReplacesExt, ext)
-				}
+				r.ReplacesExt = appendExtSlot(r.ReplacesExt, ext, len(r.Replaces))
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[PublicationStatus](d, t)
 				if err != nil {
@@ -603,13 +597,7 @@ func (r *MessageDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Parent = append(r.Parent, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ParentExt) < len(r.Parent)-1 {
-						r.ParentExt = append(r.ParentExt, nil)
-					}
-					r.ParentExt = append(r.ParentExt, ext)
-				}
+				r.ParentExt = appendExtSlot(r.ParentExt, ext, len(r.Parent))
 			case "eventCoding":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -662,6 +650,8 @@ func (r *MessageDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 			}
 		case xml.EndElement:
+			r.ReplacesExt = alignExtSlots(r.ReplacesExt, len(r.Replaces))
+			r.ParentExt = alignExtSlots(r.ParentExt, len(r.Parent))
 			return nil
 		}
 	}
@@ -977,6 +967,8 @@ func NewMessageDefinitionBuilder() *MessageDefinitionBuilder {
 
 // Build returns the constructed MessageDefinition resource.
 func (b *MessageDefinitionBuilder) Build() *MessageDefinition {
+	b.messageDefinition.ReplacesExt = alignExtSlots(b.messageDefinition.ReplacesExt, len(b.messageDefinition.Replaces))
+	b.messageDefinition.ParentExt = alignExtSlots(b.messageDefinition.ParentExt, len(b.messageDefinition.Parent))
 	return b.messageDefinition
 }
 
@@ -1312,20 +1304,24 @@ func (b *MessageDefinitionBuilder) SetTitleExt(v Element) *MessageDefinitionBuil
 }
 
 // AddReplacesExt attaches extensions to the Replaces element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddReplaces twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *MessageDefinitionBuilder) AddReplacesExt(v *Element) *MessageDefinitionBuilder {
-	for len(b.messageDefinition.ReplacesExt) < len(b.messageDefinition.Replaces)-1 {
+	i := len(b.messageDefinition.Replaces) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.messageDefinition.ReplacesExt) <= i {
 		b.messageDefinition.ReplacesExt = append(b.messageDefinition.ReplacesExt, nil)
 	}
-	b.messageDefinition.ReplacesExt = append(b.messageDefinition.ReplacesExt, v)
+	b.messageDefinition.ReplacesExt[i] = v
 	return b
 }
 
@@ -1420,20 +1416,24 @@ func (b *MessageDefinitionBuilder) SetBaseExt(v Element) *MessageDefinitionBuild
 }
 
 // AddParentExt attaches extensions to the Parent element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddParent twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *MessageDefinitionBuilder) AddParentExt(v *Element) *MessageDefinitionBuilder {
-	for len(b.messageDefinition.ParentExt) < len(b.messageDefinition.Parent)-1 {
+	i := len(b.messageDefinition.Parent) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.messageDefinition.ParentExt) <= i {
 		b.messageDefinition.ParentExt = append(b.messageDefinition.ParentExt, nil)
 	}
-	b.messageDefinition.ParentExt = append(b.messageDefinition.ParentExt, v)
+	b.messageDefinition.ParentExt[i] = v
 	return b
 }
 

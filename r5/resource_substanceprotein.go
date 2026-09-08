@@ -306,13 +306,7 @@ func (r *SubstanceProtein) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DisulfideLinkage = append(r.DisulfideLinkage, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DisulfideLinkageExt) < len(r.DisulfideLinkage)-1 {
-						r.DisulfideLinkageExt = append(r.DisulfideLinkageExt, nil)
-					}
-					r.DisulfideLinkageExt = append(r.DisulfideLinkageExt, ext)
-				}
+				r.DisulfideLinkageExt = appendExtSlot(r.DisulfideLinkageExt, ext, len(r.DisulfideLinkage))
 			case "subunit":
 				var v SubstanceProteinSubunit
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -325,6 +319,7 @@ func (r *SubstanceProtein) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 			}
 		case xml.EndElement:
+			r.DisulfideLinkageExt = alignExtSlots(r.DisulfideLinkageExt, len(r.DisulfideLinkage))
 			return nil
 		}
 	}
@@ -562,6 +557,7 @@ func NewSubstanceProteinBuilder() *SubstanceProteinBuilder {
 
 // Build returns the constructed SubstanceProtein resource.
 func (b *SubstanceProteinBuilder) Build() *SubstanceProtein {
+	b.substanceProtein.DisulfideLinkageExt = alignExtSlots(b.substanceProtein.DisulfideLinkageExt, len(b.substanceProtein.DisulfideLinkage))
 	return b.substanceProtein
 }
 
@@ -687,20 +683,24 @@ func (b *SubstanceProteinBuilder) SetNumberOfSubunitsExt(v Element) *SubstancePr
 }
 
 // AddDisulfideLinkageExt attaches extensions to the DisulfideLinkage element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddDisulfideLinkage twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *SubstanceProteinBuilder) AddDisulfideLinkageExt(v *Element) *SubstanceProteinBuilder {
-	for len(b.substanceProtein.DisulfideLinkageExt) < len(b.substanceProtein.DisulfideLinkage)-1 {
+	i := len(b.substanceProtein.DisulfideLinkage) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.substanceProtein.DisulfideLinkageExt) <= i {
 		b.substanceProtein.DisulfideLinkageExt = append(b.substanceProtein.DisulfideLinkageExt, nil)
 	}
-	b.substanceProtein.DisulfideLinkageExt = append(b.substanceProtein.DisulfideLinkageExt, v)
+	b.substanceProtein.DisulfideLinkageExt[i] = v
 	return b
 }
 

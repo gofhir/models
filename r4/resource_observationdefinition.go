@@ -374,13 +374,7 @@ func (r *ObservationDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.PermittedDataType = append(r.PermittedDataType, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.PermittedDataTypeExt) < len(r.PermittedDataType)-1 {
-						r.PermittedDataTypeExt = append(r.PermittedDataTypeExt, nil)
-					}
-					r.PermittedDataTypeExt = append(r.PermittedDataTypeExt, ext)
-				}
+				r.PermittedDataTypeExt = appendExtSlot(r.PermittedDataTypeExt, ext, len(r.PermittedDataType))
 			case "multipleResultsAllowed":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -443,6 +437,7 @@ func (r *ObservationDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 			}
 		case xml.EndElement:
+			r.PermittedDataTypeExt = alignExtSlots(r.PermittedDataTypeExt, len(r.PermittedDataType))
 			return nil
 		}
 	}
@@ -835,6 +830,7 @@ func NewObservationDefinitionBuilder() *ObservationDefinitionBuilder {
 
 // Build returns the constructed ObservationDefinition resource.
 func (b *ObservationDefinitionBuilder) Build() *ObservationDefinition {
+	b.observationDefinition.PermittedDataTypeExt = alignExtSlots(b.observationDefinition.PermittedDataTypeExt, len(b.observationDefinition.PermittedDataType))
 	return b.observationDefinition
 }
 
@@ -1004,20 +1000,24 @@ func (b *ObservationDefinitionBuilder) SetLanguageExt(v Element) *ObservationDef
 }
 
 // AddPermittedDataTypeExt attaches extensions to the PermittedDataType element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddPermittedDataType twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ObservationDefinitionBuilder) AddPermittedDataTypeExt(v *Element) *ObservationDefinitionBuilder {
-	for len(b.observationDefinition.PermittedDataTypeExt) < len(b.observationDefinition.PermittedDataType)-1 {
+	i := len(b.observationDefinition.PermittedDataType) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.observationDefinition.PermittedDataTypeExt) <= i {
 		b.observationDefinition.PermittedDataTypeExt = append(b.observationDefinition.PermittedDataTypeExt, nil)
 	}
-	b.observationDefinition.PermittedDataTypeExt = append(b.observationDefinition.PermittedDataTypeExt, v)
+	b.observationDefinition.PermittedDataTypeExt[i] = v
 	return b
 }
 

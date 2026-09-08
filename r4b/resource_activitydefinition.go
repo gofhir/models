@@ -833,13 +833,7 @@ func (r *ActivityDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Library = append(r.Library, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.LibraryExt) < len(r.Library)-1 {
-						r.LibraryExt = append(r.LibraryExt, nil)
-					}
-					r.LibraryExt = append(r.LibraryExt, ext)
-				}
+				r.LibraryExt = appendExtSlot(r.LibraryExt, ext, len(r.Library))
 			case "kind":
 				v, ext, err := xmlDecodePrimitiveCode[ActivityDefinitionKind](d, t)
 				if err != nil {
@@ -997,6 +991,7 @@ func (r *ActivityDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 			}
 		case xml.EndElement:
+			r.LibraryExt = alignExtSlots(r.LibraryExt, len(r.Library))
 			return nil
 		}
 	}
@@ -1282,6 +1277,7 @@ func NewActivityDefinitionBuilder() *ActivityDefinitionBuilder {
 
 // Build returns the constructed ActivityDefinition resource.
 func (b *ActivityDefinitionBuilder) Build() *ActivityDefinition {
+	b.activityDefinition.LibraryExt = alignExtSlots(b.activityDefinition.LibraryExt, len(b.activityDefinition.Library))
 	return b.activityDefinition
 }
 
@@ -1914,20 +1910,24 @@ func (b *ActivityDefinitionBuilder) SetLastReviewDateExt(v Element) *ActivityDef
 }
 
 // AddLibraryExt attaches extensions to the Library element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddLibrary twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ActivityDefinitionBuilder) AddLibraryExt(v *Element) *ActivityDefinitionBuilder {
-	for len(b.activityDefinition.LibraryExt) < len(b.activityDefinition.Library)-1 {
+	i := len(b.activityDefinition.Library) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.activityDefinition.LibraryExt) <= i {
 		b.activityDefinition.LibraryExt = append(b.activityDefinition.LibraryExt, nil)
 	}
-	b.activityDefinition.LibraryExt = append(b.activityDefinition.LibraryExt, v)
+	b.activityDefinition.LibraryExt[i] = v
 	return b
 }
 

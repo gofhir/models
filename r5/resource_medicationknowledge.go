@@ -436,13 +436,7 @@ func (r *MedicationKnowledge) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Name = append(r.Name, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.NameExt) < len(r.Name)-1 {
-						r.NameExt = append(r.NameExt, nil)
-					}
-					r.NameExt = append(r.NameExt, ext)
-				}
+				r.NameExt = appendExtSlot(r.NameExt, ext, len(r.Name))
 			case "relatedMedicationKnowledge":
 				var v MedicationKnowledgeRelatedMedicationKnowledge
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -534,6 +528,7 @@ func (r *MedicationKnowledge) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 			}
 		case xml.EndElement:
+			r.NameExt = alignExtSlots(r.NameExt, len(r.Name))
 			return nil
 		}
 	}
@@ -3214,6 +3209,7 @@ func NewMedicationKnowledgeBuilder() *MedicationKnowledgeBuilder {
 
 // Build returns the constructed MedicationKnowledge resource.
 func (b *MedicationKnowledgeBuilder) Build() *MedicationKnowledge {
+	b.medicationKnowledge.NameExt = alignExtSlots(b.medicationKnowledge.NameExt, len(b.medicationKnowledge.Name))
 	return b.medicationKnowledge
 }
 
@@ -3435,20 +3431,24 @@ func (b *MedicationKnowledgeBuilder) SetStatusExt(v Element) *MedicationKnowledg
 }
 
 // AddNameExt attaches extensions to the Name element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddName twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *MedicationKnowledgeBuilder) AddNameExt(v *Element) *MedicationKnowledgeBuilder {
-	for len(b.medicationKnowledge.NameExt) < len(b.medicationKnowledge.Name)-1 {
+	i := len(b.medicationKnowledge.Name) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.medicationKnowledge.NameExt) <= i {
 		b.medicationKnowledge.NameExt = append(b.medicationKnowledge.NameExt, nil)
 	}
-	b.medicationKnowledge.NameExt = append(b.medicationKnowledge.NameExt, v)
+	b.medicationKnowledge.NameExt[i] = v
 	return b
 }
 

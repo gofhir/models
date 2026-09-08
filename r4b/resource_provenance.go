@@ -368,13 +368,7 @@ func (r *Provenance) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Policy = append(r.Policy, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.PolicyExt) < len(r.Policy)-1 {
-						r.PolicyExt = append(r.PolicyExt, nil)
-					}
-					r.PolicyExt = append(r.PolicyExt, ext)
-				}
+				r.PolicyExt = appendExtSlot(r.PolicyExt, ext, len(r.Policy))
 			case "location":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -417,6 +411,7 @@ func (r *Provenance) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 			}
 		case xml.EndElement:
+			r.PolicyExt = alignExtSlots(r.PolicyExt, len(r.Policy))
 			return nil
 		}
 	}
@@ -740,6 +735,7 @@ func NewProvenanceBuilder() *ProvenanceBuilder {
 
 // Build returns the constructed Provenance resource.
 func (b *ProvenanceBuilder) Build() *Provenance {
+	b.provenance.PolicyExt = alignExtSlots(b.provenance.PolicyExt, len(b.provenance.Policy))
 	return b.provenance
 }
 
@@ -923,20 +919,24 @@ func (b *ProvenanceBuilder) SetRecordedExt(v Element) *ProvenanceBuilder {
 }
 
 // AddPolicyExt attaches extensions to the Policy element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddPolicy twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ProvenanceBuilder) AddPolicyExt(v *Element) *ProvenanceBuilder {
-	for len(b.provenance.PolicyExt) < len(b.provenance.Policy)-1 {
+	i := len(b.provenance.Policy) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.provenance.PolicyExt) <= i {
 		b.provenance.PolicyExt = append(b.provenance.PolicyExt, nil)
 	}
-	b.provenance.PolicyExt = append(b.provenance.PolicyExt, v)
+	b.provenance.PolicyExt[i] = v
 	return b
 }
 

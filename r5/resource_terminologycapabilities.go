@@ -1086,13 +1086,7 @@ func (r *TerminologyCapabilitiesCodeSystemVersion) UnmarshalXML(d *xml.Decoder, 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Language = append(r.Language, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.LanguageExt) < len(r.Language)-1 {
-						r.LanguageExt = append(r.LanguageExt, nil)
-					}
-					r.LanguageExt = append(r.LanguageExt, ext)
-				}
+				r.LanguageExt = appendExtSlot(r.LanguageExt, ext, len(r.Language))
 			case "filter":
 				var v TerminologyCapabilitiesCodeSystemVersionFilter
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1106,19 +1100,15 @@ func (r *TerminologyCapabilitiesCodeSystemVersion) UnmarshalXML(d *xml.Decoder, 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Property = append(r.Property, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.PropertyExt) < len(r.Property)-1 {
-						r.PropertyExt = append(r.PropertyExt, nil)
-					}
-					r.PropertyExt = append(r.PropertyExt, ext)
-				}
+				r.PropertyExt = appendExtSlot(r.PropertyExt, ext, len(r.Property))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.LanguageExt = alignExtSlots(r.LanguageExt, len(r.Language))
+			r.PropertyExt = alignExtSlots(r.PropertyExt, len(r.Property))
 			return nil
 		}
 	}
@@ -1244,19 +1234,14 @@ func (r *TerminologyCapabilitiesCodeSystemVersionFilter) UnmarshalXML(d *xml.Dec
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Op = append(r.Op, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.OpExt) < len(r.Op)-1 {
-						r.OpExt = append(r.OpExt, nil)
-					}
-					r.OpExt = append(r.OpExt, ext)
-				}
+				r.OpExt = appendExtSlot(r.OpExt, ext, len(r.Op))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.OpExt = alignExtSlots(r.OpExt, len(r.Op))
 			return nil
 		}
 	}
@@ -2692,6 +2677,8 @@ func NewTerminologyCapabilitiesCodeSystemVersionBuilder() *TerminologyCapabiliti
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *TerminologyCapabilitiesCodeSystemVersionBuilder) Build() TerminologyCapabilitiesCodeSystemVersion {
+	b.terminologyCapabilitiesCodeSystemVersion.LanguageExt = alignExtSlots(b.terminologyCapabilitiesCodeSystemVersion.LanguageExt, len(b.terminologyCapabilitiesCodeSystemVersion.Language))
+	b.terminologyCapabilitiesCodeSystemVersion.PropertyExt = alignExtSlots(b.terminologyCapabilitiesCodeSystemVersion.PropertyExt, len(b.terminologyCapabilitiesCodeSystemVersion.Property))
 	return *b.terminologyCapabilitiesCodeSystemVersion
 }
 
@@ -2788,38 +2775,46 @@ func (b *TerminologyCapabilitiesCodeSystemVersionBuilder) SetCompositionalExt(v 
 }
 
 // AddLanguageExt attaches extensions to the Language element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddLanguage twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *TerminologyCapabilitiesCodeSystemVersionBuilder) AddLanguageExt(v *Element) *TerminologyCapabilitiesCodeSystemVersionBuilder {
-	for len(b.terminologyCapabilitiesCodeSystemVersion.LanguageExt) < len(b.terminologyCapabilitiesCodeSystemVersion.Language)-1 {
+	i := len(b.terminologyCapabilitiesCodeSystemVersion.Language) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.terminologyCapabilitiesCodeSystemVersion.LanguageExt) <= i {
 		b.terminologyCapabilitiesCodeSystemVersion.LanguageExt = append(b.terminologyCapabilitiesCodeSystemVersion.LanguageExt, nil)
 	}
-	b.terminologyCapabilitiesCodeSystemVersion.LanguageExt = append(b.terminologyCapabilitiesCodeSystemVersion.LanguageExt, v)
+	b.terminologyCapabilitiesCodeSystemVersion.LanguageExt[i] = v
 	return b
 }
 
 // AddPropertyExt attaches extensions to the Property element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddProperty twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *TerminologyCapabilitiesCodeSystemVersionBuilder) AddPropertyExt(v *Element) *TerminologyCapabilitiesCodeSystemVersionBuilder {
-	for len(b.terminologyCapabilitiesCodeSystemVersion.PropertyExt) < len(b.terminologyCapabilitiesCodeSystemVersion.Property)-1 {
+	i := len(b.terminologyCapabilitiesCodeSystemVersion.Property) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.terminologyCapabilitiesCodeSystemVersion.PropertyExt) <= i {
 		b.terminologyCapabilitiesCodeSystemVersion.PropertyExt = append(b.terminologyCapabilitiesCodeSystemVersion.PropertyExt, nil)
 	}
-	b.terminologyCapabilitiesCodeSystemVersion.PropertyExt = append(b.terminologyCapabilitiesCodeSystemVersion.PropertyExt, v)
+	b.terminologyCapabilitiesCodeSystemVersion.PropertyExt[i] = v
 	return b
 }
 
@@ -2847,6 +2842,7 @@ func NewTerminologyCapabilitiesCodeSystemVersionFilterBuilder() *TerminologyCapa
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *TerminologyCapabilitiesCodeSystemVersionFilterBuilder) Build() TerminologyCapabilitiesCodeSystemVersionFilter {
+	b.terminologyCapabilitiesCodeSystemVersionFilter.OpExt = alignExtSlots(b.terminologyCapabilitiesCodeSystemVersionFilter.OpExt, len(b.terminologyCapabilitiesCodeSystemVersionFilter.Op))
 	return *b.terminologyCapabilitiesCodeSystemVersionFilter
 }
 
@@ -2895,20 +2891,24 @@ func (b *TerminologyCapabilitiesCodeSystemVersionFilterBuilder) SetCodeExt(v Ele
 }
 
 // AddOpExt attaches extensions to the Op element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddOp twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *TerminologyCapabilitiesCodeSystemVersionFilterBuilder) AddOpExt(v *Element) *TerminologyCapabilitiesCodeSystemVersionFilterBuilder {
-	for len(b.terminologyCapabilitiesCodeSystemVersionFilter.OpExt) < len(b.terminologyCapabilitiesCodeSystemVersionFilter.Op)-1 {
+	i := len(b.terminologyCapabilitiesCodeSystemVersionFilter.Op) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.terminologyCapabilitiesCodeSystemVersionFilter.OpExt) <= i {
 		b.terminologyCapabilitiesCodeSystemVersionFilter.OpExt = append(b.terminologyCapabilitiesCodeSystemVersionFilter.OpExt, nil)
 	}
-	b.terminologyCapabilitiesCodeSystemVersionFilter.OpExt = append(b.terminologyCapabilitiesCodeSystemVersionFilter.OpExt, v)
+	b.terminologyCapabilitiesCodeSystemVersionFilter.OpExt[i] = v
 	return b
 }
 

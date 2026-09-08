@@ -467,13 +467,7 @@ func (r *ChargeItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DefinitionUri = append(r.DefinitionUri, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DefinitionUriExt) < len(r.DefinitionUri)-1 {
-						r.DefinitionUriExt = append(r.DefinitionUriExt, nil)
-					}
-					r.DefinitionUriExt = append(r.DefinitionUriExt, ext)
-				}
+				r.DefinitionUriExt = appendExtSlot(r.DefinitionUriExt, ext, len(r.DefinitionUri))
 			case "definitionCanonical":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -481,13 +475,7 @@ func (r *ChargeItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DefinitionCanonical = append(r.DefinitionCanonical, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DefinitionCanonicalExt) < len(r.DefinitionCanonical)-1 {
-						r.DefinitionCanonicalExt = append(r.DefinitionCanonicalExt, nil)
-					}
-					r.DefinitionCanonicalExt = append(r.DefinitionCanonicalExt, ext)
-				}
+				r.DefinitionCanonicalExt = appendExtSlot(r.DefinitionCanonicalExt, ext, len(r.DefinitionCanonical))
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[ChargeItemStatus](d, t)
 				if err != nil {
@@ -647,6 +635,8 @@ func (r *ChargeItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 			}
 		case xml.EndElement:
+			r.DefinitionUriExt = alignExtSlots(r.DefinitionUriExt, len(r.DefinitionUri))
+			r.DefinitionCanonicalExt = alignExtSlots(r.DefinitionCanonicalExt, len(r.DefinitionCanonical))
 			return nil
 		}
 	}
@@ -801,6 +791,8 @@ func NewChargeItemBuilder() *ChargeItemBuilder {
 
 // Build returns the constructed ChargeItem resource.
 func (b *ChargeItemBuilder) Build() *ChargeItem {
+	b.chargeItem.DefinitionUriExt = alignExtSlots(b.chargeItem.DefinitionUriExt, len(b.chargeItem.DefinitionUri))
+	b.chargeItem.DefinitionCanonicalExt = alignExtSlots(b.chargeItem.DefinitionCanonicalExt, len(b.chargeItem.DefinitionCanonical))
 	return b.chargeItem
 }
 
@@ -1085,38 +1077,46 @@ func (b *ChargeItemBuilder) SetLanguageExt(v Element) *ChargeItemBuilder {
 }
 
 // AddDefinitionUriExt attaches extensions to the DefinitionUri element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddDefinitionUri twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ChargeItemBuilder) AddDefinitionUriExt(v *Element) *ChargeItemBuilder {
-	for len(b.chargeItem.DefinitionUriExt) < len(b.chargeItem.DefinitionUri)-1 {
+	i := len(b.chargeItem.DefinitionUri) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.chargeItem.DefinitionUriExt) <= i {
 		b.chargeItem.DefinitionUriExt = append(b.chargeItem.DefinitionUriExt, nil)
 	}
-	b.chargeItem.DefinitionUriExt = append(b.chargeItem.DefinitionUriExt, v)
+	b.chargeItem.DefinitionUriExt[i] = v
 	return b
 }
 
 // AddDefinitionCanonicalExt attaches extensions to the DefinitionCanonical element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddDefinitionCanonical twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ChargeItemBuilder) AddDefinitionCanonicalExt(v *Element) *ChargeItemBuilder {
-	for len(b.chargeItem.DefinitionCanonicalExt) < len(b.chargeItem.DefinitionCanonical)-1 {
+	i := len(b.chargeItem.DefinitionCanonical) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.chargeItem.DefinitionCanonicalExt) <= i {
 		b.chargeItem.DefinitionCanonicalExt = append(b.chargeItem.DefinitionCanonicalExt, nil)
 	}
-	b.chargeItem.DefinitionCanonicalExt = append(b.chargeItem.DefinitionCanonicalExt, v)
+	b.chargeItem.DefinitionCanonicalExt[i] = v
 	return b
 }
 

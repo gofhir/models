@@ -393,13 +393,7 @@ func (r *SubstanceSourceMaterial) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ParentSubstanceName = append(r.ParentSubstanceName, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ParentSubstanceNameExt) < len(r.ParentSubstanceName)-1 {
-						r.ParentSubstanceNameExt = append(r.ParentSubstanceNameExt, nil)
-					}
-					r.ParentSubstanceNameExt = append(r.ParentSubstanceNameExt, ext)
-				}
+				r.ParentSubstanceNameExt = appendExtSlot(r.ParentSubstanceNameExt, ext, len(r.ParentSubstanceName))
 			case "countryOfOrigin":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -413,13 +407,7 @@ func (r *SubstanceSourceMaterial) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.GeographicalLocation = append(r.GeographicalLocation, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.GeographicalLocationExt) < len(r.GeographicalLocation)-1 {
-						r.GeographicalLocationExt = append(r.GeographicalLocationExt, nil)
-					}
-					r.GeographicalLocationExt = append(r.GeographicalLocationExt, ext)
-				}
+				r.GeographicalLocationExt = appendExtSlot(r.GeographicalLocationExt, ext, len(r.GeographicalLocation))
 			case "developmentStage":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -450,6 +438,8 @@ func (r *SubstanceSourceMaterial) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				}
 			}
 		case xml.EndElement:
+			r.ParentSubstanceNameExt = alignExtSlots(r.ParentSubstanceNameExt, len(r.ParentSubstanceName))
+			r.GeographicalLocationExt = alignExtSlots(r.GeographicalLocationExt, len(r.GeographicalLocation))
 			return nil
 		}
 	}
@@ -1399,6 +1389,8 @@ func NewSubstanceSourceMaterialBuilder() *SubstanceSourceMaterialBuilder {
 
 // Build returns the constructed SubstanceSourceMaterial resource.
 func (b *SubstanceSourceMaterialBuilder) Build() *SubstanceSourceMaterial {
+	b.substanceSourceMaterial.ParentSubstanceNameExt = alignExtSlots(b.substanceSourceMaterial.ParentSubstanceNameExt, len(b.substanceSourceMaterial.ParentSubstanceName))
+	b.substanceSourceMaterial.GeographicalLocationExt = alignExtSlots(b.substanceSourceMaterial.GeographicalLocationExt, len(b.substanceSourceMaterial.GeographicalLocation))
 	return b.substanceSourceMaterial
 }
 
@@ -1582,38 +1574,46 @@ func (b *SubstanceSourceMaterialBuilder) SetOrganismNameExt(v Element) *Substanc
 }
 
 // AddParentSubstanceNameExt attaches extensions to the ParentSubstanceName element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddParentSubstanceName twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *SubstanceSourceMaterialBuilder) AddParentSubstanceNameExt(v *Element) *SubstanceSourceMaterialBuilder {
-	for len(b.substanceSourceMaterial.ParentSubstanceNameExt) < len(b.substanceSourceMaterial.ParentSubstanceName)-1 {
+	i := len(b.substanceSourceMaterial.ParentSubstanceName) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.substanceSourceMaterial.ParentSubstanceNameExt) <= i {
 		b.substanceSourceMaterial.ParentSubstanceNameExt = append(b.substanceSourceMaterial.ParentSubstanceNameExt, nil)
 	}
-	b.substanceSourceMaterial.ParentSubstanceNameExt = append(b.substanceSourceMaterial.ParentSubstanceNameExt, v)
+	b.substanceSourceMaterial.ParentSubstanceNameExt[i] = v
 	return b
 }
 
 // AddGeographicalLocationExt attaches extensions to the GeographicalLocation element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddGeographicalLocation twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *SubstanceSourceMaterialBuilder) AddGeographicalLocationExt(v *Element) *SubstanceSourceMaterialBuilder {
-	for len(b.substanceSourceMaterial.GeographicalLocationExt) < len(b.substanceSourceMaterial.GeographicalLocation)-1 {
+	i := len(b.substanceSourceMaterial.GeographicalLocation) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.substanceSourceMaterial.GeographicalLocationExt) <= i {
 		b.substanceSourceMaterial.GeographicalLocationExt = append(b.substanceSourceMaterial.GeographicalLocationExt, nil)
 	}
-	b.substanceSourceMaterial.GeographicalLocationExt = append(b.substanceSourceMaterial.GeographicalLocationExt, v)
+	b.substanceSourceMaterial.GeographicalLocationExt[i] = v
 	return b
 }
 

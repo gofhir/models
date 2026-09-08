@@ -678,13 +678,7 @@ func (r *PlanDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Library = append(r.Library, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.LibraryExt) < len(r.Library)-1 {
-						r.LibraryExt = append(r.LibraryExt, nil)
-					}
-					r.LibraryExt = append(r.LibraryExt, ext)
-				}
+				r.LibraryExt = appendExtSlot(r.LibraryExt, ext, len(r.Library))
 			case "goal":
 				var v PlanDefinitionGoal
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -703,6 +697,7 @@ func (r *PlanDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 			}
 		case xml.EndElement:
+			r.LibraryExt = alignExtSlots(r.LibraryExt, len(r.Library))
 			return nil
 		}
 	}
@@ -1098,13 +1093,7 @@ func (r *PlanDefinitionAction) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.GoalId = append(r.GoalId, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.GoalIdExt) < len(r.GoalId)-1 {
-						r.GoalIdExt = append(r.GoalIdExt, nil)
-					}
-					r.GoalIdExt = append(r.GoalIdExt, ext)
-				}
+				r.GoalIdExt = appendExtSlot(r.GoalIdExt, ext, len(r.GoalId))
 			case "subjectCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1270,6 +1259,7 @@ func (r *PlanDefinitionAction) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 			}
 		case xml.EndElement:
+			r.GoalIdExt = alignExtSlots(r.GoalIdExt, len(r.GoalId))
 			return nil
 		}
 	}
@@ -2204,6 +2194,7 @@ func NewPlanDefinitionBuilder() *PlanDefinitionBuilder {
 
 // Build returns the constructed PlanDefinition resource.
 func (b *PlanDefinitionBuilder) Build() *PlanDefinition {
+	b.planDefinition.LibraryExt = alignExtSlots(b.planDefinition.LibraryExt, len(b.planDefinition.Library))
 	return b.planDefinition
 }
 
@@ -2647,20 +2638,24 @@ func (b *PlanDefinitionBuilder) SetLastReviewDateExt(v Element) *PlanDefinitionB
 }
 
 // AddLibraryExt attaches extensions to the Library element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddLibrary twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *PlanDefinitionBuilder) AddLibraryExt(v *Element) *PlanDefinitionBuilder {
-	for len(b.planDefinition.LibraryExt) < len(b.planDefinition.Library)-1 {
+	i := len(b.planDefinition.Library) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.planDefinition.LibraryExt) <= i {
 		b.planDefinition.LibraryExt = append(b.planDefinition.LibraryExt, nil)
 	}
-	b.planDefinition.LibraryExt = append(b.planDefinition.LibraryExt, v)
+	b.planDefinition.LibraryExt[i] = v
 	return b
 }
 
@@ -2695,6 +2690,7 @@ func NewPlanDefinitionActionBuilder() *PlanDefinitionActionBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *PlanDefinitionActionBuilder) Build() PlanDefinitionAction {
+	b.planDefinitionAction.GoalIdExt = alignExtSlots(b.planDefinitionAction.GoalIdExt, len(b.planDefinitionAction.GoalId))
 	return *b.planDefinitionAction
 }
 
@@ -3043,20 +3039,24 @@ func (b *PlanDefinitionActionBuilder) SetPriorityExt(v Element) *PlanDefinitionA
 }
 
 // AddGoalIdExt attaches extensions to the GoalId element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddGoalId twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *PlanDefinitionActionBuilder) AddGoalIdExt(v *Element) *PlanDefinitionActionBuilder {
-	for len(b.planDefinitionAction.GoalIdExt) < len(b.planDefinitionAction.GoalId)-1 {
+	i := len(b.planDefinitionAction.GoalId) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.planDefinitionAction.GoalIdExt) <= i {
 		b.planDefinitionAction.GoalIdExt = append(b.planDefinitionAction.GoalIdExt, nil)
 	}
-	b.planDefinitionAction.GoalIdExt = append(b.planDefinitionAction.GoalIdExt, v)
+	b.planDefinitionAction.GoalIdExt[i] = v
 	return b
 }
 

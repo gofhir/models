@@ -561,13 +561,7 @@ func (r *ActorDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Reference = append(r.Reference, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ReferenceExt) < len(r.Reference)-1 {
-						r.ReferenceExt = append(r.ReferenceExt, nil)
-					}
-					r.ReferenceExt = append(r.ReferenceExt, ext)
-				}
+				r.ReferenceExt = appendExtSlot(r.ReferenceExt, ext, len(r.Reference))
 			case "capabilities":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -582,19 +576,15 @@ func (r *ActorDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFrom = append(r.DerivedFrom, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DerivedFromExt) < len(r.DerivedFrom)-1 {
-						r.DerivedFromExt = append(r.DerivedFromExt, nil)
-					}
-					r.DerivedFromExt = append(r.DerivedFromExt, ext)
-				}
+				r.DerivedFromExt = appendExtSlot(r.DerivedFromExt, ext, len(r.DerivedFrom))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.ReferenceExt = alignExtSlots(r.ReferenceExt, len(r.Reference))
+			r.DerivedFromExt = alignExtSlots(r.DerivedFromExt, len(r.DerivedFrom))
 			return nil
 		}
 	}
@@ -620,6 +610,8 @@ func NewActorDefinitionBuilder() *ActorDefinitionBuilder {
 
 // Build returns the constructed ActorDefinition resource.
 func (b *ActorDefinitionBuilder) Build() *ActorDefinition {
+	b.actorDefinition.ReferenceExt = alignExtSlots(b.actorDefinition.ReferenceExt, len(b.actorDefinition.Reference))
+	b.actorDefinition.DerivedFromExt = alignExtSlots(b.actorDefinition.DerivedFromExt, len(b.actorDefinition.DerivedFrom))
 	return b.actorDefinition
 }
 
@@ -1009,20 +1001,24 @@ func (b *ActorDefinitionBuilder) SetDocumentationExt(v Element) *ActorDefinition
 }
 
 // AddReferenceExt attaches extensions to the Reference element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddReference twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ActorDefinitionBuilder) AddReferenceExt(v *Element) *ActorDefinitionBuilder {
-	for len(b.actorDefinition.ReferenceExt) < len(b.actorDefinition.Reference)-1 {
+	i := len(b.actorDefinition.Reference) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.actorDefinition.ReferenceExt) <= i {
 		b.actorDefinition.ReferenceExt = append(b.actorDefinition.ReferenceExt, nil)
 	}
-	b.actorDefinition.ReferenceExt = append(b.actorDefinition.ReferenceExt, v)
+	b.actorDefinition.ReferenceExt[i] = v
 	return b
 }
 
@@ -1037,20 +1033,24 @@ func (b *ActorDefinitionBuilder) SetCapabilitiesExt(v Element) *ActorDefinitionB
 }
 
 // AddDerivedFromExt attaches extensions to the DerivedFrom element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddDerivedFrom twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ActorDefinitionBuilder) AddDerivedFromExt(v *Element) *ActorDefinitionBuilder {
-	for len(b.actorDefinition.DerivedFromExt) < len(b.actorDefinition.DerivedFrom)-1 {
+	i := len(b.actorDefinition.DerivedFrom) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.actorDefinition.DerivedFromExt) <= i {
 		b.actorDefinition.DerivedFromExt = append(b.actorDefinition.DerivedFromExt, nil)
 	}
-	b.actorDefinition.DerivedFromExt = append(b.actorDefinition.DerivedFromExt, v)
+	b.actorDefinition.DerivedFromExt[i] = v
 	return b
 }
 

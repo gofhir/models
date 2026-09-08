@@ -513,19 +513,14 @@ func (r *SubscriptionChannel) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Header = append(r.Header, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.HeaderExt) < len(r.Header)-1 {
-						r.HeaderExt = append(r.HeaderExt, nil)
-					}
-					r.HeaderExt = append(r.HeaderExt, ext)
-				}
+				r.HeaderExt = appendExtSlot(r.HeaderExt, ext, len(r.Header))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.HeaderExt = alignExtSlots(r.HeaderExt, len(r.Header))
 			return nil
 		}
 	}
@@ -753,6 +748,7 @@ func NewSubscriptionChannelBuilder() *SubscriptionChannelBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *SubscriptionChannelBuilder) Build() SubscriptionChannel {
+	b.subscriptionChannel.HeaderExt = alignExtSlots(b.subscriptionChannel.HeaderExt, len(b.subscriptionChannel.Header))
 	return *b.subscriptionChannel
 }
 
@@ -833,19 +829,23 @@ func (b *SubscriptionChannelBuilder) SetPayloadExt(v Element) *SubscriptionChann
 }
 
 // AddHeaderExt attaches extensions to the Header element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddHeader twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *SubscriptionChannelBuilder) AddHeaderExt(v *Element) *SubscriptionChannelBuilder {
-	for len(b.subscriptionChannel.HeaderExt) < len(b.subscriptionChannel.Header)-1 {
+	i := len(b.subscriptionChannel.Header) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.subscriptionChannel.HeaderExt) <= i {
 		b.subscriptionChannel.HeaderExt = append(b.subscriptionChannel.HeaderExt, nil)
 	}
-	b.subscriptionChannel.HeaderExt = append(b.subscriptionChannel.HeaderExt, v)
+	b.subscriptionChannel.HeaderExt[i] = v
 	return b
 }

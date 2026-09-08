@@ -624,13 +624,7 @@ func (r *SearchParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Base = append(r.Base, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.BaseExt) < len(r.Base)-1 {
-						r.BaseExt = append(r.BaseExt, nil)
-					}
-					r.BaseExt = append(r.BaseExt, ext)
-				}
+				r.BaseExt = appendExtSlot(r.BaseExt, ext, len(r.Base))
 			case "type":
 				v, ext, err := xmlDecodePrimitiveCode[SearchParamType](d, t)
 				if err != nil {
@@ -666,13 +660,7 @@ func (r *SearchParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Target = append(r.Target, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.TargetExt) < len(r.Target)-1 {
-						r.TargetExt = append(r.TargetExt, nil)
-					}
-					r.TargetExt = append(r.TargetExt, ext)
-				}
+				r.TargetExt = appendExtSlot(r.TargetExt, ext, len(r.Target))
 			case "multipleOr":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -694,13 +682,7 @@ func (r *SearchParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Comparator = append(r.Comparator, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ComparatorExt) < len(r.Comparator)-1 {
-						r.ComparatorExt = append(r.ComparatorExt, nil)
-					}
-					r.ComparatorExt = append(r.ComparatorExt, ext)
-				}
+				r.ComparatorExt = appendExtSlot(r.ComparatorExt, ext, len(r.Comparator))
 			case "modifier":
 				v, ext, err := xmlDecodePrimitiveCode[SearchModifierCode](d, t)
 				if err != nil {
@@ -708,13 +690,7 @@ func (r *SearchParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Modifier = append(r.Modifier, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ModifierExt) < len(r.Modifier)-1 {
-						r.ModifierExt = append(r.ModifierExt, nil)
-					}
-					r.ModifierExt = append(r.ModifierExt, ext)
-				}
+				r.ModifierExt = appendExtSlot(r.ModifierExt, ext, len(r.Modifier))
 			case "chain":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -722,13 +698,7 @@ func (r *SearchParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Chain = append(r.Chain, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ChainExt) < len(r.Chain)-1 {
-						r.ChainExt = append(r.ChainExt, nil)
-					}
-					r.ChainExt = append(r.ChainExt, ext)
-				}
+				r.ChainExt = appendExtSlot(r.ChainExt, ext, len(r.Chain))
 			case "component":
 				var v SearchParameterComponent
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -741,6 +711,11 @@ func (r *SearchParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 			}
 		case xml.EndElement:
+			r.BaseExt = alignExtSlots(r.BaseExt, len(r.Base))
+			r.TargetExt = alignExtSlots(r.TargetExt, len(r.Target))
+			r.ComparatorExt = alignExtSlots(r.ComparatorExt, len(r.Comparator))
+			r.ModifierExt = alignExtSlots(r.ModifierExt, len(r.Modifier))
+			r.ChainExt = alignExtSlots(r.ChainExt, len(r.Chain))
 			return nil
 		}
 	}
@@ -897,6 +872,11 @@ func NewSearchParameterBuilder() *SearchParameterBuilder {
 
 // Build returns the constructed SearchParameter resource.
 func (b *SearchParameterBuilder) Build() *SearchParameter {
+	b.searchParameter.BaseExt = alignExtSlots(b.searchParameter.BaseExt, len(b.searchParameter.Base))
+	b.searchParameter.TargetExt = alignExtSlots(b.searchParameter.TargetExt, len(b.searchParameter.Target))
+	b.searchParameter.ComparatorExt = alignExtSlots(b.searchParameter.ComparatorExt, len(b.searchParameter.Comparator))
+	b.searchParameter.ModifierExt = alignExtSlots(b.searchParameter.ModifierExt, len(b.searchParameter.Modifier))
+	b.searchParameter.ChainExt = alignExtSlots(b.searchParameter.ChainExt, len(b.searchParameter.Chain))
 	return b.searchParameter
 }
 
@@ -1352,20 +1332,24 @@ func (b *SearchParameterBuilder) SetCodeExt(v Element) *SearchParameterBuilder {
 }
 
 // AddBaseExt attaches extensions to the Base element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddBase twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *SearchParameterBuilder) AddBaseExt(v *Element) *SearchParameterBuilder {
-	for len(b.searchParameter.BaseExt) < len(b.searchParameter.Base)-1 {
+	i := len(b.searchParameter.Base) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.searchParameter.BaseExt) <= i {
 		b.searchParameter.BaseExt = append(b.searchParameter.BaseExt, nil)
 	}
-	b.searchParameter.BaseExt = append(b.searchParameter.BaseExt, v)
+	b.searchParameter.BaseExt[i] = v
 	return b
 }
 
@@ -1410,20 +1394,24 @@ func (b *SearchParameterBuilder) SetConstraintExt(v Element) *SearchParameterBui
 }
 
 // AddTargetExt attaches extensions to the Target element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddTarget twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *SearchParameterBuilder) AddTargetExt(v *Element) *SearchParameterBuilder {
-	for len(b.searchParameter.TargetExt) < len(b.searchParameter.Target)-1 {
+	i := len(b.searchParameter.Target) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.searchParameter.TargetExt) <= i {
 		b.searchParameter.TargetExt = append(b.searchParameter.TargetExt, nil)
 	}
-	b.searchParameter.TargetExt = append(b.searchParameter.TargetExt, v)
+	b.searchParameter.TargetExt[i] = v
 	return b
 }
 
@@ -1448,56 +1436,68 @@ func (b *SearchParameterBuilder) SetMultipleAndExt(v Element) *SearchParameterBu
 }
 
 // AddComparatorExt attaches extensions to the Comparator element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddComparator twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *SearchParameterBuilder) AddComparatorExt(v *Element) *SearchParameterBuilder {
-	for len(b.searchParameter.ComparatorExt) < len(b.searchParameter.Comparator)-1 {
+	i := len(b.searchParameter.Comparator) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.searchParameter.ComparatorExt) <= i {
 		b.searchParameter.ComparatorExt = append(b.searchParameter.ComparatorExt, nil)
 	}
-	b.searchParameter.ComparatorExt = append(b.searchParameter.ComparatorExt, v)
+	b.searchParameter.ComparatorExt[i] = v
 	return b
 }
 
 // AddModifierExt attaches extensions to the Modifier element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddModifier twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *SearchParameterBuilder) AddModifierExt(v *Element) *SearchParameterBuilder {
-	for len(b.searchParameter.ModifierExt) < len(b.searchParameter.Modifier)-1 {
+	i := len(b.searchParameter.Modifier) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.searchParameter.ModifierExt) <= i {
 		b.searchParameter.ModifierExt = append(b.searchParameter.ModifierExt, nil)
 	}
-	b.searchParameter.ModifierExt = append(b.searchParameter.ModifierExt, v)
+	b.searchParameter.ModifierExt[i] = v
 	return b
 }
 
 // AddChainExt attaches extensions to the Chain element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddChain twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *SearchParameterBuilder) AddChainExt(v *Element) *SearchParameterBuilder {
-	for len(b.searchParameter.ChainExt) < len(b.searchParameter.Chain)-1 {
+	i := len(b.searchParameter.Chain) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.searchParameter.ChainExt) <= i {
 		b.searchParameter.ChainExt = append(b.searchParameter.ChainExt, nil)
 	}
-	b.searchParameter.ChainExt = append(b.searchParameter.ChainExt, v)
+	b.searchParameter.ChainExt[i] = v
 	return b
 }
 

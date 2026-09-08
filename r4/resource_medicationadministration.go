@@ -418,13 +418,7 @@ func (r *MedicationAdministration) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Instantiates = append(r.Instantiates, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.InstantiatesExt) < len(r.Instantiates)-1 {
-						r.InstantiatesExt = append(r.InstantiatesExt, nil)
-					}
-					r.InstantiatesExt = append(r.InstantiatesExt, ext)
-				}
+				r.InstantiatesExt = appendExtSlot(r.InstantiatesExt, ext, len(r.Instantiates))
 			case "partOf":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -547,6 +541,7 @@ func (r *MedicationAdministration) UnmarshalXML(d *xml.Decoder, start xml.StartE
 				}
 			}
 		case xml.EndElement:
+			r.InstantiatesExt = alignExtSlots(r.InstantiatesExt, len(r.Instantiates))
 			return nil
 		}
 	}
@@ -896,6 +891,7 @@ func NewMedicationAdministrationBuilder() *MedicationAdministrationBuilder {
 
 // Build returns the constructed MedicationAdministration resource.
 func (b *MedicationAdministrationBuilder) Build() *MedicationAdministration {
+	b.medicationAdministration.InstantiatesExt = alignExtSlots(b.medicationAdministration.InstantiatesExt, len(b.medicationAdministration.Instantiates))
 	return b.medicationAdministration
 }
 
@@ -1139,20 +1135,24 @@ func (b *MedicationAdministrationBuilder) SetLanguageExt(v Element) *MedicationA
 }
 
 // AddInstantiatesExt attaches extensions to the Instantiates element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddInstantiates twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *MedicationAdministrationBuilder) AddInstantiatesExt(v *Element) *MedicationAdministrationBuilder {
-	for len(b.medicationAdministration.InstantiatesExt) < len(b.medicationAdministration.Instantiates)-1 {
+	i := len(b.medicationAdministration.Instantiates) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.medicationAdministration.InstantiatesExt) <= i {
 		b.medicationAdministration.InstantiatesExt = append(b.medicationAdministration.InstantiatesExt, nil)
 	}
-	b.medicationAdministration.InstantiatesExt = append(b.medicationAdministration.InstantiatesExt, v)
+	b.medicationAdministration.InstantiatesExt[i] = v
 	return b
 }
 

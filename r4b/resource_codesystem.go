@@ -1309,13 +1309,7 @@ func (r *CodeSystemFilter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Operator = append(r.Operator, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.OperatorExt) < len(r.Operator)-1 {
-						r.OperatorExt = append(r.OperatorExt, nil)
-					}
-					r.OperatorExt = append(r.OperatorExt, ext)
-				}
+				r.OperatorExt = appendExtSlot(r.OperatorExt, ext, len(r.Operator))
 			case "value":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1329,6 +1323,7 @@ func (r *CodeSystemFilter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 			}
 		case xml.EndElement:
+			r.OperatorExt = alignExtSlots(r.OperatorExt, len(r.Operator))
 			return nil
 		}
 	}
@@ -2354,6 +2349,7 @@ func NewCodeSystemFilterBuilder() *CodeSystemFilterBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *CodeSystemFilterBuilder) Build() CodeSystemFilter {
+	b.codeSystemFilter.OperatorExt = alignExtSlots(b.codeSystemFilter.OperatorExt, len(b.codeSystemFilter.Operator))
 	return *b.codeSystemFilter
 }
 
@@ -2424,20 +2420,24 @@ func (b *CodeSystemFilterBuilder) SetDescriptionExt(v Element) *CodeSystemFilter
 }
 
 // AddOperatorExt attaches extensions to the Operator element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddOperator twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *CodeSystemFilterBuilder) AddOperatorExt(v *Element) *CodeSystemFilterBuilder {
-	for len(b.codeSystemFilter.OperatorExt) < len(b.codeSystemFilter.Operator)-1 {
+	i := len(b.codeSystemFilter.Operator) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.codeSystemFilter.OperatorExt) <= i {
 		b.codeSystemFilter.OperatorExt = append(b.codeSystemFilter.OperatorExt, nil)
 	}
-	b.codeSystemFilter.OperatorExt = append(b.codeSystemFilter.OperatorExt, v)
+	b.codeSystemFilter.OperatorExt[i] = v
 	return b
 }
 

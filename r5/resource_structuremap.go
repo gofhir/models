@@ -546,13 +546,7 @@ func (r *StructureMap) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Import = append(r.Import, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ImportExt) < len(r.Import)-1 {
-						r.ImportExt = append(r.ImportExt, nil)
-					}
-					r.ImportExt = append(r.ImportExt, ext)
-				}
+				r.ImportExt = appendExtSlot(r.ImportExt, ext, len(r.Import))
 			case "const":
 				var v StructureMapConst
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -571,6 +565,7 @@ func (r *StructureMap) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 			}
 		case xml.EndElement:
+			r.ImportExt = alignExtSlots(r.ImportExt, len(r.Import))
 			return nil
 		}
 	}
@@ -1790,13 +1785,7 @@ func (r *StructureMapGroupRuleTarget) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ListMode = append(r.ListMode, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ListModeExt) < len(r.ListMode)-1 {
-						r.ListModeExt = append(r.ListModeExt, nil)
-					}
-					r.ListModeExt = append(r.ListModeExt, ext)
-				}
+				r.ListModeExt = appendExtSlot(r.ListModeExt, ext, len(r.ListMode))
 			case "listRuleId":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1823,6 +1812,7 @@ func (r *StructureMapGroupRuleTarget) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 			}
 		case xml.EndElement:
+			r.ListModeExt = alignExtSlots(r.ListModeExt, len(r.ListMode))
 			return nil
 		}
 	}
@@ -2222,6 +2212,7 @@ func NewStructureMapBuilder() *StructureMapBuilder {
 
 // Build returns the constructed StructureMap resource.
 func (b *StructureMapBuilder) Build() *StructureMap {
+	b.structureMap.ImportExt = alignExtSlots(b.structureMap.ImportExt, len(b.structureMap.Import))
 	return b.structureMap
 }
 
@@ -2581,20 +2572,24 @@ func (b *StructureMapBuilder) SetCopyrightLabelExt(v Element) *StructureMapBuild
 }
 
 // AddImportExt attaches extensions to the Import element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddImport twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *StructureMapBuilder) AddImportExt(v *Element) *StructureMapBuilder {
-	for len(b.structureMap.ImportExt) < len(b.structureMap.Import)-1 {
+	i := len(b.structureMap.Import) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.structureMap.ImportExt) <= i {
 		b.structureMap.ImportExt = append(b.structureMap.ImportExt, nil)
 	}
-	b.structureMap.ImportExt = append(b.structureMap.ImportExt, v)
+	b.structureMap.ImportExt[i] = v
 	return b
 }
 
@@ -3325,6 +3320,7 @@ func NewStructureMapGroupRuleTargetBuilder() *StructureMapGroupRuleTargetBuilder
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *StructureMapGroupRuleTargetBuilder) Build() StructureMapGroupRuleTarget {
+	b.structureMapGroupRuleTarget.ListModeExt = alignExtSlots(b.structureMapGroupRuleTarget.ListModeExt, len(b.structureMapGroupRuleTarget.ListMode))
 	return *b.structureMapGroupRuleTarget
 }
 
@@ -3423,20 +3419,24 @@ func (b *StructureMapGroupRuleTargetBuilder) SetVariableExt(v Element) *Structur
 }
 
 // AddListModeExt attaches extensions to the ListMode element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddListMode twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *StructureMapGroupRuleTargetBuilder) AddListModeExt(v *Element) *StructureMapGroupRuleTargetBuilder {
-	for len(b.structureMapGroupRuleTarget.ListModeExt) < len(b.structureMapGroupRuleTarget.ListMode)-1 {
+	i := len(b.structureMapGroupRuleTarget.ListMode) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.structureMapGroupRuleTarget.ListModeExt) <= i {
 		b.structureMapGroupRuleTarget.ListModeExt = append(b.structureMapGroupRuleTarget.ListModeExt, nil)
 	}
-	b.structureMapGroupRuleTarget.ListModeExt = append(b.structureMapGroupRuleTarget.ListModeExt, v)
+	b.structureMapGroupRuleTarget.ListModeExt[i] = v
 	return b
 }
 

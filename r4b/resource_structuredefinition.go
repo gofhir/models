@@ -594,13 +594,7 @@ func (r *StructureDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ContextInvariant = append(r.ContextInvariant, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ContextInvariantExt) < len(r.ContextInvariant)-1 {
-						r.ContextInvariantExt = append(r.ContextInvariantExt, nil)
-					}
-					r.ContextInvariantExt = append(r.ContextInvariantExt, ext)
-				}
+				r.ContextInvariantExt = appendExtSlot(r.ContextInvariantExt, ext, len(r.ContextInvariant))
 			case "type":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -640,6 +634,7 @@ func (r *StructureDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 			}
 		case xml.EndElement:
+			r.ContextInvariantExt = alignExtSlots(r.ContextInvariantExt, len(r.ContextInvariant))
 			return nil
 		}
 	}
@@ -1187,6 +1182,7 @@ func NewStructureDefinitionBuilder() *StructureDefinitionBuilder {
 
 // Build returns the constructed StructureDefinition resource.
 func (b *StructureDefinitionBuilder) Build() *StructureDefinition {
+	b.structureDefinition.ContextInvariantExt = alignExtSlots(b.structureDefinition.ContextInvariantExt, len(b.structureDefinition.ContextInvariant))
 	return b.structureDefinition
 }
 
@@ -1580,20 +1576,24 @@ func (b *StructureDefinitionBuilder) SetAbstractExt(v Element) *StructureDefinit
 }
 
 // AddContextInvariantExt attaches extensions to the ContextInvariant element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddContextInvariant twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *StructureDefinitionBuilder) AddContextInvariantExt(v *Element) *StructureDefinitionBuilder {
-	for len(b.structureDefinition.ContextInvariantExt) < len(b.structureDefinition.ContextInvariant)-1 {
+	i := len(b.structureDefinition.ContextInvariant) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.structureDefinition.ContextInvariantExt) <= i {
 		b.structureDefinition.ContextInvariantExt = append(b.structureDefinition.ContextInvariantExt, nil)
 	}
-	b.structureDefinition.ContextInvariantExt = append(b.structureDefinition.ContextInvariantExt, v)
+	b.structureDefinition.ContextInvariantExt[i] = v
 	return b
 }
 

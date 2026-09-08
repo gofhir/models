@@ -450,13 +450,7 @@ func (r *OperationOutcomeIssue) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Location = append(r.Location, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.LocationExt) < len(r.Location)-1 {
-						r.LocationExt = append(r.LocationExt, nil)
-					}
-					r.LocationExt = append(r.LocationExt, ext)
-				}
+				r.LocationExt = appendExtSlot(r.LocationExt, ext, len(r.Location))
 			case "expression":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -464,19 +458,15 @@ func (r *OperationOutcomeIssue) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Expression = append(r.Expression, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ExpressionExt) < len(r.Expression)-1 {
-						r.ExpressionExt = append(r.ExpressionExt, nil)
-					}
-					r.ExpressionExt = append(r.ExpressionExt, ext)
-				}
+				r.ExpressionExt = appendExtSlot(r.ExpressionExt, ext, len(r.Expression))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.LocationExt = alignExtSlots(r.LocationExt, len(r.Location))
+			r.ExpressionExt = alignExtSlots(r.ExpressionExt, len(r.Expression))
 			return nil
 		}
 	}
@@ -618,6 +608,8 @@ func NewOperationOutcomeIssueBuilder() *OperationOutcomeIssueBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *OperationOutcomeIssueBuilder) Build() OperationOutcomeIssue {
+	b.operationOutcomeIssue.LocationExt = alignExtSlots(b.operationOutcomeIssue.LocationExt, len(b.operationOutcomeIssue.Location))
+	b.operationOutcomeIssue.ExpressionExt = alignExtSlots(b.operationOutcomeIssue.ExpressionExt, len(b.operationOutcomeIssue.Expression))
 	return *b.operationOutcomeIssue
 }
 
@@ -714,37 +706,45 @@ func (b *OperationOutcomeIssueBuilder) SetDiagnosticsExt(v Element) *OperationOu
 }
 
 // AddLocationExt attaches extensions to the Location element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddLocation twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *OperationOutcomeIssueBuilder) AddLocationExt(v *Element) *OperationOutcomeIssueBuilder {
-	for len(b.operationOutcomeIssue.LocationExt) < len(b.operationOutcomeIssue.Location)-1 {
+	i := len(b.operationOutcomeIssue.Location) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.operationOutcomeIssue.LocationExt) <= i {
 		b.operationOutcomeIssue.LocationExt = append(b.operationOutcomeIssue.LocationExt, nil)
 	}
-	b.operationOutcomeIssue.LocationExt = append(b.operationOutcomeIssue.LocationExt, v)
+	b.operationOutcomeIssue.LocationExt[i] = v
 	return b
 }
 
 // AddExpressionExt attaches extensions to the Expression element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddExpression twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *OperationOutcomeIssueBuilder) AddExpressionExt(v *Element) *OperationOutcomeIssueBuilder {
-	for len(b.operationOutcomeIssue.ExpressionExt) < len(b.operationOutcomeIssue.Expression)-1 {
+	i := len(b.operationOutcomeIssue.Expression) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.operationOutcomeIssue.ExpressionExt) <= i {
 		b.operationOutcomeIssue.ExpressionExt = append(b.operationOutcomeIssue.ExpressionExt, nil)
 	}
-	b.operationOutcomeIssue.ExpressionExt = append(b.operationOutcomeIssue.ExpressionExt, v)
+	b.operationOutcomeIssue.ExpressionExt[i] = v
 	return b
 }

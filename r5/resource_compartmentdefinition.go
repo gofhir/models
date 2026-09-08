@@ -644,13 +644,7 @@ func (r *CompartmentDefinitionResource) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Param = append(r.Param, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ParamExt) < len(r.Param)-1 {
-						r.ParamExt = append(r.ParamExt, nil)
-					}
-					r.ParamExt = append(r.ParamExt, ext)
-				}
+				r.ParamExt = appendExtSlot(r.ParamExt, ext, len(r.Param))
 			case "documentation":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -678,6 +672,7 @@ func (r *CompartmentDefinitionResource) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 			}
 		case xml.EndElement:
+			r.ParamExt = alignExtSlots(r.ParamExt, len(r.Param))
 			return nil
 		}
 	}
@@ -1058,6 +1053,7 @@ func NewCompartmentDefinitionResourceBuilder() *CompartmentDefinitionResourceBui
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *CompartmentDefinitionResourceBuilder) Build() CompartmentDefinitionResource {
+	b.compartmentDefinitionResource.ParamExt = alignExtSlots(b.compartmentDefinitionResource.ParamExt, len(b.compartmentDefinitionResource.Param))
 	return *b.compartmentDefinitionResource
 }
 
@@ -1124,20 +1120,24 @@ func (b *CompartmentDefinitionResourceBuilder) SetCodeExt(v Element) *Compartmen
 }
 
 // AddParamExt attaches extensions to the Param element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddParam twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *CompartmentDefinitionResourceBuilder) AddParamExt(v *Element) *CompartmentDefinitionResourceBuilder {
-	for len(b.compartmentDefinitionResource.ParamExt) < len(b.compartmentDefinitionResource.Param)-1 {
+	i := len(b.compartmentDefinitionResource.Param) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.compartmentDefinitionResource.ParamExt) <= i {
 		b.compartmentDefinitionResource.ParamExt = append(b.compartmentDefinitionResource.ParamExt, nil)
 	}
-	b.compartmentDefinitionResource.ParamExt = append(b.compartmentDefinitionResource.ParamExt, v)
+	b.compartmentDefinitionResource.ParamExt[i] = v
 	return b
 }
 

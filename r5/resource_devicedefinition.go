@@ -582,13 +582,7 @@ func (r *DeviceDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ProductionIdentifierInUDI = append(r.ProductionIdentifierInUDI, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ProductionIdentifierInUDIExt) < len(r.ProductionIdentifierInUDI)-1 {
-						r.ProductionIdentifierInUDIExt = append(r.ProductionIdentifierInUDIExt, nil)
-					}
-					r.ProductionIdentifierInUDIExt = append(r.ProductionIdentifierInUDIExt, ext)
-				}
+				r.ProductionIdentifierInUDIExt = appendExtSlot(r.ProductionIdentifierInUDIExt, ext, len(r.ProductionIdentifierInUDI))
 			case "guideline":
 				var v DeviceDefinitionGuideline
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -613,6 +607,7 @@ func (r *DeviceDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 			}
 		case xml.EndElement:
+			r.ProductionIdentifierInUDIExt = alignExtSlots(r.ProductionIdentifierInUDIExt, len(r.ProductionIdentifierInUDI))
 			return nil
 		}
 	}
@@ -1041,13 +1036,7 @@ func (r *DeviceDefinitionConformsTo) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Version = append(r.Version, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.VersionExt) < len(r.Version)-1 {
-						r.VersionExt = append(r.VersionExt, nil)
-					}
-					r.VersionExt = append(r.VersionExt, ext)
-				}
+				r.VersionExt = appendExtSlot(r.VersionExt, ext, len(r.Version))
 			case "source":
 				var v RelatedArtifact
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1060,6 +1049,7 @@ func (r *DeviceDefinitionConformsTo) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 			}
 		case xml.EndElement:
+			r.VersionExt = alignExtSlots(r.VersionExt, len(r.Version))
 			return nil
 		}
 	}
@@ -3071,6 +3061,7 @@ func NewDeviceDefinitionBuilder() *DeviceDefinitionBuilder {
 
 // Build returns the constructed DeviceDefinition resource.
 func (b *DeviceDefinitionBuilder) Build() *DeviceDefinition {
+	b.deviceDefinition.ProductionIdentifierInUDIExt = alignExtSlots(b.deviceDefinition.ProductionIdentifierInUDIExt, len(b.deviceDefinition.ProductionIdentifierInUDI))
 	return b.deviceDefinition
 }
 
@@ -3348,20 +3339,24 @@ func (b *DeviceDefinitionBuilder) SetModelNumberExt(v Element) *DeviceDefinition
 }
 
 // AddProductionIdentifierInUDIExt attaches extensions to the ProductionIdentifierInUDI element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddProductionIdentifierInUDI twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *DeviceDefinitionBuilder) AddProductionIdentifierInUDIExt(v *Element) *DeviceDefinitionBuilder {
-	for len(b.deviceDefinition.ProductionIdentifierInUDIExt) < len(b.deviceDefinition.ProductionIdentifierInUDI)-1 {
+	i := len(b.deviceDefinition.ProductionIdentifierInUDI) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.deviceDefinition.ProductionIdentifierInUDIExt) <= i {
 		b.deviceDefinition.ProductionIdentifierInUDIExt = append(b.deviceDefinition.ProductionIdentifierInUDIExt, nil)
 	}
-	b.deviceDefinition.ProductionIdentifierInUDIExt = append(b.deviceDefinition.ProductionIdentifierInUDIExt, v)
+	b.deviceDefinition.ProductionIdentifierInUDIExt[i] = v
 	return b
 }
 
@@ -3515,6 +3510,7 @@ func NewDeviceDefinitionConformsToBuilder() *DeviceDefinitionConformsToBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *DeviceDefinitionConformsToBuilder) Build() DeviceDefinitionConformsTo {
+	b.deviceDefinitionConformsTo.VersionExt = alignExtSlots(b.deviceDefinitionConformsTo.VersionExt, len(b.deviceDefinitionConformsTo.Version))
 	return *b.deviceDefinitionConformsTo
 }
 
@@ -3565,20 +3561,24 @@ func (b *DeviceDefinitionConformsToBuilder) AddSource(v RelatedArtifact) *Device
 }
 
 // AddVersionExt attaches extensions to the Version element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddVersion twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *DeviceDefinitionConformsToBuilder) AddVersionExt(v *Element) *DeviceDefinitionConformsToBuilder {
-	for len(b.deviceDefinitionConformsTo.VersionExt) < len(b.deviceDefinitionConformsTo.Version)-1 {
+	i := len(b.deviceDefinitionConformsTo.Version) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.deviceDefinitionConformsTo.VersionExt) <= i {
 		b.deviceDefinitionConformsTo.VersionExt = append(b.deviceDefinitionConformsTo.VersionExt, nil)
 	}
-	b.deviceDefinitionConformsTo.VersionExt = append(b.deviceDefinitionConformsTo.VersionExt, v)
+	b.deviceDefinitionConformsTo.VersionExt[i] = v
 	return b
 }
 

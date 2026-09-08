@@ -627,13 +627,7 @@ func (r *ConditionDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Definition = append(r.Definition, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DefinitionExt) < len(r.Definition)-1 {
-						r.DefinitionExt = append(r.DefinitionExt, nil)
-					}
-					r.DefinitionExt = append(r.DefinitionExt, ext)
-				}
+				r.DefinitionExt = appendExtSlot(r.DefinitionExt, ext, len(r.Definition))
 			case "observation":
 				var v ConditionDefinitionObservation
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -676,6 +670,7 @@ func (r *ConditionDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 			}
 		case xml.EndElement:
+			r.DefinitionExt = alignExtSlots(r.DefinitionExt, len(r.Definition))
 			return nil
 		}
 	}
@@ -1374,6 +1369,7 @@ func NewConditionDefinitionBuilder() *ConditionDefinitionBuilder {
 
 // Build returns the constructed ConditionDefinition resource.
 func (b *ConditionDefinitionBuilder) Build() *ConditionDefinition {
+	b.conditionDefinition.DefinitionExt = alignExtSlots(b.conditionDefinition.DefinitionExt, len(b.conditionDefinition.Definition))
 	return b.conditionDefinition
 }
 
@@ -1791,20 +1787,24 @@ func (b *ConditionDefinitionBuilder) SetHasStageExt(v Element) *ConditionDefinit
 }
 
 // AddDefinitionExt attaches extensions to the Definition element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddDefinition twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ConditionDefinitionBuilder) AddDefinitionExt(v *Element) *ConditionDefinitionBuilder {
-	for len(b.conditionDefinition.DefinitionExt) < len(b.conditionDefinition.Definition)-1 {
+	i := len(b.conditionDefinition.Definition) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.conditionDefinition.DefinitionExt) <= i {
 		b.conditionDefinition.DefinitionExt = append(b.conditionDefinition.DefinitionExt, nil)
 	}
-	b.conditionDefinition.DefinitionExt = append(b.conditionDefinition.DefinitionExt, v)
+	b.conditionDefinition.DefinitionExt[i] = v
 	return b
 }
 

@@ -390,13 +390,7 @@ func (r *CoverageEligibilityResponse) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Purpose = append(r.Purpose, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.PurposeExt) < len(r.Purpose)-1 {
-						r.PurposeExt = append(r.PurposeExt, nil)
-					}
-					r.PurposeExt = append(r.PurposeExt, ext)
-				}
+				r.PurposeExt = appendExtSlot(r.PurposeExt, ext, len(r.Purpose))
 			case "patient":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -486,6 +480,7 @@ func (r *CoverageEligibilityResponse) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 			}
 		case xml.EndElement:
+			r.PurposeExt = alignExtSlots(r.PurposeExt, len(r.Purpose))
 			return nil
 		}
 	}
@@ -1271,6 +1266,7 @@ func NewCoverageEligibilityResponseBuilder() *CoverageEligibilityResponseBuilder
 
 // Build returns the constructed CoverageEligibilityResponse resource.
 func (b *CoverageEligibilityResponseBuilder) Build() *CoverageEligibilityResponse {
+	b.coverageEligibilityResponse.PurposeExt = alignExtSlots(b.coverageEligibilityResponse.PurposeExt, len(b.coverageEligibilityResponse.Purpose))
 	return b.coverageEligibilityResponse
 }
 
@@ -1484,20 +1480,24 @@ func (b *CoverageEligibilityResponseBuilder) SetStatusExt(v Element) *CoverageEl
 }
 
 // AddPurposeExt attaches extensions to the Purpose element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddPurpose twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *CoverageEligibilityResponseBuilder) AddPurposeExt(v *Element) *CoverageEligibilityResponseBuilder {
-	for len(b.coverageEligibilityResponse.PurposeExt) < len(b.coverageEligibilityResponse.Purpose)-1 {
+	i := len(b.coverageEligibilityResponse.Purpose) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.coverageEligibilityResponse.PurposeExt) <= i {
 		b.coverageEligibilityResponse.PurposeExt = append(b.coverageEligibilityResponse.PurposeExt, nil)
 	}
-	b.coverageEligibilityResponse.PurposeExt = append(b.coverageEligibilityResponse.PurposeExt, v)
+	b.coverageEligibilityResponse.PurposeExt[i] = v
 	return b
 }
 

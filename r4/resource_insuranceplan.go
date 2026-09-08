@@ -389,13 +389,7 @@ func (r *InsurancePlan) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Alias = append(r.Alias, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.AliasExt) < len(r.Alias)-1 {
-						r.AliasExt = append(r.AliasExt, nil)
-					}
-					r.AliasExt = append(r.AliasExt, ext)
-				}
+				r.AliasExt = appendExtSlot(r.AliasExt, ext, len(r.Alias))
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -456,6 +450,7 @@ func (r *InsurancePlan) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 			}
 		case xml.EndElement:
+			r.AliasExt = alignExtSlots(r.AliasExt, len(r.Alias))
 			return nil
 		}
 	}
@@ -1801,6 +1796,7 @@ func NewInsurancePlanBuilder() *InsurancePlanBuilder {
 
 // Build returns the constructed InsurancePlan resource.
 func (b *InsurancePlanBuilder) Build() *InsurancePlan {
+	b.insurancePlan.AliasExt = alignExtSlots(b.insurancePlan.AliasExt, len(b.insurancePlan.Alias))
 	return b.insurancePlan
 }
 
@@ -1996,20 +1992,24 @@ func (b *InsurancePlanBuilder) SetNameExt(v Element) *InsurancePlanBuilder {
 }
 
 // AddAliasExt attaches extensions to the Alias element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddAlias twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *InsurancePlanBuilder) AddAliasExt(v *Element) *InsurancePlanBuilder {
-	for len(b.insurancePlan.AliasExt) < len(b.insurancePlan.Alias)-1 {
+	i := len(b.insurancePlan.Alias) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.insurancePlan.AliasExt) <= i {
 		b.insurancePlan.AliasExt = append(b.insurancePlan.AliasExt, nil)
 	}
-	b.insurancePlan.AliasExt = append(b.insurancePlan.AliasExt, v)
+	b.insurancePlan.AliasExt[i] = v
 	return b
 }
 

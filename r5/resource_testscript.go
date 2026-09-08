@@ -612,13 +612,7 @@ func (r *TestScript) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Profile = append(r.Profile, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ProfileExt) < len(r.Profile)-1 {
-						r.ProfileExt = append(r.ProfileExt, nil)
-					}
-					r.ProfileExt = append(r.ProfileExt, ext)
-				}
+				r.ProfileExt = appendExtSlot(r.ProfileExt, ext, len(r.Profile))
 			case "variable":
 				var v TestScriptVariable
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -649,6 +643,7 @@ func (r *TestScript) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 			}
 		case xml.EndElement:
+			r.ProfileExt = alignExtSlots(r.ProfileExt, len(r.Profile))
 			return nil
 		}
 	}
@@ -1240,13 +1235,7 @@ func (r *TestScriptMetadataCapability) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Origin = append(r.Origin, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.OriginExt) < len(r.Origin)-1 {
-						r.OriginExt = append(r.OriginExt, nil)
-					}
-					r.OriginExt = append(r.OriginExt, ext)
-				}
+				r.OriginExt = appendExtSlot(r.OriginExt, ext, len(r.Origin))
 			case "destination":
 				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
@@ -1261,13 +1250,7 @@ func (r *TestScriptMetadataCapability) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Link = append(r.Link, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.LinkExt) < len(r.Link)-1 {
-						r.LinkExt = append(r.LinkExt, nil)
-					}
-					r.LinkExt = append(r.LinkExt, ext)
-				}
+				r.LinkExt = appendExtSlot(r.LinkExt, ext, len(r.Link))
 			case "capabilities":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1281,6 +1264,8 @@ func (r *TestScriptMetadataCapability) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 			}
 		case xml.EndElement:
+			r.OriginExt = alignExtSlots(r.OriginExt, len(r.Origin))
+			r.LinkExt = alignExtSlots(r.LinkExt, len(r.Link))
 			return nil
 		}
 	}
@@ -3742,6 +3727,7 @@ func NewTestScriptBuilder() *TestScriptBuilder {
 
 // Build returns the constructed TestScript resource.
 func (b *TestScriptBuilder) Build() *TestScript {
+	b.testScript.ProfileExt = alignExtSlots(b.testScript.ProfileExt, len(b.testScript.Profile))
 	return b.testScript
 }
 
@@ -4137,20 +4123,24 @@ func (b *TestScriptBuilder) SetCopyrightLabelExt(v Element) *TestScriptBuilder {
 }
 
 // AddProfileExt attaches extensions to the Profile element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddProfile twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *TestScriptBuilder) AddProfileExt(v *Element) *TestScriptBuilder {
-	for len(b.testScript.ProfileExt) < len(b.testScript.Profile)-1 {
+	i := len(b.testScript.Profile) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.testScript.ProfileExt) <= i {
 		b.testScript.ProfileExt = append(b.testScript.ProfileExt, nil)
 	}
-	b.testScript.ProfileExt = append(b.testScript.ProfileExt, v)
+	b.testScript.ProfileExt[i] = v
 	return b
 }
 
@@ -4408,6 +4398,8 @@ func NewTestScriptMetadataCapabilityBuilder() *TestScriptMetadataCapabilityBuild
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *TestScriptMetadataCapabilityBuilder) Build() TestScriptMetadataCapability {
+	b.testScriptMetadataCapability.OriginExt = alignExtSlots(b.testScriptMetadataCapability.OriginExt, len(b.testScriptMetadataCapability.Origin))
+	b.testScriptMetadataCapability.LinkExt = alignExtSlots(b.testScriptMetadataCapability.LinkExt, len(b.testScriptMetadataCapability.Link))
 	return *b.testScriptMetadataCapability
 }
 
@@ -4510,20 +4502,24 @@ func (b *TestScriptMetadataCapabilityBuilder) SetDescriptionExt(v Element) *Test
 }
 
 // AddOriginExt attaches extensions to the Origin element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddOrigin twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *TestScriptMetadataCapabilityBuilder) AddOriginExt(v *Element) *TestScriptMetadataCapabilityBuilder {
-	for len(b.testScriptMetadataCapability.OriginExt) < len(b.testScriptMetadataCapability.Origin)-1 {
+	i := len(b.testScriptMetadataCapability.Origin) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.testScriptMetadataCapability.OriginExt) <= i {
 		b.testScriptMetadataCapability.OriginExt = append(b.testScriptMetadataCapability.OriginExt, nil)
 	}
-	b.testScriptMetadataCapability.OriginExt = append(b.testScriptMetadataCapability.OriginExt, v)
+	b.testScriptMetadataCapability.OriginExt[i] = v
 	return b
 }
 
@@ -4538,20 +4534,24 @@ func (b *TestScriptMetadataCapabilityBuilder) SetDestinationExt(v Element) *Test
 }
 
 // AddLinkExt attaches extensions to the Link element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddLink twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *TestScriptMetadataCapabilityBuilder) AddLinkExt(v *Element) *TestScriptMetadataCapabilityBuilder {
-	for len(b.testScriptMetadataCapability.LinkExt) < len(b.testScriptMetadataCapability.Link)-1 {
+	i := len(b.testScriptMetadataCapability.Link) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.testScriptMetadataCapability.LinkExt) <= i {
 		b.testScriptMetadataCapability.LinkExt = append(b.testScriptMetadataCapability.LinkExt, nil)
 	}
-	b.testScriptMetadataCapability.LinkExt = append(b.testScriptMetadataCapability.LinkExt, v)
+	b.testScriptMetadataCapability.LinkExt[i] = v
 	return b
 }
 

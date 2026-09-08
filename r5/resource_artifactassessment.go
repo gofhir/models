@@ -668,13 +668,7 @@ func (r *ArtifactAssessmentContent) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Path = append(r.Path, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.PathExt) < len(r.Path)-1 {
-						r.PathExt = append(r.PathExt, nil)
-					}
-					r.PathExt = append(r.PathExt, ext)
-				}
+				r.PathExt = appendExtSlot(r.PathExt, ext, len(r.Path))
 			case "relatedArtifact":
 				var v RelatedArtifact
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -700,6 +694,7 @@ func (r *ArtifactAssessmentContent) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 			}
 		case xml.EndElement:
+			r.PathExt = alignExtSlots(r.PathExt, len(r.Path))
 			return nil
 		}
 	}
@@ -1050,6 +1045,7 @@ func NewArtifactAssessmentContentBuilder() *ArtifactAssessmentContentBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ArtifactAssessmentContentBuilder) Build() ArtifactAssessmentContent {
+	b.artifactAssessmentContent.PathExt = alignExtSlots(b.artifactAssessmentContent.PathExt, len(b.artifactAssessmentContent.Path))
 	return *b.artifactAssessmentContent
 }
 
@@ -1156,20 +1152,24 @@ func (b *ArtifactAssessmentContentBuilder) SetSummaryExt(v Element) *ArtifactAss
 }
 
 // AddPathExt attaches extensions to the Path element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddPath twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ArtifactAssessmentContentBuilder) AddPathExt(v *Element) *ArtifactAssessmentContentBuilder {
-	for len(b.artifactAssessmentContent.PathExt) < len(b.artifactAssessmentContent.Path)-1 {
+	i := len(b.artifactAssessmentContent.Path) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.artifactAssessmentContent.PathExt) <= i {
 		b.artifactAssessmentContent.PathExt = append(b.artifactAssessmentContent.PathExt, nil)
 	}
-	b.artifactAssessmentContent.PathExt = append(b.artifactAssessmentContent.PathExt, v)
+	b.artifactAssessmentContent.PathExt[i] = v
 	return b
 }
 

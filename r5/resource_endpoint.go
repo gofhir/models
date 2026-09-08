@@ -419,19 +419,14 @@ func (r *Endpoint) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Header = append(r.Header, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.HeaderExt) < len(r.Header)-1 {
-						r.HeaderExt = append(r.HeaderExt, nil)
-					}
-					r.HeaderExt = append(r.HeaderExt, ext)
-				}
+				r.HeaderExt = appendExtSlot(r.HeaderExt, ext, len(r.Header))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.HeaderExt = alignExtSlots(r.HeaderExt, len(r.Header))
 			return nil
 		}
 	}
@@ -556,19 +551,14 @@ func (r *EndpointPayload) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.MimeType = append(r.MimeType, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.MimeTypeExt) < len(r.MimeType)-1 {
-						r.MimeTypeExt = append(r.MimeTypeExt, nil)
-					}
-					r.MimeTypeExt = append(r.MimeTypeExt, ext)
-				}
+				r.MimeTypeExt = appendExtSlot(r.MimeTypeExt, ext, len(r.MimeType))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.MimeTypeExt = alignExtSlots(r.MimeTypeExt, len(r.MimeType))
 			return nil
 		}
 	}
@@ -594,6 +584,7 @@ func NewEndpointBuilder() *EndpointBuilder {
 
 // Build returns the constructed Endpoint resource.
 func (b *EndpointBuilder) Build() *Endpoint {
+	b.endpoint.HeaderExt = alignExtSlots(b.endpoint.HeaderExt, len(b.endpoint.Header))
 	return b.endpoint
 }
 
@@ -797,20 +788,24 @@ func (b *EndpointBuilder) SetAddressExt(v Element) *EndpointBuilder {
 }
 
 // AddHeaderExt attaches extensions to the Header element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddHeader twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *EndpointBuilder) AddHeaderExt(v *Element) *EndpointBuilder {
-	for len(b.endpoint.HeaderExt) < len(b.endpoint.Header)-1 {
+	i := len(b.endpoint.Header) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.endpoint.HeaderExt) <= i {
 		b.endpoint.HeaderExt = append(b.endpoint.HeaderExt, nil)
 	}
-	b.endpoint.HeaderExt = append(b.endpoint.HeaderExt, v)
+	b.endpoint.HeaderExt[i] = v
 	return b
 }
 
@@ -838,6 +833,7 @@ func NewEndpointPayloadBuilder() *EndpointPayloadBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *EndpointPayloadBuilder) Build() EndpointPayload {
+	b.endpointPayload.MimeTypeExt = alignExtSlots(b.endpointPayload.MimeTypeExt, len(b.endpointPayload.MimeType))
 	return *b.endpointPayload
 }
 
@@ -876,19 +872,23 @@ func (b *EndpointPayloadBuilder) AddMimeType(v string) *EndpointPayloadBuilder {
 }
 
 // AddMimeTypeExt attaches extensions to the MimeType element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddMimeType twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *EndpointPayloadBuilder) AddMimeTypeExt(v *Element) *EndpointPayloadBuilder {
-	for len(b.endpointPayload.MimeTypeExt) < len(b.endpointPayload.MimeType)-1 {
+	i := len(b.endpointPayload.MimeType) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.endpointPayload.MimeTypeExt) <= i {
 		b.endpointPayload.MimeTypeExt = append(b.endpointPayload.MimeTypeExt, nil)
 	}
-	b.endpointPayload.MimeTypeExt = append(b.endpointPayload.MimeTypeExt, v)
+	b.endpointPayload.MimeTypeExt[i] = v
 	return b
 }

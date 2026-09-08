@@ -3532,6 +3532,7 @@ func NewAddressBuilder() *AddressBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *AddressBuilder) Build() Address {
+	b.address.LineExt = alignExtSlots(b.address.LineExt, len(b.address.Line))
 	return *b.address
 }
 
@@ -3642,20 +3643,24 @@ func (b *AddressBuilder) SetTextExt(v Element) *AddressBuilder {
 }
 
 // AddLineExt attaches extensions to the Line element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddLine twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *AddressBuilder) AddLineExt(v *Element) *AddressBuilder {
-	for len(b.address.LineExt) < len(b.address.Line)-1 {
+	i := len(b.address.Line) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.address.LineExt) <= i {
 		b.address.LineExt = append(b.address.LineExt, nil)
 	}
-	b.address.LineExt = append(b.address.LineExt, v)
+	b.address.LineExt[i] = v
 	return b
 }
 
@@ -4723,6 +4728,8 @@ func NewDataRequirementBuilder() *DataRequirementBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *DataRequirementBuilder) Build() DataRequirement {
+	b.dataRequirement.ProfileExt = alignExtSlots(b.dataRequirement.ProfileExt, len(b.dataRequirement.Profile))
+	b.dataRequirement.MustSupportExt = alignExtSlots(b.dataRequirement.MustSupportExt, len(b.dataRequirement.MustSupport))
 	return *b.dataRequirement
 }
 
@@ -4821,38 +4828,46 @@ func (b *DataRequirementBuilder) SetTypeExt(v Element) *DataRequirementBuilder {
 }
 
 // AddProfileExt attaches extensions to the Profile element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddProfile twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *DataRequirementBuilder) AddProfileExt(v *Element) *DataRequirementBuilder {
-	for len(b.dataRequirement.ProfileExt) < len(b.dataRequirement.Profile)-1 {
+	i := len(b.dataRequirement.Profile) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.dataRequirement.ProfileExt) <= i {
 		b.dataRequirement.ProfileExt = append(b.dataRequirement.ProfileExt, nil)
 	}
-	b.dataRequirement.ProfileExt = append(b.dataRequirement.ProfileExt, v)
+	b.dataRequirement.ProfileExt[i] = v
 	return b
 }
 
 // AddMustSupportExt attaches extensions to the MustSupport element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddMustSupport twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *DataRequirementBuilder) AddMustSupportExt(v *Element) *DataRequirementBuilder {
-	for len(b.dataRequirement.MustSupportExt) < len(b.dataRequirement.MustSupport)-1 {
+	i := len(b.dataRequirement.MustSupport) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.dataRequirement.MustSupportExt) <= i {
 		b.dataRequirement.MustSupportExt = append(b.dataRequirement.MustSupportExt, nil)
 	}
-	b.dataRequirement.MustSupportExt = append(b.dataRequirement.MustSupportExt, v)
+	b.dataRequirement.MustSupportExt[i] = v
 	return b
 }
 
@@ -5317,6 +5332,9 @@ func NewElementDefinitionBuilder() *ElementDefinitionBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ElementDefinitionBuilder) Build() ElementDefinition {
+	b.elementDefinition.RepresentationExt = alignExtSlots(b.elementDefinition.RepresentationExt, len(b.elementDefinition.Representation))
+	b.elementDefinition.AliasExt = alignExtSlots(b.elementDefinition.AliasExt, len(b.elementDefinition.Alias))
+	b.elementDefinition.ConditionExt = alignExtSlots(b.elementDefinition.ConditionExt, len(b.elementDefinition.Condition))
 	return *b.elementDefinition
 }
 
@@ -7854,20 +7872,24 @@ func (b *ElementDefinitionBuilder) SetPathExt(v Element) *ElementDefinitionBuild
 }
 
 // AddRepresentationExt attaches extensions to the Representation element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddRepresentation twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ElementDefinitionBuilder) AddRepresentationExt(v *Element) *ElementDefinitionBuilder {
-	for len(b.elementDefinition.RepresentationExt) < len(b.elementDefinition.Representation)-1 {
+	i := len(b.elementDefinition.Representation) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.elementDefinition.RepresentationExt) <= i {
 		b.elementDefinition.RepresentationExt = append(b.elementDefinition.RepresentationExt, nil)
 	}
-	b.elementDefinition.RepresentationExt = append(b.elementDefinition.RepresentationExt, v)
+	b.elementDefinition.RepresentationExt[i] = v
 	return b
 }
 
@@ -7942,20 +7964,24 @@ func (b *ElementDefinitionBuilder) SetRequirementsExt(v Element) *ElementDefinit
 }
 
 // AddAliasExt attaches extensions to the Alias element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddAlias twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ElementDefinitionBuilder) AddAliasExt(v *Element) *ElementDefinitionBuilder {
-	for len(b.elementDefinition.AliasExt) < len(b.elementDefinition.Alias)-1 {
+	i := len(b.elementDefinition.Alias) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.elementDefinition.AliasExt) <= i {
 		b.elementDefinition.AliasExt = append(b.elementDefinition.AliasExt, nil)
 	}
-	b.elementDefinition.AliasExt = append(b.elementDefinition.AliasExt, v)
+	b.elementDefinition.AliasExt[i] = v
 	return b
 }
 
@@ -8020,20 +8046,24 @@ func (b *ElementDefinitionBuilder) SetMaxLengthExt(v Element) *ElementDefinition
 }
 
 // AddConditionExt attaches extensions to the Condition element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddCondition twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ElementDefinitionBuilder) AddConditionExt(v *Element) *ElementDefinitionBuilder {
-	for len(b.elementDefinition.ConditionExt) < len(b.elementDefinition.Condition)-1 {
+	i := len(b.elementDefinition.Condition) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.elementDefinition.ConditionExt) <= i {
 		b.elementDefinition.ConditionExt = append(b.elementDefinition.ConditionExt, nil)
 	}
-	b.elementDefinition.ConditionExt = append(b.elementDefinition.ConditionExt, v)
+	b.elementDefinition.ConditionExt[i] = v
 	return b
 }
 
@@ -9278,6 +9308,9 @@ func NewHumanNameBuilder() *HumanNameBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *HumanNameBuilder) Build() HumanName {
+	b.humanName.GivenExt = alignExtSlots(b.humanName.GivenExt, len(b.humanName.Given))
+	b.humanName.PrefixExt = alignExtSlots(b.humanName.PrefixExt, len(b.humanName.Prefix))
+	b.humanName.SuffixExt = alignExtSlots(b.humanName.SuffixExt, len(b.humanName.Suffix))
 	return *b.humanName
 }
 
@@ -9378,56 +9411,68 @@ func (b *HumanNameBuilder) SetFamilyExt(v Element) *HumanNameBuilder {
 }
 
 // AddGivenExt attaches extensions to the Given element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddGiven twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *HumanNameBuilder) AddGivenExt(v *Element) *HumanNameBuilder {
-	for len(b.humanName.GivenExt) < len(b.humanName.Given)-1 {
+	i := len(b.humanName.Given) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.humanName.GivenExt) <= i {
 		b.humanName.GivenExt = append(b.humanName.GivenExt, nil)
 	}
-	b.humanName.GivenExt = append(b.humanName.GivenExt, v)
+	b.humanName.GivenExt[i] = v
 	return b
 }
 
 // AddPrefixExt attaches extensions to the Prefix element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddPrefix twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *HumanNameBuilder) AddPrefixExt(v *Element) *HumanNameBuilder {
-	for len(b.humanName.PrefixExt) < len(b.humanName.Prefix)-1 {
+	i := len(b.humanName.Prefix) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.humanName.PrefixExt) <= i {
 		b.humanName.PrefixExt = append(b.humanName.PrefixExt, nil)
 	}
-	b.humanName.PrefixExt = append(b.humanName.PrefixExt, v)
+	b.humanName.PrefixExt[i] = v
 	return b
 }
 
 // AddSuffixExt attaches extensions to the Suffix element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddSuffix twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *HumanNameBuilder) AddSuffixExt(v *Element) *HumanNameBuilder {
-	for len(b.humanName.SuffixExt) < len(b.humanName.Suffix)-1 {
+	i := len(b.humanName.Suffix) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.humanName.SuffixExt) <= i {
 		b.humanName.SuffixExt = append(b.humanName.SuffixExt, nil)
 	}
-	b.humanName.SuffixExt = append(b.humanName.SuffixExt, v)
+	b.humanName.SuffixExt[i] = v
 	return b
 }
 
@@ -9645,6 +9690,7 @@ func NewMetaBuilder() *MetaBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *MetaBuilder) Build() Meta {
+	b.meta.ProfileExt = alignExtSlots(b.meta.ProfileExt, len(b.meta.Profile))
 	return *b.meta
 }
 
@@ -9731,20 +9777,24 @@ func (b *MetaBuilder) SetSourceExt(v Element) *MetaBuilder {
 }
 
 // AddProfileExt attaches extensions to the Profile element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddProfile twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *MetaBuilder) AddProfileExt(v *Element) *MetaBuilder {
-	for len(b.meta.ProfileExt) < len(b.meta.Profile)-1 {
+	i := len(b.meta.Profile) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.meta.ProfileExt) <= i {
 		b.meta.ProfileExt = append(b.meta.ProfileExt, nil)
 	}
-	b.meta.ProfileExt = append(b.meta.ProfileExt, v)
+	b.meta.ProfileExt[i] = v
 	return b
 }
 
@@ -10228,6 +10278,8 @@ func NewProdCharacteristicBuilder() *ProdCharacteristicBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ProdCharacteristicBuilder) Build() ProdCharacteristic {
+	b.prodCharacteristic.ColorExt = alignExtSlots(b.prodCharacteristic.ColorExt, len(b.prodCharacteristic.Color))
+	b.prodCharacteristic.ImprintExt = alignExtSlots(b.prodCharacteristic.ImprintExt, len(b.prodCharacteristic.Imprint))
 	return *b.prodCharacteristic
 }
 
@@ -10334,38 +10386,46 @@ func (b *ProdCharacteristicBuilder) SetShapeExt(v Element) *ProdCharacteristicBu
 }
 
 // AddColorExt attaches extensions to the Color element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddColor twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ProdCharacteristicBuilder) AddColorExt(v *Element) *ProdCharacteristicBuilder {
-	for len(b.prodCharacteristic.ColorExt) < len(b.prodCharacteristic.Color)-1 {
+	i := len(b.prodCharacteristic.Color) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.prodCharacteristic.ColorExt) <= i {
 		b.prodCharacteristic.ColorExt = append(b.prodCharacteristic.ColorExt, nil)
 	}
-	b.prodCharacteristic.ColorExt = append(b.prodCharacteristic.ColorExt, v)
+	b.prodCharacteristic.ColorExt[i] = v
 	return b
 }
 
 // AddImprintExt attaches extensions to the Imprint element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddImprint twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ProdCharacteristicBuilder) AddImprintExt(v *Element) *ProdCharacteristicBuilder {
-	for len(b.prodCharacteristic.ImprintExt) < len(b.prodCharacteristic.Imprint)-1 {
+	i := len(b.prodCharacteristic.Imprint) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.prodCharacteristic.ImprintExt) <= i {
 		b.prodCharacteristic.ImprintExt = append(b.prodCharacteristic.ImprintExt, nil)
 	}
-	b.prodCharacteristic.ImprintExt = append(b.prodCharacteristic.ImprintExt, v)
+	b.prodCharacteristic.ImprintExt[i] = v
 	return b
 }
 
@@ -11236,6 +11296,7 @@ func NewTimingBuilder() *TimingBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *TimingBuilder) Build() Timing {
+	b.timing.EventExt = alignExtSlots(b.timing.EventExt, len(b.timing.Event))
 	return *b.timing
 }
 
@@ -11280,20 +11341,24 @@ func (b *TimingBuilder) SetCode(v CodeableConcept) *TimingBuilder {
 }
 
 // AddEventExt attaches extensions to the Event element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddEvent twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *TimingBuilder) AddEventExt(v *Element) *TimingBuilder {
-	for len(b.timing.EventExt) < len(b.timing.Event)-1 {
+	i := len(b.timing.Event) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.timing.EventExt) <= i {
 		b.timing.EventExt = append(b.timing.EventExt, nil)
 	}
-	b.timing.EventExt = append(b.timing.EventExt, v)
+	b.timing.EventExt[i] = v
 	return b
 }
 
@@ -13600,6 +13665,9 @@ func NewElementDefinitionTypeBuilder() *ElementDefinitionTypeBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ElementDefinitionTypeBuilder) Build() ElementDefinitionType {
+	b.elementDefinitionType.ProfileExt = alignExtSlots(b.elementDefinitionType.ProfileExt, len(b.elementDefinitionType.Profile))
+	b.elementDefinitionType.TargetProfileExt = alignExtSlots(b.elementDefinitionType.TargetProfileExt, len(b.elementDefinitionType.TargetProfile))
+	b.elementDefinitionType.AggregationExt = alignExtSlots(b.elementDefinitionType.AggregationExt, len(b.elementDefinitionType.Aggregation))
 	return *b.elementDefinitionType
 }
 
@@ -13668,56 +13736,68 @@ func (b *ElementDefinitionTypeBuilder) SetCodeExt(v Element) *ElementDefinitionT
 }
 
 // AddProfileExt attaches extensions to the Profile element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddProfile twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ElementDefinitionTypeBuilder) AddProfileExt(v *Element) *ElementDefinitionTypeBuilder {
-	for len(b.elementDefinitionType.ProfileExt) < len(b.elementDefinitionType.Profile)-1 {
+	i := len(b.elementDefinitionType.Profile) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.elementDefinitionType.ProfileExt) <= i {
 		b.elementDefinitionType.ProfileExt = append(b.elementDefinitionType.ProfileExt, nil)
 	}
-	b.elementDefinitionType.ProfileExt = append(b.elementDefinitionType.ProfileExt, v)
+	b.elementDefinitionType.ProfileExt[i] = v
 	return b
 }
 
 // AddTargetProfileExt attaches extensions to the TargetProfile element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddTargetProfile twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ElementDefinitionTypeBuilder) AddTargetProfileExt(v *Element) *ElementDefinitionTypeBuilder {
-	for len(b.elementDefinitionType.TargetProfileExt) < len(b.elementDefinitionType.TargetProfile)-1 {
+	i := len(b.elementDefinitionType.TargetProfile) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.elementDefinitionType.TargetProfileExt) <= i {
 		b.elementDefinitionType.TargetProfileExt = append(b.elementDefinitionType.TargetProfileExt, nil)
 	}
-	b.elementDefinitionType.TargetProfileExt = append(b.elementDefinitionType.TargetProfileExt, v)
+	b.elementDefinitionType.TargetProfileExt[i] = v
 	return b
 }
 
 // AddAggregationExt attaches extensions to the Aggregation element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddAggregation twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ElementDefinitionTypeBuilder) AddAggregationExt(v *Element) *ElementDefinitionTypeBuilder {
-	for len(b.elementDefinitionType.AggregationExt) < len(b.elementDefinitionType.Aggregation)-1 {
+	i := len(b.elementDefinitionType.Aggregation) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.elementDefinitionType.AggregationExt) <= i {
 		b.elementDefinitionType.AggregationExt = append(b.elementDefinitionType.AggregationExt, nil)
 	}
-	b.elementDefinitionType.AggregationExt = append(b.elementDefinitionType.AggregationExt, v)
+	b.elementDefinitionType.AggregationExt[i] = v
 	return b
 }
 
@@ -13755,6 +13835,9 @@ func NewTimingRepeatBuilder() *TimingRepeatBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *TimingRepeatBuilder) Build() TimingRepeat {
+	b.timingRepeat.DayOfWeekExt = alignExtSlots(b.timingRepeat.DayOfWeekExt, len(b.timingRepeat.DayOfWeek))
+	b.timingRepeat.TimeOfDayExt = alignExtSlots(b.timingRepeat.TimeOfDayExt, len(b.timingRepeat.TimeOfDay))
+	b.timingRepeat.WhenExt = alignExtSlots(b.timingRepeat.WhenExt, len(b.timingRepeat.When))
 	return *b.timingRepeat
 }
 
@@ -14000,56 +14083,68 @@ func (b *TimingRepeatBuilder) SetPeriodUnitExt(v Element) *TimingRepeatBuilder {
 }
 
 // AddDayOfWeekExt attaches extensions to the DayOfWeek element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddDayOfWeek twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *TimingRepeatBuilder) AddDayOfWeekExt(v *Element) *TimingRepeatBuilder {
-	for len(b.timingRepeat.DayOfWeekExt) < len(b.timingRepeat.DayOfWeek)-1 {
+	i := len(b.timingRepeat.DayOfWeek) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.timingRepeat.DayOfWeekExt) <= i {
 		b.timingRepeat.DayOfWeekExt = append(b.timingRepeat.DayOfWeekExt, nil)
 	}
-	b.timingRepeat.DayOfWeekExt = append(b.timingRepeat.DayOfWeekExt, v)
+	b.timingRepeat.DayOfWeekExt[i] = v
 	return b
 }
 
 // AddTimeOfDayExt attaches extensions to the TimeOfDay element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddTimeOfDay twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *TimingRepeatBuilder) AddTimeOfDayExt(v *Element) *TimingRepeatBuilder {
-	for len(b.timingRepeat.TimeOfDayExt) < len(b.timingRepeat.TimeOfDay)-1 {
+	i := len(b.timingRepeat.TimeOfDay) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.timingRepeat.TimeOfDayExt) <= i {
 		b.timingRepeat.TimeOfDayExt = append(b.timingRepeat.TimeOfDayExt, nil)
 	}
-	b.timingRepeat.TimeOfDayExt = append(b.timingRepeat.TimeOfDayExt, v)
+	b.timingRepeat.TimeOfDayExt[i] = v
 	return b
 }
 
 // AddWhenExt attaches extensions to the When element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddWhen twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *TimingRepeatBuilder) AddWhenExt(v *Element) *TimingRepeatBuilder {
-	for len(b.timingRepeat.WhenExt) < len(b.timingRepeat.When)-1 {
+	i := len(b.timingRepeat.When) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.timingRepeat.WhenExt) <= i {
 		b.timingRepeat.WhenExt = append(b.timingRepeat.WhenExt, nil)
 	}
-	b.timingRepeat.WhenExt = append(b.timingRepeat.WhenExt, v)
+	b.timingRepeat.WhenExt[i] = v
 	return b
 }
 
@@ -17684,13 +17779,7 @@ func (r *Address) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Line = append(r.Line, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.LineExt) < len(r.Line)-1 {
-						r.LineExt = append(r.LineExt, nil)
-					}
-					r.LineExt = append(r.LineExt, ext)
-				}
+				r.LineExt = appendExtSlot(r.LineExt, ext, len(r.Line))
 			case "city":
 				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
@@ -17738,6 +17827,7 @@ func (r *Address) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error {
 				}
 			}
 		case xml.EndElement:
+			r.LineExt = alignExtSlots(r.LineExt, len(r.Line))
 			return nil
 		}
 	}
@@ -18400,13 +18490,7 @@ func (r *DataRequirement) UnmarshalXML(dec *xml.Decoder, start xml.StartElement)
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Profile = append(r.Profile, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ProfileExt) < len(r.Profile)-1 {
-						r.ProfileExt = append(r.ProfileExt, nil)
-					}
-					r.ProfileExt = append(r.ProfileExt, ext)
-				}
+				r.ProfileExt = appendExtSlot(r.ProfileExt, ext, len(r.Profile))
 			case "subjectCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -18426,13 +18510,7 @@ func (r *DataRequirement) UnmarshalXML(dec *xml.Decoder, start xml.StartElement)
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.MustSupport = append(r.MustSupport, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.MustSupportExt) < len(r.MustSupport)-1 {
-						r.MustSupportExt = append(r.MustSupportExt, nil)
-					}
-					r.MustSupportExt = append(r.MustSupportExt, ext)
-				}
+				r.MustSupportExt = appendExtSlot(r.MustSupportExt, ext, len(r.MustSupport))
 			case "codeFilter":
 				var v DataRequirementCodeFilter
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -18464,6 +18542,8 @@ func (r *DataRequirement) UnmarshalXML(dec *xml.Decoder, start xml.StartElement)
 				}
 			}
 		case xml.EndElement:
+			r.ProfileExt = alignExtSlots(r.ProfileExt, len(r.Profile))
+			r.MustSupportExt = alignExtSlots(r.MustSupportExt, len(r.MustSupport))
 			return nil
 		}
 	}
@@ -18778,13 +18858,7 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Representation = append(r.Representation, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.RepresentationExt) < len(r.Representation)-1 {
-						r.RepresentationExt = append(r.RepresentationExt, nil)
-					}
-					r.RepresentationExt = append(r.RepresentationExt, ext)
-				}
+				r.RepresentationExt = appendExtSlot(r.RepresentationExt, ext, len(r.Representation))
 			case "sliceName":
 				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
@@ -18853,13 +18927,7 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Alias = append(r.Alias, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.AliasExt) < len(r.Alias)-1 {
-						r.AliasExt = append(r.AliasExt, nil)
-					}
-					r.AliasExt = append(r.AliasExt, ext)
-				}
+				r.AliasExt = appendExtSlot(r.AliasExt, ext, len(r.Alias))
 			case "min":
 				v, ext, err := xmlDecodePrimitiveUint32(dec, t)
 				if err != nil {
@@ -20026,13 +20094,7 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Condition = append(r.Condition, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ConditionExt) < len(r.Condition)-1 {
-						r.ConditionExt = append(r.ConditionExt, nil)
-					}
-					r.ConditionExt = append(r.ConditionExt, ext)
-				}
+				r.ConditionExt = appendExtSlot(r.ConditionExt, ext, len(r.Condition))
 			case "constraint":
 				var v ElementDefinitionConstraint
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -20085,6 +20147,9 @@ func (r *ElementDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElemen
 				}
 			}
 		case xml.EndElement:
+			r.RepresentationExt = alignExtSlots(r.RepresentationExt, len(r.Representation))
+			r.AliasExt = alignExtSlots(r.AliasExt, len(r.Alias))
+			r.ConditionExt = alignExtSlots(r.ConditionExt, len(r.Condition))
 			return nil
 		}
 	}
@@ -20573,13 +20638,7 @@ func (r *HumanName) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Given = append(r.Given, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.GivenExt) < len(r.Given)-1 {
-						r.GivenExt = append(r.GivenExt, nil)
-					}
-					r.GivenExt = append(r.GivenExt, ext)
-				}
+				r.GivenExt = appendExtSlot(r.GivenExt, ext, len(r.Given))
 			case "prefix":
 				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
@@ -20587,13 +20646,7 @@ func (r *HumanName) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Prefix = append(r.Prefix, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.PrefixExt) < len(r.Prefix)-1 {
-						r.PrefixExt = append(r.PrefixExt, nil)
-					}
-					r.PrefixExt = append(r.PrefixExt, ext)
-				}
+				r.PrefixExt = appendExtSlot(r.PrefixExt, ext, len(r.Prefix))
 			case "suffix":
 				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
@@ -20601,13 +20654,7 @@ func (r *HumanName) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Suffix = append(r.Suffix, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.SuffixExt) < len(r.Suffix)-1 {
-						r.SuffixExt = append(r.SuffixExt, nil)
-					}
-					r.SuffixExt = append(r.SuffixExt, ext)
-				}
+				r.SuffixExt = appendExtSlot(r.SuffixExt, ext, len(r.Suffix))
 			case "period":
 				var v Period
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -20620,6 +20667,9 @@ func (r *HumanName) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error
 				}
 			}
 		case xml.EndElement:
+			r.GivenExt = alignExtSlots(r.GivenExt, len(r.Given))
+			r.PrefixExt = alignExtSlots(r.PrefixExt, len(r.Prefix))
+			r.SuffixExt = alignExtSlots(r.SuffixExt, len(r.Suffix))
 			return nil
 		}
 	}
@@ -20820,13 +20870,7 @@ func (r *Meta) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Profile = append(r.Profile, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ProfileExt) < len(r.Profile)-1 {
-						r.ProfileExt = append(r.ProfileExt, nil)
-					}
-					r.ProfileExt = append(r.ProfileExt, ext)
-				}
+				r.ProfileExt = appendExtSlot(r.ProfileExt, ext, len(r.Profile))
 			case "security":
 				var v Coding
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -20845,6 +20889,7 @@ func (r *Meta) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error {
 				}
 			}
 		case xml.EndElement:
+			r.ProfileExt = alignExtSlots(r.ProfileExt, len(r.Profile))
 			return nil
 		}
 	}
@@ -21225,13 +21270,7 @@ func (r *ProdCharacteristic) UnmarshalXML(dec *xml.Decoder, start xml.StartEleme
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Color = append(r.Color, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ColorExt) < len(r.Color)-1 {
-						r.ColorExt = append(r.ColorExt, nil)
-					}
-					r.ColorExt = append(r.ColorExt, ext)
-				}
+				r.ColorExt = appendExtSlot(r.ColorExt, ext, len(r.Color))
 			case "imprint":
 				v, ext, err := xmlDecodePrimitiveString(dec, t)
 				if err != nil {
@@ -21239,13 +21278,7 @@ func (r *ProdCharacteristic) UnmarshalXML(dec *xml.Decoder, start xml.StartEleme
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Imprint = append(r.Imprint, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ImprintExt) < len(r.Imprint)-1 {
-						r.ImprintExt = append(r.ImprintExt, nil)
-					}
-					r.ImprintExt = append(r.ImprintExt, ext)
-				}
+				r.ImprintExt = appendExtSlot(r.ImprintExt, ext, len(r.Imprint))
 			case "image":
 				var v Attachment
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -21264,6 +21297,8 @@ func (r *ProdCharacteristic) UnmarshalXML(dec *xml.Decoder, start xml.StartEleme
 				}
 			}
 		case xml.EndElement:
+			r.ColorExt = alignExtSlots(r.ColorExt, len(r.Color))
+			r.ImprintExt = alignExtSlots(r.ImprintExt, len(r.Imprint))
 			return nil
 		}
 	}
@@ -21887,13 +21922,7 @@ func (r *Timing) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Event = append(r.Event, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.EventExt) < len(r.Event)-1 {
-						r.EventExt = append(r.EventExt, nil)
-					}
-					r.EventExt = append(r.EventExt, ext)
-				}
+				r.EventExt = appendExtSlot(r.EventExt, ext, len(r.Event))
 			case "repeat":
 				var v TimingRepeat
 				if err := v.UnmarshalXML(dec, t); err != nil {
@@ -21912,6 +21941,7 @@ func (r *Timing) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error {
 				}
 			}
 		case xml.EndElement:
+			r.EventExt = alignExtSlots(r.EventExt, len(r.Event))
 			return nil
 		}
 	}
@@ -23222,13 +23252,7 @@ func (r *ElementDefinitionType) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Profile = append(r.Profile, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ProfileExt) < len(r.Profile)-1 {
-						r.ProfileExt = append(r.ProfileExt, nil)
-					}
-					r.ProfileExt = append(r.ProfileExt, ext)
-				}
+				r.ProfileExt = appendExtSlot(r.ProfileExt, ext, len(r.Profile))
 			case "targetProfile":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -23236,13 +23260,7 @@ func (r *ElementDefinitionType) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.TargetProfile = append(r.TargetProfile, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.TargetProfileExt) < len(r.TargetProfile)-1 {
-						r.TargetProfileExt = append(r.TargetProfileExt, nil)
-					}
-					r.TargetProfileExt = append(r.TargetProfileExt, ext)
-				}
+				r.TargetProfileExt = appendExtSlot(r.TargetProfileExt, ext, len(r.TargetProfile))
 			case "aggregation":
 				v, ext, err := xmlDecodePrimitiveCode[AggregationMode](d, t)
 				if err != nil {
@@ -23250,13 +23268,7 @@ func (r *ElementDefinitionType) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Aggregation = append(r.Aggregation, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.AggregationExt) < len(r.Aggregation)-1 {
-						r.AggregationExt = append(r.AggregationExt, nil)
-					}
-					r.AggregationExt = append(r.AggregationExt, ext)
-				}
+				r.AggregationExt = appendExtSlot(r.AggregationExt, ext, len(r.Aggregation))
 			case "versioning":
 				v, ext, err := xmlDecodePrimitiveCode[ReferenceVersionRules](d, t)
 				if err != nil {
@@ -23270,6 +23282,9 @@ func (r *ElementDefinitionType) UnmarshalXML(d *xml.Decoder, start xml.StartElem
 				}
 			}
 		case xml.EndElement:
+			r.ProfileExt = alignExtSlots(r.ProfileExt, len(r.Profile))
+			r.TargetProfileExt = alignExtSlots(r.TargetProfileExt, len(r.TargetProfile))
+			r.AggregationExt = alignExtSlots(r.AggregationExt, len(r.Aggregation))
 			return nil
 		}
 	}
@@ -23393,13 +23408,7 @@ func (r *TimingRepeat) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DayOfWeek = append(r.DayOfWeek, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DayOfWeekExt) < len(r.DayOfWeek)-1 {
-						r.DayOfWeekExt = append(r.DayOfWeekExt, nil)
-					}
-					r.DayOfWeekExt = append(r.DayOfWeekExt, ext)
-				}
+				r.DayOfWeekExt = appendExtSlot(r.DayOfWeekExt, ext, len(r.DayOfWeek))
 			case "timeOfDay":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -23407,13 +23416,7 @@ func (r *TimingRepeat) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.TimeOfDay = append(r.TimeOfDay, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.TimeOfDayExt) < len(r.TimeOfDay)-1 {
-						r.TimeOfDayExt = append(r.TimeOfDayExt, nil)
-					}
-					r.TimeOfDayExt = append(r.TimeOfDayExt, ext)
-				}
+				r.TimeOfDayExt = appendExtSlot(r.TimeOfDayExt, ext, len(r.TimeOfDay))
 			case "when":
 				v, ext, err := xmlDecodePrimitiveCode[EventTiming](d, t)
 				if err != nil {
@@ -23421,13 +23424,7 @@ func (r *TimingRepeat) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.When = append(r.When, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.WhenExt) < len(r.When)-1 {
-						r.WhenExt = append(r.WhenExt, nil)
-					}
-					r.WhenExt = append(r.WhenExt, ext)
-				}
+				r.WhenExt = appendExtSlot(r.WhenExt, ext, len(r.When))
 			case "offset":
 				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
@@ -23441,6 +23438,9 @@ func (r *TimingRepeat) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 			}
 		case xml.EndElement:
+			r.DayOfWeekExt = alignExtSlots(r.DayOfWeekExt, len(r.DayOfWeek))
+			r.TimeOfDayExt = alignExtSlots(r.TimeOfDayExt, len(r.TimeOfDay))
+			r.WhenExt = alignExtSlots(r.WhenExt, len(r.When))
 			return nil
 		}
 	}

@@ -1313,19 +1313,14 @@ func (r *ConsentVerification) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.VerificationDate = append(r.VerificationDate, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.VerificationDateExt) < len(r.VerificationDate)-1 {
-						r.VerificationDateExt = append(r.VerificationDateExt, nil)
-					}
-					r.VerificationDateExt = append(r.VerificationDateExt, ext)
-				}
+				r.VerificationDateExt = appendExtSlot(r.VerificationDateExt, ext, len(r.VerificationDate))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.VerificationDateExt = alignExtSlots(r.VerificationDateExt, len(r.VerificationDate))
 			return nil
 		}
 	}
@@ -1907,6 +1902,7 @@ func NewConsentVerificationBuilder() *ConsentVerificationBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ConsentVerificationBuilder) Build() ConsentVerification {
+	b.consentVerification.VerificationDateExt = alignExtSlots(b.consentVerification.VerificationDateExt, len(b.consentVerification.VerificationDate))
 	return *b.consentVerification
 }
 
@@ -1973,19 +1969,23 @@ func (b *ConsentVerificationBuilder) SetVerifiedExt(v Element) *ConsentVerificat
 }
 
 // AddVerificationDateExt attaches extensions to the VerificationDate element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddVerificationDate twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ConsentVerificationBuilder) AddVerificationDateExt(v *Element) *ConsentVerificationBuilder {
-	for len(b.consentVerification.VerificationDateExt) < len(b.consentVerification.VerificationDate)-1 {
+	i := len(b.consentVerification.VerificationDate) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.consentVerification.VerificationDateExt) <= i {
 		b.consentVerification.VerificationDateExt = append(b.consentVerification.VerificationDateExt, nil)
 	}
-	b.consentVerification.VerificationDateExt = append(b.consentVerification.VerificationDateExt, v)
+	b.consentVerification.VerificationDateExt[i] = v
 	return b
 }

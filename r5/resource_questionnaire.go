@@ -487,13 +487,7 @@ func (r *Questionnaire) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFrom = append(r.DerivedFrom, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DerivedFromExt) < len(r.DerivedFrom)-1 {
-						r.DerivedFromExt = append(r.DerivedFromExt, nil)
-					}
-					r.DerivedFromExt = append(r.DerivedFromExt, ext)
-				}
+				r.DerivedFromExt = appendExtSlot(r.DerivedFromExt, ext, len(r.DerivedFrom))
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[PublicationStatus](d, t)
 				if err != nil {
@@ -515,13 +509,7 @@ func (r *Questionnaire) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SubjectType = append(r.SubjectType, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.SubjectTypeExt) < len(r.SubjectType)-1 {
-						r.SubjectTypeExt = append(r.SubjectTypeExt, nil)
-					}
-					r.SubjectTypeExt = append(r.SubjectTypeExt, ext)
-				}
+				r.SubjectTypeExt = appendExtSlot(r.SubjectTypeExt, ext, len(r.SubjectType))
 			case "date":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -620,6 +608,8 @@ func (r *Questionnaire) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				}
 			}
 		case xml.EndElement:
+			r.DerivedFromExt = alignExtSlots(r.DerivedFromExt, len(r.DerivedFrom))
+			r.SubjectTypeExt = alignExtSlots(r.SubjectTypeExt, len(r.SubjectType))
 			return nil
 		}
 	}
@@ -1729,6 +1719,8 @@ func NewQuestionnaireBuilder() *QuestionnaireBuilder {
 
 // Build returns the constructed Questionnaire resource.
 func (b *QuestionnaireBuilder) Build() *Questionnaire {
+	b.questionnaire.DerivedFromExt = alignExtSlots(b.questionnaire.DerivedFromExt, len(b.questionnaire.DerivedFrom))
+	b.questionnaire.SubjectTypeExt = alignExtSlots(b.questionnaire.SubjectTypeExt, len(b.questionnaire.SubjectType))
 	return b.questionnaire
 }
 
@@ -2030,20 +2022,24 @@ func (b *QuestionnaireBuilder) SetTitleExt(v Element) *QuestionnaireBuilder {
 }
 
 // AddDerivedFromExt attaches extensions to the DerivedFrom element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddDerivedFrom twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *QuestionnaireBuilder) AddDerivedFromExt(v *Element) *QuestionnaireBuilder {
-	for len(b.questionnaire.DerivedFromExt) < len(b.questionnaire.DerivedFrom)-1 {
+	i := len(b.questionnaire.DerivedFrom) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.questionnaire.DerivedFromExt) <= i {
 		b.questionnaire.DerivedFromExt = append(b.questionnaire.DerivedFromExt, nil)
 	}
-	b.questionnaire.DerivedFromExt = append(b.questionnaire.DerivedFromExt, v)
+	b.questionnaire.DerivedFromExt[i] = v
 	return b
 }
 
@@ -2068,20 +2064,24 @@ func (b *QuestionnaireBuilder) SetExperimentalExt(v Element) *QuestionnaireBuild
 }
 
 // AddSubjectTypeExt attaches extensions to the SubjectType element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddSubjectType twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *QuestionnaireBuilder) AddSubjectTypeExt(v *Element) *QuestionnaireBuilder {
-	for len(b.questionnaire.SubjectTypeExt) < len(b.questionnaire.SubjectType)-1 {
+	i := len(b.questionnaire.SubjectType) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.questionnaire.SubjectTypeExt) <= i {
 		b.questionnaire.SubjectTypeExt = append(b.questionnaire.SubjectTypeExt, nil)
 	}
-	b.questionnaire.SubjectTypeExt = append(b.questionnaire.SubjectTypeExt, v)
+	b.questionnaire.SubjectTypeExt[i] = v
 	return b
 }
 

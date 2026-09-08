@@ -742,13 +742,7 @@ func (r *Measure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Library = append(r.Library, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.LibraryExt) < len(r.Library)-1 {
-						r.LibraryExt = append(r.LibraryExt, nil)
-					}
-					r.LibraryExt = append(r.LibraryExt, ext)
-				}
+				r.LibraryExt = appendExtSlot(r.LibraryExt, ext, len(r.Library))
 			case "disclaimer":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -815,13 +809,7 @@ func (r *Measure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Definition = append(r.Definition, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DefinitionExt) < len(r.Definition)-1 {
-						r.DefinitionExt = append(r.DefinitionExt, nil)
-					}
-					r.DefinitionExt = append(r.DefinitionExt, ext)
-				}
+				r.DefinitionExt = appendExtSlot(r.DefinitionExt, ext, len(r.Definition))
 			case "guidance":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -847,6 +835,8 @@ func (r *Measure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 			}
 		case xml.EndElement:
+			r.LibraryExt = alignExtSlots(r.LibraryExt, len(r.Library))
+			r.DefinitionExt = alignExtSlots(r.DefinitionExt, len(r.Definition))
 			return nil
 		}
 	}
@@ -1626,6 +1616,8 @@ func NewMeasureBuilder() *MeasureBuilder {
 
 // Build returns the constructed Measure resource.
 func (b *MeasureBuilder) Build() *Measure {
+	b.measure.LibraryExt = alignExtSlots(b.measure.LibraryExt, len(b.measure.Library))
+	b.measure.DefinitionExt = alignExtSlots(b.measure.DefinitionExt, len(b.measure.Definition))
 	return b.measure
 }
 
@@ -2133,20 +2125,24 @@ func (b *MeasureBuilder) SetLastReviewDateExt(v Element) *MeasureBuilder {
 }
 
 // AddLibraryExt attaches extensions to the Library element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddLibrary twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *MeasureBuilder) AddLibraryExt(v *Element) *MeasureBuilder {
-	for len(b.measure.LibraryExt) < len(b.measure.Library)-1 {
+	i := len(b.measure.Library) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.measure.LibraryExt) <= i {
 		b.measure.LibraryExt = append(b.measure.LibraryExt, nil)
 	}
-	b.measure.LibraryExt = append(b.measure.LibraryExt, v)
+	b.measure.LibraryExt[i] = v
 	return b
 }
 
@@ -2201,20 +2197,24 @@ func (b *MeasureBuilder) SetClinicalRecommendationStatementExt(v Element) *Measu
 }
 
 // AddDefinitionExt attaches extensions to the Definition element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddDefinition twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *MeasureBuilder) AddDefinitionExt(v *Element) *MeasureBuilder {
-	for len(b.measure.DefinitionExt) < len(b.measure.Definition)-1 {
+	i := len(b.measure.Definition) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.measure.DefinitionExt) <= i {
 		b.measure.DefinitionExt = append(b.measure.DefinitionExt, nil)
 	}
-	b.measure.DefinitionExt = append(b.measure.DefinitionExt, v)
+	b.measure.DefinitionExt[i] = v
 	return b
 }
 

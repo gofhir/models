@@ -432,13 +432,7 @@ func (r *NutritionOrder) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.InstantiatesCanonical = append(r.InstantiatesCanonical, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.InstantiatesCanonicalExt) < len(r.InstantiatesCanonical)-1 {
-						r.InstantiatesCanonicalExt = append(r.InstantiatesCanonicalExt, nil)
-					}
-					r.InstantiatesCanonicalExt = append(r.InstantiatesCanonicalExt, ext)
-				}
+				r.InstantiatesCanonicalExt = appendExtSlot(r.InstantiatesCanonicalExt, ext, len(r.InstantiatesCanonical))
 			case "instantiatesUri":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -446,13 +440,7 @@ func (r *NutritionOrder) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.InstantiatesUri = append(r.InstantiatesUri, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.InstantiatesUriExt) < len(r.InstantiatesUri)-1 {
-						r.InstantiatesUriExt = append(r.InstantiatesUriExt, nil)
-					}
-					r.InstantiatesUriExt = append(r.InstantiatesUriExt, ext)
-				}
+				r.InstantiatesUriExt = appendExtSlot(r.InstantiatesUriExt, ext, len(r.InstantiatesUri))
 			case "instantiates":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -460,13 +448,7 @@ func (r *NutritionOrder) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Instantiates = append(r.Instantiates, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.InstantiatesExt) < len(r.Instantiates)-1 {
-						r.InstantiatesExt = append(r.InstantiatesExt, nil)
-					}
-					r.InstantiatesExt = append(r.InstantiatesExt, ext)
-				}
+				r.InstantiatesExt = appendExtSlot(r.InstantiatesExt, ext, len(r.Instantiates))
 			case "basedOn":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -592,6 +574,9 @@ func (r *NutritionOrder) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 				}
 			}
 		case xml.EndElement:
+			r.InstantiatesCanonicalExt = alignExtSlots(r.InstantiatesCanonicalExt, len(r.InstantiatesCanonical))
+			r.InstantiatesUriExt = alignExtSlots(r.InstantiatesUriExt, len(r.InstantiatesUri))
+			r.InstantiatesExt = alignExtSlots(r.InstantiatesExt, len(r.Instantiates))
 			return nil
 		}
 	}
@@ -2176,6 +2161,9 @@ func NewNutritionOrderBuilder() *NutritionOrderBuilder {
 
 // Build returns the constructed NutritionOrder resource.
 func (b *NutritionOrderBuilder) Build() *NutritionOrder {
+	b.nutritionOrder.InstantiatesCanonicalExt = alignExtSlots(b.nutritionOrder.InstantiatesCanonicalExt, len(b.nutritionOrder.InstantiatesCanonical))
+	b.nutritionOrder.InstantiatesUriExt = alignExtSlots(b.nutritionOrder.InstantiatesUriExt, len(b.nutritionOrder.InstantiatesUri))
+	b.nutritionOrder.InstantiatesExt = alignExtSlots(b.nutritionOrder.InstantiatesExt, len(b.nutritionOrder.Instantiates))
 	return b.nutritionOrder
 }
 
@@ -2413,56 +2401,68 @@ func (b *NutritionOrderBuilder) SetLanguageExt(v Element) *NutritionOrderBuilder
 }
 
 // AddInstantiatesCanonicalExt attaches extensions to the InstantiatesCanonical element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddInstantiatesCanonical twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *NutritionOrderBuilder) AddInstantiatesCanonicalExt(v *Element) *NutritionOrderBuilder {
-	for len(b.nutritionOrder.InstantiatesCanonicalExt) < len(b.nutritionOrder.InstantiatesCanonical)-1 {
+	i := len(b.nutritionOrder.InstantiatesCanonical) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.nutritionOrder.InstantiatesCanonicalExt) <= i {
 		b.nutritionOrder.InstantiatesCanonicalExt = append(b.nutritionOrder.InstantiatesCanonicalExt, nil)
 	}
-	b.nutritionOrder.InstantiatesCanonicalExt = append(b.nutritionOrder.InstantiatesCanonicalExt, v)
+	b.nutritionOrder.InstantiatesCanonicalExt[i] = v
 	return b
 }
 
 // AddInstantiatesUriExt attaches extensions to the InstantiatesUri element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddInstantiatesUri twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *NutritionOrderBuilder) AddInstantiatesUriExt(v *Element) *NutritionOrderBuilder {
-	for len(b.nutritionOrder.InstantiatesUriExt) < len(b.nutritionOrder.InstantiatesUri)-1 {
+	i := len(b.nutritionOrder.InstantiatesUri) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.nutritionOrder.InstantiatesUriExt) <= i {
 		b.nutritionOrder.InstantiatesUriExt = append(b.nutritionOrder.InstantiatesUriExt, nil)
 	}
-	b.nutritionOrder.InstantiatesUriExt = append(b.nutritionOrder.InstantiatesUriExt, v)
+	b.nutritionOrder.InstantiatesUriExt[i] = v
 	return b
 }
 
 // AddInstantiatesExt attaches extensions to the Instantiates element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddInstantiates twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *NutritionOrderBuilder) AddInstantiatesExt(v *Element) *NutritionOrderBuilder {
-	for len(b.nutritionOrder.InstantiatesExt) < len(b.nutritionOrder.Instantiates)-1 {
+	i := len(b.nutritionOrder.Instantiates) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.nutritionOrder.InstantiatesExt) <= i {
 		b.nutritionOrder.InstantiatesExt = append(b.nutritionOrder.InstantiatesExt, nil)
 	}
-	b.nutritionOrder.InstantiatesExt = append(b.nutritionOrder.InstantiatesExt, v)
+	b.nutritionOrder.InstantiatesExt[i] = v
 	return b
 }
 

@@ -417,13 +417,7 @@ func (r *Location) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Alias = append(r.Alias, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.AliasExt) < len(r.Alias)-1 {
-						r.AliasExt = append(r.AliasExt, nil)
-					}
-					r.AliasExt = append(r.AliasExt, ext)
-				}
+				r.AliasExt = appendExtSlot(r.AliasExt, ext, len(r.Alias))
 			case "description":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -510,6 +504,7 @@ func (r *Location) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 			}
 		case xml.EndElement:
+			r.AliasExt = alignExtSlots(r.AliasExt, len(r.Alias))
 			return nil
 		}
 	}
@@ -680,6 +675,7 @@ func NewLocationBuilder() *LocationBuilder {
 
 // Build returns the constructed Location resource.
 func (b *LocationBuilder) Build() *Location {
+	b.location.AliasExt = alignExtSlots(b.location.AliasExt, len(b.location.Alias))
 	return b.location
 }
 
@@ -899,20 +895,24 @@ func (b *LocationBuilder) SetNameExt(v Element) *LocationBuilder {
 }
 
 // AddAliasExt attaches extensions to the Alias element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddAlias twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *LocationBuilder) AddAliasExt(v *Element) *LocationBuilder {
-	for len(b.location.AliasExt) < len(b.location.Alias)-1 {
+	i := len(b.location.Alias) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.location.AliasExt) <= i {
 		b.location.AliasExt = append(b.location.AliasExt, nil)
 	}
-	b.location.AliasExt = append(b.location.AliasExt, v)
+	b.location.AliasExt[i] = v
 	return b
 }
 

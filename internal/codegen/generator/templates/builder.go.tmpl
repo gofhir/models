@@ -26,7 +26,18 @@ func New{{$r.Name}}Builder() *{{$r.Name}}Builder {
 
 {{if $r.IsResource -}}
 // Build returns the constructed {{$r.Name}} resource.
+{{- /* Build aligns each companion extension slice to its value slice.
+	Add<Field>Ext fills gaps in front of a slot but cannot know that no further
+	values are coming, and FHIR keeps the two arrays the same length: attach an
+	extension to the first of three values and nothing would pad the tail.
+	alignExtSlots carries the rationale; repeating it in every Build() would add
+	four lines to each of the 2178 builders. */}}
 func (b *{{$r.Name}}Builder) Build() *{{$r.Name}} {
+{{- range $r.Properties}}
+{{- if and .HasExtension .IsArray}}
+	b.{{$r.LowerName}}.{{.Name}}Ext = alignExtSlots(b.{{$r.LowerName}}.{{.Name}}Ext, len(b.{{$r.LowerName}}.{{.Name}}))
+{{- end}}
+{{- end}}
 	return b.{{$r.LowerName}}
 }
 {{- else -}}
@@ -37,7 +48,18 @@ func (b *{{$r.Name}}Builder) Build() *{{$r.Name}} {
 // set through SetLow(Quantity), which takes the address itself. Returning *T meant
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
+{{- /* Build aligns each companion extension slice to its value slice.
+	Add<Field>Ext fills gaps in front of a slot but cannot know that no further
+	values are coming, and FHIR keeps the two arrays the same length: attach an
+	extension to the first of three values and nothing would pad the tail.
+	alignExtSlots carries the rationale; repeating it in every Build() would add
+	four lines to each of the 2178 builders. */}}
 func (b *{{$r.Name}}Builder) Build() {{$r.Name}} {
+{{- range $r.Properties}}
+{{- if and .HasExtension .IsArray}}
+	b.{{$r.LowerName}}.{{.Name}}Ext = alignExtSlots(b.{{$r.LowerName}}.{{.Name}}Ext, len(b.{{$r.LowerName}}.{{.Name}}))
+{{- end}}
+{{- end}}
 	return *b.{{$r.LowerName}}
 }
 {{- end}}
@@ -131,21 +153,31 @@ func (b *{{$r.Name}}Builder) Set{{.Name}}(v {{.GoType}}) *{{$r.Name}}Builder {
 {{- if .HasExtension}}
 {{- if .IsArray}}
 
+{{- /* The slot is assigned, not appended. Appending put the extension at the
+	wrong index — after Add<Field> twice, a bare append lands at position 0 and
+	silently belongs to the first element. It also stopped composing once Build
+	began padding the slice out to the value count: an append then landed past
+	the end and left the array longer than its values. Assigning by position
+	makes the two operations independent of call order. */}}
 // Add{{.Name}}Ext attaches extensions to the {{.Name}} element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after Add{{.Name}} twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *{{$r.Name}}Builder) Add{{.Name}}Ext(v *Element) *{{$r.Name}}Builder {
-	for len(b.{{$r.LowerName}}.{{.Name}}Ext) < len(b.{{$r.LowerName}}.{{.Name}})-1 {
+	i := len(b.{{$r.LowerName}}.{{.Name}}) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.{{$r.LowerName}}.{{.Name}}Ext) <= i {
 		b.{{$r.LowerName}}.{{.Name}}Ext = append(b.{{$r.LowerName}}.{{.Name}}Ext, nil)
 	}
-	b.{{$r.LowerName}}.{{.Name}}Ext = append(b.{{$r.LowerName}}.{{.Name}}Ext, v)
+	b.{{$r.LowerName}}.{{.Name}}Ext[i] = v
 	return b
 }
 {{- else}}

@@ -626,13 +626,7 @@ func (r *Contract) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Alias = append(r.Alias, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.AliasExt) < len(r.Alias)-1 {
-						r.AliasExt = append(r.AliasExt, nil)
-					}
-					r.AliasExt = append(r.AliasExt, ext)
-				}
+				r.AliasExt = appendExtSlot(r.AliasExt, ext, len(r.Alias))
 			case "author":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -735,6 +729,7 @@ func (r *Contract) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 			}
 		case xml.EndElement:
+			r.AliasExt = alignExtSlots(r.AliasExt, len(r.Alias))
 			return nil
 		}
 	}
@@ -1998,13 +1993,7 @@ func (r *ContractTermAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.LinkId = append(r.LinkId, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.LinkIdExt) < len(r.LinkId)-1 {
-						r.LinkIdExt = append(r.LinkIdExt, nil)
-					}
-					r.LinkIdExt = append(r.LinkIdExt, ext)
-				}
+				r.LinkIdExt = appendExtSlot(r.LinkIdExt, ext, len(r.LinkId))
 			case "status":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2024,13 +2013,7 @@ func (r *ContractTermAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ContextLinkId = append(r.ContextLinkId, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ContextLinkIdExt) < len(r.ContextLinkId)-1 {
-						r.ContextLinkIdExt = append(r.ContextLinkIdExt, nil)
-					}
-					r.ContextLinkIdExt = append(r.ContextLinkIdExt, ext)
-				}
+				r.ContextLinkIdExt = appendExtSlot(r.ContextLinkIdExt, ext, len(r.ContextLinkId))
 			case "occurrenceDateTime":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -2063,13 +2046,7 @@ func (r *ContractTermAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.RequesterLinkId = append(r.RequesterLinkId, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.RequesterLinkIdExt) < len(r.RequesterLinkId)-1 {
-						r.RequesterLinkIdExt = append(r.RequesterLinkIdExt, nil)
-					}
-					r.RequesterLinkIdExt = append(r.RequesterLinkIdExt, ext)
-				}
+				r.RequesterLinkIdExt = appendExtSlot(r.RequesterLinkIdExt, ext, len(r.RequesterLinkId))
 			case "performerType":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2095,13 +2072,7 @@ func (r *ContractTermAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.PerformerLinkId = append(r.PerformerLinkId, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.PerformerLinkIdExt) < len(r.PerformerLinkId)-1 {
-						r.PerformerLinkIdExt = append(r.PerformerLinkIdExt, nil)
-					}
-					r.PerformerLinkIdExt = append(r.PerformerLinkIdExt, ext)
-				}
+				r.PerformerLinkIdExt = appendExtSlot(r.PerformerLinkIdExt, ext, len(r.PerformerLinkId))
 			case "reason":
 				var v CodeableReference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2115,13 +2086,7 @@ func (r *ContractTermAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ReasonLinkId = append(r.ReasonLinkId, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ReasonLinkIdExt) < len(r.ReasonLinkId)-1 {
-						r.ReasonLinkIdExt = append(r.ReasonLinkIdExt, nil)
-					}
-					r.ReasonLinkIdExt = append(r.ReasonLinkIdExt, ext)
-				}
+				r.ReasonLinkIdExt = appendExtSlot(r.ReasonLinkIdExt, ext, len(r.ReasonLinkId))
 			case "note":
 				var v Annotation
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2135,19 +2100,19 @@ func (r *ContractTermAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SecurityLabelNumber = append(r.SecurityLabelNumber, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.SecurityLabelNumberExt) < len(r.SecurityLabelNumber)-1 {
-						r.SecurityLabelNumberExt = append(r.SecurityLabelNumberExt, nil)
-					}
-					r.SecurityLabelNumberExt = append(r.SecurityLabelNumberExt, ext)
-				}
+				r.SecurityLabelNumberExt = appendExtSlot(r.SecurityLabelNumberExt, ext, len(r.SecurityLabelNumber))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.LinkIdExt = alignExtSlots(r.LinkIdExt, len(r.LinkId))
+			r.ContextLinkIdExt = alignExtSlots(r.ContextLinkIdExt, len(r.ContextLinkId))
+			r.RequesterLinkIdExt = alignExtSlots(r.RequesterLinkIdExt, len(r.RequesterLinkId))
+			r.PerformerLinkIdExt = alignExtSlots(r.PerformerLinkIdExt, len(r.PerformerLinkId))
+			r.ReasonLinkIdExt = alignExtSlots(r.ReasonLinkIdExt, len(r.ReasonLinkId))
+			r.SecurityLabelNumberExt = alignExtSlots(r.SecurityLabelNumberExt, len(r.SecurityLabelNumber))
 			return nil
 		}
 	}
@@ -2554,13 +2519,7 @@ func (r *ContractTermAsset) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.LinkId = append(r.LinkId, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.LinkIdExt) < len(r.LinkId)-1 {
-						r.LinkIdExt = append(r.LinkIdExt, nil)
-					}
-					r.LinkIdExt = append(r.LinkIdExt, ext)
-				}
+				r.LinkIdExt = appendExtSlot(r.LinkIdExt, ext, len(r.LinkId))
 			case "answer":
 				var v ContractTermOfferAnswer
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2574,13 +2533,7 @@ func (r *ContractTermAsset) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SecurityLabelNumber = append(r.SecurityLabelNumber, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.SecurityLabelNumberExt) < len(r.SecurityLabelNumber)-1 {
-						r.SecurityLabelNumberExt = append(r.SecurityLabelNumberExt, nil)
-					}
-					r.SecurityLabelNumberExt = append(r.SecurityLabelNumberExt, ext)
-				}
+				r.SecurityLabelNumberExt = appendExtSlot(r.SecurityLabelNumberExt, ext, len(r.SecurityLabelNumber))
 			case "valuedItem":
 				var v ContractTermAssetValuedItem
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2593,6 +2546,8 @@ func (r *ContractTermAsset) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 			}
 		case xml.EndElement:
+			r.LinkIdExt = alignExtSlots(r.LinkIdExt, len(r.LinkId))
+			r.SecurityLabelNumberExt = alignExtSlots(r.SecurityLabelNumberExt, len(r.SecurityLabelNumber))
 			return nil
 		}
 	}
@@ -3028,13 +2983,7 @@ func (r *ContractTermAssetValuedItem) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.LinkId = append(r.LinkId, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.LinkIdExt) < len(r.LinkId)-1 {
-						r.LinkIdExt = append(r.LinkIdExt, nil)
-					}
-					r.LinkIdExt = append(r.LinkIdExt, ext)
-				}
+				r.LinkIdExt = appendExtSlot(r.LinkIdExt, ext, len(r.LinkId))
 			case "securityLabelNumber":
 				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
@@ -3042,19 +2991,15 @@ func (r *ContractTermAssetValuedItem) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SecurityLabelNumber = append(r.SecurityLabelNumber, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.SecurityLabelNumberExt) < len(r.SecurityLabelNumber)-1 {
-						r.SecurityLabelNumberExt = append(r.SecurityLabelNumberExt, nil)
-					}
-					r.SecurityLabelNumberExt = append(r.SecurityLabelNumberExt, ext)
-				}
+				r.SecurityLabelNumberExt = appendExtSlot(r.SecurityLabelNumberExt, ext, len(r.SecurityLabelNumber))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.LinkIdExt = alignExtSlots(r.LinkIdExt, len(r.LinkId))
+			r.SecurityLabelNumberExt = alignExtSlots(r.SecurityLabelNumberExt, len(r.SecurityLabelNumber))
 			return nil
 		}
 	}
@@ -3278,13 +3223,7 @@ func (r *ContractTermOffer) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.LinkId = append(r.LinkId, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.LinkIdExt) < len(r.LinkId)-1 {
-						r.LinkIdExt = append(r.LinkIdExt, nil)
-					}
-					r.LinkIdExt = append(r.LinkIdExt, ext)
-				}
+				r.LinkIdExt = appendExtSlot(r.LinkIdExt, ext, len(r.LinkId))
 			case "securityLabelNumber":
 				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
@@ -3292,19 +3231,15 @@ func (r *ContractTermOffer) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SecurityLabelNumber = append(r.SecurityLabelNumber, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.SecurityLabelNumberExt) < len(r.SecurityLabelNumber)-1 {
-						r.SecurityLabelNumberExt = append(r.SecurityLabelNumberExt, nil)
-					}
-					r.SecurityLabelNumberExt = append(r.SecurityLabelNumberExt, ext)
-				}
+				r.SecurityLabelNumberExt = appendExtSlot(r.SecurityLabelNumberExt, ext, len(r.SecurityLabelNumber))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.LinkIdExt = alignExtSlots(r.LinkIdExt, len(r.LinkId))
+			r.SecurityLabelNumberExt = alignExtSlots(r.SecurityLabelNumberExt, len(r.SecurityLabelNumber))
 			return nil
 		}
 	}
@@ -3833,13 +3768,7 @@ func (r *ContractTermSecurityLabel) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Number = append(r.Number, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.NumberExt) < len(r.Number)-1 {
-						r.NumberExt = append(r.NumberExt, nil)
-					}
-					r.NumberExt = append(r.NumberExt, ext)
-				}
+				r.NumberExt = appendExtSlot(r.NumberExt, ext, len(r.Number))
 			case "classification":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -3864,6 +3793,7 @@ func (r *ContractTermSecurityLabel) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 			}
 		case xml.EndElement:
+			r.NumberExt = alignExtSlots(r.NumberExt, len(r.Number))
 			return nil
 		}
 	}
@@ -3889,6 +3819,7 @@ func NewContractBuilder() *ContractBuilder {
 
 // Build returns the constructed Contract resource.
 func (b *ContractBuilder) Build() *Contract {
+	b.contract.AliasExt = alignExtSlots(b.contract.AliasExt, len(b.contract.Alias))
 	return b.contract
 }
 
@@ -4290,20 +4221,24 @@ func (b *ContractBuilder) SetSubtitleExt(v Element) *ContractBuilder {
 }
 
 // AddAliasExt attaches extensions to the Alias element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddAlias twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ContractBuilder) AddAliasExt(v *Element) *ContractBuilder {
-	for len(b.contract.AliasExt) < len(b.contract.Alias)-1 {
+	i := len(b.contract.Alias) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.contract.AliasExt) <= i {
 		b.contract.AliasExt = append(b.contract.AliasExt, nil)
 	}
-	b.contract.AliasExt = append(b.contract.AliasExt, v)
+	b.contract.AliasExt[i] = v
 	return b
 }
 
@@ -4901,6 +4836,12 @@ func NewContractTermActionBuilder() *ContractTermActionBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ContractTermActionBuilder) Build() ContractTermAction {
+	b.contractTermAction.LinkIdExt = alignExtSlots(b.contractTermAction.LinkIdExt, len(b.contractTermAction.LinkId))
+	b.contractTermAction.ContextLinkIdExt = alignExtSlots(b.contractTermAction.ContextLinkIdExt, len(b.contractTermAction.ContextLinkId))
+	b.contractTermAction.RequesterLinkIdExt = alignExtSlots(b.contractTermAction.RequesterLinkIdExt, len(b.contractTermAction.RequesterLinkId))
+	b.contractTermAction.PerformerLinkIdExt = alignExtSlots(b.contractTermAction.PerformerLinkIdExt, len(b.contractTermAction.PerformerLinkId))
+	b.contractTermAction.ReasonLinkIdExt = alignExtSlots(b.contractTermAction.ReasonLinkIdExt, len(b.contractTermAction.ReasonLinkId))
+	b.contractTermAction.SecurityLabelNumberExt = alignExtSlots(b.contractTermAction.SecurityLabelNumberExt, len(b.contractTermAction.SecurityLabelNumber))
 	return *b.contractTermAction
 }
 
@@ -5104,110 +5045,134 @@ func (b *ContractTermActionBuilder) SetDoNotPerformExt(v Element) *ContractTermA
 }
 
 // AddLinkIdExt attaches extensions to the LinkId element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddLinkId twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ContractTermActionBuilder) AddLinkIdExt(v *Element) *ContractTermActionBuilder {
-	for len(b.contractTermAction.LinkIdExt) < len(b.contractTermAction.LinkId)-1 {
+	i := len(b.contractTermAction.LinkId) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.contractTermAction.LinkIdExt) <= i {
 		b.contractTermAction.LinkIdExt = append(b.contractTermAction.LinkIdExt, nil)
 	}
-	b.contractTermAction.LinkIdExt = append(b.contractTermAction.LinkIdExt, v)
+	b.contractTermAction.LinkIdExt[i] = v
 	return b
 }
 
 // AddContextLinkIdExt attaches extensions to the ContextLinkId element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddContextLinkId twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ContractTermActionBuilder) AddContextLinkIdExt(v *Element) *ContractTermActionBuilder {
-	for len(b.contractTermAction.ContextLinkIdExt) < len(b.contractTermAction.ContextLinkId)-1 {
+	i := len(b.contractTermAction.ContextLinkId) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.contractTermAction.ContextLinkIdExt) <= i {
 		b.contractTermAction.ContextLinkIdExt = append(b.contractTermAction.ContextLinkIdExt, nil)
 	}
-	b.contractTermAction.ContextLinkIdExt = append(b.contractTermAction.ContextLinkIdExt, v)
+	b.contractTermAction.ContextLinkIdExt[i] = v
 	return b
 }
 
 // AddRequesterLinkIdExt attaches extensions to the RequesterLinkId element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddRequesterLinkId twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ContractTermActionBuilder) AddRequesterLinkIdExt(v *Element) *ContractTermActionBuilder {
-	for len(b.contractTermAction.RequesterLinkIdExt) < len(b.contractTermAction.RequesterLinkId)-1 {
+	i := len(b.contractTermAction.RequesterLinkId) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.contractTermAction.RequesterLinkIdExt) <= i {
 		b.contractTermAction.RequesterLinkIdExt = append(b.contractTermAction.RequesterLinkIdExt, nil)
 	}
-	b.contractTermAction.RequesterLinkIdExt = append(b.contractTermAction.RequesterLinkIdExt, v)
+	b.contractTermAction.RequesterLinkIdExt[i] = v
 	return b
 }
 
 // AddPerformerLinkIdExt attaches extensions to the PerformerLinkId element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddPerformerLinkId twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ContractTermActionBuilder) AddPerformerLinkIdExt(v *Element) *ContractTermActionBuilder {
-	for len(b.contractTermAction.PerformerLinkIdExt) < len(b.contractTermAction.PerformerLinkId)-1 {
+	i := len(b.contractTermAction.PerformerLinkId) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.contractTermAction.PerformerLinkIdExt) <= i {
 		b.contractTermAction.PerformerLinkIdExt = append(b.contractTermAction.PerformerLinkIdExt, nil)
 	}
-	b.contractTermAction.PerformerLinkIdExt = append(b.contractTermAction.PerformerLinkIdExt, v)
+	b.contractTermAction.PerformerLinkIdExt[i] = v
 	return b
 }
 
 // AddReasonLinkIdExt attaches extensions to the ReasonLinkId element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddReasonLinkId twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ContractTermActionBuilder) AddReasonLinkIdExt(v *Element) *ContractTermActionBuilder {
-	for len(b.contractTermAction.ReasonLinkIdExt) < len(b.contractTermAction.ReasonLinkId)-1 {
+	i := len(b.contractTermAction.ReasonLinkId) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.contractTermAction.ReasonLinkIdExt) <= i {
 		b.contractTermAction.ReasonLinkIdExt = append(b.contractTermAction.ReasonLinkIdExt, nil)
 	}
-	b.contractTermAction.ReasonLinkIdExt = append(b.contractTermAction.ReasonLinkIdExt, v)
+	b.contractTermAction.ReasonLinkIdExt[i] = v
 	return b
 }
 
 // AddSecurityLabelNumberExt attaches extensions to the SecurityLabelNumber element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddSecurityLabelNumber twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ContractTermActionBuilder) AddSecurityLabelNumberExt(v *Element) *ContractTermActionBuilder {
-	for len(b.contractTermAction.SecurityLabelNumberExt) < len(b.contractTermAction.SecurityLabelNumber)-1 {
+	i := len(b.contractTermAction.SecurityLabelNumber) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.contractTermAction.SecurityLabelNumberExt) <= i {
 		b.contractTermAction.SecurityLabelNumberExt = append(b.contractTermAction.SecurityLabelNumberExt, nil)
 	}
-	b.contractTermAction.SecurityLabelNumberExt = append(b.contractTermAction.SecurityLabelNumberExt, v)
+	b.contractTermAction.SecurityLabelNumberExt[i] = v
 	return b
 }
 
@@ -5300,6 +5265,8 @@ func NewContractTermAssetBuilder() *ContractTermAssetBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ContractTermAssetBuilder) Build() ContractTermAsset {
+	b.contractTermAsset.LinkIdExt = alignExtSlots(b.contractTermAsset.LinkIdExt, len(b.contractTermAsset.LinkId))
+	b.contractTermAsset.SecurityLabelNumberExt = alignExtSlots(b.contractTermAsset.SecurityLabelNumberExt, len(b.contractTermAsset.SecurityLabelNumber))
 	return *b.contractTermAsset
 }
 
@@ -5440,38 +5407,46 @@ func (b *ContractTermAssetBuilder) SetTextExt(v Element) *ContractTermAssetBuild
 }
 
 // AddLinkIdExt attaches extensions to the LinkId element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddLinkId twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ContractTermAssetBuilder) AddLinkIdExt(v *Element) *ContractTermAssetBuilder {
-	for len(b.contractTermAsset.LinkIdExt) < len(b.contractTermAsset.LinkId)-1 {
+	i := len(b.contractTermAsset.LinkId) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.contractTermAsset.LinkIdExt) <= i {
 		b.contractTermAsset.LinkIdExt = append(b.contractTermAsset.LinkIdExt, nil)
 	}
-	b.contractTermAsset.LinkIdExt = append(b.contractTermAsset.LinkIdExt, v)
+	b.contractTermAsset.LinkIdExt[i] = v
 	return b
 }
 
 // AddSecurityLabelNumberExt attaches extensions to the SecurityLabelNumber element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddSecurityLabelNumber twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ContractTermAssetBuilder) AddSecurityLabelNumberExt(v *Element) *ContractTermAssetBuilder {
-	for len(b.contractTermAsset.SecurityLabelNumberExt) < len(b.contractTermAsset.SecurityLabelNumber)-1 {
+	i := len(b.contractTermAsset.SecurityLabelNumber) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.contractTermAsset.SecurityLabelNumberExt) <= i {
 		b.contractTermAsset.SecurityLabelNumberExt = append(b.contractTermAsset.SecurityLabelNumberExt, nil)
 	}
-	b.contractTermAsset.SecurityLabelNumberExt = append(b.contractTermAsset.SecurityLabelNumberExt, v)
+	b.contractTermAsset.SecurityLabelNumberExt[i] = v
 	return b
 }
 
@@ -5572,6 +5547,8 @@ func NewContractTermAssetValuedItemBuilder() *ContractTermAssetValuedItemBuilder
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ContractTermAssetValuedItemBuilder) Build() ContractTermAssetValuedItem {
+	b.contractTermAssetValuedItem.LinkIdExt = alignExtSlots(b.contractTermAssetValuedItem.LinkIdExt, len(b.contractTermAssetValuedItem.LinkId))
+	b.contractTermAssetValuedItem.SecurityLabelNumberExt = alignExtSlots(b.contractTermAssetValuedItem.SecurityLabelNumberExt, len(b.contractTermAssetValuedItem.SecurityLabelNumber))
 	return *b.contractTermAssetValuedItem
 }
 
@@ -5752,38 +5729,46 @@ func (b *ContractTermAssetValuedItemBuilder) SetPaymentDateExt(v Element) *Contr
 }
 
 // AddLinkIdExt attaches extensions to the LinkId element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddLinkId twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ContractTermAssetValuedItemBuilder) AddLinkIdExt(v *Element) *ContractTermAssetValuedItemBuilder {
-	for len(b.contractTermAssetValuedItem.LinkIdExt) < len(b.contractTermAssetValuedItem.LinkId)-1 {
+	i := len(b.contractTermAssetValuedItem.LinkId) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.contractTermAssetValuedItem.LinkIdExt) <= i {
 		b.contractTermAssetValuedItem.LinkIdExt = append(b.contractTermAssetValuedItem.LinkIdExt, nil)
 	}
-	b.contractTermAssetValuedItem.LinkIdExt = append(b.contractTermAssetValuedItem.LinkIdExt, v)
+	b.contractTermAssetValuedItem.LinkIdExt[i] = v
 	return b
 }
 
 // AddSecurityLabelNumberExt attaches extensions to the SecurityLabelNumber element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddSecurityLabelNumber twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ContractTermAssetValuedItemBuilder) AddSecurityLabelNumberExt(v *Element) *ContractTermAssetValuedItemBuilder {
-	for len(b.contractTermAssetValuedItem.SecurityLabelNumberExt) < len(b.contractTermAssetValuedItem.SecurityLabelNumber)-1 {
+	i := len(b.contractTermAssetValuedItem.SecurityLabelNumber) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.contractTermAssetValuedItem.SecurityLabelNumberExt) <= i {
 		b.contractTermAssetValuedItem.SecurityLabelNumberExt = append(b.contractTermAssetValuedItem.SecurityLabelNumberExt, nil)
 	}
-	b.contractTermAssetValuedItem.SecurityLabelNumberExt = append(b.contractTermAssetValuedItem.SecurityLabelNumberExt, v)
+	b.contractTermAssetValuedItem.SecurityLabelNumberExt[i] = v
 	return b
 }
 
@@ -5818,6 +5803,8 @@ func NewContractTermOfferBuilder() *ContractTermOfferBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ContractTermOfferBuilder) Build() ContractTermOffer {
+	b.contractTermOffer.LinkIdExt = alignExtSlots(b.contractTermOffer.LinkIdExt, len(b.contractTermOffer.LinkId))
+	b.contractTermOffer.SecurityLabelNumberExt = alignExtSlots(b.contractTermOffer.SecurityLabelNumberExt, len(b.contractTermOffer.SecurityLabelNumber))
 	return *b.contractTermOffer
 }
 
@@ -5918,38 +5905,46 @@ func (b *ContractTermOfferBuilder) SetTextExt(v Element) *ContractTermOfferBuild
 }
 
 // AddLinkIdExt attaches extensions to the LinkId element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddLinkId twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ContractTermOfferBuilder) AddLinkIdExt(v *Element) *ContractTermOfferBuilder {
-	for len(b.contractTermOffer.LinkIdExt) < len(b.contractTermOffer.LinkId)-1 {
+	i := len(b.contractTermOffer.LinkId) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.contractTermOffer.LinkIdExt) <= i {
 		b.contractTermOffer.LinkIdExt = append(b.contractTermOffer.LinkIdExt, nil)
 	}
-	b.contractTermOffer.LinkIdExt = append(b.contractTermOffer.LinkIdExt, v)
+	b.contractTermOffer.LinkIdExt[i] = v
 	return b
 }
 
 // AddSecurityLabelNumberExt attaches extensions to the SecurityLabelNumber element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddSecurityLabelNumber twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ContractTermOfferBuilder) AddSecurityLabelNumberExt(v *Element) *ContractTermOfferBuilder {
-	for len(b.contractTermOffer.SecurityLabelNumberExt) < len(b.contractTermOffer.SecurityLabelNumber)-1 {
+	i := len(b.contractTermOffer.SecurityLabelNumber) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.contractTermOffer.SecurityLabelNumberExt) <= i {
 		b.contractTermOffer.SecurityLabelNumberExt = append(b.contractTermOffer.SecurityLabelNumberExt, nil)
 	}
-	b.contractTermOffer.SecurityLabelNumberExt = append(b.contractTermOffer.SecurityLabelNumberExt, v)
+	b.contractTermOffer.SecurityLabelNumberExt[i] = v
 	return b
 }
 
@@ -6283,6 +6278,7 @@ func NewContractTermSecurityLabelBuilder() *ContractTermSecurityLabelBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *ContractTermSecurityLabelBuilder) Build() ContractTermSecurityLabel {
+	b.contractTermSecurityLabel.NumberExt = alignExtSlots(b.contractTermSecurityLabel.NumberExt, len(b.contractTermSecurityLabel.Number))
 	return *b.contractTermSecurityLabel
 }
 
@@ -6333,19 +6329,23 @@ func (b *ContractTermSecurityLabelBuilder) AddControl(v Coding) *ContractTermSec
 }
 
 // AddNumberExt attaches extensions to the Number element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddNumber twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ContractTermSecurityLabelBuilder) AddNumberExt(v *Element) *ContractTermSecurityLabelBuilder {
-	for len(b.contractTermSecurityLabel.NumberExt) < len(b.contractTermSecurityLabel.Number)-1 {
+	i := len(b.contractTermSecurityLabel.Number) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.contractTermSecurityLabel.NumberExt) <= i {
 		b.contractTermSecurityLabel.NumberExt = append(b.contractTermSecurityLabel.NumberExt, nil)
 	}
-	b.contractTermSecurityLabel.NumberExt = append(b.contractTermSecurityLabel.NumberExt, v)
+	b.contractTermSecurityLabel.NumberExt[i] = v
 	return b
 }

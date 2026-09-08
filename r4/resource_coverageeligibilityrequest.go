@@ -389,13 +389,7 @@ func (r *CoverageEligibilityRequest) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Purpose = append(r.Purpose, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.PurposeExt) < len(r.Purpose)-1 {
-						r.PurposeExt = append(r.PurposeExt, nil)
-					}
-					r.PurposeExt = append(r.PurposeExt, ext)
-				}
+				r.PurposeExt = appendExtSlot(r.PurposeExt, ext, len(r.Purpose))
 			case "patient":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -470,6 +464,7 @@ func (r *CoverageEligibilityRequest) UnmarshalXML(d *xml.Decoder, start xml.Star
 				}
 			}
 		case xml.EndElement:
+			r.PurposeExt = alignExtSlots(r.PurposeExt, len(r.Purpose))
 			return nil
 		}
 	}
@@ -788,13 +783,7 @@ func (r *CoverageEligibilityRequestItem) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SupportingInfoSequence = append(r.SupportingInfoSequence, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.SupportingInfoSequenceExt) < len(r.SupportingInfoSequence)-1 {
-						r.SupportingInfoSequenceExt = append(r.SupportingInfoSequenceExt, nil)
-					}
-					r.SupportingInfoSequenceExt = append(r.SupportingInfoSequenceExt, ext)
-				}
+				r.SupportingInfoSequenceExt = appendExtSlot(r.SupportingInfoSequenceExt, ext, len(r.SupportingInfoSequence))
 			case "category":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -855,6 +844,7 @@ func (r *CoverageEligibilityRequestItem) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 			}
 		case xml.EndElement:
+			r.SupportingInfoSequenceExt = alignExtSlots(r.SupportingInfoSequenceExt, len(r.SupportingInfoSequence))
 			return nil
 		}
 	}
@@ -1153,6 +1143,7 @@ func NewCoverageEligibilityRequestBuilder() *CoverageEligibilityRequestBuilder {
 
 // Build returns the constructed CoverageEligibilityRequest resource.
 func (b *CoverageEligibilityRequestBuilder) Build() *CoverageEligibilityRequest {
+	b.coverageEligibilityRequest.PurposeExt = alignExtSlots(b.coverageEligibilityRequest.PurposeExt, len(b.coverageEligibilityRequest.Purpose))
 	return b.coverageEligibilityRequest
 }
 
@@ -1360,20 +1351,24 @@ func (b *CoverageEligibilityRequestBuilder) SetStatusExt(v Element) *CoverageEli
 }
 
 // AddPurposeExt attaches extensions to the Purpose element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddPurpose twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *CoverageEligibilityRequestBuilder) AddPurposeExt(v *Element) *CoverageEligibilityRequestBuilder {
-	for len(b.coverageEligibilityRequest.PurposeExt) < len(b.coverageEligibilityRequest.Purpose)-1 {
+	i := len(b.coverageEligibilityRequest.Purpose) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.coverageEligibilityRequest.PurposeExt) <= i {
 		b.coverageEligibilityRequest.PurposeExt = append(b.coverageEligibilityRequest.PurposeExt, nil)
 	}
-	b.coverageEligibilityRequest.PurposeExt = append(b.coverageEligibilityRequest.PurposeExt, v)
+	b.coverageEligibilityRequest.PurposeExt[i] = v
 	return b
 }
 
@@ -1501,6 +1496,7 @@ func NewCoverageEligibilityRequestItemBuilder() *CoverageEligibilityRequestItemB
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *CoverageEligibilityRequestItemBuilder) Build() CoverageEligibilityRequestItem {
+	b.coverageEligibilityRequestItem.SupportingInfoSequenceExt = alignExtSlots(b.coverageEligibilityRequestItem.SupportingInfoSequenceExt, len(b.coverageEligibilityRequestItem.SupportingInfoSequence))
 	return *b.coverageEligibilityRequestItem
 }
 
@@ -1587,20 +1583,24 @@ func (b *CoverageEligibilityRequestItemBuilder) AddDetail(v Reference) *Coverage
 }
 
 // AddSupportingInfoSequenceExt attaches extensions to the SupportingInfoSequence element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddSupportingInfoSequence twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *CoverageEligibilityRequestItemBuilder) AddSupportingInfoSequenceExt(v *Element) *CoverageEligibilityRequestItemBuilder {
-	for len(b.coverageEligibilityRequestItem.SupportingInfoSequenceExt) < len(b.coverageEligibilityRequestItem.SupportingInfoSequence)-1 {
+	i := len(b.coverageEligibilityRequestItem.SupportingInfoSequence) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.coverageEligibilityRequestItem.SupportingInfoSequenceExt) <= i {
 		b.coverageEligibilityRequestItem.SupportingInfoSequenceExt = append(b.coverageEligibilityRequestItem.SupportingInfoSequenceExt, nil)
 	}
-	b.coverageEligibilityRequestItem.SupportingInfoSequenceExt = append(b.coverageEligibilityRequestItem.SupportingInfoSequenceExt, v)
+	b.coverageEligibilityRequestItem.SupportingInfoSequenceExt[i] = v
 	return b
 }
 

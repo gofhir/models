@@ -446,13 +446,7 @@ func (r *SubscriptionTopic) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFrom = append(r.DerivedFrom, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DerivedFromExt) < len(r.DerivedFrom)-1 {
-						r.DerivedFromExt = append(r.DerivedFromExt, nil)
-					}
-					r.DerivedFromExt = append(r.DerivedFromExt, ext)
-				}
+				r.DerivedFromExt = appendExtSlot(r.DerivedFromExt, ext, len(r.DerivedFrom))
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[PublicationStatus](d, t)
 				if err != nil {
@@ -570,6 +564,7 @@ func (r *SubscriptionTopic) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 				}
 			}
 		case xml.EndElement:
+			r.DerivedFromExt = alignExtSlots(r.DerivedFromExt, len(r.DerivedFrom))
 			return nil
 		}
 	}
@@ -737,19 +732,14 @@ func (r *SubscriptionTopicCanFilterBy) UnmarshalXML(d *xml.Decoder, start xml.St
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Modifier = append(r.Modifier, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ModifierExt) < len(r.Modifier)-1 {
-						r.ModifierExt = append(r.ModifierExt, nil)
-					}
-					r.ModifierExt = append(r.ModifierExt, ext)
-				}
+				r.ModifierExt = appendExtSlot(r.ModifierExt, ext, len(r.Modifier))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.ModifierExt = alignExtSlots(r.ModifierExt, len(r.Modifier))
 			return nil
 		}
 	}
@@ -1026,13 +1016,7 @@ func (r *SubscriptionTopicNotificationShape) UnmarshalXML(d *xml.Decoder, start 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Include = append(r.Include, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.IncludeExt) < len(r.Include)-1 {
-						r.IncludeExt = append(r.IncludeExt, nil)
-					}
-					r.IncludeExt = append(r.IncludeExt, ext)
-				}
+				r.IncludeExt = appendExtSlot(r.IncludeExt, ext, len(r.Include))
 			case "revInclude":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1040,19 +1024,15 @@ func (r *SubscriptionTopicNotificationShape) UnmarshalXML(d *xml.Decoder, start 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.RevInclude = append(r.RevInclude, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.RevIncludeExt) < len(r.RevInclude)-1 {
-						r.RevIncludeExt = append(r.RevIncludeExt, nil)
-					}
-					r.RevIncludeExt = append(r.RevIncludeExt, ext)
-				}
+				r.RevIncludeExt = appendExtSlot(r.RevIncludeExt, ext, len(r.RevInclude))
 			default:
 				if err := d.Skip(); err != nil {
 					return err
 				}
 			}
 		case xml.EndElement:
+			r.IncludeExt = alignExtSlots(r.IncludeExt, len(r.Include))
+			r.RevIncludeExt = alignExtSlots(r.RevIncludeExt, len(r.RevInclude))
 			return nil
 		}
 	}
@@ -1206,13 +1186,7 @@ func (r *SubscriptionTopicResourceTrigger) UnmarshalXML(d *xml.Decoder, start xm
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SupportedInteraction = append(r.SupportedInteraction, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.SupportedInteractionExt) < len(r.SupportedInteraction)-1 {
-						r.SupportedInteractionExt = append(r.SupportedInteractionExt, nil)
-					}
-					r.SupportedInteractionExt = append(r.SupportedInteractionExt, ext)
-				}
+				r.SupportedInteractionExt = appendExtSlot(r.SupportedInteractionExt, ext, len(r.SupportedInteraction))
 			case "queryCriteria":
 				var v SubscriptionTopicResourceTriggerQueryCriteria
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1232,6 +1206,7 @@ func (r *SubscriptionTopicResourceTrigger) UnmarshalXML(d *xml.Decoder, start xm
 				}
 			}
 		case xml.EndElement:
+			r.SupportedInteractionExt = alignExtSlots(r.SupportedInteractionExt, len(r.SupportedInteraction))
 			return nil
 		}
 	}
@@ -1430,6 +1405,7 @@ func NewSubscriptionTopicBuilder() *SubscriptionTopicBuilder {
 
 // Build returns the constructed SubscriptionTopic resource.
 func (b *SubscriptionTopicBuilder) Build() *SubscriptionTopic {
+	b.subscriptionTopic.DerivedFromExt = alignExtSlots(b.subscriptionTopic.DerivedFromExt, len(b.subscriptionTopic.DerivedFrom))
 	return b.subscriptionTopic
 }
 
@@ -1683,20 +1659,24 @@ func (b *SubscriptionTopicBuilder) SetTitleExt(v Element) *SubscriptionTopicBuil
 }
 
 // AddDerivedFromExt attaches extensions to the DerivedFrom element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddDerivedFrom twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *SubscriptionTopicBuilder) AddDerivedFromExt(v *Element) *SubscriptionTopicBuilder {
-	for len(b.subscriptionTopic.DerivedFromExt) < len(b.subscriptionTopic.DerivedFrom)-1 {
+	i := len(b.subscriptionTopic.DerivedFrom) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.subscriptionTopic.DerivedFromExt) <= i {
 		b.subscriptionTopic.DerivedFromExt = append(b.subscriptionTopic.DerivedFromExt, nil)
 	}
-	b.subscriptionTopic.DerivedFromExt = append(b.subscriptionTopic.DerivedFromExt, v)
+	b.subscriptionTopic.DerivedFromExt[i] = v
 	return b
 }
 
@@ -1814,6 +1794,7 @@ func NewSubscriptionTopicCanFilterByBuilder() *SubscriptionTopicCanFilterByBuild
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *SubscriptionTopicCanFilterByBuilder) Build() SubscriptionTopicCanFilterBy {
+	b.subscriptionTopicCanFilterBy.ModifierExt = alignExtSlots(b.subscriptionTopicCanFilterBy.ModifierExt, len(b.subscriptionTopicCanFilterBy.Modifier))
 	return *b.subscriptionTopicCanFilterBy
 }
 
@@ -1910,20 +1891,24 @@ func (b *SubscriptionTopicCanFilterByBuilder) SetFilterDefinitionExt(v Element) 
 }
 
 // AddModifierExt attaches extensions to the Modifier element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddModifier twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *SubscriptionTopicCanFilterByBuilder) AddModifierExt(v *Element) *SubscriptionTopicCanFilterByBuilder {
-	for len(b.subscriptionTopicCanFilterBy.ModifierExt) < len(b.subscriptionTopicCanFilterBy.Modifier)-1 {
+	i := len(b.subscriptionTopicCanFilterBy.Modifier) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.subscriptionTopicCanFilterBy.ModifierExt) <= i {
 		b.subscriptionTopicCanFilterBy.ModifierExt = append(b.subscriptionTopicCanFilterBy.ModifierExt, nil)
 	}
-	b.subscriptionTopicCanFilterBy.ModifierExt = append(b.subscriptionTopicCanFilterBy.ModifierExt, v)
+	b.subscriptionTopicCanFilterBy.ModifierExt[i] = v
 	return b
 }
 
@@ -2034,6 +2019,8 @@ func NewSubscriptionTopicNotificationShapeBuilder() *SubscriptionTopicNotificati
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *SubscriptionTopicNotificationShapeBuilder) Build() SubscriptionTopicNotificationShape {
+	b.subscriptionTopicNotificationShape.IncludeExt = alignExtSlots(b.subscriptionTopicNotificationShape.IncludeExt, len(b.subscriptionTopicNotificationShape.Include))
+	b.subscriptionTopicNotificationShape.RevIncludeExt = alignExtSlots(b.subscriptionTopicNotificationShape.RevIncludeExt, len(b.subscriptionTopicNotificationShape.RevInclude))
 	return *b.subscriptionTopicNotificationShape
 }
 
@@ -2092,38 +2079,46 @@ func (b *SubscriptionTopicNotificationShapeBuilder) SetResourceExt(v Element) *S
 }
 
 // AddIncludeExt attaches extensions to the Include element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddInclude twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *SubscriptionTopicNotificationShapeBuilder) AddIncludeExt(v *Element) *SubscriptionTopicNotificationShapeBuilder {
-	for len(b.subscriptionTopicNotificationShape.IncludeExt) < len(b.subscriptionTopicNotificationShape.Include)-1 {
+	i := len(b.subscriptionTopicNotificationShape.Include) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.subscriptionTopicNotificationShape.IncludeExt) <= i {
 		b.subscriptionTopicNotificationShape.IncludeExt = append(b.subscriptionTopicNotificationShape.IncludeExt, nil)
 	}
-	b.subscriptionTopicNotificationShape.IncludeExt = append(b.subscriptionTopicNotificationShape.IncludeExt, v)
+	b.subscriptionTopicNotificationShape.IncludeExt[i] = v
 	return b
 }
 
 // AddRevIncludeExt attaches extensions to the RevInclude element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddRevInclude twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *SubscriptionTopicNotificationShapeBuilder) AddRevIncludeExt(v *Element) *SubscriptionTopicNotificationShapeBuilder {
-	for len(b.subscriptionTopicNotificationShape.RevIncludeExt) < len(b.subscriptionTopicNotificationShape.RevInclude)-1 {
+	i := len(b.subscriptionTopicNotificationShape.RevInclude) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.subscriptionTopicNotificationShape.RevIncludeExt) <= i {
 		b.subscriptionTopicNotificationShape.RevIncludeExt = append(b.subscriptionTopicNotificationShape.RevIncludeExt, nil)
 	}
-	b.subscriptionTopicNotificationShape.RevIncludeExt = append(b.subscriptionTopicNotificationShape.RevIncludeExt, v)
+	b.subscriptionTopicNotificationShape.RevIncludeExt[i] = v
 	return b
 }
 
@@ -2151,6 +2146,7 @@ func NewSubscriptionTopicResourceTriggerBuilder() *SubscriptionTopicResourceTrig
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *SubscriptionTopicResourceTriggerBuilder) Build() SubscriptionTopicResourceTrigger {
+	b.subscriptionTopicResourceTrigger.SupportedInteractionExt = alignExtSlots(b.subscriptionTopicResourceTrigger.SupportedInteractionExt, len(b.subscriptionTopicResourceTrigger.SupportedInteraction))
 	return *b.subscriptionTopicResourceTrigger
 }
 
@@ -2227,20 +2223,24 @@ func (b *SubscriptionTopicResourceTriggerBuilder) SetResourceExt(v Element) *Sub
 }
 
 // AddSupportedInteractionExt attaches extensions to the SupportedInteraction element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddSupportedInteraction twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *SubscriptionTopicResourceTriggerBuilder) AddSupportedInteractionExt(v *Element) *SubscriptionTopicResourceTriggerBuilder {
-	for len(b.subscriptionTopicResourceTrigger.SupportedInteractionExt) < len(b.subscriptionTopicResourceTrigger.SupportedInteraction)-1 {
+	i := len(b.subscriptionTopicResourceTrigger.SupportedInteraction) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.subscriptionTopicResourceTrigger.SupportedInteractionExt) <= i {
 		b.subscriptionTopicResourceTrigger.SupportedInteractionExt = append(b.subscriptionTopicResourceTrigger.SupportedInteractionExt, nil)
 	}
-	b.subscriptionTopicResourceTrigger.SupportedInteractionExt = append(b.subscriptionTopicResourceTrigger.SupportedInteractionExt, v)
+	b.subscriptionTopicResourceTrigger.SupportedInteractionExt[i] = v
 	return b
 }
 

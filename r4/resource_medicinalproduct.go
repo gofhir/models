@@ -441,13 +441,7 @@ func (r *MedicinalProduct) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SpecialMeasures = append(r.SpecialMeasures, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.SpecialMeasuresExt) < len(r.SpecialMeasures)-1 {
-						r.SpecialMeasuresExt = append(r.SpecialMeasuresExt, nil)
-					}
-					r.SpecialMeasuresExt = append(r.SpecialMeasuresExt, ext)
-				}
+				r.SpecialMeasuresExt = appendExtSlot(r.SpecialMeasuresExt, ext, len(r.SpecialMeasures))
 			case "paediatricUseIndicator":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -532,6 +526,7 @@ func (r *MedicinalProduct) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 				}
 			}
 		case xml.EndElement:
+			r.SpecialMeasuresExt = alignExtSlots(r.SpecialMeasuresExt, len(r.SpecialMeasures))
 			return nil
 		}
 	}
@@ -1362,6 +1357,7 @@ func NewMedicinalProductBuilder() *MedicinalProductBuilder {
 
 // Build returns the constructed MedicinalProduct resource.
 func (b *MedicinalProductBuilder) Build() *MedicinalProduct {
+	b.medicinalProduct.SpecialMeasuresExt = alignExtSlots(b.medicinalProduct.SpecialMeasuresExt, len(b.medicinalProduct.SpecialMeasures))
 	return b.medicinalProduct
 }
 
@@ -1573,20 +1569,24 @@ func (b *MedicinalProductBuilder) SetLanguageExt(v Element) *MedicinalProductBui
 }
 
 // AddSpecialMeasuresExt attaches extensions to the SpecialMeasures element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddSpecialMeasures twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *MedicinalProductBuilder) AddSpecialMeasuresExt(v *Element) *MedicinalProductBuilder {
-	for len(b.medicinalProduct.SpecialMeasuresExt) < len(b.medicinalProduct.SpecialMeasures)-1 {
+	i := len(b.medicinalProduct.SpecialMeasures) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.medicinalProduct.SpecialMeasuresExt) <= i {
 		b.medicinalProduct.SpecialMeasuresExt = append(b.medicinalProduct.SpecialMeasuresExt, nil)
 	}
-	b.medicinalProduct.SpecialMeasuresExt = append(b.medicinalProduct.SpecialMeasuresExt, v)
+	b.medicinalProduct.SpecialMeasuresExt[i] = v
 	return b
 }
 

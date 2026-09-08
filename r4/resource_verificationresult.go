@@ -369,13 +369,7 @@ func (r *VerificationResult) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.TargetLocation = append(r.TargetLocation, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.TargetLocationExt) < len(r.TargetLocation)-1 {
-						r.TargetLocationExt = append(r.TargetLocationExt, nil)
-					}
-					r.TargetLocationExt = append(r.TargetLocationExt, ext)
-				}
+				r.TargetLocationExt = appendExtSlot(r.TargetLocationExt, ext, len(r.TargetLocation))
 			case "need":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -458,6 +452,7 @@ func (r *VerificationResult) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 			}
 		case xml.EndElement:
+			r.TargetLocationExt = alignExtSlots(r.TargetLocationExt, len(r.TargetLocation))
 			return nil
 		}
 	}
@@ -1031,6 +1026,7 @@ func NewVerificationResultBuilder() *VerificationResultBuilder {
 
 // Build returns the constructed VerificationResult resource.
 func (b *VerificationResultBuilder) Build() *VerificationResult {
+	b.verificationResult.TargetLocationExt = alignExtSlots(b.verificationResult.TargetLocationExt, len(b.verificationResult.TargetLocation))
 	return b.verificationResult
 }
 
@@ -1206,20 +1202,24 @@ func (b *VerificationResultBuilder) SetLanguageExt(v Element) *VerificationResul
 }
 
 // AddTargetLocationExt attaches extensions to the TargetLocation element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddTargetLocation twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *VerificationResultBuilder) AddTargetLocationExt(v *Element) *VerificationResultBuilder {
-	for len(b.verificationResult.TargetLocationExt) < len(b.verificationResult.TargetLocation)-1 {
+	i := len(b.verificationResult.TargetLocation) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.verificationResult.TargetLocationExt) <= i {
 		b.verificationResult.TargetLocationExt = append(b.verificationResult.TargetLocationExt, nil)
 	}
-	b.verificationResult.TargetLocationExt = append(b.verificationResult.TargetLocationExt, v)
+	b.verificationResult.TargetLocationExt[i] = v
 	return b
 }
 

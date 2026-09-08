@@ -874,13 +874,7 @@ func (r *ActivityDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Library = append(r.Library, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.LibraryExt) < len(r.Library)-1 {
-						r.LibraryExt = append(r.LibraryExt, nil)
-					}
-					r.LibraryExt = append(r.LibraryExt, ext)
-				}
+				r.LibraryExt = appendExtSlot(r.LibraryExt, ext, len(r.Library))
 			case "kind":
 				v, ext, err := xmlDecodePrimitiveCode[ActivityDefinitionKind](d, t)
 				if err != nil {
@@ -1008,13 +1002,7 @@ func (r *ActivityDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.SpecimenRequirement = append(r.SpecimenRequirement, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.SpecimenRequirementExt) < len(r.SpecimenRequirement)-1 {
-						r.SpecimenRequirementExt = append(r.SpecimenRequirementExt, nil)
-					}
-					r.SpecimenRequirementExt = append(r.SpecimenRequirementExt, ext)
-				}
+				r.SpecimenRequirementExt = appendExtSlot(r.SpecimenRequirementExt, ext, len(r.SpecimenRequirement))
 			case "observationRequirement":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1022,13 +1010,7 @@ func (r *ActivityDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ObservationRequirement = append(r.ObservationRequirement, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ObservationRequirementExt) < len(r.ObservationRequirement)-1 {
-						r.ObservationRequirementExt = append(r.ObservationRequirementExt, nil)
-					}
-					r.ObservationRequirementExt = append(r.ObservationRequirementExt, ext)
-				}
+				r.ObservationRequirementExt = appendExtSlot(r.ObservationRequirementExt, ext, len(r.ObservationRequirement))
 			case "observationResultRequirement":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1036,13 +1018,7 @@ func (r *ActivityDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.ObservationResultRequirement = append(r.ObservationResultRequirement, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ObservationResultRequirementExt) < len(r.ObservationResultRequirement)-1 {
-						r.ObservationResultRequirementExt = append(r.ObservationResultRequirementExt, nil)
-					}
-					r.ObservationResultRequirementExt = append(r.ObservationResultRequirementExt, ext)
-				}
+				r.ObservationResultRequirementExt = appendExtSlot(r.ObservationResultRequirementExt, ext, len(r.ObservationResultRequirement))
 			case "transform":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1062,6 +1038,10 @@ func (r *ActivityDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 				}
 			}
 		case xml.EndElement:
+			r.LibraryExt = alignExtSlots(r.LibraryExt, len(r.Library))
+			r.SpecimenRequirementExt = alignExtSlots(r.SpecimenRequirementExt, len(r.SpecimenRequirement))
+			r.ObservationRequirementExt = alignExtSlots(r.ObservationRequirementExt, len(r.ObservationRequirement))
+			r.ObservationResultRequirementExt = alignExtSlots(r.ObservationResultRequirementExt, len(r.ObservationResultRequirement))
 			return nil
 		}
 	}
@@ -1387,6 +1367,10 @@ func NewActivityDefinitionBuilder() *ActivityDefinitionBuilder {
 
 // Build returns the constructed ActivityDefinition resource.
 func (b *ActivityDefinitionBuilder) Build() *ActivityDefinition {
+	b.activityDefinition.LibraryExt = alignExtSlots(b.activityDefinition.LibraryExt, len(b.activityDefinition.Library))
+	b.activityDefinition.SpecimenRequirementExt = alignExtSlots(b.activityDefinition.SpecimenRequirementExt, len(b.activityDefinition.SpecimenRequirement))
+	b.activityDefinition.ObservationRequirementExt = alignExtSlots(b.activityDefinition.ObservationRequirementExt, len(b.activityDefinition.ObservationRequirement))
+	b.activityDefinition.ObservationResultRequirementExt = alignExtSlots(b.activityDefinition.ObservationResultRequirementExt, len(b.activityDefinition.ObservationResultRequirement))
 	return b.activityDefinition
 }
 
@@ -2075,20 +2059,24 @@ func (b *ActivityDefinitionBuilder) SetLastReviewDateExt(v Element) *ActivityDef
 }
 
 // AddLibraryExt attaches extensions to the Library element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddLibrary twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ActivityDefinitionBuilder) AddLibraryExt(v *Element) *ActivityDefinitionBuilder {
-	for len(b.activityDefinition.LibraryExt) < len(b.activityDefinition.Library)-1 {
+	i := len(b.activityDefinition.Library) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.activityDefinition.LibraryExt) <= i {
 		b.activityDefinition.LibraryExt = append(b.activityDefinition.LibraryExt, nil)
 	}
-	b.activityDefinition.LibraryExt = append(b.activityDefinition.LibraryExt, v)
+	b.activityDefinition.LibraryExt[i] = v
 	return b
 }
 
@@ -2143,56 +2131,68 @@ func (b *ActivityDefinitionBuilder) SetDoNotPerformExt(v Element) *ActivityDefin
 }
 
 // AddSpecimenRequirementExt attaches extensions to the SpecimenRequirement element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddSpecimenRequirement twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ActivityDefinitionBuilder) AddSpecimenRequirementExt(v *Element) *ActivityDefinitionBuilder {
-	for len(b.activityDefinition.SpecimenRequirementExt) < len(b.activityDefinition.SpecimenRequirement)-1 {
+	i := len(b.activityDefinition.SpecimenRequirement) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.activityDefinition.SpecimenRequirementExt) <= i {
 		b.activityDefinition.SpecimenRequirementExt = append(b.activityDefinition.SpecimenRequirementExt, nil)
 	}
-	b.activityDefinition.SpecimenRequirementExt = append(b.activityDefinition.SpecimenRequirementExt, v)
+	b.activityDefinition.SpecimenRequirementExt[i] = v
 	return b
 }
 
 // AddObservationRequirementExt attaches extensions to the ObservationRequirement element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddObservationRequirement twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ActivityDefinitionBuilder) AddObservationRequirementExt(v *Element) *ActivityDefinitionBuilder {
-	for len(b.activityDefinition.ObservationRequirementExt) < len(b.activityDefinition.ObservationRequirement)-1 {
+	i := len(b.activityDefinition.ObservationRequirement) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.activityDefinition.ObservationRequirementExt) <= i {
 		b.activityDefinition.ObservationRequirementExt = append(b.activityDefinition.ObservationRequirementExt, nil)
 	}
-	b.activityDefinition.ObservationRequirementExt = append(b.activityDefinition.ObservationRequirementExt, v)
+	b.activityDefinition.ObservationRequirementExt[i] = v
 	return b
 }
 
 // AddObservationResultRequirementExt attaches extensions to the ObservationResultRequirement element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddObservationResultRequirement twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ActivityDefinitionBuilder) AddObservationResultRequirementExt(v *Element) *ActivityDefinitionBuilder {
-	for len(b.activityDefinition.ObservationResultRequirementExt) < len(b.activityDefinition.ObservationResultRequirement)-1 {
+	i := len(b.activityDefinition.ObservationResultRequirement) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.activityDefinition.ObservationResultRequirementExt) <= i {
 		b.activityDefinition.ObservationResultRequirementExt = append(b.activityDefinition.ObservationResultRequirementExt, nil)
 	}
-	b.activityDefinition.ObservationResultRequirementExt = append(b.activityDefinition.ObservationResultRequirementExt, v)
+	b.activityDefinition.ObservationResultRequirementExt[i] = v
 	return b
 }
 

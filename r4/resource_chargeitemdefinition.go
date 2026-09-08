@@ -453,13 +453,7 @@ func (r *ChargeItemDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.DerivedFromUri = append(r.DerivedFromUri, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.DerivedFromUriExt) < len(r.DerivedFromUri)-1 {
-						r.DerivedFromUriExt = append(r.DerivedFromUriExt, nil)
-					}
-					r.DerivedFromUriExt = append(r.DerivedFromUriExt, ext)
-				}
+				r.DerivedFromUriExt = appendExtSlot(r.DerivedFromUriExt, ext, len(r.DerivedFromUri))
 			case "partOf":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -467,13 +461,7 @@ func (r *ChargeItemDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.PartOf = append(r.PartOf, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.PartOfExt) < len(r.PartOf)-1 {
-						r.PartOfExt = append(r.PartOfExt, nil)
-					}
-					r.PartOfExt = append(r.PartOfExt, ext)
-				}
+				r.PartOfExt = appendExtSlot(r.PartOfExt, ext, len(r.PartOf))
 			case "replaces":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -481,13 +469,7 @@ func (r *ChargeItemDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Replaces = append(r.Replaces, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.ReplacesExt) < len(r.Replaces)-1 {
-						r.ReplacesExt = append(r.ReplacesExt, nil)
-					}
-					r.ReplacesExt = append(r.ReplacesExt, ext)
-				}
+				r.ReplacesExt = appendExtSlot(r.ReplacesExt, ext, len(r.Replaces))
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[PublicationStatus](d, t)
 				if err != nil {
@@ -598,6 +580,9 @@ func (r *ChargeItemDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 				}
 			}
 		case xml.EndElement:
+			r.DerivedFromUriExt = alignExtSlots(r.DerivedFromUriExt, len(r.DerivedFromUri))
+			r.PartOfExt = alignExtSlots(r.PartOfExt, len(r.PartOf))
+			r.ReplacesExt = alignExtSlots(r.ReplacesExt, len(r.Replaces))
 			return nil
 		}
 	}
@@ -1054,6 +1039,9 @@ func NewChargeItemDefinitionBuilder() *ChargeItemDefinitionBuilder {
 
 // Build returns the constructed ChargeItemDefinition resource.
 func (b *ChargeItemDefinitionBuilder) Build() *ChargeItemDefinition {
+	b.chargeItemDefinition.DerivedFromUriExt = alignExtSlots(b.chargeItemDefinition.DerivedFromUriExt, len(b.chargeItemDefinition.DerivedFromUri))
+	b.chargeItemDefinition.PartOfExt = alignExtSlots(b.chargeItemDefinition.PartOfExt, len(b.chargeItemDefinition.PartOf))
+	b.chargeItemDefinition.ReplacesExt = alignExtSlots(b.chargeItemDefinition.ReplacesExt, len(b.chargeItemDefinition.Replaces))
 	return b.chargeItemDefinition
 }
 
@@ -1321,56 +1309,68 @@ func (b *ChargeItemDefinitionBuilder) SetTitleExt(v Element) *ChargeItemDefiniti
 }
 
 // AddDerivedFromUriExt attaches extensions to the DerivedFromUri element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddDerivedFromUri twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ChargeItemDefinitionBuilder) AddDerivedFromUriExt(v *Element) *ChargeItemDefinitionBuilder {
-	for len(b.chargeItemDefinition.DerivedFromUriExt) < len(b.chargeItemDefinition.DerivedFromUri)-1 {
+	i := len(b.chargeItemDefinition.DerivedFromUri) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.chargeItemDefinition.DerivedFromUriExt) <= i {
 		b.chargeItemDefinition.DerivedFromUriExt = append(b.chargeItemDefinition.DerivedFromUriExt, nil)
 	}
-	b.chargeItemDefinition.DerivedFromUriExt = append(b.chargeItemDefinition.DerivedFromUriExt, v)
+	b.chargeItemDefinition.DerivedFromUriExt[i] = v
 	return b
 }
 
 // AddPartOfExt attaches extensions to the PartOf element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddPartOf twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ChargeItemDefinitionBuilder) AddPartOfExt(v *Element) *ChargeItemDefinitionBuilder {
-	for len(b.chargeItemDefinition.PartOfExt) < len(b.chargeItemDefinition.PartOf)-1 {
+	i := len(b.chargeItemDefinition.PartOf) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.chargeItemDefinition.PartOfExt) <= i {
 		b.chargeItemDefinition.PartOfExt = append(b.chargeItemDefinition.PartOfExt, nil)
 	}
-	b.chargeItemDefinition.PartOfExt = append(b.chargeItemDefinition.PartOfExt, v)
+	b.chargeItemDefinition.PartOfExt[i] = v
 	return b
 }
 
 // AddReplacesExt attaches extensions to the Replaces element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddReplaces twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *ChargeItemDefinitionBuilder) AddReplacesExt(v *Element) *ChargeItemDefinitionBuilder {
-	for len(b.chargeItemDefinition.ReplacesExt) < len(b.chargeItemDefinition.Replaces)-1 {
+	i := len(b.chargeItemDefinition.Replaces) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.chargeItemDefinition.ReplacesExt) <= i {
 		b.chargeItemDefinition.ReplacesExt = append(b.chargeItemDefinition.ReplacesExt, nil)
 	}
-	b.chargeItemDefinition.ReplacesExt = append(b.chargeItemDefinition.ReplacesExt, v)
+	b.chargeItemDefinition.ReplacesExt[i] = v
 	return b
 }
 

@@ -804,13 +804,7 @@ func (r *Measure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Library = append(r.Library, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.LibraryExt) < len(r.Library)-1 {
-						r.LibraryExt = append(r.LibraryExt, nil)
-					}
-					r.LibraryExt = append(r.LibraryExt, ext)
-				}
+				r.LibraryExt = appendExtSlot(r.LibraryExt, ext, len(r.Library))
 			case "disclaimer":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -907,6 +901,7 @@ func (r *Measure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 			}
 		case xml.EndElement:
+			r.LibraryExt = alignExtSlots(r.LibraryExt, len(r.Library))
 			return nil
 		}
 	}
@@ -1179,13 +1174,7 @@ func (r *MeasureGroup) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				// nil is meaningful here: it is a positional slot with no value.
 				r.Library = append(r.Library, v)
-				// The slots are parallel by position: fill the gap, then append.
-				if ext != nil {
-					for len(r.LibraryExt) < len(r.Library)-1 {
-						r.LibraryExt = append(r.LibraryExt, nil)
-					}
-					r.LibraryExt = append(r.LibraryExt, ext)
-				}
+				r.LibraryExt = appendExtSlot(r.LibraryExt, ext, len(r.Library))
 			case "population":
 				var v MeasureGroupPopulation
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1204,6 +1193,7 @@ func (r *MeasureGroup) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 			}
 		case xml.EndElement:
+			r.LibraryExt = alignExtSlots(r.LibraryExt, len(r.Library))
 			return nil
 		}
 	}
@@ -2079,6 +2069,7 @@ func NewMeasureBuilder() *MeasureBuilder {
 
 // Build returns the constructed Measure resource.
 func (b *MeasureBuilder) Build() *Measure {
+	b.measure.LibraryExt = alignExtSlots(b.measure.LibraryExt, len(b.measure.Library))
 	return b.measure
 }
 
@@ -2648,20 +2639,24 @@ func (b *MeasureBuilder) SetLastReviewDateExt(v Element) *MeasureBuilder {
 }
 
 // AddLibraryExt attaches extensions to the Library element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddLibrary twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *MeasureBuilder) AddLibraryExt(v *Element) *MeasureBuilder {
-	for len(b.measure.LibraryExt) < len(b.measure.Library)-1 {
+	i := len(b.measure.Library) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.measure.LibraryExt) <= i {
 		b.measure.LibraryExt = append(b.measure.LibraryExt, nil)
 	}
-	b.measure.LibraryExt = append(b.measure.LibraryExt, v)
+	b.measure.LibraryExt[i] = v
 	return b
 }
 
@@ -2763,6 +2758,7 @@ func NewMeasureGroupBuilder() *MeasureGroupBuilder {
 // writing AddName(*NewHumanNameBuilder()...Build()) — a dereference at every call
 // site, to undo a pointer nobody asked for.
 func (b *MeasureGroupBuilder) Build() MeasureGroup {
+	b.measureGroup.LibraryExt = alignExtSlots(b.measureGroup.LibraryExt, len(b.measureGroup.Library))
 	return *b.measureGroup
 }
 
@@ -2923,20 +2919,24 @@ func (b *MeasureGroupBuilder) SetRateAggregationExt(v Element) *MeasureGroupBuil
 }
 
 // AddLibraryExt attaches extensions to the Library element added most
-// recently.
+// recently, writing them to that element's slot. The two slices are parallel by
+// position, and a slot whose element has no extension is nil.
 //
-// The two slices are parallel by position, so any earlier element that has no
-// extension is filled in as nil first. Appending blindly instead would put the
-// extension at the wrong index: after AddLibrary twice, a bare append lands at
-// position 0 and silently belongs to the first element rather than the second.
+// With no value added yet the extension stands alone in the first slot, which is
+// a real FHIR shape: a repeating primitive whose value is absent carries its
+// reason in the extension.
 //
 // A nil value is meaningful and can be passed deliberately: it is a position that
 // has no extension.
 func (b *MeasureGroupBuilder) AddLibraryExt(v *Element) *MeasureGroupBuilder {
-	for len(b.measureGroup.LibraryExt) < len(b.measureGroup.Library)-1 {
+	i := len(b.measureGroup.Library) - 1
+	if i < 0 {
+		i = 0
+	}
+	for len(b.measureGroup.LibraryExt) <= i {
 		b.measureGroup.LibraryExt = append(b.measureGroup.LibraryExt, nil)
 	}
-	b.measureGroup.LibraryExt = append(b.measureGroup.LibraryExt, v)
+	b.measureGroup.LibraryExt[i] = v
 	return b
 }
 
