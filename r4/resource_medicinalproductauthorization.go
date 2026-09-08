@@ -735,7 +735,7 @@ func (b MedicinalProductAuthorizationProcedure) MarshalXML(e *xml.Encoder, start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "dateDateTime", b.DateDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "dateDateTime", b.DateDateTime, b.DateDateTimeExt); err != nil {
 		return err
 	}
 	for _, item := range b.Application {
@@ -800,7 +800,7 @@ func (r *MedicinalProductAuthorizationProcedure) UnmarshalXML(d *xml.Decoder, st
 					return err
 				}
 				r.DateDateTime = v
-				_ = ext
+				r.DateDateTimeExt = ext
 			case "application":
 				var v MedicinalProductAuthorizationProcedure
 				if err := v.UnmarshalXML(d, t); err != nil {

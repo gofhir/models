@@ -309,7 +309,7 @@ func (r ConceptMap) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveString(e, "version", r.Version, r.VersionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "versionAlgorithmString", r.VersionAlgorithmString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "versionAlgorithmString", r.VersionAlgorithmString, r.VersionAlgorithmStringExt); err != nil {
 		return err
 	}
 	if r.VersionAlgorithmCoding != nil {
@@ -413,16 +413,16 @@ func (r ConceptMap) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "sourceScopeUri", r.SourceScopeUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "sourceScopeUri", r.SourceScopeUri, r.SourceScopeUriExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "sourceScopeCanonical", r.SourceScopeCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "sourceScopeCanonical", r.SourceScopeCanonical, r.SourceScopeCanonicalExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "targetScopeUri", r.TargetScopeUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "targetScopeUri", r.TargetScopeUri, r.TargetScopeUriExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "targetScopeCanonical", r.TargetScopeCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "targetScopeCanonical", r.TargetScopeCanonical, r.TargetScopeCanonicalExt); err != nil {
 		return err
 	}
 	for _, item := range r.Group {
@@ -522,7 +522,7 @@ func (r *ConceptMap) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 					return err
 				}
 				r.VersionAlgorithmString = v
-				_ = ext
+				r.VersionAlgorithmStringExt = ext
 			case "versionAlgorithmCoding":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -691,28 +691,28 @@ func (r *ConceptMap) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 					return err
 				}
 				r.SourceScopeUri = v
-				_ = ext
+				r.SourceScopeUriExt = ext
 			case "sourceScopeCanonical":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SourceScopeCanonical = v
-				_ = ext
+				r.SourceScopeCanonicalExt = ext
 			case "targetScopeUri":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.TargetScopeUri = v
-				_ = ext
+				r.TargetScopeUriExt = ext
 			case "targetScopeCanonical":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.TargetScopeCanonical = v
-				_ = ext
+				r.TargetScopeCanonicalExt = ext
 			case "group":
 				var v ConceptMapGroup
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1516,7 +1516,7 @@ func (b ConceptMapGroupElementTargetDependsOn) MarshalXML(e *xml.Encoder, start 
 	if err := xmlEncodePrimitiveString(e, "attribute", b.Attribute, b.AttributeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueCode", b.ValueCode, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueCode", b.ValueCode, b.ValueCodeExt); err != nil {
 		return err
 	}
 	if b.ValueCoding != nil {
@@ -1524,10 +1524,10 @@ func (b ConceptMapGroupElementTargetDependsOn) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, b.ValueStringExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, b.ValueBooleanExt); err != nil {
 		return err
 	}
 	if b.ValueQuantity != nil {
@@ -1584,7 +1584,7 @@ func (r *ConceptMapGroupElementTargetDependsOn) UnmarshalXML(d *xml.Decoder, sta
 					return err
 				}
 				r.ValueCode = v
-				_ = ext
+				r.ValueCodeExt = ext
 			case "valueCoding":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1597,14 +1597,14 @@ func (r *ConceptMapGroupElementTargetDependsOn) UnmarshalXML(d *xml.Decoder, sta
 					return err
 				}
 				r.ValueString = v
-				_ = ext
+				r.ValueStringExt = ext
 			case "valueBoolean":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
-				_ = ext
+				r.ValueBooleanExt = ext
 			case "valueQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1726,22 +1726,22 @@ func (b ConceptMapGroupElementTargetProperty) MarshalXML(e *xml.Encoder, start x
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, b.ValueStringExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, b.ValueIntegerExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, b.ValueBooleanExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueDateTime", b.ValueDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueDateTime", b.ValueDateTime, b.ValueDateTimeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", b.ValueDecimal, b.ValueDecimalExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueCode", b.ValueCode, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueCode", b.ValueCode, b.ValueCodeExt); err != nil {
 		return err
 	}
 
@@ -1796,42 +1796,42 @@ func (r *ConceptMapGroupElementTargetProperty) UnmarshalXML(d *xml.Decoder, star
 					return err
 				}
 				r.ValueString = v
-				_ = ext
+				r.ValueStringExt = ext
 			case "valueInteger":
 				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger = v
-				_ = ext
+				r.ValueIntegerExt = ext
 			case "valueBoolean":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
-				_ = ext
+				r.ValueBooleanExt = ext
 			case "valueDateTime":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDateTime = v
-				_ = ext
+				r.ValueDateTimeExt = ext
 			case "valueDecimal":
 				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDecimal = v
-				_ = ext
+				r.ValueDecimalExt = ext
 			case "valueCode":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueCode = v
-				_ = ext
+				r.ValueCodeExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

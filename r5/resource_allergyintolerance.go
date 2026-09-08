@@ -283,7 +283,7 @@ func (r AllergyIntolerance) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "onsetDateTime", r.OnsetDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "onsetDateTime", r.OnsetDateTime, r.OnsetDateTimeExt); err != nil {
 		return err
 	}
 	if r.OnsetAge != nil {
@@ -301,7 +301,7 @@ func (r AllergyIntolerance) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "onsetString", r.OnsetString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "onsetString", r.OnsetString, r.OnsetStringExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "recordedDate", r.RecordedDate, r.RecordedDateExt); err != nil {
@@ -454,7 +454,7 @@ func (r *AllergyIntolerance) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 					return err
 				}
 				r.OnsetDateTime = v
-				_ = ext
+				r.OnsetDateTimeExt = ext
 			case "onsetAge":
 				var v Age
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -479,7 +479,7 @@ func (r *AllergyIntolerance) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 					return err
 				}
 				r.OnsetString = v
-				_ = ext
+				r.OnsetStringExt = ext
 			case "recordedDate":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

@@ -919,10 +919,10 @@ func (b DocumentReferenceContentProfile) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueUri", b.ValueUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueUri", b.ValueUri, b.ValueUriExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueCanonical", b.ValueCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueCanonical", b.ValueCanonical, b.ValueCanonicalExt); err != nil {
 		return err
 	}
 
@@ -970,14 +970,14 @@ func (r *DocumentReferenceContentProfile) UnmarshalXML(d *xml.Decoder, start xml
 					return err
 				}
 				r.ValueUri = v
-				_ = ext
+				r.ValueUriExt = ext
 			case "valueCanonical":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueCanonical = v
-				_ = ext
+				r.ValueCanonicalExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

@@ -662,8 +662,17 @@ func xmlTemplateFuncMap() template.FuncMap {
 
 		// extFieldRef returns the extension companion field reference (e.g., "r.BirthDateExt")
 		// or "nil" if no extension companion exists.
+		//
+		// Choice variants used to return "nil" here, which dropped their extension
+		// on the XML path while JSON kept it. The companion does exist for them —
+		// analyzeChoiceType emits "<Name>Ext" as a property of its own rather than
+		// letting the struct template derive it from HasExtension — so there was
+		// never a missing field to guard against. An array choice would be the one
+		// real gap, since that companion is emitted as *Element and not []*Element,
+		// but no such element exists in R4, R4B or R5: the decode templates skip
+		// array choices, and their site count matches the builder's exactly.
 		"extFieldRef": func(receiver string, prop analyzer.AnalyzedProperty) string {
-			if !prop.HasExtension || prop.IsChoice {
+			if !prop.HasExtension || (prop.IsChoice && prop.IsArray) {
 				return "nil"
 			}
 			return fmt.Sprintf("%s.%sExt", receiver, prop.Name)

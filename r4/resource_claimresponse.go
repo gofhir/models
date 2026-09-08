@@ -768,7 +768,7 @@ func (b ClaimResponseAddItem) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "servicedDate", b.ServicedDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "servicedDate", b.ServicedDate, b.ServicedDateExt); err != nil {
 		return err
 	}
 	if b.ServicedPeriod != nil {
@@ -919,7 +919,7 @@ func (r *ClaimResponseAddItem) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 					return err
 				}
 				r.ServicedDate = v
-				_ = ext
+				r.ServicedDateExt = ext
 			case "servicedPeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

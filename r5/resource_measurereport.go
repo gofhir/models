@@ -603,7 +603,7 @@ func (b MeasureReportGroup) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "measureScoreDateTime", b.MeasureScoreDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "measureScoreDateTime", b.MeasureScoreDateTime, b.MeasureScoreDateTimeExt); err != nil {
 		return err
 	}
 	if b.MeasureScoreCodeableConcept != nil {
@@ -701,7 +701,7 @@ func (r *MeasureReportGroup) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 					return err
 				}
 				r.MeasureScoreDateTime = v
-				_ = ext
+				r.MeasureScoreDateTimeExt = ext
 			case "measureScoreCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1163,7 +1163,7 @@ func (b MeasureReportGroupStratifierStratum) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, b.ValueBooleanExt); err != nil {
 		return err
 	}
 	if b.ValueQuantity != nil {
@@ -1196,7 +1196,7 @@ func (b MeasureReportGroupStratifierStratum) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "measureScoreDateTime", b.MeasureScoreDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "measureScoreDateTime", b.MeasureScoreDateTime, b.MeasureScoreDateTimeExt); err != nil {
 		return err
 	}
 	if b.MeasureScoreCodeableConcept != nil {
@@ -1264,7 +1264,7 @@ func (r *MeasureReportGroupStratifierStratum) UnmarshalXML(d *xml.Decoder, start
 					return err
 				}
 				r.ValueBoolean = v
-				_ = ext
+				r.ValueBooleanExt = ext
 			case "valueQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1307,7 +1307,7 @@ func (r *MeasureReportGroupStratifierStratum) UnmarshalXML(d *xml.Decoder, start
 					return err
 				}
 				r.MeasureScoreDateTime = v
-				_ = ext
+				r.MeasureScoreDateTimeExt = ext
 			case "measureScoreCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1433,7 +1433,7 @@ func (b MeasureReportGroupStratifierStratumComponent) MarshalXML(e *xml.Encoder,
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, b.ValueBooleanExt); err != nil {
 		return err
 	}
 	if b.ValueQuantity != nil {
@@ -1509,7 +1509,7 @@ func (r *MeasureReportGroupStratifierStratumComponent) UnmarshalXML(d *xml.Decod
 					return err
 				}
 				r.ValueBoolean = v
-				_ = ext
+				r.ValueBooleanExt = ext
 			case "valueQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {

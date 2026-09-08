@@ -722,7 +722,7 @@ func (b SubstanceReferenceInformationTarget) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "amountString", b.AmountString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "amountString", b.AmountString, b.AmountStringExt); err != nil {
 		return err
 	}
 	if b.AmountType != nil {
@@ -816,7 +816,7 @@ func (r *SubstanceReferenceInformationTarget) UnmarshalXML(d *xml.Decoder, start
 					return err
 				}
 				r.AmountString = v
-				_ = ext
+				r.AmountStringExt = ext
 			case "amountType":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

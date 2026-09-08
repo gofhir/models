@@ -253,7 +253,7 @@ func (r ArtifactAssessment) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "citeAsMarkdown", r.CiteAsMarkdown, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "citeAsMarkdown", r.CiteAsMarkdown, r.CiteAsMarkdownExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "date", r.Date, r.DateExt); err != nil {
@@ -273,10 +273,10 @@ func (r ArtifactAssessment) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "artifactCanonical", r.ArtifactCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "artifactCanonical", r.ArtifactCanonical, r.ArtifactCanonicalExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "artifactUri", r.ArtifactUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "artifactUri", r.ArtifactUri, r.ArtifactUriExt); err != nil {
 		return err
 	}
 	for _, item := range r.Content {
@@ -381,7 +381,7 @@ func (r *ArtifactAssessment) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 					return err
 				}
 				r.CiteAsMarkdown = v
-				_ = ext
+				r.CiteAsMarkdownExt = ext
 			case "date":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -422,14 +422,14 @@ func (r *ArtifactAssessment) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 					return err
 				}
 				r.ArtifactCanonical = v
-				_ = ext
+				r.ArtifactCanonicalExt = ext
 			case "artifactUri":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ArtifactUri = v
-				_ = ext
+				r.ArtifactUriExt = ext
 			case "content":
 				var v ArtifactAssessmentContent
 				if err := v.UnmarshalXML(d, t); err != nil {

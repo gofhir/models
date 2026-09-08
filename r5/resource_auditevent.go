@@ -251,7 +251,7 @@ func (r AuditEvent) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "occurredDateTime", r.OccurredDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "occurredDateTime", r.OccurredDateTime, r.OccurredDateTimeExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "recorded", r.Recorded, r.RecordedExt); err != nil {
@@ -401,7 +401,7 @@ func (r *AuditEvent) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 					return err
 				}
 				r.OccurredDateTime = v
-				_ = ext
+				r.OccurredDateTimeExt = ext
 			case "recorded":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -586,10 +586,10 @@ func (b AuditEventAgent) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "networkUri", b.NetworkUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "networkUri", b.NetworkUri, b.NetworkUriExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "networkString", b.NetworkString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "networkString", b.NetworkString, b.NetworkStringExt); err != nil {
 		return err
 	}
 	for _, item := range b.Authorization {
@@ -681,14 +681,14 @@ func (r *AuditEventAgent) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 					return err
 				}
 				r.NetworkUri = v
-				_ = ext
+				r.NetworkUriExt = ext
 			case "networkString":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.NetworkString = v
-				_ = ext
+				r.NetworkStringExt = ext
 			case "authorization":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -999,13 +999,13 @@ func (b AuditEventEntityDetail) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, b.ValueStringExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, b.ValueBooleanExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, b.ValueIntegerExt); err != nil {
 		return err
 	}
 	if b.ValueRange != nil {
@@ -1018,10 +1018,10 @@ func (b AuditEventEntityDetail) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueTime", b.ValueTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueTime", b.ValueTime, b.ValueTimeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueDateTime", b.ValueDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueDateTime", b.ValueDateTime, b.ValueDateTimeExt); err != nil {
 		return err
 	}
 	if b.ValuePeriod != nil {
@@ -1029,7 +1029,7 @@ func (b AuditEventEntityDetail) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueBase64Binary", b.ValueBase64Binary, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueBase64Binary", b.ValueBase64Binary, b.ValueBase64BinaryExt); err != nil {
 		return err
 	}
 
@@ -1089,21 +1089,21 @@ func (r *AuditEventEntityDetail) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 					return err
 				}
 				r.ValueString = v
-				_ = ext
+				r.ValueStringExt = ext
 			case "valueBoolean":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
-				_ = ext
+				r.ValueBooleanExt = ext
 			case "valueInteger":
 				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger = v
-				_ = ext
+				r.ValueIntegerExt = ext
 			case "valueRange":
 				var v Range
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1122,14 +1122,14 @@ func (r *AuditEventEntityDetail) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 					return err
 				}
 				r.ValueTime = v
-				_ = ext
+				r.ValueTimeExt = ext
 			case "valueDateTime":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDateTime = v
-				_ = ext
+				r.ValueDateTimeExt = ext
 			case "valuePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1142,7 +1142,7 @@ func (r *AuditEventEntityDetail) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 					return err
 				}
 				r.ValueBase64Binary = v
-				_ = ext
+				r.ValueBase64BinaryExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

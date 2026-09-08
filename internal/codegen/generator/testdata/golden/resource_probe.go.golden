@@ -123,10 +123,10 @@ func (r Probe) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			}
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "valueBoolean", r.ValueBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "valueBoolean", r.ValueBoolean, r.ValueBooleanExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueString", r.ValueString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueString", r.ValueString, r.ValueStringExt); err != nil {
 		return err
 	}
 	for _, item := range r.Detail {
@@ -189,14 +189,14 @@ func (r *Probe) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 					return err
 				}
 				r.ValueBoolean = v
-				_ = ext
+				r.ValueBooleanExt = ext
 			case "valueString":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
-				_ = ext
+				r.ValueStringExt = ext
 			case "detail":
 				var v ProbeDetail
 				if err := v.UnmarshalXML(d, t); err != nil {

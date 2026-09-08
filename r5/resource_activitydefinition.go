@@ -375,7 +375,7 @@ func (r ActivityDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 	if err := xmlEncodePrimitiveString(e, "version", r.Version, r.VersionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "versionAlgorithmString", r.VersionAlgorithmString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "versionAlgorithmString", r.VersionAlgorithmString, r.VersionAlgorithmStringExt); err != nil {
 		return err
 	}
 	if r.VersionAlgorithmCoding != nil {
@@ -408,7 +408,7 @@ func (r ActivityDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "subjectCanonical", r.SubjectCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "subjectCanonical", r.SubjectCanonical, r.SubjectCanonicalExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "date", r.Date, r.DateExt); err != nil {
@@ -531,7 +531,7 @@ func (r ActivityDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "asNeededBoolean", r.AsNeededBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "asNeededBoolean", r.AsNeededBoolean, r.AsNeededBooleanExt); err != nil {
 		return err
 	}
 	if r.AsNeededCodeableConcept != nil {
@@ -683,7 +683,7 @@ func (r *ActivityDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 					return err
 				}
 				r.VersionAlgorithmString = v
-				_ = ext
+				r.VersionAlgorithmStringExt = ext
 			case "versionAlgorithmCoding":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -743,7 +743,7 @@ func (r *ActivityDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 					return err
 				}
 				r.SubjectCanonical = v
-				_ = ext
+				r.SubjectCanonicalExt = ext
 			case "date":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -946,7 +946,7 @@ func (r *ActivityDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 					return err
 				}
 				r.AsNeededBoolean = v
-				_ = ext
+				r.AsNeededBooleanExt = ext
 			case "asNeededCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

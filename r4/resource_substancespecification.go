@@ -800,7 +800,7 @@ func (b SubstanceSpecificationMoiety) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "amountString", b.AmountString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "amountString", b.AmountString, b.AmountStringExt); err != nil {
 		return err
 	}
 
@@ -886,7 +886,7 @@ func (r *SubstanceSpecificationMoiety) UnmarshalXML(d *xml.Decoder, start xml.St
 					return err
 				}
 				r.AmountString = v
-				_ = ext
+				r.AmountStringExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1394,7 +1394,7 @@ func (b SubstanceSpecificationProperty) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "amountString", b.AmountString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "amountString", b.AmountString, b.AmountStringExt); err != nil {
 		return err
 	}
 
@@ -1473,7 +1473,7 @@ func (r *SubstanceSpecificationProperty) UnmarshalXML(d *xml.Decoder, start xml.
 					return err
 				}
 				r.AmountString = v
-				_ = ext
+				r.AmountStringExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
@@ -1603,7 +1603,7 @@ func (b SubstanceSpecificationRelationship) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "amountString", b.AmountString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "amountString", b.AmountString, b.AmountStringExt); err != nil {
 		return err
 	}
 	if b.AmountRatioLowLimit != nil {
@@ -1703,7 +1703,7 @@ func (r *SubstanceSpecificationRelationship) UnmarshalXML(d *xml.Decoder, start 
 					return err
 				}
 				r.AmountString = v
-				_ = ext
+				r.AmountStringExt = ext
 			case "amountRatioLowLimit":
 				var v Ratio
 				if err := v.UnmarshalXML(d, t); err != nil {

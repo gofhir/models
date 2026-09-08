@@ -315,16 +315,16 @@ func (r ConceptMap) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveString(e, "copyright", r.Copyright, r.CopyrightExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "sourceUri", r.SourceUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "sourceUri", r.SourceUri, r.SourceUriExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "sourceCanonical", r.SourceCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "sourceCanonical", r.SourceCanonical, r.SourceCanonicalExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "targetUri", r.TargetUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "targetUri", r.TargetUri, r.TargetUriExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "targetCanonical", r.TargetCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "targetCanonical", r.TargetCanonical, r.TargetCanonicalExt); err != nil {
 		return err
 	}
 	for _, item := range r.Group {
@@ -505,28 +505,28 @@ func (r *ConceptMap) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 					return err
 				}
 				r.SourceUri = v
-				_ = ext
+				r.SourceUriExt = ext
 			case "sourceCanonical":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SourceCanonical = v
-				_ = ext
+				r.SourceCanonicalExt = ext
 			case "targetUri":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.TargetUri = v
-				_ = ext
+				r.TargetUriExt = ext
 			case "targetCanonical":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.TargetCanonical = v
-				_ = ext
+				r.TargetCanonicalExt = ext
 			case "group":
 				var v ConceptMapGroup
 				if err := v.UnmarshalXML(d, t); err != nil {

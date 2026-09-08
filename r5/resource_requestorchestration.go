@@ -721,7 +721,7 @@ func (b RequestOrchestrationAction) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "timingDateTime", b.TimingDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "timingDateTime", b.TimingDateTime, b.TimingDateTimeExt); err != nil {
 		return err
 	}
 	if b.TimingAge != nil {
@@ -784,10 +784,10 @@ func (b RequestOrchestrationAction) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "definitionCanonical", b.DefinitionCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "definitionCanonical", b.DefinitionCanonical, b.DefinitionCanonicalExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "definitionUri", b.DefinitionUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "definitionUri", b.DefinitionUri, b.DefinitionUriExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "transform", b.Transform, b.TransformExt); err != nil {
@@ -926,7 +926,7 @@ func (r *RequestOrchestrationAction) UnmarshalXML(d *xml.Decoder, start xml.Star
 					return err
 				}
 				r.TimingDateTime = v
-				_ = ext
+				r.TimingDateTimeExt = ext
 			case "timingAge":
 				var v Age
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1022,14 +1022,14 @@ func (r *RequestOrchestrationAction) UnmarshalXML(d *xml.Decoder, start xml.Star
 					return err
 				}
 				r.DefinitionCanonical = v
-				_ = ext
+				r.DefinitionCanonicalExt = ext
 			case "definitionUri":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefinitionUri = v
-				_ = ext
+				r.DefinitionUriExt = ext
 			case "transform":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1708,7 +1708,7 @@ func (b RequestOrchestrationActionParticipant) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "actorCanonical", b.ActorCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "actorCanonical", b.ActorCanonical, b.ActorCanonicalExt); err != nil {
 		return err
 	}
 	if b.ActorReference != nil {
@@ -1787,7 +1787,7 @@ func (r *RequestOrchestrationActionParticipant) UnmarshalXML(d *xml.Decoder, sta
 					return err
 				}
 				r.ActorCanonical = v
-				_ = ext
+				r.ActorCanonicalExt = ext
 			case "actorReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

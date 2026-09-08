@@ -287,7 +287,7 @@ func (r AdverseEvent) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "occurrenceDateTime", r.OccurrenceDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "occurrenceDateTime", r.OccurrenceDateTime, r.OccurrenceDateTimeExt); err != nil {
 		return err
 	}
 	if r.OccurrencePeriod != nil {
@@ -490,7 +490,7 @@ func (r *AdverseEvent) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 					return err
 				}
 				r.OccurrenceDateTime = v
-				_ = ext
+				r.OccurrenceDateTimeExt = ext
 			case "occurrencePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

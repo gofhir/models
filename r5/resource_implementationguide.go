@@ -285,7 +285,7 @@ func (r ImplementationGuide) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 	if err := xmlEncodePrimitiveString(e, "version", r.Version, r.VersionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "versionAlgorithmString", r.VersionAlgorithmString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "versionAlgorithmString", r.VersionAlgorithmString, r.VersionAlgorithmStringExt); err != nil {
 		return err
 	}
 	if r.VersionAlgorithmCoding != nil {
@@ -459,7 +459,7 @@ func (r *ImplementationGuide) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 					return err
 				}
 				r.VersionAlgorithmString = v
-				_ = ext
+				r.VersionAlgorithmStringExt = ext
 			case "versionAlgorithmCoding":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -996,13 +996,13 @@ func (b ImplementationGuideDefinitionPage) MarshalXML(e *xml.Encoder, start xml.
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "sourceUrl", b.SourceUrl, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "sourceUrl", b.SourceUrl, b.SourceUrlExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "sourceString", b.SourceString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "sourceString", b.SourceString, b.SourceStringExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "sourceMarkdown", b.SourceMarkdown, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "sourceMarkdown", b.SourceMarkdown, b.SourceMarkdownExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
@@ -1058,21 +1058,21 @@ func (r *ImplementationGuideDefinitionPage) UnmarshalXML(d *xml.Decoder, start x
 					return err
 				}
 				r.SourceUrl = v
-				_ = ext
+				r.SourceUrlExt = ext
 			case "sourceString":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SourceString = v
-				_ = ext
+				r.SourceStringExt = ext
 			case "sourceMarkdown":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SourceMarkdown = v
-				_ = ext
+				r.SourceMarkdownExt = ext
 			case "name":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

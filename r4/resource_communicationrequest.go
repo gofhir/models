@@ -312,7 +312,7 @@ func (r CommunicationRequest) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "occurrenceDateTime", r.OccurrenceDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "occurrenceDateTime", r.OccurrenceDateTime, r.OccurrenceDateTimeExt); err != nil {
 		return err
 	}
 	if r.OccurrencePeriod != nil {
@@ -512,7 +512,7 @@ func (r *CommunicationRequest) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 					return err
 				}
 				r.OccurrenceDateTime = v
-				_ = ext
+				r.OccurrenceDateTimeExt = ext
 			case "occurrencePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -640,7 +640,7 @@ func (b CommunicationRequestPayload) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "contentString", b.ContentString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "contentString", b.ContentString, b.ContentStringExt); err != nil {
 		return err
 	}
 	if b.ContentAttachment != nil {
@@ -692,7 +692,7 @@ func (r *CommunicationRequestPayload) UnmarshalXML(d *xml.Decoder, start xml.Sta
 					return err
 				}
 				r.ContentString = v
-				_ = ext
+				r.ContentStringExt = ext
 			case "contentAttachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {

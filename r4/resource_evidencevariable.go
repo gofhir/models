@@ -741,7 +741,7 @@ func (b EvidenceVariableCharacteristic) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "definitionCanonical", b.DefinitionCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "definitionCanonical", b.DefinitionCanonical, b.DefinitionCanonicalExt); err != nil {
 		return err
 	}
 	if b.DefinitionCodeableConcept != nil {
@@ -772,7 +772,7 @@ func (b EvidenceVariableCharacteristic) MarshalXML(e *xml.Encoder, start xml.Sta
 	if err := xmlEncodePrimitiveBool(e, "exclude", b.Exclude, b.ExcludeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "participantEffectiveDateTime", b.ParticipantEffectiveDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "participantEffectiveDateTime", b.ParticipantEffectiveDateTime, b.ParticipantEffectiveDateTimeExt); err != nil {
 		return err
 	}
 	if b.ParticipantEffectivePeriod != nil {
@@ -850,7 +850,7 @@ func (r *EvidenceVariableCharacteristic) UnmarshalXML(d *xml.Decoder, start xml.
 					return err
 				}
 				r.DefinitionCanonical = v
-				_ = ext
+				r.DefinitionCanonicalExt = ext
 			case "definitionCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -894,7 +894,7 @@ func (r *EvidenceVariableCharacteristic) UnmarshalXML(d *xml.Decoder, start xml.
 					return err
 				}
 				r.ParticipantEffectiveDateTime = v
-				_ = ext
+				r.ParticipantEffectiveDateTimeExt = ext
 			case "participantEffectivePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

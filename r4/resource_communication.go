@@ -645,7 +645,7 @@ func (b CommunicationPayload) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "contentString", b.ContentString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "contentString", b.ContentString, b.ContentStringExt); err != nil {
 		return err
 	}
 	if b.ContentAttachment != nil {
@@ -697,7 +697,7 @@ func (r *CommunicationPayload) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 					return err
 				}
 				r.ContentString = v
-				_ = ext
+				r.ContentStringExt = ext
 			case "contentAttachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {

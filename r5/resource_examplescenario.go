@@ -271,7 +271,7 @@ func (r ExampleScenario) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 	if err := xmlEncodePrimitiveString(e, "version", r.Version, r.VersionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "versionAlgorithmString", r.VersionAlgorithmString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "versionAlgorithmString", r.VersionAlgorithmString, r.VersionAlgorithmStringExt); err != nil {
 		return err
 	}
 	if r.VersionAlgorithmCoding != nil {
@@ -431,7 +431,7 @@ func (r *ExampleScenario) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 					return err
 				}
 				r.VersionAlgorithmString = v
-				_ = ext
+				r.VersionAlgorithmStringExt = ext
 			case "versionAlgorithmCoding":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -816,10 +816,10 @@ func (b ExampleScenarioInstance) MarshalXML(e *xml.Encoder, start xml.StartEleme
 	if err := xmlEncodePrimitiveString(e, "structureVersion", b.StructureVersion, b.StructureVersionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "structureProfileCanonical", b.StructureProfileCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "structureProfileCanonical", b.StructureProfileCanonical, b.StructureProfileCanonicalExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "structureProfileUri", b.StructureProfileUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "structureProfileUri", b.StructureProfileUri, b.StructureProfileUriExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "title", b.Title, b.TitleExt); err != nil {
@@ -902,14 +902,14 @@ func (r *ExampleScenarioInstance) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 					return err
 				}
 				r.StructureProfileCanonical = v
-				_ = ext
+				r.StructureProfileCanonicalExt = ext
 			case "structureProfileUri":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.StructureProfileUri = v
-				_ = ext
+				r.StructureProfileUriExt = ext
 			case "title":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

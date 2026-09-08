@@ -407,7 +407,7 @@ func (r *{{.Name}}) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 					return err
 				}
 				r.{{.Name}} = v
-{{- if and .HasExtension (not .IsChoice)}}
+{{- if and .HasExtension (not (and .IsChoice .IsArray))}}
 				r.{{.Name}}Ext = ext
 {{- else}}
 				_ = ext
@@ -693,7 +693,7 @@ func (r *{{.Name}}) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 					return err
 				}
 				r.{{.Name}} = v
-{{- if and .HasExtension (not .IsChoice)}}
+{{- if and .HasExtension (not (and .IsChoice .IsArray))}}
 				r.{{.Name}}Ext = ext
 {{- else}}
 				_ = ext

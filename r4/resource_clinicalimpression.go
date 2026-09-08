@@ -277,7 +277,7 @@ func (r ClinicalImpression) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "effectiveDateTime", r.EffectiveDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "effectiveDateTime", r.EffectiveDateTime, r.EffectiveDateTimeExt); err != nil {
 		return err
 	}
 	if r.EffectivePeriod != nil {
@@ -455,7 +455,7 @@ func (r *ClinicalImpression) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 					return err
 				}
 				r.EffectiveDateTime = v
-				_ = ext
+				r.EffectiveDateTimeExt = ext
 			case "effectivePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

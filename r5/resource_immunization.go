@@ -318,10 +318,10 @@ func (r Immunization) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "occurrenceDateTime", r.OccurrenceDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "occurrenceDateTime", r.OccurrenceDateTime, r.OccurrenceDateTimeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "occurrenceString", r.OccurrenceString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "occurrenceString", r.OccurrenceString, r.OccurrenceStringExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveBool(e, "primarySource", r.PrimarySource, r.PrimarySourceExt); err != nil {
@@ -542,14 +542,14 @@ func (r *Immunization) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 					return err
 				}
 				r.OccurrenceDateTime = v
-				_ = ext
+				r.OccurrenceDateTimeExt = ext
 			case "occurrenceString":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.OccurrenceString = v
-				_ = ext
+				r.OccurrenceStringExt = ext
 			case "primarySource":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {

@@ -274,7 +274,7 @@ func (r Invoice) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveString(e, "creation", r.Creation, r.CreationExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "periodDate", r.PeriodDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "periodDate", r.PeriodDate, r.PeriodDateExt); err != nil {
 		return err
 	}
 	if r.PeriodPeriod != nil {
@@ -449,7 +449,7 @@ func (r *Invoice) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 					return err
 				}
 				r.PeriodDate = v
-				_ = ext
+				r.PeriodDateExt = ext
 			case "periodPeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -600,7 +600,7 @@ func (b InvoiceLineItem) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 	if err := xmlEncodePrimitiveUint32(e, "sequence", b.Sequence, b.SequenceExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "servicedDate", b.ServicedDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "servicedDate", b.ServicedDate, b.ServicedDateExt); err != nil {
 		return err
 	}
 	if b.ServicedPeriod != nil {
@@ -669,7 +669,7 @@ func (r *InvoiceLineItem) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 					return err
 				}
 				r.ServicedDate = v
-				_ = ext
+				r.ServicedDateExt = ext
 			case "servicedPeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

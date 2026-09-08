@@ -258,7 +258,7 @@ func (r DeviceDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "manufacturerString", r.ManufacturerString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "manufacturerString", r.ManufacturerString, r.ManufacturerStringExt); err != nil {
 		return err
 	}
 	if r.ManufacturerReference != nil {
@@ -437,7 +437,7 @@ func (r *DeviceDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 					return err
 				}
 				r.ManufacturerString = v
-				_ = ext
+				r.ManufacturerStringExt = ext
 			case "manufacturerReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

@@ -812,7 +812,7 @@ func (b ClinicalUseDefinitionIndication) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "durationString", b.DurationString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "durationString", b.DurationString, b.DurationStringExt); err != nil {
 		return err
 	}
 	for _, item := range b.UndesirableEffect {
@@ -894,7 +894,7 @@ func (r *ClinicalUseDefinitionIndication) UnmarshalXML(d *xml.Decoder, start xml
 					return err
 				}
 				r.DurationString = v
-				_ = ext
+				r.DurationStringExt = ext
 			case "undesirableEffect":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

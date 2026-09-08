@@ -512,13 +512,13 @@ func (b AdministrableProductDefinitionProperty) MarshalXML(e *xml.Encoder, start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueDate", b.ValueDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueDate", b.ValueDate, b.ValueDateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, b.ValueBooleanExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueMarkdown", b.ValueMarkdown, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueMarkdown", b.ValueMarkdown, b.ValueMarkdownExt); err != nil {
 		return err
 	}
 	if b.ValueAttachment != nil {
@@ -593,21 +593,21 @@ func (r *AdministrableProductDefinitionProperty) UnmarshalXML(d *xml.Decoder, st
 					return err
 				}
 				r.ValueDate = v
-				_ = ext
+				r.ValueDateExt = ext
 			case "valueBoolean":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
-				_ = ext
+				r.ValueBooleanExt = ext
 			case "valueMarkdown":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueMarkdown = v
-				_ = ext
+				r.ValueMarkdownExt = ext
 			case "valueAttachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {

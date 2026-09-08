@@ -546,7 +546,7 @@ func (b RegulatedAuthorizationCase) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "dateDateTime", b.DateDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "dateDateTime", b.DateDateTime, b.DateDateTimeExt); err != nil {
 		return err
 	}
 	for _, item := range b.Application {
@@ -617,7 +617,7 @@ func (r *RegulatedAuthorizationCase) UnmarshalXML(d *xml.Decoder, start xml.Star
 					return err
 				}
 				r.DateDateTime = v
-				_ = ext
+				r.DateDateTimeExt = ext
 			case "application":
 				var v RegulatedAuthorizationCase
 				if err := v.UnmarshalXML(d, t); err != nil {

@@ -669,7 +669,7 @@ func (b SpecimenDefinitionTypeTestedContainer) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "minimumVolumeString", b.MinimumVolumeString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "minimumVolumeString", b.MinimumVolumeString, b.MinimumVolumeStringExt); err != nil {
 		return err
 	}
 	for _, item := range b.Additive {
@@ -756,7 +756,7 @@ func (r *SpecimenDefinitionTypeTestedContainer) UnmarshalXML(d *xml.Decoder, sta
 					return err
 				}
 				r.MinimumVolumeString = v
-				_ = ext
+				r.MinimumVolumeStringExt = ext
 			case "additive":
 				var v SpecimenDefinitionTypeTestedContainerAdditive
 				if err := v.UnmarshalXML(d, t); err != nil {

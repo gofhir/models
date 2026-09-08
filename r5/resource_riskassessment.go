@@ -270,7 +270,7 @@ func (r RiskAssessment) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "occurrenceDateTime", r.OccurrenceDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "occurrenceDateTime", r.OccurrenceDateTime, r.OccurrenceDateTimeExt); err != nil {
 		return err
 	}
 	if r.OccurrencePeriod != nil {
@@ -432,7 +432,7 @@ func (r *RiskAssessment) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 					return err
 				}
 				r.OccurrenceDateTime = v
-				_ = ext
+				r.OccurrenceDateTimeExt = ext
 			case "occurrencePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -579,7 +579,7 @@ func (b RiskAssessmentPrediction) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "probabilityDecimal", b.ProbabilityDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "probabilityDecimal", b.ProbabilityDecimal, b.ProbabilityDecimalExt); err != nil {
 		return err
 	}
 	if b.ProbabilityRange != nil {
@@ -653,7 +653,7 @@ func (r *RiskAssessmentPrediction) UnmarshalXML(d *xml.Decoder, start xml.StartE
 					return err
 				}
 				r.ProbabilityDecimal = v
-				_ = ext
+				r.ProbabilityDecimalExt = ext
 			case "probabilityRange":
 				var v Range
 				if err := v.UnmarshalXML(d, t); err != nil {

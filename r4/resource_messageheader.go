@@ -225,7 +225,7 @@ func (r MessageHeader) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "eventUri", r.EventUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "eventUri", r.EventUri, r.EventUriExt); err != nil {
 		return err
 	}
 	for _, item := range r.Destination {
@@ -354,7 +354,7 @@ func (r *MessageHeader) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 					return err
 				}
 				r.EventUri = v
-				_ = ext
+				r.EventUriExt = ext
 			case "destination":
 				var v MessageHeaderDestination
 				if err := v.UnmarshalXML(d, t); err != nil {

@@ -1123,7 +1123,7 @@ func (b MedicationRequestSubstitution) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "allowedBoolean", b.AllowedBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "allowedBoolean", b.AllowedBoolean, b.AllowedBooleanExt); err != nil {
 		return err
 	}
 	if b.AllowedCodeableConcept != nil {
@@ -1175,7 +1175,7 @@ func (r *MedicationRequestSubstitution) UnmarshalXML(d *xml.Decoder, start xml.S
 					return err
 				}
 				r.AllowedBoolean = v
-				_ = ext
+				r.AllowedBooleanExt = ext
 			case "allowedCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

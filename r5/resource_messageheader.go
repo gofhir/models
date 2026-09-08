@@ -223,7 +223,7 @@ func (r MessageHeader) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "eventCanonical", r.EventCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "eventCanonical", r.EventCanonical, r.EventCanonicalExt); err != nil {
 		return err
 	}
 	for _, item := range r.Destination {
@@ -347,7 +347,7 @@ func (r *MessageHeader) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 					return err
 				}
 				r.EventCanonical = v
-				_ = ext
+				r.EventCanonicalExt = ext
 			case "destination":
 				var v MessageHeaderDestination
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -487,7 +487,7 @@ func (b MessageHeaderDestination) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "endpointUrl", b.EndpointUrl, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "endpointUrl", b.EndpointUrl, b.EndpointUrlExt); err != nil {
 		return err
 	}
 	if b.EndpointReference != nil {
@@ -547,7 +547,7 @@ func (r *MessageHeaderDestination) UnmarshalXML(d *xml.Decoder, start xml.StartE
 					return err
 				}
 				r.EndpointUrl = v
-				_ = ext
+				r.EndpointUrlExt = ext
 			case "endpointReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -806,7 +806,7 @@ func (b MessageHeaderSource) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "endpointUrl", b.EndpointUrl, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "endpointUrl", b.EndpointUrl, b.EndpointUrlExt); err != nil {
 		return err
 	}
 	if b.EndpointReference != nil {
@@ -867,7 +867,7 @@ func (r *MessageHeaderSource) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 					return err
 				}
 				r.EndpointUrl = v
-				_ = ext
+				r.EndpointUrlExt = ext
 			case "endpointReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

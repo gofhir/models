@@ -1046,7 +1046,7 @@ func (b CodeSystemConceptProperty) MarshalXML(e *xml.Encoder, start xml.StartEle
 	if err := xmlEncodePrimitiveString(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueCode", b.ValueCode, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueCode", b.ValueCode, b.ValueCodeExt); err != nil {
 		return err
 	}
 	if b.ValueCoding != nil {
@@ -1054,19 +1054,19 @@ func (b CodeSystemConceptProperty) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, b.ValueStringExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, b.ValueIntegerExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, b.ValueBooleanExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueDateTime", b.ValueDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueDateTime", b.ValueDateTime, b.ValueDateTimeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", b.ValueDecimal, b.ValueDecimalExt); err != nil {
 		return err
 	}
 
@@ -1115,7 +1115,7 @@ func (r *CodeSystemConceptProperty) UnmarshalXML(d *xml.Decoder, start xml.Start
 					return err
 				}
 				r.ValueCode = v
-				_ = ext
+				r.ValueCodeExt = ext
 			case "valueCoding":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1128,35 +1128,35 @@ func (r *CodeSystemConceptProperty) UnmarshalXML(d *xml.Decoder, start xml.Start
 					return err
 				}
 				r.ValueString = v
-				_ = ext
+				r.ValueStringExt = ext
 			case "valueInteger":
 				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger = v
-				_ = ext
+				r.ValueIntegerExt = ext
 			case "valueBoolean":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
-				_ = ext
+				r.ValueBooleanExt = ext
 			case "valueDateTime":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDateTime = v
-				_ = ext
+				r.ValueDateTimeExt = ext
 			case "valueDecimal":
 				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDecimal = v
-				_ = ext
+				r.ValueDecimalExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

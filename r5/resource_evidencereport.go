@@ -264,7 +264,7 @@ func (r EvidenceReport) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "citeAsMarkdown", r.CiteAsMarkdown, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "citeAsMarkdown", r.CiteAsMarkdown, r.CiteAsMarkdownExt); err != nil {
 		return err
 	}
 	if r.Type != nil {
@@ -435,7 +435,7 @@ func (r *EvidenceReport) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 					return err
 				}
 				r.CiteAsMarkdown = v
-				_ = ext
+				r.CiteAsMarkdownExt = ext
 			case "type":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1291,7 +1291,7 @@ func (b EvidenceReportSubjectCharacteristic) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, b.ValueBooleanExt); err != nil {
 		return err
 	}
 	if b.ValueQuantity != nil {
@@ -1369,7 +1369,7 @@ func (r *EvidenceReportSubjectCharacteristic) UnmarshalXML(d *xml.Decoder, start
 					return err
 				}
 				r.ValueBoolean = v
-				_ = ext
+				r.ValueBooleanExt = ext
 			case "valueQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
