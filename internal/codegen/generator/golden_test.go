@@ -383,11 +383,32 @@ func TestValueSetCollisionFailsGeneration(t *testing.T) {
 		"ProbeStatusCodes",
 		"http://hl7.org/fhir/ValueSet/probe-status",
 		"http://hl7.org/fhir/ValueSet/sample-status",
-		"valueSetTypeNameOverrides",
+		"valueSetCollisionOverrides",
 	} {
 		if !strings.Contains(err.Error(), want) {
 			t.Errorf("error does not mention %q:\n%v", want, err)
 		}
+	}
+}
+
+// TestTheCollisionMessageNamesSomethingThatExists guards the instruction, not the
+// wording.
+//
+// The message told the reader to add an override to valueSetTypeNameOverrides,
+// which has never existed — the map is valueSetCollisionOverrides. The test above
+// pinned the wrong name, so the wrong instruction was locked in: anyone following
+// it would have gone looking for a variable that is not there. Reading the
+// analyzer source is what makes this checkable rather than a second copy of the
+// same assumption.
+func TestTheCollisionMessageNamesSomethingThatExists(t *testing.T) {
+	const named = "valueSetCollisionOverrides"
+
+	src, err := os.ReadFile(filepath.Join("..", "analyzer", "analyzer.go"))
+	if err != nil {
+		t.Fatalf("read analyzer: %v", err)
+	}
+	if !strings.Contains(string(src), "var "+named+" = ") {
+		t.Errorf("the collision message sends the reader to %s, which analyzer.go does not declare", named)
 	}
 }
 

@@ -383,7 +383,7 @@ func (c *CodeGen) generateCodeSystemsFromTemplate() error {
 			return fmt.Errorf(
 				"two ValueSets map to the Go type %s:\n  %s\n  %s\n"+
 					"FHIR names are not unique. Add an override for one of these URLs to "+
-					"valueSetTypeNameOverrides in internal/codegen/analyzer",
+					"valueSetCollisionOverrides in internal/codegen/analyzer/analyzer.go",
 				typeName, previous, vs.URL)
 		}
 		generatedTypes[typeName] = vs.URL
