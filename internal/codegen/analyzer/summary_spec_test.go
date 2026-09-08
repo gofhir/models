@@ -155,9 +155,9 @@ func TestSummaryFlagsMatchTheSpecification(t *testing.T) {
 // consumer and it visits resource-level properties only. This guards the fact
 // rather than an output, because an untested flag is what produced the defect.
 func TestSummaryFlagsReachNestedBackboneProperties(t *testing.T) {
-	raw, err := os.ReadFile(filepath.Join("..", "..", "..", "specs", "r4", "profiles-resources.json"))
-	if err != nil {
-		t.Skipf("specs not fetched; see scripts/fetch-specs.sh (%v)", err)
+	raw, readErr := os.ReadFile(filepath.Join("..", "..", "..", "specs", "r4", "profiles-resources.json"))
+	if readErr != nil {
+		t.Skipf("specs not fetched; see scripts/fetch-specs.sh (%v)", readErr)
 	}
 
 	var bundle struct {
@@ -165,22 +165,22 @@ func TestSummaryFlagsReachNestedBackboneProperties(t *testing.T) {
 			Resource json.RawMessage `json:"resource"`
 		} `json:"entry"`
 	}
-	if err := json.Unmarshal(raw, &bundle); err != nil {
-		t.Fatalf("parse bundle: %v", err)
+	if unmarshalErr := json.Unmarshal(raw, &bundle); unmarshalErr != nil {
+		t.Fatalf("parse bundle: %v", unmarshalErr)
 	}
 
 	var bundleSD *parser.StructureDefinition
 	for _, entry := range bundle.Entry {
 		var head map[string]any
-		if err := json.Unmarshal(entry.Resource, &head); err != nil {
+		if headErr := json.Unmarshal(entry.Resource, &head); headErr != nil {
 			continue
 		}
 		if head["resourceType"] != "StructureDefinition" || head["name"] != "Bundle" {
 			continue
 		}
-		sd, err := parser.ParseStructureDefinition(entry.Resource)
-		if err != nil {
-			t.Fatalf("parse Bundle: %v", err)
+		sd, parseErr := parser.ParseStructureDefinition(entry.Resource)
+		if parseErr != nil {
+			t.Fatalf("parse Bundle: %v", parseErr)
 		}
 		bundleSD = sd
 		break
