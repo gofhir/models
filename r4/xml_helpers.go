@@ -303,8 +303,6 @@ func xmlEncodePrimitiveCode[T ~string](e *xml.Encoder, name string, value *T, ex
 	return xmlEncodePrimitiveString(e, name, strVal, ext)
 }
 
-// xmlEncodePrimitiveStringArray encodes a repeating FHIR string primitive.
-// Each item becomes a separate XML element: <name value="item1"/><name value="item2"/>
 // appendExtSlot records ext as the extension of the value just appended, given
 // the new length of the value slice. The two slices are parallel by position,
 // so any gap in front of this slot is filled first.
@@ -312,11 +310,11 @@ func xmlEncodePrimitiveCode[T ~string](e *xml.Encoder, name string, value *T, ex
 // It does nothing when there is no extension. Appending unconditionally gave
 // every plain element a slot holding nil, and JSON wrote that out as
 // "_field":[null] — a member the document never had.
-func appendExtSlot(exts []*Element, ext *Element, values int) []*Element {
+func appendExtSlot(exts []*Element, ext *Element, valueCount int) []*Element {
 	if ext == nil {
 		return exts
 	}
-	for len(exts) < values-1 {
+	for len(exts) < valueCount-1 {
 		exts = append(exts, nil)
 	}
 	return append(exts, ext)
@@ -331,20 +329,22 @@ func appendExtSlot(exts []*Element, ext *Element, values int) []*Element {
 // HL7's own R5 search-parameters.json pads as many as fourteen trailing nulls
 // to do it. Without this, a document whose last values carry no extension came
 // back one array shorter through XML than through JSON — so the same resource
-// serialised differently depending on the format it arrived in.
+// serialized differently depending on the format it arrived in.
 //
 // An empty companion slice stays empty: no extensions means no "_field" at all,
 // not an array of nulls.
-func alignExtSlots(exts []*Element, values int) []*Element {
+func alignExtSlots(exts []*Element, valueCount int) []*Element {
 	if len(exts) == 0 {
 		return exts
 	}
-	for len(exts) < values {
+	for len(exts) < valueCount {
 		exts = append(exts, nil)
 	}
 	return exts
 }
 
+// xmlEncodePrimitiveStringArray encodes a repeating FHIR string primitive.
+// Each item becomes a separate XML element: <name value="item1"/><name value="item2"/>
 func xmlEncodePrimitiveStringArray(e *xml.Encoder, name string, values []*string, exts []*Element) error {
 	// values and exts are parallel by position, and either side may hold nil in a
 	// slot: a nil value means the value is absent (its reason lives in the

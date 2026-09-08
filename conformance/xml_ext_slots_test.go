@@ -16,6 +16,13 @@ package conformance
 // array and HL7 pads up to fourteen trailing nulls to keep them matching. So a
 // resource still serialized differently depending on the format it arrived in.
 // TestTheFormatADocumentArrivedInDoesNotShow is what closes that.
+//
+// Reviewing that fix turned up two more routes to the same ragged array. The
+// builder never padded the tail, since Add<Field>Ext cannot know that no further
+// values are coming — Build can, and does. And once Build padded, Add<Field>Ext's
+// bare append landed past the end, so it writes to the slot instead. The four
+// tests below cover the four routes; the fifth records the one shape that is
+// deliberately left alone.
 
 import (
 	"bytes"
@@ -205,8 +212,8 @@ func TestTheBuilderAlignsSlotsOnBuild(t *testing.T) {
 		AddGiven("C").
 		Build()
 
-	if len(n.GivenExt) != len(n.Given) {
-		t.Fatalf("%d slots for %d values", len(n.GivenExt), len(n.Given))
+	if len(n.Given) != 3 || len(n.GivenExt) != 3 {
+		t.Fatalf("%d slots for %d values, want 3 and 3", len(n.GivenExt), len(n.Given))
 	}
 	out, err := json.Marshal(n)
 	if err != nil {
@@ -251,8 +258,8 @@ func TestAddExtLandsOnTheLastValueWhateverElseHappened(t *testing.T) {
 	// not grow past it.
 	b.AddGivenExt(mk())
 	n := b.Build()
-	if len(n.GivenExt) != len(n.Given) {
-		t.Fatalf("%d slots for %d values", len(n.GivenExt), len(n.Given))
+	if len(n.Given) != 2 || len(n.GivenExt) != 2 {
+		t.Fatalf("%d slots for %d values, want 2 and 2", len(n.GivenExt), len(n.Given))
 	}
 	if n.GivenExt[1] == nil {
 		t.Error("the extension did not land on the last value added")
@@ -327,34 +334,49 @@ func TestARaggedArrayOnInputSurvivesJSONButIsAlignedThroughXML(t *testing.T) {
 	}
 }
 
-func TestNoSpuriousSlotsInEveryVersion(t *testing.T) {
-	const doc = `<?xml version="1.0"?><Patient xmlns="http://hl7.org/fhir"><name>` +
+func TestEveryVersionBehavesTheSame(t *testing.T) {
+	// Both halves, in R4B and R5. The three packages come off the same templates,
+	// so this is a check that the generator reached all of them rather than an
+	// independent behavior — but the earlier version of this file only exercised
+	// the empty-slot half here, and the padding half in R4 alone.
+	const plain = `<?xml version="1.0"?><Patient xmlns="http://hl7.org/fhir"><name>` +
 		`<given value="A"/></name></Patient>`
+	const withExt = `<?xml version="1.0"?><Patient xmlns="http://hl7.org/fhir"><name>` +
+		`<given value="A"><extension url="http://x"><valueCode value="c"/></extension></given>` +
+		`<given value="B"/></name></Patient>`
+	const aligned = `"_given":[{"extension":[{"url":"http://x","valueCode":"c"}]},null]`
 
-	t.Run("r4b", func(t *testing.T) {
-		res, err := r4b.UnmarshalResourceXML([]byte(doc))
-		if err != nil {
-			t.Fatalf("unmarshal: %v", err)
-		}
-		out, err := json.Marshal(res)
-		if err != nil {
-			t.Fatalf("marshal: %v", err)
-		}
-		if strings.Contains(string(out), "_given") {
-			t.Errorf("%s", out)
-		}
-	})
-	t.Run("r5", func(t *testing.T) {
-		res, err := r5.UnmarshalResourceXML([]byte(doc))
-		if err != nil {
-			t.Fatalf("unmarshal: %v", err)
-		}
-		out, err := json.Marshal(res)
-		if err != nil {
-			t.Fatalf("marshal: %v", err)
-		}
-		if strings.Contains(string(out), "_given") {
-			t.Errorf("%s", out)
-		}
-	})
+	for _, v := range []struct {
+		name  string
+		parse func([]byte) (any, error)
+	}{
+		{"r4b", func(b []byte) (any, error) { return r4b.UnmarshalResourceXML(b) }},
+		{"r5", func(b []byte) (any, error) { return r5.UnmarshalResourceXML(b) }},
+	} {
+		t.Run(v.name, func(t *testing.T) {
+			res, err := v.parse([]byte(plain))
+			if err != nil {
+				t.Fatalf("unmarshal: %v", err)
+			}
+			out, err := json.Marshal(res)
+			if err != nil {
+				t.Fatalf("marshal: %v", err)
+			}
+			if strings.Contains(string(out), "_given") {
+				t.Errorf("a member the document never had: %s", out)
+			}
+
+			res, err = v.parse([]byte(withExt))
+			if err != nil {
+				t.Fatalf("unmarshal: %v", err)
+			}
+			out, err = json.Marshal(res)
+			if err != nil {
+				t.Fatalf("marshal: %v", err)
+			}
+			if !strings.Contains(string(out), aligned) {
+				t.Errorf("the trailing slot was not padded: %s", out)
+			}
+		})
+	}
 }
