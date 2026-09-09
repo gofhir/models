@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.8.0](https://github.com/gofhir/models/compare/r4b/v2.7.1...r4b/v2.8.0) (2026-09-09)
+
+
+### Features
+
+* **analyzer:** resolve composed ValueSets and type every required binding ([#76](https://github.com/gofhir/models/issues/76)) ([e8bea18](https://github.com/gofhir/models/commit/e8bea18f065b98532268db0860724af88d9e0f04))
+
+
+### Bug Fixes
+
+* **analyzer:** carry isSummary onto every property, not one kind of them ([#75](https://github.com/gofhir/models/issues/75)) ([25f3348](https://github.com/gofhir/models/commit/25f33488c089128967762d174622222de491eb8b))
+* **xml:** stop dropping the extension of choice-type primitives ([#74](https://github.com/gofhir/models/issues/74)) ([ccb0fcb](https://github.com/gofhir/models/commit/ccb0fcbca77dbe8533055491ed7d7a1a4a4d2b0b))
+
 ## [2.7.1](https://github.com/gofhir/models/compare/r4b/v2.7.0...r4b/v2.7.1) (2026-09-08)
 
 
