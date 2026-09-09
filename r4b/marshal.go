@@ -11,13 +11,14 @@ import (
 
 // Marshal serializes a FHIR resource to JSON without HTML escaping.
 //
-// Go's standard json.Marshal escapes HTML characters (<, >, &) in strings,
-// which breaks FHIR narrative content in text.div fields that must contain
-// valid XHTML. This function uses json.Encoder with SetEscapeHTML(false)
-// to preserve HTML content as required by the FHIR specification.
+// Go's standard json.Marshal rewrites <, > and & as \u003c, \u003e and \u0026,
+// which fills a narrative's XHTML with escapes: 188 bytes instead of 138 for a
+// one-line div. It is not lossy — the escapes are ordinary JSON and decode back
+// to the same string, and UnmarshalResource reads such a document without
+// complaint — so what this buys is bytes that match the documents HL7 publishes
+// and a narrative a person can read in the output.
 //
-// Use this function instead of json.Marshal when serializing FHIR resources
-// that may contain narrative HTML.
+// Use it instead of json.Marshal when the output is compared, diffed, or read.
 func Marshal(v interface{}) ([]byte, error) {
 	var buf bytes.Buffer
 	enc := json.NewEncoder(&buf)

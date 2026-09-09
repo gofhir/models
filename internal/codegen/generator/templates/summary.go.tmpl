@@ -8,6 +8,15 @@ package {{.PackageName}}
 // summaryFields maps resource types to their summary fields (isSummary=true in the
 // FHIR spec). These are the fields returned when _summary=true is requested.
 //
+// A choice element contributes each of its concrete variants, not the "[x]" form:
+// Observation.value[x] appears as valueQuantity, valueString and the rest, because
+// a document holds one variant and it is that name a caller filters on.
+//
+// The table covers a resource's own elements. Summary elements of nested backbone
+// elements are not in it — Observation.component.value[x] is isSummary in the spec
+// and has no entry here, since the field names are flat and "component" is the only
+// name at this level. Filtering a nested element means walking into it.
+//
 // It was exported. A package-level map is writable by anyone who can see it, so any
 // consumer could add, delete or rewrite an entry — and concurrent access to it was
 // a data race in a library whose whole purpose is to be read from many goroutines.

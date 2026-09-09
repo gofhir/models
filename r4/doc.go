@@ -24,12 +24,15 @@
 //	family := r4.Val(r4.First(patient.Name)).Family
 //
 // Resources can also be built with the generated fluent builders
-// (New<Resource>Builder) or functional options (New<Resource>).
+// (New<Resource>Builder), which reach every element including the _field
+// companions that carry extensions on primitives.
 //
 // # Serialization
 //
-// Use [Marshal] rather than encoding/json directly: the standard encoder escapes
-// <, > and &, which corrupts the XHTML that FHIR requires in Narrative.Div.
+// Use [Marshal] rather than encoding/json directly: the standard encoder rewrites
+// <, > and & as \u003c, \u003e and \u0026, which turns a narrative's XHTML into a
+// wall of escapes. Nothing is lost — they decode back to the same string — but the
+// bytes stop matching the documents HL7 publishes.
 //
 //	data, err := r4.Marshal(patient)
 //
@@ -38,10 +41,9 @@
 // resources and Bundle entries. [MarshalResourceXML] and [UnmarshalResourceXML]
 // are the XML equivalents.
 //
-// XML support is experimental. Narrative.Div is currently emitted inside a
-// spurious wrapper element and is dropped when the document is read back, so a
-// resource carrying a narrative does not survive an XML round-trip. Use JSON
-// where fidelity matters.
+// Both formats round-trip every example HL7 publishes. The one thing XML does not
+// preserve is how an empty element was spelled: encoding/xml re-emits <br/> as
+// <br></br>, which is the same element to any reader but not the same bytes.
 //
 // # What this package does not do
 //

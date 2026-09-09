@@ -438,6 +438,7 @@ func (a *Analyzer) extractBackboneElements(sd *parser.StructureDefinition) []*An
 				IsBackbone:   isBackboneRef,
 				BackboneType: backboneTypeName,
 				ContentRef:   strings.TrimPrefix(elem.ContentReference, "#"),
+				IsSummary:    elem.IsSummary,
 			}
 			backbone.Properties = append(backbone.Properties, prop)
 		case elem.IsBackboneElement():
@@ -463,6 +464,7 @@ func (a *Analyzer) extractBackboneElements(sd *parser.StructureDefinition) []*An
 				FHIRType:     "BackboneElement",
 				IsBackbone:   true,
 				BackboneType: backboneTypeName,
+				IsSummary:    elem.IsSummary,
 			}
 			backbone.Properties = append(backbone.Properties, prop)
 		case len(elem.Type) > 0:
@@ -576,6 +578,10 @@ func (a *Analyzer) analyzeElement(elem *parser.ElementDefinition, rootType, _ st
 			FHIRType:     "BackboneElement",
 			IsBackbone:   true,
 			BackboneType: backboneTypeName,
+			// A backbone-typed element carries isSummary like any other, and 94
+			// first-level ones do in R4 alone — Observation.component among them.
+			// Omitting it here kept every one of them out of summary.go.
+			IsSummary: elem.IsSummary,
 		}
 		return []AnalyzedProperty{prop}, nil
 	}
@@ -623,6 +629,13 @@ func (a *Analyzer) analyzeChoiceType(elem *parser.ElementDefinition, baseName st
 			ChoiceBaseName: baseName,
 			FHIRType:       typeName,
 			HasExtension:   IsPrimitiveType(typeName),
+			// Without this, every choice element was missing from summary.go:
+			// Observation appeared with no value and no effective, though the spec
+			// marks Observation.value[x] and Observation.effective[x] isSummary.
+			// The element carries the flag once for the whole choice, so each
+			// variant inherits it — which is right, since a document holds one
+			// variant and it is that concrete name a caller filters on.
+			IsSummary: elem.IsSummary,
 		}
 
 		if elem.Binding != nil {
@@ -672,6 +685,7 @@ func (a *Analyzer) analyzeContentReference(elem *parser.ElementDefinition, field
 		IsBackbone:   isBackbone,
 		BackboneType: backboneTypeName,
 		ContentRef:   strings.TrimPrefix(elem.ContentReference, "#"),
+		IsSummary:    elem.IsSummary,
 	}
 	return []AnalyzedProperty{prop}, nil
 }

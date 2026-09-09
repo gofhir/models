@@ -235,6 +235,12 @@ jobs:
             go run . "$v"
           done
 
+      # The spec-comparison tests skip when specs/ is absent, which is every other
+      # job. This is the only place they actually run, so they run here rather than
+      # existing as a check nothing performs.
+      - name: Compare the analyzer against the specification
+        run: go test ./internal/codegen/analyzer -run TestSummaryFlags -v
+
       # A positive assertion, not just a diff: if generation silently produced no
       # enums, the diff would be huge and obvious, but if it produced none *and*
       # left the old file behind, only a count catches it.
