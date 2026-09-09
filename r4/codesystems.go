@@ -248,6 +248,439 @@ const (
 	AdverseEventActualityPotential AdverseEventActuality = "potential"
 )
 
+// FHIRAllTypes represents FHIRAllTypes.
+type FHIRAllTypes string
+
+// FHIRAllTypes values.
+const (
+	// FHIRAllTypesAddress - Address
+	FHIRAllTypesAddress FHIRAllTypes = "Address"
+	// FHIRAllTypesAge - Age
+	FHIRAllTypesAge FHIRAllTypes = "Age"
+	// FHIRAllTypesAnnotation - Annotation
+	FHIRAllTypesAnnotation FHIRAllTypes = "Annotation"
+	// FHIRAllTypesAttachment - Attachment
+	FHIRAllTypesAttachment FHIRAllTypes = "Attachment"
+	// FHIRAllTypesBackboneelement - BackboneElement
+	FHIRAllTypesBackboneelement FHIRAllTypes = "BackboneElement"
+	// FHIRAllTypesCodeableconcept - CodeableConcept
+	FHIRAllTypesCodeableconcept FHIRAllTypes = "CodeableConcept"
+	// FHIRAllTypesCoding - Coding
+	FHIRAllTypesCoding FHIRAllTypes = "Coding"
+	// FHIRAllTypesContactdetail - ContactDetail
+	FHIRAllTypesContactdetail FHIRAllTypes = "ContactDetail"
+	// FHIRAllTypesContactpoint - ContactPoint
+	FHIRAllTypesContactpoint FHIRAllTypes = "ContactPoint"
+	// FHIRAllTypesContributor - Contributor
+	FHIRAllTypesContributor FHIRAllTypes = "Contributor"
+	// FHIRAllTypesCount - Count
+	FHIRAllTypesCount FHIRAllTypes = "Count"
+	// FHIRAllTypesDatarequirement - DataRequirement
+	FHIRAllTypesDatarequirement FHIRAllTypes = "DataRequirement"
+	// FHIRAllTypesDistance - Distance
+	FHIRAllTypesDistance FHIRAllTypes = "Distance"
+	// FHIRAllTypesDosage - Dosage
+	FHIRAllTypesDosage FHIRAllTypes = "Dosage"
+	// FHIRAllTypesDuration - Duration
+	FHIRAllTypesDuration FHIRAllTypes = "Duration"
+	// FHIRAllTypesElement - Element
+	FHIRAllTypesElement FHIRAllTypes = "Element"
+	// FHIRAllTypesElementdefinition - ElementDefinition
+	FHIRAllTypesElementdefinition FHIRAllTypes = "ElementDefinition"
+	// FHIRAllTypesExpression - Expression
+	FHIRAllTypesExpression FHIRAllTypes = "Expression"
+	// FHIRAllTypesExtension - Extension
+	FHIRAllTypesExtension FHIRAllTypes = "Extension"
+	// FHIRAllTypesHumanname - HumanName
+	FHIRAllTypesHumanname FHIRAllTypes = "HumanName"
+	// FHIRAllTypesIdentifier - Identifier
+	FHIRAllTypesIdentifier FHIRAllTypes = "Identifier"
+	// FHIRAllTypesMarketingstatus - MarketingStatus
+	FHIRAllTypesMarketingstatus FHIRAllTypes = "MarketingStatus"
+	// FHIRAllTypesMeta - Meta
+	FHIRAllTypesMeta FHIRAllTypes = "Meta"
+	// FHIRAllTypesMoney - Money
+	FHIRAllTypesMoney FHIRAllTypes = "Money"
+	// FHIRAllTypesMoneyquantity - MoneyQuantity
+	FHIRAllTypesMoneyquantity FHIRAllTypes = "MoneyQuantity"
+	// FHIRAllTypesNarrative - Narrative
+	FHIRAllTypesNarrative FHIRAllTypes = "Narrative"
+	// FHIRAllTypesParameterdefinition - ParameterDefinition
+	FHIRAllTypesParameterdefinition FHIRAllTypes = "ParameterDefinition"
+	// FHIRAllTypesPeriod - Period
+	FHIRAllTypesPeriod FHIRAllTypes = "Period"
+	// FHIRAllTypesPopulation - Population
+	FHIRAllTypesPopulation FHIRAllTypes = "Population"
+	// FHIRAllTypesProdcharacteristic - ProdCharacteristic
+	FHIRAllTypesProdcharacteristic FHIRAllTypes = "ProdCharacteristic"
+	// FHIRAllTypesProductshelflife - ProductShelfLife
+	FHIRAllTypesProductshelflife FHIRAllTypes = "ProductShelfLife"
+	// FHIRAllTypesQuantity - Quantity
+	FHIRAllTypesQuantity FHIRAllTypes = "Quantity"
+	// FHIRAllTypesRange - Range
+	FHIRAllTypesRange FHIRAllTypes = "Range"
+	// FHIRAllTypesRatio - Ratio
+	FHIRAllTypesRatio FHIRAllTypes = "Ratio"
+	// FHIRAllTypesReference - Reference
+	FHIRAllTypesReference FHIRAllTypes = "Reference"
+	// FHIRAllTypesRelatedartifact - RelatedArtifact
+	FHIRAllTypesRelatedartifact FHIRAllTypes = "RelatedArtifact"
+	// FHIRAllTypesSampleddata - SampledData
+	FHIRAllTypesSampleddata FHIRAllTypes = "SampledData"
+	// FHIRAllTypesSignature - Signature
+	FHIRAllTypesSignature FHIRAllTypes = "Signature"
+	// FHIRAllTypesSimplequantity - SimpleQuantity
+	FHIRAllTypesSimplequantity FHIRAllTypes = "SimpleQuantity"
+	// FHIRAllTypesSubstanceamount - SubstanceAmount
+	FHIRAllTypesSubstanceamount FHIRAllTypes = "SubstanceAmount"
+	// FHIRAllTypesTiming - Timing
+	FHIRAllTypesTiming FHIRAllTypes = "Timing"
+	// FHIRAllTypesTriggerdefinition - TriggerDefinition
+	FHIRAllTypesTriggerdefinition FHIRAllTypes = "TriggerDefinition"
+	// FHIRAllTypesUsagecontext - UsageContext
+	FHIRAllTypesUsagecontext FHIRAllTypes = "UsageContext"
+	// FHIRAllTypesBase64binary - base64Binary
+	FHIRAllTypesBase64binary FHIRAllTypes = "base64Binary"
+	// FHIRAllTypesBoolean - boolean
+	FHIRAllTypesBoolean FHIRAllTypes = "boolean"
+	// FHIRAllTypesCanonical - canonical
+	FHIRAllTypesCanonical FHIRAllTypes = "canonical"
+	// FHIRAllTypesCode - code
+	FHIRAllTypesCode FHIRAllTypes = "code"
+	// FHIRAllTypesDate - date
+	FHIRAllTypesDate FHIRAllTypes = "date"
+	// FHIRAllTypesDatetime - dateTime
+	FHIRAllTypesDatetime FHIRAllTypes = "dateTime"
+	// FHIRAllTypesDecimal - decimal
+	FHIRAllTypesDecimal FHIRAllTypes = "decimal"
+	// FHIRAllTypesId - id
+	FHIRAllTypesId FHIRAllTypes = "id"
+	// FHIRAllTypesInstant - instant
+	FHIRAllTypesInstant FHIRAllTypes = "instant"
+	// FHIRAllTypesInteger - integer
+	FHIRAllTypesInteger FHIRAllTypes = "integer"
+	// FHIRAllTypesMarkdown - markdown
+	FHIRAllTypesMarkdown FHIRAllTypes = "markdown"
+	// FHIRAllTypesOid - oid
+	FHIRAllTypesOid FHIRAllTypes = "oid"
+	// FHIRAllTypesPositiveint - positiveInt
+	FHIRAllTypesPositiveint FHIRAllTypes = "positiveInt"
+	// FHIRAllTypesString - string
+	FHIRAllTypesString FHIRAllTypes = "string"
+	// FHIRAllTypesTime - time
+	FHIRAllTypesTime FHIRAllTypes = "time"
+	// FHIRAllTypesUnsignedint - unsignedInt
+	FHIRAllTypesUnsignedint FHIRAllTypes = "unsignedInt"
+	// FHIRAllTypesUri - uri
+	FHIRAllTypesUri FHIRAllTypes = "uri"
+	// FHIRAllTypesUrl - url
+	FHIRAllTypesUrl FHIRAllTypes = "url"
+	// FHIRAllTypesUuid - uuid
+	FHIRAllTypesUuid FHIRAllTypes = "uuid"
+	// FHIRAllTypesXhtml - XHTML
+	FHIRAllTypesXhtml FHIRAllTypes = "xhtml"
+	// FHIRAllTypesAccount - Account
+	FHIRAllTypesAccount FHIRAllTypes = "Account"
+	// FHIRAllTypesActivitydefinition - ActivityDefinition
+	FHIRAllTypesActivitydefinition FHIRAllTypes = "ActivityDefinition"
+	// FHIRAllTypesAdverseevent - AdverseEvent
+	FHIRAllTypesAdverseevent FHIRAllTypes = "AdverseEvent"
+	// FHIRAllTypesAllergyintolerance - AllergyIntolerance
+	FHIRAllTypesAllergyintolerance FHIRAllTypes = "AllergyIntolerance"
+	// FHIRAllTypesAppointment - Appointment
+	FHIRAllTypesAppointment FHIRAllTypes = "Appointment"
+	// FHIRAllTypesAppointmentresponse - AppointmentResponse
+	FHIRAllTypesAppointmentresponse FHIRAllTypes = "AppointmentResponse"
+	// FHIRAllTypesAuditevent - AuditEvent
+	FHIRAllTypesAuditevent FHIRAllTypes = "AuditEvent"
+	// FHIRAllTypesBasic - Basic
+	FHIRAllTypesBasic FHIRAllTypes = "Basic"
+	// FHIRAllTypesBinary - Binary
+	FHIRAllTypesBinary FHIRAllTypes = "Binary"
+	// FHIRAllTypesBiologicallyderivedproduct - BiologicallyDerivedProduct
+	FHIRAllTypesBiologicallyderivedproduct FHIRAllTypes = "BiologicallyDerivedProduct"
+	// FHIRAllTypesBodystructure - BodyStructure
+	FHIRAllTypesBodystructure FHIRAllTypes = "BodyStructure"
+	// FHIRAllTypesBundle - Bundle
+	FHIRAllTypesBundle FHIRAllTypes = "Bundle"
+	// FHIRAllTypesCapabilitystatement - CapabilityStatement
+	FHIRAllTypesCapabilitystatement FHIRAllTypes = "CapabilityStatement"
+	// FHIRAllTypesCareplan - CarePlan
+	FHIRAllTypesCareplan FHIRAllTypes = "CarePlan"
+	// FHIRAllTypesCareteam - CareTeam
+	FHIRAllTypesCareteam FHIRAllTypes = "CareTeam"
+	// FHIRAllTypesCatalogentry - CatalogEntry
+	FHIRAllTypesCatalogentry FHIRAllTypes = "CatalogEntry"
+	// FHIRAllTypesChargeitem - ChargeItem
+	FHIRAllTypesChargeitem FHIRAllTypes = "ChargeItem"
+	// FHIRAllTypesChargeitemdefinition - ChargeItemDefinition
+	FHIRAllTypesChargeitemdefinition FHIRAllTypes = "ChargeItemDefinition"
+	// FHIRAllTypesClaim - Claim
+	FHIRAllTypesClaim FHIRAllTypes = "Claim"
+	// FHIRAllTypesClaimresponse - ClaimResponse
+	FHIRAllTypesClaimresponse FHIRAllTypes = "ClaimResponse"
+	// FHIRAllTypesClinicalimpression - ClinicalImpression
+	FHIRAllTypesClinicalimpression FHIRAllTypes = "ClinicalImpression"
+	// FHIRAllTypesCodesystem - CodeSystem
+	FHIRAllTypesCodesystem FHIRAllTypes = "CodeSystem"
+	// FHIRAllTypesCommunication - Communication
+	FHIRAllTypesCommunication FHIRAllTypes = "Communication"
+	// FHIRAllTypesCommunicationrequest - CommunicationRequest
+	FHIRAllTypesCommunicationrequest FHIRAllTypes = "CommunicationRequest"
+	// FHIRAllTypesCompartmentdefinition - CompartmentDefinition
+	FHIRAllTypesCompartmentdefinition FHIRAllTypes = "CompartmentDefinition"
+	// FHIRAllTypesComposition - Composition
+	FHIRAllTypesComposition FHIRAllTypes = "Composition"
+	// FHIRAllTypesConceptmap - ConceptMap
+	FHIRAllTypesConceptmap FHIRAllTypes = "ConceptMap"
+	// FHIRAllTypesCondition - Condition
+	FHIRAllTypesCondition FHIRAllTypes = "Condition"
+	// FHIRAllTypesConsent - Consent
+	FHIRAllTypesConsent FHIRAllTypes = "Consent"
+	// FHIRAllTypesContract - Contract
+	FHIRAllTypesContract FHIRAllTypes = "Contract"
+	// FHIRAllTypesCoverage - Coverage
+	FHIRAllTypesCoverage FHIRAllTypes = "Coverage"
+	// FHIRAllTypesCoverageeligibilityrequest - CoverageEligibilityRequest
+	FHIRAllTypesCoverageeligibilityrequest FHIRAllTypes = "CoverageEligibilityRequest"
+	// FHIRAllTypesCoverageeligibilityresponse - CoverageEligibilityResponse
+	FHIRAllTypesCoverageeligibilityresponse FHIRAllTypes = "CoverageEligibilityResponse"
+	// FHIRAllTypesDetectedissue - DetectedIssue
+	FHIRAllTypesDetectedissue FHIRAllTypes = "DetectedIssue"
+	// FHIRAllTypesDevice - Device
+	FHIRAllTypesDevice FHIRAllTypes = "Device"
+	// FHIRAllTypesDevicedefinition - DeviceDefinition
+	FHIRAllTypesDevicedefinition FHIRAllTypes = "DeviceDefinition"
+	// FHIRAllTypesDevicemetric - DeviceMetric
+	FHIRAllTypesDevicemetric FHIRAllTypes = "DeviceMetric"
+	// FHIRAllTypesDevicerequest - DeviceRequest
+	FHIRAllTypesDevicerequest FHIRAllTypes = "DeviceRequest"
+	// FHIRAllTypesDeviceusestatement - DeviceUseStatement
+	FHIRAllTypesDeviceusestatement FHIRAllTypes = "DeviceUseStatement"
+	// FHIRAllTypesDiagnosticreport - DiagnosticReport
+	FHIRAllTypesDiagnosticreport FHIRAllTypes = "DiagnosticReport"
+	// FHIRAllTypesDocumentmanifest - DocumentManifest
+	FHIRAllTypesDocumentmanifest FHIRAllTypes = "DocumentManifest"
+	// FHIRAllTypesDocumentreference - DocumentReference
+	FHIRAllTypesDocumentreference FHIRAllTypes = "DocumentReference"
+	// FHIRAllTypesDomainresource - DomainResource
+	FHIRAllTypesDomainresource FHIRAllTypes = "DomainResource"
+	// FHIRAllTypesEffectevidencesynthesis - EffectEvidenceSynthesis
+	FHIRAllTypesEffectevidencesynthesis FHIRAllTypes = "EffectEvidenceSynthesis"
+	// FHIRAllTypesEncounter - Encounter
+	FHIRAllTypesEncounter FHIRAllTypes = "Encounter"
+	// FHIRAllTypesEndpoint - Endpoint
+	FHIRAllTypesEndpoint FHIRAllTypes = "Endpoint"
+	// FHIRAllTypesEnrollmentrequest - EnrollmentRequest
+	FHIRAllTypesEnrollmentrequest FHIRAllTypes = "EnrollmentRequest"
+	// FHIRAllTypesEnrollmentresponse - EnrollmentResponse
+	FHIRAllTypesEnrollmentresponse FHIRAllTypes = "EnrollmentResponse"
+	// FHIRAllTypesEpisodeofcare - EpisodeOfCare
+	FHIRAllTypesEpisodeofcare FHIRAllTypes = "EpisodeOfCare"
+	// FHIRAllTypesEventdefinition - EventDefinition
+	FHIRAllTypesEventdefinition FHIRAllTypes = "EventDefinition"
+	// FHIRAllTypesEvidence - Evidence
+	FHIRAllTypesEvidence FHIRAllTypes = "Evidence"
+	// FHIRAllTypesEvidencevariable - EvidenceVariable
+	FHIRAllTypesEvidencevariable FHIRAllTypes = "EvidenceVariable"
+	// FHIRAllTypesExamplescenario - ExampleScenario
+	FHIRAllTypesExamplescenario FHIRAllTypes = "ExampleScenario"
+	// FHIRAllTypesExplanationofbenefit - ExplanationOfBenefit
+	FHIRAllTypesExplanationofbenefit FHIRAllTypes = "ExplanationOfBenefit"
+	// FHIRAllTypesFamilymemberhistory - FamilyMemberHistory
+	FHIRAllTypesFamilymemberhistory FHIRAllTypes = "FamilyMemberHistory"
+	// FHIRAllTypesFlag - Flag
+	FHIRAllTypesFlag FHIRAllTypes = "Flag"
+	// FHIRAllTypesGoal - Goal
+	FHIRAllTypesGoal FHIRAllTypes = "Goal"
+	// FHIRAllTypesGraphdefinition - GraphDefinition
+	FHIRAllTypesGraphdefinition FHIRAllTypes = "GraphDefinition"
+	// FHIRAllTypesGroup - Group
+	FHIRAllTypesGroup FHIRAllTypes = "Group"
+	// FHIRAllTypesGuidanceresponse - GuidanceResponse
+	FHIRAllTypesGuidanceresponse FHIRAllTypes = "GuidanceResponse"
+	// FHIRAllTypesHealthcareservice - HealthcareService
+	FHIRAllTypesHealthcareservice FHIRAllTypes = "HealthcareService"
+	// FHIRAllTypesImagingstudy - ImagingStudy
+	FHIRAllTypesImagingstudy FHIRAllTypes = "ImagingStudy"
+	// FHIRAllTypesImmunization - Immunization
+	FHIRAllTypesImmunization FHIRAllTypes = "Immunization"
+	// FHIRAllTypesImmunizationevaluation - ImmunizationEvaluation
+	FHIRAllTypesImmunizationevaluation FHIRAllTypes = "ImmunizationEvaluation"
+	// FHIRAllTypesImmunizationrecommendation - ImmunizationRecommendation
+	FHIRAllTypesImmunizationrecommendation FHIRAllTypes = "ImmunizationRecommendation"
+	// FHIRAllTypesImplementationguide - ImplementationGuide
+	FHIRAllTypesImplementationguide FHIRAllTypes = "ImplementationGuide"
+	// FHIRAllTypesInsuranceplan - InsurancePlan
+	FHIRAllTypesInsuranceplan FHIRAllTypes = "InsurancePlan"
+	// FHIRAllTypesInvoice - Invoice
+	FHIRAllTypesInvoice FHIRAllTypes = "Invoice"
+	// FHIRAllTypesLibrary - Library
+	FHIRAllTypesLibrary FHIRAllTypes = "Library"
+	// FHIRAllTypesLinkage - Linkage
+	FHIRAllTypesLinkage FHIRAllTypes = "Linkage"
+	// FHIRAllTypesList - List
+	FHIRAllTypesList FHIRAllTypes = "List"
+	// FHIRAllTypesLocation - Location
+	FHIRAllTypesLocation FHIRAllTypes = "Location"
+	// FHIRAllTypesMeasure - Measure
+	FHIRAllTypesMeasure FHIRAllTypes = "Measure"
+	// FHIRAllTypesMeasurereport - MeasureReport
+	FHIRAllTypesMeasurereport FHIRAllTypes = "MeasureReport"
+	// FHIRAllTypesMedia - Media
+	FHIRAllTypesMedia FHIRAllTypes = "Media"
+	// FHIRAllTypesMedication - Medication
+	FHIRAllTypesMedication FHIRAllTypes = "Medication"
+	// FHIRAllTypesMedicationadministration - MedicationAdministration
+	FHIRAllTypesMedicationadministration FHIRAllTypes = "MedicationAdministration"
+	// FHIRAllTypesMedicationdispense - MedicationDispense
+	FHIRAllTypesMedicationdispense FHIRAllTypes = "MedicationDispense"
+	// FHIRAllTypesMedicationknowledge - MedicationKnowledge
+	FHIRAllTypesMedicationknowledge FHIRAllTypes = "MedicationKnowledge"
+	// FHIRAllTypesMedicationrequest - MedicationRequest
+	FHIRAllTypesMedicationrequest FHIRAllTypes = "MedicationRequest"
+	// FHIRAllTypesMedicationstatement - MedicationStatement
+	FHIRAllTypesMedicationstatement FHIRAllTypes = "MedicationStatement"
+	// FHIRAllTypesMedicinalproduct - MedicinalProduct
+	FHIRAllTypesMedicinalproduct FHIRAllTypes = "MedicinalProduct"
+	// FHIRAllTypesMedicinalproductauthorization - MedicinalProductAuthorization
+	FHIRAllTypesMedicinalproductauthorization FHIRAllTypes = "MedicinalProductAuthorization"
+	// FHIRAllTypesMedicinalproductcontraindication - MedicinalProductContraindication
+	FHIRAllTypesMedicinalproductcontraindication FHIRAllTypes = "MedicinalProductContraindication"
+	// FHIRAllTypesMedicinalproductindication - MedicinalProductIndication
+	FHIRAllTypesMedicinalproductindication FHIRAllTypes = "MedicinalProductIndication"
+	// FHIRAllTypesMedicinalproductingredient - MedicinalProductIngredient
+	FHIRAllTypesMedicinalproductingredient FHIRAllTypes = "MedicinalProductIngredient"
+	// FHIRAllTypesMedicinalproductinteraction - MedicinalProductInteraction
+	FHIRAllTypesMedicinalproductinteraction FHIRAllTypes = "MedicinalProductInteraction"
+	// FHIRAllTypesMedicinalproductmanufactured - MedicinalProductManufactured
+	FHIRAllTypesMedicinalproductmanufactured FHIRAllTypes = "MedicinalProductManufactured"
+	// FHIRAllTypesMedicinalproductpackaged - MedicinalProductPackaged
+	FHIRAllTypesMedicinalproductpackaged FHIRAllTypes = "MedicinalProductPackaged"
+	// FHIRAllTypesMedicinalproductpharmaceutical - MedicinalProductPharmaceutical
+	FHIRAllTypesMedicinalproductpharmaceutical FHIRAllTypes = "MedicinalProductPharmaceutical"
+	// FHIRAllTypesMedicinalproductundesirableeffect - MedicinalProductUndesirableEffect
+	FHIRAllTypesMedicinalproductundesirableeffect FHIRAllTypes = "MedicinalProductUndesirableEffect"
+	// FHIRAllTypesMessagedefinition - MessageDefinition
+	FHIRAllTypesMessagedefinition FHIRAllTypes = "MessageDefinition"
+	// FHIRAllTypesMessageheader - MessageHeader
+	FHIRAllTypesMessageheader FHIRAllTypes = "MessageHeader"
+	// FHIRAllTypesMolecularsequence - MolecularSequence
+	FHIRAllTypesMolecularsequence FHIRAllTypes = "MolecularSequence"
+	// FHIRAllTypesNamingsystem - NamingSystem
+	FHIRAllTypesNamingsystem FHIRAllTypes = "NamingSystem"
+	// FHIRAllTypesNutritionorder - NutritionOrder
+	FHIRAllTypesNutritionorder FHIRAllTypes = "NutritionOrder"
+	// FHIRAllTypesObservation - Observation
+	FHIRAllTypesObservation FHIRAllTypes = "Observation"
+	// FHIRAllTypesObservationdefinition - ObservationDefinition
+	FHIRAllTypesObservationdefinition FHIRAllTypes = "ObservationDefinition"
+	// FHIRAllTypesOperationdefinition - OperationDefinition
+	FHIRAllTypesOperationdefinition FHIRAllTypes = "OperationDefinition"
+	// FHIRAllTypesOperationoutcome - OperationOutcome
+	FHIRAllTypesOperationoutcome FHIRAllTypes = "OperationOutcome"
+	// FHIRAllTypesOrganization - Organization
+	FHIRAllTypesOrganization FHIRAllTypes = "Organization"
+	// FHIRAllTypesOrganizationaffiliation - OrganizationAffiliation
+	FHIRAllTypesOrganizationaffiliation FHIRAllTypes = "OrganizationAffiliation"
+	// FHIRAllTypesParameters - Parameters
+	FHIRAllTypesParameters FHIRAllTypes = "Parameters"
+	// FHIRAllTypesPatient - Patient
+	FHIRAllTypesPatient FHIRAllTypes = "Patient"
+	// FHIRAllTypesPaymentnotice - PaymentNotice
+	FHIRAllTypesPaymentnotice FHIRAllTypes = "PaymentNotice"
+	// FHIRAllTypesPaymentreconciliation - PaymentReconciliation
+	FHIRAllTypesPaymentreconciliation FHIRAllTypes = "PaymentReconciliation"
+	// FHIRAllTypesPerson - Person
+	FHIRAllTypesPerson FHIRAllTypes = "Person"
+	// FHIRAllTypesPlandefinition - PlanDefinition
+	FHIRAllTypesPlandefinition FHIRAllTypes = "PlanDefinition"
+	// FHIRAllTypesPractitioner - Practitioner
+	FHIRAllTypesPractitioner FHIRAllTypes = "Practitioner"
+	// FHIRAllTypesPractitionerrole - PractitionerRole
+	FHIRAllTypesPractitionerrole FHIRAllTypes = "PractitionerRole"
+	// FHIRAllTypesProcedure - Procedure
+	FHIRAllTypesProcedure FHIRAllTypes = "Procedure"
+	// FHIRAllTypesProvenance - Provenance
+	FHIRAllTypesProvenance FHIRAllTypes = "Provenance"
+	// FHIRAllTypesQuestionnaire - Questionnaire
+	FHIRAllTypesQuestionnaire FHIRAllTypes = "Questionnaire"
+	// FHIRAllTypesQuestionnaireresponse - QuestionnaireResponse
+	FHIRAllTypesQuestionnaireresponse FHIRAllTypes = "QuestionnaireResponse"
+	// FHIRAllTypesRelatedperson - RelatedPerson
+	FHIRAllTypesRelatedperson FHIRAllTypes = "RelatedPerson"
+	// FHIRAllTypesRequestgroup - RequestGroup
+	FHIRAllTypesRequestgroup FHIRAllTypes = "RequestGroup"
+	// FHIRAllTypesResearchdefinition - ResearchDefinition
+	FHIRAllTypesResearchdefinition FHIRAllTypes = "ResearchDefinition"
+	// FHIRAllTypesResearchelementdefinition - ResearchElementDefinition
+	FHIRAllTypesResearchelementdefinition FHIRAllTypes = "ResearchElementDefinition"
+	// FHIRAllTypesResearchstudy - ResearchStudy
+	FHIRAllTypesResearchstudy FHIRAllTypes = "ResearchStudy"
+	// FHIRAllTypesResearchsubject - ResearchSubject
+	FHIRAllTypesResearchsubject FHIRAllTypes = "ResearchSubject"
+	// FHIRAllTypesResource - Resource
+	FHIRAllTypesResource FHIRAllTypes = "Resource"
+	// FHIRAllTypesRiskassessment - RiskAssessment
+	FHIRAllTypesRiskassessment FHIRAllTypes = "RiskAssessment"
+	// FHIRAllTypesRiskevidencesynthesis - RiskEvidenceSynthesis
+	FHIRAllTypesRiskevidencesynthesis FHIRAllTypes = "RiskEvidenceSynthesis"
+	// FHIRAllTypesSchedule - Schedule
+	FHIRAllTypesSchedule FHIRAllTypes = "Schedule"
+	// FHIRAllTypesSearchparameter - SearchParameter
+	FHIRAllTypesSearchparameter FHIRAllTypes = "SearchParameter"
+	// FHIRAllTypesServicerequest - ServiceRequest
+	FHIRAllTypesServicerequest FHIRAllTypes = "ServiceRequest"
+	// FHIRAllTypesSlot - Slot
+	FHIRAllTypesSlot FHIRAllTypes = "Slot"
+	// FHIRAllTypesSpecimen - Specimen
+	FHIRAllTypesSpecimen FHIRAllTypes = "Specimen"
+	// FHIRAllTypesSpecimendefinition - SpecimenDefinition
+	FHIRAllTypesSpecimendefinition FHIRAllTypes = "SpecimenDefinition"
+	// FHIRAllTypesStructuredefinition - StructureDefinition
+	FHIRAllTypesStructuredefinition FHIRAllTypes = "StructureDefinition"
+	// FHIRAllTypesStructuremap - StructureMap
+	FHIRAllTypesStructuremap FHIRAllTypes = "StructureMap"
+	// FHIRAllTypesSubscription - Subscription
+	FHIRAllTypesSubscription FHIRAllTypes = "Subscription"
+	// FHIRAllTypesSubstance - Substance
+	FHIRAllTypesSubstance FHIRAllTypes = "Substance"
+	// FHIRAllTypesSubstancenucleicacid - SubstanceNucleicAcid
+	FHIRAllTypesSubstancenucleicacid FHIRAllTypes = "SubstanceNucleicAcid"
+	// FHIRAllTypesSubstancepolymer - SubstancePolymer
+	FHIRAllTypesSubstancepolymer FHIRAllTypes = "SubstancePolymer"
+	// FHIRAllTypesSubstanceprotein - SubstanceProtein
+	FHIRAllTypesSubstanceprotein FHIRAllTypes = "SubstanceProtein"
+	// FHIRAllTypesSubstancereferenceinformation - SubstanceReferenceInformation
+	FHIRAllTypesSubstancereferenceinformation FHIRAllTypes = "SubstanceReferenceInformation"
+	// FHIRAllTypesSubstancesourcematerial - SubstanceSourceMaterial
+	FHIRAllTypesSubstancesourcematerial FHIRAllTypes = "SubstanceSourceMaterial"
+	// FHIRAllTypesSubstancespecification - SubstanceSpecification
+	FHIRAllTypesSubstancespecification FHIRAllTypes = "SubstanceSpecification"
+	// FHIRAllTypesSupplydelivery - SupplyDelivery
+	FHIRAllTypesSupplydelivery FHIRAllTypes = "SupplyDelivery"
+	// FHIRAllTypesSupplyrequest - SupplyRequest
+	FHIRAllTypesSupplyrequest FHIRAllTypes = "SupplyRequest"
+	// FHIRAllTypesTask - Task
+	FHIRAllTypesTask FHIRAllTypes = "Task"
+	// FHIRAllTypesTerminologycapabilities - TerminologyCapabilities
+	FHIRAllTypesTerminologycapabilities FHIRAllTypes = "TerminologyCapabilities"
+	// FHIRAllTypesTestreport - TestReport
+	FHIRAllTypesTestreport FHIRAllTypes = "TestReport"
+	// FHIRAllTypesTestscript - TestScript
+	FHIRAllTypesTestscript FHIRAllTypes = "TestScript"
+	// FHIRAllTypesValueset - ValueSet
+	FHIRAllTypesValueset FHIRAllTypes = "ValueSet"
+	// FHIRAllTypesVerificationresult - VerificationResult
+	FHIRAllTypesVerificationresult FHIRAllTypes = "VerificationResult"
+	// FHIRAllTypesVisionprescription - VisionPrescription
+	FHIRAllTypesVisionprescription FHIRAllTypes = "VisionPrescription"
+	// FHIRAllTypesType - Type
+	FHIRAllTypesType FHIRAllTypes = "Type"
+	// FHIRAllTypesAny - Any
+	FHIRAllTypesAny FHIRAllTypes = "Any"
+)
+
 // AllergyIntoleranceCategory represents AllergyIntoleranceCategory.
 type AllergyIntoleranceCategory string
 
@@ -963,6 +1396,435 @@ const (
 	DaysOfWeekSat DaysOfWeek = "sat"
 	// DaysOfWeekSun - Sunday
 	DaysOfWeekSun DaysOfWeek = "sun"
+)
+
+// FHIRDefinedType represents FHIRDefinedType.
+type FHIRDefinedType string
+
+// FHIRDefinedType values.
+const (
+	// FHIRDefinedTypeAddress - Address
+	FHIRDefinedTypeAddress FHIRDefinedType = "Address"
+	// FHIRDefinedTypeAge - Age
+	FHIRDefinedTypeAge FHIRDefinedType = "Age"
+	// FHIRDefinedTypeAnnotation - Annotation
+	FHIRDefinedTypeAnnotation FHIRDefinedType = "Annotation"
+	// FHIRDefinedTypeAttachment - Attachment
+	FHIRDefinedTypeAttachment FHIRDefinedType = "Attachment"
+	// FHIRDefinedTypeBackboneelement - BackboneElement
+	FHIRDefinedTypeBackboneelement FHIRDefinedType = "BackboneElement"
+	// FHIRDefinedTypeCodeableconcept - CodeableConcept
+	FHIRDefinedTypeCodeableconcept FHIRDefinedType = "CodeableConcept"
+	// FHIRDefinedTypeCoding - Coding
+	FHIRDefinedTypeCoding FHIRDefinedType = "Coding"
+	// FHIRDefinedTypeContactdetail - ContactDetail
+	FHIRDefinedTypeContactdetail FHIRDefinedType = "ContactDetail"
+	// FHIRDefinedTypeContactpoint - ContactPoint
+	FHIRDefinedTypeContactpoint FHIRDefinedType = "ContactPoint"
+	// FHIRDefinedTypeContributor - Contributor
+	FHIRDefinedTypeContributor FHIRDefinedType = "Contributor"
+	// FHIRDefinedTypeCount - Count
+	FHIRDefinedTypeCount FHIRDefinedType = "Count"
+	// FHIRDefinedTypeDatarequirement - DataRequirement
+	FHIRDefinedTypeDatarequirement FHIRDefinedType = "DataRequirement"
+	// FHIRDefinedTypeDistance - Distance
+	FHIRDefinedTypeDistance FHIRDefinedType = "Distance"
+	// FHIRDefinedTypeDosage - Dosage
+	FHIRDefinedTypeDosage FHIRDefinedType = "Dosage"
+	// FHIRDefinedTypeDuration - Duration
+	FHIRDefinedTypeDuration FHIRDefinedType = "Duration"
+	// FHIRDefinedTypeElement - Element
+	FHIRDefinedTypeElement FHIRDefinedType = "Element"
+	// FHIRDefinedTypeElementdefinition - ElementDefinition
+	FHIRDefinedTypeElementdefinition FHIRDefinedType = "ElementDefinition"
+	// FHIRDefinedTypeExpression - Expression
+	FHIRDefinedTypeExpression FHIRDefinedType = "Expression"
+	// FHIRDefinedTypeExtension - Extension
+	FHIRDefinedTypeExtension FHIRDefinedType = "Extension"
+	// FHIRDefinedTypeHumanname - HumanName
+	FHIRDefinedTypeHumanname FHIRDefinedType = "HumanName"
+	// FHIRDefinedTypeIdentifier - Identifier
+	FHIRDefinedTypeIdentifier FHIRDefinedType = "Identifier"
+	// FHIRDefinedTypeMarketingstatus - MarketingStatus
+	FHIRDefinedTypeMarketingstatus FHIRDefinedType = "MarketingStatus"
+	// FHIRDefinedTypeMeta - Meta
+	FHIRDefinedTypeMeta FHIRDefinedType = "Meta"
+	// FHIRDefinedTypeMoney - Money
+	FHIRDefinedTypeMoney FHIRDefinedType = "Money"
+	// FHIRDefinedTypeMoneyquantity - MoneyQuantity
+	FHIRDefinedTypeMoneyquantity FHIRDefinedType = "MoneyQuantity"
+	// FHIRDefinedTypeNarrative - Narrative
+	FHIRDefinedTypeNarrative FHIRDefinedType = "Narrative"
+	// FHIRDefinedTypeParameterdefinition - ParameterDefinition
+	FHIRDefinedTypeParameterdefinition FHIRDefinedType = "ParameterDefinition"
+	// FHIRDefinedTypePeriod - Period
+	FHIRDefinedTypePeriod FHIRDefinedType = "Period"
+	// FHIRDefinedTypePopulation - Population
+	FHIRDefinedTypePopulation FHIRDefinedType = "Population"
+	// FHIRDefinedTypeProdcharacteristic - ProdCharacteristic
+	FHIRDefinedTypeProdcharacteristic FHIRDefinedType = "ProdCharacteristic"
+	// FHIRDefinedTypeProductshelflife - ProductShelfLife
+	FHIRDefinedTypeProductshelflife FHIRDefinedType = "ProductShelfLife"
+	// FHIRDefinedTypeQuantity - Quantity
+	FHIRDefinedTypeQuantity FHIRDefinedType = "Quantity"
+	// FHIRDefinedTypeRange - Range
+	FHIRDefinedTypeRange FHIRDefinedType = "Range"
+	// FHIRDefinedTypeRatio - Ratio
+	FHIRDefinedTypeRatio FHIRDefinedType = "Ratio"
+	// FHIRDefinedTypeReference - Reference
+	FHIRDefinedTypeReference FHIRDefinedType = "Reference"
+	// FHIRDefinedTypeRelatedartifact - RelatedArtifact
+	FHIRDefinedTypeRelatedartifact FHIRDefinedType = "RelatedArtifact"
+	// FHIRDefinedTypeSampleddata - SampledData
+	FHIRDefinedTypeSampleddata FHIRDefinedType = "SampledData"
+	// FHIRDefinedTypeSignature - Signature
+	FHIRDefinedTypeSignature FHIRDefinedType = "Signature"
+	// FHIRDefinedTypeSimplequantity - SimpleQuantity
+	FHIRDefinedTypeSimplequantity FHIRDefinedType = "SimpleQuantity"
+	// FHIRDefinedTypeSubstanceamount - SubstanceAmount
+	FHIRDefinedTypeSubstanceamount FHIRDefinedType = "SubstanceAmount"
+	// FHIRDefinedTypeTiming - Timing
+	FHIRDefinedTypeTiming FHIRDefinedType = "Timing"
+	// FHIRDefinedTypeTriggerdefinition - TriggerDefinition
+	FHIRDefinedTypeTriggerdefinition FHIRDefinedType = "TriggerDefinition"
+	// FHIRDefinedTypeUsagecontext - UsageContext
+	FHIRDefinedTypeUsagecontext FHIRDefinedType = "UsageContext"
+	// FHIRDefinedTypeBase64binary - base64Binary
+	FHIRDefinedTypeBase64binary FHIRDefinedType = "base64Binary"
+	// FHIRDefinedTypeBoolean - boolean
+	FHIRDefinedTypeBoolean FHIRDefinedType = "boolean"
+	// FHIRDefinedTypeCanonical - canonical
+	FHIRDefinedTypeCanonical FHIRDefinedType = "canonical"
+	// FHIRDefinedTypeCode - code
+	FHIRDefinedTypeCode FHIRDefinedType = "code"
+	// FHIRDefinedTypeDate - date
+	FHIRDefinedTypeDate FHIRDefinedType = "date"
+	// FHIRDefinedTypeDatetime - dateTime
+	FHIRDefinedTypeDatetime FHIRDefinedType = "dateTime"
+	// FHIRDefinedTypeDecimal - decimal
+	FHIRDefinedTypeDecimal FHIRDefinedType = "decimal"
+	// FHIRDefinedTypeId - id
+	FHIRDefinedTypeId FHIRDefinedType = "id"
+	// FHIRDefinedTypeInstant - instant
+	FHIRDefinedTypeInstant FHIRDefinedType = "instant"
+	// FHIRDefinedTypeInteger - integer
+	FHIRDefinedTypeInteger FHIRDefinedType = "integer"
+	// FHIRDefinedTypeMarkdown - markdown
+	FHIRDefinedTypeMarkdown FHIRDefinedType = "markdown"
+	// FHIRDefinedTypeOid - oid
+	FHIRDefinedTypeOid FHIRDefinedType = "oid"
+	// FHIRDefinedTypePositiveint - positiveInt
+	FHIRDefinedTypePositiveint FHIRDefinedType = "positiveInt"
+	// FHIRDefinedTypeString - string
+	FHIRDefinedTypeString FHIRDefinedType = "string"
+	// FHIRDefinedTypeTime - time
+	FHIRDefinedTypeTime FHIRDefinedType = "time"
+	// FHIRDefinedTypeUnsignedint - unsignedInt
+	FHIRDefinedTypeUnsignedint FHIRDefinedType = "unsignedInt"
+	// FHIRDefinedTypeUri - uri
+	FHIRDefinedTypeUri FHIRDefinedType = "uri"
+	// FHIRDefinedTypeUrl - url
+	FHIRDefinedTypeUrl FHIRDefinedType = "url"
+	// FHIRDefinedTypeUuid - uuid
+	FHIRDefinedTypeUuid FHIRDefinedType = "uuid"
+	// FHIRDefinedTypeXhtml - XHTML
+	FHIRDefinedTypeXhtml FHIRDefinedType = "xhtml"
+	// FHIRDefinedTypeAccount - Account
+	FHIRDefinedTypeAccount FHIRDefinedType = "Account"
+	// FHIRDefinedTypeActivitydefinition - ActivityDefinition
+	FHIRDefinedTypeActivitydefinition FHIRDefinedType = "ActivityDefinition"
+	// FHIRDefinedTypeAdverseevent - AdverseEvent
+	FHIRDefinedTypeAdverseevent FHIRDefinedType = "AdverseEvent"
+	// FHIRDefinedTypeAllergyintolerance - AllergyIntolerance
+	FHIRDefinedTypeAllergyintolerance FHIRDefinedType = "AllergyIntolerance"
+	// FHIRDefinedTypeAppointment - Appointment
+	FHIRDefinedTypeAppointment FHIRDefinedType = "Appointment"
+	// FHIRDefinedTypeAppointmentresponse - AppointmentResponse
+	FHIRDefinedTypeAppointmentresponse FHIRDefinedType = "AppointmentResponse"
+	// FHIRDefinedTypeAuditevent - AuditEvent
+	FHIRDefinedTypeAuditevent FHIRDefinedType = "AuditEvent"
+	// FHIRDefinedTypeBasic - Basic
+	FHIRDefinedTypeBasic FHIRDefinedType = "Basic"
+	// FHIRDefinedTypeBinary - Binary
+	FHIRDefinedTypeBinary FHIRDefinedType = "Binary"
+	// FHIRDefinedTypeBiologicallyderivedproduct - BiologicallyDerivedProduct
+	FHIRDefinedTypeBiologicallyderivedproduct FHIRDefinedType = "BiologicallyDerivedProduct"
+	// FHIRDefinedTypeBodystructure - BodyStructure
+	FHIRDefinedTypeBodystructure FHIRDefinedType = "BodyStructure"
+	// FHIRDefinedTypeBundle - Bundle
+	FHIRDefinedTypeBundle FHIRDefinedType = "Bundle"
+	// FHIRDefinedTypeCapabilitystatement - CapabilityStatement
+	FHIRDefinedTypeCapabilitystatement FHIRDefinedType = "CapabilityStatement"
+	// FHIRDefinedTypeCareplan - CarePlan
+	FHIRDefinedTypeCareplan FHIRDefinedType = "CarePlan"
+	// FHIRDefinedTypeCareteam - CareTeam
+	FHIRDefinedTypeCareteam FHIRDefinedType = "CareTeam"
+	// FHIRDefinedTypeCatalogentry - CatalogEntry
+	FHIRDefinedTypeCatalogentry FHIRDefinedType = "CatalogEntry"
+	// FHIRDefinedTypeChargeitem - ChargeItem
+	FHIRDefinedTypeChargeitem FHIRDefinedType = "ChargeItem"
+	// FHIRDefinedTypeChargeitemdefinition - ChargeItemDefinition
+	FHIRDefinedTypeChargeitemdefinition FHIRDefinedType = "ChargeItemDefinition"
+	// FHIRDefinedTypeClaim - Claim
+	FHIRDefinedTypeClaim FHIRDefinedType = "Claim"
+	// FHIRDefinedTypeClaimresponse - ClaimResponse
+	FHIRDefinedTypeClaimresponse FHIRDefinedType = "ClaimResponse"
+	// FHIRDefinedTypeClinicalimpression - ClinicalImpression
+	FHIRDefinedTypeClinicalimpression FHIRDefinedType = "ClinicalImpression"
+	// FHIRDefinedTypeCodesystem - CodeSystem
+	FHIRDefinedTypeCodesystem FHIRDefinedType = "CodeSystem"
+	// FHIRDefinedTypeCommunication - Communication
+	FHIRDefinedTypeCommunication FHIRDefinedType = "Communication"
+	// FHIRDefinedTypeCommunicationrequest - CommunicationRequest
+	FHIRDefinedTypeCommunicationrequest FHIRDefinedType = "CommunicationRequest"
+	// FHIRDefinedTypeCompartmentdefinition - CompartmentDefinition
+	FHIRDefinedTypeCompartmentdefinition FHIRDefinedType = "CompartmentDefinition"
+	// FHIRDefinedTypeComposition - Composition
+	FHIRDefinedTypeComposition FHIRDefinedType = "Composition"
+	// FHIRDefinedTypeConceptmap - ConceptMap
+	FHIRDefinedTypeConceptmap FHIRDefinedType = "ConceptMap"
+	// FHIRDefinedTypeCondition - Condition
+	FHIRDefinedTypeCondition FHIRDefinedType = "Condition"
+	// FHIRDefinedTypeConsent - Consent
+	FHIRDefinedTypeConsent FHIRDefinedType = "Consent"
+	// FHIRDefinedTypeContract - Contract
+	FHIRDefinedTypeContract FHIRDefinedType = "Contract"
+	// FHIRDefinedTypeCoverage - Coverage
+	FHIRDefinedTypeCoverage FHIRDefinedType = "Coverage"
+	// FHIRDefinedTypeCoverageeligibilityrequest - CoverageEligibilityRequest
+	FHIRDefinedTypeCoverageeligibilityrequest FHIRDefinedType = "CoverageEligibilityRequest"
+	// FHIRDefinedTypeCoverageeligibilityresponse - CoverageEligibilityResponse
+	FHIRDefinedTypeCoverageeligibilityresponse FHIRDefinedType = "CoverageEligibilityResponse"
+	// FHIRDefinedTypeDetectedissue - DetectedIssue
+	FHIRDefinedTypeDetectedissue FHIRDefinedType = "DetectedIssue"
+	// FHIRDefinedTypeDevice - Device
+	FHIRDefinedTypeDevice FHIRDefinedType = "Device"
+	// FHIRDefinedTypeDevicedefinition - DeviceDefinition
+	FHIRDefinedTypeDevicedefinition FHIRDefinedType = "DeviceDefinition"
+	// FHIRDefinedTypeDevicemetric - DeviceMetric
+	FHIRDefinedTypeDevicemetric FHIRDefinedType = "DeviceMetric"
+	// FHIRDefinedTypeDevicerequest - DeviceRequest
+	FHIRDefinedTypeDevicerequest FHIRDefinedType = "DeviceRequest"
+	// FHIRDefinedTypeDeviceusestatement - DeviceUseStatement
+	FHIRDefinedTypeDeviceusestatement FHIRDefinedType = "DeviceUseStatement"
+	// FHIRDefinedTypeDiagnosticreport - DiagnosticReport
+	FHIRDefinedTypeDiagnosticreport FHIRDefinedType = "DiagnosticReport"
+	// FHIRDefinedTypeDocumentmanifest - DocumentManifest
+	FHIRDefinedTypeDocumentmanifest FHIRDefinedType = "DocumentManifest"
+	// FHIRDefinedTypeDocumentreference - DocumentReference
+	FHIRDefinedTypeDocumentreference FHIRDefinedType = "DocumentReference"
+	// FHIRDefinedTypeDomainresource - DomainResource
+	FHIRDefinedTypeDomainresource FHIRDefinedType = "DomainResource"
+	// FHIRDefinedTypeEffectevidencesynthesis - EffectEvidenceSynthesis
+	FHIRDefinedTypeEffectevidencesynthesis FHIRDefinedType = "EffectEvidenceSynthesis"
+	// FHIRDefinedTypeEncounter - Encounter
+	FHIRDefinedTypeEncounter FHIRDefinedType = "Encounter"
+	// FHIRDefinedTypeEndpoint - Endpoint
+	FHIRDefinedTypeEndpoint FHIRDefinedType = "Endpoint"
+	// FHIRDefinedTypeEnrollmentrequest - EnrollmentRequest
+	FHIRDefinedTypeEnrollmentrequest FHIRDefinedType = "EnrollmentRequest"
+	// FHIRDefinedTypeEnrollmentresponse - EnrollmentResponse
+	FHIRDefinedTypeEnrollmentresponse FHIRDefinedType = "EnrollmentResponse"
+	// FHIRDefinedTypeEpisodeofcare - EpisodeOfCare
+	FHIRDefinedTypeEpisodeofcare FHIRDefinedType = "EpisodeOfCare"
+	// FHIRDefinedTypeEventdefinition - EventDefinition
+	FHIRDefinedTypeEventdefinition FHIRDefinedType = "EventDefinition"
+	// FHIRDefinedTypeEvidence - Evidence
+	FHIRDefinedTypeEvidence FHIRDefinedType = "Evidence"
+	// FHIRDefinedTypeEvidencevariable - EvidenceVariable
+	FHIRDefinedTypeEvidencevariable FHIRDefinedType = "EvidenceVariable"
+	// FHIRDefinedTypeExamplescenario - ExampleScenario
+	FHIRDefinedTypeExamplescenario FHIRDefinedType = "ExampleScenario"
+	// FHIRDefinedTypeExplanationofbenefit - ExplanationOfBenefit
+	FHIRDefinedTypeExplanationofbenefit FHIRDefinedType = "ExplanationOfBenefit"
+	// FHIRDefinedTypeFamilymemberhistory - FamilyMemberHistory
+	FHIRDefinedTypeFamilymemberhistory FHIRDefinedType = "FamilyMemberHistory"
+	// FHIRDefinedTypeFlag - Flag
+	FHIRDefinedTypeFlag FHIRDefinedType = "Flag"
+	// FHIRDefinedTypeGoal - Goal
+	FHIRDefinedTypeGoal FHIRDefinedType = "Goal"
+	// FHIRDefinedTypeGraphdefinition - GraphDefinition
+	FHIRDefinedTypeGraphdefinition FHIRDefinedType = "GraphDefinition"
+	// FHIRDefinedTypeGroup - Group
+	FHIRDefinedTypeGroup FHIRDefinedType = "Group"
+	// FHIRDefinedTypeGuidanceresponse - GuidanceResponse
+	FHIRDefinedTypeGuidanceresponse FHIRDefinedType = "GuidanceResponse"
+	// FHIRDefinedTypeHealthcareservice - HealthcareService
+	FHIRDefinedTypeHealthcareservice FHIRDefinedType = "HealthcareService"
+	// FHIRDefinedTypeImagingstudy - ImagingStudy
+	FHIRDefinedTypeImagingstudy FHIRDefinedType = "ImagingStudy"
+	// FHIRDefinedTypeImmunization - Immunization
+	FHIRDefinedTypeImmunization FHIRDefinedType = "Immunization"
+	// FHIRDefinedTypeImmunizationevaluation - ImmunizationEvaluation
+	FHIRDefinedTypeImmunizationevaluation FHIRDefinedType = "ImmunizationEvaluation"
+	// FHIRDefinedTypeImmunizationrecommendation - ImmunizationRecommendation
+	FHIRDefinedTypeImmunizationrecommendation FHIRDefinedType = "ImmunizationRecommendation"
+	// FHIRDefinedTypeImplementationguide - ImplementationGuide
+	FHIRDefinedTypeImplementationguide FHIRDefinedType = "ImplementationGuide"
+	// FHIRDefinedTypeInsuranceplan - InsurancePlan
+	FHIRDefinedTypeInsuranceplan FHIRDefinedType = "InsurancePlan"
+	// FHIRDefinedTypeInvoice - Invoice
+	FHIRDefinedTypeInvoice FHIRDefinedType = "Invoice"
+	// FHIRDefinedTypeLibrary - Library
+	FHIRDefinedTypeLibrary FHIRDefinedType = "Library"
+	// FHIRDefinedTypeLinkage - Linkage
+	FHIRDefinedTypeLinkage FHIRDefinedType = "Linkage"
+	// FHIRDefinedTypeList - List
+	FHIRDefinedTypeList FHIRDefinedType = "List"
+	// FHIRDefinedTypeLocation - Location
+	FHIRDefinedTypeLocation FHIRDefinedType = "Location"
+	// FHIRDefinedTypeMeasure - Measure
+	FHIRDefinedTypeMeasure FHIRDefinedType = "Measure"
+	// FHIRDefinedTypeMeasurereport - MeasureReport
+	FHIRDefinedTypeMeasurereport FHIRDefinedType = "MeasureReport"
+	// FHIRDefinedTypeMedia - Media
+	FHIRDefinedTypeMedia FHIRDefinedType = "Media"
+	// FHIRDefinedTypeMedication - Medication
+	FHIRDefinedTypeMedication FHIRDefinedType = "Medication"
+	// FHIRDefinedTypeMedicationadministration - MedicationAdministration
+	FHIRDefinedTypeMedicationadministration FHIRDefinedType = "MedicationAdministration"
+	// FHIRDefinedTypeMedicationdispense - MedicationDispense
+	FHIRDefinedTypeMedicationdispense FHIRDefinedType = "MedicationDispense"
+	// FHIRDefinedTypeMedicationknowledge - MedicationKnowledge
+	FHIRDefinedTypeMedicationknowledge FHIRDefinedType = "MedicationKnowledge"
+	// FHIRDefinedTypeMedicationrequest - MedicationRequest
+	FHIRDefinedTypeMedicationrequest FHIRDefinedType = "MedicationRequest"
+	// FHIRDefinedTypeMedicationstatement - MedicationStatement
+	FHIRDefinedTypeMedicationstatement FHIRDefinedType = "MedicationStatement"
+	// FHIRDefinedTypeMedicinalproduct - MedicinalProduct
+	FHIRDefinedTypeMedicinalproduct FHIRDefinedType = "MedicinalProduct"
+	// FHIRDefinedTypeMedicinalproductauthorization - MedicinalProductAuthorization
+	FHIRDefinedTypeMedicinalproductauthorization FHIRDefinedType = "MedicinalProductAuthorization"
+	// FHIRDefinedTypeMedicinalproductcontraindication - MedicinalProductContraindication
+	FHIRDefinedTypeMedicinalproductcontraindication FHIRDefinedType = "MedicinalProductContraindication"
+	// FHIRDefinedTypeMedicinalproductindication - MedicinalProductIndication
+	FHIRDefinedTypeMedicinalproductindication FHIRDefinedType = "MedicinalProductIndication"
+	// FHIRDefinedTypeMedicinalproductingredient - MedicinalProductIngredient
+	FHIRDefinedTypeMedicinalproductingredient FHIRDefinedType = "MedicinalProductIngredient"
+	// FHIRDefinedTypeMedicinalproductinteraction - MedicinalProductInteraction
+	FHIRDefinedTypeMedicinalproductinteraction FHIRDefinedType = "MedicinalProductInteraction"
+	// FHIRDefinedTypeMedicinalproductmanufactured - MedicinalProductManufactured
+	FHIRDefinedTypeMedicinalproductmanufactured FHIRDefinedType = "MedicinalProductManufactured"
+	// FHIRDefinedTypeMedicinalproductpackaged - MedicinalProductPackaged
+	FHIRDefinedTypeMedicinalproductpackaged FHIRDefinedType = "MedicinalProductPackaged"
+	// FHIRDefinedTypeMedicinalproductpharmaceutical - MedicinalProductPharmaceutical
+	FHIRDefinedTypeMedicinalproductpharmaceutical FHIRDefinedType = "MedicinalProductPharmaceutical"
+	// FHIRDefinedTypeMedicinalproductundesirableeffect - MedicinalProductUndesirableEffect
+	FHIRDefinedTypeMedicinalproductundesirableeffect FHIRDefinedType = "MedicinalProductUndesirableEffect"
+	// FHIRDefinedTypeMessagedefinition - MessageDefinition
+	FHIRDefinedTypeMessagedefinition FHIRDefinedType = "MessageDefinition"
+	// FHIRDefinedTypeMessageheader - MessageHeader
+	FHIRDefinedTypeMessageheader FHIRDefinedType = "MessageHeader"
+	// FHIRDefinedTypeMolecularsequence - MolecularSequence
+	FHIRDefinedTypeMolecularsequence FHIRDefinedType = "MolecularSequence"
+	// FHIRDefinedTypeNamingsystem - NamingSystem
+	FHIRDefinedTypeNamingsystem FHIRDefinedType = "NamingSystem"
+	// FHIRDefinedTypeNutritionorder - NutritionOrder
+	FHIRDefinedTypeNutritionorder FHIRDefinedType = "NutritionOrder"
+	// FHIRDefinedTypeObservation - Observation
+	FHIRDefinedTypeObservation FHIRDefinedType = "Observation"
+	// FHIRDefinedTypeObservationdefinition - ObservationDefinition
+	FHIRDefinedTypeObservationdefinition FHIRDefinedType = "ObservationDefinition"
+	// FHIRDefinedTypeOperationdefinition - OperationDefinition
+	FHIRDefinedTypeOperationdefinition FHIRDefinedType = "OperationDefinition"
+	// FHIRDefinedTypeOperationoutcome - OperationOutcome
+	FHIRDefinedTypeOperationoutcome FHIRDefinedType = "OperationOutcome"
+	// FHIRDefinedTypeOrganization - Organization
+	FHIRDefinedTypeOrganization FHIRDefinedType = "Organization"
+	// FHIRDefinedTypeOrganizationaffiliation - OrganizationAffiliation
+	FHIRDefinedTypeOrganizationaffiliation FHIRDefinedType = "OrganizationAffiliation"
+	// FHIRDefinedTypeParameters - Parameters
+	FHIRDefinedTypeParameters FHIRDefinedType = "Parameters"
+	// FHIRDefinedTypePatient - Patient
+	FHIRDefinedTypePatient FHIRDefinedType = "Patient"
+	// FHIRDefinedTypePaymentnotice - PaymentNotice
+	FHIRDefinedTypePaymentnotice FHIRDefinedType = "PaymentNotice"
+	// FHIRDefinedTypePaymentreconciliation - PaymentReconciliation
+	FHIRDefinedTypePaymentreconciliation FHIRDefinedType = "PaymentReconciliation"
+	// FHIRDefinedTypePerson - Person
+	FHIRDefinedTypePerson FHIRDefinedType = "Person"
+	// FHIRDefinedTypePlandefinition - PlanDefinition
+	FHIRDefinedTypePlandefinition FHIRDefinedType = "PlanDefinition"
+	// FHIRDefinedTypePractitioner - Practitioner
+	FHIRDefinedTypePractitioner FHIRDefinedType = "Practitioner"
+	// FHIRDefinedTypePractitionerrole - PractitionerRole
+	FHIRDefinedTypePractitionerrole FHIRDefinedType = "PractitionerRole"
+	// FHIRDefinedTypeProcedure - Procedure
+	FHIRDefinedTypeProcedure FHIRDefinedType = "Procedure"
+	// FHIRDefinedTypeProvenance - Provenance
+	FHIRDefinedTypeProvenance FHIRDefinedType = "Provenance"
+	// FHIRDefinedTypeQuestionnaire - Questionnaire
+	FHIRDefinedTypeQuestionnaire FHIRDefinedType = "Questionnaire"
+	// FHIRDefinedTypeQuestionnaireresponse - QuestionnaireResponse
+	FHIRDefinedTypeQuestionnaireresponse FHIRDefinedType = "QuestionnaireResponse"
+	// FHIRDefinedTypeRelatedperson - RelatedPerson
+	FHIRDefinedTypeRelatedperson FHIRDefinedType = "RelatedPerson"
+	// FHIRDefinedTypeRequestgroup - RequestGroup
+	FHIRDefinedTypeRequestgroup FHIRDefinedType = "RequestGroup"
+	// FHIRDefinedTypeResearchdefinition - ResearchDefinition
+	FHIRDefinedTypeResearchdefinition FHIRDefinedType = "ResearchDefinition"
+	// FHIRDefinedTypeResearchelementdefinition - ResearchElementDefinition
+	FHIRDefinedTypeResearchelementdefinition FHIRDefinedType = "ResearchElementDefinition"
+	// FHIRDefinedTypeResearchstudy - ResearchStudy
+	FHIRDefinedTypeResearchstudy FHIRDefinedType = "ResearchStudy"
+	// FHIRDefinedTypeResearchsubject - ResearchSubject
+	FHIRDefinedTypeResearchsubject FHIRDefinedType = "ResearchSubject"
+	// FHIRDefinedTypeResource - Resource
+	FHIRDefinedTypeResource FHIRDefinedType = "Resource"
+	// FHIRDefinedTypeRiskassessment - RiskAssessment
+	FHIRDefinedTypeRiskassessment FHIRDefinedType = "RiskAssessment"
+	// FHIRDefinedTypeRiskevidencesynthesis - RiskEvidenceSynthesis
+	FHIRDefinedTypeRiskevidencesynthesis FHIRDefinedType = "RiskEvidenceSynthesis"
+	// FHIRDefinedTypeSchedule - Schedule
+	FHIRDefinedTypeSchedule FHIRDefinedType = "Schedule"
+	// FHIRDefinedTypeSearchparameter - SearchParameter
+	FHIRDefinedTypeSearchparameter FHIRDefinedType = "SearchParameter"
+	// FHIRDefinedTypeServicerequest - ServiceRequest
+	FHIRDefinedTypeServicerequest FHIRDefinedType = "ServiceRequest"
+	// FHIRDefinedTypeSlot - Slot
+	FHIRDefinedTypeSlot FHIRDefinedType = "Slot"
+	// FHIRDefinedTypeSpecimen - Specimen
+	FHIRDefinedTypeSpecimen FHIRDefinedType = "Specimen"
+	// FHIRDefinedTypeSpecimendefinition - SpecimenDefinition
+	FHIRDefinedTypeSpecimendefinition FHIRDefinedType = "SpecimenDefinition"
+	// FHIRDefinedTypeStructuredefinition - StructureDefinition
+	FHIRDefinedTypeStructuredefinition FHIRDefinedType = "StructureDefinition"
+	// FHIRDefinedTypeStructuremap - StructureMap
+	FHIRDefinedTypeStructuremap FHIRDefinedType = "StructureMap"
+	// FHIRDefinedTypeSubscription - Subscription
+	FHIRDefinedTypeSubscription FHIRDefinedType = "Subscription"
+	// FHIRDefinedTypeSubstance - Substance
+	FHIRDefinedTypeSubstance FHIRDefinedType = "Substance"
+	// FHIRDefinedTypeSubstancenucleicacid - SubstanceNucleicAcid
+	FHIRDefinedTypeSubstancenucleicacid FHIRDefinedType = "SubstanceNucleicAcid"
+	// FHIRDefinedTypeSubstancepolymer - SubstancePolymer
+	FHIRDefinedTypeSubstancepolymer FHIRDefinedType = "SubstancePolymer"
+	// FHIRDefinedTypeSubstanceprotein - SubstanceProtein
+	FHIRDefinedTypeSubstanceprotein FHIRDefinedType = "SubstanceProtein"
+	// FHIRDefinedTypeSubstancereferenceinformation - SubstanceReferenceInformation
+	FHIRDefinedTypeSubstancereferenceinformation FHIRDefinedType = "SubstanceReferenceInformation"
+	// FHIRDefinedTypeSubstancesourcematerial - SubstanceSourceMaterial
+	FHIRDefinedTypeSubstancesourcematerial FHIRDefinedType = "SubstanceSourceMaterial"
+	// FHIRDefinedTypeSubstancespecification - SubstanceSpecification
+	FHIRDefinedTypeSubstancespecification FHIRDefinedType = "SubstanceSpecification"
+	// FHIRDefinedTypeSupplydelivery - SupplyDelivery
+	FHIRDefinedTypeSupplydelivery FHIRDefinedType = "SupplyDelivery"
+	// FHIRDefinedTypeSupplyrequest - SupplyRequest
+	FHIRDefinedTypeSupplyrequest FHIRDefinedType = "SupplyRequest"
+	// FHIRDefinedTypeTask - Task
+	FHIRDefinedTypeTask FHIRDefinedType = "Task"
+	// FHIRDefinedTypeTerminologycapabilities - TerminologyCapabilities
+	FHIRDefinedTypeTerminologycapabilities FHIRDefinedType = "TerminologyCapabilities"
+	// FHIRDefinedTypeTestreport - TestReport
+	FHIRDefinedTypeTestreport FHIRDefinedType = "TestReport"
+	// FHIRDefinedTypeTestscript - TestScript
+	FHIRDefinedTypeTestscript FHIRDefinedType = "TestScript"
+	// FHIRDefinedTypeValueset - ValueSet
+	FHIRDefinedTypeValueset FHIRDefinedType = "ValueSet"
+	// FHIRDefinedTypeVerificationresult - VerificationResult
+	FHIRDefinedTypeVerificationresult FHIRDefinedType = "VerificationResult"
+	// FHIRDefinedTypeVisionprescription - VisionPrescription
+	FHIRDefinedTypeVisionprescription FHIRDefinedType = "VisionPrescription"
 )
 
 // DetectedIssueSeverity represents DetectedIssueSeverity.
@@ -1755,7 +2617,7 @@ const (
 	IssueTypeExpired IssueType = "expired"
 	// IssueTypeForbidden - Forbidden
 	IssueTypeForbidden IssueType = "forbidden"
-	// IssueTypeSuppressed - Information  Suppressed
+	// IssueTypeSuppressed - Information Suppressed
 	IssueTypeSuppressed IssueType = "suppressed"
 	// IssueTypeProcessing - Processing Failure
 	IssueTypeProcessing IssueType = "processing"
@@ -3076,6 +3938,309 @@ const (
 	SlicingRulesOpenatend SlicingRules = "openAtEnd"
 )
 
+// ResourceType represents ResourceType.
+type ResourceType string
+
+// ResourceType values.
+const (
+	// ResourceTypeAccount - Account
+	ResourceTypeAccount ResourceType = "Account"
+	// ResourceTypeActivitydefinition - ActivityDefinition
+	ResourceTypeActivitydefinition ResourceType = "ActivityDefinition"
+	// ResourceTypeAdverseevent - AdverseEvent
+	ResourceTypeAdverseevent ResourceType = "AdverseEvent"
+	// ResourceTypeAllergyintolerance - AllergyIntolerance
+	ResourceTypeAllergyintolerance ResourceType = "AllergyIntolerance"
+	// ResourceTypeAppointment - Appointment
+	ResourceTypeAppointment ResourceType = "Appointment"
+	// ResourceTypeAppointmentresponse - AppointmentResponse
+	ResourceTypeAppointmentresponse ResourceType = "AppointmentResponse"
+	// ResourceTypeAuditevent - AuditEvent
+	ResourceTypeAuditevent ResourceType = "AuditEvent"
+	// ResourceTypeBasic - Basic
+	ResourceTypeBasic ResourceType = "Basic"
+	// ResourceTypeBinary - Binary
+	ResourceTypeBinary ResourceType = "Binary"
+	// ResourceTypeBiologicallyderivedproduct - BiologicallyDerivedProduct
+	ResourceTypeBiologicallyderivedproduct ResourceType = "BiologicallyDerivedProduct"
+	// ResourceTypeBodystructure - BodyStructure
+	ResourceTypeBodystructure ResourceType = "BodyStructure"
+	// ResourceTypeBundle - Bundle
+	ResourceTypeBundle ResourceType = "Bundle"
+	// ResourceTypeCapabilitystatement - CapabilityStatement
+	ResourceTypeCapabilitystatement ResourceType = "CapabilityStatement"
+	// ResourceTypeCareplan - CarePlan
+	ResourceTypeCareplan ResourceType = "CarePlan"
+	// ResourceTypeCareteam - CareTeam
+	ResourceTypeCareteam ResourceType = "CareTeam"
+	// ResourceTypeCatalogentry - CatalogEntry
+	ResourceTypeCatalogentry ResourceType = "CatalogEntry"
+	// ResourceTypeChargeitem - ChargeItem
+	ResourceTypeChargeitem ResourceType = "ChargeItem"
+	// ResourceTypeChargeitemdefinition - ChargeItemDefinition
+	ResourceTypeChargeitemdefinition ResourceType = "ChargeItemDefinition"
+	// ResourceTypeClaim - Claim
+	ResourceTypeClaim ResourceType = "Claim"
+	// ResourceTypeClaimresponse - ClaimResponse
+	ResourceTypeClaimresponse ResourceType = "ClaimResponse"
+	// ResourceTypeClinicalimpression - ClinicalImpression
+	ResourceTypeClinicalimpression ResourceType = "ClinicalImpression"
+	// ResourceTypeCodesystem - CodeSystem
+	ResourceTypeCodesystem ResourceType = "CodeSystem"
+	// ResourceTypeCommunication - Communication
+	ResourceTypeCommunication ResourceType = "Communication"
+	// ResourceTypeCommunicationrequest - CommunicationRequest
+	ResourceTypeCommunicationrequest ResourceType = "CommunicationRequest"
+	// ResourceTypeCompartmentdefinition - CompartmentDefinition
+	ResourceTypeCompartmentdefinition ResourceType = "CompartmentDefinition"
+	// ResourceTypeComposition - Composition
+	ResourceTypeComposition ResourceType = "Composition"
+	// ResourceTypeConceptmap - ConceptMap
+	ResourceTypeConceptmap ResourceType = "ConceptMap"
+	// ResourceTypeCondition - Condition
+	ResourceTypeCondition ResourceType = "Condition"
+	// ResourceTypeConsent - Consent
+	ResourceTypeConsent ResourceType = "Consent"
+	// ResourceTypeContract - Contract
+	ResourceTypeContract ResourceType = "Contract"
+	// ResourceTypeCoverage - Coverage
+	ResourceTypeCoverage ResourceType = "Coverage"
+	// ResourceTypeCoverageeligibilityrequest - CoverageEligibilityRequest
+	ResourceTypeCoverageeligibilityrequest ResourceType = "CoverageEligibilityRequest"
+	// ResourceTypeCoverageeligibilityresponse - CoverageEligibilityResponse
+	ResourceTypeCoverageeligibilityresponse ResourceType = "CoverageEligibilityResponse"
+	// ResourceTypeDetectedissue - DetectedIssue
+	ResourceTypeDetectedissue ResourceType = "DetectedIssue"
+	// ResourceTypeDevice - Device
+	ResourceTypeDevice ResourceType = "Device"
+	// ResourceTypeDevicedefinition - DeviceDefinition
+	ResourceTypeDevicedefinition ResourceType = "DeviceDefinition"
+	// ResourceTypeDevicemetric - DeviceMetric
+	ResourceTypeDevicemetric ResourceType = "DeviceMetric"
+	// ResourceTypeDevicerequest - DeviceRequest
+	ResourceTypeDevicerequest ResourceType = "DeviceRequest"
+	// ResourceTypeDeviceusestatement - DeviceUseStatement
+	ResourceTypeDeviceusestatement ResourceType = "DeviceUseStatement"
+	// ResourceTypeDiagnosticreport - DiagnosticReport
+	ResourceTypeDiagnosticreport ResourceType = "DiagnosticReport"
+	// ResourceTypeDocumentmanifest - DocumentManifest
+	ResourceTypeDocumentmanifest ResourceType = "DocumentManifest"
+	// ResourceTypeDocumentreference - DocumentReference
+	ResourceTypeDocumentreference ResourceType = "DocumentReference"
+	// ResourceTypeDomainresource - DomainResource
+	ResourceTypeDomainresource ResourceType = "DomainResource"
+	// ResourceTypeEffectevidencesynthesis - EffectEvidenceSynthesis
+	ResourceTypeEffectevidencesynthesis ResourceType = "EffectEvidenceSynthesis"
+	// ResourceTypeEncounter - Encounter
+	ResourceTypeEncounter ResourceType = "Encounter"
+	// ResourceTypeEndpoint - Endpoint
+	ResourceTypeEndpoint ResourceType = "Endpoint"
+	// ResourceTypeEnrollmentrequest - EnrollmentRequest
+	ResourceTypeEnrollmentrequest ResourceType = "EnrollmentRequest"
+	// ResourceTypeEnrollmentresponse - EnrollmentResponse
+	ResourceTypeEnrollmentresponse ResourceType = "EnrollmentResponse"
+	// ResourceTypeEpisodeofcare - EpisodeOfCare
+	ResourceTypeEpisodeofcare ResourceType = "EpisodeOfCare"
+	// ResourceTypeEventdefinition - EventDefinition
+	ResourceTypeEventdefinition ResourceType = "EventDefinition"
+	// ResourceTypeEvidence - Evidence
+	ResourceTypeEvidence ResourceType = "Evidence"
+	// ResourceTypeEvidencevariable - EvidenceVariable
+	ResourceTypeEvidencevariable ResourceType = "EvidenceVariable"
+	// ResourceTypeExamplescenario - ExampleScenario
+	ResourceTypeExamplescenario ResourceType = "ExampleScenario"
+	// ResourceTypeExplanationofbenefit - ExplanationOfBenefit
+	ResourceTypeExplanationofbenefit ResourceType = "ExplanationOfBenefit"
+	// ResourceTypeFamilymemberhistory - FamilyMemberHistory
+	ResourceTypeFamilymemberhistory ResourceType = "FamilyMemberHistory"
+	// ResourceTypeFlag - Flag
+	ResourceTypeFlag ResourceType = "Flag"
+	// ResourceTypeGoal - Goal
+	ResourceTypeGoal ResourceType = "Goal"
+	// ResourceTypeGraphdefinition - GraphDefinition
+	ResourceTypeGraphdefinition ResourceType = "GraphDefinition"
+	// ResourceTypeGroup - Group
+	ResourceTypeGroup ResourceType = "Group"
+	// ResourceTypeGuidanceresponse - GuidanceResponse
+	ResourceTypeGuidanceresponse ResourceType = "GuidanceResponse"
+	// ResourceTypeHealthcareservice - HealthcareService
+	ResourceTypeHealthcareservice ResourceType = "HealthcareService"
+	// ResourceTypeImagingstudy - ImagingStudy
+	ResourceTypeImagingstudy ResourceType = "ImagingStudy"
+	// ResourceTypeImmunization - Immunization
+	ResourceTypeImmunization ResourceType = "Immunization"
+	// ResourceTypeImmunizationevaluation - ImmunizationEvaluation
+	ResourceTypeImmunizationevaluation ResourceType = "ImmunizationEvaluation"
+	// ResourceTypeImmunizationrecommendation - ImmunizationRecommendation
+	ResourceTypeImmunizationrecommendation ResourceType = "ImmunizationRecommendation"
+	// ResourceTypeImplementationguide - ImplementationGuide
+	ResourceTypeImplementationguide ResourceType = "ImplementationGuide"
+	// ResourceTypeInsuranceplan - InsurancePlan
+	ResourceTypeInsuranceplan ResourceType = "InsurancePlan"
+	// ResourceTypeInvoice - Invoice
+	ResourceTypeInvoice ResourceType = "Invoice"
+	// ResourceTypeLibrary - Library
+	ResourceTypeLibrary ResourceType = "Library"
+	// ResourceTypeLinkage - Linkage
+	ResourceTypeLinkage ResourceType = "Linkage"
+	// ResourceTypeList - List
+	ResourceTypeList ResourceType = "List"
+	// ResourceTypeLocation - Location
+	ResourceTypeLocation ResourceType = "Location"
+	// ResourceTypeMeasure - Measure
+	ResourceTypeMeasure ResourceType = "Measure"
+	// ResourceTypeMeasurereport - MeasureReport
+	ResourceTypeMeasurereport ResourceType = "MeasureReport"
+	// ResourceTypeMedia - Media
+	ResourceTypeMedia ResourceType = "Media"
+	// ResourceTypeMedication - Medication
+	ResourceTypeMedication ResourceType = "Medication"
+	// ResourceTypeMedicationadministration - MedicationAdministration
+	ResourceTypeMedicationadministration ResourceType = "MedicationAdministration"
+	// ResourceTypeMedicationdispense - MedicationDispense
+	ResourceTypeMedicationdispense ResourceType = "MedicationDispense"
+	// ResourceTypeMedicationknowledge - MedicationKnowledge
+	ResourceTypeMedicationknowledge ResourceType = "MedicationKnowledge"
+	// ResourceTypeMedicationrequest - MedicationRequest
+	ResourceTypeMedicationrequest ResourceType = "MedicationRequest"
+	// ResourceTypeMedicationstatement - MedicationStatement
+	ResourceTypeMedicationstatement ResourceType = "MedicationStatement"
+	// ResourceTypeMedicinalproduct - MedicinalProduct
+	ResourceTypeMedicinalproduct ResourceType = "MedicinalProduct"
+	// ResourceTypeMedicinalproductauthorization - MedicinalProductAuthorization
+	ResourceTypeMedicinalproductauthorization ResourceType = "MedicinalProductAuthorization"
+	// ResourceTypeMedicinalproductcontraindication - MedicinalProductContraindication
+	ResourceTypeMedicinalproductcontraindication ResourceType = "MedicinalProductContraindication"
+	// ResourceTypeMedicinalproductindication - MedicinalProductIndication
+	ResourceTypeMedicinalproductindication ResourceType = "MedicinalProductIndication"
+	// ResourceTypeMedicinalproductingredient - MedicinalProductIngredient
+	ResourceTypeMedicinalproductingredient ResourceType = "MedicinalProductIngredient"
+	// ResourceTypeMedicinalproductinteraction - MedicinalProductInteraction
+	ResourceTypeMedicinalproductinteraction ResourceType = "MedicinalProductInteraction"
+	// ResourceTypeMedicinalproductmanufactured - MedicinalProductManufactured
+	ResourceTypeMedicinalproductmanufactured ResourceType = "MedicinalProductManufactured"
+	// ResourceTypeMedicinalproductpackaged - MedicinalProductPackaged
+	ResourceTypeMedicinalproductpackaged ResourceType = "MedicinalProductPackaged"
+	// ResourceTypeMedicinalproductpharmaceutical - MedicinalProductPharmaceutical
+	ResourceTypeMedicinalproductpharmaceutical ResourceType = "MedicinalProductPharmaceutical"
+	// ResourceTypeMedicinalproductundesirableeffect - MedicinalProductUndesirableEffect
+	ResourceTypeMedicinalproductundesirableeffect ResourceType = "MedicinalProductUndesirableEffect"
+	// ResourceTypeMessagedefinition - MessageDefinition
+	ResourceTypeMessagedefinition ResourceType = "MessageDefinition"
+	// ResourceTypeMessageheader - MessageHeader
+	ResourceTypeMessageheader ResourceType = "MessageHeader"
+	// ResourceTypeMolecularsequence - MolecularSequence
+	ResourceTypeMolecularsequence ResourceType = "MolecularSequence"
+	// ResourceTypeNamingsystem - NamingSystem
+	ResourceTypeNamingsystem ResourceType = "NamingSystem"
+	// ResourceTypeNutritionorder - NutritionOrder
+	ResourceTypeNutritionorder ResourceType = "NutritionOrder"
+	// ResourceTypeObservation - Observation
+	ResourceTypeObservation ResourceType = "Observation"
+	// ResourceTypeObservationdefinition - ObservationDefinition
+	ResourceTypeObservationdefinition ResourceType = "ObservationDefinition"
+	// ResourceTypeOperationdefinition - OperationDefinition
+	ResourceTypeOperationdefinition ResourceType = "OperationDefinition"
+	// ResourceTypeOperationoutcome - OperationOutcome
+	ResourceTypeOperationoutcome ResourceType = "OperationOutcome"
+	// ResourceTypeOrganization - Organization
+	ResourceTypeOrganization ResourceType = "Organization"
+	// ResourceTypeOrganizationaffiliation - OrganizationAffiliation
+	ResourceTypeOrganizationaffiliation ResourceType = "OrganizationAffiliation"
+	// ResourceTypeParameters - Parameters
+	ResourceTypeParameters ResourceType = "Parameters"
+	// ResourceTypePatient - Patient
+	ResourceTypePatient ResourceType = "Patient"
+	// ResourceTypePaymentnotice - PaymentNotice
+	ResourceTypePaymentnotice ResourceType = "PaymentNotice"
+	// ResourceTypePaymentreconciliation - PaymentReconciliation
+	ResourceTypePaymentreconciliation ResourceType = "PaymentReconciliation"
+	// ResourceTypePerson - Person
+	ResourceTypePerson ResourceType = "Person"
+	// ResourceTypePlandefinition - PlanDefinition
+	ResourceTypePlandefinition ResourceType = "PlanDefinition"
+	// ResourceTypePractitioner - Practitioner
+	ResourceTypePractitioner ResourceType = "Practitioner"
+	// ResourceTypePractitionerrole - PractitionerRole
+	ResourceTypePractitionerrole ResourceType = "PractitionerRole"
+	// ResourceTypeProcedure - Procedure
+	ResourceTypeProcedure ResourceType = "Procedure"
+	// ResourceTypeProvenance - Provenance
+	ResourceTypeProvenance ResourceType = "Provenance"
+	// ResourceTypeQuestionnaire - Questionnaire
+	ResourceTypeQuestionnaire ResourceType = "Questionnaire"
+	// ResourceTypeQuestionnaireresponse - QuestionnaireResponse
+	ResourceTypeQuestionnaireresponse ResourceType = "QuestionnaireResponse"
+	// ResourceTypeRelatedperson - RelatedPerson
+	ResourceTypeRelatedperson ResourceType = "RelatedPerson"
+	// ResourceTypeRequestgroup - RequestGroup
+	ResourceTypeRequestgroup ResourceType = "RequestGroup"
+	// ResourceTypeResearchdefinition - ResearchDefinition
+	ResourceTypeResearchdefinition ResourceType = "ResearchDefinition"
+	// ResourceTypeResearchelementdefinition - ResearchElementDefinition
+	ResourceTypeResearchelementdefinition ResourceType = "ResearchElementDefinition"
+	// ResourceTypeResearchstudy - ResearchStudy
+	ResourceTypeResearchstudy ResourceType = "ResearchStudy"
+	// ResourceTypeResearchsubject - ResearchSubject
+	ResourceTypeResearchsubject ResourceType = "ResearchSubject"
+	// ResourceTypeResource - Resource
+	ResourceTypeResource ResourceType = "Resource"
+	// ResourceTypeRiskassessment - RiskAssessment
+	ResourceTypeRiskassessment ResourceType = "RiskAssessment"
+	// ResourceTypeRiskevidencesynthesis - RiskEvidenceSynthesis
+	ResourceTypeRiskevidencesynthesis ResourceType = "RiskEvidenceSynthesis"
+	// ResourceTypeSchedule - Schedule
+	ResourceTypeSchedule ResourceType = "Schedule"
+	// ResourceTypeSearchparameter - SearchParameter
+	ResourceTypeSearchparameter ResourceType = "SearchParameter"
+	// ResourceTypeServicerequest - ServiceRequest
+	ResourceTypeServicerequest ResourceType = "ServiceRequest"
+	// ResourceTypeSlot - Slot
+	ResourceTypeSlot ResourceType = "Slot"
+	// ResourceTypeSpecimen - Specimen
+	ResourceTypeSpecimen ResourceType = "Specimen"
+	// ResourceTypeSpecimendefinition - SpecimenDefinition
+	ResourceTypeSpecimendefinition ResourceType = "SpecimenDefinition"
+	// ResourceTypeStructuredefinition - StructureDefinition
+	ResourceTypeStructuredefinition ResourceType = "StructureDefinition"
+	// ResourceTypeStructuremap - StructureMap
+	ResourceTypeStructuremap ResourceType = "StructureMap"
+	// ResourceTypeSubscription - Subscription
+	ResourceTypeSubscription ResourceType = "Subscription"
+	// ResourceTypeSubstance - Substance
+	ResourceTypeSubstance ResourceType = "Substance"
+	// ResourceTypeSubstancenucleicacid - SubstanceNucleicAcid
+	ResourceTypeSubstancenucleicacid ResourceType = "SubstanceNucleicAcid"
+	// ResourceTypeSubstancepolymer - SubstancePolymer
+	ResourceTypeSubstancepolymer ResourceType = "SubstancePolymer"
+	// ResourceTypeSubstanceprotein - SubstanceProtein
+	ResourceTypeSubstanceprotein ResourceType = "SubstanceProtein"
+	// ResourceTypeSubstancereferenceinformation - SubstanceReferenceInformation
+	ResourceTypeSubstancereferenceinformation ResourceType = "SubstanceReferenceInformation"
+	// ResourceTypeSubstancesourcematerial - SubstanceSourceMaterial
+	ResourceTypeSubstancesourcematerial ResourceType = "SubstanceSourceMaterial"
+	// ResourceTypeSubstancespecification - SubstanceSpecification
+	ResourceTypeSubstancespecification ResourceType = "SubstanceSpecification"
+	// ResourceTypeSupplydelivery - SupplyDelivery
+	ResourceTypeSupplydelivery ResourceType = "SupplyDelivery"
+	// ResourceTypeSupplyrequest - SupplyRequest
+	ResourceTypeSupplyrequest ResourceType = "SupplyRequest"
+	// ResourceTypeTask - Task
+	ResourceTypeTask ResourceType = "Task"
+	// ResourceTypeTerminologycapabilities - TerminologyCapabilities
+	ResourceTypeTerminologycapabilities ResourceType = "TerminologyCapabilities"
+	// ResourceTypeTestreport - TestReport
+	ResourceTypeTestreport ResourceType = "TestReport"
+	// ResourceTypeTestscript - TestScript
+	ResourceTypeTestscript ResourceType = "TestScript"
+	// ResourceTypeValueset - ValueSet
+	ResourceTypeValueset ResourceType = "ValueSet"
+	// ResourceTypeVerificationresult - VerificationResult
+	ResourceTypeVerificationresult ResourceType = "VerificationResult"
+	// ResourceTypeVisionprescription - VisionPrescription
+	ResourceTypeVisionprescription ResourceType = "VisionPrescription"
+)
+
 // ResponseType represents ResponseType.
 type ResponseType string
 
@@ -3250,6 +4415,705 @@ const (
 	SortDirectionAscending SortDirection = "ascending"
 	// SortDirectionDescending - Descending
 	SortDirectionDescending SortDirection = "descending"
+)
+
+// SPDXLicense represents SPDXLicense.
+type SPDXLicense string
+
+// SPDXLicense values.
+const (
+	// SPDXLicenseNotOpenSource - Not open source
+	SPDXLicenseNotOpenSource SPDXLicense = "not-open-source"
+	// SPDXLicense0bsd - BSD Zero Clause License
+	SPDXLicense0bsd SPDXLicense = "0BSD"
+	// SPDXLicenseAal - Attribution Assurance License
+	SPDXLicenseAal SPDXLicense = "AAL"
+	// SPDXLicenseAbstyles - Abstyles License
+	SPDXLicenseAbstyles SPDXLicense = "Abstyles"
+	// SPDXLicenseAdobe2006 - Adobe Systems Incorporated Source Code License Agreement
+	SPDXLicenseAdobe2006 SPDXLicense = "Adobe-2006"
+	// SPDXLicenseAdobeGlyph - Adobe Glyph List License
+	SPDXLicenseAdobeGlyph SPDXLicense = "Adobe-Glyph"
+	// SPDXLicenseAdsl - Amazon Digital Services License
+	SPDXLicenseAdsl SPDXLicense = "ADSL"
+	// SPDXLicenseAfl11 - Academic Free License v1.1
+	SPDXLicenseAfl11 SPDXLicense = "AFL-1.1"
+	// SPDXLicenseAfl12 - Academic Free License v1.2
+	SPDXLicenseAfl12 SPDXLicense = "AFL-1.2"
+	// SPDXLicenseAfl20 - Academic Free License v2.0
+	SPDXLicenseAfl20 SPDXLicense = "AFL-2.0"
+	// SPDXLicenseAfl21 - Academic Free License v2.1
+	SPDXLicenseAfl21 SPDXLicense = "AFL-2.1"
+	// SPDXLicenseAfl30 - Academic Free License v3.0
+	SPDXLicenseAfl30 SPDXLicense = "AFL-3.0"
+	// SPDXLicenseAfmparse - Afmparse License
+	SPDXLicenseAfmparse SPDXLicense = "Afmparse"
+	// SPDXLicenseAgpl10Only - Affero General Public License v1.0 only
+	SPDXLicenseAgpl10Only SPDXLicense = "AGPL-1.0-only"
+	// SPDXLicenseAgpl10OrLater - Affero General Public License v1.0 or later
+	SPDXLicenseAgpl10OrLater SPDXLicense = "AGPL-1.0-or-later"
+	// SPDXLicenseAgpl30Only - GNU Affero General Public License v3.0 only
+	SPDXLicenseAgpl30Only SPDXLicense = "AGPL-3.0-only"
+	// SPDXLicenseAgpl30OrLater - GNU Affero General Public License v3.0 or later
+	SPDXLicenseAgpl30OrLater SPDXLicense = "AGPL-3.0-or-later"
+	// SPDXLicenseAladdin - Aladdin Free Public License
+	SPDXLicenseAladdin SPDXLicense = "Aladdin"
+	// SPDXLicenseAmdplpa - AMD's plpa_map.c License
+	SPDXLicenseAmdplpa SPDXLicense = "AMDPLPA"
+	// SPDXLicenseAml - Apple MIT License
+	SPDXLicenseAml SPDXLicense = "AML"
+	// SPDXLicenseAmpas - Academy of Motion Picture Arts and Sciences BSD
+	SPDXLicenseAmpas SPDXLicense = "AMPAS"
+	// SPDXLicenseAntlrPd - ANTLR Software Rights Notice
+	SPDXLicenseAntlrPd SPDXLicense = "ANTLR-PD"
+	// SPDXLicenseApache10 - Apache License 1.0
+	SPDXLicenseApache10 SPDXLicense = "Apache-1.0"
+	// SPDXLicenseApache11 - Apache License 1.1
+	SPDXLicenseApache11 SPDXLicense = "Apache-1.1"
+	// SPDXLicenseApache20 - Apache License 2.0
+	SPDXLicenseApache20 SPDXLicense = "Apache-2.0"
+	// SPDXLicenseApafml - Adobe Postscript AFM License
+	SPDXLicenseApafml SPDXLicense = "APAFML"
+	// SPDXLicenseApl10 - Adaptive Public License 1.0
+	SPDXLicenseApl10 SPDXLicense = "APL-1.0"
+	// SPDXLicenseApsl10 - Apple Public Source License 1.0
+	SPDXLicenseApsl10 SPDXLicense = "APSL-1.0"
+	// SPDXLicenseApsl11 - Apple Public Source License 1.1
+	SPDXLicenseApsl11 SPDXLicense = "APSL-1.1"
+	// SPDXLicenseApsl12 - Apple Public Source License 1.2
+	SPDXLicenseApsl12 SPDXLicense = "APSL-1.2"
+	// SPDXLicenseApsl20 - Apple Public Source License 2.0
+	SPDXLicenseApsl20 SPDXLicense = "APSL-2.0"
+	// SPDXLicenseArtistic10Cl8 - Artistic License 1.0 w/clause 8
+	SPDXLicenseArtistic10Cl8 SPDXLicense = "Artistic-1.0-cl8"
+	// SPDXLicenseArtistic10Perl - Artistic License 1.0 (Perl)
+	SPDXLicenseArtistic10Perl SPDXLicense = "Artistic-1.0-Perl"
+	// SPDXLicenseArtistic10 - Artistic License 1.0
+	SPDXLicenseArtistic10 SPDXLicense = "Artistic-1.0"
+	// SPDXLicenseArtistic20 - Artistic License 2.0
+	SPDXLicenseArtistic20 SPDXLicense = "Artistic-2.0"
+	// SPDXLicenseBahyph - Bahyph License
+	SPDXLicenseBahyph SPDXLicense = "Bahyph"
+	// SPDXLicenseBarr - Barr License
+	SPDXLicenseBarr SPDXLicense = "Barr"
+	// SPDXLicenseBeerware - Beerware License
+	SPDXLicenseBeerware SPDXLicense = "Beerware"
+	// SPDXLicenseBittorrent10 - BitTorrent Open Source License v1.0
+	SPDXLicenseBittorrent10 SPDXLicense = "BitTorrent-1.0"
+	// SPDXLicenseBittorrent11 - BitTorrent Open Source License v1.1
+	SPDXLicenseBittorrent11 SPDXLicense = "BitTorrent-1.1"
+	// SPDXLicenseBorceux - Borceux license
+	SPDXLicenseBorceux SPDXLicense = "Borceux"
+	// SPDXLicenseBsd1Clause - BSD 1-Clause License
+	SPDXLicenseBsd1Clause SPDXLicense = "BSD-1-Clause"
+	// SPDXLicenseBsd2ClauseFreebsd - BSD 2-Clause FreeBSD License
+	SPDXLicenseBsd2ClauseFreebsd SPDXLicense = "BSD-2-Clause-FreeBSD"
+	// SPDXLicenseBsd2ClauseNetbsd - BSD 2-Clause NetBSD License
+	SPDXLicenseBsd2ClauseNetbsd SPDXLicense = "BSD-2-Clause-NetBSD"
+	// SPDXLicenseBsd2ClausePatent - BSD-2-Clause Plus Patent License
+	SPDXLicenseBsd2ClausePatent SPDXLicense = "BSD-2-Clause-Patent"
+	// SPDXLicenseBsd2Clause - BSD 2-Clause "Simplified" License
+	SPDXLicenseBsd2Clause SPDXLicense = "BSD-2-Clause"
+	// SPDXLicenseBsd3ClauseAttribution - BSD with attribution
+	SPDXLicenseBsd3ClauseAttribution SPDXLicense = "BSD-3-Clause-Attribution"
+	// SPDXLicenseBsd3ClauseClear - BSD 3-Clause Clear License
+	SPDXLicenseBsd3ClauseClear SPDXLicense = "BSD-3-Clause-Clear"
+	// SPDXLicenseBsd3ClauseLbnl - Lawrence Berkeley National Labs BSD variant license
+	SPDXLicenseBsd3ClauseLbnl SPDXLicense = "BSD-3-Clause-LBNL"
+	// SPDXLicenseBsd3ClauseNoNuclearLicense2014 - BSD 3-Clause No Nuclear License 2014
+	SPDXLicenseBsd3ClauseNoNuclearLicense2014 SPDXLicense = "BSD-3-Clause-No-Nuclear-License-2014"
+	// SPDXLicenseBsd3ClauseNoNuclearLicense - BSD 3-Clause No Nuclear License
+	SPDXLicenseBsd3ClauseNoNuclearLicense SPDXLicense = "BSD-3-Clause-No-Nuclear-License"
+	// SPDXLicenseBsd3ClauseNoNuclearWarranty - BSD 3-Clause No Nuclear Warranty
+	SPDXLicenseBsd3ClauseNoNuclearWarranty SPDXLicense = "BSD-3-Clause-No-Nuclear-Warranty"
+	// SPDXLicenseBsd3Clause - BSD 3-Clause "New" or "Revised" License
+	SPDXLicenseBsd3Clause SPDXLicense = "BSD-3-Clause"
+	// SPDXLicenseBsd4ClauseUc - BSD-4-Clause (University of California-Specific)
+	SPDXLicenseBsd4ClauseUc SPDXLicense = "BSD-4-Clause-UC"
+	// SPDXLicenseBsd4Clause - BSD 4-Clause "Original" or "Old" License
+	SPDXLicenseBsd4Clause SPDXLicense = "BSD-4-Clause"
+	// SPDXLicenseBsdProtection - BSD Protection License
+	SPDXLicenseBsdProtection SPDXLicense = "BSD-Protection"
+	// SPDXLicenseBsdSourceCode - BSD Source Code Attribution
+	SPDXLicenseBsdSourceCode SPDXLicense = "BSD-Source-Code"
+	// SPDXLicenseBsl10 - Boost Software License 1.0
+	SPDXLicenseBsl10 SPDXLicense = "BSL-1.0"
+	// SPDXLicenseBzip2105 - bzip2 and libbzip2 License v1.0.5
+	SPDXLicenseBzip2105 SPDXLicense = "bzip2-1.0.5"
+	// SPDXLicenseBzip2106 - bzip2 and libbzip2 License v1.0.6
+	SPDXLicenseBzip2106 SPDXLicense = "bzip2-1.0.6"
+	// SPDXLicenseCaldera - Caldera License
+	SPDXLicenseCaldera SPDXLicense = "Caldera"
+	// SPDXLicenseCatosl11 - Computer Associates Trusted Open Source License 1.1
+	SPDXLicenseCatosl11 SPDXLicense = "CATOSL-1.1"
+	// SPDXLicenseCcBy10 - Creative Commons Attribution 1.0 Generic
+	SPDXLicenseCcBy10 SPDXLicense = "CC-BY-1.0"
+	// SPDXLicenseCcBy20 - Creative Commons Attribution 2.0 Generic
+	SPDXLicenseCcBy20 SPDXLicense = "CC-BY-2.0"
+	// SPDXLicenseCcBy25 - Creative Commons Attribution 2.5 Generic
+	SPDXLicenseCcBy25 SPDXLicense = "CC-BY-2.5"
+	// SPDXLicenseCcBy30 - Creative Commons Attribution 3.0 Unported
+	SPDXLicenseCcBy30 SPDXLicense = "CC-BY-3.0"
+	// SPDXLicenseCcBy40 - Creative Commons Attribution 4.0 International
+	SPDXLicenseCcBy40 SPDXLicense = "CC-BY-4.0"
+	// SPDXLicenseCcByNc10 - Creative Commons Attribution Non Commercial 1.0 Generic
+	SPDXLicenseCcByNc10 SPDXLicense = "CC-BY-NC-1.0"
+	// SPDXLicenseCcByNc20 - Creative Commons Attribution Non Commercial 2.0 Generic
+	SPDXLicenseCcByNc20 SPDXLicense = "CC-BY-NC-2.0"
+	// SPDXLicenseCcByNc25 - Creative Commons Attribution Non Commercial 2.5 Generic
+	SPDXLicenseCcByNc25 SPDXLicense = "CC-BY-NC-2.5"
+	// SPDXLicenseCcByNc30 - Creative Commons Attribution Non Commercial 3.0 Unported
+	SPDXLicenseCcByNc30 SPDXLicense = "CC-BY-NC-3.0"
+	// SPDXLicenseCcByNc40 - Creative Commons Attribution Non Commercial 4.0 International
+	SPDXLicenseCcByNc40 SPDXLicense = "CC-BY-NC-4.0"
+	// SPDXLicenseCcByNcNd10 - Creative Commons Attribution Non Commercial No Derivatives 1.0 Generic
+	SPDXLicenseCcByNcNd10 SPDXLicense = "CC-BY-NC-ND-1.0"
+	// SPDXLicenseCcByNcNd20 - Creative Commons Attribution Non Commercial No Derivatives 2.0 Generic
+	SPDXLicenseCcByNcNd20 SPDXLicense = "CC-BY-NC-ND-2.0"
+	// SPDXLicenseCcByNcNd25 - Creative Commons Attribution Non Commercial No Derivatives 2.5 Generic
+	SPDXLicenseCcByNcNd25 SPDXLicense = "CC-BY-NC-ND-2.5"
+	// SPDXLicenseCcByNcNd30 - Creative Commons Attribution Non Commercial No Derivatives 3.0 Unported
+	SPDXLicenseCcByNcNd30 SPDXLicense = "CC-BY-NC-ND-3.0"
+	// SPDXLicenseCcByNcNd40 - Creative Commons Attribution Non Commercial No Derivatives 4.0 International
+	SPDXLicenseCcByNcNd40 SPDXLicense = "CC-BY-NC-ND-4.0"
+	// SPDXLicenseCcByNcSa10 - Creative Commons Attribution Non Commercial Share Alike 1.0 Generic
+	SPDXLicenseCcByNcSa10 SPDXLicense = "CC-BY-NC-SA-1.0"
+	// SPDXLicenseCcByNcSa20 - Creative Commons Attribution Non Commercial Share Alike 2.0 Generic
+	SPDXLicenseCcByNcSa20 SPDXLicense = "CC-BY-NC-SA-2.0"
+	// SPDXLicenseCcByNcSa25 - Creative Commons Attribution Non Commercial Share Alike 2.5 Generic
+	SPDXLicenseCcByNcSa25 SPDXLicense = "CC-BY-NC-SA-2.5"
+	// SPDXLicenseCcByNcSa30 - Creative Commons Attribution Non Commercial Share Alike 3.0 Unported
+	SPDXLicenseCcByNcSa30 SPDXLicense = "CC-BY-NC-SA-3.0"
+	// SPDXLicenseCcByNcSa40 - Creative Commons Attribution Non Commercial Share Alike 4.0 International
+	SPDXLicenseCcByNcSa40 SPDXLicense = "CC-BY-NC-SA-4.0"
+	// SPDXLicenseCcByNd10 - Creative Commons Attribution No Derivatives 1.0 Generic
+	SPDXLicenseCcByNd10 SPDXLicense = "CC-BY-ND-1.0"
+	// SPDXLicenseCcByNd20 - Creative Commons Attribution No Derivatives 2.0 Generic
+	SPDXLicenseCcByNd20 SPDXLicense = "CC-BY-ND-2.0"
+	// SPDXLicenseCcByNd25 - Creative Commons Attribution No Derivatives 2.5 Generic
+	SPDXLicenseCcByNd25 SPDXLicense = "CC-BY-ND-2.5"
+	// SPDXLicenseCcByNd30 - Creative Commons Attribution No Derivatives 3.0 Unported
+	SPDXLicenseCcByNd30 SPDXLicense = "CC-BY-ND-3.0"
+	// SPDXLicenseCcByNd40 - Creative Commons Attribution No Derivatives 4.0 International
+	SPDXLicenseCcByNd40 SPDXLicense = "CC-BY-ND-4.0"
+	// SPDXLicenseCcBySa10 - Creative Commons Attribution Share Alike 1.0 Generic
+	SPDXLicenseCcBySa10 SPDXLicense = "CC-BY-SA-1.0"
+	// SPDXLicenseCcBySa20 - Creative Commons Attribution Share Alike 2.0 Generic
+	SPDXLicenseCcBySa20 SPDXLicense = "CC-BY-SA-2.0"
+	// SPDXLicenseCcBySa25 - Creative Commons Attribution Share Alike 2.5 Generic
+	SPDXLicenseCcBySa25 SPDXLicense = "CC-BY-SA-2.5"
+	// SPDXLicenseCcBySa30 - Creative Commons Attribution Share Alike 3.0 Unported
+	SPDXLicenseCcBySa30 SPDXLicense = "CC-BY-SA-3.0"
+	// SPDXLicenseCcBySa40 - Creative Commons Attribution Share Alike 4.0 International
+	SPDXLicenseCcBySa40 SPDXLicense = "CC-BY-SA-4.0"
+	// SPDXLicenseCc010 - Creative Commons Zero v1.0 Universal
+	SPDXLicenseCc010 SPDXLicense = "CC0-1.0"
+	// SPDXLicenseCddl10 - Common Development and Distribution License 1.0
+	SPDXLicenseCddl10 SPDXLicense = "CDDL-1.0"
+	// SPDXLicenseCddl11 - Common Development and Distribution License 1.1
+	SPDXLicenseCddl11 SPDXLicense = "CDDL-1.1"
+	// SPDXLicenseCdlaPermissive10 - Community Data License Agreement Permissive 1.0
+	SPDXLicenseCdlaPermissive10 SPDXLicense = "CDLA-Permissive-1.0"
+	// SPDXLicenseCdlaSharing10 - Community Data License Agreement Sharing 1.0
+	SPDXLicenseCdlaSharing10 SPDXLicense = "CDLA-Sharing-1.0"
+	// SPDXLicenseCecill10 - CeCILL Free Software License Agreement v1.0
+	SPDXLicenseCecill10 SPDXLicense = "CECILL-1.0"
+	// SPDXLicenseCecill11 - CeCILL Free Software License Agreement v1.1
+	SPDXLicenseCecill11 SPDXLicense = "CECILL-1.1"
+	// SPDXLicenseCecill20 - CeCILL Free Software License Agreement v2.0
+	SPDXLicenseCecill20 SPDXLicense = "CECILL-2.0"
+	// SPDXLicenseCecill21 - CeCILL Free Software License Agreement v2.1
+	SPDXLicenseCecill21 SPDXLicense = "CECILL-2.1"
+	// SPDXLicenseCecillB - CeCILL-B Free Software License Agreement
+	SPDXLicenseCecillB SPDXLicense = "CECILL-B"
+	// SPDXLicenseCecillC - CeCILL-C Free Software License Agreement
+	SPDXLicenseCecillC SPDXLicense = "CECILL-C"
+	// SPDXLicenseClartistic - Clarified Artistic License
+	SPDXLicenseClartistic SPDXLicense = "ClArtistic"
+	// SPDXLicenseCnriJython - CNRI Jython License
+	SPDXLicenseCnriJython SPDXLicense = "CNRI-Jython"
+	// SPDXLicenseCnriPythonGplCompatible - CNRI Python Open Source GPL Compatible License Agreement
+	SPDXLicenseCnriPythonGplCompatible SPDXLicense = "CNRI-Python-GPL-Compatible"
+	// SPDXLicenseCnriPython - CNRI Python License
+	SPDXLicenseCnriPython SPDXLicense = "CNRI-Python"
+	// SPDXLicenseCondor11 - Condor Public License v1.1
+	SPDXLicenseCondor11 SPDXLicense = "Condor-1.1"
+	// SPDXLicenseCpal10 - Common Public Attribution License 1.0
+	SPDXLicenseCpal10 SPDXLicense = "CPAL-1.0"
+	// SPDXLicenseCpl10 - Common Public License 1.0
+	SPDXLicenseCpl10 SPDXLicense = "CPL-1.0"
+	// SPDXLicenseCpol102 - Code Project Open License 1.02
+	SPDXLicenseCpol102 SPDXLicense = "CPOL-1.02"
+	// SPDXLicenseCrossword - Crossword License
+	SPDXLicenseCrossword SPDXLicense = "Crossword"
+	// SPDXLicenseCrystalstacker - CrystalStacker License
+	SPDXLicenseCrystalstacker SPDXLicense = "CrystalStacker"
+	// SPDXLicenseCuaOpl10 - CUA Office Public License v1.0
+	SPDXLicenseCuaOpl10 SPDXLicense = "CUA-OPL-1.0"
+	// SPDXLicenseCube - Cube License
+	SPDXLicenseCube SPDXLicense = "Cube"
+	// SPDXLicenseCurl - curl License
+	SPDXLicenseCurl SPDXLicense = "curl"
+	// SPDXLicenseDFsl10 - Deutsche Freie Software Lizenz
+	SPDXLicenseDFsl10 SPDXLicense = "D-FSL-1.0"
+	// SPDXLicenseDiffmark - diffmark license
+	SPDXLicenseDiffmark SPDXLicense = "diffmark"
+	// SPDXLicenseDoc - DOC License
+	SPDXLicenseDoc SPDXLicense = "DOC"
+	// SPDXLicenseDotseqn - Dotseqn License
+	SPDXLicenseDotseqn SPDXLicense = "Dotseqn"
+	// SPDXLicenseDsdp - DSDP License
+	SPDXLicenseDsdp SPDXLicense = "DSDP"
+	// SPDXLicenseDvipdfm - dvipdfm License
+	SPDXLicenseDvipdfm SPDXLicense = "dvipdfm"
+	// SPDXLicenseEcl10 - Educational Community License v1.0
+	SPDXLicenseEcl10 SPDXLicense = "ECL-1.0"
+	// SPDXLicenseEcl20 - Educational Community License v2.0
+	SPDXLicenseEcl20 SPDXLicense = "ECL-2.0"
+	// SPDXLicenseEfl10 - Eiffel Forum License v1.0
+	SPDXLicenseEfl10 SPDXLicense = "EFL-1.0"
+	// SPDXLicenseEfl20 - Eiffel Forum License v2.0
+	SPDXLicenseEfl20 SPDXLicense = "EFL-2.0"
+	// SPDXLicenseEgenix - eGenix.com Public License 1.1.0
+	SPDXLicenseEgenix SPDXLicense = "eGenix"
+	// SPDXLicenseEntessa - Entessa Public License v1.0
+	SPDXLicenseEntessa SPDXLicense = "Entessa"
+	// SPDXLicenseEpl10 - Eclipse Public License 1.0
+	SPDXLicenseEpl10 SPDXLicense = "EPL-1.0"
+	// SPDXLicenseEpl20 - Eclipse Public License 2.0
+	SPDXLicenseEpl20 SPDXLicense = "EPL-2.0"
+	// SPDXLicenseErlpl11 - Erlang Public License v1.1
+	SPDXLicenseErlpl11 SPDXLicense = "ErlPL-1.1"
+	// SPDXLicenseEudatagrid - EU DataGrid Software License
+	SPDXLicenseEudatagrid SPDXLicense = "EUDatagrid"
+	// SPDXLicenseEupl10 - European Union Public License 1.0
+	SPDXLicenseEupl10 SPDXLicense = "EUPL-1.0"
+	// SPDXLicenseEupl11 - European Union Public License 1.1
+	SPDXLicenseEupl11 SPDXLicense = "EUPL-1.1"
+	// SPDXLicenseEupl12 - European Union Public License 1.2
+	SPDXLicenseEupl12 SPDXLicense = "EUPL-1.2"
+	// SPDXLicenseEurosym - Eurosym License
+	SPDXLicenseEurosym SPDXLicense = "Eurosym"
+	// SPDXLicenseFair - Fair License
+	SPDXLicenseFair SPDXLicense = "Fair"
+	// SPDXLicenseFrameworx10 - Frameworx Open License 1.0
+	SPDXLicenseFrameworx10 SPDXLicense = "Frameworx-1.0"
+	// SPDXLicenseFreeimage - FreeImage Public License v1.0
+	SPDXLicenseFreeimage SPDXLicense = "FreeImage"
+	// SPDXLicenseFsfap - FSF All Permissive License
+	SPDXLicenseFsfap SPDXLicense = "FSFAP"
+	// SPDXLicenseFsful - FSF Unlimited License
+	SPDXLicenseFsful SPDXLicense = "FSFUL"
+	// SPDXLicenseFsfullr - FSF Unlimited License (with License Retention)
+	SPDXLicenseFsfullr SPDXLicense = "FSFULLR"
+	// SPDXLicenseFtl - Freetype Project License
+	SPDXLicenseFtl SPDXLicense = "FTL"
+	// SPDXLicenseGfdl11Only - GNU Free Documentation License v1.1 only
+	SPDXLicenseGfdl11Only SPDXLicense = "GFDL-1.1-only"
+	// SPDXLicenseGfdl11OrLater - GNU Free Documentation License v1.1 or later
+	SPDXLicenseGfdl11OrLater SPDXLicense = "GFDL-1.1-or-later"
+	// SPDXLicenseGfdl12Only - GNU Free Documentation License v1.2 only
+	SPDXLicenseGfdl12Only SPDXLicense = "GFDL-1.2-only"
+	// SPDXLicenseGfdl12OrLater - GNU Free Documentation License v1.2 or later
+	SPDXLicenseGfdl12OrLater SPDXLicense = "GFDL-1.2-or-later"
+	// SPDXLicenseGfdl13Only - GNU Free Documentation License v1.3 only
+	SPDXLicenseGfdl13Only SPDXLicense = "GFDL-1.3-only"
+	// SPDXLicenseGfdl13OrLater - GNU Free Documentation License v1.3 or later
+	SPDXLicenseGfdl13OrLater SPDXLicense = "GFDL-1.3-or-later"
+	// SPDXLicenseGiftware - Giftware License
+	SPDXLicenseGiftware SPDXLicense = "Giftware"
+	// SPDXLicenseGl2ps - GL2PS License
+	SPDXLicenseGl2ps SPDXLicense = "GL2PS"
+	// SPDXLicenseGlide - 3dfx Glide License
+	SPDXLicenseGlide SPDXLicense = "Glide"
+	// SPDXLicenseGlulxe - Glulxe License
+	SPDXLicenseGlulxe SPDXLicense = "Glulxe"
+	// SPDXLicenseGnuplot - gnuplot License
+	SPDXLicenseGnuplot SPDXLicense = "gnuplot"
+	// SPDXLicenseGpl10Only - GNU General Public License v1.0 only
+	SPDXLicenseGpl10Only SPDXLicense = "GPL-1.0-only"
+	// SPDXLicenseGpl10OrLater - GNU General Public License v1.0 or later
+	SPDXLicenseGpl10OrLater SPDXLicense = "GPL-1.0-or-later"
+	// SPDXLicenseGpl20Only - GNU General Public License v2.0 only
+	SPDXLicenseGpl20Only SPDXLicense = "GPL-2.0-only"
+	// SPDXLicenseGpl20OrLater - GNU General Public License v2.0 or later
+	SPDXLicenseGpl20OrLater SPDXLicense = "GPL-2.0-or-later"
+	// SPDXLicenseGpl30Only - GNU General Public License v3.0 only
+	SPDXLicenseGpl30Only SPDXLicense = "GPL-3.0-only"
+	// SPDXLicenseGpl30OrLater - GNU General Public License v3.0 or later
+	SPDXLicenseGpl30OrLater SPDXLicense = "GPL-3.0-or-later"
+	// SPDXLicenseGsoap13b - gSOAP Public License v1.3b
+	SPDXLicenseGsoap13b SPDXLicense = "gSOAP-1.3b"
+	// SPDXLicenseHaskellreport - Haskell Language Report License
+	SPDXLicenseHaskellreport SPDXLicense = "HaskellReport"
+	// SPDXLicenseHpnd - Historical Permission Notice and Disclaimer
+	SPDXLicenseHpnd SPDXLicense = "HPND"
+	// SPDXLicenseIbmPibs - IBM PowerPC Initialization and Boot Software
+	SPDXLicenseIbmPibs SPDXLicense = "IBM-pibs"
+	// SPDXLicenseIcu - ICU License
+	SPDXLicenseIcu SPDXLicense = "ICU"
+	// SPDXLicenseIjg - Independent JPEG Group License
+	SPDXLicenseIjg SPDXLicense = "IJG"
+	// SPDXLicenseImagemagick - ImageMagick License
+	SPDXLicenseImagemagick SPDXLicense = "ImageMagick"
+	// SPDXLicenseImatix - iMatix Standard Function Library Agreement
+	SPDXLicenseImatix SPDXLicense = "iMatix"
+	// SPDXLicenseImlib2 - Imlib2 License
+	SPDXLicenseImlib2 SPDXLicense = "Imlib2"
+	// SPDXLicenseInfoZip - Info-ZIP License
+	SPDXLicenseInfoZip SPDXLicense = "Info-ZIP"
+	// SPDXLicenseIntelAcpi - Intel ACPI Software License Agreement
+	SPDXLicenseIntelAcpi SPDXLicense = "Intel-ACPI"
+	// SPDXLicenseIntel - Intel Open Source License
+	SPDXLicenseIntel SPDXLicense = "Intel"
+	// SPDXLicenseInterbase10 - Interbase Public License v1.0
+	SPDXLicenseInterbase10 SPDXLicense = "Interbase-1.0"
+	// SPDXLicenseIpa - IPA Font License
+	SPDXLicenseIpa SPDXLicense = "IPA"
+	// SPDXLicenseIpl10 - IBM Public License v1.0
+	SPDXLicenseIpl10 SPDXLicense = "IPL-1.0"
+	// SPDXLicenseIsc - ISC License
+	SPDXLicenseIsc SPDXLicense = "ISC"
+	// SPDXLicenseJasper20 - JasPer License
+	SPDXLicenseJasper20 SPDXLicense = "JasPer-2.0"
+	// SPDXLicenseJson - JSON License
+	SPDXLicenseJson SPDXLicense = "JSON"
+	// SPDXLicenseLal12 - Licence Art Libre 1.2
+	SPDXLicenseLal12 SPDXLicense = "LAL-1.2"
+	// SPDXLicenseLal13 - Licence Art Libre 1.3
+	SPDXLicenseLal13 SPDXLicense = "LAL-1.3"
+	// SPDXLicenseLatex2e - Latex2e License
+	SPDXLicenseLatex2e SPDXLicense = "Latex2e"
+	// SPDXLicenseLeptonica - Leptonica License
+	SPDXLicenseLeptonica SPDXLicense = "Leptonica"
+	// SPDXLicenseLgpl20Only - GNU Library General Public License v2 only
+	SPDXLicenseLgpl20Only SPDXLicense = "LGPL-2.0-only"
+	// SPDXLicenseLgpl20OrLater - GNU Library General Public License v2 or later
+	SPDXLicenseLgpl20OrLater SPDXLicense = "LGPL-2.0-or-later"
+	// SPDXLicenseLgpl21Only - GNU Lesser General Public License v2.1 only
+	SPDXLicenseLgpl21Only SPDXLicense = "LGPL-2.1-only"
+	// SPDXLicenseLgpl21OrLater - GNU Lesser General Public License v2.1 or later
+	SPDXLicenseLgpl21OrLater SPDXLicense = "LGPL-2.1-or-later"
+	// SPDXLicenseLgpl30Only - GNU Lesser General Public License v3.0 only
+	SPDXLicenseLgpl30Only SPDXLicense = "LGPL-3.0-only"
+	// SPDXLicenseLgpl30OrLater - GNU Lesser General Public License v3.0 or later
+	SPDXLicenseLgpl30OrLater SPDXLicense = "LGPL-3.0-or-later"
+	// SPDXLicenseLgpllr - Lesser General Public License For Linguistic Resources
+	SPDXLicenseLgpllr SPDXLicense = "LGPLLR"
+	// SPDXLicenseLibpng - libpng License
+	SPDXLicenseLibpng SPDXLicense = "Libpng"
+	// SPDXLicenseLibtiff - libtiff License
+	SPDXLicenseLibtiff SPDXLicense = "libtiff"
+	// SPDXLicenseLiliqP11 - Licence Libre du Québec – Permissive version 1.1
+	SPDXLicenseLiliqP11 SPDXLicense = "LiLiQ-P-1.1"
+	// SPDXLicenseLiliqR11 - Licence Libre du Québec – Réciprocité version 1.1
+	SPDXLicenseLiliqR11 SPDXLicense = "LiLiQ-R-1.1"
+	// SPDXLicenseLiliqRplus11 - Licence Libre du Québec – Réciprocité forte version 1.1
+	SPDXLicenseLiliqRplus11 SPDXLicense = "LiLiQ-Rplus-1.1"
+	// SPDXLicenseLinuxOpenib - Linux Kernel Variant of OpenIB.org license
+	SPDXLicenseLinuxOpenib SPDXLicense = "Linux-OpenIB"
+	// SPDXLicenseLpl10 - Lucent Public License Version 1.0
+	SPDXLicenseLpl10 SPDXLicense = "LPL-1.0"
+	// SPDXLicenseLpl102 - Lucent Public License v1.02
+	SPDXLicenseLpl102 SPDXLicense = "LPL-1.02"
+	// SPDXLicenseLppl10 - LaTeX Project Public License v1.0
+	SPDXLicenseLppl10 SPDXLicense = "LPPL-1.0"
+	// SPDXLicenseLppl11 - LaTeX Project Public License v1.1
+	SPDXLicenseLppl11 SPDXLicense = "LPPL-1.1"
+	// SPDXLicenseLppl12 - LaTeX Project Public License v1.2
+	SPDXLicenseLppl12 SPDXLicense = "LPPL-1.2"
+	// SPDXLicenseLppl13a - LaTeX Project Public License v1.3a
+	SPDXLicenseLppl13a SPDXLicense = "LPPL-1.3a"
+	// SPDXLicenseLppl13c - LaTeX Project Public License v1.3c
+	SPDXLicenseLppl13c SPDXLicense = "LPPL-1.3c"
+	// SPDXLicenseMakeindex - MakeIndex License
+	SPDXLicenseMakeindex SPDXLicense = "MakeIndex"
+	// SPDXLicenseMiros - MirOS License
+	SPDXLicenseMiros SPDXLicense = "MirOS"
+	// SPDXLicenseMit0 - MIT No Attribution
+	SPDXLicenseMit0 SPDXLicense = "MIT-0"
+	// SPDXLicenseMitAdvertising - Enlightenment License (e16)
+	SPDXLicenseMitAdvertising SPDXLicense = "MIT-advertising"
+	// SPDXLicenseMitCmu - CMU License
+	SPDXLicenseMitCmu SPDXLicense = "MIT-CMU"
+	// SPDXLicenseMitEnna - enna License
+	SPDXLicenseMitEnna SPDXLicense = "MIT-enna"
+	// SPDXLicenseMitFeh - feh License
+	SPDXLicenseMitFeh SPDXLicense = "MIT-feh"
+	// SPDXLicenseMit - MIT License
+	SPDXLicenseMit SPDXLicense = "MIT"
+	// SPDXLicenseMitnfa - MIT +no-false-attribs license
+	SPDXLicenseMitnfa SPDXLicense = "MITNFA"
+	// SPDXLicenseMotosoto - Motosoto License
+	SPDXLicenseMotosoto SPDXLicense = "Motosoto"
+	// SPDXLicenseMpich2 - mpich2 License
+	SPDXLicenseMpich2 SPDXLicense = "mpich2"
+	// SPDXLicenseMpl10 - Mozilla Public License 1.0
+	SPDXLicenseMpl10 SPDXLicense = "MPL-1.0"
+	// SPDXLicenseMpl11 - Mozilla Public License 1.1
+	SPDXLicenseMpl11 SPDXLicense = "MPL-1.1"
+	// SPDXLicenseMpl20NoCopyleftException - Mozilla Public License 2.0 (no copyleft exception)
+	SPDXLicenseMpl20NoCopyleftException SPDXLicense = "MPL-2.0-no-copyleft-exception"
+	// SPDXLicenseMpl20 - Mozilla Public License 2.0
+	SPDXLicenseMpl20 SPDXLicense = "MPL-2.0"
+	// SPDXLicenseMsPl - Microsoft Public License
+	SPDXLicenseMsPl SPDXLicense = "MS-PL"
+	// SPDXLicenseMsRl - Microsoft Reciprocal License
+	SPDXLicenseMsRl SPDXLicense = "MS-RL"
+	// SPDXLicenseMtll - Matrix Template Library License
+	SPDXLicenseMtll SPDXLicense = "MTLL"
+	// SPDXLicenseMultics - Multics License
+	SPDXLicenseMultics SPDXLicense = "Multics"
+	// SPDXLicenseMup - Mup License
+	SPDXLicenseMup SPDXLicense = "Mup"
+	// SPDXLicenseNasa13 - NASA Open Source Agreement 1.3
+	SPDXLicenseNasa13 SPDXLicense = "NASA-1.3"
+	// SPDXLicenseNaumen - Naumen Public License
+	SPDXLicenseNaumen SPDXLicense = "Naumen"
+	// SPDXLicenseNbpl10 - Net Boolean Public License v1
+	SPDXLicenseNbpl10 SPDXLicense = "NBPL-1.0"
+	// SPDXLicenseNcsa - University of Illinois/NCSA Open Source License
+	SPDXLicenseNcsa SPDXLicense = "NCSA"
+	// SPDXLicenseNetSnmp - Net-SNMP License
+	SPDXLicenseNetSnmp SPDXLicense = "Net-SNMP"
+	// SPDXLicenseNetcdf - NetCDF license
+	SPDXLicenseNetcdf SPDXLicense = "NetCDF"
+	// SPDXLicenseNewsletr - Newsletr License
+	SPDXLicenseNewsletr SPDXLicense = "Newsletr"
+	// SPDXLicenseNgpl - Nethack General Public License
+	SPDXLicenseNgpl SPDXLicense = "NGPL"
+	// SPDXLicenseNlod10 - Norwegian Licence for Open Government Data
+	SPDXLicenseNlod10 SPDXLicense = "NLOD-1.0"
+	// SPDXLicenseNlpl - No Limit Public License
+	SPDXLicenseNlpl SPDXLicense = "NLPL"
+	// SPDXLicenseNokia - Nokia Open Source License
+	SPDXLicenseNokia SPDXLicense = "Nokia"
+	// SPDXLicenseNosl - Netizen Open Source License
+	SPDXLicenseNosl SPDXLicense = "NOSL"
+	// SPDXLicenseNoweb - Noweb License
+	SPDXLicenseNoweb SPDXLicense = "Noweb"
+	// SPDXLicenseNpl10 - Netscape Public License v1.0
+	SPDXLicenseNpl10 SPDXLicense = "NPL-1.0"
+	// SPDXLicenseNpl11 - Netscape Public License v1.1
+	SPDXLicenseNpl11 SPDXLicense = "NPL-1.1"
+	// SPDXLicenseNposl30 - Non-Profit Open Software License 3.0
+	SPDXLicenseNposl30 SPDXLicense = "NPOSL-3.0"
+	// SPDXLicenseNrl - NRL License
+	SPDXLicenseNrl SPDXLicense = "NRL"
+	// SPDXLicenseNtp - NTP License
+	SPDXLicenseNtp SPDXLicense = "NTP"
+	// SPDXLicenseOcctPl - Open CASCADE Technology Public License
+	SPDXLicenseOcctPl SPDXLicense = "OCCT-PL"
+	// SPDXLicenseOclc20 - OCLC Research Public License 2.0
+	SPDXLicenseOclc20 SPDXLicense = "OCLC-2.0"
+	// SPDXLicenseOdbl10 - ODC Open Database License v1.0
+	SPDXLicenseOdbl10 SPDXLicense = "ODbL-1.0"
+	// SPDXLicenseOfl10 - SIL Open Font License 1.0
+	SPDXLicenseOfl10 SPDXLicense = "OFL-1.0"
+	// SPDXLicenseOfl11 - SIL Open Font License 1.1
+	SPDXLicenseOfl11 SPDXLicense = "OFL-1.1"
+	// SPDXLicenseOgtsl - Open Group Test Suite License
+	SPDXLicenseOgtsl SPDXLicense = "OGTSL"
+	// SPDXLicenseOldap11 - Open LDAP Public License v1.1
+	SPDXLicenseOldap11 SPDXLicense = "OLDAP-1.1"
+	// SPDXLicenseOldap12 - Open LDAP Public License v1.2
+	SPDXLicenseOldap12 SPDXLicense = "OLDAP-1.2"
+	// SPDXLicenseOldap13 - Open LDAP Public License v1.3
+	SPDXLicenseOldap13 SPDXLicense = "OLDAP-1.3"
+	// SPDXLicenseOldap14 - Open LDAP Public License v1.4
+	SPDXLicenseOldap14 SPDXLicense = "OLDAP-1.4"
+	// SPDXLicenseOldap201 - Open LDAP Public License v2.0.1
+	SPDXLicenseOldap201 SPDXLicense = "OLDAP-2.0.1"
+	// SPDXLicenseOldap20 - Open LDAP Public License v2.0 (or possibly 2.0A and 2.0B)
+	SPDXLicenseOldap20 SPDXLicense = "OLDAP-2.0"
+	// SPDXLicenseOldap21 - Open LDAP Public License v2.1
+	SPDXLicenseOldap21 SPDXLicense = "OLDAP-2.1"
+	// SPDXLicenseOldap221 - Open LDAP Public License v2.2.1
+	SPDXLicenseOldap221 SPDXLicense = "OLDAP-2.2.1"
+	// SPDXLicenseOldap222 - Open LDAP Public License 2.2.2
+	SPDXLicenseOldap222 SPDXLicense = "OLDAP-2.2.2"
+	// SPDXLicenseOldap22 - Open LDAP Public License v2.2
+	SPDXLicenseOldap22 SPDXLicense = "OLDAP-2.2"
+	// SPDXLicenseOldap23 - Open LDAP Public License v2.3
+	SPDXLicenseOldap23 SPDXLicense = "OLDAP-2.3"
+	// SPDXLicenseOldap24 - Open LDAP Public License v2.4
+	SPDXLicenseOldap24 SPDXLicense = "OLDAP-2.4"
+	// SPDXLicenseOldap25 - Open LDAP Public License v2.5
+	SPDXLicenseOldap25 SPDXLicense = "OLDAP-2.5"
+	// SPDXLicenseOldap26 - Open LDAP Public License v2.6
+	SPDXLicenseOldap26 SPDXLicense = "OLDAP-2.6"
+	// SPDXLicenseOldap27 - Open LDAP Public License v2.7
+	SPDXLicenseOldap27 SPDXLicense = "OLDAP-2.7"
+	// SPDXLicenseOldap28 - Open LDAP Public License v2.8
+	SPDXLicenseOldap28 SPDXLicense = "OLDAP-2.8"
+	// SPDXLicenseOml - Open Market License
+	SPDXLicenseOml SPDXLicense = "OML"
+	// SPDXLicenseOpenssl - OpenSSL License
+	SPDXLicenseOpenssl SPDXLicense = "OpenSSL"
+	// SPDXLicenseOpl10 - Open Public License v1.0
+	SPDXLicenseOpl10 SPDXLicense = "OPL-1.0"
+	// SPDXLicenseOsetPl21 - OSET Public License version 2.1
+	SPDXLicenseOsetPl21 SPDXLicense = "OSET-PL-2.1"
+	// SPDXLicenseOsl10 - Open Software License 1.0
+	SPDXLicenseOsl10 SPDXLicense = "OSL-1.0"
+	// SPDXLicenseOsl11 - Open Software License 1.1
+	SPDXLicenseOsl11 SPDXLicense = "OSL-1.1"
+	// SPDXLicenseOsl20 - Open Software License 2.0
+	SPDXLicenseOsl20 SPDXLicense = "OSL-2.0"
+	// SPDXLicenseOsl21 - Open Software License 2.1
+	SPDXLicenseOsl21 SPDXLicense = "OSL-2.1"
+	// SPDXLicenseOsl30 - Open Software License 3.0
+	SPDXLicenseOsl30 SPDXLicense = "OSL-3.0"
+	// SPDXLicensePddl10 - ODC Public Domain Dedication & License 1.0
+	SPDXLicensePddl10 SPDXLicense = "PDDL-1.0"
+	// SPDXLicensePhp30 - PHP License v3.0
+	SPDXLicensePhp30 SPDXLicense = "PHP-3.0"
+	// SPDXLicensePhp301 - PHP License v3.01
+	SPDXLicensePhp301 SPDXLicense = "PHP-3.01"
+	// SPDXLicensePlexus - Plexus Classworlds License
+	SPDXLicensePlexus SPDXLicense = "Plexus"
+	// SPDXLicensePostgresql - PostgreSQL License
+	SPDXLicensePostgresql SPDXLicense = "PostgreSQL"
+	// SPDXLicensePsfrag - psfrag License
+	SPDXLicensePsfrag SPDXLicense = "psfrag"
+	// SPDXLicensePsutils - psutils License
+	SPDXLicensePsutils SPDXLicense = "psutils"
+	// SPDXLicensePython20 - Python License 2.0
+	SPDXLicensePython20 SPDXLicense = "Python-2.0"
+	// SPDXLicenseQhull - Qhull License
+	SPDXLicenseQhull SPDXLicense = "Qhull"
+	// SPDXLicenseQpl10 - Q Public License 1.0
+	SPDXLicenseQpl10 SPDXLicense = "QPL-1.0"
+	// SPDXLicenseRdisc - Rdisc License
+	SPDXLicenseRdisc SPDXLicense = "Rdisc"
+	// SPDXLicenseRhecos11 - Red Hat eCos Public License v1.1
+	SPDXLicenseRhecos11 SPDXLicense = "RHeCos-1.1"
+	// SPDXLicenseRpl11 - Reciprocal Public License 1.1
+	SPDXLicenseRpl11 SPDXLicense = "RPL-1.1"
+	// SPDXLicenseRpl15 - Reciprocal Public License 1.5
+	SPDXLicenseRpl15 SPDXLicense = "RPL-1.5"
+	// SPDXLicenseRpsl10 - RealNetworks Public Source License v1.0
+	SPDXLicenseRpsl10 SPDXLicense = "RPSL-1.0"
+	// SPDXLicenseRsaMd - RSA Message-Digest License
+	SPDXLicenseRsaMd SPDXLicense = "RSA-MD"
+	// SPDXLicenseRscpl - Ricoh Source Code Public License
+	SPDXLicenseRscpl SPDXLicense = "RSCPL"
+	// SPDXLicenseRuby - Ruby License
+	SPDXLicenseRuby SPDXLicense = "Ruby"
+	// SPDXLicenseSaxPd - Sax Public Domain Notice
+	SPDXLicenseSaxPd SPDXLicense = "SAX-PD"
+	// SPDXLicenseSaxpath - Saxpath License
+	SPDXLicenseSaxpath SPDXLicense = "Saxpath"
+	// SPDXLicenseScea - SCEA Shared Source License
+	SPDXLicenseScea SPDXLicense = "SCEA"
+	// SPDXLicenseSendmail - Sendmail License
+	SPDXLicenseSendmail SPDXLicense = "Sendmail"
+	// SPDXLicenseSgiB10 - SGI Free Software License B v1.0
+	SPDXLicenseSgiB10 SPDXLicense = "SGI-B-1.0"
+	// SPDXLicenseSgiB11 - SGI Free Software License B v1.1
+	SPDXLicenseSgiB11 SPDXLicense = "SGI-B-1.1"
+	// SPDXLicenseSgiB20 - SGI Free Software License B v2.0
+	SPDXLicenseSgiB20 SPDXLicense = "SGI-B-2.0"
+	// SPDXLicenseSimpl20 - Simple Public License 2.0
+	SPDXLicenseSimpl20 SPDXLicense = "SimPL-2.0"
+	// SPDXLicenseSissl12 - Sun Industry Standards Source License v1.2
+	SPDXLicenseSissl12 SPDXLicense = "SISSL-1.2"
+	// SPDXLicenseSissl - Sun Industry Standards Source License v1.1
+	SPDXLicenseSissl SPDXLicense = "SISSL"
+	// SPDXLicenseSleepycat - Sleepycat License
+	SPDXLicenseSleepycat SPDXLicense = "Sleepycat"
+	// SPDXLicenseSmlnj - Standard ML of New Jersey License
+	SPDXLicenseSmlnj SPDXLicense = "SMLNJ"
+	// SPDXLicenseSmppl - Secure Messaging Protocol Public License
+	SPDXLicenseSmppl SPDXLicense = "SMPPL"
+	// SPDXLicenseSnia - SNIA Public License 1.1
+	SPDXLicenseSnia SPDXLicense = "SNIA"
+	// SPDXLicenseSpencer86 - Spencer License 86
+	SPDXLicenseSpencer86 SPDXLicense = "Spencer-86"
+	// SPDXLicenseSpencer94 - Spencer License 94
+	SPDXLicenseSpencer94 SPDXLicense = "Spencer-94"
+	// SPDXLicenseSpencer99 - Spencer License 99
+	SPDXLicenseSpencer99 SPDXLicense = "Spencer-99"
+	// SPDXLicenseSpl10 - Sun Public License v1.0
+	SPDXLicenseSpl10 SPDXLicense = "SPL-1.0"
+	// SPDXLicenseSugarcrm113 - SugarCRM Public License v1.1.3
+	SPDXLicenseSugarcrm113 SPDXLicense = "SugarCRM-1.1.3"
+	// SPDXLicenseSwl - Scheme Widget Library (SWL) Software License Agreement
+	SPDXLicenseSwl SPDXLicense = "SWL"
+	// SPDXLicenseTcl - TCL/TK License
+	SPDXLicenseTcl SPDXLicense = "TCL"
+	// SPDXLicenseTcpWrappers - TCP Wrappers License
+	SPDXLicenseTcpWrappers SPDXLicense = "TCP-wrappers"
+	// SPDXLicenseTmate - TMate Open Source License
+	SPDXLicenseTmate SPDXLicense = "TMate"
+	// SPDXLicenseTorque11 - TORQUE v2.5+ Software License v1.1
+	SPDXLicenseTorque11 SPDXLicense = "TORQUE-1.1"
+	// SPDXLicenseTosl - Trusster Open Source License
+	SPDXLicenseTosl SPDXLicense = "TOSL"
+	// SPDXLicenseUnicodeDfs2015 - Unicode License Agreement - Data Files and Software (2015)
+	SPDXLicenseUnicodeDfs2015 SPDXLicense = "Unicode-DFS-2015"
+	// SPDXLicenseUnicodeDfs2016 - Unicode License Agreement - Data Files and Software (2016)
+	SPDXLicenseUnicodeDfs2016 SPDXLicense = "Unicode-DFS-2016"
+	// SPDXLicenseUnicodeTou - Unicode Terms of Use
+	SPDXLicenseUnicodeTou SPDXLicense = "Unicode-TOU"
+	// SPDXLicenseUnlicense - The Unlicense
+	SPDXLicenseUnlicense SPDXLicense = "Unlicense"
+	// SPDXLicenseUpl10 - Universal Permissive License v1.0
+	SPDXLicenseUpl10 SPDXLicense = "UPL-1.0"
+	// SPDXLicenseVim - Vim License
+	SPDXLicenseVim SPDXLicense = "Vim"
+	// SPDXLicenseVostrom - VOSTROM Public License for Open Source
+	SPDXLicenseVostrom SPDXLicense = "VOSTROM"
+	// SPDXLicenseVsl10 - Vovida Software License v1.0
+	SPDXLicenseVsl10 SPDXLicense = "VSL-1.0"
+	// SPDXLicenseW3c19980720 - W3C Software Notice and License (1998-07-20)
+	SPDXLicenseW3c19980720 SPDXLicense = "W3C-19980720"
+	// SPDXLicenseW3c20150513 - W3C Software Notice and Document License (2015-05-13)
+	SPDXLicenseW3c20150513 SPDXLicense = "W3C-20150513"
+	// SPDXLicenseW3c - W3C Software Notice and License (2002-12-31)
+	SPDXLicenseW3c SPDXLicense = "W3C"
+	// SPDXLicenseWatcom10 - Sybase Open Watcom Public License 1.0
+	SPDXLicenseWatcom10 SPDXLicense = "Watcom-1.0"
+	// SPDXLicenseWsuipa - Wsuipa License
+	SPDXLicenseWsuipa SPDXLicense = "Wsuipa"
+	// SPDXLicenseWtfpl - Do What The F*ck You Want To Public License
+	SPDXLicenseWtfpl SPDXLicense = "WTFPL"
+	// SPDXLicenseX11 - X11 License
+	SPDXLicenseX11 SPDXLicense = "X11"
+	// SPDXLicenseXerox - Xerox License
+	SPDXLicenseXerox SPDXLicense = "Xerox"
+	// SPDXLicenseXfree8611 - XFree86 License 1.1
+	SPDXLicenseXfree8611 SPDXLicense = "XFree86-1.1"
+	// SPDXLicenseXinetd - xinetd License
+	SPDXLicenseXinetd SPDXLicense = "xinetd"
+	// SPDXLicenseXnet - X.Net License
+	SPDXLicenseXnet SPDXLicense = "Xnet"
+	// SPDXLicenseXpp - XPP License
+	SPDXLicenseXpp SPDXLicense = "xpp"
+	// SPDXLicenseXskat - XSkat License
+	SPDXLicenseXskat SPDXLicense = "XSkat"
+	// SPDXLicenseYpl10 - Yahoo! Public License v1.0
+	SPDXLicenseYpl10 SPDXLicense = "YPL-1.0"
+	// SPDXLicenseYpl11 - Yahoo! Public License v1.1
+	SPDXLicenseYpl11 SPDXLicense = "YPL-1.1"
+	// SPDXLicenseZed - Zed License
+	SPDXLicenseZed SPDXLicense = "Zed"
+	// SPDXLicenseZend20 - Zend License v2.0
+	SPDXLicenseZend20 SPDXLicense = "Zend-2.0"
+	// SPDXLicenseZimbra13 - Zimbra Public License v1.3
+	SPDXLicenseZimbra13 SPDXLicense = "Zimbra-1.3"
+	// SPDXLicenseZimbra14 - Zimbra Public License v1.4
+	SPDXLicenseZimbra14 SPDXLicense = "Zimbra-1.4"
+	// SPDXLicenseZlibAcknowledgement - zlib/libpng License with Acknowledgement
+	SPDXLicenseZlibAcknowledgement SPDXLicense = "zlib-acknowledgement"
+	// SPDXLicenseZlib - zlib License
+	SPDXLicenseZlib SPDXLicense = "Zlib"
+	// SPDXLicenseZpl11 - Zope Public License 1.1
+	SPDXLicenseZpl11 SPDXLicense = "ZPL-1.1"
+	// SPDXLicenseZpl20 - Zope Public License 2.0
+	SPDXLicenseZpl20 SPDXLicense = "ZPL-2.0"
+	// SPDXLicenseZpl21 - Zope Public License 2.1
+	SPDXLicenseZpl21 SPDXLicense = "ZPL-2.1"
 )
 
 // SpecimenContainedPreference represents SpecimenContainedPreference.
@@ -4429,6 +6293,481 @@ func (c AdverseEventActuality) System() string {
 // what a CodeableConcept needs, and where the system URL usually gets copied wrong
 // by hand.
 func (c AdverseEventActuality) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// FHIRAllTypesInfo is the specification's own data for one code.
+type FHIRAllTypesInfo struct {
+	System  string
+	Display string
+}
+
+// FHIRAllTypesTable maps each code to what the specification says about it.
+var FHIRAllTypesTable = map[FHIRAllTypes]FHIRAllTypesInfo{
+	FHIRAllTypesAddress:                           {"http://hl7.org/fhir/data-types", "Address"},
+	FHIRAllTypesAge:                               {"http://hl7.org/fhir/data-types", "Age"},
+	FHIRAllTypesAnnotation:                        {"http://hl7.org/fhir/data-types", "Annotation"},
+	FHIRAllTypesAttachment:                        {"http://hl7.org/fhir/data-types", "Attachment"},
+	FHIRAllTypesBackboneelement:                   {"http://hl7.org/fhir/data-types", "BackboneElement"},
+	FHIRAllTypesCodeableconcept:                   {"http://hl7.org/fhir/data-types", "CodeableConcept"},
+	FHIRAllTypesCoding:                            {"http://hl7.org/fhir/data-types", "Coding"},
+	FHIRAllTypesContactdetail:                     {"http://hl7.org/fhir/data-types", "ContactDetail"},
+	FHIRAllTypesContactpoint:                      {"http://hl7.org/fhir/data-types", "ContactPoint"},
+	FHIRAllTypesContributor:                       {"http://hl7.org/fhir/data-types", "Contributor"},
+	FHIRAllTypesCount:                             {"http://hl7.org/fhir/data-types", "Count"},
+	FHIRAllTypesDatarequirement:                   {"http://hl7.org/fhir/data-types", "DataRequirement"},
+	FHIRAllTypesDistance:                          {"http://hl7.org/fhir/data-types", "Distance"},
+	FHIRAllTypesDosage:                            {"http://hl7.org/fhir/data-types", "Dosage"},
+	FHIRAllTypesDuration:                          {"http://hl7.org/fhir/data-types", "Duration"},
+	FHIRAllTypesElement:                           {"http://hl7.org/fhir/data-types", "Element"},
+	FHIRAllTypesElementdefinition:                 {"http://hl7.org/fhir/data-types", "ElementDefinition"},
+	FHIRAllTypesExpression:                        {"http://hl7.org/fhir/data-types", "Expression"},
+	FHIRAllTypesExtension:                         {"http://hl7.org/fhir/data-types", "Extension"},
+	FHIRAllTypesHumanname:                         {"http://hl7.org/fhir/data-types", "HumanName"},
+	FHIRAllTypesIdentifier:                        {"http://hl7.org/fhir/data-types", "Identifier"},
+	FHIRAllTypesMarketingstatus:                   {"http://hl7.org/fhir/data-types", "MarketingStatus"},
+	FHIRAllTypesMeta:                              {"http://hl7.org/fhir/data-types", "Meta"},
+	FHIRAllTypesMoney:                             {"http://hl7.org/fhir/data-types", "Money"},
+	FHIRAllTypesMoneyquantity:                     {"http://hl7.org/fhir/data-types", "MoneyQuantity"},
+	FHIRAllTypesNarrative:                         {"http://hl7.org/fhir/data-types", "Narrative"},
+	FHIRAllTypesParameterdefinition:               {"http://hl7.org/fhir/data-types", "ParameterDefinition"},
+	FHIRAllTypesPeriod:                            {"http://hl7.org/fhir/data-types", "Period"},
+	FHIRAllTypesPopulation:                        {"http://hl7.org/fhir/data-types", "Population"},
+	FHIRAllTypesProdcharacteristic:                {"http://hl7.org/fhir/data-types", "ProdCharacteristic"},
+	FHIRAllTypesProductshelflife:                  {"http://hl7.org/fhir/data-types", "ProductShelfLife"},
+	FHIRAllTypesQuantity:                          {"http://hl7.org/fhir/data-types", "Quantity"},
+	FHIRAllTypesRange:                             {"http://hl7.org/fhir/data-types", "Range"},
+	FHIRAllTypesRatio:                             {"http://hl7.org/fhir/data-types", "Ratio"},
+	FHIRAllTypesReference:                         {"http://hl7.org/fhir/data-types", "Reference"},
+	FHIRAllTypesRelatedartifact:                   {"http://hl7.org/fhir/data-types", "RelatedArtifact"},
+	FHIRAllTypesSampleddata:                       {"http://hl7.org/fhir/data-types", "SampledData"},
+	FHIRAllTypesSignature:                         {"http://hl7.org/fhir/data-types", "Signature"},
+	FHIRAllTypesSimplequantity:                    {"http://hl7.org/fhir/data-types", "SimpleQuantity"},
+	FHIRAllTypesSubstanceamount:                   {"http://hl7.org/fhir/data-types", "SubstanceAmount"},
+	FHIRAllTypesTiming:                            {"http://hl7.org/fhir/data-types", "Timing"},
+	FHIRAllTypesTriggerdefinition:                 {"http://hl7.org/fhir/data-types", "TriggerDefinition"},
+	FHIRAllTypesUsagecontext:                      {"http://hl7.org/fhir/data-types", "UsageContext"},
+	FHIRAllTypesBase64binary:                      {"http://hl7.org/fhir/data-types", "base64Binary"},
+	FHIRAllTypesBoolean:                           {"http://hl7.org/fhir/data-types", "boolean"},
+	FHIRAllTypesCanonical:                         {"http://hl7.org/fhir/data-types", "canonical"},
+	FHIRAllTypesCode:                              {"http://hl7.org/fhir/data-types", "code"},
+	FHIRAllTypesDate:                              {"http://hl7.org/fhir/data-types", "date"},
+	FHIRAllTypesDatetime:                          {"http://hl7.org/fhir/data-types", "dateTime"},
+	FHIRAllTypesDecimal:                           {"http://hl7.org/fhir/data-types", "decimal"},
+	FHIRAllTypesId:                                {"http://hl7.org/fhir/data-types", "id"},
+	FHIRAllTypesInstant:                           {"http://hl7.org/fhir/data-types", "instant"},
+	FHIRAllTypesInteger:                           {"http://hl7.org/fhir/data-types", "integer"},
+	FHIRAllTypesMarkdown:                          {"http://hl7.org/fhir/data-types", "markdown"},
+	FHIRAllTypesOid:                               {"http://hl7.org/fhir/data-types", "oid"},
+	FHIRAllTypesPositiveint:                       {"http://hl7.org/fhir/data-types", "positiveInt"},
+	FHIRAllTypesString:                            {"http://hl7.org/fhir/data-types", "string"},
+	FHIRAllTypesTime:                              {"http://hl7.org/fhir/data-types", "time"},
+	FHIRAllTypesUnsignedint:                       {"http://hl7.org/fhir/data-types", "unsignedInt"},
+	FHIRAllTypesUri:                               {"http://hl7.org/fhir/data-types", "uri"},
+	FHIRAllTypesUrl:                               {"http://hl7.org/fhir/data-types", "url"},
+	FHIRAllTypesUuid:                              {"http://hl7.org/fhir/data-types", "uuid"},
+	FHIRAllTypesXhtml:                             {"http://hl7.org/fhir/data-types", "XHTML"},
+	FHIRAllTypesAccount:                           {"http://hl7.org/fhir/resource-types", "Account"},
+	FHIRAllTypesActivitydefinition:                {"http://hl7.org/fhir/resource-types", "ActivityDefinition"},
+	FHIRAllTypesAdverseevent:                      {"http://hl7.org/fhir/resource-types", "AdverseEvent"},
+	FHIRAllTypesAllergyintolerance:                {"http://hl7.org/fhir/resource-types", "AllergyIntolerance"},
+	FHIRAllTypesAppointment:                       {"http://hl7.org/fhir/resource-types", "Appointment"},
+	FHIRAllTypesAppointmentresponse:               {"http://hl7.org/fhir/resource-types", "AppointmentResponse"},
+	FHIRAllTypesAuditevent:                        {"http://hl7.org/fhir/resource-types", "AuditEvent"},
+	FHIRAllTypesBasic:                             {"http://hl7.org/fhir/resource-types", "Basic"},
+	FHIRAllTypesBinary:                            {"http://hl7.org/fhir/resource-types", "Binary"},
+	FHIRAllTypesBiologicallyderivedproduct:        {"http://hl7.org/fhir/resource-types", "BiologicallyDerivedProduct"},
+	FHIRAllTypesBodystructure:                     {"http://hl7.org/fhir/resource-types", "BodyStructure"},
+	FHIRAllTypesBundle:                            {"http://hl7.org/fhir/resource-types", "Bundle"},
+	FHIRAllTypesCapabilitystatement:               {"http://hl7.org/fhir/resource-types", "CapabilityStatement"},
+	FHIRAllTypesCareplan:                          {"http://hl7.org/fhir/resource-types", "CarePlan"},
+	FHIRAllTypesCareteam:                          {"http://hl7.org/fhir/resource-types", "CareTeam"},
+	FHIRAllTypesCatalogentry:                      {"http://hl7.org/fhir/resource-types", "CatalogEntry"},
+	FHIRAllTypesChargeitem:                        {"http://hl7.org/fhir/resource-types", "ChargeItem"},
+	FHIRAllTypesChargeitemdefinition:              {"http://hl7.org/fhir/resource-types", "ChargeItemDefinition"},
+	FHIRAllTypesClaim:                             {"http://hl7.org/fhir/resource-types", "Claim"},
+	FHIRAllTypesClaimresponse:                     {"http://hl7.org/fhir/resource-types", "ClaimResponse"},
+	FHIRAllTypesClinicalimpression:                {"http://hl7.org/fhir/resource-types", "ClinicalImpression"},
+	FHIRAllTypesCodesystem:                        {"http://hl7.org/fhir/resource-types", "CodeSystem"},
+	FHIRAllTypesCommunication:                     {"http://hl7.org/fhir/resource-types", "Communication"},
+	FHIRAllTypesCommunicationrequest:              {"http://hl7.org/fhir/resource-types", "CommunicationRequest"},
+	FHIRAllTypesCompartmentdefinition:             {"http://hl7.org/fhir/resource-types", "CompartmentDefinition"},
+	FHIRAllTypesComposition:                       {"http://hl7.org/fhir/resource-types", "Composition"},
+	FHIRAllTypesConceptmap:                        {"http://hl7.org/fhir/resource-types", "ConceptMap"},
+	FHIRAllTypesCondition:                         {"http://hl7.org/fhir/resource-types", "Condition"},
+	FHIRAllTypesConsent:                           {"http://hl7.org/fhir/resource-types", "Consent"},
+	FHIRAllTypesContract:                          {"http://hl7.org/fhir/resource-types", "Contract"},
+	FHIRAllTypesCoverage:                          {"http://hl7.org/fhir/resource-types", "Coverage"},
+	FHIRAllTypesCoverageeligibilityrequest:        {"http://hl7.org/fhir/resource-types", "CoverageEligibilityRequest"},
+	FHIRAllTypesCoverageeligibilityresponse:       {"http://hl7.org/fhir/resource-types", "CoverageEligibilityResponse"},
+	FHIRAllTypesDetectedissue:                     {"http://hl7.org/fhir/resource-types", "DetectedIssue"},
+	FHIRAllTypesDevice:                            {"http://hl7.org/fhir/resource-types", "Device"},
+	FHIRAllTypesDevicedefinition:                  {"http://hl7.org/fhir/resource-types", "DeviceDefinition"},
+	FHIRAllTypesDevicemetric:                      {"http://hl7.org/fhir/resource-types", "DeviceMetric"},
+	FHIRAllTypesDevicerequest:                     {"http://hl7.org/fhir/resource-types", "DeviceRequest"},
+	FHIRAllTypesDeviceusestatement:                {"http://hl7.org/fhir/resource-types", "DeviceUseStatement"},
+	FHIRAllTypesDiagnosticreport:                  {"http://hl7.org/fhir/resource-types", "DiagnosticReport"},
+	FHIRAllTypesDocumentmanifest:                  {"http://hl7.org/fhir/resource-types", "DocumentManifest"},
+	FHIRAllTypesDocumentreference:                 {"http://hl7.org/fhir/resource-types", "DocumentReference"},
+	FHIRAllTypesDomainresource:                    {"http://hl7.org/fhir/resource-types", "DomainResource"},
+	FHIRAllTypesEffectevidencesynthesis:           {"http://hl7.org/fhir/resource-types", "EffectEvidenceSynthesis"},
+	FHIRAllTypesEncounter:                         {"http://hl7.org/fhir/resource-types", "Encounter"},
+	FHIRAllTypesEndpoint:                          {"http://hl7.org/fhir/resource-types", "Endpoint"},
+	FHIRAllTypesEnrollmentrequest:                 {"http://hl7.org/fhir/resource-types", "EnrollmentRequest"},
+	FHIRAllTypesEnrollmentresponse:                {"http://hl7.org/fhir/resource-types", "EnrollmentResponse"},
+	FHIRAllTypesEpisodeofcare:                     {"http://hl7.org/fhir/resource-types", "EpisodeOfCare"},
+	FHIRAllTypesEventdefinition:                   {"http://hl7.org/fhir/resource-types", "EventDefinition"},
+	FHIRAllTypesEvidence:                          {"http://hl7.org/fhir/resource-types", "Evidence"},
+	FHIRAllTypesEvidencevariable:                  {"http://hl7.org/fhir/resource-types", "EvidenceVariable"},
+	FHIRAllTypesExamplescenario:                   {"http://hl7.org/fhir/resource-types", "ExampleScenario"},
+	FHIRAllTypesExplanationofbenefit:              {"http://hl7.org/fhir/resource-types", "ExplanationOfBenefit"},
+	FHIRAllTypesFamilymemberhistory:               {"http://hl7.org/fhir/resource-types", "FamilyMemberHistory"},
+	FHIRAllTypesFlag:                              {"http://hl7.org/fhir/resource-types", "Flag"},
+	FHIRAllTypesGoal:                              {"http://hl7.org/fhir/resource-types", "Goal"},
+	FHIRAllTypesGraphdefinition:                   {"http://hl7.org/fhir/resource-types", "GraphDefinition"},
+	FHIRAllTypesGroup:                             {"http://hl7.org/fhir/resource-types", "Group"},
+	FHIRAllTypesGuidanceresponse:                  {"http://hl7.org/fhir/resource-types", "GuidanceResponse"},
+	FHIRAllTypesHealthcareservice:                 {"http://hl7.org/fhir/resource-types", "HealthcareService"},
+	FHIRAllTypesImagingstudy:                      {"http://hl7.org/fhir/resource-types", "ImagingStudy"},
+	FHIRAllTypesImmunization:                      {"http://hl7.org/fhir/resource-types", "Immunization"},
+	FHIRAllTypesImmunizationevaluation:            {"http://hl7.org/fhir/resource-types", "ImmunizationEvaluation"},
+	FHIRAllTypesImmunizationrecommendation:        {"http://hl7.org/fhir/resource-types", "ImmunizationRecommendation"},
+	FHIRAllTypesImplementationguide:               {"http://hl7.org/fhir/resource-types", "ImplementationGuide"},
+	FHIRAllTypesInsuranceplan:                     {"http://hl7.org/fhir/resource-types", "InsurancePlan"},
+	FHIRAllTypesInvoice:                           {"http://hl7.org/fhir/resource-types", "Invoice"},
+	FHIRAllTypesLibrary:                           {"http://hl7.org/fhir/resource-types", "Library"},
+	FHIRAllTypesLinkage:                           {"http://hl7.org/fhir/resource-types", "Linkage"},
+	FHIRAllTypesList:                              {"http://hl7.org/fhir/resource-types", "List"},
+	FHIRAllTypesLocation:                          {"http://hl7.org/fhir/resource-types", "Location"},
+	FHIRAllTypesMeasure:                           {"http://hl7.org/fhir/resource-types", "Measure"},
+	FHIRAllTypesMeasurereport:                     {"http://hl7.org/fhir/resource-types", "MeasureReport"},
+	FHIRAllTypesMedia:                             {"http://hl7.org/fhir/resource-types", "Media"},
+	FHIRAllTypesMedication:                        {"http://hl7.org/fhir/resource-types", "Medication"},
+	FHIRAllTypesMedicationadministration:          {"http://hl7.org/fhir/resource-types", "MedicationAdministration"},
+	FHIRAllTypesMedicationdispense:                {"http://hl7.org/fhir/resource-types", "MedicationDispense"},
+	FHIRAllTypesMedicationknowledge:               {"http://hl7.org/fhir/resource-types", "MedicationKnowledge"},
+	FHIRAllTypesMedicationrequest:                 {"http://hl7.org/fhir/resource-types", "MedicationRequest"},
+	FHIRAllTypesMedicationstatement:               {"http://hl7.org/fhir/resource-types", "MedicationStatement"},
+	FHIRAllTypesMedicinalproduct:                  {"http://hl7.org/fhir/resource-types", "MedicinalProduct"},
+	FHIRAllTypesMedicinalproductauthorization:     {"http://hl7.org/fhir/resource-types", "MedicinalProductAuthorization"},
+	FHIRAllTypesMedicinalproductcontraindication:  {"http://hl7.org/fhir/resource-types", "MedicinalProductContraindication"},
+	FHIRAllTypesMedicinalproductindication:        {"http://hl7.org/fhir/resource-types", "MedicinalProductIndication"},
+	FHIRAllTypesMedicinalproductingredient:        {"http://hl7.org/fhir/resource-types", "MedicinalProductIngredient"},
+	FHIRAllTypesMedicinalproductinteraction:       {"http://hl7.org/fhir/resource-types", "MedicinalProductInteraction"},
+	FHIRAllTypesMedicinalproductmanufactured:      {"http://hl7.org/fhir/resource-types", "MedicinalProductManufactured"},
+	FHIRAllTypesMedicinalproductpackaged:          {"http://hl7.org/fhir/resource-types", "MedicinalProductPackaged"},
+	FHIRAllTypesMedicinalproductpharmaceutical:    {"http://hl7.org/fhir/resource-types", "MedicinalProductPharmaceutical"},
+	FHIRAllTypesMedicinalproductundesirableeffect: {"http://hl7.org/fhir/resource-types", "MedicinalProductUndesirableEffect"},
+	FHIRAllTypesMessagedefinition:                 {"http://hl7.org/fhir/resource-types", "MessageDefinition"},
+	FHIRAllTypesMessageheader:                     {"http://hl7.org/fhir/resource-types", "MessageHeader"},
+	FHIRAllTypesMolecularsequence:                 {"http://hl7.org/fhir/resource-types", "MolecularSequence"},
+	FHIRAllTypesNamingsystem:                      {"http://hl7.org/fhir/resource-types", "NamingSystem"},
+	FHIRAllTypesNutritionorder:                    {"http://hl7.org/fhir/resource-types", "NutritionOrder"},
+	FHIRAllTypesObservation:                       {"http://hl7.org/fhir/resource-types", "Observation"},
+	FHIRAllTypesObservationdefinition:             {"http://hl7.org/fhir/resource-types", "ObservationDefinition"},
+	FHIRAllTypesOperationdefinition:               {"http://hl7.org/fhir/resource-types", "OperationDefinition"},
+	FHIRAllTypesOperationoutcome:                  {"http://hl7.org/fhir/resource-types", "OperationOutcome"},
+	FHIRAllTypesOrganization:                      {"http://hl7.org/fhir/resource-types", "Organization"},
+	FHIRAllTypesOrganizationaffiliation:           {"http://hl7.org/fhir/resource-types", "OrganizationAffiliation"},
+	FHIRAllTypesParameters:                        {"http://hl7.org/fhir/resource-types", "Parameters"},
+	FHIRAllTypesPatient:                           {"http://hl7.org/fhir/resource-types", "Patient"},
+	FHIRAllTypesPaymentnotice:                     {"http://hl7.org/fhir/resource-types", "PaymentNotice"},
+	FHIRAllTypesPaymentreconciliation:             {"http://hl7.org/fhir/resource-types", "PaymentReconciliation"},
+	FHIRAllTypesPerson:                            {"http://hl7.org/fhir/resource-types", "Person"},
+	FHIRAllTypesPlandefinition:                    {"http://hl7.org/fhir/resource-types", "PlanDefinition"},
+	FHIRAllTypesPractitioner:                      {"http://hl7.org/fhir/resource-types", "Practitioner"},
+	FHIRAllTypesPractitionerrole:                  {"http://hl7.org/fhir/resource-types", "PractitionerRole"},
+	FHIRAllTypesProcedure:                         {"http://hl7.org/fhir/resource-types", "Procedure"},
+	FHIRAllTypesProvenance:                        {"http://hl7.org/fhir/resource-types", "Provenance"},
+	FHIRAllTypesQuestionnaire:                     {"http://hl7.org/fhir/resource-types", "Questionnaire"},
+	FHIRAllTypesQuestionnaireresponse:             {"http://hl7.org/fhir/resource-types", "QuestionnaireResponse"},
+	FHIRAllTypesRelatedperson:                     {"http://hl7.org/fhir/resource-types", "RelatedPerson"},
+	FHIRAllTypesRequestgroup:                      {"http://hl7.org/fhir/resource-types", "RequestGroup"},
+	FHIRAllTypesResearchdefinition:                {"http://hl7.org/fhir/resource-types", "ResearchDefinition"},
+	FHIRAllTypesResearchelementdefinition:         {"http://hl7.org/fhir/resource-types", "ResearchElementDefinition"},
+	FHIRAllTypesResearchstudy:                     {"http://hl7.org/fhir/resource-types", "ResearchStudy"},
+	FHIRAllTypesResearchsubject:                   {"http://hl7.org/fhir/resource-types", "ResearchSubject"},
+	FHIRAllTypesResource:                          {"http://hl7.org/fhir/resource-types", "Resource"},
+	FHIRAllTypesRiskassessment:                    {"http://hl7.org/fhir/resource-types", "RiskAssessment"},
+	FHIRAllTypesRiskevidencesynthesis:             {"http://hl7.org/fhir/resource-types", "RiskEvidenceSynthesis"},
+	FHIRAllTypesSchedule:                          {"http://hl7.org/fhir/resource-types", "Schedule"},
+	FHIRAllTypesSearchparameter:                   {"http://hl7.org/fhir/resource-types", "SearchParameter"},
+	FHIRAllTypesServicerequest:                    {"http://hl7.org/fhir/resource-types", "ServiceRequest"},
+	FHIRAllTypesSlot:                              {"http://hl7.org/fhir/resource-types", "Slot"},
+	FHIRAllTypesSpecimen:                          {"http://hl7.org/fhir/resource-types", "Specimen"},
+	FHIRAllTypesSpecimendefinition:                {"http://hl7.org/fhir/resource-types", "SpecimenDefinition"},
+	FHIRAllTypesStructuredefinition:               {"http://hl7.org/fhir/resource-types", "StructureDefinition"},
+	FHIRAllTypesStructuremap:                      {"http://hl7.org/fhir/resource-types", "StructureMap"},
+	FHIRAllTypesSubscription:                      {"http://hl7.org/fhir/resource-types", "Subscription"},
+	FHIRAllTypesSubstance:                         {"http://hl7.org/fhir/resource-types", "Substance"},
+	FHIRAllTypesSubstancenucleicacid:              {"http://hl7.org/fhir/resource-types", "SubstanceNucleicAcid"},
+	FHIRAllTypesSubstancepolymer:                  {"http://hl7.org/fhir/resource-types", "SubstancePolymer"},
+	FHIRAllTypesSubstanceprotein:                  {"http://hl7.org/fhir/resource-types", "SubstanceProtein"},
+	FHIRAllTypesSubstancereferenceinformation:     {"http://hl7.org/fhir/resource-types", "SubstanceReferenceInformation"},
+	FHIRAllTypesSubstancesourcematerial:           {"http://hl7.org/fhir/resource-types", "SubstanceSourceMaterial"},
+	FHIRAllTypesSubstancespecification:            {"http://hl7.org/fhir/resource-types", "SubstanceSpecification"},
+	FHIRAllTypesSupplydelivery:                    {"http://hl7.org/fhir/resource-types", "SupplyDelivery"},
+	FHIRAllTypesSupplyrequest:                     {"http://hl7.org/fhir/resource-types", "SupplyRequest"},
+	FHIRAllTypesTask:                              {"http://hl7.org/fhir/resource-types", "Task"},
+	FHIRAllTypesTerminologycapabilities:           {"http://hl7.org/fhir/resource-types", "TerminologyCapabilities"},
+	FHIRAllTypesTestreport:                        {"http://hl7.org/fhir/resource-types", "TestReport"},
+	FHIRAllTypesTestscript:                        {"http://hl7.org/fhir/resource-types", "TestScript"},
+	FHIRAllTypesValueset:                          {"http://hl7.org/fhir/resource-types", "ValueSet"},
+	FHIRAllTypesVerificationresult:                {"http://hl7.org/fhir/resource-types", "VerificationResult"},
+	FHIRAllTypesVisionprescription:                {"http://hl7.org/fhir/resource-types", "VisionPrescription"},
+	FHIRAllTypesType:                              {"http://hl7.org/fhir/abstract-types", "Type"},
+	FHIRAllTypesAny:                               {"http://hl7.org/fhir/abstract-types", "Any"},
+}
+
+// FHIRAllTypesValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func FHIRAllTypesValues() []FHIRAllTypes {
+	return []FHIRAllTypes{
+		FHIRAllTypesAddress,
+		FHIRAllTypesAge,
+		FHIRAllTypesAnnotation,
+		FHIRAllTypesAttachment,
+		FHIRAllTypesBackboneelement,
+		FHIRAllTypesCodeableconcept,
+		FHIRAllTypesCoding,
+		FHIRAllTypesContactdetail,
+		FHIRAllTypesContactpoint,
+		FHIRAllTypesContributor,
+		FHIRAllTypesCount,
+		FHIRAllTypesDatarequirement,
+		FHIRAllTypesDistance,
+		FHIRAllTypesDosage,
+		FHIRAllTypesDuration,
+		FHIRAllTypesElement,
+		FHIRAllTypesElementdefinition,
+		FHIRAllTypesExpression,
+		FHIRAllTypesExtension,
+		FHIRAllTypesHumanname,
+		FHIRAllTypesIdentifier,
+		FHIRAllTypesMarketingstatus,
+		FHIRAllTypesMeta,
+		FHIRAllTypesMoney,
+		FHIRAllTypesMoneyquantity,
+		FHIRAllTypesNarrative,
+		FHIRAllTypesParameterdefinition,
+		FHIRAllTypesPeriod,
+		FHIRAllTypesPopulation,
+		FHIRAllTypesProdcharacteristic,
+		FHIRAllTypesProductshelflife,
+		FHIRAllTypesQuantity,
+		FHIRAllTypesRange,
+		FHIRAllTypesRatio,
+		FHIRAllTypesReference,
+		FHIRAllTypesRelatedartifact,
+		FHIRAllTypesSampleddata,
+		FHIRAllTypesSignature,
+		FHIRAllTypesSimplequantity,
+		FHIRAllTypesSubstanceamount,
+		FHIRAllTypesTiming,
+		FHIRAllTypesTriggerdefinition,
+		FHIRAllTypesUsagecontext,
+		FHIRAllTypesBase64binary,
+		FHIRAllTypesBoolean,
+		FHIRAllTypesCanonical,
+		FHIRAllTypesCode,
+		FHIRAllTypesDate,
+		FHIRAllTypesDatetime,
+		FHIRAllTypesDecimal,
+		FHIRAllTypesId,
+		FHIRAllTypesInstant,
+		FHIRAllTypesInteger,
+		FHIRAllTypesMarkdown,
+		FHIRAllTypesOid,
+		FHIRAllTypesPositiveint,
+		FHIRAllTypesString,
+		FHIRAllTypesTime,
+		FHIRAllTypesUnsignedint,
+		FHIRAllTypesUri,
+		FHIRAllTypesUrl,
+		FHIRAllTypesUuid,
+		FHIRAllTypesXhtml,
+		FHIRAllTypesAccount,
+		FHIRAllTypesActivitydefinition,
+		FHIRAllTypesAdverseevent,
+		FHIRAllTypesAllergyintolerance,
+		FHIRAllTypesAppointment,
+		FHIRAllTypesAppointmentresponse,
+		FHIRAllTypesAuditevent,
+		FHIRAllTypesBasic,
+		FHIRAllTypesBinary,
+		FHIRAllTypesBiologicallyderivedproduct,
+		FHIRAllTypesBodystructure,
+		FHIRAllTypesBundle,
+		FHIRAllTypesCapabilitystatement,
+		FHIRAllTypesCareplan,
+		FHIRAllTypesCareteam,
+		FHIRAllTypesCatalogentry,
+		FHIRAllTypesChargeitem,
+		FHIRAllTypesChargeitemdefinition,
+		FHIRAllTypesClaim,
+		FHIRAllTypesClaimresponse,
+		FHIRAllTypesClinicalimpression,
+		FHIRAllTypesCodesystem,
+		FHIRAllTypesCommunication,
+		FHIRAllTypesCommunicationrequest,
+		FHIRAllTypesCompartmentdefinition,
+		FHIRAllTypesComposition,
+		FHIRAllTypesConceptmap,
+		FHIRAllTypesCondition,
+		FHIRAllTypesConsent,
+		FHIRAllTypesContract,
+		FHIRAllTypesCoverage,
+		FHIRAllTypesCoverageeligibilityrequest,
+		FHIRAllTypesCoverageeligibilityresponse,
+		FHIRAllTypesDetectedissue,
+		FHIRAllTypesDevice,
+		FHIRAllTypesDevicedefinition,
+		FHIRAllTypesDevicemetric,
+		FHIRAllTypesDevicerequest,
+		FHIRAllTypesDeviceusestatement,
+		FHIRAllTypesDiagnosticreport,
+		FHIRAllTypesDocumentmanifest,
+		FHIRAllTypesDocumentreference,
+		FHIRAllTypesDomainresource,
+		FHIRAllTypesEffectevidencesynthesis,
+		FHIRAllTypesEncounter,
+		FHIRAllTypesEndpoint,
+		FHIRAllTypesEnrollmentrequest,
+		FHIRAllTypesEnrollmentresponse,
+		FHIRAllTypesEpisodeofcare,
+		FHIRAllTypesEventdefinition,
+		FHIRAllTypesEvidence,
+		FHIRAllTypesEvidencevariable,
+		FHIRAllTypesExamplescenario,
+		FHIRAllTypesExplanationofbenefit,
+		FHIRAllTypesFamilymemberhistory,
+		FHIRAllTypesFlag,
+		FHIRAllTypesGoal,
+		FHIRAllTypesGraphdefinition,
+		FHIRAllTypesGroup,
+		FHIRAllTypesGuidanceresponse,
+		FHIRAllTypesHealthcareservice,
+		FHIRAllTypesImagingstudy,
+		FHIRAllTypesImmunization,
+		FHIRAllTypesImmunizationevaluation,
+		FHIRAllTypesImmunizationrecommendation,
+		FHIRAllTypesImplementationguide,
+		FHIRAllTypesInsuranceplan,
+		FHIRAllTypesInvoice,
+		FHIRAllTypesLibrary,
+		FHIRAllTypesLinkage,
+		FHIRAllTypesList,
+		FHIRAllTypesLocation,
+		FHIRAllTypesMeasure,
+		FHIRAllTypesMeasurereport,
+		FHIRAllTypesMedia,
+		FHIRAllTypesMedication,
+		FHIRAllTypesMedicationadministration,
+		FHIRAllTypesMedicationdispense,
+		FHIRAllTypesMedicationknowledge,
+		FHIRAllTypesMedicationrequest,
+		FHIRAllTypesMedicationstatement,
+		FHIRAllTypesMedicinalproduct,
+		FHIRAllTypesMedicinalproductauthorization,
+		FHIRAllTypesMedicinalproductcontraindication,
+		FHIRAllTypesMedicinalproductindication,
+		FHIRAllTypesMedicinalproductingredient,
+		FHIRAllTypesMedicinalproductinteraction,
+		FHIRAllTypesMedicinalproductmanufactured,
+		FHIRAllTypesMedicinalproductpackaged,
+		FHIRAllTypesMedicinalproductpharmaceutical,
+		FHIRAllTypesMedicinalproductundesirableeffect,
+		FHIRAllTypesMessagedefinition,
+		FHIRAllTypesMessageheader,
+		FHIRAllTypesMolecularsequence,
+		FHIRAllTypesNamingsystem,
+		FHIRAllTypesNutritionorder,
+		FHIRAllTypesObservation,
+		FHIRAllTypesObservationdefinition,
+		FHIRAllTypesOperationdefinition,
+		FHIRAllTypesOperationoutcome,
+		FHIRAllTypesOrganization,
+		FHIRAllTypesOrganizationaffiliation,
+		FHIRAllTypesParameters,
+		FHIRAllTypesPatient,
+		FHIRAllTypesPaymentnotice,
+		FHIRAllTypesPaymentreconciliation,
+		FHIRAllTypesPerson,
+		FHIRAllTypesPlandefinition,
+		FHIRAllTypesPractitioner,
+		FHIRAllTypesPractitionerrole,
+		FHIRAllTypesProcedure,
+		FHIRAllTypesProvenance,
+		FHIRAllTypesQuestionnaire,
+		FHIRAllTypesQuestionnaireresponse,
+		FHIRAllTypesRelatedperson,
+		FHIRAllTypesRequestgroup,
+		FHIRAllTypesResearchdefinition,
+		FHIRAllTypesResearchelementdefinition,
+		FHIRAllTypesResearchstudy,
+		FHIRAllTypesResearchsubject,
+		FHIRAllTypesResource,
+		FHIRAllTypesRiskassessment,
+		FHIRAllTypesRiskevidencesynthesis,
+		FHIRAllTypesSchedule,
+		FHIRAllTypesSearchparameter,
+		FHIRAllTypesServicerequest,
+		FHIRAllTypesSlot,
+		FHIRAllTypesSpecimen,
+		FHIRAllTypesSpecimendefinition,
+		FHIRAllTypesStructuredefinition,
+		FHIRAllTypesStructuremap,
+		FHIRAllTypesSubscription,
+		FHIRAllTypesSubstance,
+		FHIRAllTypesSubstancenucleicacid,
+		FHIRAllTypesSubstancepolymer,
+		FHIRAllTypesSubstanceprotein,
+		FHIRAllTypesSubstancereferenceinformation,
+		FHIRAllTypesSubstancesourcematerial,
+		FHIRAllTypesSubstancespecification,
+		FHIRAllTypesSupplydelivery,
+		FHIRAllTypesSupplyrequest,
+		FHIRAllTypesTask,
+		FHIRAllTypesTerminologycapabilities,
+		FHIRAllTypesTestreport,
+		FHIRAllTypesTestscript,
+		FHIRAllTypesValueset,
+		FHIRAllTypesVerificationresult,
+		FHIRAllTypesVisionprescription,
+		FHIRAllTypesType,
+		FHIRAllTypesAny,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c FHIRAllTypes) Display() string {
+	if info, ok := FHIRAllTypesTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c FHIRAllTypes) System() string {
+	return FHIRAllTypesTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c FHIRAllTypes) Coding() Coding {
 	system, display := c.System(), c.Display()
 	coding := Coding{Code: Ptr(string(c)), Display: &display}
 	if system != "" {
@@ -6841,6 +9180,477 @@ func (c DaysOfWeek) System() string {
 // what a CodeableConcept needs, and where the system URL usually gets copied wrong
 // by hand.
 func (c DaysOfWeek) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// FHIRDefinedTypeInfo is the specification's own data for one code.
+type FHIRDefinedTypeInfo struct {
+	System  string
+	Display string
+}
+
+// FHIRDefinedTypeTable maps each code to what the specification says about it.
+var FHIRDefinedTypeTable = map[FHIRDefinedType]FHIRDefinedTypeInfo{
+	FHIRDefinedTypeAddress:                           {"http://hl7.org/fhir/data-types", "Address"},
+	FHIRDefinedTypeAge:                               {"http://hl7.org/fhir/data-types", "Age"},
+	FHIRDefinedTypeAnnotation:                        {"http://hl7.org/fhir/data-types", "Annotation"},
+	FHIRDefinedTypeAttachment:                        {"http://hl7.org/fhir/data-types", "Attachment"},
+	FHIRDefinedTypeBackboneelement:                   {"http://hl7.org/fhir/data-types", "BackboneElement"},
+	FHIRDefinedTypeCodeableconcept:                   {"http://hl7.org/fhir/data-types", "CodeableConcept"},
+	FHIRDefinedTypeCoding:                            {"http://hl7.org/fhir/data-types", "Coding"},
+	FHIRDefinedTypeContactdetail:                     {"http://hl7.org/fhir/data-types", "ContactDetail"},
+	FHIRDefinedTypeContactpoint:                      {"http://hl7.org/fhir/data-types", "ContactPoint"},
+	FHIRDefinedTypeContributor:                       {"http://hl7.org/fhir/data-types", "Contributor"},
+	FHIRDefinedTypeCount:                             {"http://hl7.org/fhir/data-types", "Count"},
+	FHIRDefinedTypeDatarequirement:                   {"http://hl7.org/fhir/data-types", "DataRequirement"},
+	FHIRDefinedTypeDistance:                          {"http://hl7.org/fhir/data-types", "Distance"},
+	FHIRDefinedTypeDosage:                            {"http://hl7.org/fhir/data-types", "Dosage"},
+	FHIRDefinedTypeDuration:                          {"http://hl7.org/fhir/data-types", "Duration"},
+	FHIRDefinedTypeElement:                           {"http://hl7.org/fhir/data-types", "Element"},
+	FHIRDefinedTypeElementdefinition:                 {"http://hl7.org/fhir/data-types", "ElementDefinition"},
+	FHIRDefinedTypeExpression:                        {"http://hl7.org/fhir/data-types", "Expression"},
+	FHIRDefinedTypeExtension:                         {"http://hl7.org/fhir/data-types", "Extension"},
+	FHIRDefinedTypeHumanname:                         {"http://hl7.org/fhir/data-types", "HumanName"},
+	FHIRDefinedTypeIdentifier:                        {"http://hl7.org/fhir/data-types", "Identifier"},
+	FHIRDefinedTypeMarketingstatus:                   {"http://hl7.org/fhir/data-types", "MarketingStatus"},
+	FHIRDefinedTypeMeta:                              {"http://hl7.org/fhir/data-types", "Meta"},
+	FHIRDefinedTypeMoney:                             {"http://hl7.org/fhir/data-types", "Money"},
+	FHIRDefinedTypeMoneyquantity:                     {"http://hl7.org/fhir/data-types", "MoneyQuantity"},
+	FHIRDefinedTypeNarrative:                         {"http://hl7.org/fhir/data-types", "Narrative"},
+	FHIRDefinedTypeParameterdefinition:               {"http://hl7.org/fhir/data-types", "ParameterDefinition"},
+	FHIRDefinedTypePeriod:                            {"http://hl7.org/fhir/data-types", "Period"},
+	FHIRDefinedTypePopulation:                        {"http://hl7.org/fhir/data-types", "Population"},
+	FHIRDefinedTypeProdcharacteristic:                {"http://hl7.org/fhir/data-types", "ProdCharacteristic"},
+	FHIRDefinedTypeProductshelflife:                  {"http://hl7.org/fhir/data-types", "ProductShelfLife"},
+	FHIRDefinedTypeQuantity:                          {"http://hl7.org/fhir/data-types", "Quantity"},
+	FHIRDefinedTypeRange:                             {"http://hl7.org/fhir/data-types", "Range"},
+	FHIRDefinedTypeRatio:                             {"http://hl7.org/fhir/data-types", "Ratio"},
+	FHIRDefinedTypeReference:                         {"http://hl7.org/fhir/data-types", "Reference"},
+	FHIRDefinedTypeRelatedartifact:                   {"http://hl7.org/fhir/data-types", "RelatedArtifact"},
+	FHIRDefinedTypeSampleddata:                       {"http://hl7.org/fhir/data-types", "SampledData"},
+	FHIRDefinedTypeSignature:                         {"http://hl7.org/fhir/data-types", "Signature"},
+	FHIRDefinedTypeSimplequantity:                    {"http://hl7.org/fhir/data-types", "SimpleQuantity"},
+	FHIRDefinedTypeSubstanceamount:                   {"http://hl7.org/fhir/data-types", "SubstanceAmount"},
+	FHIRDefinedTypeTiming:                            {"http://hl7.org/fhir/data-types", "Timing"},
+	FHIRDefinedTypeTriggerdefinition:                 {"http://hl7.org/fhir/data-types", "TriggerDefinition"},
+	FHIRDefinedTypeUsagecontext:                      {"http://hl7.org/fhir/data-types", "UsageContext"},
+	FHIRDefinedTypeBase64binary:                      {"http://hl7.org/fhir/data-types", "base64Binary"},
+	FHIRDefinedTypeBoolean:                           {"http://hl7.org/fhir/data-types", "boolean"},
+	FHIRDefinedTypeCanonical:                         {"http://hl7.org/fhir/data-types", "canonical"},
+	FHIRDefinedTypeCode:                              {"http://hl7.org/fhir/data-types", "code"},
+	FHIRDefinedTypeDate:                              {"http://hl7.org/fhir/data-types", "date"},
+	FHIRDefinedTypeDatetime:                          {"http://hl7.org/fhir/data-types", "dateTime"},
+	FHIRDefinedTypeDecimal:                           {"http://hl7.org/fhir/data-types", "decimal"},
+	FHIRDefinedTypeId:                                {"http://hl7.org/fhir/data-types", "id"},
+	FHIRDefinedTypeInstant:                           {"http://hl7.org/fhir/data-types", "instant"},
+	FHIRDefinedTypeInteger:                           {"http://hl7.org/fhir/data-types", "integer"},
+	FHIRDefinedTypeMarkdown:                          {"http://hl7.org/fhir/data-types", "markdown"},
+	FHIRDefinedTypeOid:                               {"http://hl7.org/fhir/data-types", "oid"},
+	FHIRDefinedTypePositiveint:                       {"http://hl7.org/fhir/data-types", "positiveInt"},
+	FHIRDefinedTypeString:                            {"http://hl7.org/fhir/data-types", "string"},
+	FHIRDefinedTypeTime:                              {"http://hl7.org/fhir/data-types", "time"},
+	FHIRDefinedTypeUnsignedint:                       {"http://hl7.org/fhir/data-types", "unsignedInt"},
+	FHIRDefinedTypeUri:                               {"http://hl7.org/fhir/data-types", "uri"},
+	FHIRDefinedTypeUrl:                               {"http://hl7.org/fhir/data-types", "url"},
+	FHIRDefinedTypeUuid:                              {"http://hl7.org/fhir/data-types", "uuid"},
+	FHIRDefinedTypeXhtml:                             {"http://hl7.org/fhir/data-types", "XHTML"},
+	FHIRDefinedTypeAccount:                           {"http://hl7.org/fhir/resource-types", "Account"},
+	FHIRDefinedTypeActivitydefinition:                {"http://hl7.org/fhir/resource-types", "ActivityDefinition"},
+	FHIRDefinedTypeAdverseevent:                      {"http://hl7.org/fhir/resource-types", "AdverseEvent"},
+	FHIRDefinedTypeAllergyintolerance:                {"http://hl7.org/fhir/resource-types", "AllergyIntolerance"},
+	FHIRDefinedTypeAppointment:                       {"http://hl7.org/fhir/resource-types", "Appointment"},
+	FHIRDefinedTypeAppointmentresponse:               {"http://hl7.org/fhir/resource-types", "AppointmentResponse"},
+	FHIRDefinedTypeAuditevent:                        {"http://hl7.org/fhir/resource-types", "AuditEvent"},
+	FHIRDefinedTypeBasic:                             {"http://hl7.org/fhir/resource-types", "Basic"},
+	FHIRDefinedTypeBinary:                            {"http://hl7.org/fhir/resource-types", "Binary"},
+	FHIRDefinedTypeBiologicallyderivedproduct:        {"http://hl7.org/fhir/resource-types", "BiologicallyDerivedProduct"},
+	FHIRDefinedTypeBodystructure:                     {"http://hl7.org/fhir/resource-types", "BodyStructure"},
+	FHIRDefinedTypeBundle:                            {"http://hl7.org/fhir/resource-types", "Bundle"},
+	FHIRDefinedTypeCapabilitystatement:               {"http://hl7.org/fhir/resource-types", "CapabilityStatement"},
+	FHIRDefinedTypeCareplan:                          {"http://hl7.org/fhir/resource-types", "CarePlan"},
+	FHIRDefinedTypeCareteam:                          {"http://hl7.org/fhir/resource-types", "CareTeam"},
+	FHIRDefinedTypeCatalogentry:                      {"http://hl7.org/fhir/resource-types", "CatalogEntry"},
+	FHIRDefinedTypeChargeitem:                        {"http://hl7.org/fhir/resource-types", "ChargeItem"},
+	FHIRDefinedTypeChargeitemdefinition:              {"http://hl7.org/fhir/resource-types", "ChargeItemDefinition"},
+	FHIRDefinedTypeClaim:                             {"http://hl7.org/fhir/resource-types", "Claim"},
+	FHIRDefinedTypeClaimresponse:                     {"http://hl7.org/fhir/resource-types", "ClaimResponse"},
+	FHIRDefinedTypeClinicalimpression:                {"http://hl7.org/fhir/resource-types", "ClinicalImpression"},
+	FHIRDefinedTypeCodesystem:                        {"http://hl7.org/fhir/resource-types", "CodeSystem"},
+	FHIRDefinedTypeCommunication:                     {"http://hl7.org/fhir/resource-types", "Communication"},
+	FHIRDefinedTypeCommunicationrequest:              {"http://hl7.org/fhir/resource-types", "CommunicationRequest"},
+	FHIRDefinedTypeCompartmentdefinition:             {"http://hl7.org/fhir/resource-types", "CompartmentDefinition"},
+	FHIRDefinedTypeComposition:                       {"http://hl7.org/fhir/resource-types", "Composition"},
+	FHIRDefinedTypeConceptmap:                        {"http://hl7.org/fhir/resource-types", "ConceptMap"},
+	FHIRDefinedTypeCondition:                         {"http://hl7.org/fhir/resource-types", "Condition"},
+	FHIRDefinedTypeConsent:                           {"http://hl7.org/fhir/resource-types", "Consent"},
+	FHIRDefinedTypeContract:                          {"http://hl7.org/fhir/resource-types", "Contract"},
+	FHIRDefinedTypeCoverage:                          {"http://hl7.org/fhir/resource-types", "Coverage"},
+	FHIRDefinedTypeCoverageeligibilityrequest:        {"http://hl7.org/fhir/resource-types", "CoverageEligibilityRequest"},
+	FHIRDefinedTypeCoverageeligibilityresponse:       {"http://hl7.org/fhir/resource-types", "CoverageEligibilityResponse"},
+	FHIRDefinedTypeDetectedissue:                     {"http://hl7.org/fhir/resource-types", "DetectedIssue"},
+	FHIRDefinedTypeDevice:                            {"http://hl7.org/fhir/resource-types", "Device"},
+	FHIRDefinedTypeDevicedefinition:                  {"http://hl7.org/fhir/resource-types", "DeviceDefinition"},
+	FHIRDefinedTypeDevicemetric:                      {"http://hl7.org/fhir/resource-types", "DeviceMetric"},
+	FHIRDefinedTypeDevicerequest:                     {"http://hl7.org/fhir/resource-types", "DeviceRequest"},
+	FHIRDefinedTypeDeviceusestatement:                {"http://hl7.org/fhir/resource-types", "DeviceUseStatement"},
+	FHIRDefinedTypeDiagnosticreport:                  {"http://hl7.org/fhir/resource-types", "DiagnosticReport"},
+	FHIRDefinedTypeDocumentmanifest:                  {"http://hl7.org/fhir/resource-types", "DocumentManifest"},
+	FHIRDefinedTypeDocumentreference:                 {"http://hl7.org/fhir/resource-types", "DocumentReference"},
+	FHIRDefinedTypeDomainresource:                    {"http://hl7.org/fhir/resource-types", "DomainResource"},
+	FHIRDefinedTypeEffectevidencesynthesis:           {"http://hl7.org/fhir/resource-types", "EffectEvidenceSynthesis"},
+	FHIRDefinedTypeEncounter:                         {"http://hl7.org/fhir/resource-types", "Encounter"},
+	FHIRDefinedTypeEndpoint:                          {"http://hl7.org/fhir/resource-types", "Endpoint"},
+	FHIRDefinedTypeEnrollmentrequest:                 {"http://hl7.org/fhir/resource-types", "EnrollmentRequest"},
+	FHIRDefinedTypeEnrollmentresponse:                {"http://hl7.org/fhir/resource-types", "EnrollmentResponse"},
+	FHIRDefinedTypeEpisodeofcare:                     {"http://hl7.org/fhir/resource-types", "EpisodeOfCare"},
+	FHIRDefinedTypeEventdefinition:                   {"http://hl7.org/fhir/resource-types", "EventDefinition"},
+	FHIRDefinedTypeEvidence:                          {"http://hl7.org/fhir/resource-types", "Evidence"},
+	FHIRDefinedTypeEvidencevariable:                  {"http://hl7.org/fhir/resource-types", "EvidenceVariable"},
+	FHIRDefinedTypeExamplescenario:                   {"http://hl7.org/fhir/resource-types", "ExampleScenario"},
+	FHIRDefinedTypeExplanationofbenefit:              {"http://hl7.org/fhir/resource-types", "ExplanationOfBenefit"},
+	FHIRDefinedTypeFamilymemberhistory:               {"http://hl7.org/fhir/resource-types", "FamilyMemberHistory"},
+	FHIRDefinedTypeFlag:                              {"http://hl7.org/fhir/resource-types", "Flag"},
+	FHIRDefinedTypeGoal:                              {"http://hl7.org/fhir/resource-types", "Goal"},
+	FHIRDefinedTypeGraphdefinition:                   {"http://hl7.org/fhir/resource-types", "GraphDefinition"},
+	FHIRDefinedTypeGroup:                             {"http://hl7.org/fhir/resource-types", "Group"},
+	FHIRDefinedTypeGuidanceresponse:                  {"http://hl7.org/fhir/resource-types", "GuidanceResponse"},
+	FHIRDefinedTypeHealthcareservice:                 {"http://hl7.org/fhir/resource-types", "HealthcareService"},
+	FHIRDefinedTypeImagingstudy:                      {"http://hl7.org/fhir/resource-types", "ImagingStudy"},
+	FHIRDefinedTypeImmunization:                      {"http://hl7.org/fhir/resource-types", "Immunization"},
+	FHIRDefinedTypeImmunizationevaluation:            {"http://hl7.org/fhir/resource-types", "ImmunizationEvaluation"},
+	FHIRDefinedTypeImmunizationrecommendation:        {"http://hl7.org/fhir/resource-types", "ImmunizationRecommendation"},
+	FHIRDefinedTypeImplementationguide:               {"http://hl7.org/fhir/resource-types", "ImplementationGuide"},
+	FHIRDefinedTypeInsuranceplan:                     {"http://hl7.org/fhir/resource-types", "InsurancePlan"},
+	FHIRDefinedTypeInvoice:                           {"http://hl7.org/fhir/resource-types", "Invoice"},
+	FHIRDefinedTypeLibrary:                           {"http://hl7.org/fhir/resource-types", "Library"},
+	FHIRDefinedTypeLinkage:                           {"http://hl7.org/fhir/resource-types", "Linkage"},
+	FHIRDefinedTypeList:                              {"http://hl7.org/fhir/resource-types", "List"},
+	FHIRDefinedTypeLocation:                          {"http://hl7.org/fhir/resource-types", "Location"},
+	FHIRDefinedTypeMeasure:                           {"http://hl7.org/fhir/resource-types", "Measure"},
+	FHIRDefinedTypeMeasurereport:                     {"http://hl7.org/fhir/resource-types", "MeasureReport"},
+	FHIRDefinedTypeMedia:                             {"http://hl7.org/fhir/resource-types", "Media"},
+	FHIRDefinedTypeMedication:                        {"http://hl7.org/fhir/resource-types", "Medication"},
+	FHIRDefinedTypeMedicationadministration:          {"http://hl7.org/fhir/resource-types", "MedicationAdministration"},
+	FHIRDefinedTypeMedicationdispense:                {"http://hl7.org/fhir/resource-types", "MedicationDispense"},
+	FHIRDefinedTypeMedicationknowledge:               {"http://hl7.org/fhir/resource-types", "MedicationKnowledge"},
+	FHIRDefinedTypeMedicationrequest:                 {"http://hl7.org/fhir/resource-types", "MedicationRequest"},
+	FHIRDefinedTypeMedicationstatement:               {"http://hl7.org/fhir/resource-types", "MedicationStatement"},
+	FHIRDefinedTypeMedicinalproduct:                  {"http://hl7.org/fhir/resource-types", "MedicinalProduct"},
+	FHIRDefinedTypeMedicinalproductauthorization:     {"http://hl7.org/fhir/resource-types", "MedicinalProductAuthorization"},
+	FHIRDefinedTypeMedicinalproductcontraindication:  {"http://hl7.org/fhir/resource-types", "MedicinalProductContraindication"},
+	FHIRDefinedTypeMedicinalproductindication:        {"http://hl7.org/fhir/resource-types", "MedicinalProductIndication"},
+	FHIRDefinedTypeMedicinalproductingredient:        {"http://hl7.org/fhir/resource-types", "MedicinalProductIngredient"},
+	FHIRDefinedTypeMedicinalproductinteraction:       {"http://hl7.org/fhir/resource-types", "MedicinalProductInteraction"},
+	FHIRDefinedTypeMedicinalproductmanufactured:      {"http://hl7.org/fhir/resource-types", "MedicinalProductManufactured"},
+	FHIRDefinedTypeMedicinalproductpackaged:          {"http://hl7.org/fhir/resource-types", "MedicinalProductPackaged"},
+	FHIRDefinedTypeMedicinalproductpharmaceutical:    {"http://hl7.org/fhir/resource-types", "MedicinalProductPharmaceutical"},
+	FHIRDefinedTypeMedicinalproductundesirableeffect: {"http://hl7.org/fhir/resource-types", "MedicinalProductUndesirableEffect"},
+	FHIRDefinedTypeMessagedefinition:                 {"http://hl7.org/fhir/resource-types", "MessageDefinition"},
+	FHIRDefinedTypeMessageheader:                     {"http://hl7.org/fhir/resource-types", "MessageHeader"},
+	FHIRDefinedTypeMolecularsequence:                 {"http://hl7.org/fhir/resource-types", "MolecularSequence"},
+	FHIRDefinedTypeNamingsystem:                      {"http://hl7.org/fhir/resource-types", "NamingSystem"},
+	FHIRDefinedTypeNutritionorder:                    {"http://hl7.org/fhir/resource-types", "NutritionOrder"},
+	FHIRDefinedTypeObservation:                       {"http://hl7.org/fhir/resource-types", "Observation"},
+	FHIRDefinedTypeObservationdefinition:             {"http://hl7.org/fhir/resource-types", "ObservationDefinition"},
+	FHIRDefinedTypeOperationdefinition:               {"http://hl7.org/fhir/resource-types", "OperationDefinition"},
+	FHIRDefinedTypeOperationoutcome:                  {"http://hl7.org/fhir/resource-types", "OperationOutcome"},
+	FHIRDefinedTypeOrganization:                      {"http://hl7.org/fhir/resource-types", "Organization"},
+	FHIRDefinedTypeOrganizationaffiliation:           {"http://hl7.org/fhir/resource-types", "OrganizationAffiliation"},
+	FHIRDefinedTypeParameters:                        {"http://hl7.org/fhir/resource-types", "Parameters"},
+	FHIRDefinedTypePatient:                           {"http://hl7.org/fhir/resource-types", "Patient"},
+	FHIRDefinedTypePaymentnotice:                     {"http://hl7.org/fhir/resource-types", "PaymentNotice"},
+	FHIRDefinedTypePaymentreconciliation:             {"http://hl7.org/fhir/resource-types", "PaymentReconciliation"},
+	FHIRDefinedTypePerson:                            {"http://hl7.org/fhir/resource-types", "Person"},
+	FHIRDefinedTypePlandefinition:                    {"http://hl7.org/fhir/resource-types", "PlanDefinition"},
+	FHIRDefinedTypePractitioner:                      {"http://hl7.org/fhir/resource-types", "Practitioner"},
+	FHIRDefinedTypePractitionerrole:                  {"http://hl7.org/fhir/resource-types", "PractitionerRole"},
+	FHIRDefinedTypeProcedure:                         {"http://hl7.org/fhir/resource-types", "Procedure"},
+	FHIRDefinedTypeProvenance:                        {"http://hl7.org/fhir/resource-types", "Provenance"},
+	FHIRDefinedTypeQuestionnaire:                     {"http://hl7.org/fhir/resource-types", "Questionnaire"},
+	FHIRDefinedTypeQuestionnaireresponse:             {"http://hl7.org/fhir/resource-types", "QuestionnaireResponse"},
+	FHIRDefinedTypeRelatedperson:                     {"http://hl7.org/fhir/resource-types", "RelatedPerson"},
+	FHIRDefinedTypeRequestgroup:                      {"http://hl7.org/fhir/resource-types", "RequestGroup"},
+	FHIRDefinedTypeResearchdefinition:                {"http://hl7.org/fhir/resource-types", "ResearchDefinition"},
+	FHIRDefinedTypeResearchelementdefinition:         {"http://hl7.org/fhir/resource-types", "ResearchElementDefinition"},
+	FHIRDefinedTypeResearchstudy:                     {"http://hl7.org/fhir/resource-types", "ResearchStudy"},
+	FHIRDefinedTypeResearchsubject:                   {"http://hl7.org/fhir/resource-types", "ResearchSubject"},
+	FHIRDefinedTypeResource:                          {"http://hl7.org/fhir/resource-types", "Resource"},
+	FHIRDefinedTypeRiskassessment:                    {"http://hl7.org/fhir/resource-types", "RiskAssessment"},
+	FHIRDefinedTypeRiskevidencesynthesis:             {"http://hl7.org/fhir/resource-types", "RiskEvidenceSynthesis"},
+	FHIRDefinedTypeSchedule:                          {"http://hl7.org/fhir/resource-types", "Schedule"},
+	FHIRDefinedTypeSearchparameter:                   {"http://hl7.org/fhir/resource-types", "SearchParameter"},
+	FHIRDefinedTypeServicerequest:                    {"http://hl7.org/fhir/resource-types", "ServiceRequest"},
+	FHIRDefinedTypeSlot:                              {"http://hl7.org/fhir/resource-types", "Slot"},
+	FHIRDefinedTypeSpecimen:                          {"http://hl7.org/fhir/resource-types", "Specimen"},
+	FHIRDefinedTypeSpecimendefinition:                {"http://hl7.org/fhir/resource-types", "SpecimenDefinition"},
+	FHIRDefinedTypeStructuredefinition:               {"http://hl7.org/fhir/resource-types", "StructureDefinition"},
+	FHIRDefinedTypeStructuremap:                      {"http://hl7.org/fhir/resource-types", "StructureMap"},
+	FHIRDefinedTypeSubscription:                      {"http://hl7.org/fhir/resource-types", "Subscription"},
+	FHIRDefinedTypeSubstance:                         {"http://hl7.org/fhir/resource-types", "Substance"},
+	FHIRDefinedTypeSubstancenucleicacid:              {"http://hl7.org/fhir/resource-types", "SubstanceNucleicAcid"},
+	FHIRDefinedTypeSubstancepolymer:                  {"http://hl7.org/fhir/resource-types", "SubstancePolymer"},
+	FHIRDefinedTypeSubstanceprotein:                  {"http://hl7.org/fhir/resource-types", "SubstanceProtein"},
+	FHIRDefinedTypeSubstancereferenceinformation:     {"http://hl7.org/fhir/resource-types", "SubstanceReferenceInformation"},
+	FHIRDefinedTypeSubstancesourcematerial:           {"http://hl7.org/fhir/resource-types", "SubstanceSourceMaterial"},
+	FHIRDefinedTypeSubstancespecification:            {"http://hl7.org/fhir/resource-types", "SubstanceSpecification"},
+	FHIRDefinedTypeSupplydelivery:                    {"http://hl7.org/fhir/resource-types", "SupplyDelivery"},
+	FHIRDefinedTypeSupplyrequest:                     {"http://hl7.org/fhir/resource-types", "SupplyRequest"},
+	FHIRDefinedTypeTask:                              {"http://hl7.org/fhir/resource-types", "Task"},
+	FHIRDefinedTypeTerminologycapabilities:           {"http://hl7.org/fhir/resource-types", "TerminologyCapabilities"},
+	FHIRDefinedTypeTestreport:                        {"http://hl7.org/fhir/resource-types", "TestReport"},
+	FHIRDefinedTypeTestscript:                        {"http://hl7.org/fhir/resource-types", "TestScript"},
+	FHIRDefinedTypeValueset:                          {"http://hl7.org/fhir/resource-types", "ValueSet"},
+	FHIRDefinedTypeVerificationresult:                {"http://hl7.org/fhir/resource-types", "VerificationResult"},
+	FHIRDefinedTypeVisionprescription:                {"http://hl7.org/fhir/resource-types", "VisionPrescription"},
+}
+
+// FHIRDefinedTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func FHIRDefinedTypeValues() []FHIRDefinedType {
+	return []FHIRDefinedType{
+		FHIRDefinedTypeAddress,
+		FHIRDefinedTypeAge,
+		FHIRDefinedTypeAnnotation,
+		FHIRDefinedTypeAttachment,
+		FHIRDefinedTypeBackboneelement,
+		FHIRDefinedTypeCodeableconcept,
+		FHIRDefinedTypeCoding,
+		FHIRDefinedTypeContactdetail,
+		FHIRDefinedTypeContactpoint,
+		FHIRDefinedTypeContributor,
+		FHIRDefinedTypeCount,
+		FHIRDefinedTypeDatarequirement,
+		FHIRDefinedTypeDistance,
+		FHIRDefinedTypeDosage,
+		FHIRDefinedTypeDuration,
+		FHIRDefinedTypeElement,
+		FHIRDefinedTypeElementdefinition,
+		FHIRDefinedTypeExpression,
+		FHIRDefinedTypeExtension,
+		FHIRDefinedTypeHumanname,
+		FHIRDefinedTypeIdentifier,
+		FHIRDefinedTypeMarketingstatus,
+		FHIRDefinedTypeMeta,
+		FHIRDefinedTypeMoney,
+		FHIRDefinedTypeMoneyquantity,
+		FHIRDefinedTypeNarrative,
+		FHIRDefinedTypeParameterdefinition,
+		FHIRDefinedTypePeriod,
+		FHIRDefinedTypePopulation,
+		FHIRDefinedTypeProdcharacteristic,
+		FHIRDefinedTypeProductshelflife,
+		FHIRDefinedTypeQuantity,
+		FHIRDefinedTypeRange,
+		FHIRDefinedTypeRatio,
+		FHIRDefinedTypeReference,
+		FHIRDefinedTypeRelatedartifact,
+		FHIRDefinedTypeSampleddata,
+		FHIRDefinedTypeSignature,
+		FHIRDefinedTypeSimplequantity,
+		FHIRDefinedTypeSubstanceamount,
+		FHIRDefinedTypeTiming,
+		FHIRDefinedTypeTriggerdefinition,
+		FHIRDefinedTypeUsagecontext,
+		FHIRDefinedTypeBase64binary,
+		FHIRDefinedTypeBoolean,
+		FHIRDefinedTypeCanonical,
+		FHIRDefinedTypeCode,
+		FHIRDefinedTypeDate,
+		FHIRDefinedTypeDatetime,
+		FHIRDefinedTypeDecimal,
+		FHIRDefinedTypeId,
+		FHIRDefinedTypeInstant,
+		FHIRDefinedTypeInteger,
+		FHIRDefinedTypeMarkdown,
+		FHIRDefinedTypeOid,
+		FHIRDefinedTypePositiveint,
+		FHIRDefinedTypeString,
+		FHIRDefinedTypeTime,
+		FHIRDefinedTypeUnsignedint,
+		FHIRDefinedTypeUri,
+		FHIRDefinedTypeUrl,
+		FHIRDefinedTypeUuid,
+		FHIRDefinedTypeXhtml,
+		FHIRDefinedTypeAccount,
+		FHIRDefinedTypeActivitydefinition,
+		FHIRDefinedTypeAdverseevent,
+		FHIRDefinedTypeAllergyintolerance,
+		FHIRDefinedTypeAppointment,
+		FHIRDefinedTypeAppointmentresponse,
+		FHIRDefinedTypeAuditevent,
+		FHIRDefinedTypeBasic,
+		FHIRDefinedTypeBinary,
+		FHIRDefinedTypeBiologicallyderivedproduct,
+		FHIRDefinedTypeBodystructure,
+		FHIRDefinedTypeBundle,
+		FHIRDefinedTypeCapabilitystatement,
+		FHIRDefinedTypeCareplan,
+		FHIRDefinedTypeCareteam,
+		FHIRDefinedTypeCatalogentry,
+		FHIRDefinedTypeChargeitem,
+		FHIRDefinedTypeChargeitemdefinition,
+		FHIRDefinedTypeClaim,
+		FHIRDefinedTypeClaimresponse,
+		FHIRDefinedTypeClinicalimpression,
+		FHIRDefinedTypeCodesystem,
+		FHIRDefinedTypeCommunication,
+		FHIRDefinedTypeCommunicationrequest,
+		FHIRDefinedTypeCompartmentdefinition,
+		FHIRDefinedTypeComposition,
+		FHIRDefinedTypeConceptmap,
+		FHIRDefinedTypeCondition,
+		FHIRDefinedTypeConsent,
+		FHIRDefinedTypeContract,
+		FHIRDefinedTypeCoverage,
+		FHIRDefinedTypeCoverageeligibilityrequest,
+		FHIRDefinedTypeCoverageeligibilityresponse,
+		FHIRDefinedTypeDetectedissue,
+		FHIRDefinedTypeDevice,
+		FHIRDefinedTypeDevicedefinition,
+		FHIRDefinedTypeDevicemetric,
+		FHIRDefinedTypeDevicerequest,
+		FHIRDefinedTypeDeviceusestatement,
+		FHIRDefinedTypeDiagnosticreport,
+		FHIRDefinedTypeDocumentmanifest,
+		FHIRDefinedTypeDocumentreference,
+		FHIRDefinedTypeDomainresource,
+		FHIRDefinedTypeEffectevidencesynthesis,
+		FHIRDefinedTypeEncounter,
+		FHIRDefinedTypeEndpoint,
+		FHIRDefinedTypeEnrollmentrequest,
+		FHIRDefinedTypeEnrollmentresponse,
+		FHIRDefinedTypeEpisodeofcare,
+		FHIRDefinedTypeEventdefinition,
+		FHIRDefinedTypeEvidence,
+		FHIRDefinedTypeEvidencevariable,
+		FHIRDefinedTypeExamplescenario,
+		FHIRDefinedTypeExplanationofbenefit,
+		FHIRDefinedTypeFamilymemberhistory,
+		FHIRDefinedTypeFlag,
+		FHIRDefinedTypeGoal,
+		FHIRDefinedTypeGraphdefinition,
+		FHIRDefinedTypeGroup,
+		FHIRDefinedTypeGuidanceresponse,
+		FHIRDefinedTypeHealthcareservice,
+		FHIRDefinedTypeImagingstudy,
+		FHIRDefinedTypeImmunization,
+		FHIRDefinedTypeImmunizationevaluation,
+		FHIRDefinedTypeImmunizationrecommendation,
+		FHIRDefinedTypeImplementationguide,
+		FHIRDefinedTypeInsuranceplan,
+		FHIRDefinedTypeInvoice,
+		FHIRDefinedTypeLibrary,
+		FHIRDefinedTypeLinkage,
+		FHIRDefinedTypeList,
+		FHIRDefinedTypeLocation,
+		FHIRDefinedTypeMeasure,
+		FHIRDefinedTypeMeasurereport,
+		FHIRDefinedTypeMedia,
+		FHIRDefinedTypeMedication,
+		FHIRDefinedTypeMedicationadministration,
+		FHIRDefinedTypeMedicationdispense,
+		FHIRDefinedTypeMedicationknowledge,
+		FHIRDefinedTypeMedicationrequest,
+		FHIRDefinedTypeMedicationstatement,
+		FHIRDefinedTypeMedicinalproduct,
+		FHIRDefinedTypeMedicinalproductauthorization,
+		FHIRDefinedTypeMedicinalproductcontraindication,
+		FHIRDefinedTypeMedicinalproductindication,
+		FHIRDefinedTypeMedicinalproductingredient,
+		FHIRDefinedTypeMedicinalproductinteraction,
+		FHIRDefinedTypeMedicinalproductmanufactured,
+		FHIRDefinedTypeMedicinalproductpackaged,
+		FHIRDefinedTypeMedicinalproductpharmaceutical,
+		FHIRDefinedTypeMedicinalproductundesirableeffect,
+		FHIRDefinedTypeMessagedefinition,
+		FHIRDefinedTypeMessageheader,
+		FHIRDefinedTypeMolecularsequence,
+		FHIRDefinedTypeNamingsystem,
+		FHIRDefinedTypeNutritionorder,
+		FHIRDefinedTypeObservation,
+		FHIRDefinedTypeObservationdefinition,
+		FHIRDefinedTypeOperationdefinition,
+		FHIRDefinedTypeOperationoutcome,
+		FHIRDefinedTypeOrganization,
+		FHIRDefinedTypeOrganizationaffiliation,
+		FHIRDefinedTypeParameters,
+		FHIRDefinedTypePatient,
+		FHIRDefinedTypePaymentnotice,
+		FHIRDefinedTypePaymentreconciliation,
+		FHIRDefinedTypePerson,
+		FHIRDefinedTypePlandefinition,
+		FHIRDefinedTypePractitioner,
+		FHIRDefinedTypePractitionerrole,
+		FHIRDefinedTypeProcedure,
+		FHIRDefinedTypeProvenance,
+		FHIRDefinedTypeQuestionnaire,
+		FHIRDefinedTypeQuestionnaireresponse,
+		FHIRDefinedTypeRelatedperson,
+		FHIRDefinedTypeRequestgroup,
+		FHIRDefinedTypeResearchdefinition,
+		FHIRDefinedTypeResearchelementdefinition,
+		FHIRDefinedTypeResearchstudy,
+		FHIRDefinedTypeResearchsubject,
+		FHIRDefinedTypeResource,
+		FHIRDefinedTypeRiskassessment,
+		FHIRDefinedTypeRiskevidencesynthesis,
+		FHIRDefinedTypeSchedule,
+		FHIRDefinedTypeSearchparameter,
+		FHIRDefinedTypeServicerequest,
+		FHIRDefinedTypeSlot,
+		FHIRDefinedTypeSpecimen,
+		FHIRDefinedTypeSpecimendefinition,
+		FHIRDefinedTypeStructuredefinition,
+		FHIRDefinedTypeStructuremap,
+		FHIRDefinedTypeSubscription,
+		FHIRDefinedTypeSubstance,
+		FHIRDefinedTypeSubstancenucleicacid,
+		FHIRDefinedTypeSubstancepolymer,
+		FHIRDefinedTypeSubstanceprotein,
+		FHIRDefinedTypeSubstancereferenceinformation,
+		FHIRDefinedTypeSubstancesourcematerial,
+		FHIRDefinedTypeSubstancespecification,
+		FHIRDefinedTypeSupplydelivery,
+		FHIRDefinedTypeSupplyrequest,
+		FHIRDefinedTypeTask,
+		FHIRDefinedTypeTerminologycapabilities,
+		FHIRDefinedTypeTestreport,
+		FHIRDefinedTypeTestscript,
+		FHIRDefinedTypeValueset,
+		FHIRDefinedTypeVerificationresult,
+		FHIRDefinedTypeVisionprescription,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c FHIRDefinedType) Display() string {
+	if info, ok := FHIRDefinedTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c FHIRDefinedType) System() string {
+	return FHIRDefinedTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c FHIRDefinedType) Coding() Coding {
 	system, display := c.System(), c.Display()
 	coding := Coding{Code: Ptr(string(c)), Display: &display}
 	if system != "" {
@@ -9499,7 +12309,7 @@ var IssueTypeTable = map[IssueType]IssueTypeInfo{
 	IssueTypeUnknown:         {"http://hl7.org/fhir/issue-type", "Unknown User"},
 	IssueTypeExpired:         {"http://hl7.org/fhir/issue-type", "Session Expired"},
 	IssueTypeForbidden:       {"http://hl7.org/fhir/issue-type", "Forbidden"},
-	IssueTypeSuppressed:      {"http://hl7.org/fhir/issue-type", "Information  Suppressed"},
+	IssueTypeSuppressed:      {"http://hl7.org/fhir/issue-type", "Information Suppressed"},
 	IssueTypeProcessing:      {"http://hl7.org/fhir/issue-type", "Processing Failure"},
 	IssueTypeNotSupported:    {"http://hl7.org/fhir/issue-type", "Content not supported"},
 	IssueTypeDuplicate:       {"http://hl7.org/fhir/issue-type", "Duplicate"},
@@ -14019,6 +16829,351 @@ func (c SlicingRules) Coding() Coding {
 	return coding
 }
 
+// ResourceTypeInfo is the specification's own data for one code.
+type ResourceTypeInfo struct {
+	System  string
+	Display string
+}
+
+// ResourceTypeTable maps each code to what the specification says about it.
+var ResourceTypeTable = map[ResourceType]ResourceTypeInfo{
+	ResourceTypeAccount:                           {"http://hl7.org/fhir/resource-types", "Account"},
+	ResourceTypeActivitydefinition:                {"http://hl7.org/fhir/resource-types", "ActivityDefinition"},
+	ResourceTypeAdverseevent:                      {"http://hl7.org/fhir/resource-types", "AdverseEvent"},
+	ResourceTypeAllergyintolerance:                {"http://hl7.org/fhir/resource-types", "AllergyIntolerance"},
+	ResourceTypeAppointment:                       {"http://hl7.org/fhir/resource-types", "Appointment"},
+	ResourceTypeAppointmentresponse:               {"http://hl7.org/fhir/resource-types", "AppointmentResponse"},
+	ResourceTypeAuditevent:                        {"http://hl7.org/fhir/resource-types", "AuditEvent"},
+	ResourceTypeBasic:                             {"http://hl7.org/fhir/resource-types", "Basic"},
+	ResourceTypeBinary:                            {"http://hl7.org/fhir/resource-types", "Binary"},
+	ResourceTypeBiologicallyderivedproduct:        {"http://hl7.org/fhir/resource-types", "BiologicallyDerivedProduct"},
+	ResourceTypeBodystructure:                     {"http://hl7.org/fhir/resource-types", "BodyStructure"},
+	ResourceTypeBundle:                            {"http://hl7.org/fhir/resource-types", "Bundle"},
+	ResourceTypeCapabilitystatement:               {"http://hl7.org/fhir/resource-types", "CapabilityStatement"},
+	ResourceTypeCareplan:                          {"http://hl7.org/fhir/resource-types", "CarePlan"},
+	ResourceTypeCareteam:                          {"http://hl7.org/fhir/resource-types", "CareTeam"},
+	ResourceTypeCatalogentry:                      {"http://hl7.org/fhir/resource-types", "CatalogEntry"},
+	ResourceTypeChargeitem:                        {"http://hl7.org/fhir/resource-types", "ChargeItem"},
+	ResourceTypeChargeitemdefinition:              {"http://hl7.org/fhir/resource-types", "ChargeItemDefinition"},
+	ResourceTypeClaim:                             {"http://hl7.org/fhir/resource-types", "Claim"},
+	ResourceTypeClaimresponse:                     {"http://hl7.org/fhir/resource-types", "ClaimResponse"},
+	ResourceTypeClinicalimpression:                {"http://hl7.org/fhir/resource-types", "ClinicalImpression"},
+	ResourceTypeCodesystem:                        {"http://hl7.org/fhir/resource-types", "CodeSystem"},
+	ResourceTypeCommunication:                     {"http://hl7.org/fhir/resource-types", "Communication"},
+	ResourceTypeCommunicationrequest:              {"http://hl7.org/fhir/resource-types", "CommunicationRequest"},
+	ResourceTypeCompartmentdefinition:             {"http://hl7.org/fhir/resource-types", "CompartmentDefinition"},
+	ResourceTypeComposition:                       {"http://hl7.org/fhir/resource-types", "Composition"},
+	ResourceTypeConceptmap:                        {"http://hl7.org/fhir/resource-types", "ConceptMap"},
+	ResourceTypeCondition:                         {"http://hl7.org/fhir/resource-types", "Condition"},
+	ResourceTypeConsent:                           {"http://hl7.org/fhir/resource-types", "Consent"},
+	ResourceTypeContract:                          {"http://hl7.org/fhir/resource-types", "Contract"},
+	ResourceTypeCoverage:                          {"http://hl7.org/fhir/resource-types", "Coverage"},
+	ResourceTypeCoverageeligibilityrequest:        {"http://hl7.org/fhir/resource-types", "CoverageEligibilityRequest"},
+	ResourceTypeCoverageeligibilityresponse:       {"http://hl7.org/fhir/resource-types", "CoverageEligibilityResponse"},
+	ResourceTypeDetectedissue:                     {"http://hl7.org/fhir/resource-types", "DetectedIssue"},
+	ResourceTypeDevice:                            {"http://hl7.org/fhir/resource-types", "Device"},
+	ResourceTypeDevicedefinition:                  {"http://hl7.org/fhir/resource-types", "DeviceDefinition"},
+	ResourceTypeDevicemetric:                      {"http://hl7.org/fhir/resource-types", "DeviceMetric"},
+	ResourceTypeDevicerequest:                     {"http://hl7.org/fhir/resource-types", "DeviceRequest"},
+	ResourceTypeDeviceusestatement:                {"http://hl7.org/fhir/resource-types", "DeviceUseStatement"},
+	ResourceTypeDiagnosticreport:                  {"http://hl7.org/fhir/resource-types", "DiagnosticReport"},
+	ResourceTypeDocumentmanifest:                  {"http://hl7.org/fhir/resource-types", "DocumentManifest"},
+	ResourceTypeDocumentreference:                 {"http://hl7.org/fhir/resource-types", "DocumentReference"},
+	ResourceTypeDomainresource:                    {"http://hl7.org/fhir/resource-types", "DomainResource"},
+	ResourceTypeEffectevidencesynthesis:           {"http://hl7.org/fhir/resource-types", "EffectEvidenceSynthesis"},
+	ResourceTypeEncounter:                         {"http://hl7.org/fhir/resource-types", "Encounter"},
+	ResourceTypeEndpoint:                          {"http://hl7.org/fhir/resource-types", "Endpoint"},
+	ResourceTypeEnrollmentrequest:                 {"http://hl7.org/fhir/resource-types", "EnrollmentRequest"},
+	ResourceTypeEnrollmentresponse:                {"http://hl7.org/fhir/resource-types", "EnrollmentResponse"},
+	ResourceTypeEpisodeofcare:                     {"http://hl7.org/fhir/resource-types", "EpisodeOfCare"},
+	ResourceTypeEventdefinition:                   {"http://hl7.org/fhir/resource-types", "EventDefinition"},
+	ResourceTypeEvidence:                          {"http://hl7.org/fhir/resource-types", "Evidence"},
+	ResourceTypeEvidencevariable:                  {"http://hl7.org/fhir/resource-types", "EvidenceVariable"},
+	ResourceTypeExamplescenario:                   {"http://hl7.org/fhir/resource-types", "ExampleScenario"},
+	ResourceTypeExplanationofbenefit:              {"http://hl7.org/fhir/resource-types", "ExplanationOfBenefit"},
+	ResourceTypeFamilymemberhistory:               {"http://hl7.org/fhir/resource-types", "FamilyMemberHistory"},
+	ResourceTypeFlag:                              {"http://hl7.org/fhir/resource-types", "Flag"},
+	ResourceTypeGoal:                              {"http://hl7.org/fhir/resource-types", "Goal"},
+	ResourceTypeGraphdefinition:                   {"http://hl7.org/fhir/resource-types", "GraphDefinition"},
+	ResourceTypeGroup:                             {"http://hl7.org/fhir/resource-types", "Group"},
+	ResourceTypeGuidanceresponse:                  {"http://hl7.org/fhir/resource-types", "GuidanceResponse"},
+	ResourceTypeHealthcareservice:                 {"http://hl7.org/fhir/resource-types", "HealthcareService"},
+	ResourceTypeImagingstudy:                      {"http://hl7.org/fhir/resource-types", "ImagingStudy"},
+	ResourceTypeImmunization:                      {"http://hl7.org/fhir/resource-types", "Immunization"},
+	ResourceTypeImmunizationevaluation:            {"http://hl7.org/fhir/resource-types", "ImmunizationEvaluation"},
+	ResourceTypeImmunizationrecommendation:        {"http://hl7.org/fhir/resource-types", "ImmunizationRecommendation"},
+	ResourceTypeImplementationguide:               {"http://hl7.org/fhir/resource-types", "ImplementationGuide"},
+	ResourceTypeInsuranceplan:                     {"http://hl7.org/fhir/resource-types", "InsurancePlan"},
+	ResourceTypeInvoice:                           {"http://hl7.org/fhir/resource-types", "Invoice"},
+	ResourceTypeLibrary:                           {"http://hl7.org/fhir/resource-types", "Library"},
+	ResourceTypeLinkage:                           {"http://hl7.org/fhir/resource-types", "Linkage"},
+	ResourceTypeList:                              {"http://hl7.org/fhir/resource-types", "List"},
+	ResourceTypeLocation:                          {"http://hl7.org/fhir/resource-types", "Location"},
+	ResourceTypeMeasure:                           {"http://hl7.org/fhir/resource-types", "Measure"},
+	ResourceTypeMeasurereport:                     {"http://hl7.org/fhir/resource-types", "MeasureReport"},
+	ResourceTypeMedia:                             {"http://hl7.org/fhir/resource-types", "Media"},
+	ResourceTypeMedication:                        {"http://hl7.org/fhir/resource-types", "Medication"},
+	ResourceTypeMedicationadministration:          {"http://hl7.org/fhir/resource-types", "MedicationAdministration"},
+	ResourceTypeMedicationdispense:                {"http://hl7.org/fhir/resource-types", "MedicationDispense"},
+	ResourceTypeMedicationknowledge:               {"http://hl7.org/fhir/resource-types", "MedicationKnowledge"},
+	ResourceTypeMedicationrequest:                 {"http://hl7.org/fhir/resource-types", "MedicationRequest"},
+	ResourceTypeMedicationstatement:               {"http://hl7.org/fhir/resource-types", "MedicationStatement"},
+	ResourceTypeMedicinalproduct:                  {"http://hl7.org/fhir/resource-types", "MedicinalProduct"},
+	ResourceTypeMedicinalproductauthorization:     {"http://hl7.org/fhir/resource-types", "MedicinalProductAuthorization"},
+	ResourceTypeMedicinalproductcontraindication:  {"http://hl7.org/fhir/resource-types", "MedicinalProductContraindication"},
+	ResourceTypeMedicinalproductindication:        {"http://hl7.org/fhir/resource-types", "MedicinalProductIndication"},
+	ResourceTypeMedicinalproductingredient:        {"http://hl7.org/fhir/resource-types", "MedicinalProductIngredient"},
+	ResourceTypeMedicinalproductinteraction:       {"http://hl7.org/fhir/resource-types", "MedicinalProductInteraction"},
+	ResourceTypeMedicinalproductmanufactured:      {"http://hl7.org/fhir/resource-types", "MedicinalProductManufactured"},
+	ResourceTypeMedicinalproductpackaged:          {"http://hl7.org/fhir/resource-types", "MedicinalProductPackaged"},
+	ResourceTypeMedicinalproductpharmaceutical:    {"http://hl7.org/fhir/resource-types", "MedicinalProductPharmaceutical"},
+	ResourceTypeMedicinalproductundesirableeffect: {"http://hl7.org/fhir/resource-types", "MedicinalProductUndesirableEffect"},
+	ResourceTypeMessagedefinition:                 {"http://hl7.org/fhir/resource-types", "MessageDefinition"},
+	ResourceTypeMessageheader:                     {"http://hl7.org/fhir/resource-types", "MessageHeader"},
+	ResourceTypeMolecularsequence:                 {"http://hl7.org/fhir/resource-types", "MolecularSequence"},
+	ResourceTypeNamingsystem:                      {"http://hl7.org/fhir/resource-types", "NamingSystem"},
+	ResourceTypeNutritionorder:                    {"http://hl7.org/fhir/resource-types", "NutritionOrder"},
+	ResourceTypeObservation:                       {"http://hl7.org/fhir/resource-types", "Observation"},
+	ResourceTypeObservationdefinition:             {"http://hl7.org/fhir/resource-types", "ObservationDefinition"},
+	ResourceTypeOperationdefinition:               {"http://hl7.org/fhir/resource-types", "OperationDefinition"},
+	ResourceTypeOperationoutcome:                  {"http://hl7.org/fhir/resource-types", "OperationOutcome"},
+	ResourceTypeOrganization:                      {"http://hl7.org/fhir/resource-types", "Organization"},
+	ResourceTypeOrganizationaffiliation:           {"http://hl7.org/fhir/resource-types", "OrganizationAffiliation"},
+	ResourceTypeParameters:                        {"http://hl7.org/fhir/resource-types", "Parameters"},
+	ResourceTypePatient:                           {"http://hl7.org/fhir/resource-types", "Patient"},
+	ResourceTypePaymentnotice:                     {"http://hl7.org/fhir/resource-types", "PaymentNotice"},
+	ResourceTypePaymentreconciliation:             {"http://hl7.org/fhir/resource-types", "PaymentReconciliation"},
+	ResourceTypePerson:                            {"http://hl7.org/fhir/resource-types", "Person"},
+	ResourceTypePlandefinition:                    {"http://hl7.org/fhir/resource-types", "PlanDefinition"},
+	ResourceTypePractitioner:                      {"http://hl7.org/fhir/resource-types", "Practitioner"},
+	ResourceTypePractitionerrole:                  {"http://hl7.org/fhir/resource-types", "PractitionerRole"},
+	ResourceTypeProcedure:                         {"http://hl7.org/fhir/resource-types", "Procedure"},
+	ResourceTypeProvenance:                        {"http://hl7.org/fhir/resource-types", "Provenance"},
+	ResourceTypeQuestionnaire:                     {"http://hl7.org/fhir/resource-types", "Questionnaire"},
+	ResourceTypeQuestionnaireresponse:             {"http://hl7.org/fhir/resource-types", "QuestionnaireResponse"},
+	ResourceTypeRelatedperson:                     {"http://hl7.org/fhir/resource-types", "RelatedPerson"},
+	ResourceTypeRequestgroup:                      {"http://hl7.org/fhir/resource-types", "RequestGroup"},
+	ResourceTypeResearchdefinition:                {"http://hl7.org/fhir/resource-types", "ResearchDefinition"},
+	ResourceTypeResearchelementdefinition:         {"http://hl7.org/fhir/resource-types", "ResearchElementDefinition"},
+	ResourceTypeResearchstudy:                     {"http://hl7.org/fhir/resource-types", "ResearchStudy"},
+	ResourceTypeResearchsubject:                   {"http://hl7.org/fhir/resource-types", "ResearchSubject"},
+	ResourceTypeResource:                          {"http://hl7.org/fhir/resource-types", "Resource"},
+	ResourceTypeRiskassessment:                    {"http://hl7.org/fhir/resource-types", "RiskAssessment"},
+	ResourceTypeRiskevidencesynthesis:             {"http://hl7.org/fhir/resource-types", "RiskEvidenceSynthesis"},
+	ResourceTypeSchedule:                          {"http://hl7.org/fhir/resource-types", "Schedule"},
+	ResourceTypeSearchparameter:                   {"http://hl7.org/fhir/resource-types", "SearchParameter"},
+	ResourceTypeServicerequest:                    {"http://hl7.org/fhir/resource-types", "ServiceRequest"},
+	ResourceTypeSlot:                              {"http://hl7.org/fhir/resource-types", "Slot"},
+	ResourceTypeSpecimen:                          {"http://hl7.org/fhir/resource-types", "Specimen"},
+	ResourceTypeSpecimendefinition:                {"http://hl7.org/fhir/resource-types", "SpecimenDefinition"},
+	ResourceTypeStructuredefinition:               {"http://hl7.org/fhir/resource-types", "StructureDefinition"},
+	ResourceTypeStructuremap:                      {"http://hl7.org/fhir/resource-types", "StructureMap"},
+	ResourceTypeSubscription:                      {"http://hl7.org/fhir/resource-types", "Subscription"},
+	ResourceTypeSubstance:                         {"http://hl7.org/fhir/resource-types", "Substance"},
+	ResourceTypeSubstancenucleicacid:              {"http://hl7.org/fhir/resource-types", "SubstanceNucleicAcid"},
+	ResourceTypeSubstancepolymer:                  {"http://hl7.org/fhir/resource-types", "SubstancePolymer"},
+	ResourceTypeSubstanceprotein:                  {"http://hl7.org/fhir/resource-types", "SubstanceProtein"},
+	ResourceTypeSubstancereferenceinformation:     {"http://hl7.org/fhir/resource-types", "SubstanceReferenceInformation"},
+	ResourceTypeSubstancesourcematerial:           {"http://hl7.org/fhir/resource-types", "SubstanceSourceMaterial"},
+	ResourceTypeSubstancespecification:            {"http://hl7.org/fhir/resource-types", "SubstanceSpecification"},
+	ResourceTypeSupplydelivery:                    {"http://hl7.org/fhir/resource-types", "SupplyDelivery"},
+	ResourceTypeSupplyrequest:                     {"http://hl7.org/fhir/resource-types", "SupplyRequest"},
+	ResourceTypeTask:                              {"http://hl7.org/fhir/resource-types", "Task"},
+	ResourceTypeTerminologycapabilities:           {"http://hl7.org/fhir/resource-types", "TerminologyCapabilities"},
+	ResourceTypeTestreport:                        {"http://hl7.org/fhir/resource-types", "TestReport"},
+	ResourceTypeTestscript:                        {"http://hl7.org/fhir/resource-types", "TestScript"},
+	ResourceTypeValueset:                          {"http://hl7.org/fhir/resource-types", "ValueSet"},
+	ResourceTypeVerificationresult:                {"http://hl7.org/fhir/resource-types", "VerificationResult"},
+	ResourceTypeVisionprescription:                {"http://hl7.org/fhir/resource-types", "VisionPrescription"},
+}
+
+// ResourceTypeValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func ResourceTypeValues() []ResourceType {
+	return []ResourceType{
+		ResourceTypeAccount,
+		ResourceTypeActivitydefinition,
+		ResourceTypeAdverseevent,
+		ResourceTypeAllergyintolerance,
+		ResourceTypeAppointment,
+		ResourceTypeAppointmentresponse,
+		ResourceTypeAuditevent,
+		ResourceTypeBasic,
+		ResourceTypeBinary,
+		ResourceTypeBiologicallyderivedproduct,
+		ResourceTypeBodystructure,
+		ResourceTypeBundle,
+		ResourceTypeCapabilitystatement,
+		ResourceTypeCareplan,
+		ResourceTypeCareteam,
+		ResourceTypeCatalogentry,
+		ResourceTypeChargeitem,
+		ResourceTypeChargeitemdefinition,
+		ResourceTypeClaim,
+		ResourceTypeClaimresponse,
+		ResourceTypeClinicalimpression,
+		ResourceTypeCodesystem,
+		ResourceTypeCommunication,
+		ResourceTypeCommunicationrequest,
+		ResourceTypeCompartmentdefinition,
+		ResourceTypeComposition,
+		ResourceTypeConceptmap,
+		ResourceTypeCondition,
+		ResourceTypeConsent,
+		ResourceTypeContract,
+		ResourceTypeCoverage,
+		ResourceTypeCoverageeligibilityrequest,
+		ResourceTypeCoverageeligibilityresponse,
+		ResourceTypeDetectedissue,
+		ResourceTypeDevice,
+		ResourceTypeDevicedefinition,
+		ResourceTypeDevicemetric,
+		ResourceTypeDevicerequest,
+		ResourceTypeDeviceusestatement,
+		ResourceTypeDiagnosticreport,
+		ResourceTypeDocumentmanifest,
+		ResourceTypeDocumentreference,
+		ResourceTypeDomainresource,
+		ResourceTypeEffectevidencesynthesis,
+		ResourceTypeEncounter,
+		ResourceTypeEndpoint,
+		ResourceTypeEnrollmentrequest,
+		ResourceTypeEnrollmentresponse,
+		ResourceTypeEpisodeofcare,
+		ResourceTypeEventdefinition,
+		ResourceTypeEvidence,
+		ResourceTypeEvidencevariable,
+		ResourceTypeExamplescenario,
+		ResourceTypeExplanationofbenefit,
+		ResourceTypeFamilymemberhistory,
+		ResourceTypeFlag,
+		ResourceTypeGoal,
+		ResourceTypeGraphdefinition,
+		ResourceTypeGroup,
+		ResourceTypeGuidanceresponse,
+		ResourceTypeHealthcareservice,
+		ResourceTypeImagingstudy,
+		ResourceTypeImmunization,
+		ResourceTypeImmunizationevaluation,
+		ResourceTypeImmunizationrecommendation,
+		ResourceTypeImplementationguide,
+		ResourceTypeInsuranceplan,
+		ResourceTypeInvoice,
+		ResourceTypeLibrary,
+		ResourceTypeLinkage,
+		ResourceTypeList,
+		ResourceTypeLocation,
+		ResourceTypeMeasure,
+		ResourceTypeMeasurereport,
+		ResourceTypeMedia,
+		ResourceTypeMedication,
+		ResourceTypeMedicationadministration,
+		ResourceTypeMedicationdispense,
+		ResourceTypeMedicationknowledge,
+		ResourceTypeMedicationrequest,
+		ResourceTypeMedicationstatement,
+		ResourceTypeMedicinalproduct,
+		ResourceTypeMedicinalproductauthorization,
+		ResourceTypeMedicinalproductcontraindication,
+		ResourceTypeMedicinalproductindication,
+		ResourceTypeMedicinalproductingredient,
+		ResourceTypeMedicinalproductinteraction,
+		ResourceTypeMedicinalproductmanufactured,
+		ResourceTypeMedicinalproductpackaged,
+		ResourceTypeMedicinalproductpharmaceutical,
+		ResourceTypeMedicinalproductundesirableeffect,
+		ResourceTypeMessagedefinition,
+		ResourceTypeMessageheader,
+		ResourceTypeMolecularsequence,
+		ResourceTypeNamingsystem,
+		ResourceTypeNutritionorder,
+		ResourceTypeObservation,
+		ResourceTypeObservationdefinition,
+		ResourceTypeOperationdefinition,
+		ResourceTypeOperationoutcome,
+		ResourceTypeOrganization,
+		ResourceTypeOrganizationaffiliation,
+		ResourceTypeParameters,
+		ResourceTypePatient,
+		ResourceTypePaymentnotice,
+		ResourceTypePaymentreconciliation,
+		ResourceTypePerson,
+		ResourceTypePlandefinition,
+		ResourceTypePractitioner,
+		ResourceTypePractitionerrole,
+		ResourceTypeProcedure,
+		ResourceTypeProvenance,
+		ResourceTypeQuestionnaire,
+		ResourceTypeQuestionnaireresponse,
+		ResourceTypeRelatedperson,
+		ResourceTypeRequestgroup,
+		ResourceTypeResearchdefinition,
+		ResourceTypeResearchelementdefinition,
+		ResourceTypeResearchstudy,
+		ResourceTypeResearchsubject,
+		ResourceTypeResource,
+		ResourceTypeRiskassessment,
+		ResourceTypeRiskevidencesynthesis,
+		ResourceTypeSchedule,
+		ResourceTypeSearchparameter,
+		ResourceTypeServicerequest,
+		ResourceTypeSlot,
+		ResourceTypeSpecimen,
+		ResourceTypeSpecimendefinition,
+		ResourceTypeStructuredefinition,
+		ResourceTypeStructuremap,
+		ResourceTypeSubscription,
+		ResourceTypeSubstance,
+		ResourceTypeSubstancenucleicacid,
+		ResourceTypeSubstancepolymer,
+		ResourceTypeSubstanceprotein,
+		ResourceTypeSubstancereferenceinformation,
+		ResourceTypeSubstancesourcematerial,
+		ResourceTypeSubstancespecification,
+		ResourceTypeSupplydelivery,
+		ResourceTypeSupplyrequest,
+		ResourceTypeTask,
+		ResourceTypeTerminologycapabilities,
+		ResourceTypeTestreport,
+		ResourceTypeTestscript,
+		ResourceTypeValueset,
+		ResourceTypeVerificationresult,
+		ResourceTypeVisionprescription,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c ResourceType) Display() string {
+	if info, ok := ResourceTypeTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c ResourceType) System() string {
+	return ResourceTypeTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c ResourceType) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
 // ResponseTypeInfo is the specification's own data for one code.
 type ResponseTypeInfo struct {
 	System  string
@@ -14607,6 +17762,747 @@ func (c SortDirection) System() string {
 // what a CodeableConcept needs, and where the system URL usually gets copied wrong
 // by hand.
 func (c SortDirection) Coding() Coding {
+	system, display := c.System(), c.Display()
+	coding := Coding{Code: Ptr(string(c)), Display: &display}
+	if system != "" {
+		coding.System = &system
+	}
+	return coding
+}
+
+// SPDXLicenseInfo is the specification's own data for one code.
+type SPDXLicenseInfo struct {
+	System  string
+	Display string
+}
+
+// SPDXLicenseTable maps each code to what the specification says about it.
+var SPDXLicenseTable = map[SPDXLicense]SPDXLicenseInfo{
+	SPDXLicenseNotOpenSource:                  {"http://hl7.org/fhir/spdx-license", "Not open source"},
+	SPDXLicense0bsd:                           {"http://hl7.org/fhir/spdx-license", "BSD Zero Clause License"},
+	SPDXLicenseAal:                            {"http://hl7.org/fhir/spdx-license", "Attribution Assurance License"},
+	SPDXLicenseAbstyles:                       {"http://hl7.org/fhir/spdx-license", "Abstyles License"},
+	SPDXLicenseAdobe2006:                      {"http://hl7.org/fhir/spdx-license", "Adobe Systems Incorporated Source Code License Agreement"},
+	SPDXLicenseAdobeGlyph:                     {"http://hl7.org/fhir/spdx-license", "Adobe Glyph List License"},
+	SPDXLicenseAdsl:                           {"http://hl7.org/fhir/spdx-license", "Amazon Digital Services License"},
+	SPDXLicenseAfl11:                          {"http://hl7.org/fhir/spdx-license", "Academic Free License v1.1"},
+	SPDXLicenseAfl12:                          {"http://hl7.org/fhir/spdx-license", "Academic Free License v1.2"},
+	SPDXLicenseAfl20:                          {"http://hl7.org/fhir/spdx-license", "Academic Free License v2.0"},
+	SPDXLicenseAfl21:                          {"http://hl7.org/fhir/spdx-license", "Academic Free License v2.1"},
+	SPDXLicenseAfl30:                          {"http://hl7.org/fhir/spdx-license", "Academic Free License v3.0"},
+	SPDXLicenseAfmparse:                       {"http://hl7.org/fhir/spdx-license", "Afmparse License"},
+	SPDXLicenseAgpl10Only:                     {"http://hl7.org/fhir/spdx-license", "Affero General Public License v1.0 only"},
+	SPDXLicenseAgpl10OrLater:                  {"http://hl7.org/fhir/spdx-license", "Affero General Public License v1.0 or later"},
+	SPDXLicenseAgpl30Only:                     {"http://hl7.org/fhir/spdx-license", "GNU Affero General Public License v3.0 only"},
+	SPDXLicenseAgpl30OrLater:                  {"http://hl7.org/fhir/spdx-license", "GNU Affero General Public License v3.0 or later"},
+	SPDXLicenseAladdin:                        {"http://hl7.org/fhir/spdx-license", "Aladdin Free Public License"},
+	SPDXLicenseAmdplpa:                        {"http://hl7.org/fhir/spdx-license", "AMD's plpa_map.c License"},
+	SPDXLicenseAml:                            {"http://hl7.org/fhir/spdx-license", "Apple MIT License"},
+	SPDXLicenseAmpas:                          {"http://hl7.org/fhir/spdx-license", "Academy of Motion Picture Arts and Sciences BSD"},
+	SPDXLicenseAntlrPd:                        {"http://hl7.org/fhir/spdx-license", "ANTLR Software Rights Notice"},
+	SPDXLicenseApache10:                       {"http://hl7.org/fhir/spdx-license", "Apache License 1.0"},
+	SPDXLicenseApache11:                       {"http://hl7.org/fhir/spdx-license", "Apache License 1.1"},
+	SPDXLicenseApache20:                       {"http://hl7.org/fhir/spdx-license", "Apache License 2.0"},
+	SPDXLicenseApafml:                         {"http://hl7.org/fhir/spdx-license", "Adobe Postscript AFM License"},
+	SPDXLicenseApl10:                          {"http://hl7.org/fhir/spdx-license", "Adaptive Public License 1.0"},
+	SPDXLicenseApsl10:                         {"http://hl7.org/fhir/spdx-license", "Apple Public Source License 1.0"},
+	SPDXLicenseApsl11:                         {"http://hl7.org/fhir/spdx-license", "Apple Public Source License 1.1"},
+	SPDXLicenseApsl12:                         {"http://hl7.org/fhir/spdx-license", "Apple Public Source License 1.2"},
+	SPDXLicenseApsl20:                         {"http://hl7.org/fhir/spdx-license", "Apple Public Source License 2.0"},
+	SPDXLicenseArtistic10Cl8:                  {"http://hl7.org/fhir/spdx-license", "Artistic License 1.0 w/clause 8"},
+	SPDXLicenseArtistic10Perl:                 {"http://hl7.org/fhir/spdx-license", "Artistic License 1.0 (Perl)"},
+	SPDXLicenseArtistic10:                     {"http://hl7.org/fhir/spdx-license", "Artistic License 1.0"},
+	SPDXLicenseArtistic20:                     {"http://hl7.org/fhir/spdx-license", "Artistic License 2.0"},
+	SPDXLicenseBahyph:                         {"http://hl7.org/fhir/spdx-license", "Bahyph License"},
+	SPDXLicenseBarr:                           {"http://hl7.org/fhir/spdx-license", "Barr License"},
+	SPDXLicenseBeerware:                       {"http://hl7.org/fhir/spdx-license", "Beerware License"},
+	SPDXLicenseBittorrent10:                   {"http://hl7.org/fhir/spdx-license", "BitTorrent Open Source License v1.0"},
+	SPDXLicenseBittorrent11:                   {"http://hl7.org/fhir/spdx-license", "BitTorrent Open Source License v1.1"},
+	SPDXLicenseBorceux:                        {"http://hl7.org/fhir/spdx-license", "Borceux license"},
+	SPDXLicenseBsd1Clause:                     {"http://hl7.org/fhir/spdx-license", "BSD 1-Clause License"},
+	SPDXLicenseBsd2ClauseFreebsd:              {"http://hl7.org/fhir/spdx-license", "BSD 2-Clause FreeBSD License"},
+	SPDXLicenseBsd2ClauseNetbsd:               {"http://hl7.org/fhir/spdx-license", "BSD 2-Clause NetBSD License"},
+	SPDXLicenseBsd2ClausePatent:               {"http://hl7.org/fhir/spdx-license", "BSD-2-Clause Plus Patent License"},
+	SPDXLicenseBsd2Clause:                     {"http://hl7.org/fhir/spdx-license", "BSD 2-Clause \"Simplified\" License"},
+	SPDXLicenseBsd3ClauseAttribution:          {"http://hl7.org/fhir/spdx-license", "BSD with attribution"},
+	SPDXLicenseBsd3ClauseClear:                {"http://hl7.org/fhir/spdx-license", "BSD 3-Clause Clear License"},
+	SPDXLicenseBsd3ClauseLbnl:                 {"http://hl7.org/fhir/spdx-license", "Lawrence Berkeley National Labs BSD variant license"},
+	SPDXLicenseBsd3ClauseNoNuclearLicense2014: {"http://hl7.org/fhir/spdx-license", "BSD 3-Clause No Nuclear License 2014"},
+	SPDXLicenseBsd3ClauseNoNuclearLicense:     {"http://hl7.org/fhir/spdx-license", "BSD 3-Clause No Nuclear License"},
+	SPDXLicenseBsd3ClauseNoNuclearWarranty:    {"http://hl7.org/fhir/spdx-license", "BSD 3-Clause No Nuclear Warranty"},
+	SPDXLicenseBsd3Clause:                     {"http://hl7.org/fhir/spdx-license", "BSD 3-Clause \"New\" or \"Revised\" License"},
+	SPDXLicenseBsd4ClauseUc:                   {"http://hl7.org/fhir/spdx-license", "BSD-4-Clause (University of California-Specific)"},
+	SPDXLicenseBsd4Clause:                     {"http://hl7.org/fhir/spdx-license", "BSD 4-Clause \"Original\" or \"Old\" License"},
+	SPDXLicenseBsdProtection:                  {"http://hl7.org/fhir/spdx-license", "BSD Protection License"},
+	SPDXLicenseBsdSourceCode:                  {"http://hl7.org/fhir/spdx-license", "BSD Source Code Attribution"},
+	SPDXLicenseBsl10:                          {"http://hl7.org/fhir/spdx-license", "Boost Software License 1.0"},
+	SPDXLicenseBzip2105:                       {"http://hl7.org/fhir/spdx-license", "bzip2 and libbzip2 License v1.0.5"},
+	SPDXLicenseBzip2106:                       {"http://hl7.org/fhir/spdx-license", "bzip2 and libbzip2 License v1.0.6"},
+	SPDXLicenseCaldera:                        {"http://hl7.org/fhir/spdx-license", "Caldera License"},
+	SPDXLicenseCatosl11:                       {"http://hl7.org/fhir/spdx-license", "Computer Associates Trusted Open Source License 1.1"},
+	SPDXLicenseCcBy10:                         {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution 1.0 Generic"},
+	SPDXLicenseCcBy20:                         {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution 2.0 Generic"},
+	SPDXLicenseCcBy25:                         {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution 2.5 Generic"},
+	SPDXLicenseCcBy30:                         {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution 3.0 Unported"},
+	SPDXLicenseCcBy40:                         {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution 4.0 International"},
+	SPDXLicenseCcByNc10:                       {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution Non Commercial 1.0 Generic"},
+	SPDXLicenseCcByNc20:                       {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution Non Commercial 2.0 Generic"},
+	SPDXLicenseCcByNc25:                       {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution Non Commercial 2.5 Generic"},
+	SPDXLicenseCcByNc30:                       {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution Non Commercial 3.0 Unported"},
+	SPDXLicenseCcByNc40:                       {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution Non Commercial 4.0 International"},
+	SPDXLicenseCcByNcNd10:                     {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution Non Commercial No Derivatives 1.0 Generic"},
+	SPDXLicenseCcByNcNd20:                     {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution Non Commercial No Derivatives 2.0 Generic"},
+	SPDXLicenseCcByNcNd25:                     {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution Non Commercial No Derivatives 2.5 Generic"},
+	SPDXLicenseCcByNcNd30:                     {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution Non Commercial No Derivatives 3.0 Unported"},
+	SPDXLicenseCcByNcNd40:                     {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution Non Commercial No Derivatives 4.0 International"},
+	SPDXLicenseCcByNcSa10:                     {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution Non Commercial Share Alike 1.0 Generic"},
+	SPDXLicenseCcByNcSa20:                     {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution Non Commercial Share Alike 2.0 Generic"},
+	SPDXLicenseCcByNcSa25:                     {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution Non Commercial Share Alike 2.5 Generic"},
+	SPDXLicenseCcByNcSa30:                     {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution Non Commercial Share Alike 3.0 Unported"},
+	SPDXLicenseCcByNcSa40:                     {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution Non Commercial Share Alike 4.0 International"},
+	SPDXLicenseCcByNd10:                       {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution No Derivatives 1.0 Generic"},
+	SPDXLicenseCcByNd20:                       {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution No Derivatives 2.0 Generic"},
+	SPDXLicenseCcByNd25:                       {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution No Derivatives 2.5 Generic"},
+	SPDXLicenseCcByNd30:                       {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution No Derivatives 3.0 Unported"},
+	SPDXLicenseCcByNd40:                       {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution No Derivatives 4.0 International"},
+	SPDXLicenseCcBySa10:                       {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution Share Alike 1.0 Generic"},
+	SPDXLicenseCcBySa20:                       {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution Share Alike 2.0 Generic"},
+	SPDXLicenseCcBySa25:                       {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution Share Alike 2.5 Generic"},
+	SPDXLicenseCcBySa30:                       {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution Share Alike 3.0 Unported"},
+	SPDXLicenseCcBySa40:                       {"http://hl7.org/fhir/spdx-license", "Creative Commons Attribution Share Alike 4.0 International"},
+	SPDXLicenseCc010:                          {"http://hl7.org/fhir/spdx-license", "Creative Commons Zero v1.0 Universal"},
+	SPDXLicenseCddl10:                         {"http://hl7.org/fhir/spdx-license", "Common Development and Distribution License 1.0"},
+	SPDXLicenseCddl11:                         {"http://hl7.org/fhir/spdx-license", "Common Development and Distribution License 1.1"},
+	SPDXLicenseCdlaPermissive10:               {"http://hl7.org/fhir/spdx-license", "Community Data License Agreement Permissive 1.0"},
+	SPDXLicenseCdlaSharing10:                  {"http://hl7.org/fhir/spdx-license", "Community Data License Agreement Sharing 1.0"},
+	SPDXLicenseCecill10:                       {"http://hl7.org/fhir/spdx-license", "CeCILL Free Software License Agreement v1.0"},
+	SPDXLicenseCecill11:                       {"http://hl7.org/fhir/spdx-license", "CeCILL Free Software License Agreement v1.1"},
+	SPDXLicenseCecill20:                       {"http://hl7.org/fhir/spdx-license", "CeCILL Free Software License Agreement v2.0"},
+	SPDXLicenseCecill21:                       {"http://hl7.org/fhir/spdx-license", "CeCILL Free Software License Agreement v2.1"},
+	SPDXLicenseCecillB:                        {"http://hl7.org/fhir/spdx-license", "CeCILL-B Free Software License Agreement"},
+	SPDXLicenseCecillC:                        {"http://hl7.org/fhir/spdx-license", "CeCILL-C Free Software License Agreement"},
+	SPDXLicenseClartistic:                     {"http://hl7.org/fhir/spdx-license", "Clarified Artistic License"},
+	SPDXLicenseCnriJython:                     {"http://hl7.org/fhir/spdx-license", "CNRI Jython License"},
+	SPDXLicenseCnriPythonGplCompatible:        {"http://hl7.org/fhir/spdx-license", "CNRI Python Open Source GPL Compatible License Agreement"},
+	SPDXLicenseCnriPython:                     {"http://hl7.org/fhir/spdx-license", "CNRI Python License"},
+	SPDXLicenseCondor11:                       {"http://hl7.org/fhir/spdx-license", "Condor Public License v1.1"},
+	SPDXLicenseCpal10:                         {"http://hl7.org/fhir/spdx-license", "Common Public Attribution License 1.0"},
+	SPDXLicenseCpl10:                          {"http://hl7.org/fhir/spdx-license", "Common Public License 1.0"},
+	SPDXLicenseCpol102:                        {"http://hl7.org/fhir/spdx-license", "Code Project Open License 1.02"},
+	SPDXLicenseCrossword:                      {"http://hl7.org/fhir/spdx-license", "Crossword License"},
+	SPDXLicenseCrystalstacker:                 {"http://hl7.org/fhir/spdx-license", "CrystalStacker License"},
+	SPDXLicenseCuaOpl10:                       {"http://hl7.org/fhir/spdx-license", "CUA Office Public License v1.0"},
+	SPDXLicenseCube:                           {"http://hl7.org/fhir/spdx-license", "Cube License"},
+	SPDXLicenseCurl:                           {"http://hl7.org/fhir/spdx-license", "curl License"},
+	SPDXLicenseDFsl10:                         {"http://hl7.org/fhir/spdx-license", "Deutsche Freie Software Lizenz"},
+	SPDXLicenseDiffmark:                       {"http://hl7.org/fhir/spdx-license", "diffmark license"},
+	SPDXLicenseDoc:                            {"http://hl7.org/fhir/spdx-license", "DOC License"},
+	SPDXLicenseDotseqn:                        {"http://hl7.org/fhir/spdx-license", "Dotseqn License"},
+	SPDXLicenseDsdp:                           {"http://hl7.org/fhir/spdx-license", "DSDP License"},
+	SPDXLicenseDvipdfm:                        {"http://hl7.org/fhir/spdx-license", "dvipdfm License"},
+	SPDXLicenseEcl10:                          {"http://hl7.org/fhir/spdx-license", "Educational Community License v1.0"},
+	SPDXLicenseEcl20:                          {"http://hl7.org/fhir/spdx-license", "Educational Community License v2.0"},
+	SPDXLicenseEfl10:                          {"http://hl7.org/fhir/spdx-license", "Eiffel Forum License v1.0"},
+	SPDXLicenseEfl20:                          {"http://hl7.org/fhir/spdx-license", "Eiffel Forum License v2.0"},
+	SPDXLicenseEgenix:                         {"http://hl7.org/fhir/spdx-license", "eGenix.com Public License 1.1.0"},
+	SPDXLicenseEntessa:                        {"http://hl7.org/fhir/spdx-license", "Entessa Public License v1.0"},
+	SPDXLicenseEpl10:                          {"http://hl7.org/fhir/spdx-license", "Eclipse Public License 1.0"},
+	SPDXLicenseEpl20:                          {"http://hl7.org/fhir/spdx-license", "Eclipse Public License 2.0"},
+	SPDXLicenseErlpl11:                        {"http://hl7.org/fhir/spdx-license", "Erlang Public License v1.1"},
+	SPDXLicenseEudatagrid:                     {"http://hl7.org/fhir/spdx-license", "EU DataGrid Software License"},
+	SPDXLicenseEupl10:                         {"http://hl7.org/fhir/spdx-license", "European Union Public License 1.0"},
+	SPDXLicenseEupl11:                         {"http://hl7.org/fhir/spdx-license", "European Union Public License 1.1"},
+	SPDXLicenseEupl12:                         {"http://hl7.org/fhir/spdx-license", "European Union Public License 1.2"},
+	SPDXLicenseEurosym:                        {"http://hl7.org/fhir/spdx-license", "Eurosym License"},
+	SPDXLicenseFair:                           {"http://hl7.org/fhir/spdx-license", "Fair License"},
+	SPDXLicenseFrameworx10:                    {"http://hl7.org/fhir/spdx-license", "Frameworx Open License 1.0"},
+	SPDXLicenseFreeimage:                      {"http://hl7.org/fhir/spdx-license", "FreeImage Public License v1.0"},
+	SPDXLicenseFsfap:                          {"http://hl7.org/fhir/spdx-license", "FSF All Permissive License"},
+	SPDXLicenseFsful:                          {"http://hl7.org/fhir/spdx-license", "FSF Unlimited License"},
+	SPDXLicenseFsfullr:                        {"http://hl7.org/fhir/spdx-license", "FSF Unlimited License (with License Retention)"},
+	SPDXLicenseFtl:                            {"http://hl7.org/fhir/spdx-license", "Freetype Project License"},
+	SPDXLicenseGfdl11Only:                     {"http://hl7.org/fhir/spdx-license", "GNU Free Documentation License v1.1 only"},
+	SPDXLicenseGfdl11OrLater:                  {"http://hl7.org/fhir/spdx-license", "GNU Free Documentation License v1.1 or later"},
+	SPDXLicenseGfdl12Only:                     {"http://hl7.org/fhir/spdx-license", "GNU Free Documentation License v1.2 only"},
+	SPDXLicenseGfdl12OrLater:                  {"http://hl7.org/fhir/spdx-license", "GNU Free Documentation License v1.2 or later"},
+	SPDXLicenseGfdl13Only:                     {"http://hl7.org/fhir/spdx-license", "GNU Free Documentation License v1.3 only"},
+	SPDXLicenseGfdl13OrLater:                  {"http://hl7.org/fhir/spdx-license", "GNU Free Documentation License v1.3 or later"},
+	SPDXLicenseGiftware:                       {"http://hl7.org/fhir/spdx-license", "Giftware License"},
+	SPDXLicenseGl2ps:                          {"http://hl7.org/fhir/spdx-license", "GL2PS License"},
+	SPDXLicenseGlide:                          {"http://hl7.org/fhir/spdx-license", "3dfx Glide License"},
+	SPDXLicenseGlulxe:                         {"http://hl7.org/fhir/spdx-license", "Glulxe License"},
+	SPDXLicenseGnuplot:                        {"http://hl7.org/fhir/spdx-license", "gnuplot License"},
+	SPDXLicenseGpl10Only:                      {"http://hl7.org/fhir/spdx-license", "GNU General Public License v1.0 only"},
+	SPDXLicenseGpl10OrLater:                   {"http://hl7.org/fhir/spdx-license", "GNU General Public License v1.0 or later"},
+	SPDXLicenseGpl20Only:                      {"http://hl7.org/fhir/spdx-license", "GNU General Public License v2.0 only"},
+	SPDXLicenseGpl20OrLater:                   {"http://hl7.org/fhir/spdx-license", "GNU General Public License v2.0 or later"},
+	SPDXLicenseGpl30Only:                      {"http://hl7.org/fhir/spdx-license", "GNU General Public License v3.0 only"},
+	SPDXLicenseGpl30OrLater:                   {"http://hl7.org/fhir/spdx-license", "GNU General Public License v3.0 or later"},
+	SPDXLicenseGsoap13b:                       {"http://hl7.org/fhir/spdx-license", "gSOAP Public License v1.3b"},
+	SPDXLicenseHaskellreport:                  {"http://hl7.org/fhir/spdx-license", "Haskell Language Report License"},
+	SPDXLicenseHpnd:                           {"http://hl7.org/fhir/spdx-license", "Historical Permission Notice and Disclaimer"},
+	SPDXLicenseIbmPibs:                        {"http://hl7.org/fhir/spdx-license", "IBM PowerPC Initialization and Boot Software"},
+	SPDXLicenseIcu:                            {"http://hl7.org/fhir/spdx-license", "ICU License"},
+	SPDXLicenseIjg:                            {"http://hl7.org/fhir/spdx-license", "Independent JPEG Group License"},
+	SPDXLicenseImagemagick:                    {"http://hl7.org/fhir/spdx-license", "ImageMagick License"},
+	SPDXLicenseImatix:                         {"http://hl7.org/fhir/spdx-license", "iMatix Standard Function Library Agreement"},
+	SPDXLicenseImlib2:                         {"http://hl7.org/fhir/spdx-license", "Imlib2 License"},
+	SPDXLicenseInfoZip:                        {"http://hl7.org/fhir/spdx-license", "Info-ZIP License"},
+	SPDXLicenseIntelAcpi:                      {"http://hl7.org/fhir/spdx-license", "Intel ACPI Software License Agreement"},
+	SPDXLicenseIntel:                          {"http://hl7.org/fhir/spdx-license", "Intel Open Source License"},
+	SPDXLicenseInterbase10:                    {"http://hl7.org/fhir/spdx-license", "Interbase Public License v1.0"},
+	SPDXLicenseIpa:                            {"http://hl7.org/fhir/spdx-license", "IPA Font License"},
+	SPDXLicenseIpl10:                          {"http://hl7.org/fhir/spdx-license", "IBM Public License v1.0"},
+	SPDXLicenseIsc:                            {"http://hl7.org/fhir/spdx-license", "ISC License"},
+	SPDXLicenseJasper20:                       {"http://hl7.org/fhir/spdx-license", "JasPer License"},
+	SPDXLicenseJson:                           {"http://hl7.org/fhir/spdx-license", "JSON License"},
+	SPDXLicenseLal12:                          {"http://hl7.org/fhir/spdx-license", "Licence Art Libre 1.2"},
+	SPDXLicenseLal13:                          {"http://hl7.org/fhir/spdx-license", "Licence Art Libre 1.3"},
+	SPDXLicenseLatex2e:                        {"http://hl7.org/fhir/spdx-license", "Latex2e License"},
+	SPDXLicenseLeptonica:                      {"http://hl7.org/fhir/spdx-license", "Leptonica License"},
+	SPDXLicenseLgpl20Only:                     {"http://hl7.org/fhir/spdx-license", "GNU Library General Public License v2 only"},
+	SPDXLicenseLgpl20OrLater:                  {"http://hl7.org/fhir/spdx-license", "GNU Library General Public License v2 or later"},
+	SPDXLicenseLgpl21Only:                     {"http://hl7.org/fhir/spdx-license", "GNU Lesser General Public License v2.1 only"},
+	SPDXLicenseLgpl21OrLater:                  {"http://hl7.org/fhir/spdx-license", "GNU Lesser General Public License v2.1 or later"},
+	SPDXLicenseLgpl30Only:                     {"http://hl7.org/fhir/spdx-license", "GNU Lesser General Public License v3.0 only"},
+	SPDXLicenseLgpl30OrLater:                  {"http://hl7.org/fhir/spdx-license", "GNU Lesser General Public License v3.0 or later"},
+	SPDXLicenseLgpllr:                         {"http://hl7.org/fhir/spdx-license", "Lesser General Public License For Linguistic Resources"},
+	SPDXLicenseLibpng:                         {"http://hl7.org/fhir/spdx-license", "libpng License"},
+	SPDXLicenseLibtiff:                        {"http://hl7.org/fhir/spdx-license", "libtiff License"},
+	SPDXLicenseLiliqP11:                       {"http://hl7.org/fhir/spdx-license", "Licence Libre du Québec – Permissive version 1.1"},
+	SPDXLicenseLiliqR11:                       {"http://hl7.org/fhir/spdx-license", "Licence Libre du Québec – Réciprocité version 1.1"},
+	SPDXLicenseLiliqRplus11:                   {"http://hl7.org/fhir/spdx-license", "Licence Libre du Québec – Réciprocité forte version 1.1"},
+	SPDXLicenseLinuxOpenib:                    {"http://hl7.org/fhir/spdx-license", "Linux Kernel Variant of OpenIB.org license"},
+	SPDXLicenseLpl10:                          {"http://hl7.org/fhir/spdx-license", "Lucent Public License Version 1.0"},
+	SPDXLicenseLpl102:                         {"http://hl7.org/fhir/spdx-license", "Lucent Public License v1.02"},
+	SPDXLicenseLppl10:                         {"http://hl7.org/fhir/spdx-license", "LaTeX Project Public License v1.0"},
+	SPDXLicenseLppl11:                         {"http://hl7.org/fhir/spdx-license", "LaTeX Project Public License v1.1"},
+	SPDXLicenseLppl12:                         {"http://hl7.org/fhir/spdx-license", "LaTeX Project Public License v1.2"},
+	SPDXLicenseLppl13a:                        {"http://hl7.org/fhir/spdx-license", "LaTeX Project Public License v1.3a"},
+	SPDXLicenseLppl13c:                        {"http://hl7.org/fhir/spdx-license", "LaTeX Project Public License v1.3c"},
+	SPDXLicenseMakeindex:                      {"http://hl7.org/fhir/spdx-license", "MakeIndex License"},
+	SPDXLicenseMiros:                          {"http://hl7.org/fhir/spdx-license", "MirOS License"},
+	SPDXLicenseMit0:                           {"http://hl7.org/fhir/spdx-license", "MIT No Attribution"},
+	SPDXLicenseMitAdvertising:                 {"http://hl7.org/fhir/spdx-license", "Enlightenment License (e16)"},
+	SPDXLicenseMitCmu:                         {"http://hl7.org/fhir/spdx-license", "CMU License"},
+	SPDXLicenseMitEnna:                        {"http://hl7.org/fhir/spdx-license", "enna License"},
+	SPDXLicenseMitFeh:                         {"http://hl7.org/fhir/spdx-license", "feh License"},
+	SPDXLicenseMit:                            {"http://hl7.org/fhir/spdx-license", "MIT License"},
+	SPDXLicenseMitnfa:                         {"http://hl7.org/fhir/spdx-license", "MIT +no-false-attribs license"},
+	SPDXLicenseMotosoto:                       {"http://hl7.org/fhir/spdx-license", "Motosoto License"},
+	SPDXLicenseMpich2:                         {"http://hl7.org/fhir/spdx-license", "mpich2 License"},
+	SPDXLicenseMpl10:                          {"http://hl7.org/fhir/spdx-license", "Mozilla Public License 1.0"},
+	SPDXLicenseMpl11:                          {"http://hl7.org/fhir/spdx-license", "Mozilla Public License 1.1"},
+	SPDXLicenseMpl20NoCopyleftException:       {"http://hl7.org/fhir/spdx-license", "Mozilla Public License 2.0 (no copyleft exception)"},
+	SPDXLicenseMpl20:                          {"http://hl7.org/fhir/spdx-license", "Mozilla Public License 2.0"},
+	SPDXLicenseMsPl:                           {"http://hl7.org/fhir/spdx-license", "Microsoft Public License"},
+	SPDXLicenseMsRl:                           {"http://hl7.org/fhir/spdx-license", "Microsoft Reciprocal License"},
+	SPDXLicenseMtll:                           {"http://hl7.org/fhir/spdx-license", "Matrix Template Library License"},
+	SPDXLicenseMultics:                        {"http://hl7.org/fhir/spdx-license", "Multics License"},
+	SPDXLicenseMup:                            {"http://hl7.org/fhir/spdx-license", "Mup License"},
+	SPDXLicenseNasa13:                         {"http://hl7.org/fhir/spdx-license", "NASA Open Source Agreement 1.3"},
+	SPDXLicenseNaumen:                         {"http://hl7.org/fhir/spdx-license", "Naumen Public License"},
+	SPDXLicenseNbpl10:                         {"http://hl7.org/fhir/spdx-license", "Net Boolean Public License v1"},
+	SPDXLicenseNcsa:                           {"http://hl7.org/fhir/spdx-license", "University of Illinois/NCSA Open Source License"},
+	SPDXLicenseNetSnmp:                        {"http://hl7.org/fhir/spdx-license", "Net-SNMP License"},
+	SPDXLicenseNetcdf:                         {"http://hl7.org/fhir/spdx-license", "NetCDF license"},
+	SPDXLicenseNewsletr:                       {"http://hl7.org/fhir/spdx-license", "Newsletr License"},
+	SPDXLicenseNgpl:                           {"http://hl7.org/fhir/spdx-license", "Nethack General Public License"},
+	SPDXLicenseNlod10:                         {"http://hl7.org/fhir/spdx-license", "Norwegian Licence for Open Government Data"},
+	SPDXLicenseNlpl:                           {"http://hl7.org/fhir/spdx-license", "No Limit Public License"},
+	SPDXLicenseNokia:                          {"http://hl7.org/fhir/spdx-license", "Nokia Open Source License"},
+	SPDXLicenseNosl:                           {"http://hl7.org/fhir/spdx-license", "Netizen Open Source License"},
+	SPDXLicenseNoweb:                          {"http://hl7.org/fhir/spdx-license", "Noweb License"},
+	SPDXLicenseNpl10:                          {"http://hl7.org/fhir/spdx-license", "Netscape Public License v1.0"},
+	SPDXLicenseNpl11:                          {"http://hl7.org/fhir/spdx-license", "Netscape Public License v1.1"},
+	SPDXLicenseNposl30:                        {"http://hl7.org/fhir/spdx-license", "Non-Profit Open Software License 3.0"},
+	SPDXLicenseNrl:                            {"http://hl7.org/fhir/spdx-license", "NRL License"},
+	SPDXLicenseNtp:                            {"http://hl7.org/fhir/spdx-license", "NTP License"},
+	SPDXLicenseOcctPl:                         {"http://hl7.org/fhir/spdx-license", "Open CASCADE Technology Public License"},
+	SPDXLicenseOclc20:                         {"http://hl7.org/fhir/spdx-license", "OCLC Research Public License 2.0"},
+	SPDXLicenseOdbl10:                         {"http://hl7.org/fhir/spdx-license", "ODC Open Database License v1.0"},
+	SPDXLicenseOfl10:                          {"http://hl7.org/fhir/spdx-license", "SIL Open Font License 1.0"},
+	SPDXLicenseOfl11:                          {"http://hl7.org/fhir/spdx-license", "SIL Open Font License 1.1"},
+	SPDXLicenseOgtsl:                          {"http://hl7.org/fhir/spdx-license", "Open Group Test Suite License"},
+	SPDXLicenseOldap11:                        {"http://hl7.org/fhir/spdx-license", "Open LDAP Public License v1.1"},
+	SPDXLicenseOldap12:                        {"http://hl7.org/fhir/spdx-license", "Open LDAP Public License v1.2"},
+	SPDXLicenseOldap13:                        {"http://hl7.org/fhir/spdx-license", "Open LDAP Public License v1.3"},
+	SPDXLicenseOldap14:                        {"http://hl7.org/fhir/spdx-license", "Open LDAP Public License v1.4"},
+	SPDXLicenseOldap201:                       {"http://hl7.org/fhir/spdx-license", "Open LDAP Public License v2.0.1"},
+	SPDXLicenseOldap20:                        {"http://hl7.org/fhir/spdx-license", "Open LDAP Public License v2.0 (or possibly 2.0A and 2.0B)"},
+	SPDXLicenseOldap21:                        {"http://hl7.org/fhir/spdx-license", "Open LDAP Public License v2.1"},
+	SPDXLicenseOldap221:                       {"http://hl7.org/fhir/spdx-license", "Open LDAP Public License v2.2.1"},
+	SPDXLicenseOldap222:                       {"http://hl7.org/fhir/spdx-license", "Open LDAP Public License 2.2.2"},
+	SPDXLicenseOldap22:                        {"http://hl7.org/fhir/spdx-license", "Open LDAP Public License v2.2"},
+	SPDXLicenseOldap23:                        {"http://hl7.org/fhir/spdx-license", "Open LDAP Public License v2.3"},
+	SPDXLicenseOldap24:                        {"http://hl7.org/fhir/spdx-license", "Open LDAP Public License v2.4"},
+	SPDXLicenseOldap25:                        {"http://hl7.org/fhir/spdx-license", "Open LDAP Public License v2.5"},
+	SPDXLicenseOldap26:                        {"http://hl7.org/fhir/spdx-license", "Open LDAP Public License v2.6"},
+	SPDXLicenseOldap27:                        {"http://hl7.org/fhir/spdx-license", "Open LDAP Public License v2.7"},
+	SPDXLicenseOldap28:                        {"http://hl7.org/fhir/spdx-license", "Open LDAP Public License v2.8"},
+	SPDXLicenseOml:                            {"http://hl7.org/fhir/spdx-license", "Open Market License"},
+	SPDXLicenseOpenssl:                        {"http://hl7.org/fhir/spdx-license", "OpenSSL License"},
+	SPDXLicenseOpl10:                          {"http://hl7.org/fhir/spdx-license", "Open Public License v1.0"},
+	SPDXLicenseOsetPl21:                       {"http://hl7.org/fhir/spdx-license", "OSET Public License version 2.1"},
+	SPDXLicenseOsl10:                          {"http://hl7.org/fhir/spdx-license", "Open Software License 1.0"},
+	SPDXLicenseOsl11:                          {"http://hl7.org/fhir/spdx-license", "Open Software License 1.1"},
+	SPDXLicenseOsl20:                          {"http://hl7.org/fhir/spdx-license", "Open Software License 2.0"},
+	SPDXLicenseOsl21:                          {"http://hl7.org/fhir/spdx-license", "Open Software License 2.1"},
+	SPDXLicenseOsl30:                          {"http://hl7.org/fhir/spdx-license", "Open Software License 3.0"},
+	SPDXLicensePddl10:                         {"http://hl7.org/fhir/spdx-license", "ODC Public Domain Dedication & License 1.0"},
+	SPDXLicensePhp30:                          {"http://hl7.org/fhir/spdx-license", "PHP License v3.0"},
+	SPDXLicensePhp301:                         {"http://hl7.org/fhir/spdx-license", "PHP License v3.01"},
+	SPDXLicensePlexus:                         {"http://hl7.org/fhir/spdx-license", "Plexus Classworlds License"},
+	SPDXLicensePostgresql:                     {"http://hl7.org/fhir/spdx-license", "PostgreSQL License"},
+	SPDXLicensePsfrag:                         {"http://hl7.org/fhir/spdx-license", "psfrag License"},
+	SPDXLicensePsutils:                        {"http://hl7.org/fhir/spdx-license", "psutils License"},
+	SPDXLicensePython20:                       {"http://hl7.org/fhir/spdx-license", "Python License 2.0"},
+	SPDXLicenseQhull:                          {"http://hl7.org/fhir/spdx-license", "Qhull License"},
+	SPDXLicenseQpl10:                          {"http://hl7.org/fhir/spdx-license", "Q Public License 1.0"},
+	SPDXLicenseRdisc:                          {"http://hl7.org/fhir/spdx-license", "Rdisc License"},
+	SPDXLicenseRhecos11:                       {"http://hl7.org/fhir/spdx-license", "Red Hat eCos Public License v1.1"},
+	SPDXLicenseRpl11:                          {"http://hl7.org/fhir/spdx-license", "Reciprocal Public License 1.1"},
+	SPDXLicenseRpl15:                          {"http://hl7.org/fhir/spdx-license", "Reciprocal Public License 1.5"},
+	SPDXLicenseRpsl10:                         {"http://hl7.org/fhir/spdx-license", "RealNetworks Public Source License v1.0"},
+	SPDXLicenseRsaMd:                          {"http://hl7.org/fhir/spdx-license", "RSA Message-Digest License"},
+	SPDXLicenseRscpl:                          {"http://hl7.org/fhir/spdx-license", "Ricoh Source Code Public License"},
+	SPDXLicenseRuby:                           {"http://hl7.org/fhir/spdx-license", "Ruby License"},
+	SPDXLicenseSaxPd:                          {"http://hl7.org/fhir/spdx-license", "Sax Public Domain Notice"},
+	SPDXLicenseSaxpath:                        {"http://hl7.org/fhir/spdx-license", "Saxpath License"},
+	SPDXLicenseScea:                           {"http://hl7.org/fhir/spdx-license", "SCEA Shared Source License"},
+	SPDXLicenseSendmail:                       {"http://hl7.org/fhir/spdx-license", "Sendmail License"},
+	SPDXLicenseSgiB10:                         {"http://hl7.org/fhir/spdx-license", "SGI Free Software License B v1.0"},
+	SPDXLicenseSgiB11:                         {"http://hl7.org/fhir/spdx-license", "SGI Free Software License B v1.1"},
+	SPDXLicenseSgiB20:                         {"http://hl7.org/fhir/spdx-license", "SGI Free Software License B v2.0"},
+	SPDXLicenseSimpl20:                        {"http://hl7.org/fhir/spdx-license", "Simple Public License 2.0"},
+	SPDXLicenseSissl12:                        {"http://hl7.org/fhir/spdx-license", "Sun Industry Standards Source License v1.2"},
+	SPDXLicenseSissl:                          {"http://hl7.org/fhir/spdx-license", "Sun Industry Standards Source License v1.1"},
+	SPDXLicenseSleepycat:                      {"http://hl7.org/fhir/spdx-license", "Sleepycat License"},
+	SPDXLicenseSmlnj:                          {"http://hl7.org/fhir/spdx-license", "Standard ML of New Jersey License"},
+	SPDXLicenseSmppl:                          {"http://hl7.org/fhir/spdx-license", "Secure Messaging Protocol Public License"},
+	SPDXLicenseSnia:                           {"http://hl7.org/fhir/spdx-license", "SNIA Public License 1.1"},
+	SPDXLicenseSpencer86:                      {"http://hl7.org/fhir/spdx-license", "Spencer License 86"},
+	SPDXLicenseSpencer94:                      {"http://hl7.org/fhir/spdx-license", "Spencer License 94"},
+	SPDXLicenseSpencer99:                      {"http://hl7.org/fhir/spdx-license", "Spencer License 99"},
+	SPDXLicenseSpl10:                          {"http://hl7.org/fhir/spdx-license", "Sun Public License v1.0"},
+	SPDXLicenseSugarcrm113:                    {"http://hl7.org/fhir/spdx-license", "SugarCRM Public License v1.1.3"},
+	SPDXLicenseSwl:                            {"http://hl7.org/fhir/spdx-license", "Scheme Widget Library (SWL) Software License Agreement"},
+	SPDXLicenseTcl:                            {"http://hl7.org/fhir/spdx-license", "TCL/TK License"},
+	SPDXLicenseTcpWrappers:                    {"http://hl7.org/fhir/spdx-license", "TCP Wrappers License"},
+	SPDXLicenseTmate:                          {"http://hl7.org/fhir/spdx-license", "TMate Open Source License"},
+	SPDXLicenseTorque11:                       {"http://hl7.org/fhir/spdx-license", "TORQUE v2.5+ Software License v1.1"},
+	SPDXLicenseTosl:                           {"http://hl7.org/fhir/spdx-license", "Trusster Open Source License"},
+	SPDXLicenseUnicodeDfs2015:                 {"http://hl7.org/fhir/spdx-license", "Unicode License Agreement - Data Files and Software (2015)"},
+	SPDXLicenseUnicodeDfs2016:                 {"http://hl7.org/fhir/spdx-license", "Unicode License Agreement - Data Files and Software (2016)"},
+	SPDXLicenseUnicodeTou:                     {"http://hl7.org/fhir/spdx-license", "Unicode Terms of Use"},
+	SPDXLicenseUnlicense:                      {"http://hl7.org/fhir/spdx-license", "The Unlicense"},
+	SPDXLicenseUpl10:                          {"http://hl7.org/fhir/spdx-license", "Universal Permissive License v1.0"},
+	SPDXLicenseVim:                            {"http://hl7.org/fhir/spdx-license", "Vim License"},
+	SPDXLicenseVostrom:                        {"http://hl7.org/fhir/spdx-license", "VOSTROM Public License for Open Source"},
+	SPDXLicenseVsl10:                          {"http://hl7.org/fhir/spdx-license", "Vovida Software License v1.0"},
+	SPDXLicenseW3c19980720:                    {"http://hl7.org/fhir/spdx-license", "W3C Software Notice and License (1998-07-20)"},
+	SPDXLicenseW3c20150513:                    {"http://hl7.org/fhir/spdx-license", "W3C Software Notice and Document License (2015-05-13)"},
+	SPDXLicenseW3c:                            {"http://hl7.org/fhir/spdx-license", "W3C Software Notice and License (2002-12-31)"},
+	SPDXLicenseWatcom10:                       {"http://hl7.org/fhir/spdx-license", "Sybase Open Watcom Public License 1.0"},
+	SPDXLicenseWsuipa:                         {"http://hl7.org/fhir/spdx-license", "Wsuipa License"},
+	SPDXLicenseWtfpl:                          {"http://hl7.org/fhir/spdx-license", "Do What The F*ck You Want To Public License"},
+	SPDXLicenseX11:                            {"http://hl7.org/fhir/spdx-license", "X11 License"},
+	SPDXLicenseXerox:                          {"http://hl7.org/fhir/spdx-license", "Xerox License"},
+	SPDXLicenseXfree8611:                      {"http://hl7.org/fhir/spdx-license", "XFree86 License 1.1"},
+	SPDXLicenseXinetd:                         {"http://hl7.org/fhir/spdx-license", "xinetd License"},
+	SPDXLicenseXnet:                           {"http://hl7.org/fhir/spdx-license", "X.Net License"},
+	SPDXLicenseXpp:                            {"http://hl7.org/fhir/spdx-license", "XPP License"},
+	SPDXLicenseXskat:                          {"http://hl7.org/fhir/spdx-license", "XSkat License"},
+	SPDXLicenseYpl10:                          {"http://hl7.org/fhir/spdx-license", "Yahoo! Public License v1.0"},
+	SPDXLicenseYpl11:                          {"http://hl7.org/fhir/spdx-license", "Yahoo! Public License v1.1"},
+	SPDXLicenseZed:                            {"http://hl7.org/fhir/spdx-license", "Zed License"},
+	SPDXLicenseZend20:                         {"http://hl7.org/fhir/spdx-license", "Zend License v2.0"},
+	SPDXLicenseZimbra13:                       {"http://hl7.org/fhir/spdx-license", "Zimbra Public License v1.3"},
+	SPDXLicenseZimbra14:                       {"http://hl7.org/fhir/spdx-license", "Zimbra Public License v1.4"},
+	SPDXLicenseZlibAcknowledgement:            {"http://hl7.org/fhir/spdx-license", "zlib/libpng License with Acknowledgement"},
+	SPDXLicenseZlib:                           {"http://hl7.org/fhir/spdx-license", "zlib License"},
+	SPDXLicenseZpl11:                          {"http://hl7.org/fhir/spdx-license", "Zope Public License 1.1"},
+	SPDXLicenseZpl20:                          {"http://hl7.org/fhir/spdx-license", "Zope Public License 2.0"},
+	SPDXLicenseZpl21:                          {"http://hl7.org/fhir/spdx-license", "Zope Public License 2.1"},
+}
+
+// SPDXLicenseValues returns every value this type allows, in specification order.
+//
+// For populating a form, validating input against the set, or checking that a
+// switch covers everything.
+func SPDXLicenseValues() []SPDXLicense {
+	return []SPDXLicense{
+		SPDXLicenseNotOpenSource,
+		SPDXLicense0bsd,
+		SPDXLicenseAal,
+		SPDXLicenseAbstyles,
+		SPDXLicenseAdobe2006,
+		SPDXLicenseAdobeGlyph,
+		SPDXLicenseAdsl,
+		SPDXLicenseAfl11,
+		SPDXLicenseAfl12,
+		SPDXLicenseAfl20,
+		SPDXLicenseAfl21,
+		SPDXLicenseAfl30,
+		SPDXLicenseAfmparse,
+		SPDXLicenseAgpl10Only,
+		SPDXLicenseAgpl10OrLater,
+		SPDXLicenseAgpl30Only,
+		SPDXLicenseAgpl30OrLater,
+		SPDXLicenseAladdin,
+		SPDXLicenseAmdplpa,
+		SPDXLicenseAml,
+		SPDXLicenseAmpas,
+		SPDXLicenseAntlrPd,
+		SPDXLicenseApache10,
+		SPDXLicenseApache11,
+		SPDXLicenseApache20,
+		SPDXLicenseApafml,
+		SPDXLicenseApl10,
+		SPDXLicenseApsl10,
+		SPDXLicenseApsl11,
+		SPDXLicenseApsl12,
+		SPDXLicenseApsl20,
+		SPDXLicenseArtistic10Cl8,
+		SPDXLicenseArtistic10Perl,
+		SPDXLicenseArtistic10,
+		SPDXLicenseArtistic20,
+		SPDXLicenseBahyph,
+		SPDXLicenseBarr,
+		SPDXLicenseBeerware,
+		SPDXLicenseBittorrent10,
+		SPDXLicenseBittorrent11,
+		SPDXLicenseBorceux,
+		SPDXLicenseBsd1Clause,
+		SPDXLicenseBsd2ClauseFreebsd,
+		SPDXLicenseBsd2ClauseNetbsd,
+		SPDXLicenseBsd2ClausePatent,
+		SPDXLicenseBsd2Clause,
+		SPDXLicenseBsd3ClauseAttribution,
+		SPDXLicenseBsd3ClauseClear,
+		SPDXLicenseBsd3ClauseLbnl,
+		SPDXLicenseBsd3ClauseNoNuclearLicense2014,
+		SPDXLicenseBsd3ClauseNoNuclearLicense,
+		SPDXLicenseBsd3ClauseNoNuclearWarranty,
+		SPDXLicenseBsd3Clause,
+		SPDXLicenseBsd4ClauseUc,
+		SPDXLicenseBsd4Clause,
+		SPDXLicenseBsdProtection,
+		SPDXLicenseBsdSourceCode,
+		SPDXLicenseBsl10,
+		SPDXLicenseBzip2105,
+		SPDXLicenseBzip2106,
+		SPDXLicenseCaldera,
+		SPDXLicenseCatosl11,
+		SPDXLicenseCcBy10,
+		SPDXLicenseCcBy20,
+		SPDXLicenseCcBy25,
+		SPDXLicenseCcBy30,
+		SPDXLicenseCcBy40,
+		SPDXLicenseCcByNc10,
+		SPDXLicenseCcByNc20,
+		SPDXLicenseCcByNc25,
+		SPDXLicenseCcByNc30,
+		SPDXLicenseCcByNc40,
+		SPDXLicenseCcByNcNd10,
+		SPDXLicenseCcByNcNd20,
+		SPDXLicenseCcByNcNd25,
+		SPDXLicenseCcByNcNd30,
+		SPDXLicenseCcByNcNd40,
+		SPDXLicenseCcByNcSa10,
+		SPDXLicenseCcByNcSa20,
+		SPDXLicenseCcByNcSa25,
+		SPDXLicenseCcByNcSa30,
+		SPDXLicenseCcByNcSa40,
+		SPDXLicenseCcByNd10,
+		SPDXLicenseCcByNd20,
+		SPDXLicenseCcByNd25,
+		SPDXLicenseCcByNd30,
+		SPDXLicenseCcByNd40,
+		SPDXLicenseCcBySa10,
+		SPDXLicenseCcBySa20,
+		SPDXLicenseCcBySa25,
+		SPDXLicenseCcBySa30,
+		SPDXLicenseCcBySa40,
+		SPDXLicenseCc010,
+		SPDXLicenseCddl10,
+		SPDXLicenseCddl11,
+		SPDXLicenseCdlaPermissive10,
+		SPDXLicenseCdlaSharing10,
+		SPDXLicenseCecill10,
+		SPDXLicenseCecill11,
+		SPDXLicenseCecill20,
+		SPDXLicenseCecill21,
+		SPDXLicenseCecillB,
+		SPDXLicenseCecillC,
+		SPDXLicenseClartistic,
+		SPDXLicenseCnriJython,
+		SPDXLicenseCnriPythonGplCompatible,
+		SPDXLicenseCnriPython,
+		SPDXLicenseCondor11,
+		SPDXLicenseCpal10,
+		SPDXLicenseCpl10,
+		SPDXLicenseCpol102,
+		SPDXLicenseCrossword,
+		SPDXLicenseCrystalstacker,
+		SPDXLicenseCuaOpl10,
+		SPDXLicenseCube,
+		SPDXLicenseCurl,
+		SPDXLicenseDFsl10,
+		SPDXLicenseDiffmark,
+		SPDXLicenseDoc,
+		SPDXLicenseDotseqn,
+		SPDXLicenseDsdp,
+		SPDXLicenseDvipdfm,
+		SPDXLicenseEcl10,
+		SPDXLicenseEcl20,
+		SPDXLicenseEfl10,
+		SPDXLicenseEfl20,
+		SPDXLicenseEgenix,
+		SPDXLicenseEntessa,
+		SPDXLicenseEpl10,
+		SPDXLicenseEpl20,
+		SPDXLicenseErlpl11,
+		SPDXLicenseEudatagrid,
+		SPDXLicenseEupl10,
+		SPDXLicenseEupl11,
+		SPDXLicenseEupl12,
+		SPDXLicenseEurosym,
+		SPDXLicenseFair,
+		SPDXLicenseFrameworx10,
+		SPDXLicenseFreeimage,
+		SPDXLicenseFsfap,
+		SPDXLicenseFsful,
+		SPDXLicenseFsfullr,
+		SPDXLicenseFtl,
+		SPDXLicenseGfdl11Only,
+		SPDXLicenseGfdl11OrLater,
+		SPDXLicenseGfdl12Only,
+		SPDXLicenseGfdl12OrLater,
+		SPDXLicenseGfdl13Only,
+		SPDXLicenseGfdl13OrLater,
+		SPDXLicenseGiftware,
+		SPDXLicenseGl2ps,
+		SPDXLicenseGlide,
+		SPDXLicenseGlulxe,
+		SPDXLicenseGnuplot,
+		SPDXLicenseGpl10Only,
+		SPDXLicenseGpl10OrLater,
+		SPDXLicenseGpl20Only,
+		SPDXLicenseGpl20OrLater,
+		SPDXLicenseGpl30Only,
+		SPDXLicenseGpl30OrLater,
+		SPDXLicenseGsoap13b,
+		SPDXLicenseHaskellreport,
+		SPDXLicenseHpnd,
+		SPDXLicenseIbmPibs,
+		SPDXLicenseIcu,
+		SPDXLicenseIjg,
+		SPDXLicenseImagemagick,
+		SPDXLicenseImatix,
+		SPDXLicenseImlib2,
+		SPDXLicenseInfoZip,
+		SPDXLicenseIntelAcpi,
+		SPDXLicenseIntel,
+		SPDXLicenseInterbase10,
+		SPDXLicenseIpa,
+		SPDXLicenseIpl10,
+		SPDXLicenseIsc,
+		SPDXLicenseJasper20,
+		SPDXLicenseJson,
+		SPDXLicenseLal12,
+		SPDXLicenseLal13,
+		SPDXLicenseLatex2e,
+		SPDXLicenseLeptonica,
+		SPDXLicenseLgpl20Only,
+		SPDXLicenseLgpl20OrLater,
+		SPDXLicenseLgpl21Only,
+		SPDXLicenseLgpl21OrLater,
+		SPDXLicenseLgpl30Only,
+		SPDXLicenseLgpl30OrLater,
+		SPDXLicenseLgpllr,
+		SPDXLicenseLibpng,
+		SPDXLicenseLibtiff,
+		SPDXLicenseLiliqP11,
+		SPDXLicenseLiliqR11,
+		SPDXLicenseLiliqRplus11,
+		SPDXLicenseLinuxOpenib,
+		SPDXLicenseLpl10,
+		SPDXLicenseLpl102,
+		SPDXLicenseLppl10,
+		SPDXLicenseLppl11,
+		SPDXLicenseLppl12,
+		SPDXLicenseLppl13a,
+		SPDXLicenseLppl13c,
+		SPDXLicenseMakeindex,
+		SPDXLicenseMiros,
+		SPDXLicenseMit0,
+		SPDXLicenseMitAdvertising,
+		SPDXLicenseMitCmu,
+		SPDXLicenseMitEnna,
+		SPDXLicenseMitFeh,
+		SPDXLicenseMit,
+		SPDXLicenseMitnfa,
+		SPDXLicenseMotosoto,
+		SPDXLicenseMpich2,
+		SPDXLicenseMpl10,
+		SPDXLicenseMpl11,
+		SPDXLicenseMpl20NoCopyleftException,
+		SPDXLicenseMpl20,
+		SPDXLicenseMsPl,
+		SPDXLicenseMsRl,
+		SPDXLicenseMtll,
+		SPDXLicenseMultics,
+		SPDXLicenseMup,
+		SPDXLicenseNasa13,
+		SPDXLicenseNaumen,
+		SPDXLicenseNbpl10,
+		SPDXLicenseNcsa,
+		SPDXLicenseNetSnmp,
+		SPDXLicenseNetcdf,
+		SPDXLicenseNewsletr,
+		SPDXLicenseNgpl,
+		SPDXLicenseNlod10,
+		SPDXLicenseNlpl,
+		SPDXLicenseNokia,
+		SPDXLicenseNosl,
+		SPDXLicenseNoweb,
+		SPDXLicenseNpl10,
+		SPDXLicenseNpl11,
+		SPDXLicenseNposl30,
+		SPDXLicenseNrl,
+		SPDXLicenseNtp,
+		SPDXLicenseOcctPl,
+		SPDXLicenseOclc20,
+		SPDXLicenseOdbl10,
+		SPDXLicenseOfl10,
+		SPDXLicenseOfl11,
+		SPDXLicenseOgtsl,
+		SPDXLicenseOldap11,
+		SPDXLicenseOldap12,
+		SPDXLicenseOldap13,
+		SPDXLicenseOldap14,
+		SPDXLicenseOldap201,
+		SPDXLicenseOldap20,
+		SPDXLicenseOldap21,
+		SPDXLicenseOldap221,
+		SPDXLicenseOldap222,
+		SPDXLicenseOldap22,
+		SPDXLicenseOldap23,
+		SPDXLicenseOldap24,
+		SPDXLicenseOldap25,
+		SPDXLicenseOldap26,
+		SPDXLicenseOldap27,
+		SPDXLicenseOldap28,
+		SPDXLicenseOml,
+		SPDXLicenseOpenssl,
+		SPDXLicenseOpl10,
+		SPDXLicenseOsetPl21,
+		SPDXLicenseOsl10,
+		SPDXLicenseOsl11,
+		SPDXLicenseOsl20,
+		SPDXLicenseOsl21,
+		SPDXLicenseOsl30,
+		SPDXLicensePddl10,
+		SPDXLicensePhp30,
+		SPDXLicensePhp301,
+		SPDXLicensePlexus,
+		SPDXLicensePostgresql,
+		SPDXLicensePsfrag,
+		SPDXLicensePsutils,
+		SPDXLicensePython20,
+		SPDXLicenseQhull,
+		SPDXLicenseQpl10,
+		SPDXLicenseRdisc,
+		SPDXLicenseRhecos11,
+		SPDXLicenseRpl11,
+		SPDXLicenseRpl15,
+		SPDXLicenseRpsl10,
+		SPDXLicenseRsaMd,
+		SPDXLicenseRscpl,
+		SPDXLicenseRuby,
+		SPDXLicenseSaxPd,
+		SPDXLicenseSaxpath,
+		SPDXLicenseScea,
+		SPDXLicenseSendmail,
+		SPDXLicenseSgiB10,
+		SPDXLicenseSgiB11,
+		SPDXLicenseSgiB20,
+		SPDXLicenseSimpl20,
+		SPDXLicenseSissl12,
+		SPDXLicenseSissl,
+		SPDXLicenseSleepycat,
+		SPDXLicenseSmlnj,
+		SPDXLicenseSmppl,
+		SPDXLicenseSnia,
+		SPDXLicenseSpencer86,
+		SPDXLicenseSpencer94,
+		SPDXLicenseSpencer99,
+		SPDXLicenseSpl10,
+		SPDXLicenseSugarcrm113,
+		SPDXLicenseSwl,
+		SPDXLicenseTcl,
+		SPDXLicenseTcpWrappers,
+		SPDXLicenseTmate,
+		SPDXLicenseTorque11,
+		SPDXLicenseTosl,
+		SPDXLicenseUnicodeDfs2015,
+		SPDXLicenseUnicodeDfs2016,
+		SPDXLicenseUnicodeTou,
+		SPDXLicenseUnlicense,
+		SPDXLicenseUpl10,
+		SPDXLicenseVim,
+		SPDXLicenseVostrom,
+		SPDXLicenseVsl10,
+		SPDXLicenseW3c19980720,
+		SPDXLicenseW3c20150513,
+		SPDXLicenseW3c,
+		SPDXLicenseWatcom10,
+		SPDXLicenseWsuipa,
+		SPDXLicenseWtfpl,
+		SPDXLicenseX11,
+		SPDXLicenseXerox,
+		SPDXLicenseXfree8611,
+		SPDXLicenseXinetd,
+		SPDXLicenseXnet,
+		SPDXLicenseXpp,
+		SPDXLicenseXskat,
+		SPDXLicenseYpl10,
+		SPDXLicenseYpl11,
+		SPDXLicenseZed,
+		SPDXLicenseZend20,
+		SPDXLicenseZimbra13,
+		SPDXLicenseZimbra14,
+		SPDXLicenseZlibAcknowledgement,
+		SPDXLicenseZlib,
+		SPDXLicenseZpl11,
+		SPDXLicenseZpl20,
+		SPDXLicenseZpl21,
+	}
+}
+
+// Display returns the human-readable text the specification gives this code, or
+// the code itself when it defines none.
+//
+// Falling back to the code rather than to an empty string means the result can go
+// straight in front of a person.
+func (c SPDXLicense) Display() string {
+	if info, ok := SPDXLicenseTable[c]; ok && info.Display != "" {
+		return info.Display
+	}
+	return string(c)
+}
+
+// System returns the CodeSystem URL this code belongs to, or "" if the code is not
+// one the specification defines.
+func (c SPDXLicense) System() string {
+	return SPDXLicenseTable[c].System
+}
+
+// Coding returns this code as a Coding, with its system and display filled in —
+// what a CodeableConcept needs, and where the system URL usually gets copied wrong
+// by hand.
+func (c SPDXLicense) Coding() Coding {
 	system, display := c.System(), c.Display()
 	coding := Coding{Code: Ptr(string(c)), Display: &display}
 	if system != "" {

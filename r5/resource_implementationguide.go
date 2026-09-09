@@ -132,7 +132,7 @@ type ImplementationGuide struct {
 	// Extension for PackageId
 	PackageIdExt *Element `json:"_packageId,omitempty"`
 	// SPDX license code for this IG (or not-open-source)
-	License *string `json:"license,omitempty"`
+	License *SPDXLicense `json:"license,omitempty"`
 	// Extension for License
 	LicenseExt *Element `json:"_license,omitempty"`
 	// FHIR Version(s) this Implementation Guide targets
@@ -341,7 +341,7 @@ func (r ImplementationGuide) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 	if err := xmlEncodePrimitiveString(e, "packageId", r.PackageId, r.PackageIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "license", r.License, r.LicenseExt); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "license", r.License, r.LicenseExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveCodeArray(e, "fhirVersion", r.FhirVersion, r.FhirVersionExt); err != nil {
@@ -562,7 +562,7 @@ func (r *ImplementationGuide) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				r.PackageId = v
 				r.PackageIdExt = ext
 			case "license":
-				v, ext, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveCode[SPDXLicense](d, t)
 				if err != nil {
 					return err
 				}
@@ -1759,7 +1759,7 @@ type ImplementationGuideGlobal struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Type this profile applies to
-	Type *string `json:"type,omitempty"`
+	Type *ResourceType `json:"type,omitempty"`
 	// Extension for Type
 	TypeExt *Element `json:"_type,omitempty"`
 	// Profile that all resources must conform to
@@ -1816,7 +1816,7 @@ func (b ImplementationGuideGlobal) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "type", b.Type, b.TypeExt); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "profile", b.Profile, b.ProfileExt); err != nil {
@@ -1856,7 +1856,7 @@ func (r *ImplementationGuideGlobal) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, ext, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ResourceType](d, t)
 				if err != nil {
 					return err
 				}
@@ -2580,7 +2580,7 @@ func (b *ImplementationGuideBuilder) SetPackageId(v string) *ImplementationGuide
 }
 
 // SetLicense sets the License field.
-func (b *ImplementationGuideBuilder) SetLicense(v string) *ImplementationGuideBuilder {
+func (b *ImplementationGuideBuilder) SetLicense(v SPDXLicense) *ImplementationGuideBuilder {
 	b.implementationGuide.License = &v
 	return b
 }
@@ -3616,7 +3616,7 @@ func (b *ImplementationGuideGlobalBuilder) AddModifierExtension(v Extension) *Im
 }
 
 // SetType sets the Type field.
-func (b *ImplementationGuideGlobalBuilder) SetType(v string) *ImplementationGuideGlobalBuilder {
+func (b *ImplementationGuideGlobalBuilder) SetType(v ResourceType) *ImplementationGuideGlobalBuilder {
 	b.implementationGuideGlobal.Type = &v
 	return b
 }

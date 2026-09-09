@@ -102,7 +102,7 @@ type Questionnaire struct {
 	// Extension for Experimental
 	ExperimentalExt *Element `json:"_experimental,omitempty"`
 	// Resource that can be subject of QuestionnaireResponse
-	SubjectType []*string `json:"subjectType,omitempty"`
+	SubjectType []*ResourceType `json:"subjectType,omitempty"`
 	// Extension for SubjectType
 	SubjectTypeExt []*Element `json:"_subjectType,omitempty"`
 	// Date last changed
@@ -310,7 +310,7 @@ func (r Questionnaire) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 	if err := xmlEncodePrimitiveBool(e, "experimental", r.Experimental, r.ExperimentalExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "subjectType", r.SubjectType, r.SubjectTypeExt); err != nil {
+	if err := xmlEncodePrimitiveCodeArray(e, "subjectType", r.SubjectType, r.SubjectTypeExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "date", r.Date, r.DateExt); err != nil {
@@ -503,7 +503,7 @@ func (r *Questionnaire) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 				r.Experimental = v
 				r.ExperimentalExt = ext
 			case "subjectType":
-				v, ext, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ResourceType](d, t)
 				if err != nil {
 					return err
 				}
@@ -1872,7 +1872,7 @@ func (b *QuestionnaireBuilder) SetExperimental(v bool) *QuestionnaireBuilder {
 // Takes a plain value: the field is a slice of pointers so that an absent slot
 // can be expressed, but a builder call is always adding a value. For a slot that
 // is deliberately absent, build the slice directly and leave that entry nil.
-func (b *QuestionnaireBuilder) AddSubjectType(v string) *QuestionnaireBuilder {
+func (b *QuestionnaireBuilder) AddSubjectType(v ResourceType) *QuestionnaireBuilder {
 	b.questionnaire.SubjectType = append(b.questionnaire.SubjectType, &v)
 	return b
 }

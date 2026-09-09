@@ -1060,7 +1060,7 @@ type BundleLink struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// See http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1
-	Relation *string `json:"relation,omitempty"`
+	Relation *LinkRelationTypes `json:"relation,omitempty"`
 	// Extension for Relation
 	RelationExt *Element `json:"_relation,omitempty"`
 	// Reference details for the link
@@ -1117,7 +1117,7 @@ func (b BundleLink) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "relation", b.Relation, b.RelationExt); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "relation", b.Relation, b.RelationExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "url", b.Url, b.UrlExt); err != nil {
@@ -1157,7 +1157,7 @@ func (r *BundleLink) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "relation":
-				v, ext, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveCode[LinkRelationTypes](d, t)
 				if err != nil {
 					return err
 				}
@@ -1796,7 +1796,7 @@ func (b *BundleLinkBuilder) AddModifierExtension(v Extension) *BundleLinkBuilder
 }
 
 // SetRelation sets the Relation field.
-func (b *BundleLinkBuilder) SetRelation(v string) *BundleLinkBuilder {
+func (b *BundleLinkBuilder) SetRelation(v LinkRelationTypes) *BundleLinkBuilder {
 	b.bundleLink.Relation = &v
 	return b
 }

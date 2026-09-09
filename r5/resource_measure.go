@@ -106,7 +106,7 @@ type Measure struct {
 	// E.g. Patient, Practitioner, RelatedPerson, Organization, Location, Device
 	SubjectReference *Reference `json:"subjectReference,omitempty"`
 	// Population basis
-	Basis *string `json:"basis,omitempty"`
+	Basis *FHIRTypes `json:"basis,omitempty"`
 	// Extension for Basis
 	BasisExt *Element `json:"_basis,omitempty"`
 	// Date last changed
@@ -380,7 +380,7 @@ func (r Measure) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "basis", r.Basis, r.BasisExt); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "basis", r.Basis, r.BasisExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "date", r.Date, r.DateExt); err != nil {
@@ -668,7 +668,7 @@ func (r *Measure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 				}
 				r.SubjectReference = &v
 			case "basis":
-				v, ext, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveCode[FHIRTypes](d, t)
 				if err != nil {
 					return err
 				}
@@ -933,7 +933,7 @@ type MeasureGroup struct {
 	// E.g. Patient, Practitioner, RelatedPerson, Organization, Location, Device
 	SubjectReference *Reference `json:"subjectReference,omitempty"`
 	// Population basis
-	Basis *string `json:"basis,omitempty"`
+	Basis *FHIRTypes `json:"basis,omitempty"`
 	// Extension for Basis
 	BasisExt *Element `json:"_basis,omitempty"`
 	// proportion | ratio | continuous-variable | cohort
@@ -1030,7 +1030,7 @@ func (b MeasureGroup) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "basis", b.Basis, b.BasisExt); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "basis", b.Basis, b.BasisExt); err != nil {
 		return err
 	}
 	if b.Scoring != nil {
@@ -1136,7 +1136,7 @@ func (r *MeasureGroup) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				}
 				r.SubjectReference = &v
 			case "basis":
-				v, ext, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveCode[FHIRTypes](d, t)
 				if err != nil {
 					return err
 				}
@@ -2235,7 +2235,7 @@ func (b *MeasureBuilder) SetSubjectReference(v Reference) *MeasureBuilder {
 }
 
 // SetBasis sets the Basis field.
-func (b *MeasureBuilder) SetBasis(v string) *MeasureBuilder {
+func (b *MeasureBuilder) SetBasis(v FHIRTypes) *MeasureBuilder {
 	b.measure.Basis = &v
 	return b
 }
@@ -2827,7 +2827,7 @@ func (b *MeasureGroupBuilder) SetSubjectReference(v Reference) *MeasureGroupBuil
 }
 
 // SetBasis sets the Basis field.
-func (b *MeasureGroupBuilder) SetBasis(v string) *MeasureGroupBuilder {
+func (b *MeasureGroupBuilder) SetBasis(v FHIRTypes) *MeasureGroupBuilder {
 	b.measureGroup.Basis = &v
 	return b
 }

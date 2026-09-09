@@ -798,7 +798,7 @@ type MessageDefinitionFocus struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Type of resource
-	Code *string `json:"code,omitempty"`
+	Code *ResourceType `json:"code,omitempty"`
 	// Extension for Code
 	CodeExt *Element `json:"_code,omitempty"`
 	// Profile that must be adhered to by focus
@@ -863,7 +863,7 @@ func (b MessageDefinitionFocus) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "code", b.Code, b.CodeExt); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "profile", b.Profile, b.ProfileExt); err != nil {
@@ -909,7 +909,7 @@ func (r *MessageDefinitionFocus) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				v, ext, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ResourceType](d, t)
 				if err != nil {
 					return err
 				}
@@ -1605,7 +1605,7 @@ func (b *MessageDefinitionFocusBuilder) AddModifierExtension(v Extension) *Messa
 }
 
 // SetCode sets the Code field.
-func (b *MessageDefinitionFocusBuilder) SetCode(v string) *MessageDefinitionFocusBuilder {
+func (b *MessageDefinitionFocusBuilder) SetCode(v ResourceType) *MessageDefinitionFocusBuilder {
 	b.messageDefinitionFocus.Code = &v
 	return b
 }

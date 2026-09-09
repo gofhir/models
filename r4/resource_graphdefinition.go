@@ -108,7 +108,7 @@ type GraphDefinition struct {
 	// Extension for Purpose
 	PurposeExt *Element `json:"_purpose,omitempty"`
 	// Type of resource at which the graph starts
-	Start *string `json:"start,omitempty"`
+	Start *ResourceType `json:"start,omitempty"`
 	// Extension for Start
 	StartExt *Element `json:"_start,omitempty"`
 	// Profile on base resource
@@ -286,7 +286,7 @@ func (r GraphDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 	if err := xmlEncodePrimitiveString(e, "purpose", r.Purpose, r.PurposeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "start", r.Start, r.StartExt); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "start", r.Start, r.StartExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "profile", r.Profile, r.ProfileExt); err != nil {
@@ -445,7 +445,7 @@ func (r *GraphDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				r.Purpose = v
 				r.PurposeExt = ext
 			case "start":
-				v, ext, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ResourceType](d, t)
 				if err != nil {
 					return err
 				}
@@ -671,7 +671,7 @@ type GraphDefinitionLinkTarget struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Type of resource this link refers to
-	Type *string `json:"type,omitempty"`
+	Type *ResourceType `json:"type,omitempty"`
 	// Extension for Type
 	TypeExt *Element `json:"_type,omitempty"`
 	// Criteria for reverse lookup
@@ -736,7 +736,7 @@ func (b GraphDefinitionLinkTarget) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "type", b.Type, b.TypeExt); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "params", b.Params, b.ParamsExt); err != nil {
@@ -789,7 +789,7 @@ func (r *GraphDefinitionLinkTarget) UnmarshalXML(d *xml.Decoder, start xml.Start
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, ext, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ResourceType](d, t)
 				if err != nil {
 					return err
 				}
@@ -1164,7 +1164,7 @@ func (b *GraphDefinitionBuilder) SetPurpose(v string) *GraphDefinitionBuilder {
 }
 
 // SetStart sets the Start field.
-func (b *GraphDefinitionBuilder) SetStart(v string) *GraphDefinitionBuilder {
+func (b *GraphDefinitionBuilder) SetStart(v ResourceType) *GraphDefinitionBuilder {
 	b.graphDefinition.Start = &v
 	return b
 }
@@ -1488,7 +1488,7 @@ func (b *GraphDefinitionLinkTargetBuilder) AddModifierExtension(v Extension) *Gr
 }
 
 // SetType sets the Type field.
-func (b *GraphDefinitionLinkTargetBuilder) SetType(v string) *GraphDefinitionLinkTargetBuilder {
+func (b *GraphDefinitionLinkTargetBuilder) SetType(v ResourceType) *GraphDefinitionLinkTargetBuilder {
 	b.graphDefinitionLinkTarget.Type = &v
 	return b
 }

@@ -975,7 +975,7 @@ type GraphDefinitionNode struct {
 	// Extension for Description
 	DescriptionExt *Element `json:"_description,omitempty"`
 	// Type of resource this link refers to
-	Type *FHIRTypes `json:"type,omitempty"`
+	Type *VersionIndependentResourceTypesAll `json:"type,omitempty"`
 	// Extension for Type
 	TypeExt *Element `json:"_type,omitempty"`
 	// Profile for the target resource
@@ -1092,7 +1092,7 @@ func (r *GraphDefinitionNode) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				r.Description = v
 				r.DescriptionExt = ext
 			case "type":
-				v, ext, err := xmlDecodePrimitiveCode[FHIRTypes](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[VersionIndependentResourceTypesAll](d, t)
 				if err != nil {
 					return err
 				}
@@ -1863,7 +1863,7 @@ func (b *GraphDefinitionNodeBuilder) SetDescription(v string) *GraphDefinitionNo
 }
 
 // SetType sets the Type field.
-func (b *GraphDefinitionNodeBuilder) SetType(v FHIRTypes) *GraphDefinitionNodeBuilder {
+func (b *GraphDefinitionNodeBuilder) SetType(v VersionIndependentResourceTypesAll) *GraphDefinitionNodeBuilder {
 	b.graphDefinitionNode.Type = &v
 	return b
 }

@@ -16,8 +16,13 @@ const (
 )
 
 // maxEnumCodes caps how large a ValueSet may be before its binding falls back to
-// a plain string. resource-types, all-types, mimetypes and currencies are the ones
-// this excludes: emitting hundreds of constants for them costs more than it buys.
+// a plain string, for the bindings the specification leaves open. A required
+// binding is exempt; see eligibleForEnum.
+//
+// The comment here used to name resource-types, all-types, mimetypes and
+// currencies as what the cap excludes. Only the first two were true: mimetypes
+// and currencies are never bound as required on a code element, so nothing would
+// have typed a field with them at any cap.
 //
 // Shared with the collision index, so both agree on which ValueSets could ever
 // become a Go type.
@@ -36,6 +41,10 @@ type Analyzer struct {
 	// binding, when every element binding to it agrees on one usable name. See
 	// collectBindingNames for why agreement is required.
 	bindingNames map[string]string
+	// requiredBindings holds the ValueSets the specification binds as required
+	// on a code element: the ones whose codes are the only legal values a field
+	// may carry.
+	requiredBindings map[string]bool
 }
 
 // NewAnalyzer creates a new Analyzer with the given StructureDefinitions and ValueSets.
@@ -47,10 +56,11 @@ func NewAnalyzer(definitions []*parser.StructureDefinition, valueSets *parser.Va
 		defMap[sd.Type] = sd
 	}
 	a := &Analyzer{
-		definitions:  defMap,
-		valueSets:    valueSets,
-		UsedBindings: make(map[string]bool),
-		bindingNames: collectBindingNames(definitions),
+		definitions:      defMap,
+		valueSets:        valueSets,
+		UsedBindings:     make(map[string]bool),
+		bindingNames:     collectBindingNames(definitions),
+		requiredBindings: collectRequiredCodeBindings(definitions),
 	}
 	// Claims are computed from the names that will actually be emitted, so a
 	// collision is judged on the final name rather than on the ValueSet title
@@ -155,7 +165,7 @@ func (a *Analyzer) dropCollidingBindingNames(valueSets *parser.ValueSetRegistry)
 	// Every name that will be in play, and who claims it.
 	claimants := make(map[string][]string)
 	for _, vs := range valueSets.All() {
-		if len(vs.Codes) == 0 || len(vs.Codes) > maxEnumCodes {
+		if !a.eligibleForEnum(vs) {
 			continue
 		}
 		url := canonicalValueSetURL(vs.URL)
@@ -922,7 +932,7 @@ func (a *Analyzer) buildValueSetNameClaims(valueSets *parser.ValueSetRegistry) m
 		return claims
 	}
 	for _, vs := range valueSets.All() {
-		if len(vs.Codes) == 0 || len(vs.Codes) > maxEnumCodes {
+		if !a.eligibleForEnum(vs) {
 			continue
 		}
 		base := a.baseTypeName(vs.URL, vs.Name)
@@ -978,16 +988,66 @@ func (a *Analyzer) getValueSetForBinding(url string) *parser.ParsedValueSet {
 	}
 
 	vs := a.valueSets.Get(url)
-	if vs == nil || len(vs.Codes) == 0 {
+	if !a.eligibleForEnum(vs) {
 		return nil
 	}
-
-	// Skip very large value sets (like all-types, mimetypes)
-	if len(vs.Codes) > maxEnumCodes {
-		return nil
-	}
-
 	return vs
+}
+
+// eligibleForEnum reports whether a ValueSet becomes a Go type.
+//
+// The three callers — the binding-name collision pass, the name-claim index and
+// the field typing itself — have to agree, or a field is bound to a type that was
+// never emitted.
+func (a *Analyzer) eligibleForEnum(vs *parser.ParsedValueSet) bool {
+	if vs == nil || len(vs.Codes) == 0 {
+		return false
+	}
+	// A required binding on a code element is the specification saying these are
+	// the only legal values for the field. Handing the caller a bare string there
+	// is the opposite of help, whatever the count, so size does not decide it.
+	//
+	// Measured: this exempts four to six value sets per version, the largest
+	// being spdx-license at 346 codes. Nothing is anywhere near the thousands,
+	// because the enormous ValueSets — mimetypes, currencies, all of UCUM — are
+	// never bound as required on a code element and so were never candidates.
+	if a.requiredBindings[canonicalValueSetURL(vs.URL)] {
+		return true
+	}
+	return len(vs.Codes) <= maxEnumCodes
+}
+
+// collectRequiredCodeBindings indexes the ValueSets bound as required on an
+// element of type code — exactly the condition resolveGoTypeWithBinding needs to
+// give a field its own type. A required binding on a CodeableConcept is not
+// included: nothing would use that enum, and emitting it is noise.
+func collectRequiredCodeBindings(definitions []*parser.StructureDefinition) map[string]bool {
+	required := make(map[string]bool)
+	for _, sd := range definitions {
+		if sd == nil || sd.Snapshot == nil {
+			continue
+		}
+		for i := range sd.Snapshot.Element {
+			elem := &sd.Snapshot.Element[i]
+			if elem.Binding == nil || elem.Binding.Strength != "required" {
+				continue
+			}
+			isCode := false
+			for _, t := range elem.Type {
+				if t.Code == "code" {
+					isCode = true
+					break
+				}
+			}
+			if !isCode {
+				continue
+			}
+			if url := canonicalValueSetURL(elem.Binding.ValueSet); url != "" {
+				required[url] = true
+			}
+		}
+	}
+	return required
 }
 
 // resolveGoType converts a FHIR type to a Go type string.

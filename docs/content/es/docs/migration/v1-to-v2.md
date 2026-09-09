@@ -348,10 +348,30 @@ intactos.
 | `RequestResourceTypes` | `ActivityDefinitionKind` | r5 |
 | `SubscriptionSearchModifier` | `SubscriptionTopicFilterBySearchModifier` | r4b |
 | `TriggeredBytype` | `TriggeredByType` | r5 |
-| `VersionIndependentResourceTypesAll` | `FHIRTypes` | r5 |
 
 `gopls rename` los resuelve sin riesgo, y el compilador encuentra cualquier punto que
 la tabla omita: son nombres de tipo, así que nada falla en silencio.
+
+### Un renombrado se deshizo en 2.8.0
+
+La v2.0 renombró `VersionIndependentResourceTypesAll` a `FHIRTypes` en R5. Fue un
+accidente de qué ValueSets podían convertirse en tipo entonces: HL7 llama
+`FHIRTypes` a ese binding y ningún otro conjunto competía por el nombre.
+
+2.8.0 resuelve bien los ValueSets compuestos, y eso volvió elegible al conjunto que
+HL7 sí llama `FHIRTypes` — 231 códigos, todos los tipos FHIR. Ahora colisionan, y el
+nombre queda para el que lo lleva en el spec. Así que en R5 desde 2.8.0:
+
+| Tipo | Qué es | Códigos |
+|---|---|---|
+| `FHIRTypes` | todos los tipos FHIR, el ValueSet de ese nombre | 231 |
+| `VersionIndependentResourceTypesAll` | tipos de recurso entre versiones de FHIR | 203 |
+
+`GraphDefinition.node.type`, `SearchParameter.base`, `SearchParameter.target` y
+`OperationDefinition.resource` usan el segundo. Antes de 2.8.0 eran `*FHIRTypes` y
+ese tipo tenía 41 constantes, todas nombres retirados como `BodySite` o
+`Conformance`, sin `Patient` entre ellas — así que no había código funcionando que
+romper.
 
 ## La ruta de importación
 

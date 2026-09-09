@@ -148,7 +148,7 @@ type OperationDefinition struct {
 	// Extension for Base
 	BaseExt *Element `json:"_base,omitempty"`
 	// Types this operation applies to
-	Resource []*FHIRTypes `json:"resource,omitempty"`
+	Resource []*VersionIndependentResourceTypesAll `json:"resource,omitempty"`
 	// Extension for Resource
 	ResourceExt []*Element `json:"_resource,omitempty"`
 	// Invoke at the system level?
@@ -632,7 +632,7 @@ func (r *OperationDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 				r.Base = v
 				r.BaseExt = ext
 			case "resource":
-				v, ext, err := xmlDecodePrimitiveCode[FHIRTypes](d, t)
+				v, ext, err := xmlDecodePrimitiveCode[VersionIndependentResourceTypesAll](d, t)
 				if err != nil {
 					return err
 				}
@@ -865,11 +865,11 @@ type OperationDefinitionParameter struct {
 	// Extension for Documentation
 	DocumentationExt *Element `json:"_documentation,omitempty"`
 	// What type this parameter has
-	Type *string `json:"type,omitempty"`
+	Type *FHIRTypes `json:"type,omitempty"`
 	// Extension for Type
 	TypeExt *Element `json:"_type,omitempty"`
 	// Allowed sub-type this parameter can have (if type is abstract)
-	AllowedType []*string `json:"allowedType,omitempty"`
+	AllowedType []*FHIRTypes `json:"allowedType,omitempty"`
 	// Extension for AllowedType
 	AllowedTypeExt []*Element `json:"_allowedType,omitempty"`
 	// If type is Reference | canonical, allowed targets. If type is 'Resource', then this constrains the allowed resource types
@@ -954,10 +954,10 @@ func (b OperationDefinitionParameter) MarshalXML(e *xml.Encoder, start xml.Start
 	if err := xmlEncodePrimitiveString(e, "documentation", b.Documentation, b.DocumentationExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "type", b.Type, b.TypeExt); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "allowedType", b.AllowedType, b.AllowedTypeExt); err != nil {
+	if err := xmlEncodePrimitiveCodeArray(e, "allowedType", b.AllowedType, b.AllowedTypeExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveStringArray(e, "targetProfile", b.TargetProfile, b.TargetProfileExt); err != nil {
@@ -1058,14 +1058,14 @@ func (r *OperationDefinitionParameter) UnmarshalXML(d *xml.Decoder, start xml.St
 				r.Documentation = v
 				r.DocumentationExt = ext
 			case "type":
-				v, ext, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveCode[FHIRTypes](d, t)
 				if err != nil {
 					return err
 				}
 				r.Type = v
 				r.TypeExt = ext
 			case "allowedType":
-				v, ext, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveCode[FHIRTypes](d, t)
 				if err != nil {
 					return err
 				}
@@ -1627,7 +1627,7 @@ func (b *OperationDefinitionBuilder) SetBase(v string) *OperationDefinitionBuild
 // Takes a plain value: the field is a slice of pointers so that an absent slot
 // can be expressed, but a builder call is always adding a value. For a slot that
 // is deliberately absent, build the slice directly and leave that entry nil.
-func (b *OperationDefinitionBuilder) AddResource(v FHIRTypes) *OperationDefinitionBuilder {
+func (b *OperationDefinitionBuilder) AddResource(v VersionIndependentResourceTypesAll) *OperationDefinitionBuilder {
 	b.operationDefinition.Resource = append(b.operationDefinition.Resource, &v)
 	return b
 }
@@ -2126,7 +2126,7 @@ func (b *OperationDefinitionParameterBuilder) SetDocumentation(v string) *Operat
 }
 
 // SetType sets the Type field.
-func (b *OperationDefinitionParameterBuilder) SetType(v string) *OperationDefinitionParameterBuilder {
+func (b *OperationDefinitionParameterBuilder) SetType(v FHIRTypes) *OperationDefinitionParameterBuilder {
 	b.operationDefinitionParameter.Type = &v
 	return b
 }
@@ -2136,7 +2136,7 @@ func (b *OperationDefinitionParameterBuilder) SetType(v string) *OperationDefini
 // Takes a plain value: the field is a slice of pointers so that an absent slot
 // can be expressed, but a builder call is always adding a value. For a slot that
 // is deliberately absent, build the slice directly and leave that entry nil.
-func (b *OperationDefinitionParameterBuilder) AddAllowedType(v string) *OperationDefinitionParameterBuilder {
+func (b *OperationDefinitionParameterBuilder) AddAllowedType(v FHIRTypes) *OperationDefinitionParameterBuilder {
 	b.operationDefinitionParameter.AllowedType = append(b.operationDefinitionParameter.AllowedType, &v)
 	return b
 }

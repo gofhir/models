@@ -116,7 +116,7 @@ type SearchParameter struct {
 	// Extension for Code
 	CodeExt *Element `json:"_code,omitempty"`
 	// The resource type(s) this search parameter applies to
-	Base []*string `json:"base,omitempty"`
+	Base []*ResourceType `json:"base,omitempty"`
 	// Extension for Base
 	BaseExt []*Element `json:"_base,omitempty"`
 	// number | date | string | token | reference | composite | quantity | uri | special
@@ -136,7 +136,7 @@ type SearchParameter struct {
 	// Extension for XpathUsage
 	XpathUsageExt *Element `json:"_xpathUsage,omitempty"`
 	// Types of resource (if a resource reference)
-	Target []*string `json:"target,omitempty"`
+	Target []*ResourceType `json:"target,omitempty"`
 	// Extension for Target
 	TargetExt []*Element `json:"_target,omitempty"`
 	// Allow multiple values per parameter (or)
@@ -336,7 +336,7 @@ func (r SearchParameter) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 	if err := xmlEncodePrimitiveString(e, "code", r.Code, r.CodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "base", r.Base, r.BaseExt); err != nil {
+	if err := xmlEncodePrimitiveCodeArray(e, "base", r.Base, r.BaseExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveCode(e, "type", r.Type, r.TypeExt); err != nil {
@@ -351,7 +351,7 @@ func (r SearchParameter) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 	if err := xmlEncodePrimitiveCode(e, "xpathUsage", r.XpathUsage, r.XpathUsageExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveStringArray(e, "target", r.Target, r.TargetExt); err != nil {
+	if err := xmlEncodePrimitiveCodeArray(e, "target", r.Target, r.TargetExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveBool(e, "multipleOr", r.MultipleOr, r.MultipleOrExt); err != nil {
@@ -536,7 +536,7 @@ func (r *SearchParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				r.Code = v
 				r.CodeExt = ext
 			case "base":
-				v, ext, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ResourceType](d, t)
 				if err != nil {
 					return err
 				}
@@ -572,7 +572,7 @@ func (r *SearchParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 				r.XpathUsage = v
 				r.XpathUsageExt = ext
 			case "target":
-				v, ext, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ResourceType](d, t)
 				if err != nil {
 					return err
 				}
@@ -950,7 +950,7 @@ func (b *SearchParameterBuilder) SetCode(v string) *SearchParameterBuilder {
 // Takes a plain value: the field is a slice of pointers so that an absent slot
 // can be expressed, but a builder call is always adding a value. For a slot that
 // is deliberately absent, build the slice directly and leave that entry nil.
-func (b *SearchParameterBuilder) AddBase(v string) *SearchParameterBuilder {
+func (b *SearchParameterBuilder) AddBase(v ResourceType) *SearchParameterBuilder {
 	b.searchParameter.Base = append(b.searchParameter.Base, &v)
 	return b
 }
@@ -984,7 +984,7 @@ func (b *SearchParameterBuilder) SetXpathUsage(v XPathUsageType) *SearchParamete
 // Takes a plain value: the field is a slice of pointers so that an absent slot
 // can be expressed, but a builder call is always adding a value. For a slot that
 // is deliberately absent, build the slice directly and leave that entry nil.
-func (b *SearchParameterBuilder) AddTarget(v string) *SearchParameterBuilder {
+func (b *SearchParameterBuilder) AddTarget(v ResourceType) *SearchParameterBuilder {
 	b.searchParameter.Target = append(b.searchParameter.Target, &v)
 	return b
 }

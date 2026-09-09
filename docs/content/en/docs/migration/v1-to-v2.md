@@ -347,10 +347,31 @@ stored JSON and anything on the wire is unaffected.
 | `RequestResourceTypes` | `ActivityDefinitionKind` | r5 |
 | `SubscriptionSearchModifier` | `SubscriptionTopicFilterBySearchModifier` | r4b |
 | `TriggeredBytype` | `TriggeredByType` | r5 |
-| `VersionIndependentResourceTypesAll` | `FHIRTypes` | r5 |
 
 `gopls rename` handles these safely, and the compiler finds every site the mapping
 misses — these are type names, so nothing fails silently.
+
+### One rename was undone in 2.8.0
+
+v2.0 renamed R5's `VersionIndependentResourceTypesAll` to `FHIRTypes`. That was an
+accident of which ValueSets were eligible to become types at the time: HL7 gives
+the binding the name `FHIRTypes`, and no other value set was competing for it.
+
+2.8.0 resolved composed ValueSets properly, which made the value set HL7 actually
+calls `FHIRTypes` — 231 codes, every FHIR type — eligible as well. The two now
+collide, and the name goes to the one that carries it in the specification. So in
+R5 from 2.8.0:
+
+| Type | What it is | Codes |
+|---|---|---|
+| `FHIRTypes` | all FHIR types, the value set of that name | 231 |
+| `VersionIndependentResourceTypesAll` | resource types across FHIR versions | 203 |
+
+`GraphDefinition.node.type`, `SearchParameter.base`, `SearchParameter.target` and
+`OperationDefinition.resource` are typed with the second one. Before 2.8.0 they
+were typed `*FHIRTypes` and it held 41 constants, all of them retired type names
+like `BodySite` and `Conformance`, with no `Patient` among them — so there was no
+working code to break.
 
 ## The import path
 

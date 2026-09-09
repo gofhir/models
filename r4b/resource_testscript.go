@@ -1776,7 +1776,7 @@ type TestScriptSetupActionAssert struct {
 	// Extension for RequestURL
 	RequestURLExt *Element `json:"_requestURL,omitempty"`
 	// Resource type
-	Resource *string `json:"resource,omitempty"`
+	Resource *FHIRDefinedType `json:"resource,omitempty"`
 	// Extension for Resource
 	ResourceExt *Element `json:"_resource,omitempty"`
 	// okay | created | noContent | notModified | bad | forbidden | notFound | methodNotAllowed | conflict | gone | preconditionFailed | unprocessable
@@ -1898,7 +1898,7 @@ func (b TestScriptSetupActionAssert) MarshalXML(e *xml.Encoder, start xml.StartE
 	if err := xmlEncodePrimitiveString(e, "requestURL", b.RequestURL, b.RequestURLExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "resource", b.Resource, b.ResourceExt); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "resource", b.Resource, b.ResourceExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveCode(e, "response", b.Response, b.ResponseExt); err != nil {
@@ -2058,7 +2058,7 @@ func (r *TestScriptSetupActionAssert) UnmarshalXML(d *xml.Decoder, start xml.Sta
 				r.RequestURL = v
 				r.RequestURLExt = ext
 			case "resource":
-				v, ext, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveCode[FHIRDefinedType](d, t)
 				if err != nil {
 					return err
 				}
@@ -2129,7 +2129,7 @@ type TestScriptSetupActionOperation struct {
 	// The operation code type that will be executed
 	Type *Coding `json:"type,omitempty"`
 	// Resource type
-	Resource *string `json:"resource,omitempty"`
+	Resource *FHIRDefinedType `json:"resource,omitempty"`
 	// Extension for Resource
 	ResourceExt *Element `json:"_resource,omitempty"`
 	// Tracking/logging operation label
@@ -2245,7 +2245,7 @@ func (b TestScriptSetupActionOperation) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "resource", b.Resource, b.ResourceExt); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "resource", b.Resource, b.ResourceExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "label", b.Label, b.LabelExt); err != nil {
@@ -2335,7 +2335,7 @@ func (r *TestScriptSetupActionOperation) UnmarshalXML(d *xml.Decoder, start xml.
 				}
 				r.Type = &v
 			case "resource":
-				v, ext, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveCode[FHIRDefinedType](d, t)
 				if err != nil {
 					return err
 				}
@@ -4453,7 +4453,7 @@ func (b *TestScriptSetupActionAssertBuilder) SetRequestURL(v string) *TestScript
 }
 
 // SetResource sets the Resource field.
-func (b *TestScriptSetupActionAssertBuilder) SetResource(v string) *TestScriptSetupActionAssertBuilder {
+func (b *TestScriptSetupActionAssertBuilder) SetResource(v FHIRDefinedType) *TestScriptSetupActionAssertBuilder {
 	b.testScriptSetupActionAssert.Resource = &v
 	return b
 }
@@ -4766,7 +4766,7 @@ func (b *TestScriptSetupActionOperationBuilder) SetType(v Coding) *TestScriptSet
 }
 
 // SetResource sets the Resource field.
-func (b *TestScriptSetupActionOperationBuilder) SetResource(v string) *TestScriptSetupActionOperationBuilder {
+func (b *TestScriptSetupActionOperationBuilder) SetResource(v FHIRDefinedType) *TestScriptSetupActionOperationBuilder {
 	b.testScriptSetupActionOperation.Resource = &v
 	return b
 }

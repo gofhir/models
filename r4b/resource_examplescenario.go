@@ -675,7 +675,7 @@ type ExampleScenarioInstance struct {
 	// Extension for ResourceId
 	ResourceIdExt *Element `json:"_resourceId,omitempty"`
 	// The type of the resource
-	ResourceType *string `json:"resourceType,omitempty"`
+	ResourceType *ResourceType `json:"resourceType,omitempty"`
 	// Extension for ResourceType
 	ResourceTypeExt *Element `json:"_resourceType,omitempty"`
 	// A short name for the resource instance
@@ -743,7 +743,7 @@ func (b ExampleScenarioInstance) MarshalXML(e *xml.Encoder, start xml.StartEleme
 	if err := xmlEncodePrimitiveString(e, "resourceId", b.ResourceId, b.ResourceIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "resourceType", b.ResourceType, b.ResourceTypeExt); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "resourceType", b.ResourceType, b.ResourceTypeExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
@@ -803,7 +803,7 @@ func (r *ExampleScenarioInstance) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 				r.ResourceId = v
 				r.ResourceIdExt = ext
 			case "resourceType":
-				v, ext, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ResourceType](d, t)
 				if err != nil {
 					return err
 				}
@@ -2307,7 +2307,7 @@ func (b *ExampleScenarioInstanceBuilder) SetResourceId(v string) *ExampleScenari
 }
 
 // SetResourceType sets the ResourceType field.
-func (b *ExampleScenarioInstanceBuilder) SetResourceType(v string) *ExampleScenarioInstanceBuilder {
+func (b *ExampleScenarioInstanceBuilder) SetResourceType(v ResourceType) *ExampleScenarioInstanceBuilder {
 	b.exampleScenarioInstance.ResourceType = &v
 	return b
 }
