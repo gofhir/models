@@ -14,14 +14,16 @@
 // literal, and [Val] and [First] read back without a nil check at every step:
 //
 //	patient := r4.Patient{
-//		ResourceType: "Patient",
-//		Active:       r4.Ptr(true),
+//		Active: r4.Ptr(true),
 //		Name: []r4.HumanName{
 //			{Family: r4.Ptr("Smith")},
 //		},
 //	}
 //
 //	family := r4.Val(r4.First(patient.Name)).Family
+//
+// There is no resourceType to set. It is a marker field with one possible value,
+// and it writes itself.
 //
 // Resources can also be built with the generated fluent builders
 // (New<Resource>Builder), which reach every element including the _field
