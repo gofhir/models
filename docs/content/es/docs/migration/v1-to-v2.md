@@ -70,7 +70,7 @@ p := r4.NewPatientBuilder().
 Los literales de struct no se ven afectados y siguen siendo la forma más corta para un recurso que ya tienes completo:
 
 ```go
-p := &r4.Patient{ResourceType: "Patient", Id: r4.Ptr("p1"), Active: r4.Ptr(true)}
+p := &r4.Patient{Id: r4.Ptr("p1"), Active: r4.Ptr(true)}
 ```
 
 ### Si pasas opciones de un lado a otro

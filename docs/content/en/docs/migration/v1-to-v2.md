@@ -70,7 +70,7 @@ p := r4.NewPatientBuilder().
 Struct literals are unaffected and remain the shortest form for a resource you have entirely in hand:
 
 ```go
-p := &r4.Patient{ResourceType: "Patient", Id: r4.Ptr("p1"), Active: r4.Ptr(true)}
+p := &r4.Patient{Id: r4.Ptr("p1"), Active: r4.Ptr(true)}
 ```
 
 ### If you pass options around
