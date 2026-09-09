@@ -397,8 +397,13 @@ func (c *CodeGen) generateCodeSystemsFromTemplate() error {
 
 		for _, code := range vs.Codes {
 			vsData.Codes = append(vsData.Codes, CodeData{
-				Code:      code.Code,
-				Display:   code.Display,
+				Code: code.Code,
+				// The display goes into a // comment, and some of them span
+				// several lines: iana-link-relations has "…records, documents, or
+				// other\n materials of historical interest." A comment broken
+				// across lines without a second // is not Go, and generation
+				// failed outright the first time that ValueSet became an enum.
+				Display:   strings.Join(strings.Fields(code.Display), " "),
 				ConstName: toPascalCaseCode(code.Code),
 				System:    code.System,
 			})

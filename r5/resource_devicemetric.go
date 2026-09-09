@@ -78,7 +78,7 @@ type DeviceMetric struct {
 	// Extension for OperationalStatus
 	OperationalStatusExt *Element `json:"_operationalStatus,omitempty"`
 	// Color name (from CSS4) or #RRGGBB code
-	Color *string `json:"color,omitempty"`
+	Color *ColorCodesOrRGB `json:"color,omitempty"`
 	// Extension for Color
 	ColorExt *Element `json:"_color,omitempty"`
 	// measurement | setting | calculation | unspecified
@@ -239,7 +239,7 @@ func (r DeviceMetric) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveCode(e, "operationalStatus", r.OperationalStatus, r.OperationalStatusExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "color", r.Color, r.ColorExt); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "color", r.Color, r.ColorExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveCode(e, "category", r.Category, r.CategoryExt); err != nil {
@@ -353,7 +353,7 @@ func (r *DeviceMetric) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 				r.OperationalStatus = v
 				r.OperationalStatusExt = ext
 			case "color":
-				v, ext, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ColorCodesOrRGB](d, t)
 				if err != nil {
 					return err
 				}
@@ -651,7 +651,7 @@ func (b *DeviceMetricBuilder) SetOperationalStatus(v DeviceMetricOperationalStat
 }
 
 // SetColor sets the Color field.
-func (b *DeviceMetricBuilder) SetColor(v string) *DeviceMetricBuilder {
+func (b *DeviceMetricBuilder) SetColor(v ColorCodesOrRGB) *DeviceMetricBuilder {
 	b.deviceMetric.Color = &v
 	return b
 }

@@ -25,9 +25,16 @@ type ValueSetCompose struct {
 }
 
 // ValueSetInclude specifies which codes are included.
+//
+// ValueSet is the composition case: an include may name other ValueSets instead
+// of listing codes, and the result is their contents. Ignoring it resolved a
+// composed ValueSet to whichever part happened to be written inline —
+// version-independent-all-resource-types came out as 41 obsolete type names
+// with no Patient among them, because its other half is a reference.
 type ValueSetInclude struct {
-	System  string            `json:"system,omitempty"`
-	Concept []ValueSetConcept `json:"concept,omitempty"`
+	System   string            `json:"system,omitempty"`
+	Concept  []ValueSetConcept `json:"concept,omitempty"`
+	ValueSet []string          `json:"valueSet,omitempty"`
 }
 
 // ValueSetConcept represents a code in the value set.
@@ -78,6 +85,10 @@ type ParsedCode struct {
 type ValueSetRegistry struct {
 	valueSets   map[string]*ParsedValueSet
 	codeSystems map[string]*CodeSystem
+	// raw keeps the unparsed ValueSets so an include that names another one can
+	// be followed. Bundle order does not put a target before the ValueSet that
+	// references it, so resolution cannot happen while loading.
+	raw map[string]*ValueSet
 }
 
 // NewValueSetRegistry creates a new registry.
@@ -85,6 +96,7 @@ func NewValueSetRegistry() *ValueSetRegistry {
 	return &ValueSetRegistry{
 		valueSets:   make(map[string]*ParsedValueSet),
 		codeSystems: make(map[string]*CodeSystem),
+		raw:         make(map[string]*ValueSet),
 	}
 }
 
@@ -135,11 +147,16 @@ func (r *ValueSetRegistry) LoadFromBundle(data []byte) error {
 			if err := json.Unmarshal(entry.Resource, &vs); err != nil {
 				continue
 			}
+			r.raw[vs.URL] = &vs
+		}
+	}
 
-			parsed := r.parseValueSet(&vs)
-			if parsed != nil && len(parsed.Codes) > 0 {
-				r.valueSets[vs.URL] = parsed
-			}
+	// Third pass: resolve. An include naming another ValueSet needs every raw
+	// ValueSet already in hand, which the second pass cannot promise.
+	for url, vs := range r.raw {
+		parsed := r.parseValueSet(vs)
+		if parsed != nil && len(parsed.Codes) > 0 {
+			r.valueSets[url] = parsed
 		}
 	}
 
@@ -153,30 +170,68 @@ func (r *ValueSetRegistry) parseValueSet(vs *ValueSet) *ParsedValueSet {
 		Name:  vs.Name,
 		Title: vs.Title,
 	}
+	// One code becomes one Go constant, and the name comes from the code alone.
+	// Composition makes duplicates ordinary — a set that includes another one may
+	// restate a code the other already has — and two constants of the same name
+	// do not compile. First occurrence wins.
+	r.collectCodes(vs, parsed, make(map[string]bool), make(map[string]bool))
+	return parsed
+}
 
-	if vs.Compose == nil {
-		return parsed
+// collectCodes appends vs's codes to parsed, following includes that name other
+// ValueSets. visited stops a cycle: nothing in the published specs has one, but a
+// composed ValueSet is a graph and a self-reference would otherwise not return.
+func (r *ValueSetRegistry) collectCodes(vs *ValueSet, parsed *ParsedValueSet, visited, seen map[string]bool) {
+	if vs == nil || vs.Compose == nil {
+		return
+	}
+	if visited[vs.URL] {
+		return
+	}
+	visited[vs.URL] = true
+
+	add := func(codes []ParsedCode) {
+		for _, c := range codes {
+			if c.Code == "" || seen[c.Code] {
+				continue
+			}
+			seen[c.Code] = true
+			parsed.Codes = append(parsed.Codes, c)
+		}
 	}
 
 	for _, include := range vs.Compose.Include {
-		// If concepts are explicitly listed
+		// Codes listed inline.
 		if len(include.Concept) > 0 {
 			for _, c := range include.Concept {
-				parsed.Codes = append(parsed.Codes, ParsedCode{
-					Code: c.Code, Display: c.Display, System: include.System,
-				})
+				add([]ParsedCode{{Code: c.Code, Display: c.Display, System: include.System}})
 			}
-			continue
+		} else if cs, ok := r.codeSystems[include.System]; ok {
+			// The whole CodeSystem.
+			add(r.flattenConcepts(cs.Concept, cs.URL))
 		}
 
-		// Otherwise, try to resolve from CodeSystem
-		if cs, ok := r.codeSystems[include.System]; ok {
-			codes := r.flattenConcepts(cs.Concept, cs.URL)
-			parsed.Codes = append(parsed.Codes, codes...)
+		// And whatever other ValueSets this one is built from.
+		for _, ref := range include.ValueSet {
+			if target := r.rawValueSet(ref); target != nil {
+				r.collectCodes(target, parsed, visited, seen)
+			}
 		}
 	}
+}
 
-	return parsed
+// rawValueSet looks up an unparsed ValueSet, tolerating a version suffix the way
+// Get does: a reference may be written as "…/ValueSet/all-types|4.0.1".
+func (r *ValueSetRegistry) rawValueSet(url string) *ValueSet {
+	if vs, ok := r.raw[url]; ok {
+		return vs
+	}
+	if i := strings.Index(url, "|"); i > 0 {
+		if vs, ok := r.raw[url[:i]]; ok {
+			return vs
+		}
+	}
+	return nil
 }
 
 // flattenConcepts recursively flattens nested concepts.

@@ -1695,7 +1695,7 @@ type CapabilityStatementRestResource struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// A resource type that is supported
-	Type *string `json:"type,omitempty"`
+	Type *ResourceType `json:"type,omitempty"`
 	// Extension for Type
 	TypeExt *Element `json:"_type,omitempty"`
 	// Base System profile for all uses of resource
@@ -1806,7 +1806,7 @@ func (b CapabilityStatementRestResource) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "type", b.Type, b.TypeExt); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "profile", b.Profile, b.ProfileExt); err != nil {
@@ -1897,7 +1897,7 @@ func (r *CapabilityStatementRestResource) UnmarshalXML(d *xml.Decoder, start xml
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "type":
-				v, ext, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ResourceType](d, t)
 				if err != nil {
 					return err
 				}
@@ -3958,7 +3958,7 @@ func (b *CapabilityStatementRestResourceBuilder) AddModifierExtension(v Extensio
 }
 
 // SetType sets the Type field.
-func (b *CapabilityStatementRestResourceBuilder) SetType(v string) *CapabilityStatementRestResourceBuilder {
+func (b *CapabilityStatementRestResourceBuilder) SetType(v ResourceType) *CapabilityStatementRestResourceBuilder {
 	b.capabilityStatementRestResource.Type = &v
 	return b
 }

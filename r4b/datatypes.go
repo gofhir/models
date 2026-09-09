@@ -567,7 +567,7 @@ type DataRequirement struct {
 	// Additional content defined by implementations
 	Extension []Extension `json:"extension,omitempty"`
 	// The type of the required data
-	Type *string `json:"type,omitempty"`
+	Type *FHIRAllTypes `json:"type,omitempty"`
 	// Extension for Type
 	TypeExt *Element `json:"_type,omitempty"`
 	// The profile of the required data
@@ -1909,7 +1909,7 @@ type ParameterDefinition struct {
 	// Extension for Documentation
 	DocumentationExt *Element `json:"_documentation,omitempty"`
 	// What type of value
-	Type *string `json:"type,omitempty"`
+	Type *FHIRAllTypes `json:"type,omitempty"`
 	// Extension for Type
 	TypeExt *Element `json:"_type,omitempty"`
 	// What profile the value is expected to be
@@ -4746,7 +4746,7 @@ func (b *DataRequirementBuilder) AddExtension(v Extension) *DataRequirementBuild
 }
 
 // SetType sets the Type field.
-func (b *DataRequirementBuilder) SetType(v string) *DataRequirementBuilder {
+func (b *DataRequirementBuilder) SetType(v FHIRAllTypes) *DataRequirementBuilder {
 	b.dataRequirement.Type = &v
 	return b
 }
@@ -10010,7 +10010,7 @@ func (b *ParameterDefinitionBuilder) SetDocumentation(v string) *ParameterDefini
 }
 
 // SetType sets the Type field.
-func (b *ParameterDefinitionBuilder) SetType(v string) *ParameterDefinitionBuilder {
+func (b *ParameterDefinitionBuilder) SetType(v FHIRAllTypes) *ParameterDefinitionBuilder {
 	b.parameterDefinition.Type = &v
 	return b
 }
@@ -14634,7 +14634,7 @@ func (d DataRequirement) MarshalXML(e *xml.Encoder, start xml.StartElement) erro
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "type", d.Type, d.TypeExt); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", d.Type, d.TypeExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveStringArray(e, "profile", d.Profile, d.ProfileExt); err != nil {
@@ -16217,7 +16217,7 @@ func (d ParameterDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 	if err := xmlEncodePrimitiveString(e, "documentation", d.Documentation, d.DocumentationExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "type", d.Type, d.TypeExt); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "type", d.Type, d.TypeExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "profile", d.Profile, d.ProfileExt); err != nil {
@@ -18477,7 +18477,7 @@ func (r *DataRequirement) UnmarshalXML(dec *xml.Decoder, start xml.StartElement)
 				}
 				r.Extension = append(r.Extension, v)
 			case "type":
-				v, ext, err := xmlDecodePrimitiveString(dec, t)
+				v, ext, err := xmlDecodePrimitiveCode[FHIRAllTypes](dec, t)
 				if err != nil {
 					return err
 				}
@@ -21049,7 +21049,7 @@ func (r *ParameterDefinition) UnmarshalXML(dec *xml.Decoder, start xml.StartElem
 				r.Documentation = v
 				r.DocumentationExt = ext
 			case "type":
-				v, ext, err := xmlDecodePrimitiveString(dec, t)
+				v, ext, err := xmlDecodePrimitiveCode[FHIRAllTypes](dec, t)
 				if err != nil {
 					return err
 				}

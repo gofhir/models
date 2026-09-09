@@ -513,7 +513,7 @@ type CompartmentDefinitionResource struct {
 	// Extensions that cannot be ignored even if unrecognized
 	ModifierExtension []Extension `json:"modifierExtension,omitempty"`
 	// Name of resource type
-	Code *string `json:"code,omitempty"`
+	Code *ResourceType `json:"code,omitempty"`
 	// Extension for Code
 	CodeExt *Element `json:"_code,omitempty"`
 	// Search Parameter Name, or chained parameters
@@ -582,7 +582,7 @@ func (b CompartmentDefinitionResource) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "code", b.Code, b.CodeExt); err != nil {
+	if err := xmlEncodePrimitiveCode(e, "code", b.Code, b.CodeExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveStringArray(e, "param", b.Param, b.ParamExt); err != nil {
@@ -631,7 +631,7 @@ func (r *CompartmentDefinitionResource) UnmarshalXML(d *xml.Decoder, start xml.S
 				}
 				r.ModifierExtension = append(r.ModifierExtension, v)
 			case "code":
-				v, ext, err := xmlDecodePrimitiveString(d, t)
+				v, ext, err := xmlDecodePrimitiveCode[ResourceType](d, t)
 				if err != nil {
 					return err
 				}
@@ -1076,7 +1076,7 @@ func (b *CompartmentDefinitionResourceBuilder) AddModifierExtension(v Extension)
 }
 
 // SetCode sets the Code field.
-func (b *CompartmentDefinitionResourceBuilder) SetCode(v string) *CompartmentDefinitionResourceBuilder {
+func (b *CompartmentDefinitionResourceBuilder) SetCode(v ResourceType) *CompartmentDefinitionResourceBuilder {
 	b.compartmentDefinitionResource.Code = &v
 	return b
 }
