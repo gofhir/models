@@ -333,7 +333,7 @@ func (r PlanDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "subjectCanonical", r.SubjectCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "subjectCanonical", r.SubjectCanonical, r.SubjectCanonicalExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "date", r.Date, r.DateExt); err != nil {
@@ -568,7 +568,7 @@ func (r *PlanDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 					return err
 				}
 				r.SubjectCanonical = v
-				_ = ext
+				r.SubjectCanonicalExt = ext
 			case "date":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -921,7 +921,7 @@ func (b PlanDefinitionAction) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "subjectCanonical", b.SubjectCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "subjectCanonical", b.SubjectCanonical, b.SubjectCanonicalExt); err != nil {
 		return err
 	}
 	for _, item := range b.Trigger {
@@ -949,7 +949,7 @@ func (b PlanDefinitionAction) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "timingDateTime", b.TimingDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "timingDateTime", b.TimingDateTime, b.TimingDateTimeExt); err != nil {
 		return err
 	}
 	if b.TimingAge != nil {
@@ -1002,10 +1002,10 @@ func (b PlanDefinitionAction) MarshalXML(e *xml.Encoder, start xml.StartElement)
 	if err := xmlEncodePrimitiveCode(e, "cardinalityBehavior", b.CardinalityBehavior, b.CardinalityBehaviorExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "definitionCanonical", b.DefinitionCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "definitionCanonical", b.DefinitionCanonical, b.DefinitionCanonicalExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "definitionUri", b.DefinitionUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "definitionUri", b.DefinitionUri, b.DefinitionUriExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "transform", b.Transform, b.TransformExt); err != nil {
@@ -1133,7 +1133,7 @@ func (r *PlanDefinitionAction) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 					return err
 				}
 				r.SubjectCanonical = v
-				_ = ext
+				r.SubjectCanonicalExt = ext
 			case "trigger":
 				var v TriggerDefinition
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1170,7 +1170,7 @@ func (r *PlanDefinitionAction) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 					return err
 				}
 				r.TimingDateTime = v
-				_ = ext
+				r.TimingDateTimeExt = ext
 			case "timingAge":
 				var v Age
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1254,14 +1254,14 @@ func (r *PlanDefinitionAction) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 					return err
 				}
 				r.DefinitionCanonical = v
-				_ = ext
+				r.DefinitionCanonicalExt = ext
 			case "definitionUri":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefinitionUri = v
-				_ = ext
+				r.DefinitionUriExt = ext
 			case "transform":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

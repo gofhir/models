@@ -845,7 +845,7 @@ func (b EvidenceVariableCharacteristic) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "definitionCanonical", b.DefinitionCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "definitionCanonical", b.DefinitionCanonical, b.DefinitionCanonicalExt); err != nil {
 		return err
 	}
 	if b.DefinitionCodeableConcept != nil {
@@ -931,7 +931,7 @@ func (r *EvidenceVariableCharacteristic) UnmarshalXML(d *xml.Decoder, start xml.
 					return err
 				}
 				r.DefinitionCanonical = v
-				_ = ext
+				r.DefinitionCanonicalExt = ext
 			case "definitionCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

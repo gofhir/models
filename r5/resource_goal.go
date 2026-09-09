@@ -272,7 +272,7 @@ func (r Goal) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "startDate", r.StartDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "startDate", r.StartDate, r.StartDateExt); err != nil {
 		return err
 	}
 	if r.StartCodeableConcept != nil {
@@ -433,7 +433,7 @@ func (r *Goal) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 					return err
 				}
 				r.StartDate = v
-				_ = ext
+				r.StartDateExt = ext
 			case "startCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -602,13 +602,13 @@ func (b GoalTarget) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "detailString", b.DetailString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "detailString", b.DetailString, b.DetailStringExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "detailBoolean", b.DetailBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "detailBoolean", b.DetailBoolean, b.DetailBooleanExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "detailInteger", b.DetailInteger, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "detailInteger", b.DetailInteger, b.DetailIntegerExt); err != nil {
 		return err
 	}
 	if b.DetailRatio != nil {
@@ -616,7 +616,7 @@ func (b GoalTarget) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "dueDate", b.DueDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "dueDate", b.DueDate, b.DueDateExt); err != nil {
 		return err
 	}
 	if b.DueDuration != nil {
@@ -687,21 +687,21 @@ func (r *GoalTarget) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 					return err
 				}
 				r.DetailString = v
-				_ = ext
+				r.DetailStringExt = ext
 			case "detailBoolean":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.DetailBoolean = v
-				_ = ext
+				r.DetailBooleanExt = ext
 			case "detailInteger":
 				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.DetailInteger = v
-				_ = ext
+				r.DetailIntegerExt = ext
 			case "detailRatio":
 				var v Ratio
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -714,7 +714,7 @@ func (r *GoalTarget) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 					return err
 				}
 				r.DueDate = v
-				_ = ext
+				r.DueDateExt = ext
 			case "dueDuration":
 				var v Duration
 				if err := v.UnmarshalXML(d, t); err != nil {

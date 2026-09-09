@@ -494,7 +494,7 @@ func (b BiologicallyDerivedProductCollection) MarshalXML(e *xml.Encoder, start x
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "collectedDateTime", b.CollectedDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "collectedDateTime", b.CollectedDateTime, b.CollectedDateTimeExt); err != nil {
 		return err
 	}
 	if b.CollectedPeriod != nil {
@@ -553,7 +553,7 @@ func (r *BiologicallyDerivedProductCollection) UnmarshalXML(d *xml.Decoder, star
 					return err
 				}
 				r.CollectedDateTime = v
-				_ = ext
+				r.CollectedDateTimeExt = ext
 			case "collectedPeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -643,7 +643,7 @@ func (b BiologicallyDerivedProductManipulation) MarshalXML(e *xml.Encoder, start
 	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "timeDateTime", b.TimeDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "timeDateTime", b.TimeDateTime, b.TimeDateTimeExt); err != nil {
 		return err
 	}
 	if b.TimePeriod != nil {
@@ -697,7 +697,7 @@ func (r *BiologicallyDerivedProductManipulation) UnmarshalXML(d *xml.Decoder, st
 					return err
 				}
 				r.TimeDateTime = v
-				_ = ext
+				r.TimeDateTimeExt = ext
 			case "timePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -801,7 +801,7 @@ func (b BiologicallyDerivedProductProcessing) MarshalXML(e *xml.Encoder, start x
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "timeDateTime", b.TimeDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "timeDateTime", b.TimeDateTime, b.TimeDateTimeExt); err != nil {
 		return err
 	}
 	if b.TimePeriod != nil {
@@ -867,7 +867,7 @@ func (r *BiologicallyDerivedProductProcessing) UnmarshalXML(d *xml.Decoder, star
 					return err
 				}
 				r.TimeDateTime = v
-				_ = ext
+				r.TimeDateTimeExt = ext
 			case "timePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

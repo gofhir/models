@@ -294,7 +294,7 @@ func (r MedicationAdministration) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "occurenceDateTime", r.OccurenceDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "occurenceDateTime", r.OccurenceDateTime, r.OccurenceDateTimeExt); err != nil {
 		return err
 	}
 	if r.OccurencePeriod != nil {
@@ -486,7 +486,7 @@ func (r *MedicationAdministration) UnmarshalXML(d *xml.Decoder, start xml.StartE
 					return err
 				}
 				r.OccurenceDateTime = v
-				_ = ext
+				r.OccurenceDateTimeExt = ext
 			case "occurencePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

@@ -568,7 +568,7 @@ func (b SpecimenCollection) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "collectedDateTime", b.CollectedDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "collectedDateTime", b.CollectedDateTime, b.CollectedDateTimeExt); err != nil {
 		return err
 	}
 	if b.CollectedPeriod != nil {
@@ -661,7 +661,7 @@ func (r *SpecimenCollection) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 					return err
 				}
 				r.CollectedDateTime = v
-				_ = ext
+				r.CollectedDateTimeExt = ext
 			case "collectedPeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1085,7 +1085,7 @@ func (b SpecimenProcessing) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "timeDateTime", b.TimeDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "timeDateTime", b.TimeDateTime, b.TimeDateTimeExt); err != nil {
 		return err
 	}
 	if b.TimePeriod != nil {
@@ -1151,7 +1151,7 @@ func (r *SpecimenProcessing) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 					return err
 				}
 				r.TimeDateTime = v
-				_ = ext
+				r.TimeDateTimeExt = ext
 			case "timePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

@@ -677,7 +677,7 @@ func (b RequestGroupAction) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "timingDateTime", b.TimingDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "timingDateTime", b.TimingDateTime, b.TimingDateTimeExt); err != nil {
 		return err
 	}
 	if b.TimingAge != nil {
@@ -838,7 +838,7 @@ func (r *RequestGroupAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 					return err
 				}
 				r.TimingDateTime = v
-				_ = ext
+				r.TimingDateTimeExt = ext
 			case "timingAge":
 				var v Age
 				if err := v.UnmarshalXML(d, t); err != nil {

@@ -294,10 +294,10 @@ func (r Immunization) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "occurrenceDateTime", r.OccurrenceDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "occurrenceDateTime", r.OccurrenceDateTime, r.OccurrenceDateTimeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "occurrenceString", r.OccurrenceString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "occurrenceString", r.OccurrenceString, r.OccurrenceStringExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "recorded", r.Recorded, r.RecordedExt); err != nil {
@@ -504,14 +504,14 @@ func (r *Immunization) UnmarshalXML(d *xml.Decoder, start xml.StartElement) erro
 					return err
 				}
 				r.OccurrenceDateTime = v
-				_ = ext
+				r.OccurrenceDateTimeExt = ext
 			case "occurrenceString":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.OccurrenceString = v
-				_ = ext
+				r.OccurrenceStringExt = ext
 			case "recorded":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -1038,16 +1038,16 @@ func (b ImmunizationProtocolApplied) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "doseNumberPositiveInt", b.DoseNumberPositiveInt, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "doseNumberPositiveInt", b.DoseNumberPositiveInt, b.DoseNumberPositiveIntExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "doseNumberString", b.DoseNumberString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "doseNumberString", b.DoseNumberString, b.DoseNumberStringExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "seriesDosesPositiveInt", b.SeriesDosesPositiveInt, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "seriesDosesPositiveInt", b.SeriesDosesPositiveInt, b.SeriesDosesPositiveIntExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "seriesDosesString", b.SeriesDosesString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "seriesDosesString", b.SeriesDosesString, b.SeriesDosesStringExt); err != nil {
 		return err
 	}
 
@@ -1108,28 +1108,28 @@ func (r *ImmunizationProtocolApplied) UnmarshalXML(d *xml.Decoder, start xml.Sta
 					return err
 				}
 				r.DoseNumberPositiveInt = v
-				_ = ext
+				r.DoseNumberPositiveIntExt = ext
 			case "doseNumberString":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DoseNumberString = v
-				_ = ext
+				r.DoseNumberStringExt = ext
 			case "seriesDosesPositiveInt":
 				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.SeriesDosesPositiveInt = v
-				_ = ext
+				r.SeriesDosesPositiveIntExt = ext
 			case "seriesDosesString":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SeriesDosesString = v
-				_ = ext
+				r.SeriesDosesStringExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

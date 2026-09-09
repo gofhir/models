@@ -1022,7 +1022,7 @@ func (b SubstanceDefinitionMoiety) MarshalXML(e *xml.Encoder, start xml.StartEle
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "amountString", b.AmountString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "amountString", b.AmountString, b.AmountStringExt); err != nil {
 		return err
 	}
 	if b.MeasurementType != nil {
@@ -1113,7 +1113,7 @@ func (r *SubstanceDefinitionMoiety) UnmarshalXML(d *xml.Decoder, start xml.Start
 					return err
 				}
 				r.AmountString = v
-				_ = ext
+				r.AmountStringExt = ext
 			case "measurementType":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1754,10 +1754,10 @@ func (b SubstanceDefinitionProperty) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueDate", b.ValueDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueDate", b.ValueDate, b.ValueDateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, b.ValueBooleanExt); err != nil {
 		return err
 	}
 	if b.ValueAttachment != nil {
@@ -1822,14 +1822,14 @@ func (r *SubstanceDefinitionProperty) UnmarshalXML(d *xml.Decoder, start xml.Sta
 					return err
 				}
 				r.ValueDate = v
-				_ = ext
+				r.ValueDateExt = ext
 			case "valueBoolean":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
-				_ = ext
+				r.ValueBooleanExt = ext
 			case "valueAttachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1958,7 +1958,7 @@ func (b SubstanceDefinitionRelationship) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "amountString", b.AmountString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "amountString", b.AmountString, b.AmountStringExt); err != nil {
 		return err
 	}
 	if b.RatioHighLimitAmount != nil {
@@ -2052,7 +2052,7 @@ func (r *SubstanceDefinitionRelationship) UnmarshalXML(d *xml.Decoder, start xml
 					return err
 				}
 				r.AmountString = v
-				_ = ext
+				r.AmountStringExt = ext
 			case "ratioHighLimitAmount":
 				var v Ratio
 				if err := v.UnmarshalXML(d, t); err != nil {

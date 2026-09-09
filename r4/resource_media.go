@@ -297,7 +297,7 @@ func (r Media) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "createdDateTime", r.CreatedDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "createdDateTime", r.CreatedDateTime, r.CreatedDateTimeExt); err != nil {
 		return err
 	}
 	if r.CreatedPeriod != nil {
@@ -480,7 +480,7 @@ func (r *Media) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 					return err
 				}
 				r.CreatedDateTime = v
-				_ = ext
+				r.CreatedDateTimeExt = ext
 			case "createdPeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

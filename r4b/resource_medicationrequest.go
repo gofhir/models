@@ -303,7 +303,7 @@ func (r MedicationRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 	if err := xmlEncodePrimitiveBool(e, "doNotPerform", r.DoNotPerform, r.DoNotPerformExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "reportedBoolean", r.ReportedBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "reportedBoolean", r.ReportedBoolean, r.ReportedBooleanExt); err != nil {
 		return err
 	}
 	if r.ReportedReference != nil {
@@ -548,7 +548,7 @@ func (r *MedicationRequest) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 					return err
 				}
 				r.ReportedBoolean = v
-				_ = ext
+				r.ReportedBooleanExt = ext
 			case "reportedReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1114,7 +1114,7 @@ func (b MedicationRequestSubstitution) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "allowedBoolean", b.AllowedBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "allowedBoolean", b.AllowedBoolean, b.AllowedBooleanExt); err != nil {
 		return err
 	}
 	if b.AllowedCodeableConcept != nil {
@@ -1166,7 +1166,7 @@ func (r *MedicationRequestSubstitution) UnmarshalXML(d *xml.Decoder, start xml.S
 					return err
 				}
 				r.AllowedBoolean = v
-				_ = ext
+				r.AllowedBooleanExt = ext
 			case "allowedCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

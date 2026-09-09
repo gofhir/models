@@ -287,7 +287,7 @@ func (r TestScript) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveString(e, "version", r.Version, r.VersionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "versionAlgorithmString", r.VersionAlgorithmString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "versionAlgorithmString", r.VersionAlgorithmString, r.VersionAlgorithmStringExt); err != nil {
 		return err
 	}
 	if r.VersionAlgorithmCoding != nil {
@@ -480,7 +480,7 @@ func (r *TestScript) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 					return err
 				}
 				r.VersionAlgorithmString = v
-				_ = ext
+				r.VersionAlgorithmStringExt = ext
 			case "versionAlgorithmCoding":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2453,10 +2453,10 @@ func (b TestScriptSetupActionAssertRequirement) MarshalXML(e *xml.Encoder, start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "linkUri", b.LinkUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "linkUri", b.LinkUri, b.LinkUriExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "linkCanonical", b.LinkCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "linkCanonical", b.LinkCanonical, b.LinkCanonicalExt); err != nil {
 		return err
 	}
 
@@ -2498,14 +2498,14 @@ func (r *TestScriptSetupActionAssertRequirement) UnmarshalXML(d *xml.Decoder, st
 					return err
 				}
 				r.LinkUri = v
-				_ = ext
+				r.LinkUriExt = ext
 			case "linkCanonical":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.LinkCanonical = v
-				_ = ext
+				r.LinkCanonicalExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

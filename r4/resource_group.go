@@ -493,7 +493,7 @@ func (b GroupCharacteristic) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, b.ValueBooleanExt); err != nil {
 		return err
 	}
 	if b.ValueQuantity != nil {
@@ -570,7 +570,7 @@ func (r *GroupCharacteristic) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 					return err
 				}
 				r.ValueBoolean = v
-				_ = ext
+				r.ValueBooleanExt = ext
 			case "valueQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {

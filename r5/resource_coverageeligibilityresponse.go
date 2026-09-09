@@ -261,7 +261,7 @@ func (r CoverageEligibilityResponse) MarshalXML(e *xml.Encoder, start xml.StartE
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "servicedDate", r.ServicedDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "servicedDate", r.ServicedDate, r.ServicedDateExt); err != nil {
 		return err
 	}
 	if r.ServicedPeriod != nil {
@@ -416,7 +416,7 @@ func (r *CoverageEligibilityResponse) UnmarshalXML(d *xml.Decoder, start xml.Sta
 					return err
 				}
 				r.ServicedDate = v
-				_ = ext
+				r.ServicedDateExt = ext
 			case "servicedPeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -703,7 +703,7 @@ func (b CoverageEligibilityResponseEvent) MarshalXML(e *xml.Encoder, start xml.S
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "whenDateTime", b.WhenDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "whenDateTime", b.WhenDateTime, b.WhenDateTimeExt); err != nil {
 		return err
 	}
 	if b.WhenPeriod != nil {
@@ -756,7 +756,7 @@ func (r *CoverageEligibilityResponseEvent) UnmarshalXML(d *xml.Decoder, start xm
 					return err
 				}
 				r.WhenDateTime = v
-				_ = ext
+				r.WhenDateTimeExt = ext
 			case "whenPeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1306,10 +1306,10 @@ func (b CoverageEligibilityResponseInsuranceItemBenefit) MarshalXML(e *xml.Encod
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "allowedUnsignedInt", b.AllowedUnsignedInt, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "allowedUnsignedInt", b.AllowedUnsignedInt, b.AllowedUnsignedIntExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "allowedString", b.AllowedString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "allowedString", b.AllowedString, b.AllowedStringExt); err != nil {
 		return err
 	}
 	if b.AllowedMoney != nil {
@@ -1317,10 +1317,10 @@ func (b CoverageEligibilityResponseInsuranceItemBenefit) MarshalXML(e *xml.Encod
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "usedUnsignedInt", b.UsedUnsignedInt, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "usedUnsignedInt", b.UsedUnsignedInt, b.UsedUnsignedIntExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "usedString", b.UsedString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "usedString", b.UsedString, b.UsedStringExt); err != nil {
 		return err
 	}
 	if b.UsedMoney != nil {
@@ -1373,14 +1373,14 @@ func (r *CoverageEligibilityResponseInsuranceItemBenefit) UnmarshalXML(d *xml.De
 					return err
 				}
 				r.AllowedUnsignedInt = v
-				_ = ext
+				r.AllowedUnsignedIntExt = ext
 			case "allowedString":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AllowedString = v
-				_ = ext
+				r.AllowedStringExt = ext
 			case "allowedMoney":
 				var v Money
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1393,14 +1393,14 @@ func (r *CoverageEligibilityResponseInsuranceItemBenefit) UnmarshalXML(d *xml.De
 					return err
 				}
 				r.UsedUnsignedInt = v
-				_ = ext
+				r.UsedUnsignedIntExt = ext
 			case "usedString":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.UsedString = v
-				_ = ext
+				r.UsedStringExt = ext
 			case "usedMoney":
 				var v Money
 				if err := v.UnmarshalXML(d, t); err != nil {

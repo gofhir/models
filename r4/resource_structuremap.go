@@ -1426,61 +1426,61 @@ func (b StructureMapGroupRuleSource) MarshalXML(e *xml.Encoder, start xml.StartE
 	if err := xmlEncodePrimitiveString(e, "type", b.Type, b.TypeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "defaultValueBase64Binary", b.DefaultValueBase64Binary, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "defaultValueBase64Binary", b.DefaultValueBase64Binary, b.DefaultValueBase64BinaryExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "defaultValueBoolean", b.DefaultValueBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "defaultValueBoolean", b.DefaultValueBoolean, b.DefaultValueBooleanExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "defaultValueCanonical", b.DefaultValueCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "defaultValueCanonical", b.DefaultValueCanonical, b.DefaultValueCanonicalExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "defaultValueCode", b.DefaultValueCode, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "defaultValueCode", b.DefaultValueCode, b.DefaultValueCodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "defaultValueDate", b.DefaultValueDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "defaultValueDate", b.DefaultValueDate, b.DefaultValueDateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "defaultValueDateTime", b.DefaultValueDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "defaultValueDateTime", b.DefaultValueDateTime, b.DefaultValueDateTimeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "defaultValueDecimal", b.DefaultValueDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "defaultValueDecimal", b.DefaultValueDecimal, b.DefaultValueDecimalExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "defaultValueId", b.DefaultValueId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "defaultValueId", b.DefaultValueId, b.DefaultValueIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "defaultValueInstant", b.DefaultValueInstant, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "defaultValueInstant", b.DefaultValueInstant, b.DefaultValueInstantExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "defaultValueInteger", b.DefaultValueInteger, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "defaultValueInteger", b.DefaultValueInteger, b.DefaultValueIntegerExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "defaultValueMarkdown", b.DefaultValueMarkdown, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "defaultValueMarkdown", b.DefaultValueMarkdown, b.DefaultValueMarkdownExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "defaultValueOid", b.DefaultValueOid, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "defaultValueOid", b.DefaultValueOid, b.DefaultValueOidExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "defaultValuePositiveInt", b.DefaultValuePositiveInt, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "defaultValuePositiveInt", b.DefaultValuePositiveInt, b.DefaultValuePositiveIntExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "defaultValueString", b.DefaultValueString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "defaultValueString", b.DefaultValueString, b.DefaultValueStringExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "defaultValueTime", b.DefaultValueTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "defaultValueTime", b.DefaultValueTime, b.DefaultValueTimeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "defaultValueUnsignedInt", b.DefaultValueUnsignedInt, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "defaultValueUnsignedInt", b.DefaultValueUnsignedInt, b.DefaultValueUnsignedIntExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "defaultValueUri", b.DefaultValueUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "defaultValueUri", b.DefaultValueUri, b.DefaultValueUriExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "defaultValueUrl", b.DefaultValueUrl, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "defaultValueUrl", b.DefaultValueUrl, b.DefaultValueUrlExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "defaultValueUuid", b.DefaultValueUuid, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "defaultValueUuid", b.DefaultValueUuid, b.DefaultValueUuidExt); err != nil {
 		return err
 	}
 	if b.DefaultValueAddress != nil {
@@ -1723,133 +1723,133 @@ func (r *StructureMapGroupRuleSource) UnmarshalXML(d *xml.Decoder, start xml.Sta
 					return err
 				}
 				r.DefaultValueBase64Binary = v
-				_ = ext
+				r.DefaultValueBase64BinaryExt = ext
 			case "defaultValueBoolean":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefaultValueBoolean = v
-				_ = ext
+				r.DefaultValueBooleanExt = ext
 			case "defaultValueCanonical":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefaultValueCanonical = v
-				_ = ext
+				r.DefaultValueCanonicalExt = ext
 			case "defaultValueCode":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefaultValueCode = v
-				_ = ext
+				r.DefaultValueCodeExt = ext
 			case "defaultValueDate":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefaultValueDate = v
-				_ = ext
+				r.DefaultValueDateExt = ext
 			case "defaultValueDateTime":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefaultValueDateTime = v
-				_ = ext
+				r.DefaultValueDateTimeExt = ext
 			case "defaultValueDecimal":
 				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefaultValueDecimal = v
-				_ = ext
+				r.DefaultValueDecimalExt = ext
 			case "defaultValueId":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefaultValueId = v
-				_ = ext
+				r.DefaultValueIdExt = ext
 			case "defaultValueInstant":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefaultValueInstant = v
-				_ = ext
+				r.DefaultValueInstantExt = ext
 			case "defaultValueInteger":
 				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefaultValueInteger = v
-				_ = ext
+				r.DefaultValueIntegerExt = ext
 			case "defaultValueMarkdown":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefaultValueMarkdown = v
-				_ = ext
+				r.DefaultValueMarkdownExt = ext
 			case "defaultValueOid":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefaultValueOid = v
-				_ = ext
+				r.DefaultValueOidExt = ext
 			case "defaultValuePositiveInt":
 				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefaultValuePositiveInt = v
-				_ = ext
+				r.DefaultValuePositiveIntExt = ext
 			case "defaultValueString":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefaultValueString = v
-				_ = ext
+				r.DefaultValueStringExt = ext
 			case "defaultValueTime":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefaultValueTime = v
-				_ = ext
+				r.DefaultValueTimeExt = ext
 			case "defaultValueUnsignedInt":
 				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefaultValueUnsignedInt = v
-				_ = ext
+				r.DefaultValueUnsignedIntExt = ext
 			case "defaultValueUri":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefaultValueUri = v
-				_ = ext
+				r.DefaultValueUriExt = ext
 			case "defaultValueUrl":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefaultValueUrl = v
-				_ = ext
+				r.DefaultValueUrlExt = ext
 			case "defaultValueUuid":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DefaultValueUuid = v
-				_ = ext
+				r.DefaultValueUuidExt = ext
 			case "defaultValueAddress":
 				var v Address
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -2384,19 +2384,19 @@ func (b StructureMapGroupRuleTargetParameter) MarshalXML(e *xml.Encoder, start x
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueId", b.ValueId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueId", b.ValueId, b.ValueIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, b.ValueStringExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, b.ValueBooleanExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, b.ValueIntegerExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", b.ValueDecimal, b.ValueDecimalExt); err != nil {
 		return err
 	}
 
@@ -2438,35 +2438,35 @@ func (r *StructureMapGroupRuleTargetParameter) UnmarshalXML(d *xml.Decoder, star
 					return err
 				}
 				r.ValueId = v
-				_ = ext
+				r.ValueIdExt = ext
 			case "valueString":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
-				_ = ext
+				r.ValueStringExt = ext
 			case "valueBoolean":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
-				_ = ext
+				r.ValueBooleanExt = ext
 			case "valueInteger":
 				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger = v
-				_ = ext
+				r.ValueIntegerExt = ext
 			case "valueDecimal":
 				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDecimal = v
-				_ = ext
+				r.ValueDecimalExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

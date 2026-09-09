@@ -979,16 +979,16 @@ func (b QuestionnaireItemAnswerOption) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, b.ValueIntegerExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueDate", b.ValueDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueDate", b.ValueDate, b.ValueDateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueTime", b.ValueTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueTime", b.ValueTime, b.ValueTimeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, b.ValueStringExt); err != nil {
 		return err
 	}
 	if b.ValueCoding != nil {
@@ -1043,28 +1043,28 @@ func (r *QuestionnaireItemAnswerOption) UnmarshalXML(d *xml.Decoder, start xml.S
 					return err
 				}
 				r.ValueInteger = v
-				_ = ext
+				r.ValueIntegerExt = ext
 			case "valueDate":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDate = v
-				_ = ext
+				r.ValueDateExt = ext
 			case "valueTime":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueTime = v
-				_ = ext
+				r.ValueTimeExt = ext
 			case "valueString":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
-				_ = ext
+				r.ValueStringExt = ext
 			case "valueCoding":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1202,25 +1202,25 @@ func (b QuestionnaireItemEnableWhen) MarshalXML(e *xml.Encoder, start xml.StartE
 	if err := xmlEncodePrimitiveCode(e, "operator", b.Operator, b.OperatorExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "answerBoolean", b.AnswerBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "answerBoolean", b.AnswerBoolean, b.AnswerBooleanExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "answerDecimal", b.AnswerDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "answerDecimal", b.AnswerDecimal, b.AnswerDecimalExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "answerInteger", b.AnswerInteger, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "answerInteger", b.AnswerInteger, b.AnswerIntegerExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "answerDate", b.AnswerDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "answerDate", b.AnswerDate, b.AnswerDateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "answerDateTime", b.AnswerDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "answerDateTime", b.AnswerDateTime, b.AnswerDateTimeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "answerTime", b.AnswerTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "answerTime", b.AnswerTime, b.AnswerTimeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "answerString", b.AnswerString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "answerString", b.AnswerString, b.AnswerStringExt); err != nil {
 		return err
 	}
 	if b.AnswerCoding != nil {
@@ -1291,49 +1291,49 @@ func (r *QuestionnaireItemEnableWhen) UnmarshalXML(d *xml.Decoder, start xml.Sta
 					return err
 				}
 				r.AnswerBoolean = v
-				_ = ext
+				r.AnswerBooleanExt = ext
 			case "answerDecimal":
 				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.AnswerDecimal = v
-				_ = ext
+				r.AnswerDecimalExt = ext
 			case "answerInteger":
 				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.AnswerInteger = v
-				_ = ext
+				r.AnswerIntegerExt = ext
 			case "answerDate":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AnswerDate = v
-				_ = ext
+				r.AnswerDateExt = ext
 			case "answerDateTime":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AnswerDateTime = v
-				_ = ext
+				r.AnswerDateTimeExt = ext
 			case "answerTime":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AnswerTime = v
-				_ = ext
+				r.AnswerTimeExt = ext
 			case "answerString":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AnswerString = v
-				_ = ext
+				r.AnswerStringExt = ext
 			case "answerCoding":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1462,28 +1462,28 @@ func (b QuestionnaireItemInitial) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, b.ValueBooleanExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", b.ValueDecimal, b.ValueDecimalExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, b.ValueIntegerExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueDate", b.ValueDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueDate", b.ValueDate, b.ValueDateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueDateTime", b.ValueDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueDateTime", b.ValueDateTime, b.ValueDateTimeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueTime", b.ValueTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueTime", b.ValueTime, b.ValueTimeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, b.ValueStringExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueUri", b.ValueUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueUri", b.ValueUri, b.ValueUriExt); err != nil {
 		return err
 	}
 	if b.ValueAttachment != nil {
@@ -1545,56 +1545,56 @@ func (r *QuestionnaireItemInitial) UnmarshalXML(d *xml.Decoder, start xml.StartE
 					return err
 				}
 				r.ValueBoolean = v
-				_ = ext
+				r.ValueBooleanExt = ext
 			case "valueDecimal":
 				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDecimal = v
-				_ = ext
+				r.ValueDecimalExt = ext
 			case "valueInteger":
 				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger = v
-				_ = ext
+				r.ValueIntegerExt = ext
 			case "valueDate":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDate = v
-				_ = ext
+				r.ValueDateExt = ext
 			case "valueDateTime":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDateTime = v
-				_ = ext
+				r.ValueDateTimeExt = ext
 			case "valueTime":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueTime = v
-				_ = ext
+				r.ValueTimeExt = ext
 			case "valueString":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
-				_ = ext
+				r.ValueStringExt = ext
 			case "valueUri":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueUri = v
-				_ = ext
+				r.ValueUriExt = ext
 			case "valueAttachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {

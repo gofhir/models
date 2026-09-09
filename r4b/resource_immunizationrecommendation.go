@@ -470,16 +470,16 @@ func (b ImmunizationRecommendationRecommendation) MarshalXML(e *xml.Encoder, sta
 	if err := xmlEncodePrimitiveString(e, "series", b.Series, b.SeriesExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "doseNumberPositiveInt", b.DoseNumberPositiveInt, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "doseNumberPositiveInt", b.DoseNumberPositiveInt, b.DoseNumberPositiveIntExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "doseNumberString", b.DoseNumberString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "doseNumberString", b.DoseNumberString, b.DoseNumberStringExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "seriesDosesPositiveInt", b.SeriesDosesPositiveInt, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "seriesDosesPositiveInt", b.SeriesDosesPositiveInt, b.SeriesDosesPositiveIntExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "seriesDosesString", b.SeriesDosesString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "seriesDosesString", b.SeriesDosesString, b.SeriesDosesStringExt); err != nil {
 		return err
 	}
 	for _, item := range b.SupportingImmunization {
@@ -581,28 +581,28 @@ func (r *ImmunizationRecommendationRecommendation) UnmarshalXML(d *xml.Decoder, 
 					return err
 				}
 				r.DoseNumberPositiveInt = v
-				_ = ext
+				r.DoseNumberPositiveIntExt = ext
 			case "doseNumberString":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DoseNumberString = v
-				_ = ext
+				r.DoseNumberStringExt = ext
 			case "seriesDosesPositiveInt":
 				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.SeriesDosesPositiveInt = v
-				_ = ext
+				r.SeriesDosesPositiveIntExt = ext
 			case "seriesDosesString":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SeriesDosesString = v
-				_ = ext
+				r.SeriesDosesStringExt = ext
 			case "supportingImmunization":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

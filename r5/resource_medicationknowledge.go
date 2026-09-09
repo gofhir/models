@@ -956,7 +956,7 @@ func (b MedicationKnowledgeDefinitionalDrugCharacteristic) MarshalXML(e *xml.Enc
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, b.ValueStringExt); err != nil {
 		return err
 	}
 	if b.ValueQuantity != nil {
@@ -964,7 +964,7 @@ func (b MedicationKnowledgeDefinitionalDrugCharacteristic) MarshalXML(e *xml.Enc
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueBase64Binary", b.ValueBase64Binary, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueBase64Binary", b.ValueBase64Binary, b.ValueBase64BinaryExt); err != nil {
 		return err
 	}
 	if b.ValueAttachment != nil {
@@ -1023,7 +1023,7 @@ func (r *MedicationKnowledgeDefinitionalDrugCharacteristic) UnmarshalXML(d *xml.
 					return err
 				}
 				r.ValueString = v
-				_ = ext
+				r.ValueStringExt = ext
 			case "valueQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1036,7 +1036,7 @@ func (r *MedicationKnowledgeDefinitionalDrugCharacteristic) UnmarshalXML(d *xml.
 					return err
 				}
 				r.ValueBase64Binary = v
-				_ = ext
+				r.ValueBase64BinaryExt = ext
 			case "valueAttachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1866,10 +1866,10 @@ func (b MedicationKnowledgeMedicineClassification) MarshalXML(e *xml.Encoder, st
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "sourceString", b.SourceString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "sourceString", b.SourceString, b.SourceStringExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "sourceUri", b.SourceUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "sourceUri", b.SourceUri, b.SourceUriExt); err != nil {
 		return err
 	}
 	for _, item := range b.Classification {
@@ -1922,14 +1922,14 @@ func (r *MedicationKnowledgeMedicineClassification) UnmarshalXML(d *xml.Decoder,
 					return err
 				}
 				r.SourceString = v
-				_ = ext
+				r.SourceStringExt = ext
 			case "sourceUri":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SourceUri = v
-				_ = ext
+				r.SourceUriExt = ext
 			case "classification":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

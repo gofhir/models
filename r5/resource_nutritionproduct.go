@@ -489,7 +489,7 @@ func (b NutritionProductCharacteristic) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, b.ValueStringExt); err != nil {
 		return err
 	}
 	if b.ValueQuantity != nil {
@@ -497,7 +497,7 @@ func (b NutritionProductCharacteristic) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueBase64Binary", b.ValueBase64Binary, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueBase64Binary", b.ValueBase64Binary, b.ValueBase64BinaryExt); err != nil {
 		return err
 	}
 	if b.ValueAttachment != nil {
@@ -505,7 +505,7 @@ func (b NutritionProductCharacteristic) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, b.ValueBooleanExt); err != nil {
 		return err
 	}
 
@@ -559,7 +559,7 @@ func (r *NutritionProductCharacteristic) UnmarshalXML(d *xml.Decoder, start xml.
 					return err
 				}
 				r.ValueString = v
-				_ = ext
+				r.ValueStringExt = ext
 			case "valueQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -572,7 +572,7 @@ func (r *NutritionProductCharacteristic) UnmarshalXML(d *xml.Decoder, start xml.
 					return err
 				}
 				r.ValueBase64Binary = v
-				_ = ext
+				r.ValueBase64BinaryExt = ext
 			case "valueAttachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -585,7 +585,7 @@ func (r *NutritionProductCharacteristic) UnmarshalXML(d *xml.Decoder, start xml.
 					return err
 				}
 				r.ValueBoolean = v
-				_ = ext
+				r.ValueBooleanExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

@@ -767,7 +767,7 @@ func (b PaymentReconciliationAllocation) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "targetItemString", b.TargetItemString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "targetItemString", b.TargetItemString, b.TargetItemStringExt); err != nil {
 		return err
 	}
 	if b.TargetItemIdentifier != nil {
@@ -775,7 +775,7 @@ func (b PaymentReconciliationAllocation) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveUint32(e, "targetItemPositiveInt", b.TargetItemPositiveInt, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "targetItemPositiveInt", b.TargetItemPositiveInt, b.TargetItemPositiveIntExt); err != nil {
 		return err
 	}
 	if b.Encounter != nil {
@@ -878,7 +878,7 @@ func (r *PaymentReconciliationAllocation) UnmarshalXML(d *xml.Decoder, start xml
 					return err
 				}
 				r.TargetItemString = v
-				_ = ext
+				r.TargetItemStringExt = ext
 			case "targetItemIdentifier":
 				var v Identifier
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -891,7 +891,7 @@ func (r *PaymentReconciliationAllocation) UnmarshalXML(d *xml.Decoder, start xml
 					return err
 				}
 				r.TargetItemPositiveInt = v
-				_ = ext
+				r.TargetItemPositiveIntExt = ext
 			case "encounter":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

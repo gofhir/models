@@ -313,10 +313,10 @@ func (r FamilyMemberHistory) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "bornDate", r.BornDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "bornDate", r.BornDate, r.BornDateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "bornString", r.BornString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "bornString", r.BornString, r.BornStringExt); err != nil {
 		return err
 	}
 	if r.AgeAge != nil {
@@ -329,13 +329,13 @@ func (r FamilyMemberHistory) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "ageString", r.AgeString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "ageString", r.AgeString, r.AgeStringExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveBool(e, "estimatedAge", r.EstimatedAge, r.EstimatedAgeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "deceasedBoolean", r.DeceasedBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "deceasedBoolean", r.DeceasedBoolean, r.DeceasedBooleanExt); err != nil {
 		return err
 	}
 	if r.DeceasedAge != nil {
@@ -348,10 +348,10 @@ func (r FamilyMemberHistory) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "deceasedDate", r.DeceasedDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "deceasedDate", r.DeceasedDate, r.DeceasedDateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "deceasedString", r.DeceasedString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "deceasedString", r.DeceasedString, r.DeceasedStringExt); err != nil {
 		return err
 	}
 	for _, item := range r.ReasonCode {
@@ -519,14 +519,14 @@ func (r *FamilyMemberHistory) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 					return err
 				}
 				r.BornDate = v
-				_ = ext
+				r.BornDateExt = ext
 			case "bornString":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.BornString = v
-				_ = ext
+				r.BornStringExt = ext
 			case "ageAge":
 				var v Age
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -545,7 +545,7 @@ func (r *FamilyMemberHistory) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 					return err
 				}
 				r.AgeString = v
-				_ = ext
+				r.AgeStringExt = ext
 			case "estimatedAge":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
@@ -559,7 +559,7 @@ func (r *FamilyMemberHistory) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 					return err
 				}
 				r.DeceasedBoolean = v
-				_ = ext
+				r.DeceasedBooleanExt = ext
 			case "deceasedAge":
 				var v Age
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -578,14 +578,14 @@ func (r *FamilyMemberHistory) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 					return err
 				}
 				r.DeceasedDate = v
-				_ = ext
+				r.DeceasedDateExt = ext
 			case "deceasedString":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DeceasedString = v
-				_ = ext
+				r.DeceasedStringExt = ext
 			case "reasonCode":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -730,7 +730,7 @@ func (b FamilyMemberHistoryCondition) MarshalXML(e *xml.Encoder, start xml.Start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "onsetString", b.OnsetString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "onsetString", b.OnsetString, b.OnsetStringExt); err != nil {
 		return err
 	}
 	for _, item := range b.Note {
@@ -814,7 +814,7 @@ func (r *FamilyMemberHistoryCondition) UnmarshalXML(d *xml.Decoder, start xml.St
 					return err
 				}
 				r.OnsetString = v
-				_ = ext
+				r.OnsetStringExt = ext
 			case "note":
 				var v Annotation
 				if err := v.UnmarshalXML(d, t); err != nil {

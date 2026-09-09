@@ -3257,7 +3257,7 @@ func (b CitationCitedArtifactRelatesTo) MarshalXML(e *xml.Encoder, start xml.Sta
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "targetUri", b.TargetUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "targetUri", b.TargetUri, b.TargetUriExt); err != nil {
 		return err
 	}
 	if b.TargetIdentifier != nil {
@@ -3326,7 +3326,7 @@ func (r *CitationCitedArtifactRelatesTo) UnmarshalXML(d *xml.Decoder, start xml.
 					return err
 				}
 				r.TargetUri = v
-				_ = ext
+				r.TargetUriExt = ext
 			case "targetIdentifier":
 				var v Identifier
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -4114,7 +4114,7 @@ func (b CitationRelatesTo) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "targetUri", b.TargetUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "targetUri", b.TargetUri, b.TargetUriExt); err != nil {
 		return err
 	}
 	if b.TargetIdentifier != nil {
@@ -4183,7 +4183,7 @@ func (r *CitationRelatesTo) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 					return err
 				}
 				r.TargetUri = v
-				_ = ext
+				r.TargetUriExt = ext
 			case "targetIdentifier":
 				var v Identifier
 				if err := v.UnmarshalXML(d, t); err != nil {

@@ -291,7 +291,7 @@ func (r MedicationAdministration) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "effectiveDateTime", r.EffectiveDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "effectiveDateTime", r.EffectiveDateTime, r.EffectiveDateTimeExt); err != nil {
 		return err
 	}
 	if r.EffectivePeriod != nil {
@@ -480,7 +480,7 @@ func (r *MedicationAdministration) UnmarshalXML(d *xml.Decoder, start xml.StartE
 					return err
 				}
 				r.EffectiveDateTime = v
-				_ = ext
+				r.EffectiveDateTimeExt = ext
 			case "effectivePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

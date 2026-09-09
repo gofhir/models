@@ -299,7 +299,7 @@ func (r MessageDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 	if err := xmlEncodePrimitiveString(e, "version", r.Version, r.VersionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "versionAlgorithmString", r.VersionAlgorithmString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "versionAlgorithmString", r.VersionAlgorithmString, r.VersionAlgorithmStringExt); err != nil {
 		return err
 	}
 	if r.VersionAlgorithmCoding != nil {
@@ -366,7 +366,7 @@ func (r MessageDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "eventUri", r.EventUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "eventUri", r.EventUri, r.EventUriExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveCode(e, "category", r.Category, r.CategoryExt); err != nil {
@@ -480,7 +480,7 @@ func (r *MessageDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 					return err
 				}
 				r.VersionAlgorithmString = v
-				_ = ext
+				r.VersionAlgorithmStringExt = ext
 			case "versionAlgorithmCoding":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -610,7 +610,7 @@ func (r *MessageDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 					return err
 				}
 				r.EventUri = v
-				_ = ext
+				r.EventUriExt = ext
 			case "category":
 				v, ext, err := xmlDecodePrimitiveCode[MessageSignificanceCategory](d, t)
 				if err != nil {

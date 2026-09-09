@@ -320,7 +320,7 @@ func (r DeviceRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "occurrenceDateTime", r.OccurrenceDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "occurrenceDateTime", r.OccurrenceDateTime, r.OccurrenceDateTimeExt); err != nil {
 		return err
 	}
 	if r.OccurrencePeriod != nil {
@@ -544,7 +544,7 @@ func (r *DeviceRequest) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 					return err
 				}
 				r.OccurrenceDateTime = v
-				_ = ext
+				r.OccurrenceDateTimeExt = ext
 			case "occurrencePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -722,7 +722,7 @@ func (b DeviceRequestParameter) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, b.ValueBooleanExt); err != nil {
 		return err
 	}
 
@@ -788,7 +788,7 @@ func (r *DeviceRequestParameter) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 					return err
 				}
 				r.ValueBoolean = v
-				_ = ext
+				r.ValueBooleanExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

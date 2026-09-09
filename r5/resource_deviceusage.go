@@ -279,7 +279,7 @@ func (r DeviceUsage) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "timingDateTime", r.TimingDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "timingDateTime", r.TimingDateTime, r.TimingDateTimeExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "dateAsserted", r.DateAsserted, r.DateAssertedExt); err != nil {
@@ -452,7 +452,7 @@ func (r *DeviceUsage) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error
 					return err
 				}
 				r.TimingDateTime = v
-				_ = ext
+				r.TimingDateTimeExt = ext
 			case "dateAsserted":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

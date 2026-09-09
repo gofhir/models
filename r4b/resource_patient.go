@@ -266,10 +266,10 @@ func (r Patient) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveString(e, "birthDate", r.BirthDate, r.BirthDateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "deceasedBoolean", r.DeceasedBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "deceasedBoolean", r.DeceasedBoolean, r.DeceasedBooleanExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "deceasedDateTime", r.DeceasedDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "deceasedDateTime", r.DeceasedDateTime, r.DeceasedDateTimeExt); err != nil {
 		return err
 	}
 	for _, item := range r.Address {
@@ -282,10 +282,10 @@ func (r Patient) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "multipleBirthBoolean", r.MultipleBirthBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "multipleBirthBoolean", r.MultipleBirthBoolean, r.MultipleBirthBooleanExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "multipleBirthInteger", r.MultipleBirthInteger, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "multipleBirthInteger", r.MultipleBirthInteger, r.MultipleBirthIntegerExt); err != nil {
 		return err
 	}
 	for _, item := range r.Photo {
@@ -429,14 +429,14 @@ func (r *Patient) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 					return err
 				}
 				r.DeceasedBoolean = v
-				_ = ext
+				r.DeceasedBooleanExt = ext
 			case "deceasedDateTime":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DeceasedDateTime = v
-				_ = ext
+				r.DeceasedDateTimeExt = ext
 			case "address":
 				var v Address
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -455,14 +455,14 @@ func (r *Patient) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 					return err
 				}
 				r.MultipleBirthBoolean = v
-				_ = ext
+				r.MultipleBirthBooleanExt = ext
 			case "multipleBirthInteger":
 				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.MultipleBirthInteger = v
-				_ = ext
+				r.MultipleBirthIntegerExt = ext
 			case "photo":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {

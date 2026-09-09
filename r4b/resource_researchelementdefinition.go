@@ -857,7 +857,7 @@ func (b ResearchElementDefinitionCharacteristic) MarshalXML(e *xml.Encoder, star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "definitionCanonical", b.DefinitionCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "definitionCanonical", b.DefinitionCanonical, b.DefinitionCanonicalExt); err != nil {
 		return err
 	}
 	if b.DefinitionExpression != nil {
@@ -886,7 +886,7 @@ func (b ResearchElementDefinitionCharacteristic) MarshalXML(e *xml.Encoder, star
 	if err := xmlEncodePrimitiveString(e, "studyEffectiveDescription", b.StudyEffectiveDescription, b.StudyEffectiveDescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "studyEffectiveDateTime", b.StudyEffectiveDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "studyEffectiveDateTime", b.StudyEffectiveDateTime, b.StudyEffectiveDateTimeExt); err != nil {
 		return err
 	}
 	if b.StudyEffectivePeriod != nil {
@@ -915,7 +915,7 @@ func (b ResearchElementDefinitionCharacteristic) MarshalXML(e *xml.Encoder, star
 	if err := xmlEncodePrimitiveString(e, "participantEffectiveDescription", b.ParticipantEffectiveDescription, b.ParticipantEffectiveDescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "participantEffectiveDateTime", b.ParticipantEffectiveDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "participantEffectiveDateTime", b.ParticipantEffectiveDateTime, b.ParticipantEffectiveDateTimeExt); err != nil {
 		return err
 	}
 	if b.ParticipantEffectivePeriod != nil {
@@ -986,7 +986,7 @@ func (r *ResearchElementDefinitionCharacteristic) UnmarshalXML(d *xml.Decoder, s
 					return err
 				}
 				r.DefinitionCanonical = v
-				_ = ext
+				r.DefinitionCanonicalExt = ext
 			case "definitionExpression":
 				var v Expression
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1031,7 +1031,7 @@ func (r *ResearchElementDefinitionCharacteristic) UnmarshalXML(d *xml.Decoder, s
 					return err
 				}
 				r.StudyEffectiveDateTime = v
-				_ = ext
+				r.StudyEffectiveDateTimeExt = ext
 			case "studyEffectivePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1076,7 +1076,7 @@ func (r *ResearchElementDefinitionCharacteristic) UnmarshalXML(d *xml.Decoder, s
 					return err
 				}
 				r.ParticipantEffectiveDateTime = v
-				_ = ext
+				r.ParticipantEffectiveDateTimeExt = ext
 			case "participantEffectivePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

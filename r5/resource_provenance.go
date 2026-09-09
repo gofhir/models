@@ -236,7 +236,7 @@ func (r Provenance) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "occurredDateTime", r.OccurredDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "occurredDateTime", r.OccurredDateTime, r.OccurredDateTimeExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "recorded", r.Recorded, r.RecordedExt); err != nil {
@@ -374,7 +374,7 @@ func (r *Provenance) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 					return err
 				}
 				r.OccurredDateTime = v
-				_ = ext
+				r.OccurredDateTimeExt = ext
 			case "recorded":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

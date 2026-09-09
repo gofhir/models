@@ -369,7 +369,7 @@ func (r ServiceRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "occurrenceDateTime", r.OccurrenceDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "occurrenceDateTime", r.OccurrenceDateTime, r.OccurrenceDateTimeExt); err != nil {
 		return err
 	}
 	if r.OccurrencePeriod != nil {
@@ -382,7 +382,7 @@ func (r ServiceRequest) MarshalXML(e *xml.Encoder, start xml.StartElement) error
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "asNeededBoolean", r.AsNeededBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "asNeededBoolean", r.AsNeededBoolean, r.AsNeededBooleanExt); err != nil {
 		return err
 	}
 	if r.AsNeededCodeableConcept != nil {
@@ -652,7 +652,7 @@ func (r *ServiceRequest) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 					return err
 				}
 				r.OccurrenceDateTime = v
-				_ = ext
+				r.OccurrenceDateTimeExt = ext
 			case "occurrencePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -671,7 +671,7 @@ func (r *ServiceRequest) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 					return err
 				}
 				r.AsNeededBoolean = v
-				_ = ext
+				r.AsNeededBooleanExt = ext
 			case "asNeededCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1004,7 +1004,7 @@ func (b ServiceRequestOrderDetailParameter) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, b.ValueBooleanExt); err != nil {
 		return err
 	}
 	if b.ValueCodeableConcept != nil {
@@ -1012,7 +1012,7 @@ func (b ServiceRequestOrderDetailParameter) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, b.ValueStringExt); err != nil {
 		return err
 	}
 	if b.ValuePeriod != nil {
@@ -1083,7 +1083,7 @@ func (r *ServiceRequestOrderDetailParameter) UnmarshalXML(d *xml.Decoder, start 
 					return err
 				}
 				r.ValueBoolean = v
-				_ = ext
+				r.ValueBooleanExt = ext
 			case "valueCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1096,7 +1096,7 @@ func (r *ServiceRequestOrderDetailParameter) UnmarshalXML(d *xml.Decoder, start 
 					return err
 				}
 				r.ValueString = v
-				_ = ext
+				r.ValueStringExt = ext
 			case "valuePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1179,7 +1179,7 @@ func (b ServiceRequestPatientInstruction) MarshalXML(e *xml.Encoder, start xml.S
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "instructionMarkdown", b.InstructionMarkdown, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "instructionMarkdown", b.InstructionMarkdown, b.InstructionMarkdownExt); err != nil {
 		return err
 	}
 	if b.InstructionReference != nil {
@@ -1226,7 +1226,7 @@ func (r *ServiceRequestPatientInstruction) UnmarshalXML(d *xml.Decoder, start xm
 					return err
 				}
 				r.InstructionMarkdown = v
-				_ = ext
+				r.InstructionMarkdownExt = ext
 			case "instructionReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

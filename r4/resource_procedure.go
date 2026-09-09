@@ -315,7 +315,7 @@ func (r Procedure) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "performedDateTime", r.PerformedDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "performedDateTime", r.PerformedDateTime, r.PerformedDateTimeExt); err != nil {
 		return err
 	}
 	if r.PerformedPeriod != nil {
@@ -323,7 +323,7 @@ func (r Procedure) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "performedString", r.PerformedString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "performedString", r.PerformedString, r.PerformedStringExt); err != nil {
 		return err
 	}
 	if r.PerformedAge != nil {
@@ -559,7 +559,7 @@ func (r *Procedure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 					return err
 				}
 				r.PerformedDateTime = v
-				_ = ext
+				r.PerformedDateTimeExt = ext
 			case "performedPeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -572,7 +572,7 @@ func (r *Procedure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 					return err
 				}
 				r.PerformedString = v
-				_ = ext
+				r.PerformedStringExt = ext
 			case "performedAge":
 				var v Age
 				if err := v.UnmarshalXML(d, t); err != nil {

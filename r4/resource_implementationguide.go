@@ -918,7 +918,7 @@ func (b ImplementationGuideDefinitionPage) MarshalXML(e *xml.Encoder, start xml.
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "nameUrl", b.NameUrl, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "nameUrl", b.NameUrl, b.NameUrlExt); err != nil {
 		return err
 	}
 	if b.NameReference != nil {
@@ -976,7 +976,7 @@ func (r *ImplementationGuideDefinitionPage) UnmarshalXML(d *xml.Decoder, start x
 					return err
 				}
 				r.NameUrl = v
-				_ = ext
+				r.NameUrlExt = ext
 			case "nameReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1244,10 +1244,10 @@ func (b ImplementationGuideDefinitionResource) MarshalXML(e *xml.Encoder, start 
 	if err := xmlEncodePrimitiveString(e, "description", b.Description, b.DescriptionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "exampleBoolean", b.ExampleBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "exampleBoolean", b.ExampleBoolean, b.ExampleBooleanExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "exampleCanonical", b.ExampleCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "exampleCanonical", b.ExampleCanonical, b.ExampleCanonicalExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "groupingId", b.GroupingId, b.GroupingIdExt); err != nil {
@@ -1320,14 +1320,14 @@ func (r *ImplementationGuideDefinitionResource) UnmarshalXML(d *xml.Decoder, sta
 					return err
 				}
 				r.ExampleBoolean = v
-				_ = ext
+				r.ExampleBooleanExt = ext
 			case "exampleCanonical":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ExampleCanonical = v
-				_ = ext
+				r.ExampleCanonicalExt = ext
 			case "groupingId":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -2168,10 +2168,10 @@ func (b ImplementationGuideManifestResource) MarshalXML(e *xml.Encoder, start xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "exampleBoolean", b.ExampleBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "exampleBoolean", b.ExampleBoolean, b.ExampleBooleanExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "exampleCanonical", b.ExampleCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "exampleCanonical", b.ExampleCanonical, b.ExampleCanonicalExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "relativePath", b.RelativePath, b.RelativePathExt); err != nil {
@@ -2222,14 +2222,14 @@ func (r *ImplementationGuideManifestResource) UnmarshalXML(d *xml.Decoder, start
 					return err
 				}
 				r.ExampleBoolean = v
-				_ = ext
+				r.ExampleBooleanExt = ext
 			case "exampleCanonical":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ExampleCanonical = v
-				_ = ext
+				r.ExampleCanonicalExt = ext
 			case "relativePath":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

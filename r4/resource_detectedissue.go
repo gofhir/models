@@ -249,7 +249,7 @@ func (r DetectedIssue) MarshalXML(e *xml.Encoder, start xml.StartElement) error 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "identifiedDateTime", r.IdentifiedDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "identifiedDateTime", r.IdentifiedDateTime, r.IdentifiedDateTimeExt); err != nil {
 		return err
 	}
 	if r.IdentifiedPeriod != nil {
@@ -387,7 +387,7 @@ func (r *DetectedIssue) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 					return err
 				}
 				r.IdentifiedDateTime = v
-				_ = ext
+				r.IdentifiedDateTimeExt = ext
 			case "identifiedPeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

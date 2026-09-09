@@ -242,10 +242,10 @@ func (r GuidanceResponse) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "moduleUri", r.ModuleUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "moduleUri", r.ModuleUri, r.ModuleUriExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "moduleCanonical", r.ModuleCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "moduleCanonical", r.ModuleCanonical, r.ModuleCanonicalExt); err != nil {
 		return err
 	}
 	if r.ModuleCodeableConcept != nil {
@@ -388,14 +388,14 @@ func (r *GuidanceResponse) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 					return err
 				}
 				r.ModuleUri = v
-				_ = ext
+				r.ModuleUriExt = ext
 			case "moduleCanonical":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ModuleCanonical = v
-				_ = ext
+				r.ModuleCanonicalExt = ext
 			case "moduleCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {

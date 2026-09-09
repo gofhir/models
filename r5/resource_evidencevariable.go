@@ -301,7 +301,7 @@ func (r EvidenceVariable) MarshalXML(e *xml.Encoder, start xml.StartElement) err
 	if err := xmlEncodePrimitiveString(e, "version", r.Version, r.VersionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "versionAlgorithmString", r.VersionAlgorithmString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "versionAlgorithmString", r.VersionAlgorithmString, r.VersionAlgorithmStringExt); err != nil {
 		return err
 	}
 	if r.VersionAlgorithmCoding != nil {
@@ -501,7 +501,7 @@ func (r *EvidenceVariable) UnmarshalXML(d *xml.Decoder, start xml.StartElement) 
 					return err
 				}
 				r.VersionAlgorithmString = v
-				_ = ext
+				r.VersionAlgorithmStringExt = ext
 			case "versionAlgorithmCoding":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1409,7 +1409,7 @@ func (b EvidenceVariableCharacteristicDefinitionByTypeAndValue) MarshalXML(e *xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, b.ValueBooleanExt); err != nil {
 		return err
 	}
 	if b.ValueQuantity != nil {
@@ -1427,7 +1427,7 @@ func (b EvidenceVariableCharacteristicDefinitionByTypeAndValue) MarshalXML(e *xm
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueId", b.ValueId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueId", b.ValueId, b.ValueIdExt); err != nil {
 		return err
 	}
 	if b.Offset != nil {
@@ -1498,7 +1498,7 @@ func (r *EvidenceVariableCharacteristicDefinitionByTypeAndValue) UnmarshalXML(d 
 					return err
 				}
 				r.ValueBoolean = v
-				_ = ext
+				r.ValueBooleanExt = ext
 			case "valueQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1523,7 +1523,7 @@ func (r *EvidenceVariableCharacteristicDefinitionByTypeAndValue) UnmarshalXML(d 
 					return err
 				}
 				r.ValueId = v
-				_ = ext
+				r.ValueIdExt = ext
 			case "offset":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1640,10 +1640,10 @@ func (b EvidenceVariableCharacteristicTimeFromEvent) MarshalXML(e *xml.Encoder, 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "eventDateTime", b.EventDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "eventDateTime", b.EventDateTime, b.EventDateTimeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "eventId", b.EventId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "eventId", b.EventId, b.EventIdExt); err != nil {
 		return err
 	}
 	if b.Quantity != nil {
@@ -1720,14 +1720,14 @@ func (r *EvidenceVariableCharacteristicTimeFromEvent) UnmarshalXML(d *xml.Decode
 					return err
 				}
 				r.EventDateTime = v
-				_ = ext
+				r.EventDateTimeExt = ext
 			case "eventId":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.EventId = v
-				_ = ext
+				r.EventIdExt = ext
 			case "quantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {

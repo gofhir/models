@@ -831,7 +831,7 @@ func (b MolecularSequenceRelativeStartingSequence) MarshalXML(e *xml.Encoder, st
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "sequenceString", b.SequenceString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "sequenceString", b.SequenceString, b.SequenceStringExt); err != nil {
 		return err
 	}
 	if b.SequenceReference != nil {
@@ -908,7 +908,7 @@ func (r *MolecularSequenceRelativeStartingSequence) UnmarshalXML(d *xml.Decoder,
 					return err
 				}
 				r.SequenceString = v
-				_ = ext
+				r.SequenceStringExt = ext
 			case "sequenceReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

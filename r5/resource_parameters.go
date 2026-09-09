@@ -421,64 +421,64 @@ func (b ParametersParameter) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 	if err := xmlEncodePrimitiveString(e, "name", b.Name, b.NameExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueBase64Binary", b.ValueBase64Binary, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueBase64Binary", b.ValueBase64Binary, b.ValueBase64BinaryExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, b.ValueBooleanExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueCanonical", b.ValueCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueCanonical", b.ValueCanonical, b.ValueCanonicalExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueCode", b.ValueCode, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueCode", b.ValueCode, b.ValueCodeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueDate", b.ValueDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueDate", b.ValueDate, b.ValueDateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueDateTime", b.ValueDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueDateTime", b.ValueDateTime, b.ValueDateTimeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", b.ValueDecimal, b.ValueDecimalExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueId", b.ValueId, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueId", b.ValueId, b.ValueIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueInstant", b.ValueInstant, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueInstant", b.ValueInstant, b.ValueInstantExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, b.ValueIntegerExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInteger64(e, "valueInteger64", b.ValueInteger64, nil); err != nil {
+	if err := xmlEncodePrimitiveInteger64(e, "valueInteger64", b.ValueInteger64, b.ValueInteger64Ext); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueMarkdown", b.ValueMarkdown, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueMarkdown", b.ValueMarkdown, b.ValueMarkdownExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueOid", b.ValueOid, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueOid", b.ValueOid, b.ValueOidExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "valuePositiveInt", b.ValuePositiveInt, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "valuePositiveInt", b.ValuePositiveInt, b.ValuePositiveIntExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, b.ValueStringExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueTime", b.ValueTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueTime", b.ValueTime, b.ValueTimeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "valueUnsignedInt", b.ValueUnsignedInt, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "valueUnsignedInt", b.ValueUnsignedInt, b.ValueUnsignedIntExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueUri", b.ValueUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueUri", b.ValueUri, b.ValueUriExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueUrl", b.ValueUrl, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueUrl", b.ValueUrl, b.ValueUrlExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueUuid", b.ValueUuid, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueUuid", b.ValueUuid, b.ValueUuidExt); err != nil {
 		return err
 	}
 	if b.ValueAddress != nil {
@@ -707,140 +707,140 @@ func (r *ParametersParameter) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 					return err
 				}
 				r.ValueBase64Binary = v
-				_ = ext
+				r.ValueBase64BinaryExt = ext
 			case "valueBoolean":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
-				_ = ext
+				r.ValueBooleanExt = ext
 			case "valueCanonical":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueCanonical = v
-				_ = ext
+				r.ValueCanonicalExt = ext
 			case "valueCode":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueCode = v
-				_ = ext
+				r.ValueCodeExt = ext
 			case "valueDate":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDate = v
-				_ = ext
+				r.ValueDateExt = ext
 			case "valueDateTime":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDateTime = v
-				_ = ext
+				r.ValueDateTimeExt = ext
 			case "valueDecimal":
 				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDecimal = v
-				_ = ext
+				r.ValueDecimalExt = ext
 			case "valueId":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueId = v
-				_ = ext
+				r.ValueIdExt = ext
 			case "valueInstant":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInstant = v
-				_ = ext
+				r.ValueInstantExt = ext
 			case "valueInteger":
 				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger = v
-				_ = ext
+				r.ValueIntegerExt = ext
 			case "valueInteger64":
 				v, ext, err := xmlDecodePrimitiveInteger64(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger64 = v
-				_ = ext
+				r.ValueInteger64Ext = ext
 			case "valueMarkdown":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueMarkdown = v
-				_ = ext
+				r.ValueMarkdownExt = ext
 			case "valueOid":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueOid = v
-				_ = ext
+				r.ValueOidExt = ext
 			case "valuePositiveInt":
 				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValuePositiveInt = v
-				_ = ext
+				r.ValuePositiveIntExt = ext
 			case "valueString":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
-				_ = ext
+				r.ValueStringExt = ext
 			case "valueTime":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueTime = v
-				_ = ext
+				r.ValueTimeExt = ext
 			case "valueUnsignedInt":
 				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueUnsignedInt = v
-				_ = ext
+				r.ValueUnsignedIntExt = ext
 			case "valueUri":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueUri = v
-				_ = ext
+				r.ValueUriExt = ext
 			case "valueUrl":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueUrl = v
-				_ = ext
+				r.ValueUrlExt = ext
 			case "valueUuid":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueUuid = v
-				_ = ext
+				r.ValueUuidExt = ext
 			case "valueAddress":
 				var v Address
 				if err := v.UnmarshalXML(d, t); err != nil {

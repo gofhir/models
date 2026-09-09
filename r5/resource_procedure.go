@@ -328,7 +328,7 @@ func (r Procedure) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "occurrenceDateTime", r.OccurrenceDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "occurrenceDateTime", r.OccurrenceDateTime, r.OccurrenceDateTimeExt); err != nil {
 		return err
 	}
 	if r.OccurrencePeriod != nil {
@@ -336,7 +336,7 @@ func (r Procedure) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "occurrenceString", r.OccurrenceString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "occurrenceString", r.OccurrenceString, r.OccurrenceStringExt); err != nil {
 		return err
 	}
 	if r.OccurrenceAge != nil {
@@ -362,7 +362,7 @@ func (r Procedure) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "reportedBoolean", r.ReportedBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "reportedBoolean", r.ReportedBoolean, r.ReportedBooleanExt); err != nil {
 		return err
 	}
 	if r.ReportedReference != nil {
@@ -579,7 +579,7 @@ func (r *Procedure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 					return err
 				}
 				r.OccurrenceDateTime = v
-				_ = ext
+				r.OccurrenceDateTimeExt = ext
 			case "occurrencePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -592,7 +592,7 @@ func (r *Procedure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 					return err
 				}
 				r.OccurrenceString = v
-				_ = ext
+				r.OccurrenceStringExt = ext
 			case "occurrenceAge":
 				var v Age
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -630,7 +630,7 @@ func (r *Procedure) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 					return err
 				}
 				r.ReportedBoolean = v
-				_ = ext
+				r.ReportedBooleanExt = ext
 			case "reportedReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

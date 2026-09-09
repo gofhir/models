@@ -303,7 +303,7 @@ func (r Observation) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "instantiatesCanonical", r.InstantiatesCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "instantiatesCanonical", r.InstantiatesCanonical, r.InstantiatesCanonicalExt); err != nil {
 		return err
 	}
 	if r.InstantiatesReference != nil {
@@ -354,7 +354,7 @@ func (r Observation) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "effectiveDateTime", r.EffectiveDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "effectiveDateTime", r.EffectiveDateTime, r.EffectiveDateTimeExt); err != nil {
 		return err
 	}
 	if r.EffectivePeriod != nil {
@@ -367,7 +367,7 @@ func (r Observation) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "effectiveInstant", r.EffectiveInstant, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "effectiveInstant", r.EffectiveInstant, r.EffectiveInstantExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "issued", r.Issued, r.IssuedExt); err != nil {
@@ -388,13 +388,13 @@ func (r Observation) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueString", r.ValueString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueString", r.ValueString, r.ValueStringExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "valueBoolean", r.ValueBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "valueBoolean", r.ValueBoolean, r.ValueBooleanExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "valueInteger", r.ValueInteger, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "valueInteger", r.ValueInteger, r.ValueIntegerExt); err != nil {
 		return err
 	}
 	if r.ValueRange != nil {
@@ -412,10 +412,10 @@ func (r Observation) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueTime", r.ValueTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueTime", r.ValueTime, r.ValueTimeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueDateTime", r.ValueDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueDateTime", r.ValueDateTime, r.ValueDateTimeExt); err != nil {
 		return err
 	}
 	if r.ValuePeriod != nil {
@@ -571,7 +571,7 @@ func (r *Observation) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error
 					return err
 				}
 				r.InstantiatesCanonical = v
-				_ = ext
+				r.InstantiatesCanonicalExt = ext
 			case "instantiatesReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -639,7 +639,7 @@ func (r *Observation) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error
 					return err
 				}
 				r.EffectiveDateTime = v
-				_ = ext
+				r.EffectiveDateTimeExt = ext
 			case "effectivePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -658,7 +658,7 @@ func (r *Observation) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error
 					return err
 				}
 				r.EffectiveInstant = v
-				_ = ext
+				r.EffectiveInstantExt = ext
 			case "issued":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -690,21 +690,21 @@ func (r *Observation) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error
 					return err
 				}
 				r.ValueString = v
-				_ = ext
+				r.ValueStringExt = ext
 			case "valueBoolean":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
-				_ = ext
+				r.ValueBooleanExt = ext
 			case "valueInteger":
 				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger = v
-				_ = ext
+				r.ValueIntegerExt = ext
 			case "valueRange":
 				var v Range
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -729,14 +729,14 @@ func (r *Observation) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error
 					return err
 				}
 				r.ValueTime = v
-				_ = ext
+				r.ValueTimeExt = ext
 			case "valueDateTime":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDateTime = v
-				_ = ext
+				r.ValueDateTimeExt = ext
 			case "valuePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -956,13 +956,13 @@ func (b ObservationComponent) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, b.ValueStringExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, b.ValueBooleanExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, b.ValueIntegerExt); err != nil {
 		return err
 	}
 	if b.ValueRange != nil {
@@ -980,10 +980,10 @@ func (b ObservationComponent) MarshalXML(e *xml.Encoder, start xml.StartElement)
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueTime", b.ValueTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueTime", b.ValueTime, b.ValueTimeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueDateTime", b.ValueDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueDateTime", b.ValueDateTime, b.ValueDateTimeExt); err != nil {
 		return err
 	}
 	if b.ValuePeriod != nil {
@@ -1073,21 +1073,21 @@ func (r *ObservationComponent) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 					return err
 				}
 				r.ValueString = v
-				_ = ext
+				r.ValueStringExt = ext
 			case "valueBoolean":
 				v, ext, err := xmlDecodePrimitiveBool(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueBoolean = v
-				_ = ext
+				r.ValueBooleanExt = ext
 			case "valueInteger":
 				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger = v
-				_ = ext
+				r.ValueIntegerExt = ext
 			case "valueRange":
 				var v Range
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1112,14 +1112,14 @@ func (r *ObservationComponent) UnmarshalXML(d *xml.Decoder, start xml.StartEleme
 					return err
 				}
 				r.ValueTime = v
-				_ = ext
+				r.ValueTimeExt = ext
 			case "valueDateTime":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDateTime = v
-				_ = ext
+				r.ValueDateTimeExt = ext
 			case "valuePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

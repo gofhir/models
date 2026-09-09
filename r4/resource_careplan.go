@@ -910,7 +910,7 @@ func (b CarePlanActivityDetail) MarshalXML(e *xml.Encoder, start xml.StartElemen
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "scheduledString", b.ScheduledString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "scheduledString", b.ScheduledString, b.ScheduledStringExt); err != nil {
 		return err
 	}
 	if b.Location != nil {
@@ -1064,7 +1064,7 @@ func (r *CarePlanActivityDetail) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 					return err
 				}
 				r.ScheduledString = v
-				_ = ext
+				r.ScheduledStringExt = ext
 			case "location":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

@@ -297,7 +297,7 @@ func (r Condition) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "onsetDateTime", r.OnsetDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "onsetDateTime", r.OnsetDateTime, r.OnsetDateTimeExt); err != nil {
 		return err
 	}
 	if r.OnsetAge != nil {
@@ -315,10 +315,10 @@ func (r Condition) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "onsetString", r.OnsetString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "onsetString", r.OnsetString, r.OnsetStringExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "abatementDateTime", r.AbatementDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "abatementDateTime", r.AbatementDateTime, r.AbatementDateTimeExt); err != nil {
 		return err
 	}
 	if r.AbatementAge != nil {
@@ -336,7 +336,7 @@ func (r Condition) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "abatementString", r.AbatementString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "abatementString", r.AbatementString, r.AbatementStringExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "recordedDate", r.RecordedDate, r.RecordedDateExt); err != nil {
@@ -493,7 +493,7 @@ func (r *Condition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 					return err
 				}
 				r.OnsetDateTime = v
-				_ = ext
+				r.OnsetDateTimeExt = ext
 			case "onsetAge":
 				var v Age
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -518,14 +518,14 @@ func (r *Condition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 					return err
 				}
 				r.OnsetString = v
-				_ = ext
+				r.OnsetStringExt = ext
 			case "abatementDateTime":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.AbatementDateTime = v
-				_ = ext
+				r.AbatementDateTimeExt = ext
 			case "abatementAge":
 				var v Age
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -550,7 +550,7 @@ func (r *Condition) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 					return err
 				}
 				r.AbatementString = v
-				_ = ext
+				r.AbatementStringExt = ext
 			case "recordedDate":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {

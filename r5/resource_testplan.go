@@ -281,7 +281,7 @@ func (r TestPlan) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 	if err := xmlEncodePrimitiveString(e, "version", r.Version, r.VersionExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "versionAlgorithmString", r.VersionAlgorithmString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "versionAlgorithmString", r.VersionAlgorithmString, r.VersionAlgorithmStringExt); err != nil {
 		return err
 	}
 	if r.VersionAlgorithmCoding != nil {
@@ -452,7 +452,7 @@ func (r *TestPlan) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 					return err
 				}
 				r.VersionAlgorithmString = v
-				_ = ext
+				r.VersionAlgorithmStringExt = ext
 			case "versionAlgorithmCoding":
 				var v Coding
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1259,7 +1259,7 @@ func (b TestPlanTestCaseTestData) MarshalXML(e *xml.Encoder, start xml.StartElem
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "sourceString", b.SourceString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "sourceString", b.SourceString, b.SourceStringExt); err != nil {
 		return err
 	}
 	if b.SourceReference != nil {
@@ -1318,7 +1318,7 @@ func (r *TestPlanTestCaseTestData) UnmarshalXML(d *xml.Decoder, start xml.StartE
 					return err
 				}
 				r.SourceString = v
-				_ = ext
+				r.SourceStringExt = ext
 			case "sourceReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1538,7 +1538,7 @@ func (b TestPlanTestCaseTestRunScript) MarshalXML(e *xml.Encoder, start xml.Star
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "sourceString", b.SourceString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "sourceString", b.SourceString, b.SourceStringExt); err != nil {
 		return err
 	}
 	if b.SourceReference != nil {
@@ -1591,7 +1591,7 @@ func (r *TestPlanTestCaseTestRunScript) UnmarshalXML(d *xml.Decoder, start xml.S
 					return err
 				}
 				r.SourceString = v
-				_ = ext
+				r.SourceStringExt = ext
 			case "sourceReference":
 				var v Reference
 				if err := v.UnmarshalXML(d, t); err != nil {

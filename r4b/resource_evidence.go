@@ -285,7 +285,7 @@ func (r Evidence) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "citeAsMarkdown", r.CiteAsMarkdown, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "citeAsMarkdown", r.CiteAsMarkdown, r.CiteAsMarkdownExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveCode(e, "status", r.Status, r.StatusExt); err != nil {
@@ -479,7 +479,7 @@ func (r *Evidence) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 					return err
 				}
 				r.CiteAsMarkdown = v
-				_ = ext
+				r.CiteAsMarkdownExt = ext
 			case "status":
 				v, ext, err := xmlDecodePrimitiveCode[PublicationStatus](d, t)
 				if err != nil {

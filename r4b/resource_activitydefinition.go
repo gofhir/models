@@ -384,7 +384,7 @@ func (r ActivityDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "subjectCanonical", r.SubjectCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "subjectCanonical", r.SubjectCanonical, r.SubjectCanonicalExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveString(e, "date", r.Date, r.DateExt); err != nil {
@@ -489,7 +489,7 @@ func (r ActivityDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "timingDateTime", r.TimingDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "timingDateTime", r.TimingDateTime, r.TimingDateTimeExt); err != nil {
 		return err
 	}
 	if r.TimingAge != nil {
@@ -709,7 +709,7 @@ func (r *ActivityDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 					return err
 				}
 				r.SubjectCanonical = v
-				_ = ext
+				r.SubjectCanonicalExt = ext
 			case "date":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
@@ -887,7 +887,7 @@ func (r *ActivityDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 					return err
 				}
 				r.TimingDateTime = v
-				_ = ext
+				r.TimingDateTimeExt = ext
 			case "timingAge":
 				var v Age
 				if err := v.UnmarshalXML(d, t); err != nil {

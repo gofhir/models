@@ -1047,10 +1047,10 @@ func (b TestReportSetupActionAssertRequirement) MarshalXML(e *xml.Encoder, start
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "linkUri", b.LinkUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "linkUri", b.LinkUri, b.LinkUriExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "linkCanonical", b.LinkCanonical, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "linkCanonical", b.LinkCanonical, b.LinkCanonicalExt); err != nil {
 		return err
 	}
 
@@ -1092,14 +1092,14 @@ func (r *TestReportSetupActionAssertRequirement) UnmarshalXML(d *xml.Decoder, st
 					return err
 				}
 				r.LinkUri = v
-				_ = ext
+				r.LinkUriExt = ext
 			case "linkCanonical":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.LinkCanonical = v
-				_ = ext
+				r.LinkCanonicalExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

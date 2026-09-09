@@ -1879,7 +1879,7 @@ func (b ContractTermAction) MarshalXML(e *xml.Encoder, start xml.StartElement) e
 	if err := xmlEncodePrimitiveStringArray(e, "contextLinkId", b.ContextLinkId, b.ContextLinkIdExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "occurrenceDateTime", b.OccurrenceDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "occurrenceDateTime", b.OccurrenceDateTime, b.OccurrenceDateTimeExt); err != nil {
 		return err
 	}
 	if b.OccurrencePeriod != nil {
@@ -2034,7 +2034,7 @@ func (r *ContractTermAction) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 					return err
 				}
 				r.OccurrenceDateTime = v
-				_ = ext
+				r.OccurrenceDateTimeExt = ext
 			case "occurrencePeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -3373,28 +3373,28 @@ func (b ContractTermOfferAnswer) MarshalXML(e *xml.Encoder, start xml.StartEleme
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, b.ValueBooleanExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", b.ValueDecimal, nil); err != nil {
+	if err := xmlEncodePrimitiveDecimal(e, "valueDecimal", b.ValueDecimal, b.ValueDecimalExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, b.ValueIntegerExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueDate", b.ValueDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueDate", b.ValueDate, b.ValueDateExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueDateTime", b.ValueDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueDateTime", b.ValueDateTime, b.ValueDateTimeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueTime", b.ValueTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueTime", b.ValueTime, b.ValueTimeExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, b.ValueStringExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "valueUri", b.ValueUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueUri", b.ValueUri, b.ValueUriExt); err != nil {
 		return err
 	}
 	if b.ValueAttachment != nil {
@@ -3456,56 +3456,56 @@ func (r *ContractTermOfferAnswer) UnmarshalXML(d *xml.Decoder, start xml.StartEl
 					return err
 				}
 				r.ValueBoolean = v
-				_ = ext
+				r.ValueBooleanExt = ext
 			case "valueDecimal":
 				v, ext, err := xmlDecodePrimitiveDecimal(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDecimal = v
-				_ = ext
+				r.ValueDecimalExt = ext
 			case "valueInteger":
 				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger = v
-				_ = ext
+				r.ValueIntegerExt = ext
 			case "valueDate":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDate = v
-				_ = ext
+				r.ValueDateExt = ext
 			case "valueDateTime":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueDateTime = v
-				_ = ext
+				r.ValueDateTimeExt = ext
 			case "valueTime":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueTime = v
-				_ = ext
+				r.ValueTimeExt = ext
 			case "valueString":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueString = v
-				_ = ext
+				r.ValueStringExt = ext
 			case "valueUri":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueUri = v
-				_ = ext
+				r.ValueUriExt = ext
 			case "valueAttachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {

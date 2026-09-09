@@ -519,7 +519,7 @@ func (b BiologicallyDerivedProductCollection) MarshalXML(e *xml.Encoder, start x
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "collectedDateTime", b.CollectedDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "collectedDateTime", b.CollectedDateTime, b.CollectedDateTimeExt); err != nil {
 		return err
 	}
 	if b.CollectedPeriod != nil {
@@ -578,7 +578,7 @@ func (r *BiologicallyDerivedProductCollection) UnmarshalXML(d *xml.Decoder, star
 					return err
 				}
 				r.CollectedDateTime = v
-				_ = ext
+				r.CollectedDateTimeExt = ext
 			case "collectedPeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -686,10 +686,10 @@ func (b BiologicallyDerivedProductProperty) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, nil); err != nil {
+	if err := xmlEncodePrimitiveBool(e, "valueBoolean", b.ValueBoolean, b.ValueBooleanExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, nil); err != nil {
+	if err := xmlEncodePrimitiveInt(e, "valueInteger", b.ValueInteger, b.ValueIntegerExt); err != nil {
 		return err
 	}
 	if b.ValueCodeableConcept != nil {
@@ -717,7 +717,7 @@ func (b BiologicallyDerivedProductProperty) MarshalXML(e *xml.Encoder, start xml
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, b.ValueStringExt); err != nil {
 		return err
 	}
 	if b.ValueAttachment != nil {
@@ -770,14 +770,14 @@ func (r *BiologicallyDerivedProductProperty) UnmarshalXML(d *xml.Decoder, start 
 					return err
 				}
 				r.ValueBoolean = v
-				_ = ext
+				r.ValueBooleanExt = ext
 			case "valueInteger":
 				v, ext, err := xmlDecodePrimitiveInt(d, t)
 				if err != nil {
 					return err
 				}
 				r.ValueInteger = v
-				_ = ext
+				r.ValueIntegerExt = ext
 			case "valueCodeableConcept":
 				var v CodeableConcept
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -814,7 +814,7 @@ func (r *BiologicallyDerivedProductProperty) UnmarshalXML(d *xml.Decoder, start 
 					return err
 				}
 				r.ValueString = v
-				_ = ext
+				r.ValueStringExt = ext
 			case "valueAttachment":
 				var v Attachment
 				if err := v.UnmarshalXML(d, t); err != nil {

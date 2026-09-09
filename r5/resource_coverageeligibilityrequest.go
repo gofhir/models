@@ -258,7 +258,7 @@ func (r CoverageEligibilityRequest) MarshalXML(e *xml.Encoder, start xml.StartEl
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "servicedDate", r.ServicedDate, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "servicedDate", r.ServicedDate, r.ServicedDateExt); err != nil {
 		return err
 	}
 	if r.ServicedPeriod != nil {
@@ -415,7 +415,7 @@ func (r *CoverageEligibilityRequest) UnmarshalXML(d *xml.Decoder, start xml.Star
 					return err
 				}
 				r.ServicedDate = v
-				_ = ext
+				r.ServicedDateExt = ext
 			case "servicedPeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -555,7 +555,7 @@ func (b CoverageEligibilityRequestEvent) MarshalXML(e *xml.Encoder, start xml.St
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "whenDateTime", b.WhenDateTime, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "whenDateTime", b.WhenDateTime, b.WhenDateTimeExt); err != nil {
 		return err
 	}
 	if b.WhenPeriod != nil {
@@ -608,7 +608,7 @@ func (r *CoverageEligibilityRequestEvent) UnmarshalXML(d *xml.Decoder, start xml
 					return err
 				}
 				r.WhenDateTime = v
-				_ = ext
+				r.WhenDateTimeExt = ext
 			case "whenPeriod":
 				var v Period
 				if err := v.UnmarshalXML(d, t); err != nil {

@@ -1215,7 +1215,7 @@ func (b MedicationKnowledgeDrugCharacteristic) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueString", b.ValueString, b.ValueStringExt); err != nil {
 		return err
 	}
 	if b.ValueQuantity != nil {
@@ -1223,7 +1223,7 @@ func (b MedicationKnowledgeDrugCharacteristic) MarshalXML(e *xml.Encoder, start 
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "valueBase64Binary", b.ValueBase64Binary, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "valueBase64Binary", b.ValueBase64Binary, b.ValueBase64BinaryExt); err != nil {
 		return err
 	}
 
@@ -1277,7 +1277,7 @@ func (r *MedicationKnowledgeDrugCharacteristic) UnmarshalXML(d *xml.Decoder, sta
 					return err
 				}
 				r.ValueString = v
-				_ = ext
+				r.ValueStringExt = ext
 			case "valueQuantity":
 				var v Quantity
 				if err := v.UnmarshalXML(d, t); err != nil {
@@ -1290,7 +1290,7 @@ func (r *MedicationKnowledgeDrugCharacteristic) UnmarshalXML(d *xml.Decoder, sta
 					return err
 				}
 				r.ValueBase64Binary = v
-				_ = ext
+				r.ValueBase64BinaryExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err

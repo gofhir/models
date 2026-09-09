@@ -345,7 +345,7 @@ func (r MessageDefinition) MarshalXML(e *xml.Encoder, start xml.StartElement) er
 			return err
 		}
 	}
-	if err := xmlEncodePrimitiveString(e, "eventUri", r.EventUri, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "eventUri", r.EventUri, r.EventUriExt); err != nil {
 		return err
 	}
 	if err := xmlEncodePrimitiveCode(e, "category", r.Category, r.CategoryExt); err != nil {
@@ -569,7 +569,7 @@ func (r *MessageDefinition) UnmarshalXML(d *xml.Decoder, start xml.StartElement)
 					return err
 				}
 				r.EventUri = v
-				_ = ext
+				r.EventUriExt = ext
 			case "category":
 				v, ext, err := xmlDecodePrimitiveCode[MessageSignificanceCategory](d, t)
 				if err != nil {

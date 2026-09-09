@@ -285,16 +285,16 @@ func (r ImmunizationEvaluation) MarshalXML(e *xml.Encoder, start xml.StartElemen
 	if err := xmlEncodePrimitiveString(e, "series", r.Series, r.SeriesExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "doseNumberPositiveInt", r.DoseNumberPositiveInt, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "doseNumberPositiveInt", r.DoseNumberPositiveInt, r.DoseNumberPositiveIntExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "doseNumberString", r.DoseNumberString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "doseNumberString", r.DoseNumberString, r.DoseNumberStringExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveUint32(e, "seriesDosesPositiveInt", r.SeriesDosesPositiveInt, nil); err != nil {
+	if err := xmlEncodePrimitiveUint32(e, "seriesDosesPositiveInt", r.SeriesDosesPositiveInt, r.SeriesDosesPositiveIntExt); err != nil {
 		return err
 	}
-	if err := xmlEncodePrimitiveString(e, "seriesDosesString", r.SeriesDosesString, nil); err != nil {
+	if err := xmlEncodePrimitiveString(e, "seriesDosesString", r.SeriesDosesString, r.SeriesDosesStringExt); err != nil {
 		return err
 	}
 
@@ -439,28 +439,28 @@ func (r *ImmunizationEvaluation) UnmarshalXML(d *xml.Decoder, start xml.StartEle
 					return err
 				}
 				r.DoseNumberPositiveInt = v
-				_ = ext
+				r.DoseNumberPositiveIntExt = ext
 			case "doseNumberString":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.DoseNumberString = v
-				_ = ext
+				r.DoseNumberStringExt = ext
 			case "seriesDosesPositiveInt":
 				v, ext, err := xmlDecodePrimitiveUint32(d, t)
 				if err != nil {
 					return err
 				}
 				r.SeriesDosesPositiveInt = v
-				_ = ext
+				r.SeriesDosesPositiveIntExt = ext
 			case "seriesDosesString":
 				v, ext, err := xmlDecodePrimitiveString(d, t)
 				if err != nil {
 					return err
 				}
 				r.SeriesDosesString = v
-				_ = ext
+				r.SeriesDosesStringExt = ext
 			default:
 				if err := d.Skip(); err != nil {
 					return err
