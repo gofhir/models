@@ -1032,14 +1032,13 @@ func collectRequiredCodeBindings(definitions []*parser.StructureDefinition) map[
 			if elem.Binding == nil || elem.Binding.Strength != "required" {
 				continue
 			}
-			isCode := false
-			for _, t := range elem.Type {
-				if t.Code == "code" {
-					isCode = true
-					break
-				}
-			}
-			if !isCode {
+			// The first type, not any of them: resolveGoTypeWithBinding reads
+			// elem.Type[0], and the two have to agree or a ValueSet is exempted
+			// from the cap and then never used, leaving an exported enum nothing
+			// refers to. No element in R4, R4B or R5 lists code anywhere but
+			// first, so this changes nothing today — it is here so a future spec
+			// that does cannot quietly diverge.
+			if len(elem.Type) == 0 || elem.Type[0].Code != "code" {
 				continue
 			}
 			if url := canonicalValueSetURL(elem.Binding.ValueSet); url != "" {
