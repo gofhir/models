@@ -3,9 +3,9 @@ name: Release Please
 on:
   # A transient GitHub API error is enough to fail this run, and on 2026-09-09
   # one did: release-please read the manifest, found the three 2.8.0 releases and
-  # died paginating merge commits. The release then waits for the next push to
-  # main, because nothing else starts this workflow — and re-running a failed run
-  # needs admin rights, which the people merging here do not have.
+  # died paginating merge commits. Nothing else starts this workflow, so the
+  # release then sits until someone pushes to main again — and inventing a commit
+  # to unblock a release is a poor way to cut one.
   workflow_dispatch:
   push:
     branches:
