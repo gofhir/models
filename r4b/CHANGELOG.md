@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.8.1](https://github.com/gofhir/models/compare/r4b/v2.8.0...r4b/v2.8.1) (2026-09-11)
+
+
+### Bug Fixes
+
+* **docs:** make the doc.go example compile ([#78](https://github.com/gofhir/models/issues/78)) ([6781db2](https://github.com/gofhir/models/commit/6781db2f633b24d8c82965a82e1f23f99798455f))
+
 ## [2.8.0](https://github.com/gofhir/models/compare/r4b/v2.7.1...r4b/v2.8.0) (2026-09-09)
 
 
