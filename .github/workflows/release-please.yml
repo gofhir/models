@@ -1,6 +1,12 @@
 name: Release Please
 
 on:
+  # A transient GitHub API error is enough to fail this run, and on 2026-09-09
+  # one did: release-please read the manifest, found the three 2.8.0 releases and
+  # died paginating merge commits. The release then waits for the next push to
+  # main, because nothing else starts this workflow — and re-running a failed run
+  # needs admin rights, which the people merging here do not have.
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -24,6 +30,11 @@ permissions:
 
 jobs:
   release-please:
+    # push already restricts this to the two release lines; workflow_dispatch does
+    # not, and target-branch below follows whatever ref it is started from, so
+    # without this guard a manual run on a feature branch would open a release PR
+    # against that branch.
+    if: ${{ github.ref_name == 'main' || github.ref_name == 'maintenance-v1' }}
     runs-on: ubuntu-latest
     outputs:
       releases_created: ${{ steps.release.outputs.releases_created }}
