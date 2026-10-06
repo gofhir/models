@@ -309,9 +309,11 @@ func TestModelListsEachVersionsOwnChildren(t *testing.T) {
 				count int
 				tenth string
 			}{"r4": {32, "basedOn"}, "r4b": {32, "basedOn"}, "r5": {35, "instantiates[x]"}}[tc.name]
-			if len(observation) != want.count || observation[9] != want.tenth {
-				t.Errorf("ChildElements(Observation) has %d children, the tenth %q; want %d, %q",
-					len(observation), observation[9], want.count, want.tenth)
+			if len(observation) != want.count {
+				t.Fatalf("ChildElements(Observation) has %d children, want %d: %v", len(observation), want.count, observation)
+			}
+			if observation[9] != want.tenth {
+				t.Errorf("ChildElements(Observation)'s tenth child is %q, want %q", observation[9], want.tenth)
 			}
 			for _, path := range []string{"Observation", "Patient", "Bundle", "Bundle.entry", "Questionnaire.item"} {
 				names := tc.model.ChildElements(path)
