@@ -15,6 +15,7 @@ package conformance
 // that does not is where the versions actually disagree, and saying so is the point.
 
 import (
+	"slices"
 	"testing"
 
 	"github.com/gofhir/models/r4/v2"
@@ -34,6 +35,7 @@ type fhirPathModel interface {
 	ResolvePath(path string) string
 	HasType(typeName string) bool
 	IsResource(typeName string) bool
+	ChildElements(path string) []string
 }
 
 type modelCase struct {
@@ -250,6 +252,96 @@ func TestModelSeparatesResourcesFromDatatypes(t *testing.T) {
 				}
 				if tc.model.IsResource(name) {
 					t.Errorf("IsResource(%q) = true, but it is an abstract base", name)
+				}
+			}
+		})
+	}
+}
+
+// JSON does not order an object's keys, so the model is the only record a
+// FHIRPath engine has of the order a definition lists an element's children
+// in, which children() and descendants() return them in, as the HL7 validator
+// does. Every type and every element path with children is listed, in its
+// snapshot's order, with a choice element's [x] kept.
+func TestModelListsChildrenInTheDefinitionsOrder(t *testing.T) {
+	for _, tc := range models() {
+		t.Run(tc.name, func(t *testing.T) {
+			for path, want := range map[string][]string{
+				"Reference": {"id", "extension", "reference", "type", "identifier", "display"},
+				"Extension": {"id", "extension", "url", "value[x]"},
+				// A primitive type's own elements, which the element FHIR
+				// writes beside a primitive is ordered by.
+				"date":    {"id", "extension", "value"},
+				"boolean": {"id", "extension", "value"},
+				// Roots, which R4 writes with no derivation.
+				"Element":  {"id", "extension"},
+				"Resource": {"id", "meta", "implicitRules", "language"},
+			} {
+				if got := tc.model.ChildElements(path); !slices.Equal(got, want) {
+					t.Errorf("ChildElements(%q) = %v, want %v", path, got, want)
+				}
+			}
+
+			// A backbone element is listed by its path.
+			if got := tc.model.ChildElements("Observation.component"); len(got) < 5 ||
+				!slices.Equal(got[:5], []string{"id", "extension", "modifierExtension", "code", "value[x]"}) {
+				t.Errorf("ChildElements(Observation.component) = %v", got)
+			}
+			// A type that constrains another has its base's children.
+			if got, want := tc.model.ChildElements("SimpleQuantity"), tc.model.ChildElements("Quantity"); !slices.Equal(got, want) || len(want) == 0 {
+				t.Errorf("ChildElements(SimpleQuantity) = %v, want Quantity's %v", got, want)
+			}
+			if got := tc.model.ChildElements("Patient.notAField"); got != nil {
+				t.Errorf("ChildElements on an unknown path = %v, want nil", got)
+			}
+		})
+	}
+}
+
+// Only a definition of a type contributes its snapshot, so no constraint
+// written under the same paths can repeat or reorder a resource's children;
+// and each version lists its own, as Observation's differ between R4 and R5.
+func TestModelListsEachVersionsOwnChildren(t *testing.T) {
+	for _, tc := range models() {
+		t.Run(tc.name, func(t *testing.T) {
+			observation := tc.model.ChildElements("Observation")
+			want := map[string]struct {
+				count int
+				tenth string
+			}{"r4": {32, "basedOn"}, "r4b": {32, "basedOn"}, "r5": {35, "instantiates[x]"}}[tc.name]
+			if len(observation) != want.count {
+				t.Fatalf("ChildElements(Observation) has %d children, want %d: %v", len(observation), want.count, observation)
+			}
+			if observation[9] != want.tenth {
+				t.Errorf("ChildElements(Observation)'s tenth child is %q, want %q", observation[9], want.tenth)
+			}
+			for _, path := range []string{"Observation", "Patient", "Bundle", "Bundle.entry", "Questionnaire.item"} {
+				names := tc.model.ChildElements(path)
+				seen := map[string]bool{}
+				for _, name := range names {
+					if seen[name] {
+						t.Errorf("ChildElements(%q) lists %q twice", path, name)
+					}
+					seen[name] = true
+				}
+			}
+		})
+	}
+}
+
+// A primitive type's own elements are typed: the element FHIR writes beside a
+// primitive, _birthDate, has an id and extensions, read beneath date.
+func TestModelTypesAPrimitivesElements(t *testing.T) {
+	for _, tc := range models() {
+		t.Run(tc.name, func(t *testing.T) {
+			for path, want := range map[string]string{
+				"date.extension":   "Extension",
+				"date.id":          "http://hl7.org/fhirpath/System.String",
+				"date.value":       "http://hl7.org/fhirpath/System.Date",
+				"string.extension": "Extension",
+			} {
+				if got := tc.model.TypeOf(path); got != want {
+					t.Errorf("TypeOf(%q) = %q, want %q", path, got, want)
 				}
 			}
 		})
