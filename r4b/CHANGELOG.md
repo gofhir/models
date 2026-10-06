@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.9.0](https://github.com/gofhir/models/compare/r4b/v2.8.1...r4b/v2.9.0) (2026-10-06)
+
+
+### Features
+
+* the FHIRPath model lists children in the definition's order ([#82](https://github.com/gofhir/models/issues/82)) ([0bfddec](https://github.com/gofhir/models/commit/0bfddec8fd59ac2f1c1c7b83d27d1dacb825f907))
+
 ## [2.8.1](https://github.com/gofhir/models/compare/r4b/v2.8.0...r4b/v2.8.1) (2026-09-11)
 
 
