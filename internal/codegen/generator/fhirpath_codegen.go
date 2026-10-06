@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/gofhir/models/internal/codegen/analyzer"
+	"github.com/gofhir/models/internal/codegen/parser"
 )
 
 // FHIRPathModelTemplateData holds all data needed by fhirpath_model.go.tmpl.
@@ -17,6 +18,7 @@ type FHIRPathModelTemplateData struct {
 	Path2RefType          []FHIRPathKVMulti
 	Type2Parent           []FHIRPathKV
 	PathsDefinedElsewhere []FHIRPathKV
+	ChildElements         []FHIRPathKVMulti
 	Resources             []string
 	Types                 []string
 }
@@ -96,6 +98,16 @@ func (c *CodeGen) generateFHIRPathModel() error {
 		}
 	}
 
+	// A primitive type's own elements, date.id, date.extension and date.value,
+	// which the element FHIR writes beside a primitive, _birthDate, is read
+	// beneath. The analyzed types do not carry them: a primitive is emitted as
+	// a Go value, not a struct with properties.
+	for path, code := range c.primitiveElementTypes() {
+		if _, exists := path2TypeMap[path]; !exists {
+			path2TypeMap[path] = code
+		}
+	}
+
 	data := FHIRPathModelTemplateData{
 		TemplateData: TemplateData{
 			PackageName: c.config.PackageName,
@@ -108,6 +120,7 @@ func (c *CodeGen) generateFHIRPathModel() error {
 		Path2RefType:          sortedKVMulti(path2RefMap),
 		Type2Parent:           sortedKV(c.buildTypeHierarchy()),
 		PathsDefinedElsewhere: sortedKV(contentRefMap),
+		ChildElements:         sortedKVMulti(c.buildChildElements()),
 		Resources:             sortedBoolMapKeys(resourceSet),
 		Types:                 sortedBoolMapKeys(c.buildTypeSet()),
 	}
@@ -141,6 +154,88 @@ func sortedKVMulti(m map[string][]string) []FHIRPathKVMulti {
 	result := make([]FHIRPathKVMulti, 0, len(keys))
 	for _, k := range keys {
 		result = append(result, FHIRPathKVMulti{Key: k, Values: m[k]})
+	}
+	return result
+}
+
+// definesType reports whether a StructureDefinition defines a type of its own,
+// whose snapshot lists that type's elements: a specialization, or a root such
+// as Element or Resource, which R4 writes with no derivation. A constraint
+// restates another type's elements under that type's paths, and a logical
+// model is no type an instance has.
+func definesType(sd *parser.StructureDefinition) bool {
+	return sd.Kind != "logical" && sd.Snapshot != nil &&
+		(sd.Derivation == "specialization" || sd.Derivation == "")
+}
+
+// buildChildElements maps every element path that has children, and every
+// type, to the names of its children in the order its definition lists them:
+// "Reference" → id, extension, reference, type, identifier, display;
+// "Observation.component" → id, extension, modifierExtension, code, value[x],
+// ...; "date" → id, extension, value. A choice element keeps its [x].
+//
+// JSON does not order an object's keys, so this is the only record of that
+// order a FHIRPath engine has: it is what children() and descendants() return
+// children in, as the HL7 validator does, rather than in the order an
+// instance happens to be written.
+//
+// Only definitions of a type contribute, so a constraint's snapshot, written
+// under its base type's paths, cannot add to or reorder them; a type that
+// constrains another, SimpleQuantity of Quantity, has its base's children.
+// Slices constrain an element of the same path and are not children.
+func (c *CodeGen) buildChildElements() map[string][]string {
+	children := make(map[string][]string)
+	defined := make(map[string]bool)
+	aliases := make(map[string]string)
+
+	for _, sd := range c.rawSDs {
+		if !definesType(sd) {
+			if sd.Kind != "logical" && sd.Derivation == "constraint" && sd.Name != sd.Type {
+				aliases[sd.Name] = sd.Type
+			}
+			continue
+		}
+		if defined[sd.Type] {
+			continue
+		}
+		defined[sd.Type] = true
+
+		for _, e := range sd.Snapshot.Element {
+			if strings.Contains(e.ID, ":") {
+				continue
+			}
+			i := strings.LastIndex(e.Path, ".")
+			if i < 0 {
+				continue
+			}
+			parent := e.Path[:i]
+			children[parent] = append(children[parent], e.Path[i+1:])
+		}
+	}
+
+	for alias, base := range aliases {
+		if _, exists := children[alias]; !exists && children[base] != nil {
+			children[alias] = children[base]
+		}
+	}
+	return children
+}
+
+// primitiveElementTypes maps each primitive type's own elements to their type
+// codes: "date.id" → System.String, "date.extension" → Extension, "date.value"
+// → System.Date.
+func (c *CodeGen) primitiveElementTypes() map[string]string {
+	result := make(map[string]string)
+	for _, sd := range c.rawSDs {
+		if sd.Kind != "primitive-type" || !definesType(sd) {
+			continue
+		}
+		for _, e := range sd.Snapshot.Element {
+			if !strings.Contains(e.Path, ".") || len(e.Type) == 0 || e.Type[0].Code == "" {
+				continue
+			}
+			result[e.Path] = e.Type[0].Code
+		}
 	}
 	return result
 }

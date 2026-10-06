@@ -19,6 +19,7 @@ type FHIRPathModelData struct {
 	path2RefType          map[string][]string
 	type2Parent           map[string]string
 	pathsDefinedElsewhere map[string]string
+	childElements         map[string][]string
 	resources             map[string]bool
 	types                 map[string]bool
 }
@@ -81,6 +82,15 @@ var fhirpathModel = sync.OnceValue(func() *FHIRPathModelData {
 	pathsDefinedElsewhere: map[string]string{
 {{- range .PathsDefinedElsewhere}}
 		"{{.Key}}": "{{.Value}}",
+{{- end}}
+	},
+
+	// childElements maps every type, and every element path that has children,
+	// to the names of its children in the order its definition lists them.
+	// A choice element keeps its [x]: "Observation" → [..., "value[x]", ...].
+	childElements: map[string][]string{
+{{- range .ChildElements}}
+		"{{.Key}}": { {{- range .Values}}"{{.}}", {{end}}},
 {{- end}}
 	},
 
@@ -176,6 +186,23 @@ func (m *FHIRPathModelData) ResolvePath(path string) string {
 		return resolved
 	}
 	return path
+}
+
+// ChildElements returns the names of the children of a type or of an element
+// path, in the order its definition lists them, or nil for one it does not
+// know. e.g. ChildElements("Reference") returns
+// ["id", "extension", "reference", "type", "identifier", "display"], and
+// ChildElements("Observation.component") lists a backbone element's. A choice
+// element keeps its [x]: "value[x]". A type that constrains another,
+// SimpleQuantity, has its base's.
+//
+// JSON does not order an object's keys; this is the order a FHIRPath engine
+// returns children() and descendants() in, as the HL7 validator does, rather
+// than the order an instance happens to be written in. It satisfies
+// gofhir/fhirpath's ElementOrder interface. The slice is the model's own and
+// must not be modified.
+func (m *FHIRPathModelData) ChildElements(path string) []string {
+	return m.childElements[path]
 }
 
 // HasType reports whether the name resolves to a type this model declares.
