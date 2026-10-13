@@ -51,3 +51,65 @@ func TestChildElementsAreEachTypesDefinitionsOwn(t *testing.T) {
 		}
 	}
 }
+
+// typed gives the element at path in def one type, with the FHIR type
+// structuredefinition-fhir-type names for it when fhirType is not "".
+func typed(def *parser.StructureDefinition, path, code, fhirType string) *parser.StructureDefinition {
+	for i := range def.Snapshot.Element {
+		e := &def.Snapshot.Element[i]
+		if e.Path != path {
+			continue
+		}
+		ref := parser.TypeRef{Code: code}
+		if fhirType != "" {
+			ref.Extension = []parser.TypeExtension{{
+				URL:      "http://hl7.org/fhir/StructureDefinition/structuredefinition-fhir-type",
+				ValueURL: fhirType,
+			}}
+		}
+		e.Type = []parser.TypeRef{ref}
+	}
+	return def
+}
+
+// An element whose code is a System type is listed under the FHIR type its
+// extension names, each path its own: a backbone element's id is not
+// BackboneElement's. A primitive's value, which names the primitive, is left
+// out, and so are a constraint's snapshot, a slice and an element without
+// the extension.
+func TestFHIRTypesNameEachSystemTypedElementsFHIRType(t *testing.T) {
+	const system = "http://hl7.org/fhirpath/System.String"
+	backbone := typed(sd("BackboneElement", "complex-type", "specialization", "BackboneElement",
+		"BackboneElement", "BackboneElement.id"), "BackboneElement.id", system, "id")
+	patient := sd("Patient", "resource", "specialization", "Patient",
+		"Patient", "Patient.id", "Patient.contact", "Patient.contact.id", "Patient.gender")
+	typed(patient, "Patient.id", system, "id")
+	typed(patient, "Patient.contact.id", system, "string")
+	typed(patient, "Patient.gender", "code", "")
+	str := typed(sd("string", "primitive-type", "specialization", "string",
+		"string", "string.id", "string.value"), "string.id", system, "string")
+	typed(str, "string.value", system, "string")
+	extension := typed(sd("Extension", "complex-type", "specialization", "Extension",
+		"Extension", "Extension.url", "Extension.url:slice"), "Extension.url", system, "uri")
+	typed(extension, "Extension.url:slice", system, "url")
+	profile := typed(sd("MyPatient", "resource", "constraint", "Patient",
+		"Patient", "Patient.id"), "Patient.id", system, "string")
+
+	c := &CodeGen{rawSDs: []*parser.StructureDefinition{profile, backbone, patient, str, extension}}
+	got := c.buildFHIRTypes()
+	want := map[string]string{
+		"BackboneElement.id": "id",
+		"Patient.id":         "id",
+		"Patient.contact.id": "string",
+		"string.id":          "string",
+		"Extension.url":      "uri",
+	}
+	if len(got) != len(want) {
+		t.Errorf("buildFHIRTypes() = %v, want %v", got, want)
+	}
+	for path, fhirType := range want {
+		if got[path] != fhirType {
+			t.Errorf("buildFHIRTypes()[%q] = %q, want %q", path, got[path], fhirType)
+		}
+	}
+}

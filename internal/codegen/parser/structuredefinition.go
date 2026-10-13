@@ -85,6 +85,31 @@ type TypeRef struct {
 	TargetProfile []string `json:"targetProfile,omitempty"`
 	Aggregation   []string `json:"aggregation,omitempty"`
 	Versioning    string   `json:"versioning,omitempty"`
+	// Extension carries structuredefinition-fhir-type, which names the FHIR
+	// type of an element whose code is a FHIRPath System type. Only that one
+	// extension is read; the rest are ignored.
+	Extension []TypeExtension `json:"extension,omitempty"`
+}
+
+// TypeExtension is one entry of ElementDefinition.type.extension.
+type TypeExtension struct {
+	URL      string `json:"url"`
+	ValueURL string `json:"valueUrl,omitempty"`
+}
+
+// fhirTypeExtension identifies the extension naming an element's FHIR type
+// where its code is a FHIRPath System type.
+const fhirTypeExtension = "http://hl7.org/fhir/StructureDefinition/structuredefinition-fhir-type"
+
+// FHIRType returns the FHIR type the structuredefinition-fhir-type extension
+// names, "id" for R5's Resource.id, or "" when the extension is absent.
+func (t *TypeRef) FHIRType() string {
+	for _, ext := range t.Extension {
+		if ext.URL == fhirTypeExtension {
+			return ext.ValueURL
+		}
+	}
+	return ""
 }
 
 // Binding describes the binding to a value set.

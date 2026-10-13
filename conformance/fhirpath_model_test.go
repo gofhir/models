@@ -36,6 +36,7 @@ type fhirPathModel interface {
 	HasType(typeName string) bool
 	IsResource(typeName string) bool
 	ChildElements(path string) []string
+	FHIRTypeOf(path string) string
 }
 
 type modelCase struct {
@@ -342,6 +343,37 @@ func TestModelTypesAPrimitivesElements(t *testing.T) {
 			} {
 				if got := tc.model.TypeOf(path); got != want {
 					t.Errorf("TypeOf(%q) = %q, want %q", path, got, want)
+				}
+			}
+		})
+	}
+}
+
+// An element whose type code is a System type, Resource.id, Element.id and
+// Extension.url, has its FHIR type named in structuredefinition-fhir-type,
+// and each version names its own: R4B made Resource.id and a datatype's id an
+// id, and R4B alone Element.id. A primitive's value carries the extension too, naming the primitive, and
+// is left out; a path of a FHIR type is not listed.
+func TestModelNamesTheFHIRTypeOfSystemTypedElements(t *testing.T) {
+	for _, tc := range models() {
+		t.Run(tc.name, func(t *testing.T) {
+			before := tc.name == "r4"
+			for path, want := range map[string]string{
+				"Patient.id":         map[bool]string{true: "string", false: "id"}[before],
+				"HumanName.id":       map[bool]string{true: "string", false: "id"}[before],
+				"Patient.contact.id": "string",
+				"code.id":            "string",
+				"Extension.url":      "uri",
+				// R4B alone made Element.id an id, and left a primitive's
+				// id, code.id, a string
+				"Element.id":        map[bool]string{true: "id", false: "string"}[tc.name == "r4b"],
+				"string.value":      "",
+				"date.value":        "",
+				"Patient.name":      "",
+				"Patient.birthDate": "",
+			} {
+				if got := tc.model.FHIRTypeOf(path); got != want {
+					t.Errorf("FHIRTypeOf(%q) = %q, want %q", path, got, want)
 				}
 			}
 		})

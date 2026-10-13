@@ -19,6 +19,7 @@ type FHIRPathModelTemplateData struct {
 	Type2Parent           []FHIRPathKV
 	PathsDefinedElsewhere []FHIRPathKV
 	ChildElements         []FHIRPathKVMulti
+	FHIRTypes             []FHIRPathKV
 	Resources             []string
 	Types                 []string
 }
@@ -121,6 +122,7 @@ func (c *CodeGen) generateFHIRPathModel() error {
 		Type2Parent:           sortedKV(c.buildTypeHierarchy()),
 		PathsDefinedElsewhere: sortedKV(contentRefMap),
 		ChildElements:         sortedKVMulti(c.buildChildElements()),
+		FHIRTypes:             sortedKV(c.buildFHIRTypes()),
 		Resources:             sortedBoolMapKeys(resourceSet),
 		Types:                 sortedBoolMapKeys(c.buildTypeSet()),
 	}
@@ -219,6 +221,40 @@ func (c *CodeGen) buildChildElements() map[string][]string {
 		}
 	}
 	return children
+}
+
+// buildFHIRTypes maps every element path whose type code is a FHIRPath System
+// type to the FHIR type its structuredefinition-fhir-type extension names:
+// "Patient.id" → "id" in R5 and "string" in R4, "HumanName.id" → "id" in R5,
+// "Patient.contact.id" → "string", "Extension.url" → "uri". The extension
+// "specifies the applicable FHIR type" of such an element, and the HL7
+// validator types it by that, so Patient.id.is(id) is true in R5.
+//
+// A primitive type's value, string.value, also carries the extension, naming
+// the primitive itself; it is left out, as the value is the System value a
+// FHIRPath engine reads the primitive as. Only definitions of a type
+// contribute, and a slice is no element of its own.
+func (c *CodeGen) buildFHIRTypes() map[string]string {
+	result := make(map[string]string)
+	for _, sd := range c.rawSDs {
+		if !definesType(sd) {
+			continue
+		}
+		for _, e := range sd.Snapshot.Element {
+			if strings.Contains(e.ID, ":") || len(e.Type) != 1 {
+				continue
+			}
+			if sd.Kind == "primitive-type" && e.Path == sd.Type+".value" {
+				continue
+			}
+			if fhirType := e.Type[0].FHIRType(); fhirType != "" {
+				if _, exists := result[e.Path]; !exists {
+					result[e.Path] = fhirType
+				}
+			}
+		}
+	}
+	return result
 }
 
 // primitiveElementTypes maps each primitive type's own elements to their type
