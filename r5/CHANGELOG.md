@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.10.0](https://github.com/gofhir/models/compare/r5/v2.9.0...r5/v2.10.0) (2026-10-14)
+
+
+### Features
+
+* the FHIRPath model names the FHIR type of System-typed elements ([#85](https://github.com/gofhir/models/issues/85)) ([8295551](https://github.com/gofhir/models/commit/82955517de7fdaf07e02f91aea1faf3fc97a375d)), closes [#84](https://github.com/gofhir/models/issues/84)
+
 ## [2.9.0](https://github.com/gofhir/models/compare/r5/v2.8.1...r5/v2.9.0) (2026-10-06)
 
 
